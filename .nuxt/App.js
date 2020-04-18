@@ -12,7 +12,9 @@ import NuxtError from '../layouts/error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/vuetify/dist/vuetify.css'
+import '../assets/sass/overrides.sass'
+
+import '../assets/css/app.scss'
 
 import _6f6c098b from '../layouts/default.vue'
 

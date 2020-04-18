@@ -31,6 +31,11 @@ module.exports = {
     "vue/component-name-in-template-casing": ["error", "PascalCase"],
     "@typescript-eslint/no-unused-vars": "off",
     "no-unused-vars": "off",
+    "vue/singleline-html-element-content-newline": ["off", {
+      "ignoreWhenNoAttributes": true,
+      "ignoreWhenEmpty": true,
+      "ignores": ["pre", "textarea"]
+    }],
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   },

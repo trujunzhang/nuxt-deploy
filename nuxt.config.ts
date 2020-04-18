@@ -1,5 +1,6 @@
 import { Configuration as NuxtConfiguration } from '@nuxt/types'
 import { vuetify } from './config/vuetify'
+import en from './locales/en.json'
 
 const config: NuxtConfiguration = {
   mode: 'universal',
@@ -27,11 +28,17 @@ const config: NuxtConfiguration = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/assets/sass/overrides.sass',
+    '~/assets/css/app.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '@/plugins/base.js',
+    '@/plugins/chartist.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -39,7 +46,24 @@ const config: NuxtConfiguration = {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    [
+      'nuxt-i18n',
+      {
+        locales: ['en', 'es'],
+        defaultLocale: 'en',
+        vueI18n: {
+          fallbackLocale: 'en',
+          messages: {
+            en,
+            es: {
+              greeting: '¡Hola mundo!'
+            }
+          }
+        }
+      }
+    ]
+  ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -49,6 +73,7 @@ const config: NuxtConfiguration = {
    ** Build configuration
    */
   build: {
+    extractCSS: false,
     /*
      ** You can extend webpack config here
      */
