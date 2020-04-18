@@ -73,7 +73,7 @@ const config: NuxtConfiguration = {
    ** Build configuration
    */
   build: {
-    extractCSS: false,
+    extractCSS: true,
     /*
      ** You can extend webpack config here
      */
