@@ -1,0 +1,7 @@
+.nuxt/
+.vscode/
+dist/
+node_modules/
+jest.config.js
+nuxt.config.js
+ts-shim.d.ts

@@ -1,0 +1,21 @@
+
+  getFormattedRelative({ t, value, defaultLocale }) {
+
+
+  if (action.type === Types.pagesAction.PAGES_REFRESH_NOTIFY) {
+
+export function refreshRealmObjectsPage(object: IRefreshPageObject) {
+
+
+
+      refreshRealmObjectsPageAction,
+
+
+    MobileRefreshHelper 
+
+
+
+  static getToolbars(params: IParallaxPageToolbarHelperGetToolbarsParams) {
+
+
+expect(dependencies.moment).toEqual('2.23.0')

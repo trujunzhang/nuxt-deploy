@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "isolatedModules": false,
+    "noEmit": false,
+    "outDir": "production-server/"
+  },
+  "include": [
+    "apps/web/server/**/*.ts"
+  ],
+  "exclude": [
+    "apps/web/server/routesModels/utils/__tests__/**",
+    "apps/web/server/__tests__/**",
+    "build",
+    "node_modules",
+    "lib"
+  ]
+}

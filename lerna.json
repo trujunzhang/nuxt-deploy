@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "packages/vendors/avatar/lib",
+    "packages/globalLibrary/appWebCloud",
+    "packages/globalLibrary/appConstants",
+    "packages/globalLibrary/appLibrary",
+    "packages/globalLibrary/appTools",
+    "packages/appWeb"
+  ],
+  "version": "6.0.0",
+  "useWorkspaces": false,
+  "npmClient": "yarn"
+}

@@ -1,0 +1,17 @@
+* 16/06/2017
+   1. (*)register with email
+   2. (*)load more pagation
+
+* 20/06/2017
+   1. (*)register with facebook and twitter
+   2. build react-native apps
+
+* 03/07/2017
+   1. (*)add reviews list
+
+* 05/07/2017
+   1. edit restaurant
+
+* 16/09/2018
+   1. map in restaurant.
+   2. 

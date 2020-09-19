@@ -1,0 +1,12 @@
+export declare const IconVectorTypeAntDesign: string;
+export declare const IconVectorTypeEntypo: string;
+export declare const IconVectorTypeEvilIcons: string;
+export declare const IconVectorTypeFeather: string;
+export declare const IconVectorTypeFontAwesome: string;
+export declare const IconVectorTypeFoundation: string;
+export declare const IconVectorTypeIonicons: string;
+export declare const IconVectorTypeMaterialCommunityIcons: string;
+export declare const IconVectorTypeMaterialIcons: string;
+export declare const IconVectorTypeOcticons: string;
+export declare const IconVectorTypeSimpleLineIcons: string;
+export declare const IconVectorTypeZocial: string;

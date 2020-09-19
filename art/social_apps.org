@@ -1,0 +1,17 @@
+* Facebook (IEATTAApp)
+
+  [https://developers.facebook.com/apps/1050096535124346/dashboard/]
+
+  [https://developers.facebook.com/docs/javascript/quickstart]
+
+  [https://developers.facebook.com/docs/javascript/reference/FB.init/v2.9]
+
+
+IEATTAApp
+This app is in development mode and can only be used by app admins, developers and testers
+API Version
+v2.9
+App ID
+1050096535124346
+App Secret
+d969c13f2d19112e26c6b9c3f2563d2f

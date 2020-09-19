@@ -1,0 +1,12 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.navigationParams = void 0;
+var navigationParams = {
+  objectSchemaName: 'objectSchemaName',
+  editModelType: 'editModelType'
+};
+exports.navigationParams = navigationParams;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy90eXBlcy9uYXZpZ2F0aW9uUGFyYW1zLnRzIl0sIm5hbWVzIjpbIm5hdmlnYXRpb25QYXJhbXMiLCJvYmplY3RTY2hlbWFOYW1lIiwiZWRpdE1vZGVsVHlwZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQU8sSUFBTUEsZ0JBQWdCLEdBQUc7QUFDOUJDLEVBQUFBLGdCQUFnQixFQUFFLGtCQURZO0FBRTlCQyxFQUFBQSxhQUFhLEVBQUU7QUFGZSxDQUF6QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBuYXZpZ2F0aW9uUGFyYW1zID0ge1xuICBvYmplY3RTY2hlbWFOYW1lOiAnb2JqZWN0U2NoZW1hTmFtZScsXG4gIGVkaXRNb2RlbFR5cGU6ICdlZGl0TW9kZWxUeXBlJ1xufVxuIl19

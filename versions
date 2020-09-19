@@ -1,0 +1,19 @@
+2018: python-ieatta-universal
+2019: global-ieatta-lerna 
+2020: flutter-ieatta-lerna
+
+
+Library:
+1. i18next:
+    https://github.com/i18next/i18next
+2. react-i18next 
+    https://github.com/i18next/react-i18next
+3. next-i18nex: 
+    https://github.com/isaachinman/next-i18next
+    https://github.com/isaachinman/next-i18next/blob/master/package.json
+
+
+
+    
+
+

@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render correctly for IEADropFileForm 1`] = `
+<div
+  className="upload upload--photos js-html5-uploader hidden"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div
+    aria-disabled={false}
+    className="file-drop file-drop--big js-file-drop"
+    onClick={[Function]}
+    onDragEnter={[Function]}
+    onDragLeave={[Function]}
+    onDragOver={[Function]}
+    onDragStart={[Function]}
+    onDrop={[Function]}
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <div
+      className="file-drop_area"
+    >
+      <div
+        className="file-drop_area-inner"
+      >
+        <h1>
+          Drag and drop your photos here
+        </h1>
+        <fieldset
+          className="hr-line"
+        >
+          <legend>
+            OR
+          </legend>
+        </fieldset>
+        <div
+          className="file-browser js-file-browser"
+        >
+          <button
+            className="ybtn ybtn--primary file-browser_button"
+            type="submit"
+            value="submit"
+          >
+            <span>
+              Browse Files
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <input
+      accept="image/jpeg, image/png"
+      autoComplete="off"
+      disabled={false}
+      multiple={false}
+      onChange={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "opacity": 0.00001,
+          "pointerEvents": "none",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      type="file"
+    />
+  </div>
+</div>
+`;

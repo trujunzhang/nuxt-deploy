@@ -1,0 +1,39 @@
+* Features
+
+| modules    | sub            | link                                                        | router                                                      | page                     | 04-28 |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| HOME       |                | /                                                           | /                                                           | index                    |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| Register   |                |                                                             |                                                             |                          |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+|            | Login          | /login                                                      | /login                                                      | UserLoginMain            |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| Restaurant |                |                                                             |                                                             |                          |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+|            | default        | /biz/72rHCfkSGs/Forno-Vecchio111                            | /biz/:restaurantUniqueId/:rslug                                            | restaurantSingle         |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+|            | recipes        | /biz_recipes/72rHCfkSGs/Forno-Vecchio111                    | /biz_recipes/:restaurantUniqueId/:rslug                                    | restaurantRecipes        |       |   |   |
+| (Reviews ) | Reviews        | /reviews/restaurant/72rHCfkSGs/Forno-Vecchio111             | /reviews/:modelType/:forObjectId/:forObjectDisplayName      | reviewSingle             |       |   |   |
+| (Edit)     | edit           | /edit/biz/72rHCfkSGs/Forno-Vecchio111                       | /edit/biz/:restaurantUniqueId/:rslug                                       | editRestaurantForm       |       |   |   |
+| (Add)      | Event          | /organization/event/new/restaurant/72rHCfkSGs               | /organization/event/new/:modelType/:forObjectId             | organizationEventNew     |       |   |   |
+| (Add)      | Recipe         | /organization/recipe/new/restaurant/72rHCfkSGs              | /organization/recipe/new/:modelType/:forObjectId            | organizationRecipeNew    |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| Event      |                |                                                             |                                                             |                          |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+|            | default        | /events/U7k75ovuk0/Sketch-the-Block-art-night-market        | /events/:eventUniqueId/:eslug                                         | eventSingle              |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| (Reviews)  | Reviews        | /reviews/event/U7k75ovuk0/Sketch-the-Block-art-night-market | /reviews/:modelType/:forObjectId/:forObjectDisplayName      | reviewSingle             |       |   |   |
+| (Edit)     | edit           | /edit/event/U7k75ovuk0/Sketch-the-Block-art-night-market    | /edit/event/:eventUniqueId/:eslug                                     | eventEdit                |       |   |   |
+| (Organize) | Users in event | /organization/event/users/U7k75ovuk0                        | /organization/event/users/:eventUniqueId                              | organizationEventForUser |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| Recipe     |                |                                                             |                                                             |                          |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+|            | default        | /orderedrecipe/TFMuxD6Etf/Chicken-Tacos                     | /orderedrecipe/:recipeUniqueId/:oslug                                  | recipeSingle             |       |   |   |
+|------------+----------------+-------------------------------------------------------------+-------------------------------------------------------------+--------------------------+-------+---+---|
+| (Edit)     | edit           | /organization/recipe/edit/restaurant/72rHCfkSGs/TFMuxD6Etf  | /organization/recipe/edit/:modelType/:forObjectId/:recipeUniqueId | organizationRecipeEdit   |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |
+|            |                |                                                             |                                                             |                          |       |   |   |

@@ -1,0 +1,10 @@
+https://jonathanmh.com/deploying-a-nuxt-js-app-with-docker/
+
+* Building your docker container can be done with, 
+  while in the repository with the Dockerfile present:
+
+>> docker build -t my_app .
+
+* Next, to run the container:
+
+>> docker run -it -p 5000:5000 my_app

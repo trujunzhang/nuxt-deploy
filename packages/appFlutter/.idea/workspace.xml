@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1hMaoRiXAUybtyjLBKrsv0GrG4Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="" />
+      <created>1599823591878</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599823591878</updated>
+      <workItem from="1599823594358" duration="242000" />
+      <workItem from="1599824822294" duration="618000" />
+      <workItem from="1599825707090" duration="782000" />
+      <workItem from="1599826636276" duration="246000" />
+      <workItem from="1599893868332" duration="5883000" />
+      <workItem from="1599900815680" duration="7000" />
+      <workItem from="1599900975404" duration="337000" />
+      <workItem from="1599903682584" duration="372000" />
+      <workItem from="1599904392633" duration="661000" />
+      <workItem from="1599908665587" duration="79000" />
+      <workItem from="1599909389660" duration="812000" />
+      <workItem from="1599914127216" duration="540000" />
+      <workItem from="1599915139863" duration="1690000" />
+      <workItem from="1599917420977" duration="81000" />
+      <workItem from="1599918777312" duration="179000" />
+      <workItem from="1599958994499" duration="308000" />
+      <workItem from="1600081567142" duration="3604000" />
+      <workItem from="1600161880418" duration="1114000" />
+      <workItem from="1600236028487" duration="630000" />
+      <workItem from="1600236889794" duration="3144000" />
+      <workItem from="1600241941731" duration="1896000" />
+      <workItem from="1600249772146" duration="167000" />
+      <workItem from="1600255390793" duration="364000" />
+      <workItem from="1600256286701" duration="315000" />
+      <workItem from="1600257061675" duration="105000" />
+      <workItem from="1600332112110" duration="919000" />
+      <workItem from="1600339271383" duration="199000" />
+      <workItem from="1600343168606" duration="621000" />
+    </task>
+    <task id="LOCAL-00001" summary="xxx">
+      <created>1599895311258</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1599895311258</updated>
+    </task>
+    <task id="LOCAL-00002" summary="xxx">
+      <created>1599896639114</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1599896639114</updated>
+    </task>
+    <task id="LOCAL-00003" summary="xxx">
+      <created>1599898161255</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599898161255</updated>
+    </task>
+    <task id="LOCAL-00004" summary="xxx">
+      <created>1599898195400</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599898195400</updated>
+    </task>
+    <task id="LOCAL-00005" summary="xxx">
+      <created>1599915906885</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1599915906885</updated>
+    </task>
+    <task id="LOCAL-00006" summary="xxx">
+      <created>1599916701869</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1599916701870</updated>
+    </task>
+    <task id="LOCAL-00007" summary="xxx">
+      <created>1599959300071</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1599959300071</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="xxx" />
+    <option name="LAST_COMMIT_MESSAGE" value="xxx" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="220" y="109" key="RollbackChangesDialog" timestamp="1599894810273">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="220" y="109" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1599894810273" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1600389569827">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1600389569827" />
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599826882330">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1599826882330" />
+    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1600389837708">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1600389837708" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1600338544771" />
+  </component>
+</project>
