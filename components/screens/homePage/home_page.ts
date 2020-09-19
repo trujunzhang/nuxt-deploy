@@ -2,13 +2,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
 import { FBCollections } from '~/database/constant'
 import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
-import RestaurantItem from '~/components/screens/homepage/restaurantItem/restaurantItem.vue'
+import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'
 import HomeFooter from '~/components/screens/footer/footer.vue'
 
 @Component({
   components: {
     HomeFooter,
-    RestaurantItem,
+    RestaurantItem
   }
 })
 export default class HomePage extends Vue {
