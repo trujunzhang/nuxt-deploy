@@ -14,8 +14,8 @@ const commonTheme: VuetifyThemeVariant = {
 }
 
 const vuetify : Options = {
-  treeShake: true,
-  // treeShake: false,
+  // treeShake: true,
+  treeShake: false,
   customVariables: ['~/assets/sass/variables.scss'],
   theme: {
     dark: false,

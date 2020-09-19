@@ -37,8 +37,12 @@
     "tim": "تيم الإبداعية",
     "timeline": "الجدول الزمني",
     "typography": "طباعة",
-    "user": "ملف تعريفي للمستخدم",
     "vforms": "نماذج التحقق من الصحة",
     "widgets": "الحاجيات",
-    "wizard": "ساحر"
+    "wizard": "ساحر",
+    "restaurant": "Restaurant",
+    "event": "Event",
+    "recipe": "Recipe",
+    "photo": "Photo",
+    "user": "User"
 }

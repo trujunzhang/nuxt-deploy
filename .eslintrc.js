@@ -27,6 +27,7 @@ module.exports = {
     'vuetify/grid-unknown-attributes': 'off',
     'vuetify/no-legacy-grid': 'off',
     // common
+    "camelcase": "off",
     "vue/html-self-closing": "off",
     "vue/component-name-in-template-casing": ["error", "PascalCase"],
     "@typescript-eslint/no-unused-vars": "off",

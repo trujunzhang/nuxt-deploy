@@ -1,0 +1,11 @@
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import HomePage from '~/components/screens/homepage/home_page.vue'
+
+@Component({
+  components: {
+    HomePage
+  }
+})
+export default class Index extends Vue {
+
+}

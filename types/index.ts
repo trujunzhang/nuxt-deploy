@@ -1,4 +1,1 @@
-export interface Contact {
-  email: string;
-  phone: string;
-}
+export type test = string

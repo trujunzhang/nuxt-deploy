@@ -21,10 +21,10 @@
       </v-icon>
     </v-btn>
 
-    <v-toolbar-title
+    <!-- <v-toolbar-title
       class="hidden-sm-and-down"
       v-text="$route.name"
-    />
+    /> -->
 
     <v-spacer />
 

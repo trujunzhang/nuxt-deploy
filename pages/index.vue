@@ -1,43 +1,10 @@
 <template>
-  <v-container
-    id="dashboard"
-    fluid
-    tag="section"
+  <div
+    class="lemon--div__373c0__1mboc spinnerContainer__373c0__dHYYg verticalFilterPanelEnabled border-color--default__373c0__3-ifU background-color--white__373c0__2uyKj"
   >
-    <v-row>
-      <v-badge
-        content="5"
-        value="5"
-        color="green"
-        overlap
-      >
-        <v-icon large>mdi-email</v-icon>
-      </v-badge>
-    </v-row>
-  </v-container>
+    <!-- Main page -->
+    <HomePage />
+  </div>
 </template>
 
-<script>
-
-export default {
-  name: 'DashboardDashboard',
-  components: {
-
-  },
-  data () {
-    return {
-      list: {
-        0: false,
-        1: false,
-        2: false
-      }
-    }
-  },
-
-  methods: {
-    complete (index) {
-      this.list[index] = !this.list[index]
-    }
-  }
-}
-</script>
+<script lang="ts" src="./index.ts" />

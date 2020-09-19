@@ -66,7 +66,7 @@ typings/
 .next
 
 # nuxt.js build output
-# .nuxt
+.nuxt
 
 # Nuxt generate
 dist
@@ -78,7 +78,7 @@ dist
 .serverless
 
 # IDE / Editor
-.idea
+#.idea
 
 # Service worker
 sw.*

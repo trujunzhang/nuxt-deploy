@@ -37,8 +37,12 @@
     "tim": "Creative Tim",
     "timeline": "Timeline",
     "typography": "Typography",
-    "user": "User Profile",
     "vforms": "Validation Forms",
     "widgets": "Widgets",
-    "wizard": "Wizard"
+    "wizard": "Wizard",
+    "restaurant": "Restaurant",
+    "event": "Event",
+    "recipe": "Recipe",
+    "photo": "Photo",
+    "user": "User"
 }
