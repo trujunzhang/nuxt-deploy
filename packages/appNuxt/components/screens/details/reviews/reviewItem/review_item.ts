@@ -43,7 +43,7 @@ export default class ReviewItem extends Vue {
    * http://localhost:3000/writeareview/biz/3YVy-af7Ipl7TVft3kquWg
    */
   getEditReviewUrl () {
-    return `http://localhost:3000/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
+    return `/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
   }
 
   mounted () {

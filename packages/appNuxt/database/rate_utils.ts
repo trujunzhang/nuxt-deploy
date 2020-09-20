@@ -1,4 +1,7 @@
-export const calcRateForRestaurant = (rate : number, total: number) => {
+export const calcRateForRestaurant = (rate: number, total: number) => {
+  if (total === 0) {
+    return 0
+  }
   const base = rate * 10 / total
   const value = (base) % 10
   const left = ((base - value) / 10)
