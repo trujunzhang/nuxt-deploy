@@ -9,15 +9,13 @@ export class ReviewHelper {
   static async onSaveReviewAfterHook (
     $fireStore: firebase.firestore.Firestore,
     restaurantId: string,
-    review: IFBReview,
-    selectedStar: number
+    lastReviewRate: number,
+    selectedStar: number,
+    isNew: boolean
   ) {
-    const isNew = review == null
-
     const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(restaurantId)
     const documentSnapshot = await messageRef.get()
     const restaurant: IFBRestaurant | null | any = documentSnapshot.data()
-    const lastReviewRate = (isNew ? 0 : review.rate)
     const nextRate = restaurant.rate - lastReviewRate + selectedStar
     const reviewCount = restaurant.reviewCount
     const nextReviewCount = reviewCount + (isNew ? 1 : 0)

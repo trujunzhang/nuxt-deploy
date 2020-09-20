@@ -95,6 +95,8 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
                   AuthUserModel authUserModel =
                       await authProvider.getAuthUserModel();
 
+                  double lastReviewRate =
+                      (_review == null ? 0.0 : _review.rate);
                   ParseModelReviews lastModel = _review != null
                       ? _review
                       : ParseModelReviews.emptyReview(
@@ -117,8 +119,8 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
                   ReviewReturnModel returnModel =
                       ReviewReturnModel(selectedStar, noteVal);
 
-                  await ReviewHelper.onSaveReviewAfterHook(
-                      restaurantId, _review, selectedStar);
+                  await ReviewHelper.onSaveReviewAfterHook(restaurantId,
+                      lastReviewRate, selectedStar, _review == null);
 
                   Navigator.of(context).pop(returnModel);
                 }

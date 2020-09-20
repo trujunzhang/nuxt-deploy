@@ -59,10 +59,12 @@ class _ReviewPageState extends State<ReviewPage> {
               arguments: CreateEditReviewScreenObject(
                   reviewModel: reviewData,
                   restaurantId: reviewData.restaurantId));
-          setState(() {
-            rate = (result as ReviewReturnModel).rate;
-            note = (result as ReviewReturnModel).note;
-          });
+          if (result != null) {
+            setState(() {
+              rate = (result as ReviewReturnModel).rate;
+              note = (result as ReviewReturnModel).note;
+            });
+          }
         },
         child: Text("Edit"));
     var actionsWidget = showEditBtn ? <Widget>[flatButton] : <Widget>[];

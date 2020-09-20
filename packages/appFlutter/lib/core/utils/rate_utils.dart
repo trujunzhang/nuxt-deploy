@@ -1,4 +1,7 @@
 double calcRateForRestaurant(int rate, int total) {
+  if (total == 0) {
+    return 0.0;
+  }
   double base = rate * 10 / total;
   int value = base.round() % 10;
   int left = ((base - value) / 10).round();
@@ -10,5 +13,7 @@ double calcRateForRestaurant(int rate, int total) {
     right = 0.5;
   }
 
-  return left + right;
+  double nextRate = left + right;
+
+  return nextRate;
 }

@@ -11,15 +11,14 @@ class ReviewReturnModel {
 }
 
 class ReviewHelper {
-  static onSaveReviewAfterHook(String restaurantId, ParseModelReviews review,
-      double selectedStar) async {
-    bool isNew = review == null;
+  static onSaveReviewAfterHook(String restaurantId, double lastReviewRate,
+      double selectedStar,bool isNew) async {
     var restaurant = await FirestoreService.instance.getData(
       path: FirestorePath.restaurant(restaurantId),
       builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
     );
-    int lastReviewRate = (isNew ? 0 : review.rate);
-    restaurant.rate = restaurant.rate - lastReviewRate + selectedStar.round();
+    int nextRate = restaurant.rate - lastReviewRate.round() + selectedStar.round();
+    restaurant.rate = nextRate;
     restaurant.reviewCount = restaurant.reviewCount + (isNew ? 1 : 0);
 
     await FirestoreService.instance.setData(

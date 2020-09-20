@@ -15,7 +15,7 @@ const ALERT_MSG = 'Rate this business to submit your review'
 export default class ReviewForm extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
   @Prop({}) review!: IFBReview
-  @Prop({}) isNewReview!:boolean
+  @Prop({}) isNewReview!: boolean
   public selectedStar: number = 0
   public note: string = ''
   public alertMessage: string = ''
@@ -45,12 +45,15 @@ export default class ReviewForm extends Vue {
       return
     }
     this.alertMessage = ''
+
+    const lastReviewRate: number =
+      (this.isNewReview ? 0 : this.review.rate)
     const lastReview = this.isNewReview
       ? ParseModelReviews.emptyReview(
         (this.user as any),
         this.restaurant.uniqueId
       ) : this.review
-    const nextReview:IFBReview = Object.assign(
+    const nextReview: IFBReview = Object.assign(
       lastReview, {
         body: this.note,
         rate: this.selectedStar
@@ -63,8 +66,9 @@ export default class ReviewForm extends Vue {
     await ReviewHelper.onSaveReviewAfterHook(
       this.$fireStore,
       this.restaurant.uniqueId,
-      this.review,
-      this.selectedStar
+      lastReviewRate,
+      this.selectedStar,
+      this.isNewReview
     )
     await this.$router.push(this.getDetailRestaurantUrl())
   }

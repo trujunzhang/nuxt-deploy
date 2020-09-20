@@ -93,9 +93,11 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
                 final result = await Navigator.of(context).pushNamed(
                     Routes.create_edit_restaurant,
                     arguments: widget.restaurant);
-                setState(() {
-                  title = result;
-                });
+                if (result != null) {
+                  setState(() {
+                    title = result;
+                  });
+                }
               },
               child: Icon(
                 Icons.edit,
