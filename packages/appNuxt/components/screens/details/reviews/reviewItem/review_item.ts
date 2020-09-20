@@ -45,7 +45,4 @@ export default class ReviewItem extends Vue {
   getEditReviewUrl () {
     return `/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
   }
-
-  mounted () {
-  }
 }
