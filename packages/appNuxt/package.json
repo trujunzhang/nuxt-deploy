@@ -5,6 +5,7 @@
   "author": "Trujun Zhang",
   "private": true,
   "scripts": {
+    "dev-debug": "node --inspect node_modules/.bin/nuxt-ts",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
