@@ -11,7 +11,7 @@ class ParseModelReviews extends AvatarUser {
   final String uniqueId;
   final String creatorId;
   final String createdAt;
-  final String updatedAt;
+  String updatedAt;
   final String flag;
 
   // Common(2)
@@ -123,6 +123,7 @@ class ParseModelReviews extends AvatarUser {
       {ParseModelReviews model, double nextRate, String nextExtraNote}) {
     model.rate = nextRate;
     model.body = nextExtraNote;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
     return model;
   }

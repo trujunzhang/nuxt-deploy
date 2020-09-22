@@ -101,14 +101,14 @@ void main() {
   });
 
   test('Updated model should correctly', () {
-    ParseModelPhotos model = ParseModelPhotos.createOrNewPhoto(
+    ParseModelPhotos model = ParseModelPhotos.updatePhoto(
         model: ParseModelPhotos.fromJson(json), nextExtraNote: 'nextExtraNote');
 
     // Base(5)
     expect(model.uniqueId, "00f31aaa-05f9-4dc4-aa02-fb4997834917");
     expect(model.creatorId, "");
     expect(model.createdAt, "2017-10-10T06:06:40.578+0000");
-    expect(model.updatedAt, "2017-10-10T06:06:40.578+0000");
+    expect(model.updatedAt != "2017-10-10T06:06:40.578+0000", true);
     expect(model.flag, "1");
     // Common(3)
     expect(model.thumbnailUrl,
@@ -184,8 +184,8 @@ void main() {
     // Base(5)
     expect(model.uniqueId.length > 0, true);
     expect(model.creatorId, authUserModel.uid); // updated
-    expect(model.createdAt, "");
-    expect(model.updatedAt, '');
+    expect(model.createdAt != "", true);
+    expect(model.updatedAt != '', true);
     expect(model.flag, '1');
     // Common(3)
     expect(model.thumbnailUrl, '');

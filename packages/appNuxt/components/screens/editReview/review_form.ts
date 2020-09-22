@@ -53,11 +53,10 @@ export default class ReviewForm extends Vue {
         (this.user as any),
         this.restaurant.uniqueId
       ) : this.review
-    const nextReview: IFBReview = Object.assign(
-      lastReview, {
-        body: this.note,
-        rate: this.selectedStar
-      }
+    const nextReview: IFBReview = ParseModelReviews.updateReview(
+      lastReview,
+      this.selectedStar,
+      this.note
     )
     const result = await ReviewHelper.saveReview(
       this.$fireStore,

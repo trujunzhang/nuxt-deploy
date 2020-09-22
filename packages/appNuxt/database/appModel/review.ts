@@ -36,6 +36,7 @@ export class ParseModelReviews {
     nextExtraNote: string): IFBReview {
     model.rate = nextRate
     model.body = nextExtraNote
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate()
 
     return model
   }

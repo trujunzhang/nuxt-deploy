@@ -71,7 +71,7 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                     longitude: locationData.longitude,
                   );
                   ParseModelPhotos nextModel =
-                      ParseModelPhotos.createOrNewPhoto(
+                      ParseModelPhotos.updatePhoto(
                     model: lastModel,
                     nextExtraNote: (extraNote != null && extraNote.length > 0)
                         ? extraNote

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
 
 import 'Avatar_user.dart';
 import 'Database.dart';
@@ -11,7 +12,7 @@ class ParseModelPhotos extends AvatarUser {
   final String uniqueId;
   final String creatorId;
   final String createdAt;
-  final String updatedAt;
+  String updatedAt;
   final String flag;
 
   // user(2)
@@ -166,8 +167,8 @@ class ParseModelPhotos extends AvatarUser {
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
       creatorId: authUserModel.uid,
-      createdAt: '',
-      updatedAt: '',
+      createdAt: getDateStringForCreatedOrUpdatedDate(),
+      updatedAt: getDateStringForCreatedOrUpdatedDate(),
       flag: '1',
       // user(2)
       username: authUserModel.username,
@@ -200,9 +201,10 @@ class ParseModelPhotos extends AvatarUser {
     return model;
   }
 
-  static ParseModelPhotos createOrNewPhoto(
+  static ParseModelPhotos updatePhoto(
       {@required ParseModelPhotos model, @required String nextExtraNote}) {
     model.extraNote = nextExtraNote;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
     return model;
   }

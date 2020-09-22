@@ -1,10 +1,11 @@
 import VueRouter, { Route, RawLocation, NavigationGuard } from 'vue-router'
 import firebase from 'firebase'
-import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
-// import { v2 as cloudinary } from 'cloudinary'
+import { IFBPhoto, IFBRestaurant} from 'ieattatypes/types/index'
+import axios, { AxiosPromise } from 'axios'
 import { FBCollections } from '~/database/constant'
 
 export type SinglePhotoCB = (items: Array<IFBPhoto>, len: number) => void
+export type OnUploadProgressFunc = (progressEvent) => void
 
 export class PhotoHelper {
   static getSelectedIndex (
@@ -43,13 +44,71 @@ export class PhotoHelper {
     })
   }
 
+  static async savePhoto (
+    $fireStore: firebase.firestore.Firestore,
+    model: IFBPhoto
+  ) {
+    const messageRef = $fireStore.collection(FBCollections.Photos).doc(model.uniqueId)
+    try {
+      await messageRef.set(model)
+      return true
+      // eslint-disable-next-line no-empty
+    } catch (e) {
+      return false
+    }
+  }
+
+  static prepareFormData (fileContents:string) {
+    const preset = 'ieatta'
+    const formData = new FormData()
+    formData.append('upload_preset', preset)
+    // formData.append("tags", this.tags); // Optional - add tag for image admin in Cloudinary
+    formData.append('file', fileContents)
+    return formData
+  }
+
   /**
-   * https://github.com/cloudinary/cloudinary_npm
-   * @param imageData
-   * @param note
+   * @param fileContents: data:image/png;base64;
+   * @param onUploadProgress
    */
-  static async uploadImage (imageData:string, note:string) {
-    // const image = await cloudinary.uploader.upload(imageData)
-    let x = 0
+  static uploadImage (fileContents:string, onUploadProgress:OnUploadProgressFunc) :AxiosPromise {
+    const cloudName = ''
+    // this.fileContents = reader.result
+    const formData = PhotoHelper.prepareFormData(fileContents)
+    const cloudinaryUploadURL = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+    const requestObj:any = {
+      url: cloudinaryUploadURL,
+      method: 'POST',
+      // data: formData,
+      onUploadProgress
+      // (progressEvent) => {
+      // console.log('progress', progressEvent)
+      // this.progress = Math.round(
+      //   (progressEvent.loaded * 100.0) / progressEvent.total
+      // )
+      // console.log(this.progress)
+      // bind "this" to access vue state during callback
+      // }
+    }
+    // show progress bar at beginning of post
+    // this.showProgress = true
+    return axios(requestObj)
+    // .then((response) => {
+    //   // this.results = response.data
+    //   // console.log(this.results)
+    //   // console.log('public_id', this.results.public_id)
+    // })
+    // .catch((error) => {
+    //   // this.errors.push(error)
+    //   // console.log(this.error)
+    // })
+    // .finally(() => {
+    //   setTimeout(
+    //     function () {
+    //       // this.showProgress = false;
+    //     },
+    //     1000
+    //   )
+    // })
   }
 }
