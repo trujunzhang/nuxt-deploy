@@ -15,7 +15,7 @@ export default class RestaurantTitle extends Vue {
 
   getPhotoCountStr () {
     if (this.photosLen) {
-      return `${this.photosLen} photos for The ${this.restaurant.displayName}`
+      return `${this.photosLen} photos for ${this.restaurant.displayName}`
     }
     return ''
   }

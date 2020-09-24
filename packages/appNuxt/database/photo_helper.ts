@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import { IFBPhoto, IFBRestaurant} from 'ieattatypes/types/index'
 import axios, { AxiosPromise } from 'axios'
 import { FBCollections } from '~/database/constant'
+import { getGeoHashForRestaurant } from '~/database/geohash_utils'
 
 export type SinglePhotoCB = (items: Array<IFBPhoto>, len: number) => void
 export type OnUploadProgressFunc = (progressEvent) => void
@@ -25,9 +26,10 @@ export class PhotoHelper {
     $fireStore: firebase.firestore.Firestore,
     cb: SinglePhotoCB
   ) {
+    const restaurantGeoHash = getGeoHashForRestaurant(restaurant)
     const nextItem : Array<IFBPhoto> = []
     const nextQuery = $fireStore.collection(FBCollections.Photos)
-      .where('restaurantId', '==', restaurant.uniqueId)
+      .where('geoHash', '>', restaurantGeoHash)
     nextQuery.get().then(
       (documentSnapshots) => {
         // console.log('.........')

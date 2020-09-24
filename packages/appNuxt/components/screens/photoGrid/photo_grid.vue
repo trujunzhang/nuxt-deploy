@@ -21,7 +21,7 @@
                       class="photo-box-img"
                       width="226"
                       height="226"
-                      :src="item.originalUrl"
+                      :src="getPhotoUrl(item)"
                     >
 
                     <a

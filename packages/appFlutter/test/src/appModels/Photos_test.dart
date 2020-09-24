@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:location/location.dart';
 
 void main() {
   Map<String, dynamic> json = {
@@ -174,12 +175,14 @@ void main() {
   test('Empty photo should correctly', () {
     AuthUserModel authUserModel = AuthUserModel.mockedUser();
     String filePath = 'localFile';
+    LocationData locationData = LocationData.fromMap({
+      "latitude": -118.247636,
+      "longitude": 34.051178,
+    });
     ParseModelPhotos model = ParseModelPhotos.emptyPhoto(
-      authUserModel: authUserModel,
-      filePath: filePath,
-      latitude: -118.247636,
-      longitude: 34.051178,
-    );
+        authUserModel: authUserModel,
+        filePath: filePath,
+        locationData: locationData);
 
     // Base(5)
     expect(model.uniqueId.length > 0, true);

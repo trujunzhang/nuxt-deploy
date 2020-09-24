@@ -18,7 +18,7 @@ export default class RestaurantItem extends Vue {
     // this.message = 'Hover Me!'
   }
 
-  getRestaurantUrl () {
+  getRestaurantPhotoUrl () {
     if (this.restaurant.originalUrl === '') {
       return require('~/assets/images/business_large_square.png')
     }

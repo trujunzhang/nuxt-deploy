@@ -18,7 +18,7 @@
             target=""
           ><img
             class="lemon--img__373c0__3GQUb"
-            :src="item.originalUrl"
+            :src="getPhotoUrl(item)"
           ></a>
         </div>
       </div>

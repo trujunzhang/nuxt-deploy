@@ -3,6 +3,7 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
+import 'package:location/location.dart';
 
 import 'Avatar_user.dart';
 import 'Database.dart';
@@ -161,8 +162,7 @@ class ParseModelPhotos extends AvatarUser {
   static ParseModelPhotos emptyPhoto(
       {@required AuthUserModel authUserModel,
       @required String filePath,
-      @required double latitude,
-      @required double longitude}) {
+      @required LocationData locationData}) {
     return ParseModelPhotos(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
@@ -174,9 +174,9 @@ class ParseModelPhotos extends AvatarUser {
       username: authUserModel.username,
       avatarUrl: authUserModel.avatarUrl,
       // Location(3)
-      geoHash: convertToGeoHash(latitude, longitude),
-      latitude: latitude,
-      longitude: longitude,
+      geoHash: convertToGeoHash(locationData.latitude, locationData.longitude),
+      latitude: locationData.latitude,
+      longitude: locationData.longitude,
       // Common
       originalUrl: '',
       thumbnailUrl: '',

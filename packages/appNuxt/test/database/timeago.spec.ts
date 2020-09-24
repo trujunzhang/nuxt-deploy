@@ -1,8 +1,15 @@
-import { formatByTimeAgoForTest, formatDateForReview } from '~/database/timeago_helper'
+import { formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview } from '~/database/timeago_helper'
 
 describe('timeago', () => {
   test('javascript date/time', () => {
     const str = new Date().toISOString()
+  })
+
+  test('formatDateForPhoto', () => {
+    let str = formatDateForPhoto('2018-01-21T07:43:10.690+0000')
+    expect(str).toBe('January 21, 2018')
+    str = formatDateForPhoto('2017-06-07T07:43:10.690+0000')
+    expect(str).toBe('June 07, 2017')
   })
 
   test('formatDateForReview', () => {
@@ -12,7 +19,7 @@ describe('timeago', () => {
     expect(str).toBe('07/01/2017')
   })
 
-  test('is a Vue instance', () => {
+  test('formatByTimeAgoForTest', () => {
     //  updatedAt: '2017-11-07T07:43:10.690+0000',
     // '2018-11-11'
     let timeAgo: string = formatByTimeAgoForTest('2017-11-07T07:43:10.690+0000')

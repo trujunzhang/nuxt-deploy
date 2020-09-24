@@ -27,16 +27,49 @@ export const getDateStringForCreatedOrUpdatedDate = (): string => {
 export const formatDateForReview = (date: string): string => {
   const dateObj = new Date(date)
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  let curr_date:any = dateObj.getDate()
-  let curr_month:any = dateObj.getMonth()
+  let curr_date: any = dateObj.getDate()
+  let curr_month: any = dateObj.getMonth()
   curr_month = curr_month + 1
   const curr_year = dateObj.getFullYear()
-  let curr_min:any = dateObj.getMinutes()
-  let curr_hr:any = dateObj.getHours()
+  let curr_min: any = dateObj.getMinutes()
+  let curr_hr: any = dateObj.getHours()
   const curr_sc = dateObj.getSeconds()
-  if (curr_month.toString().length === 1) { curr_month = '0' + curr_month }
-  if (curr_date.toString().length === 1) { curr_date = '0' + curr_date }
-  if (curr_hr.toString().length === 1) { curr_hr = '0' + curr_hr }
-  if (curr_min.toString().length === 1) { curr_min = '0' + curr_min }
+  if (curr_month.toString().length === 1) {
+    curr_month = '0' + curr_month
+  }
+  if (curr_date.toString().length === 1) {
+    curr_date = '0' + curr_date
+  }
+  if (curr_hr.toString().length === 1) {
+    curr_hr = '0' + curr_hr
+  }
+  if (curr_min.toString().length === 1) {
+    curr_min = '0' + curr_min
+  }
   return curr_date + '/' + curr_month + '/' + curr_year
+}
+
+/**
+ * June 21, 2018
+ * @param date: '2017-11-07T07:43:10.690+0000'
+ */
+export const formatDateForPhoto = (date: string): string => {
+  const dateObj = new Date(date)
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  let curr_date: any = dateObj.getDate()
+  const curr_month: any = dateObj.getMonth()
+  const curr_year = dateObj.getFullYear()
+  let curr_min: any = dateObj.getMinutes()
+  let curr_hr: any = dateObj.getHours()
+  const curr_sc = dateObj.getSeconds()
+  if (curr_date.toString().length === 1) {
+    curr_date = '0' + curr_date
+  }
+  if (curr_hr.toString().length === 1) {
+    curr_hr = '0' + curr_hr
+  }
+  if (curr_min.toString().length === 1) {
+    curr_min = '0' + curr_min
+  }
+  return monthNames[curr_month] + ' ' + curr_date + ', ' + curr_year
 }

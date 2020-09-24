@@ -22,6 +22,6 @@ export default class RestaurantTitle extends Vue {
   }
 
   getTitle () {
-    return `The ${this.restaurant.displayName}`
+    return `${this.restaurant.displayName}`
   }
 }

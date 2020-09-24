@@ -2,6 +2,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
 import RestaurantTitle from '~/components/screens/photoSingle/restaurantTitle/restaurant_title.vue'
 import { PhotoHelper } from '~/database/photo_helper'
+import { formatDateForPhoto } from '~/database/timeago_helper'
 
 @Component({
   components: {
@@ -14,6 +15,7 @@ export default class PhotoSingle extends Vue {
   public items: Array<IFBPhoto> = []
   public photosLen: number | null = null
   public photoIndex: number = 0
+  public currentImage: IFBPhoto | null = null
   public currentImageUrl: string | null = null
   private isLoading = false
 
@@ -33,10 +35,18 @@ export default class PhotoSingle extends Vue {
           items
         )
         this.photoIndex = photoIndex
-        this.currentImageUrl = items[photoIndex].originalUrl
+        this.currentImage = items[photoIndex]
+        this.currentImageUrl = this.getPhotoUrl(items[photoIndex])
         this.isLoading = false
       }
     )
+  }
+
+  getPhotoUrl (item: IFBPhoto) {
+    if (item.originalUrl === '') {
+      return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
+    }
+    return item.originalUrl
   }
 
   /**
@@ -46,6 +56,33 @@ export default class PhotoSingle extends Vue {
    */
   getImageLink (item: IFBPhoto) {
     return `${this.getSeeAllLink()}?select=${item.uniqueId}`
+  }
+
+  getPhotoPublishedAt () {
+    if (!this.currentImage) {
+      throw new Error('not found current image')
+    }
+    return formatDateForPhoto(this.currentImage.createdAt)
+  }
+
+  getUserPhotoUrl () {
+    if (!this.currentImage) {
+      throw new Error('not found current image')
+    }
+    if (
+      this.currentImage.avatarUrl === '' ||
+      this.currentImage.avatarUrl === undefined
+    ) {
+      return require('~/assets/images/user_60_square.png')
+    }
+    return this.currentImage.avatarUrl
+  }
+
+  getUserProfileUrl () {
+    if (!this.currentImage) {
+      throw new Error('not found current image')
+    }
+    return `/user_details?userid=${this.currentImage.creatorId}`
   }
 
   /**
@@ -71,7 +108,8 @@ export default class PhotoSingle extends Vue {
   onPreClick () {
     const preIndex = this.photoIndex - 1
     this.photoIndex = preIndex
-    this.currentImageUrl = this.items[this.photoIndex].originalUrl
+    this.currentImage = this.items[this.photoIndex]
+    this.currentImageUrl = this.getPhotoUrl(this.items[this.photoIndex])
   }
 
   // prevSelectedImageUrl () {
@@ -85,7 +123,8 @@ export default class PhotoSingle extends Vue {
   onNextClick () {
     const nextIndex = this.photoIndex + 1
     this.photoIndex = nextIndex
-    this.currentImageUrl = this.items[this.photoIndex].originalUrl
+    this.currentImage = this.items[this.photoIndex]
+    this.currentImageUrl = this.getPhotoUrl(this.items[this.photoIndex])
   }
 
   // nextSelectedImageUrl () {

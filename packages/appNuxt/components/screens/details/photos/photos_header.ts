@@ -43,10 +43,16 @@ export default class RestaurantPhotoHeader extends Vue {
   /**
    * Example:
    *   href="/biz_photos/the-ramen-bar-san-francisco"
-   * @param item
    */
   getSeeAllLink () {
     return `/biz_photos/${this.restaurant.slug}`
+  }
+
+  getPhotoUrl (item: IFBPhoto) {
+    if (item.originalUrl === '') {
+      return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
+    }
+    return item.originalUrl
   }
 
   getPhotosLen () {

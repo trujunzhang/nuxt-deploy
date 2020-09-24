@@ -6,6 +6,7 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/location_utils.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/image.dart';
+import 'package:ieatta/src/logic/bloc.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,6 @@ class CreateEditPhotoScreen extends StatefulWidget {
 
 class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
   TextEditingController _extraNoteController;
-  String extraNote = '';
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ParseModelPhotos _photo;
@@ -31,14 +31,26 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final String _imagePath = ModalRoute.of(context).settings.arguments;
-    imagePath = _imagePath;
 
-    _extraNoteController =
-        TextEditingController(text: _photo != null ? _photo.extraNote : "");
+    String _extraNote = _photo != null ? _photo.extraNote : "";
+    _extraNoteController = TextEditingController(text: _extraNote);
+    bloc.noteVal(_extraNote);
+    setState(() {
+      imagePath = _imagePath;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: bloc.noteStream,
+        builder: (BuildContext context, AsyncSnapshot noteSnapshot) {
+          String noteVal = noteSnapshot.data;
+          return _buildBody(context, noteVal);
+        });
+  }
+
+  Widget _buildBody(BuildContext context, String noteVal) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
@@ -67,15 +79,12 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                   ParseModelPhotos lastModel = ParseModelPhotos.emptyPhoto(
                     authUserModel: authUserModel,
                     filePath: imagePath,
-                    latitude: locationData.latitude,
-                    longitude: locationData.longitude,
+                    locationData: locationData,
                   );
-                  ParseModelPhotos nextModel =
-                      ParseModelPhotos.updatePhoto(
+                  ParseModelPhotos nextModel = ParseModelPhotos.updatePhoto(
                     model: lastModel,
-                    nextExtraNote: (extraNote != null && extraNote.length > 0)
-                        ? extraNote
-                        : "",
+                    nextExtraNote:
+                        (noteVal != null && noteVal.length > 0) ? noteVal : "",
                   );
 
                   final firestoreDatabase =
@@ -120,9 +129,7 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: TextFormField(
                   onChanged: (String txt) {
-                    setState(() {
-                      extraNote = txt;
-                    });
+                    bloc.noteVal(txt);
                   },
                   controller: _extraNoteController,
                   style: Theme.of(context).textTheme.bodyText2,

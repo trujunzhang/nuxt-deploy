@@ -3,6 +3,7 @@ import { IFBRestaurant, IFBPhoto } from 'ieattatypes/types/index'
 import { loadPhotos } from '~/database/data/Photos'
 import RestaurantTitle from '~/components/screens/photoGrid/restaurantTitle/restaurant_title.vue'
 import { FBCollections } from '~/database/constant'
+import { getGeoHashForRestaurant } from '~/database/geohash_utils'
 
 @Component({
   components: {
@@ -38,8 +39,9 @@ export default class PhotoGrid extends Vue {
       return
     }
     this.isLoading = true
+    const restaurantGeoHash = getGeoHashForRestaurant(this.restaurant)
     const nextQuery = query
-      .where('restaurantId', '==', this.restaurant.uniqueId)
+      .where('geoHash', '>', restaurantGeoHash)
       .limit(5 * 3)
     // .orderBy("population")
     nextQuery.get().then(
@@ -81,6 +83,13 @@ export default class PhotoGrid extends Vue {
    */
   getImageLink (item: IFBPhoto) {
     return `${this.getSeeAllLink()}?select=${item.uniqueId}`
+  }
+
+  getPhotoUrl (item: IFBPhoto) {
+    if (item.originalUrl === '') {
+      return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
+    }
+    return item.originalUrl
   }
 
   /**

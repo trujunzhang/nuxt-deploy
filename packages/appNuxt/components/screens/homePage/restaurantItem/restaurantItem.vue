@@ -33,7 +33,7 @@
                         >
                           <img
                             class="lemon--img__373c0__3GQUb photo-box-img__373c0__35y5v"
-                            :src="`${getRestaurantUrl()}`"
+                            :src="`${getRestaurantPhotoUrl()}`"
                             :alt="`${restaurant.displayName}`"
                             height="100%"
                             width="100%"

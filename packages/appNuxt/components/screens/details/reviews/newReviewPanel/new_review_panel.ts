@@ -8,7 +8,7 @@ export default class NewReviewPanel extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
 
   getTitle () {
-    return `The ${this.restaurant.displayName}`
+    return `${this.restaurant.displayName}`
   }
 
   /**

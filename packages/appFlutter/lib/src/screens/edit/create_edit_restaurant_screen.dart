@@ -23,6 +23,7 @@ class _CreateEditRestaurantScreenState
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ParseModelRestaurants _restaurant;
+  bool _isButtonDisabled = false;
 
   @override
   void initState() {
@@ -62,7 +63,8 @@ class _CreateEditRestaurantScreenState
         });
   }
 
-  Widget _buildBody(BuildContext context, String displayNameVal, String noteVal) {
+  Widget _buildBody(
+      BuildContext context, String displayNameVal, String noteVal) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
@@ -80,57 +82,66 @@ class _CreateEditRestaurantScreenState
                 .translate("restaurantsCreateEditAppBarTitleNewTxt")),
         actions: <Widget>[
           FlatButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  FocusScope.of(context).unfocus();
+              onPressed: _isButtonDisabled
+                  ? null
+                  : () async {
+                      if (_formKey.currentState.validate()) {
+                        FocusScope.of(context).unfocus();
 
-                  AuthUserModel authUserModel =
-                      await authProvider.getAuthUserModel();
+                        setState(() {
+                          _isButtonDisabled = true;
+                        });
 
-                  LocationData locationData = await getCurrentLocation();
-                  ParseModelRestaurants lastModel = _restaurant != null
-                      ? _restaurant
-                      : ParseModelRestaurants.emptyRestaurant(
-                          authUserModel: authUserModel,
-                          latitude: locationData.latitude,
-                          longitude: locationData.longitude,
+                        AuthUserModel authUserModel =
+                            await authProvider.getAuthUserModel();
+
+                        LocationData locationData = await getCurrentLocation();
+                        ParseModelRestaurants lastModel = _restaurant != null
+                            ? _restaurant
+                            : ParseModelRestaurants.emptyRestaurant(
+                                authUserModel: authUserModel,
+                                latitude: locationData.latitude,
+                                longitude: locationData.longitude,
+                              );
+
+                        ParseModelRestaurants nextModel =
+                            ParseModelRestaurants.updateRestaurant(
+                          model: lastModel,
+                          nextDisplayName: displayNameVal,
+                          nextExtraNote: noteVal,
                         );
 
-                  ParseModelRestaurants nextModel =
-                      ParseModelRestaurants.updateRestaurant(
-                    model: lastModel,
-                    nextDisplayName: displayNameVal,
-                    nextExtraNote: (noteVal != null && noteVal.length > 0)
-                        ? noteVal
-                        : "",
-                  );
+                        try {
+                          final firestoreDatabase =
+                              Provider.of<FirestoreDatabase>(context,
+                                  listen: false);
+                          await firestoreDatabase.setRestaurant(
+                              model: nextModel); // For Restaurant.
+                        } catch (e) {
+                          setState(() {
+                            _isButtonDisabled = false;
+                          });
+                        }
 
-                  final firestoreDatabase =
-                      Provider.of<FirestoreDatabase>(context, listen: false);
-                  await firestoreDatabase.setRestaurant(
-                      model: nextModel); // For Restaurant.
-
-                  // Navigate
-                  Navigator.of(context).pop(displayNameVal);
-                }
-              },
+                        // Navigate
+                        Navigator.of(context).pop(displayNameVal);
+                      }
+                    },
               child: Text("Save"))
         ],
       ),
-      body: Center(
-        child: Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              autovalidate: true,
-              onChanged: () {
-                Form.of(primaryFocus.context).save();
-              },
-              child: _buildForm(context),
-            ),
+      body: Shortcuts(
+        shortcuts: <LogicalKeySet, Intent>{
+          // Pressing enter on the field will now move to the next field.
+          LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
+        },
+        child: FocusTraversalGroup(
+          child: Form(
+            autovalidate: true,
+            onChanged: () {
+              Form.of(primaryFocus.context).save();
+            },
+            child: _buildForm(context),
           ),
         ),
       ),

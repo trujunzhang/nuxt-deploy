@@ -10,7 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="" />
+    <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +80,10 @@
       <workItem from="1600752030177" duration="528000" />
       <workItem from="1600754914589" duration="255000" />
       <workItem from="1600756964072" duration="125000" />
+      <workItem from="1600769608131" duration="1338000" />
+      <workItem from="1600844190636" duration="1150000" />
+      <workItem from="1600856064379" duration="281000" />
+      <workItem from="1600912783674" duration="231000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -166,10 +172,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1599826882330" />
-    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1600752254076">
+    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1600770939780">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1600752254076" />
+    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1600770939780" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
