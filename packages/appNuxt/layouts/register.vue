@@ -46,3 +46,5 @@
     </div>
   </body>
 </template>
+
+<script lang="ts" src="./register.ts"/>
