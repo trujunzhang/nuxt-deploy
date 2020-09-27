@@ -2,6 +2,7 @@
   <body id="yelp_main_body" class="jquery country-us logged-out">
     <div id="wrap" class="lang-en">
       <!-- page header -->
+      <LoginHeader />
 
       <div class="main-content-wrap main-content-wrap--full">
         <div id="super-container" class="content-container">
