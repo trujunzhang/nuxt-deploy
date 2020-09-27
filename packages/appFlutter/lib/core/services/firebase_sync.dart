@@ -16,6 +16,7 @@ class FirebaseSync {
             imagePath: photo.offlinePath, uniqueId: photo.uniqueId);
         // Finally, delete it in the sqlite.
         await photo.deletePhoto();
+        await photo.deleteLocalImage();
       }
     }
   }

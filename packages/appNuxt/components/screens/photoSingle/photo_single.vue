@@ -70,7 +70,6 @@
                         </li>
                       </ul>
                     </li>
-
                   </ul>
                 </div>
               </div>
@@ -122,6 +121,14 @@
                       </div>
                     </div>
 
+                    <div class="media-info_item media-info_caption">
+                      <div class="selected-photo-caption">
+                        <div class="caption selected-photo-caption-text">
+                          {{ currentImage.extraNote }}
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="media-info_item media-info_time">
                       <div class="selected-photo-details">
                         <span class="selected-photo-upload-date time-stamp">{{ getPhotoPublishedAt() }}</span>
@@ -135,8 +142,7 @@
         </div>
         <div class="media-nav js-media-nav">
           <a
-            v-if="photoIndex>0"
-            class="media-nav_link media-nav_link--prev js-media-nav_link--prev"
+            :class="getPreLinkClassName()"
             title="Prev"
             @click="onPreClick"
           >
@@ -156,13 +162,12 @@
           </a>
 
           <a
-            v-if="photoIndex<photosLen-1"
-            class="media-nav_link media-nav_link--next js-media-nav_link--next is-hovered"
+            :class="getNextLinkClassName()"
+            style="right: 302px;"
             title="Next"
             @click="onNextClick"
           >
             <span
-              aria-hidden="true"
               style="width: 48px; height: 48px;"
               class="icon icon--48-chevron-right icon--size-48 icon--inverse icon--fallback-inverted"
             >
@@ -180,7 +185,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 

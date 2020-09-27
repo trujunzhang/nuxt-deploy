@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/image.dart';
+import 'package:ieatta/src/components/photos/photo_base_view.dart';
 
 import 'widget/top_user_view.dart';
 
@@ -57,12 +58,20 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
             padding: EdgeInsets.all(8.0),
             child: Stack(
               children: <Widget>[
-                buildPhotoImage(photos[index]),
+                _buildCurrentImage(index),
                 _buildTouchPanel(),
                 if (showInfoPanel) _buildFg(photos[index])
               ],
             ));
       },
+    );
+  }
+
+  Widget _buildCurrentImage(int index) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: PhotoBaseView(photoData: photos[index]),
     );
   }
 

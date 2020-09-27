@@ -1,10 +1,9 @@
 import { namespace } from 'vuex-class'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
-import { IAuthUser } from '~/database/firebase_helper'
 import { ParseModelRestaurants } from '~/database/appModel/restaurant'
-import { ReviewHelper } from '~/database/review_helper'
 import { RestaurantHelper } from '~/database/restaurant_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 const auth = namespace('auth')
 

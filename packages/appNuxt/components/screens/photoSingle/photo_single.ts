@@ -105,7 +105,18 @@ export default class PhotoSingle extends Vue {
     return this.photoIndex + 1
   }
 
+  /**
+   *  class="media-nav_link media-nav_link--prev js-media-nav_link--prev"
+   */
+  getPreLinkClassName () {
+    const className = this.photoIndex === 0 ? ' is-disabled' : ''
+    return `media-nav_link media-nav_link--prev js-media-nav_link--prev${className}`
+  }
+
   onPreClick () {
+    if (this.photoIndex === 0) {
+      return
+    }
     const preIndex = this.photoIndex - 1
     this.photoIndex = preIndex
     this.currentImage = this.items[this.photoIndex]
@@ -120,7 +131,18 @@ export default class PhotoSingle extends Vue {
   //   return null
   // }
 
+  /**
+   *  class="media-nav_link media-nav_link--next js-media-nav_link--next is-hovered"
+   */
+  getNextLinkClassName () {
+    const className = this.photoIndex === (this.photosLen || 0) - 1 ? ' is-disabled' : ''
+    return `media-nav_link media-nav_link--next js-media-nav_link--next is-hovered${className}`
+  }
+
   onNextClick () {
+    if (this.photoIndex === (this.photosLen || 0) - 1) {
+      return
+    }
     const nextIndex = this.photoIndex + 1
     this.photoIndex = nextIndex
     this.currentImage = this.items[this.photoIndex]

@@ -23,8 +23,10 @@ class _ReviewEditState extends State<ReviewEdit> {
     return StreamBuilder<AuthUserModel>(
         stream: authService.user,
         builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
+          if (!snapshot.hasData) {
+            return Container();
+          }
           final AuthUserModel user = snapshot.data;
-
           return Container(
             child: Row(
               children: <Widget>[

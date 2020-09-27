@@ -257,15 +257,19 @@
             ></path></svg></span></div></div></a></div></div></div></span>
             <span
               v-if="isLoaded&&!user"
-              class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU">
+              class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
+            >
               <a
                 class="lemon--a__373c0__IEZFH button__373c0__3lYgT secondary__373c0__1bsQo"
                 style="--mousedown-x:20.9375px; --mousedown-y:21px; --button-width:80.5469px;"
-                href="/login?return_url=https://www.yelp.com/biz/the-ramen-bar-san-francisco">
+                href="/login?return_url=https://www.yelp.com/biz/the-ramen-bar-san-francisco"
+              >
                 <div
-                  class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
+                  class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
+                >
                   <span
-                    class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf">Log In</span>
+                    class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
+                  >Log In</span>
                 </div>
               </a>
             </span>
@@ -322,14 +326,9 @@
                       <div class="lemon--div__373c0__1mboc inline__373c0__2fx1q">
                         <div class="lemon--div__373c0__1mboc dropdown__373c0__1DqvF" role="presentation">
                           <button
+                            @click="onHeaderIconClick"
                             class="link__373c0__343sR"
-                            aria-label="Toggle Menu"
-                            aria-haspopup="menu"
-                            aria-controls="header-dropdown-menu"
-                            aria-expanded="false"
                             style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-                            type="submit"
-                            value="submit"
                           >
                             <div
                               class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
@@ -340,13 +339,22 @@
                                 class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
                               ><img
                                 class="lemon--img__373c0__3GQUb photo__373c0__ibjLY"
-                                src="https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/ss.jpg"
-                                alt="Trujun Z."
-                                height="36"
+                                :src="getUserPhotoUrl()"
+                                :alt="user.displayName"
                                 width="36"
-                              ></span></span>
+                                height="36"
+                              >
+                              </span>
+                              </span>
                             </div>
                           </button>
+                          <!-- pop menu -->
+                          <div
+                            v-if="showPopMenu"
+                            v-click-outside="onClickOutside">
+                            <HeaderPop
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -361,4 +369,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./header.ts"/>
+<script lang="ts" src="./header.ts" />

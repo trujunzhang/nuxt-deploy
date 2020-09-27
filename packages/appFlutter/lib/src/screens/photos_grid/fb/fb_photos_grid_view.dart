@@ -4,7 +4,6 @@ import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/appModels/models/photos_sql.dart';
 import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/logic/photos_results.dart';
 import 'package:provider/provider.dart';

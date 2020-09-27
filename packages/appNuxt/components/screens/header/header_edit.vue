@@ -54,12 +54,10 @@
                     ><div
                       class="lemon--div__09f24__1mboc photo__09f24__3CeAG responsive-hidden-small responsive-hidden-medium border-color--default__09f24__1eOdn"
                     ><img
+                      :src="getUserPhotoUrl()"
                       class="lemon--img__09f24__3GQUb"
-                      src="https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/120s.jpg"
-                      srcset="https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/ls.jpg 2.08x,https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/168s.jpg 1.40x,https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/180s.jpg 1.50x,https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/258s.jpg 2.15x,https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/300s.jpg 2.50x,https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/348s.jpg 2.90x"
-                      alt="Trujun Z."
-                      height="36"
                       width="36"
+                      height="36"
                     ></div><div
                       class="lemon--div__09f24__1mboc arrow-icon__09f24__3uxye responsive-hidden-small responsive-hidden-medium border-color--default__09f24__1eOdn"
                     ><span

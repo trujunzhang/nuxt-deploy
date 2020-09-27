@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appNuxt/database/photo_helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/database/photo_helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +85,13 @@
       <workItem from="1600844190636" duration="1150000" />
       <workItem from="1600856064379" duration="281000" />
       <workItem from="1600912783674" duration="231000" />
+      <workItem from="1600923091776" duration="165000" />
+      <workItem from="1600943580746" duration="337000" />
+      <workItem from="1600944508462" duration="1602000" />
+      <workItem from="1600946623019" duration="2401000" />
+      <workItem from="1600998446043" duration="3156000" />
+      <workItem from="1601002568538" duration="567000" />
+      <workItem from="1601186262265" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -134,7 +142,42 @@
       <option name="project" value="LOCAL" />
       <updated>1599959300071</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="xxx">
+      <created>1600949190428</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600949190428</updated>
+    </task>
+    <task id="LOCAL-00009" summary="xxx">
+      <created>1601000564150</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601000564150</updated>
+    </task>
+    <task id="LOCAL-00010" summary="xxx">
+      <created>1601001736787</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601001736787</updated>
+    </task>
+    <task id="LOCAL-00011" summary="xxx">
+      <created>1601002353595</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1601002353596</updated>
+    </task>
+    <task id="LOCAL-00012" summary="xxx">
+      <created>1601003223519</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1601003223519</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,18 +207,19 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="220" y="109" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1599894810273" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1600389569827">
+    <state width="500" height="445" key="SwitcherDM" timestamp="1600949282206">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1600389569827" />
-    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599826882330">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1600949282206" />
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601001454062">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1599826882330" />
-    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1600770939780">
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1601001454062" />
+    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1600999511898">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1600770939780" />
+    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1600999511898" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

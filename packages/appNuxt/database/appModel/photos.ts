@@ -1,8 +1,8 @@
 import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
-import { IAuthUser } from '~/database/firebase_helper'
 import { getDateStringForCreatedOrUpdatedDate } from '~/database/timeago_helper'
 import { documentIdFromCurrentDate } from '~/database/md5_utils'
 import { convertToGeoHash } from '~/database/geohash_utils'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 export class ParseModelPhotos {
   static emptyPhotoForRestaurant (

@@ -1,5 +1,5 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators'
-import { IAuthUser } from '~/database/firebase_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 export interface IAuthState {
   user: IAuthUser | null

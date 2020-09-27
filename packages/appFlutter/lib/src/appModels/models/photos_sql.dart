@@ -1,4 +1,5 @@
 import 'package:ieatta/core/database/localDatabase.dart' as database;
+import 'dart:io' as io;
 
 class SqlPhotos {
   final String uniqueId;
@@ -61,5 +62,10 @@ class SqlPhotos {
   deletePhoto() async {
     final db = await database.DBProvider.db.database;
     db.delete("PhotoInfo", where: "uniqueId = ?", whereArgs: [uniqueId]);
+  }
+
+  deleteLocalImage() async {
+    var file = io.File(offlinePath);
+    await file.delete();
   }
 }

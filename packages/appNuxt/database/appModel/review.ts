@@ -1,7 +1,7 @@
 import { IFBReview } from 'ieattatypes/types/index'
-import { IAuthUser } from '~/database/firebase_helper'
 import { getDateStringForCreatedOrUpdatedDate } from '~/database/timeago_helper'
 import { documentIdFromCurrentDate } from '~/database/md5_utils'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 export class ParseModelReviews {
   static emptyReview (

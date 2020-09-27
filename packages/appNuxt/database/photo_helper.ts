@@ -74,14 +74,14 @@ export class PhotoHelper {
    * @param onUploadProgress
    */
   static uploadImage (fileContents:string, onUploadProgress:OnUploadProgressFunc) :AxiosPromise {
-    const cloudName = ''
+    const cloudName = 'di3fvexj8'
     // this.fileContents = reader.result
     const formData = PhotoHelper.prepareFormData(fileContents)
     const cloudinaryUploadURL = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
     const requestObj:any = {
       url: cloudinaryUploadURL,
       method: 'POST',
-      // data: formData,
+      data: formData,
       onUploadProgress
       // (progressEvent) => {
       // console.log('progress', progressEvent)

@@ -26,6 +26,14 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
     });
   }
 
+  Widget _buildImage() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 370.0,
+      child: buildRestaurantImage(widget.restaurant),
+    );
+  }
+
   Widget buildBg() {
     return ClipPath(
       clipper: Mclipper(),
@@ -39,7 +47,7 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
         ]),
         child: Stack(
           children: <Widget>[
-            buildRestaurantImage(widget.restaurant),
+            _buildImage(),
             Container(
               height: double.infinity,
               width: double.infinity,

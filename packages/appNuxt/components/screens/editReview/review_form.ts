@@ -3,8 +3,8 @@ import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import { starExtraLargeDict } from '~/database/star_helper'
 import { ReviewHelper } from '~/database/review_helper'
-import { IAuthUser } from '~/database/firebase_helper'
 import { ParseModelReviews } from '~/database/appModel/review'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 const auth = namespace('auth')
 

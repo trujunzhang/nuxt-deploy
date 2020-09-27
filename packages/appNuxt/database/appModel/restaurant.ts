@@ -1,9 +1,9 @@
 import { IFBRestaurant } from 'ieattatypes/types/index'
 import { getDateStringForCreatedOrUpdatedDate } from '~/database/timeago_helper'
 import { documentIdFromCurrentDate } from '~/database/md5_utils'
-import { IAuthUser } from '~/database/firebase_helper'
 import { convertToGeoHash } from '~/database/geohash_utils'
 import { slugifyToLower } from '~/database/slug_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 export class ParseModelRestaurants {
   static emptyRestaurant (

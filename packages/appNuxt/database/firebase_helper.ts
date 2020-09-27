@@ -2,13 +2,7 @@ import firebase from 'firebase'
 import { IFBUser } from 'ieattatypes/types/index'
 import { slugifyToLower } from '~/database/slug_helper'
 import { UserHelper } from '~/database/user_helper'
-
-export interface IAuthUser {
-  uid: string
-  email: string
-  displayName: string
-  photoURL: string
-}
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 export class FirebaseHelper {
   private static getUserModel (model: IAuthUser): IFBUser {

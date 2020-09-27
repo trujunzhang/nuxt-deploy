@@ -3,9 +3,8 @@ import { IFBRestaurant } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import { OnToggleFormStepFunc } from '~/components/screens/uploadPhoto/type'
 import { PhotoHelper } from '~/database/photo_helper'
-import { IAuthUser } from '~/database/firebase_helper'
 import { ParseModelPhotos } from '~/database/appModel/photos'
-import { ReviewHelper } from '~/database/review_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
 
 const auth = namespace('auth')
 @Component({
@@ -20,11 +19,13 @@ export default class PhotoConfirm extends Vue {
   @Prop({}) onToggleFormStep!: OnToggleFormStepFunc
   public note: string = ''
   public errorMsg: string = ''
+  public showAlertMessage: boolean = false
 
   @auth.State
   public user!: IAuthUser | null
 
   async onUploadClick () {
+    this.showAlertMessage = false
     await PhotoHelper.uploadImage(
       this.image,
       (progressEvent) => {
@@ -48,8 +49,9 @@ export default class PhotoConfirm extends Vue {
       })
       // eslint-disable-next-line handle-callback-err
       .catch((error) => {
+        this.showAlertMessage = true
         // this.errors.push(error)
-        //   console.log(this.errorMsg)
+        console.log(error)
       })
       .finally(() => {
         setTimeout(

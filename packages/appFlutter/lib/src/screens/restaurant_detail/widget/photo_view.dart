@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/components/photos/image.dart';
+import 'package:ieatta/src/components/photos/photo_base_view.dart';
 
-class PhotoView extends StatefulWidget {
-  PhotoView({Key key, this.callback, this.photoData}) : super(key: key);
-
+class PhotoView extends StatelessWidget {
   final VoidCallback callback;
   final ParseModelPhotos photoData;
 
-  @override
-  _PhotoViewState createState() => _PhotoViewState();
-}
+  const PhotoView({Key key, this.callback, this.photoData}) : super(key: key);
 
-class _PhotoViewState extends State<PhotoView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 12.0),
       child: Container(
-          height: 220.0,
           width: 135.0,
+          height: 220.0,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.white,
@@ -30,8 +25,8 @@ class _PhotoViewState extends State<PhotoView> {
                     offset: Offset(0.0, 10.0))
               ]),
           child: InkWell(
-            onTap: widget.callback,
-            child: buildPhotoImage(widget.photoData),
+            onTap: callback,
+            child: PhotoBaseView(photoData: photoData),
           )),
     );
   }

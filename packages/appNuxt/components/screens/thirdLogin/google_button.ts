@@ -1,7 +1,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import { namespace } from 'vuex-class'
-import { FirebaseHelper, IAuthUser } from '~/database/firebase_helper'
+import { FirebaseHelper} from '~/database/firebase_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
 const auth = namespace('auth')
 
 @Component({

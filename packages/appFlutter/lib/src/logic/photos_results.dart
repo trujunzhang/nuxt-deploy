@@ -16,7 +16,7 @@ List<ParseModelPhotos> parsePhotosFilterByRestaurant(
       .map((DocumentSnapshot snapshot) {
         return ParseModelPhotos.fromJson(snapshot.data);
       })
-      .where((ParseModelPhotos value) => photoIsInRestaurant(restaurant, value))
+      // .where((ParseModelPhotos value) => photoIsInRestaurant(restaurant, value))
       .toList();
   return result;
 }
