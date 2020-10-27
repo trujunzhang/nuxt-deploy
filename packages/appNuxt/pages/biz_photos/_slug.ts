@@ -1,9 +1,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types/index'
+import { namespace } from 'vuex-class'
 import PhotoSingle from '~/components/screens/photoSingle/photo_single.vue'
 import PhotoGrid from '~/components/screens/photoGrid/photo_grid.vue'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
-import { RestaurantHelper } from '~/database/restaurant_helper'
+import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
+const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
   components: {
@@ -17,21 +20,32 @@ export default class PhotoBrowse extends Vue {
   private isLoading = false
   private photoSelectId: string | null = null
 
-  _fetchPage () {
+  @ieattaConfigure.Mutation
+  public SET_SHOW_404!: (payload: boolean) => void
+
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
-    this.isLoading = true
-    RestaurantHelper.getSingleRestaurantFromSlug(this.$route,
-      this.$fireStore,
-      (restaurant: IFBRestaurant | null) => {
-        this.restaurant = restaurant
-        this.isLoading = false
-      })
+    const restaurantSlug = this.$route.params.slug as string
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Restaurants,
+      queryBuilder: (query: any) => {
+        return query.where('slug', '==', restaurantSlug)
+      },
+      iterateDocumentSnapshots: (data: IFBRestaurant) => {
+        this.restaurant = data
+      },
+      emptyHint: () => {
+        this.SET_SHOW_404(true)
+      }
+    })
+    this.isLoading = false
   }
 
-  mounted () {
-    this._fetchPage()
+  async mounted () {
+    await this._fetchPage()
     this.photoSelectId = this.$route.query.select as string
   }
 }

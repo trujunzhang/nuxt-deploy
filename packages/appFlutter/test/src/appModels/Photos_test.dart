@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:location/location.dart';
 
@@ -194,7 +195,7 @@ void main() {
     expect(model.thumbnailUrl, '');
     expect(model.originalUrl, '');
     // Location(3)
-    expect(model.geoHash, 'ufbpqcem9fyx');
+    expect(model.geoHash, 'ufbpqcem9fyx'.substring(0, numberOfCharsForPhoto));
     expect(model.latitude, -118.247636);
     expect(model.longitude, 34.051178);
     // offline(1)

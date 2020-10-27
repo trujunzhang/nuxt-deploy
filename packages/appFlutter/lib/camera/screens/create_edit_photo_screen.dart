@@ -7,6 +7,7 @@ import 'package:ieatta/core/utils/location_utils.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/utils/toast.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ParseModelPhotos _photo;
   String imagePath;
+  bool _isButtonDisabled = false;
 
   @override
   void initState() {
@@ -68,34 +70,51 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                 .translate("photosCreateEditAppBarTitleNewTxt")),
         actions: <Widget>[
           FlatButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  FocusScope.of(context).unfocus();
+              onPressed: _isButtonDisabled
+                  ? null
+                  : () async {
+                      if (_formKey.currentState.validate()) {
+                        FocusScope.of(context).unfocus();
 
-                  AuthUserModel authUserModel =
-                      await authProvider.getAuthUserModel();
+                        setState(() {
+                          _isButtonDisabled = true;
+                        });
+                        AuthUserModel authUserModel =
+                            await authProvider.getAuthUserModel();
 
-                  LocationData locationData = await getCurrentLocation();
-                  ParseModelPhotos lastModel = ParseModelPhotos.emptyPhoto(
-                    authUserModel: authUserModel,
-                    filePath: imagePath,
-                    locationData: locationData,
-                  );
-                  ParseModelPhotos nextModel = ParseModelPhotos.updatePhoto(
-                    model: lastModel,
-                    nextExtraNote:
-                        (noteVal != null && noteVal.length > 0) ? noteVal : "",
-                  );
+                        LocationData locationData = await getCurrentLocation();
+                        ParseModelPhotos lastModel =
+                            ParseModelPhotos.emptyPhoto(
+                          authUserModel: authUserModel,
+                          filePath: imagePath,
+                          locationData: locationData,
+                        );
+                        ParseModelPhotos nextModel =
+                            ParseModelPhotos.updatePhoto(
+                          model: lastModel,
+                          nextExtraNote: (noteVal != null && noteVal.length > 0)
+                              ? noteVal
+                              : "",
+                        );
 
-                  final firestoreDatabase =
-                      Provider.of<FirestoreDatabase>(context, listen: false);
-                  await firestoreDatabase.setPhoto(
-                      imagePath: imagePath, model: nextModel); // For photo.
+                        try {
+                          final firestoreDatabase =
+                              Provider.of<FirestoreDatabase>(context,
+                                  listen: false);
+                          await firestoreDatabase.setPhoto(
+                              imagePath: imagePath,
+                              model: nextModel); // For photo.
+                        } catch (e) {
+                          setState(() {
+                            _isButtonDisabled = false;
+                          });
+                        }
 
-                  // Navigate
-                  Navigator.of(context).pop();
-                }
-              },
+                        ToastUtils.showToast('saved successfully');
+                        // Navigate
+                        Navigator.of(context).pop();
+                      }
+                    },
               child: Text("Save"))
         ],
       ),

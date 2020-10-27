@@ -6,7 +6,6 @@ import '../controllers/stories_controller.dart';
 import '../models/basic.dart';
 import '../models/image_data.dart';
 import '../models/smiley_data.dart';
-import '../models/text_data.dart';
 import 'moving_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

@@ -26,9 +26,5 @@ export default class EditHeader extends Vue {
 
   mounted () {
     this.isLoaded = true
-
-    const x = this.$router
-    // this.$router.push('/login')
-    // debugger
   }
 }

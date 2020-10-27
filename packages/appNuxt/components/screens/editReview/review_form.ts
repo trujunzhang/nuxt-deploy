@@ -5,6 +5,8 @@ import { starExtraLargeDict } from '~/database/star_helper'
 import { ReviewHelper } from '~/database/review_helper'
 import { ParseModelReviews } from '~/database/appModel/review'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
 
 const auth = namespace('auth')
 
@@ -58,8 +60,9 @@ export default class ReviewForm extends Vue {
       this.selectedStar,
       this.note
     )
-    const result = await ReviewHelper.saveReview(
+    await FirestoreService.instance.setData(
       this.$fireStore,
+      FBCollections.Reviews,
       nextReview
     )
     await ReviewHelper.onSaveReviewAfterHook(

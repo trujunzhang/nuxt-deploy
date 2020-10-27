@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 
 void main() {
@@ -175,7 +176,7 @@ void main() {
     // Check google(1)
     expect(model.isNew, true);
     // Location(3)
-    expect(model.geoHash, 'ufbpqcem9fyx');
+    expect(model.geoHash, 'ufbpqcem9fyx'.substring(0, numberOfCharsForPhoto));
     expect(model.latitude, -118.247636);
     expect(model.longitude, 34.051178);
     // Common(4)

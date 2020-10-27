@@ -1,11 +1,6 @@
 import VueRouter, { Route, RawLocation, NavigationGuard } from 'vue-router'
-import firebase from 'firebase'
-import { IFBPhoto, IFBRestaurant} from 'ieattatypes/types/index'
+import { IFBPhoto } from 'ieattatypes/types/index'
 import axios, { AxiosPromise } from 'axios'
-import { FBCollections } from '~/database/constant'
-import { getGeoHashForRestaurant } from '~/database/geohash_utils'
-
-export type SinglePhotoCB = (items: Array<IFBPhoto>, len: number) => void
 export type OnUploadProgressFunc = (progressEvent) => void
 
 export class PhotoHelper {
@@ -19,45 +14,6 @@ export class PhotoHelper {
     })
 
     return index
-  }
-
-  static fetchPage (
-    restaurant: IFBRestaurant,
-    $fireStore: firebase.firestore.Firestore,
-    cb: SinglePhotoCB
-  ) {
-    const restaurantGeoHash = getGeoHashForRestaurant(restaurant)
-    const nextItem : Array<IFBPhoto> = []
-    const nextQuery = $fireStore.collection(FBCollections.Photos)
-      .where('geoHash', '>', restaurantGeoHash)
-    nextQuery.get().then(
-      (documentSnapshots) => {
-        // console.log('.........')
-        documentSnapshots.forEach((doc) => {
-          // console.log(`${doc.id} => ${doc.data()}`)
-          nextItem.push(doc.data() as IFBPhoto)
-        })
-        // this.items = nextItem
-        // this.photosLen = documentSnapshots.size
-        cb(nextItem, documentSnapshots.size)
-      }
-    ).catch((ex) => {
-      cb(nextItem, 0)
-    })
-  }
-
-  static async savePhoto (
-    $fireStore: firebase.firestore.Firestore,
-    model: IFBPhoto
-  ) {
-    const messageRef = $fireStore.collection(FBCollections.Photos).doc(model.uniqueId)
-    try {
-      await messageRef.set(model)
-      return true
-      // eslint-disable-next-line no-empty
-    } catch (e) {
-      return false
-    }
   }
 
   static prepareFormData (fileContents:string) {

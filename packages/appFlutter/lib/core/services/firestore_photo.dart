@@ -16,12 +16,19 @@ const String Cloudinary_Cloud_Name = "di3fvexj8";
 class FirestorePhoto {
   savePhoto(
       {@required String imagePath, @required ParseModelPhotos model}) async {
-//    bool isNetworkPresent = await NetworkCheck().check();
-    bool isNetworkPresent = false;
+    bool isNetworkPresent = await NetworkCheck().check();
+    // bool isNetworkPresent = false;
 
     if (isNetworkPresent) {
-      await FirestorePhoto.savePhotoWithCloudinary(
-          imagePath: imagePath, uniqueId: model.uniqueId);
+      try {
+        await FirestorePhoto.savePhotoWithCloudinary(
+            imagePath: imagePath, uniqueId: model.uniqueId);
+      } catch (e) {
+        // Exception throw from uploading image to cloudinary
+        // Save it as Sqlite.
+        await SqlPhotos(uniqueId: model.uniqueId, offlinePath: imagePath)
+            .insert();
+      }
     } else {
       // No network.
       // Save it as Sqlite.
@@ -32,16 +39,15 @@ class FirestorePhoto {
 
   static savePhotoWithCloudinary(
       {@required String imagePath, @required String uniqueId}) async {
-    final _firestoreService = FirestoreService.instance;
-    // Upload image to Cloudinary.
-    String originalUrl = await uploadToCloudinary(imagePath: imagePath);
     // Update the photo model.
     ParseModelPhotos model =
-        await FirestoreDatabase(uid: '').getPhoto(uniqueId: uniqueId);
+        await FirestoreDatabase(uid: 'empty').getPhoto(uniqueId: uniqueId);
+    // Upload image to Cloudinary.
+    String originalUrl = await uploadToCloudinary(imagePath: imagePath);
     ParseModelPhotos nextModel = ParseModelPhotos.updateFromCloudinary(
         model: model, originalUrl: originalUrl);
     // Finally: Save photo to Firebase collection.
-    await _firestoreService.setData(
+    await FirestoreService.instance.setData(
       path: FirestorePath.photo(nextModel.uniqueId),
       data: nextModel.toMap(),
     );

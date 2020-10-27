@@ -11,9 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/core/menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/core/menu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/restaurant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/restaurant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/data/Restaurants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/data/Restaurants.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +39,47 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Jest.geohash.geohash with nearby">
+    <configuration name="geohash.geohash with 12 numberOfChars" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/database/utils/geohash_utils.spec.ts" />
+      <test-names>
+        <test-name value="geohash" />
+        <test-name value="geohash with 12 numberOfChars" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="geohash.geohash with nearby" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/database/utils/geohash_utils.dashboard.spec.ts" />
+      <test-names>
+        <test-name value="geohash" />
+        <test-name value="geohash with nearby" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.geohash.geohash with nearby" />
+        <item itemvalue="Jest.geohash.geohash with 12 numberOfChars" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,6 +98,16 @@
       <workItem from="1599474605278" duration="428000" />
       <workItem from="1599552005153" duration="1343000" />
       <workItem from="1599807257389" duration="842000" />
+      <workItem from="1601445837736" duration="863000" />
+      <workItem from="1601453077808" duration="229000" />
+      <workItem from="1602069818955" duration="1676000" />
+      <workItem from="1602123019534" duration="1402000" />
+      <workItem from="1602140585825" duration="291000" />
+      <workItem from="1602141440030" duration="817000" />
+      <workItem from="1602144152787" duration="103000" />
+      <workItem from="1602144616542" duration="805000" />
+      <workItem from="1602150998966" duration="80000" />
+      <workItem from="1602751544198" duration="184000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>
@@ -122,21 +167,101 @@
     <option name="LAST_COMMIT_MESSAGE" value="xxx" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1259" height="212" key="GridCell.Tab.0.bottom" timestamp="1602133026757">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602133026757" />
+    <state width="1259" height="384" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602111950327" />
+    <state width="1259" height="212" key="GridCell.Tab.0.center" timestamp="1602133026756">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1602133026756" />
+    <state width="1259" height="384" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1602111950325" />
+    <state width="1259" height="212" key="GridCell.Tab.0.left" timestamp="1602133026755">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1602133026755" />
+    <state width="1259" height="384" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1602111950322" />
+    <state width="1259" height="212" key="GridCell.Tab.0.right" timestamp="1602133026757">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1602133026757" />
+    <state width="1259" height="384" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1602111950326" />
+    <state width="1259" height="384" key="GridCell.Tab.1.bottom" timestamp="1602133026744">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602133026744" />
+    <state width="1259" height="384" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602111950334" />
+    <state width="1259" height="384" key="GridCell.Tab.1.center" timestamp="1602133026743">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1602133026743" />
+    <state width="1259" height="384" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1602111950329" />
+    <state width="1259" height="384" key="GridCell.Tab.1.left" timestamp="1602133026743">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1602133026743" />
+    <state width="1259" height="384" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1602111950328" />
+    <state width="1259" height="384" key="GridCell.Tab.1.right" timestamp="1602133026744">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1602133026744" />
+    <state width="1259" height="384" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1602111950332" />
+    <state width="1259" height="384" key="GridCell.Tab.2.bottom" timestamp="1602133026746">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.2.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602133026746" />
+    <state width="1259" height="384" key="GridCell.Tab.2.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602111950337" />
+    <state width="1259" height="384" key="GridCell.Tab.2.center" timestamp="1602133026745">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.2.center/0.0.1280.800@0.0.1280.800" timestamp="1602133026745" />
+    <state width="1259" height="384" key="GridCell.Tab.2.center/0.23.1280.777@0.23.1280.777" timestamp="1602111950335" />
+    <state width="1259" height="384" key="GridCell.Tab.2.left" timestamp="1602133026745">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.2.left/0.0.1280.800@0.0.1280.800" timestamp="1602133026745" />
+    <state width="1259" height="384" key="GridCell.Tab.2.left/0.23.1280.777@0.23.1280.777" timestamp="1602111950335" />
+    <state width="1259" height="384" key="GridCell.Tab.2.right" timestamp="1602133026746">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.2.right/0.0.1280.800@0.0.1280.800" timestamp="1602133026746" />
+    <state width="1259" height="384" key="GridCell.Tab.2.right/0.23.1280.777@0.23.1280.777" timestamp="1602111950336" />
+    <state width="1259" height="384" key="GridCell.Tab.3.bottom" timestamp="1602133026748">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.3.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602133026748" />
+    <state width="1259" height="384" key="GridCell.Tab.3.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602111950368" />
+    <state width="1259" height="384" key="GridCell.Tab.3.center" timestamp="1602133026747">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.3.center/0.0.1280.800@0.0.1280.800" timestamp="1602133026747" />
+    <state width="1259" height="384" key="GridCell.Tab.3.center/0.23.1280.777@0.23.1280.777" timestamp="1602111950338" />
+    <state width="1259" height="384" key="GridCell.Tab.3.left" timestamp="1602133026746">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.3.left/0.0.1280.800@0.0.1280.800" timestamp="1602133026746" />
+    <state width="1259" height="384" key="GridCell.Tab.3.left/0.23.1280.777@0.23.1280.777" timestamp="1602111950338" />
+    <state width="1259" height="384" key="GridCell.Tab.3.right" timestamp="1602133026747">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1259" height="384" key="GridCell.Tab.3.right/0.0.1280.800@0.0.1280.800" timestamp="1602133026747" />
+    <state width="1259" height="384" key="GridCell.Tab.3.right/0.23.1280.777@0.23.1280.777" timestamp="1602111950366" />
     <state x="141" y="39" key="SettingsEditor" timestamp="1599474895510">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1599474895510" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1599453286677">
+    <state width="500" height="445" key="SwitcherDM" timestamp="1602751669585">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1599453286677" />
+    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1602751669585" />
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599455552898">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1599455552897" />
-    <state x="341" y="155" width="801" height="490" key="find.popup" timestamp="1599553207863">
+    <state x="341" y="155" width="801" height="548" key="find.popup" timestamp="1602140794414">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="341" y="155" width="801" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1599553207863" />
+    <state x="341" y="155" width="801" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1602140794414" />
   </component>
 </project>

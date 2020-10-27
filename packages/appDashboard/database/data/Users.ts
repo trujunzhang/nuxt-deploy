@@ -1,4 +1,4 @@
-import { IFBUser } from 'ieattatypes'
+import { IFBUser } from 'ieattatypes/types/index'
 import { IFBRestaurant } from 'ieattatypes/types/index'
 import { restaurants } from '~/database/data/Restaurants'
 

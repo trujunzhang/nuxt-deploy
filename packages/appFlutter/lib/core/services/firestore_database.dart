@@ -65,24 +65,11 @@ class FirestoreDatabase {
         builder: (data, documentId) => ParseModelPhotos.fromJson(data),
       );
 
-  //Method to delete todoModel entry
-//  Future<void> deleteTodo(TodoModel todo) async {
-//    await _firestoreService.deleteData(path: FirestorePath.todo(uid, todo.id));
-//  }
-
-  //Method to retrieve todoModel object based on the given todoId
-//  Stream<TodoModel> todoStream({@required String todoId}) =>
-//      _firestoreService.documentStream(
-//        path: FirestorePath.todo(uid, todoId),
-//        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
-//      );
-
   //Method to retrieve restaurant stream
   Stream<QuerySnapshot> restaurantStream() => _firestoreService.snapshotStream(
       path: FBCollections.Restaurants,
       queryBuilder: (Query query) {
-        query.orderBy('displayName');
-        return query;
+        return query.orderBy('updatedAt', descending: true);
       });
 
   //Method to retrieve todoModel object based on the given todoId
@@ -91,10 +78,12 @@ class FirestoreDatabase {
       _firestoreService.snapshotStream(
           path: FBCollections.Photos,
           queryBuilder: (Query query) {
-            query.where("geoHash",
-                isEqualTo: getGeoHashForRestaurant(restaurant));
-            query.orderBy('createdAt');
-            return query;
+            return query
+                .where("geoHash",
+                    isEqualTo: getGeoHashForRestaurant(restaurant))
+                // isGreaterThan: getGeoHashForRestaurant(restaurant))
+                // .orderBy('geoHash')
+                .orderBy('updatedAt', descending: true);
           });
 
   //Method to retrieve todoModel object based on the given todoId
@@ -102,43 +91,36 @@ class FirestoreDatabase {
       _firestoreService.snapshotStream(
           path: FBCollections.Reviews,
           queryBuilder: (Query query) {
-//            print("photoStream: " + restaurantId);
-            query.where("restaurantId", isEqualTo: restaurantId);
-            query.orderBy('createdAt');
-            return query;
+            return query
+                .where("restaurantId", isEqualTo: restaurantId)
+                .orderBy('updatedAt');
           });
 
-  //Method to retrieve all todos item from the same user based on uid
-//  Stream<List<TodoModel>> todosStream() => _firestoreService.collectionStream(
-//        path: FirestorePath.todos(uid),
-//        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
-//      );
+//Method to mark all todoModel to be complete
+// Future<void> setAllTodoComplete() async {
+//   final batchUpdate = Firestore.instance.batch();
+//
+//   final querySnapshot = await Firestore.instance
+//       .collection(FirestorePath.todos(uid))
+//       .getDocuments();
+//
+//   for (DocumentSnapshot ds in querySnapshot.documents) {
+//     batchUpdate.updateData(ds.reference, {'complete': true});
+//   }
+//   await batchUpdate.commit();
+// }
 
-  //Method to mark all todoModel to be complete
-  Future<void> setAllTodoComplete() async {
-    final batchUpdate = Firestore.instance.batch();
-
-    final querySnapshot = await Firestore.instance
-        .collection(FirestorePath.todos(uid))
-        .getDocuments();
-
-    for (DocumentSnapshot ds in querySnapshot.documents) {
-      batchUpdate.updateData(ds.reference, {'complete': true});
-    }
-    await batchUpdate.commit();
-  }
-
-  Future<void> deleteAllTodoWithComplete() async {
-    final batchDelete = Firestore.instance.batch();
-
-    final querySnapshot = await Firestore.instance
-        .collection(FirestorePath.todos(uid))
-        .where('complete', isEqualTo: true)
-        .getDocuments();
-
-    for (DocumentSnapshot ds in querySnapshot.documents) {
-      batchDelete.delete(ds.reference);
-    }
-    await batchDelete.commit();
-  }
+// Future<void> deleteAllTodoWithComplete() async {
+//   final batchDelete = Firestore.instance.batch();
+//
+//   final querySnapshot = await Firestore.instance
+//       .collection(FirestorePath.todos(uid))
+//       .where('complete', isEqualTo: true)
+//       .getDocuments();
+//
+//   for (DocumentSnapshot ds in querySnapshot.documents) {
+//     batchDelete.delete(ds.reference);
+//   }
+//   await batchDelete.commit();
+// }
 }

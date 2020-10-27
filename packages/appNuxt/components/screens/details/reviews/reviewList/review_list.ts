@@ -1,78 +1,135 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBReview } from 'ieattatypes'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { IFBReview, IFBRestaurant } from 'ieattatypes'
+import { QuerySnapshot } from 'firebase/firebase-storage'
 import { FBCollections } from '~/database/constant'
-import { loadReviews } from '~/database/data/Reviews'
+// import { loadReviews } from '~/database/data/Reviews'
 import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_item.vue'
+import ReviewPop from '~/components/screens/details/reviews/review_pop.vue'
 import NewReviewPanel from '~/components/screens/details/reviews/newReviewPanel/new_review_panel.vue'
-import { IFBRestaurant } from 'ieattatypes/types/index'
+import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
   components: {
     NewReviewPanel,
-    ReviewItem
+    ReviewItem,
+    ReviewPop
   }
 })
 export default class ReviewsList extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
   // public items: Array<IFBReview> = loadReviews()
   public items: Array<IFBReview> = []
-  public markers: any = []
 
   private isLoading = false
   // The last visible document
   private lastVisible
 
-  firstPageLoad () {
-    const first = this.$fireStore.collection(FBCollections.Reviews)
-    this._fetchPage(first)
+  public sortTitle: string = 'Yelp Sort'
+  public showPopMenu: boolean = false
+  // public showPopMenu: boolean = true
+
+  onClickOutside (event) {
+    console.log('Clicked outside. Event: ', event)
+    this.showPopMenu = false
   }
 
-  nextPageLoad () {
+  onSortIconClick () {
+    this.showPopMenu = true
+  }
+
+  private sortTitles = {
+    default: 'Yelp Sort',
+    date_desc: 'Newest First',
+    date_asc: 'Oldest First',
+    rating_desc: 'Highest Rated',
+    rating_asc: 'Lowest Rated'
+  }
+
+  onSortItemChanged (tag:string) {
+    this.showPopMenu = false
+    this.sortTitle = this.sortTitles[tag]
+  }
+
+  async firstPageLoad () {
+    await this._fetchPage((query: any) => {
+      return query
+    })
+  }
+
+  async nextPageLoad () {
     if (this.lastVisible === undefined) {
       return
     }
-    const next = this.$fireStore.collection(FBCollections.Reviews)
-      .startAfter(this.lastVisible)
-    this._fetchPage(next)
+    await this._fetchPage((query: any) => {
+      return query.startAfter(this.lastVisible)
+    })
   }
 
-  _fetchPage (query) {
+  sortQuery (query: any) {
+    const tag: string = (this.$route.query.sort_by as any) || 'default'
+
+    if (tag === 'default') {
+      return query
+    } else if (tag === 'date_desc') {
+      return query.orderBy('updatedAt', 'desc')
+    } else if (tag === 'date_asc') {
+      return query.orderBy('updatedAt', 'asc')
+    } else if (tag === 'rating_desc') {
+      return query.orderBy('rate', 'desc')
+    } else if (tag === 'rating_asc') {
+      return query.orderBy('rate', 'asc')
+    }
+  }
+
+  async _fetchPage (
+    queryBuilder: QueryBuilder
+  ) {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    const nextQuery = query
-      .where('restaurantId', '==', this.restaurant.uniqueId)
-      .limit(2)
-    nextQuery.get().then(
-      (documentSnapshots) => {
+    const nextItem = this.items.concat([])
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Reviews,
+      queryBuilder: (query: any) => {
+        return queryBuilder(this.sortQuery(query))
+          .where('restaurantId', '==', this.restaurant.uniqueId)
+          .limit(2)
+      },
+      iterateDocumentSnapshots: (data: IFBReview) => {
+        nextItem.push(data)
+      },
+      documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
         // Get the last visible document
         this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
         // console.log('last', this.lastVisible)
-
-        const nextItem = this.items.concat([])
-        // console.log('.........')
-        documentSnapshots.forEach((doc) => {
-          // console.log(`${doc.id} => ${doc.data()}`)
-          nextItem.push(doc.data())
-        })
-        this.items = nextItem
-        this.isLoading = false
       }
-    ).catch((ex) => {
-      this.isLoading = false
     })
+    this.items = nextItem
+    this.isLoading = false
   }
 
-  onWaypoint (e) {
-    this.nextPageLoad()
+  async onWaypoint (e) {
+    await this.nextPageLoad()
   }
 
-  toggle () {
-    this.nextPageLoad()
+  async mounted () {
+    const tag: string = (this.$route.query.sort_by as any) || 'default'
+    this.sortTitle = this.sortTitles[tag]
+    await this.resetPage()
   }
 
-  mounted () {
-    this.firstPageLoad()
+  async resetPage () {
+    this.items = []
+    this.isLoading = false
+    this.lastVisible = null
+
+    await this.firstPageLoad()
+  }
+
+  @Watch('$route')
+  async routeChanged (to: any, from:any) {
+    await this.resetPage()
   }
 }

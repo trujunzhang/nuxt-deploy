@@ -33,6 +33,7 @@ class _ReviewViewState extends State<ReviewView> {
             height: 100,
             child: AvatarWidget(
               user: widget.reviewData,
+              isShowingUsernameLabel: true,
               padding: EdgeInsets.only(right: 8.0),
             ),
           ),

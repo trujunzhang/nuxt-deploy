@@ -1,8 +1,9 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import vClickOutside from 'v-click-outside'
 import { IAuthUser } from '~/database/models/auth_user_model'
 
+import HeaderSearch from '~/components/screens/header/header_search.vue'
 import HeaderPop from '~/components/screens/header/header_pop.vue'
 const auth = namespace('auth')
 
@@ -11,6 +12,7 @@ const auth = namespace('auth')
     clickOutside: vClickOutside.directive
   },
   components: {
+    HeaderSearch,
     HeaderPop
   }
 })
@@ -25,6 +27,11 @@ export default class HomeHeader extends Vue {
   onClickOutside (event) {
     console.log('Clicked outside. Event: ', event)
     this.showPopMenu = false
+  }
+
+  getAvatarContainerClassname () {
+    const ext = this.showPopMenu ? 'active__373c0__2rFUH ' : ''
+    return `${ext}lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU`
   }
 
   onHeaderIconClick () {
@@ -44,9 +51,9 @@ export default class HomeHeader extends Vue {
 
   mounted () {
     this.isLoaded = true
+  }
 
-    const x = this.$router
-    // this.$router.push('/login')
-    // debugger
+  @Watch('$route')
+  routeChanged (to: any, from:any) {
   }
 }

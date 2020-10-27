@@ -44,8 +44,9 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      child: buildPhotosPageView(context),
-    ));
+            child: Stack(
+      children: [buildPhotosPageView(context), if (showInfoPanel) _buildFg()],
+    )));
   }
 
   Widget buildPhotosPageView(BuildContext context) {
@@ -58,16 +59,21 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
       },
       itemCount: photos.length,
       itemBuilder: (context, index) {
-        return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Stack(
-              children: <Widget>[
-                buildLocalImageView(photos[index].offlinePath),
-                _buildTouchPanel(),
-                if (showInfoPanel) _buildFg(photos[index])
-              ],
-            ));
+        return Stack(
+          children: <Widget>[
+            _buildCurrentImage(index),
+            _buildTouchPanel(),
+          ],
+        );
       },
+    );
+  }
+
+  Widget _buildCurrentImage(int index) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: buildLocalImageView(photos[index].offlinePath),
     );
   }
 
@@ -81,7 +87,7 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
         child: Container());
   }
 
-  Widget _buildFg(SqlPhotos photo) {
+  Widget _buildFg() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +95,10 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
         Container(
           height: 100,
           color: Colors.black,
-          child: TopUserView(photo: photo),
+          child: TopUserView(
+            selectedIndex: selectedIndex,
+            totalCount: photos.length,
+          ),
         ),
         Container(
           height: 100,

@@ -1,9 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto } from 'ieattatypes'
 import { IFBRestaurant } from 'ieattatypes/types/index'
-import { loadPhotos } from '~/database/data/Photos'
+// import { loadPhotos } from '~/database/data/Photos'
+// import { PhotoHelper } from '~/database/photo_helper'
+import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
-import { PhotoHelper } from '~/database/photo_helper'
+import { getGeoHashForRestaurant } from '~/database/utils/geohash_utils'
 
 @Component({
   components: {}
@@ -15,20 +17,28 @@ export default class RestaurantPhotoHeader extends Vue {
   public photosLen: number | null = null
   private isLoading = false
 
-  _fetchPage () {
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    PhotoHelper.fetchPage(
-      this.restaurant,
-      this.$fireStore,
-      (items: Array<IFBPhoto>, len: number) => {
-        this.items = items
-        this.photosLen = len
-        this.isLoading = false
+    const nextItem = this.items.concat([])
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Photos,
+      queryBuilder: (query: any) => {
+        return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
+          query,
+          restaurant: this.restaurant
+        })
+      },
+      iterateDocumentSnapshots: (data: IFBPhoto) => {
+        nextItem.push(data)
       }
-    )
+    })
+    this.items = nextItem
+    this.photosLen = nextItem.length
+    this.isLoading = false
   }
 
   /**
@@ -64,7 +74,7 @@ export default class RestaurantPhotoHeader extends Vue {
     return 'See All ' + this.photosLen
   }
 
-  mounted () {
-    this._fetchPage()
+  async mounted () {
+    await this._fetchPage()
   }
 }

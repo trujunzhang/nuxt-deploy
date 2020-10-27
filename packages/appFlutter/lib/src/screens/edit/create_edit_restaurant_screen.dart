@@ -7,6 +7,7 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/location_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/utils/toast.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -123,6 +124,7 @@ class _CreateEditRestaurantScreenState
                           });
                         }
 
+                        ToastUtils.showToast('saved successfully');
                         // Navigate
                         Navigator.of(context).pop(displayNameVal);
                       }

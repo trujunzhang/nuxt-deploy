@@ -149,7 +149,15 @@ class ParseModelRestaurants {
     var thumbnailUrl = json['thumbnailUrl'] as String;
     var originalUrl = json['originalUrl'] as String;
     // for review(2)
-    var rate = json['rate'] as int;
+    var rate = json['rate'];
+      if (rate is int) {
+        rate = rate as int;
+      }
+
+      if (rate is double) {
+        rate = rate.round();
+      }
+
     var reviewCount = json['reviewCount'] as int;
     // Google api(8)
     var address = json['address'] as String;

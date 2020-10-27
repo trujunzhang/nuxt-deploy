@@ -1,12 +1,12 @@
 // import { GeoHashUtils } from '@app/tools'
-import { IFBRestaurant } from 'ieattatypes'
-import { slugifyToLower } from '~/database/slug_helper'
+import { IFBRestaurant } from 'ieattatypes/types/index'
+import { slugifyToLower } from '~/database/utils/slug_helper'
+import { convertToGeoHash, getGeoHashForRestaurant } from '~/database/utils/geohash_utils'
 
 export const loadRestaurants = (): IFBRestaurant[] => {
   const next = restaurants.map((item: IFBRestaurant) => {
-    // const geoHash = GeoHashUtils.encode(item.latitude, item.longitude)
-    // item.geoHash = geoHash
-    item.slug = slugifyToLower(item.displayName)
+    // item.geoHash = convertToGeoHash(item.latitude, item.longitude)
+    // item.slug = slugifyToLower(item.displayName)
     // console.log(JSON.stringify(item))
     return item
   })
@@ -25,12 +25,11 @@ export const restaurants: IFBRestaurant[] =
     displayName: 'Forno Vecchio',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529261/politicl/o_xr3usf.jpg',
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--qsTnagxL--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_xr3usf',
-    geoHash: 'hb00n8n2pb08',
-    latitude: 34.044561,
+    latitude: 34.144561,
     longitude: -118.253985,
     createdAt: '2017-10-09T06:02:09.838+0000',
     updatedAt: '2017-11-07T07:43:10.690+0000',
-    rate: 3.5,
+    rate: 42,
     reviewCount: 12,
     street_number: '724',
     route: 'South Broadway',
@@ -39,7 +38,8 @@ export const restaurants: IFBRestaurant[] =
     country: 'US',
     postal_code: '2802',
     administrative_area: 'CA',
-    slug: 'forno-vecchio'
+    slug: 'forno-vecchio',
+    geoHash: '9q5fjpf'
   }, {
     isNew: false,
     uniqueId: '0b92b483-8860-438b-961d-4fef4b124176',
@@ -50,12 +50,12 @@ export const restaurants: IFBRestaurant[] =
     displayName: 'Carl\'s Jr',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg',
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--TqIOho75--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_ugrhuw',
-    geoHash: 'hb00nb521bn8',
-    latitude: 34.051178,
-    longitude: -118.247636,
+    geoHash: '9q5fv5m',
+    latitude: 34.251344,
+    longitude: -118.249069,
     createdAt: '2017-10-09T06:02:52.325+0000',
     updatedAt: '2017-10-09T06:35:46.537+0000',
-    rate: 2.5,
+    rate: 7.5,
     reviewCount: 3,
     street_number: '250s',
     route: 'South Broadway',
@@ -75,12 +75,12 @@ export const restaurants: IFBRestaurant[] =
     displayName: 'La Cita',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529351/politicl/o_h1fei1.jpg',
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--r05hgf5R--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_h1fei1',
-    geoHash: 'hb00nb521bn8',
-    latitude: 34.050796,
+    geoHash: '9q5gmjm',
+    latitude: 34.350796,
     longitude: -118.249782,
     createdAt: '2017-10-09T06:03:49.167+0000',
     updatedAt: '2017-10-09T06:36:46.436+0000',
-    rate: 2.0,
+    rate: 30,
     reviewCount: 15,
     street_number: '336',
     route: 'South Hill Street',
@@ -100,12 +100,12 @@ export const restaurants: IFBRestaurant[] =
     displayName: 'Pez Cantina',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529398/politicl/o_npi8ev.jpg',
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--pdqw12x3--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_npi8ev',
-    geoHash: 'hb00nb584012',
-    latitude: 34.051525,
+    geoHash: '9q5gvpd',
+    latitude: 34.451525,
     longitude: -118.253312,
     createdAt: '2017-10-09T06:04:35.361+0000',
     updatedAt: '2017-10-09T06:37:45.146+0000',
-    rate: 4.0,
+    rate: 32,
     reviewCount: 8,
     street_number: '401',
     route: 'South Grand Avenue',
@@ -125,12 +125,12 @@ export const restaurants: IFBRestaurant[] =
     displayName: 'Water Grill',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529446/politicl/o_ygnkam.jpg',
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--sX0P-dsK--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_ygnkam',
-    geoHash: 'hb00nb1b18n2',
-    latitude: 34.049107,
-    longitude: -118.254707,
+    geoHash: '9q5ut1h',
+    latitude: 34.547599,
+    longitude: -118.250585,
     createdAt: '2017-10-09T06:05:13.322+0000',
     updatedAt: '2017-10-09T06:39:17.107+0000',
-    rate: 1.0,
+    rate: 20,
     reviewCount: 20,
     street_number: '517',
     route: 'West 6th Street',
@@ -146,13 +146,13 @@ export const restaurants: IFBRestaurant[] =
     extraNote: '',
     creatorId: '',
     flag: '1',
-    geoHash: 'uxzpcrfzypbp',
+    geoHash: 'wtv8r4t',
     latitude: 32.402716,
     longitude: 120.550209,
     displayName: 'trujunzhang locally',
     createdAt: '2017-10-10T06:05:35.316+0000',
     updatedAt: '2017-10-10T06:05:35.633+0000',
-    rate: 1.5,
+    rate: 6,
     reviewCount: 4,
     thumbnailUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag',
     originalUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507615599/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag.jpg',

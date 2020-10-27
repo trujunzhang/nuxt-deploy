@@ -30,9 +30,9 @@ class StoriesController {
 
   static Future<bool> createStory(String path) async {
     try {
-      String imagePath = "$BASE_URl$path?alt=media";
+      // String imagePath = "$BASE_URl$path?alt=media";
       FirebaseUser authUser = await FirebaseAuth.instance.currentUser();
-      List<String> names = authUser.displayName.split(" ");
+      // List<String> names = authUser.displayName.split(" ");
       User user =
           User(authUser.displayName, authUser.photoUrl, authUser.email, false);
 //      Story story = Story(

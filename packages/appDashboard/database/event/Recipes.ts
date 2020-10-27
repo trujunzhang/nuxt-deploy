@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { IFBRecipe } from 'ieattatypes'
+import { IFBRecipe } from 'ieattatypes/types/index'
 import { recipes } from '~/database/data/Recipes'
 import { FBCollections } from '~/database/constant'
 

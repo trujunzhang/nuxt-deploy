@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/camera/screens/camera_screen/camera_screen.dart';
 import 'package:ieatta/camera/screens/create_edit_photo_screen.dart';
 import 'package:ieatta/core/ui/auth/register_screen.dart';
-import 'package:ieatta/core/ui/auth/sign_in_screen.dart';
 import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/core/ui/splash/splash_screen.dart';

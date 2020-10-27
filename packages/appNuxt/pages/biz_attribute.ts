@@ -1,9 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
+import { namespace } from 'vuex-class'
 import RestaurantForm from '~/components/screens/editRestaurant/restaurant_form.vue'
 import RestaurantMap from '~/components/screens/editRestaurant/restaurant_map.vue'
-import { ReviewHelper } from '~/database/review_helper'
-import { RestaurantHelper } from '~/database/restaurant_helper'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
+const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
   components: {
@@ -16,18 +18,24 @@ export default class EditRestaurant extends Vue {
   private isLoading = false
   private isNewRestaurant = false
 
-  _fetchPage () {
+  @ieattaConfigure.Mutation
+  public SET_SHOW_404!: (payload: boolean) => void
+
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    RestaurantHelper.getSingleRestaurantFromId(
-      this.$route.query.biz_id as string,
-      this.$fireStore,
-      (restaurant: IFBRestaurant | null) => {
-        this.restaurant = restaurant
-        this.isLoading = false
-      })
+    const restaurantId = this.$route.query.biz_id as string
+    this.restaurant = await FirestoreService.instance.getData({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Restaurants,
+      uniqueId: restaurantId,
+      emptyHint: () => {
+        this.SET_SHOW_404(true)
+      }
+    })
+    this.isLoading = false
   }
 
   shouldShowPage () {
@@ -39,8 +47,14 @@ export default class EditRestaurant extends Vue {
     return false
   }
 
-  mounted () {
-    this.isNewRestaurant = RestaurantHelper.checkNewRestaurantPage(this.$route)
-    this._fetchPage()
+  checkNewRestaurantPage (
+  ) {
+    const restaurantId = this.$route.query.biz_id as string
+    return restaurantId === undefined || restaurantId === null
+  }
+
+  async mounted () {
+    this.isNewRestaurant = this.checkNewRestaurantPage()
+    await this._fetchPage()
   }
 }

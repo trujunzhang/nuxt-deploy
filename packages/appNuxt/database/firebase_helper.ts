@@ -1,27 +1,24 @@
 import firebase from 'firebase'
 import { IFBUser } from 'ieattatypes/types/index'
-import { slugifyToLower } from '~/database/slug_helper'
-import { UserHelper } from '~/database/user_helper'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { FBCollections } from '~/database/constant'
+import { ParseModelUsers } from '~/database/appModel/users'
 
 export class FirebaseHelper {
-  private static getUserModel (model: IAuthUser): IFBUser {
-    return {
-      id: model.uid,
-      createdAt: '',
-      updatedAt: '',
-      // Common(3)
-      username: model.displayName,
-      slug: slugifyToLower(model.displayName),
-      email: model.email,
-      // Property(4)
-      loginType: 'google',
-      originalUrl: model.photoURL
+  static async createUser ($fireStore: firebase.firestore.Firestore, model: IFBUser) {
+    const messageRef = $fireStore.collection(FBCollections.Users).doc(model.id)
+    try {
+      const doc = await messageRef.get()
+      if (!doc.data()) {
+        await messageRef.set(model)
+      }
+      // eslint-disable-next-line no-empty
+    } catch (e) {
     }
   }
 
   public static async onLoginAfterHook ($fireStore: firebase.firestore.Firestore, model: IAuthUser) {
-    const user = this.getUserModel(model)
-    await UserHelper.uploadUser($fireStore, user)
+    const user = ParseModelUsers.getUserModel(model)
+    await FirebaseHelper.createUser($fireStore, user)
   }
 }

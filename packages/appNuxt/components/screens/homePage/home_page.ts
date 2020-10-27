@@ -1,17 +1,22 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
+import { QuerySnapshot } from 'firebase/firebase-storage'
 import { FBCollections } from '~/database/constant'
-import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
+// import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
 import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'
+import NoResults from '~/components/screens/homePage/no_results.vue'
 import HomeFooter from '~/components/screens/footer/footer.vue'
+import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
   components: {
     HomeFooter,
-    RestaurantItem
+    RestaurantItem,
+    NoResults
   }
 })
 export default class HomePage extends Vue {
+  public showNoResult: boolean = false
   public markers: any = []
 
   // public items: Array<IFBRestaurant> = loadRestaurants()
@@ -19,58 +24,95 @@ export default class HomePage extends Vue {
 
   private isLoading = false
   // The last visible document
-  private lastVisible
+  private lastVisible = null
+  private find_desc:string | null = null
 
-  firstPageLoad () {
-    const first = this.$fireStore.collection(FBCollections.Restaurants)
-    this._fetchPage(first)
-  }
-
-  nextPageLoad () {
-    if (this.lastVisible === undefined) {
-      return
-    }
-    const next = this.$fireStore.collection(FBCollections.Restaurants)
-      .startAfter(this.lastVisible)
-    this._fetchPage(next)
-  }
-
-  _fetchPage (query) {
-    if (this.isLoading) {
-      return
-    }
-    this.isLoading = true
-    const nextQuery = query.limit(2)
-    // .orderBy("population")
-    nextQuery.get().then(
-      (documentSnapshots) => {
-        // Get the last visible document
-        this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
-        // console.log('last', this.lastVisible)
-
-        const nextItem = this.items.concat([])
-        // console.log('.........')
-        documentSnapshots.forEach((doc) => {
-          // console.log(`${doc.id} => ${doc.data()}`)
-          nextItem.push(doc.data())
-        })
-        this.items = nextItem
-        this.isLoading = false
+  async firstPageLoad () {
+    await this._fetchPage({
+      queryBuilder: (query: any) => {
+        return query
+      },
+      emptyHint: () => {
+        this.showNoResult = true
       }
-    ).catch((ex) => {
-      this.isLoading = false
     })
   }
 
-  onWaypoint (e) {
-    this.nextPageLoad()
+  async nextPageLoad () {
+    if (this.lastVisible === undefined) {
+      return
+    }
+    await this._fetchPage({
+      queryBuilder: (query: any) => {
+        return query.startAfter(this.lastVisible)
+      }
+    })
   }
 
-  toggle () {
-    this.nextPageLoad()
+  async _fetchPage (
+    params:{
+    queryBuilder: QueryBuilder,
+      emptyHint? :() => void
+  }) {
+    if (this.isLoading) {
+      return
+    }
+    const {
+      queryBuilder,
+      emptyHint
+    } = params
+    this.isLoading = true
+    const nextItem = this.items.concat([])
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Restaurants,
+      queryBuilder: (query: any) => {
+        let nextQuery = query
+
+        if (this.find_desc !== null && this.find_desc !== undefined) {
+          nextQuery = nextQuery.where('displayName', '>=', this.find_desc)
+            .orderBy('displayName', 'desc')
+        }
+
+        nextQuery = nextQuery.orderBy('updatedAt', 'desc')
+
+        return queryBuilder(nextQuery).limit(2)
+      },
+      iterateDocumentSnapshots: (data: IFBRestaurant) => {
+        nextItem.push(data)
+      },
+      documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
+        // Get the last visible document
+        this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
+        // console.log('last', this.lastVisible)
+      },
+      emptyHint
+    })
+    this.items = nextItem
+    this.isLoading = false
   }
 
-  mounted () {
-    this.firstPageLoad()
+  async onWaypoint (e) {
+    await this.nextPageLoad()
+  }
+
+  async mounted () {
+    this.find_desc = (this.$route.query.find_desc as any)
+    await this.resetPage()
+  }
+
+  async resetPage () {
+    this.showNoResult = false
+    this.items = []
+    this.isLoading = false
+    this.lastVisible = null
+
+    await this.firstPageLoad()
+  }
+
+  @Watch('$route')
+  async routeChanged (to: any, from:any) {
+    this.find_desc = to.query.find_desc
+    await this.resetPage()
   }
 }

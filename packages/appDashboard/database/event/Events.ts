@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { IFBEvent } from 'ieattatypes'
+import { IFBEvent } from 'ieattatypes/types/index'
 import { events } from '~/database/data/Events'
 import { FBCollections } from '~/database/constant'
 

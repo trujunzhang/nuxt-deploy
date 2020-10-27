@@ -1,9 +1,10 @@
 import { namespace } from 'vuex-class'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
+import { IFBRestaurant} from 'ieattatypes/types/index'
 import { ParseModelRestaurants } from '~/database/appModel/restaurant'
-import { RestaurantHelper } from '~/database/restaurant_helper'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
 
 const auth = namespace('auth')
 
@@ -40,8 +41,9 @@ export default class RestaurantForm extends Vue {
       this.displayName,
       this.note
     )
-    const result = await RestaurantHelper.saveRestaurant(
+    await FirestoreService.instance.setData(
       this.$fireStore,
+      FBCollections.Restaurants,
       nextRestaurant
     )
     await this.$router.push(this.getDetailRestaurantUrl())

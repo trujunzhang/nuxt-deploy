@@ -44,25 +44,27 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      child: buildPhotosPageView(context),
-    ));
+            child: Stack(
+      children: [buildPhotosPageView(context), if (showInfoPanel) _buildFg()],
+    )));
   }
 
   Widget buildPhotosPageView(BuildContext context) {
     return PageView.builder(
       controller: _pageController,
-      onPageChanged: (index) => pageIndexNotifier.value = index,
+      onPageChanged: (int index) {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
       itemCount: photos.length,
       itemBuilder: (context, index) {
-        return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Stack(
-              children: <Widget>[
-                _buildCurrentImage(index),
-                _buildTouchPanel(),
-                if (showInfoPanel) _buildFg(photos[index])
-              ],
-            ));
+        return Stack(
+          children: <Widget>[
+            _buildCurrentImage(index),
+            _buildTouchPanel(),
+          ],
+        );
       },
     );
   }
@@ -85,7 +87,7 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
         child: Container());
   }
 
-  Widget _buildFg(ParseModelPhotos photo) {
+  Widget _buildFg() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +95,11 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
         Container(
           height: 100,
           color: Colors.black,
-          child: TopBaseUserView(user: photo),
+          child: TopBaseUserView(
+            user: photos[selectedIndex],
+            selectedIndex: selectedIndex,
+            totalCount: photos.length,
+          ),
         ),
         Container(
           height: 100,

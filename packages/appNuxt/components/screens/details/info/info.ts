@@ -1,7 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types/index'
 import { starLargeDict } from '~/database/star_helper'
-import { formatByTimeAgo, formatByTimeAgoForTest } from '~/database/timeago_helper'
+import { formatByTimeAgo, formatByTimeAgoForTest } from '~/database/utils/timeago_helper'
 import { calcRateForRestaurant } from '~/database/rate_utils'
 
 @Component({

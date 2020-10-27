@@ -9,6 +9,7 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/providers/language_provider.dart';
 import 'package:ieatta/core/providers/theme_provider.dart';
+import 'package:ieatta/core/services/firebase_sync.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/home/home.dart';
@@ -37,13 +38,16 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    syncLocalDb();
+    _syncLocalDb();
   }
 
-  syncLocalDb() async {
-    final db = await database.DBProvider.db.database;
+  Future<void> _syncLocalDb() async {
+    var firebaseSync = FirebaseSync();
+    // await firebaseSync.start();
 
-//    await SqlPhotosHelper.generateDatabase();
+    // For test
+    // final db = await database.DBProvider.db.database;
+    // await SqlPhotosHelper.generateDatabase();
   }
 
   // This widget is the root of your application.

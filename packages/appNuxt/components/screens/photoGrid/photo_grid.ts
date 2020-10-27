@@ -1,9 +1,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant, IFBPhoto } from 'ieattatypes/types/index'
-import { loadPhotos } from '~/database/data/Photos'
+import { QuerySnapshot } from 'firebase/firebase-storage'
+// import { loadPhotos } from '~/database/data/Photos'
 import RestaurantTitle from '~/components/screens/photoGrid/restaurantTitle/restaurant_title.vue'
 import { FBCollections } from '~/database/constant'
-import { getGeoHashForRestaurant } from '~/database/geohash_utils'
+import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
   components: {
@@ -20,60 +21,72 @@ export default class PhotoGrid extends Vue {
   // The last visible document
   private lastVisible
 
-  firstPageLoad () {
-    const first = this.$fireStore.collection(FBCollections.Photos)
-    this._fetchPage(first)
-  }
-
-  nextPageLoad () {
-    if (this.lastVisible === undefined) {
-      return
-    }
-    const next = this.$fireStore.collection(FBCollections.Photos)
-      .startAfter(this.lastVisible)
-    this._fetchPage(next)
-  }
-
-  _fetchPage (query) {
-    if (this.isLoading) {
-      return
-    }
-    this.isLoading = true
-    const restaurantGeoHash = getGeoHashForRestaurant(this.restaurant)
-    const nextQuery = query
-      .where('geoHash', '>', restaurantGeoHash)
-      .limit(5 * 3)
-    // .orderBy("population")
-    nextQuery.get().then(
-      (documentSnapshots) => {
-        // Get the last visible document
-        this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
-        // console.log('last', this.lastVisible)
-
-        const nextItem = this.items.concat([])
-        // console.log('.........')
-        documentSnapshots.forEach((doc) => {
-          // console.log(`${doc.id} => ${doc.data()}`)
-          nextItem.push(doc.data())
-        })
-        this.items = nextItem
-        this.isLoading = false
+  async firstPageLoad () {
+    await this._fetchPage({
+      queryBuilder: (query: any) => {
+        return query
+      },
+      emptyHint: () => {
       }
-    ).catch((ex) => {
-      this.isLoading = false
     })
   }
 
-  onWaypoint (e) {
-    this.nextPageLoad()
+  async nextPageLoad () {
+    if (this.lastVisible === undefined) {
+      return
+    }
+    await this._fetchPage({
+      queryBuilder: (query: any) => {
+        return query.startAfter(this.lastVisible)
+      }
+    })
   }
 
-  toggle () {
-    this.nextPageLoad()
+  async _fetchPage (
+    params: {
+      queryBuilder: QueryBuilder,
+      emptyHint?: () => void
+    }) {
+    if (this.isLoading) {
+      return
+    }
+    const {
+      queryBuilder,
+      emptyHint
+    } = params
+    this.isLoading = true
+    const nextItem = this.items.concat([])
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Photos,
+      queryBuilder: (query: any) => {
+        return queryBuilder(
+          FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
+            query,
+            restaurant: this.restaurant
+          })
+        ).limit(5 * 3)
+      },
+      iterateDocumentSnapshots: (data: IFBPhoto) => {
+        nextItem.push(data)
+      },
+      documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
+        // Get the last visible document
+        this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
+        // console.log('last', this.lastVisible)
+      },
+      emptyHint
+    })
+    this.items = nextItem
+    this.isLoading = false
   }
 
-  mounted () {
-    this.firstPageLoad()
+  async onWaypoint (e) {
+    await this.nextPageLoad()
+  }
+
+  async mounted () {
+    await this.firstPageLoad()
   }
 
   /**
@@ -95,7 +108,6 @@ export default class PhotoGrid extends Vue {
   /**
    * Example:
    *   href="/biz_photos/the-ramen-bar-san-francisco"
-   * @param item
    */
   getSeeAllLink () {
     return `/biz_photos/${this.restaurant.slug}`

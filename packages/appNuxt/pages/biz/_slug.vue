@@ -35,7 +35,7 @@
         </div>
       </div>
       <!--      footer -->
-      <HomeFooter />
+      <PhotoFooter />
     </div>
   </div>
 </template>

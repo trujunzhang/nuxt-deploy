@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBPhoto } from 'ieattatypes'
+import { IFBPhoto } from 'ieattatypes/types/index'
 import { photos, loadPhotos } from '~/database/data/Photos'
 import { uploadPhotos } from '~/database/event/Photos'
 

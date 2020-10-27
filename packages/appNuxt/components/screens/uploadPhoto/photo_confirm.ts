@@ -5,6 +5,8 @@ import { OnToggleFormStepFunc } from '~/components/screens/uploadPhoto/type'
 import { PhotoHelper } from '~/database/photo_helper'
 import { ParseModelPhotos } from '~/database/appModel/photos'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
 
 const auth = namespace('auth')
 @Component({
@@ -41,8 +43,9 @@ export default class PhotoConfirm extends Vue {
             originalUrl,
             this.note
           )
-        const result = await PhotoHelper.savePhoto(
+        await FirestoreService.instance.setData(
           this.$fireStore,
+          FBCollections.Photos,
           nextPhoto
         )
         this.onToggleFormStep()

@@ -43,10 +43,7 @@ class _ReviewPageState extends State<ReviewPage> {
         builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
           final AuthUserModel user = snapshot.data;
 
-          var showEditBtn = false;
-          if (user != null && user.uid == reviewData.creatorId) {
-            showEditBtn = true;
-          }
+          var showEditBtn = (user != null && user.uid == reviewData.creatorId);
           return _buildBody(context, showEditBtn);
         });
   }
@@ -80,13 +77,19 @@ class _ReviewPageState extends State<ReviewPage> {
               .translate("reviewsDetailPageAppBarTitleTxt")),
           actions: actionsWidget,
         ),
-        body: Container(
-          margin: const EdgeInsets.only(top: 18.0),
-          child: ReviewView(
-            reviewData: reviewData,
-            rate: rate,
-            note: note,
-          ),
-        ));
+        body: _buildSingleReview());
+  }
+
+  Widget _buildSingleReview() {
+    return Padding(
+      padding: EdgeInsets.only(top: 18.0),
+      child: SingleChildScrollView(
+        child: ReviewView(
+          reviewData: reviewData,
+          rate: rate,
+          note: note,
+        ),
+      ),
+    );
   }
 }

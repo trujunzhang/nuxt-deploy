@@ -1,3 +1,17 @@
+export const starRegularForEditReviewDict = {
+  0: 'i-stars--regular-0__09f24__3g9b7',
+  0.5: '',
+  1: 'i-stars--regular-1__09f24__14nrQ',
+  1.5: 'i-stars--regular-1-half__09f24__2DJw5',
+  2: 'i-stars--regular-2__09f24__rHJw2',
+  2.5: 'i-stars--regular-2-half__09f24__3hKnR',
+  3: 'i-stars--regular-3__09f24__1DXMK',
+  3.5: 'i-stars--regular-3-half__09f24__3xVLQ',
+  4: 'i-stars--regular-4__09f24__3acau',
+  4.5: 'i-stars--regular-4-half__09f24__3VLp8',
+  5: 'i-stars--regular-5__09f24__ySHIl'
+}
+
 export const starRegularDict = {
   0: 'i-stars--regular-0__373c0__3ocQa',
   0.5: '',

@@ -1,4 +1,4 @@
-import { IFBReview } from 'ieattatypes'
+import { IFBReview } from 'ieattatypes/types/index'
 import { filterUser } from '~/database/data/Users'
 
 export const loadReviews = (): IFBReview[] => {

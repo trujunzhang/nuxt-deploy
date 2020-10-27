@@ -1,5 +1,5 @@
 
-import { IFBEvent } from 'ieattatypes'
+import { IFBEvent } from 'ieattatypes/types/index'
 
 export const events: IFBEvent[] = [
   {

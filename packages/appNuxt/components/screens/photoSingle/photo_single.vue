@@ -113,7 +113,7 @@
                                   id="dropdown_user-name"
                                   class="user-display-name js-analytics-click"
                                   :href="getUserProfileUrl()"
-                                >{{ this.currentImage.username }}</a>
+                                >{{ currentImage.username }}</a>
                               </li>
                             </ul>
                           </div>
@@ -147,7 +147,6 @@
             @click="onPreClick"
           >
             <span
-              aria-hidden="true"
               style="width: 48px; height: 48px;"
               class="icon icon--48-chevron-left icon--size-48 icon--inverse icon--fallback-inverted"
             >

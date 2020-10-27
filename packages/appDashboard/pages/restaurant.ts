@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant } from 'ieattatypes'
+import { IFBRestaurant } from 'ieattatypes/types/index'
 import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
 import { uploadRestaurants } from '~/database/event/Restaurants'
 

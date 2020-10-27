@@ -25,7 +25,7 @@ class _ReviewsPartState extends State<ReviewsPart> {
     super.initState();
   }
 
-  Widget buildReviewsListView(List<ParseModelReviews> reviewList) {
+  Widget _buildReviewsListView(List<ParseModelReviews> reviewList) {
     if (reviewList.length == 0) {
       return Container(
         height: 60,
@@ -64,12 +64,14 @@ class _ReviewsPartState extends State<ReviewsPart> {
         stream:
             firestoreDatabase.reviewStream(restaurantId: widget.restaurantId),
         builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
-          if (fbSnapshot.hasError) {}
+          if (fbSnapshot.hasError) {
+
+          }
           if (!fbSnapshot.hasData) {
             return Container();
           }
 
-          return buildReviewsListView(parseReviewsFilterByRestaurant(
+          return _buildReviewsListView(parseReviewsFilterByRestaurant(
               datas: fbSnapshot.data.documents,
               restaurantId: widget.restaurantId));
         });

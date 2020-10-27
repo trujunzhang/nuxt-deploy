@@ -1,8 +1,8 @@
 import { IFBRestaurant } from 'ieattatypes/types/index'
-import { getDateStringForCreatedOrUpdatedDate } from '~/database/timeago_helper'
-import { documentIdFromCurrentDate } from '~/database/md5_utils'
-import { convertToGeoHash } from '~/database/geohash_utils'
-import { slugifyToLower } from '~/database/slug_helper'
+import { getDateStringForCreatedOrUpdatedDate } from '~/database/utils/timeago_helper'
+import { documentIdFromCurrentDate } from '~/database/utils/md5_utils'
+import { convertToGeoHash } from '~/database/utils/geohash_utils'
+import { slugifyToLower } from '~/database/utils/slug_helper'
 import { IAuthUser } from '~/database/models/auth_user_model'
 
 export class ParseModelRestaurants {

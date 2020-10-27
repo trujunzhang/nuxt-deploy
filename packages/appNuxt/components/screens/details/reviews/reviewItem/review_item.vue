@@ -70,7 +70,9 @@
               {{ getReviewPublishedAt() }}
             </span>
 
-            <span>
+            <span
+              v-if="showReviewEditBtn()"
+            >
               <a :href="getEditReviewUrl()">
                 edit
               </a>

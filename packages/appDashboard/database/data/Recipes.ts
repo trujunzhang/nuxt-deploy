@@ -1,4 +1,4 @@
-import { IFBRecipe } from 'ieattatypes'
+import { IFBRecipe } from 'ieattatypes/types/index'
 
 export const recipes: IFBRecipe[] = [
   {

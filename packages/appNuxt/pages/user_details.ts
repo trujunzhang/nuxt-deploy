@@ -1,9 +1,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBUser } from 'ieattatypes/types/index'
+import { namespace } from 'vuex-class'
 import UserTop from '~/components/screens/userDetail/user_top.vue'
 import UserLeft from '~/components/screens/userDetail/user_left.vue'
 import UserDefaultRight from '~/components/screens/userDetail/right/right_default.vue'
-import { UserHelper } from '~/database/user_helper'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
+const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
   components: {
@@ -16,21 +19,27 @@ export default class UserDetail extends Vue {
   public user: IFBUser | null = null
   private isLoading = false
 
-  _fetchPage () {
+  @ieattaConfigure.Mutation
+  public SET_SHOW_404!: (payload: boolean) => void
+
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    UserHelper.getSingleUserFromId(
-      this.$route.query.userid as string,
-      this.$fireStore,
-      (user: IFBUser | null) => {
-        this.user = user
-        this.isLoading = false
-      })
+    const userId: any = this.$route.query.userid
+    this.user = await FirestoreService.instance.getData({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Users,
+      uniqueId: userId,
+      emptyHint: () => {
+        this.SET_SHOW_404(true)
+      }
+    })
+    this.isLoading = false
   }
 
-  mounted () {
-    this._fetchPage()
+  async mounted () {
+    await this._fetchPage()
   }
 }

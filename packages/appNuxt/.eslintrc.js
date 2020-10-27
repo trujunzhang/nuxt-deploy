@@ -11,7 +11,6 @@ module.exports = {
     '@nuxtjs/eslint-config-typescript'
   ],
   plugins: [
-    'vuetify'
   ],
   globals: {
     $nuxt: true
@@ -20,12 +19,6 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    // vuetify
-    'vuetify/no-deprecated-classes': 'off',
-    // Add the grid-unknown-attributes and no-legacy-grid rules
-    // and the plugin will automatically update your templates.
-    'vuetify/grid-unknown-attributes': 'off',
-    'vuetify/no-legacy-grid': 'off',
     // common
     "camelcase": "off",
     "vue/html-self-closing": "off",

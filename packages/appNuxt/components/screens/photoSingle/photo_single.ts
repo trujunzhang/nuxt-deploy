@@ -2,7 +2,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
 import RestaurantTitle from '~/components/screens/photoSingle/restaurantTitle/restaurant_title.vue'
 import { PhotoHelper } from '~/database/photo_helper'
-import { formatDateForPhoto } from '~/database/timeago_helper'
+import { formatDateForPhoto } from '~/database/utils/timeago_helper'
+import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
 
 @Component({
   components: {
@@ -19,27 +21,35 @@ export default class PhotoSingle extends Vue {
   public currentImageUrl: string | null = null
   private isLoading = false
 
-  _fetchPage () {
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    PhotoHelper.fetchPage(
-      this.restaurant,
-      this.$fireStore,
-      (items: Array<IFBPhoto>, len: number) => {
-        this.items = items
-        this.photosLen = len
-        const photoIndex = PhotoHelper.getSelectedIndex(
-          this.$route,
-          items
-        )
-        this.photoIndex = photoIndex
-        this.currentImage = items[photoIndex]
-        this.currentImageUrl = this.getPhotoUrl(items[photoIndex])
-        this.isLoading = false
+    const nextItem = this.items.concat([])
+    await FirestoreService.instance.snapshotList({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Photos,
+      queryBuilder: (query: any) => {
+        return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
+          query,
+          restaurant: this.restaurant
+        })
+      },
+      iterateDocumentSnapshots: (data: IFBPhoto) => {
+        nextItem.push(data)
       }
+    })
+    this.items = nextItem
+    this.photosLen = nextItem.length
+    const photoIndex = PhotoHelper.getSelectedIndex(
+      this.$route,
+      nextItem
     )
+    this.photoIndex = photoIndex
+    this.currentImage = nextItem[photoIndex]
+    this.currentImageUrl = this.getPhotoUrl(nextItem[photoIndex])
+    this.isLoading = false
   }
 
   getPhotoUrl (item: IFBPhoto) {
@@ -123,6 +133,16 @@ export default class PhotoSingle extends Vue {
     this.currentImageUrl = this.getPhotoUrl(this.items[this.photoIndex])
   }
 
+  getPreUrl () {
+    if (this.photoIndex === 0) {
+      return null
+    }
+    const preIndex = this.photoIndex - 1
+    const currentImage = this.items[preIndex]
+
+    return `${this.$route.path}?select=${currentImage.uniqueId}`
+  }
+
   // prevSelectedImageUrl () {
   //   const preIndex = this.photoIndex - 1
   //   if (preIndex >= 0) {
@@ -157,7 +177,7 @@ export default class PhotoSingle extends Vue {
   //   return null
   // }
 
-  mounted () {
-    this._fetchPage()
+  async mounted () {
+    await this._fetchPage()
   }
 }

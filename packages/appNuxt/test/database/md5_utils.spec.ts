@@ -1,4 +1,4 @@
-import { getMd5Str } from '~/database/md5_utils'
+import { getMd5Str } from '~/database/utils/md5_utils'
 
 describe('md5', () => {
   test('is a Vue instance', () => {

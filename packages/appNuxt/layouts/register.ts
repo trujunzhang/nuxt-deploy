@@ -1,4 +1,3 @@
-
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LoginHeader from '~/components/screens/header/header_login.vue'
 

@@ -45,7 +45,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
       @required AsyncSnapshot searchSnapshot, // search
       @required AsyncSnapshot fbSnapshot // Final, facebook collection.
       }) {
-    if (locationSnapshot.hasData == false) {
+    bool gpsTrackVal = gpsTrackSnapshot.data;
+    if (gpsTrackVal && locationSnapshot.hasData == false) {
       return Center(
         child: CircularProgressIndicator(),
       );
@@ -54,7 +55,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 //    print(gpsTrackSnapshot.data);
 //    print(searchSnapshot.data);
     LocationData locationVal = locationSnapshot.data;
-    bool gpsTrackVal = gpsTrackSnapshot.data;
     String searchVal = searchSnapshot.data;
     if (fbSnapshot.hasError) {}
     if (!fbSnapshot.hasData) {

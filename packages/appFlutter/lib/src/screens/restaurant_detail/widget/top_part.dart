@@ -166,7 +166,9 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
     return new Container(
       height: 420.0,
       child: Stack(
-        children: <Widget>[buildBg(), buildFg(), TopBackArrowView()],
+        children: <Widget>[buildBg(), buildFg(),
+          // TopBackArrowView()
+        ],
       ),
     );
   }

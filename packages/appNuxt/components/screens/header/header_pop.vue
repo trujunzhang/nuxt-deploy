@@ -56,35 +56,7 @@
             </div>
           </div>
         </a>
-        <a
-          class="lemon--a__373c0__IEZFH menu-item__373c0__3Vezz menu-item--highlight-auto__373c0__2vEUJ"
-          href="/user_details_cash_back?userid=kIEHaO2vd6Lic4rwkMgH6Q"
-          aria-disabled="false"
-          tabindex="0"
-        >
-          <div
-            class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
-          >
-            <div class="lemon--div__373c0__1mboc menu-item-inner__373c0__gv1Ar border-color--default__373c0__3-ifU">
-              <div
-                class="lemon--div__373c0__1mboc menu-item-content-container__373c0__17dmW display--table-cell__373c0__3otg8 padding-r1-5__373c0__1s-Oo border-color--default__373c0__3-ifU"
-              >
-                <span aria-hidden="true" class="icon--24-cash-back-v2 menu-item-icon__373c0__FIApg css-12anxc3"><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  class="icon_svg"
-                ><path
-                  d="M15.56 14.16a2.87 2.87 0 01-2.72 2.81v.56a1 1 0 11-2 0v-.56a7.15 7.15 0 01-2.6-1 1 1 0 01-.48-.86 1 1 0 011-1 1 1 0 01.56.19 5.74 5.74 0 001.54.7v-2.27C9 12.18 8.08 11.28 8.08 9.78c0-1.5 1.1-2.53 2.78-2.78v-.5a1 1 0 112 0v.56a6.05 6.05 0 011.78.62 1 1 0 01.51.86 1 1 0 01-1 1 1.09 1.09 0 01-.5-.13 5.26 5.26 0 00-.82-.36v2.16c1.9.58 2.73 1.45 2.73 2.95zm-5.43-4.47c0 .38.17.65.7.9V8.87a.85.85 0 00-.7.82zm2.7 5.42a.85.85 0 00.65-.83 1 1 0 00-.65-.9v1.73zM16 8.69a.47.47 0 01.15-.54l2.31-2.35a9 9 0 102.46 7.1 1 1 0 111.99.2 11 11 0 11-3-8.71l2.24-2.28a.48.48 0 01.54-.11.5.5 0 01.31.5v6a.5.5 0 01-.5.5h-6a.5.5 0 01-.5-.31z"
-                ></path></svg></span>
-              </div>
-              <div class="lemon--div__373c0__1mboc menu-item-content-container__373c0__17dmW display--table-cell__373c0__3otg8 border-color--default__373c0__3-ifU"><span
-                class="lemon--span__373c0__3997G text__373c0__2Kxyz text__373c0__3UkLB text-color--inherit__373c0__1lczC text-align--left__373c0__2XGa-"
-              >Cash Back</span></div>
-            </div>
-          </div>
-        </a>
-        <a
+            <a
           class="lemon--a__373c0__IEZFH menu-item__373c0__3Vezz menu-item--highlight-auto__373c0__2vEUJ"
           href="/profile"
           aria-disabled="false"

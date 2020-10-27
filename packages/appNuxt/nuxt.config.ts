@@ -1,5 +1,4 @@
 import { Configuration as NuxtConfiguration } from '@nuxt/types'
-import { vuetify } from './config/vuetify'
 import { firebase } from './config/firebase'
 import en from './locales/en.json'
 
@@ -8,8 +7,8 @@ const config: NuxtConfiguration = {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: 'IEATTA – Eating Restaurant Tracker!',
+    title: 'IEATTA – Eating Restaurant Tracker!',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -40,9 +39,6 @@ const config: NuxtConfiguration = {
    ** Global CSS
    */
   css: [
-    // Vuetify
-    '~/assets/sass/overrides.sass',
-    '~/assets/css/app.scss',
     // Yelp
     '~/assets/yelp/www-pkg.css',
     '~/assets/yelp/yelp_main.yji-22eb7ca37aa9c2a9e02e.chunk.css',
@@ -74,17 +70,20 @@ const config: NuxtConfiguration = {
       mode: 'client'
     },
     { src: '~/plugins/localStorage.js', ssr: false },
-    '@/plugins/base.js',
-    '@/plugins/chartist.js',
     '@/plugins/google-maps.js'
   ],
+  // /middleware/authenticated
+  router: {
+    middleware: [
+      'authenticated'
+    ]
+  },
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     '@nuxtjs/dotenv',
-    '@nuxt/typescript-build',
-    '@nuxtjs/vuetify'
+    '@nuxt/typescript-build'
   ],
   /**
    * https://levelup.gitconnected.com/what-are-env-files-and-how-to-use-them-in-nuxt-7f194f083e3d
@@ -116,11 +115,6 @@ const config: NuxtConfiguration = {
       }
     ]
   ],
-  /*
-   ** Vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
-  vuetify,
   /*
    ** Firebase module configuration
    ** https://firebase.nuxtjs.org/guide/getting-started/

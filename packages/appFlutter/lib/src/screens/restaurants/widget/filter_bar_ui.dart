@@ -23,6 +23,7 @@ class _FilterBarUIState extends State<FilterBarUI> {
         builder: (BuildContext context, AsyncSnapshot gpsTrackSnapshot) {
           return StreamBuilder(
               //This StreamBuilder is to fetch restaurants count.
+              initialData: 0,
               stream: bloc.restaurantCountValStream,
               builder: (BuildContext context,
                   AsyncSnapshot restaurantsCountSnapshot) {

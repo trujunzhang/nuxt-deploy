@@ -4,7 +4,6 @@ import { firebase } from './config/firebase'
 import en from './locales/en.json'
 
 const config: NuxtConfiguration = {
-  mode: 'universal',
   /*
    ** Headers of the page
    */

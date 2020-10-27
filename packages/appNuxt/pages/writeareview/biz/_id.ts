@@ -1,9 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant, IFBReview } from 'ieattatypes'
+import { namespace } from 'vuex-class'
 import ReviewForm from '~/components/screens/editReview/review_form.vue'
 import ReviewRight from '~/components/screens/editReview/review_right.vue'
-import { RestaurantHelper } from '~/database/restaurant_helper'
-import { ReviewHelper } from '~/database/review_helper'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FBCollections } from '~/database/constant'
+const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
   layout (context) {
@@ -20,27 +22,37 @@ export default class WriteReview extends Vue {
   private isLoading = false
   private isNewReview = false
 
-  _fetchPage () {
+  @ieattaConfigure.Mutation
+  public SET_SHOW_404!: (payload: boolean) => void
+
+  async _fetchPage () {
     if (this.isLoading) {
       return
     }
     this.isLoading = true
-    RestaurantHelper.getSingleRestaurantFromId(
-      this.$route.params.id,
-      this.$fireStore,
-      (restaurant: IFBRestaurant | null) => {
-        this.restaurant = restaurant
-        this.isLoading = false
-      })
+    const restaurantId = this.$route.params.id
+    this.restaurant = await FirestoreService.instance.getData({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Restaurants,
+      uniqueId: restaurantId,
+      emptyHint: () => {
+        this.SET_SHOW_404(true)
+      }
+    })
+    this.isLoading = false
     if (this.isNewReview) {
       return
     }
-    ReviewHelper.getSingleReviewFromRId(this.$route,
-      this.$fireStore,
-      (review: IFBReview | null) => {
-        this.review = review
-        this.isLoading = false
-      })
+    const reviewId = this.$route.query.rid as string
+    this.review = await FirestoreService.instance.getData({
+      $fireStore: this.$fireStore,
+      path: FBCollections.Reviews,
+      uniqueId: reviewId,
+      emptyHint: () => {
+        this.SET_SHOW_404(true)
+      }
+    })
+    this.isLoading = false
   }
 
   shouldShowPage () {
@@ -55,8 +67,14 @@ export default class WriteReview extends Vue {
     return false
   }
 
-  mounted () {
-    this.isNewReview = ReviewHelper.checkNewReviewPage(this.$route)
-    this._fetchPage()
+  checkNewReviewPage (
+  ) {
+    const reviewId = this.$route.query.rid as string
+    return reviewId === undefined || reviewId === null
+  }
+
+  async mounted () {
+    this.isNewReview = this.checkNewReviewPage()
+    await this._fetchPage()
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRecipe } from 'ieattatypes'
+import { IFBRecipe } from 'ieattatypes/types/index'
 import { recipes } from '~/database/data/Recipes'
 import { uploadRecipes } from '~/database/event/Recipes'
 

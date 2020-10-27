@@ -1,8 +1,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-
+import { namespace } from 'vuex-class'
 import { IFBReview } from 'ieattatypes'
 import { starRegularDict } from '~/database/star_helper'
-import { formatDateForReview } from '~/database/timeago_helper'
+import { formatDateForReview } from '~/database/utils/timeago_helper'
+import { IAuthUser } from '~/database/models/auth_user_model'
+const auth = namespace('auth')
 
 @Component({
   components: {}
@@ -10,9 +12,8 @@ import { formatDateForReview } from '~/database/timeago_helper'
 export default class ReviewItem extends Vue {
   @Prop({}) review!: IFBReview
 
-  getUserProfileUrl () {
-    return `/user_details?userid=${this.review.creatorId}`
-  }
+  @auth.State
+  public user!: IAuthUser | null
 
   getUserPhotoAlt () {
     return 'Photo of ' + this.review.username
@@ -23,6 +24,10 @@ export default class ReviewItem extends Vue {
    */
   getRateStarClassName () {
     return `lemon--div__373c0__1mboc i-stars__373c0__1T6rz ${starRegularDict[this.review.rate]} border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK`
+  }
+
+  getUserProfileUrl () {
+    return `/user_details?userid=${this.review.creatorId}`
   }
 
   getReviewPublishedAt () {
@@ -44,5 +49,9 @@ export default class ReviewItem extends Vue {
    */
   getEditReviewUrl () {
     return `/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
+  }
+
+  showReviewEditBtn () {
+    return this.user?.uid === this.review.creatorId
   }
 }

@@ -15,15 +15,17 @@
             <p
               class="lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--black-extra-light__373c0__2OyzO text-align--left__373c0__2XGa- text-size--small__373c0__3NVWO"
             >
-              Copyright © 2004–2020 Yelp Inc. Yelp,<!-- --> <img
+              Copyright © 2004–2020 Yelp Inc. Yelp,
+              <img
                 class="lemon--img__373c0__3GQUb align-bottom__373c0__1PMP-"
                 src="https://s3-media0.fl.yelpcdn.com/assets/public/logo_desktop_xsmall_outline.yelp-shared-styles.yji-17089be275f0e32eb065304790b0c35e.png"
                 alt="Yelp logo"
-              >, <!-- --> <img
+              >,
+              <img
                 class="lemon--img__373c0__3GQUb align-bottom__373c0__1PMP-"
                 src="https://s3-media0.fl.yelpcdn.com/assets/public/burst_desktop_xsmall_outline.yelp-shared-styles.yji-58cfc999e1f5da75e75ddf71c868c656.png"
                 alt="Yelp burst"
-              > <!-- -->and related marks are registered
+              > and related marks are registered
               trademarks of Yelp.
             </p>
           </div>

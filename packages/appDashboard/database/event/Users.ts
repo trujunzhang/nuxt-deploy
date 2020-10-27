@@ -1,6 +1,6 @@
 // import { Md5Utils } from '@app/tools'
 import firebase from 'firebase'
-import { IFBUser } from 'ieattatypes'
+import { IFBUser } from 'ieattatypes/types/index'
 import { users } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'
 

@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { IFBReview, IFBUser } from 'ieattatypes'
+import { IFBReview, IFBUser } from 'ieattatypes/types/index'
 import { reviews } from '~/database/data/Reviews'
 import { users, filterUser } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'

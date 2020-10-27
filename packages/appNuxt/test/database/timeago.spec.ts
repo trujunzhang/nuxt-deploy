@@ -1,4 +1,4 @@
-import { formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview } from '~/database/timeago_helper'
+import { formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview } from '~/database/utils/timeago_helper'
 
 describe('timeago', () => {
   test('javascript date/time', () => {

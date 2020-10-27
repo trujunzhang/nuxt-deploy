@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/database/review_helper.dart';
 import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/utils/toast.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
@@ -28,6 +29,7 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ParseModelReviews _review;
   String restaurantId;
+  bool _isButtonDisabled = false;
 
   @override
   void initState() {
@@ -88,43 +90,58 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
                 .translate("reviewsCreateEditAppBarTitleNewTxt")),
         actions: <Widget>[
           FlatButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  FocusScope.of(context).unfocus();
+              onPressed: _isButtonDisabled
+                  ? null
+                  : () async {
+                      if (_formKey.currentState.validate()) {
+                        FocusScope.of(context).unfocus();
 
-                  AuthUserModel authUserModel =
-                      await authProvider.getAuthUserModel();
+                        setState(() {
+                          _isButtonDisabled = true;
+                        });
+                        AuthUserModel authUserModel =
+                            await authProvider.getAuthUserModel();
 
-                  double lastReviewRate =
-                      (_review == null ? 0.0 : _review.rate);
-                  ParseModelReviews lastModel = _review != null
-                      ? _review
-                      : ParseModelReviews.emptyReview(
-                          authUserModel: authUserModel,
-                          restaurantId: restaurantId);
+                        double lastReviewRate =
+                            (_review == null ? 0.0 : _review.rate);
+                        ParseModelReviews lastModel = _review != null
+                            ? _review
+                            : ParseModelReviews.emptyReview(
+                                authUserModel: authUserModel,
+                                restaurantId: restaurantId);
 
-                  ParseModelReviews nextModel = ParseModelReviews.updateReview(
-                    model: lastModel,
-                    nextRate: selectedStar,
-                    nextExtraNote:
-                        (noteVal != null && noteVal.length > 0) ? noteVal : "",
-                  );
+                        ParseModelReviews nextModel =
+                            ParseModelReviews.updateReview(
+                          model: lastModel,
+                          nextRate: selectedStar,
+                          nextExtraNote: (noteVal != null && noteVal.length > 0)
+                              ? noteVal
+                              : "",
+                        );
 
-                  final firestoreDatabase =
-                      Provider.of<FirestoreDatabase>(context, listen: false);
-                  await firestoreDatabase.setReview(
-                      model: nextModel); // For Review.
+                        ReviewReturnModel returnModel =
+                            ReviewReturnModel(selectedStar, noteVal);
+                        try {
+                          final firestoreDatabase =
+                              Provider.of<FirestoreDatabase>(context,
+                                  listen: false);
+                          await firestoreDatabase.setReview(
+                              model: nextModel); // For Review.
 
-                  // Navigate
-                  ReviewReturnModel returnModel =
-                      ReviewReturnModel(selectedStar, noteVal);
 
-                  await ReviewHelper.onSaveReviewAfterHook(restaurantId,
-                      lastReviewRate, selectedStar, _review == null);
+                          await ReviewHelper.onSaveReviewAfterHook(restaurantId,
+                              lastReviewRate, selectedStar, _review == null);
+                        } catch (e) {
+                          setState(() {
+                            _isButtonDisabled = false;
+                          });
+                        }
 
-                  Navigator.of(context).pop(returnModel);
-                }
-              },
+                        ToastUtils.showToast('saved successfully');
+                        // Navigate
+                        Navigator.of(context).pop(returnModel);
+                      }
+                    },
               child: Text("Save"))
         ],
       ),

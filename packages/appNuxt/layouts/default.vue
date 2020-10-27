@@ -1,9 +1,13 @@
 <template>
-  <div id="yelp_main_body" class="jquery country-us logged-in react-modal-body v2">
-    <div id="fb-root"></div>
-
+  <Error404
+    v-if="show404"
+  />
+  <div
+    v-else
+    id="yelp_main_body"
+    class="jquery country-us logged-in react-modal-body v2"
+  >
     <div id="wrap" class="lang-en">
-      <span id="page-content" class="offscreen">&nbsp;</span>
       <div>
         <!--  header -->
         <HomeHeader />

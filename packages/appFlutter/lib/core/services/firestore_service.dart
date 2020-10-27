@@ -19,8 +19,14 @@ class FirestoreService {
     bool merge = false,
   }) async {
     final reference = Firestore.instance.document(path);
+
+    try {
+      await reference.setData(data, merge: merge).timeout(Duration(seconds: 5));
+    } catch (e) {
+      print(e);
+    }
+
     print('$path: $data');
-    await reference.setData(data, merge: merge);
   }
 
   Future<bool> checkData({

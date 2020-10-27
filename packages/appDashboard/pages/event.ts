@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBEvent } from 'ieattatypes'
+import { IFBEvent } from 'ieattatypes/types/index'
 import { events } from '~/database/data/Events'
 import { uploadEvents } from '~/database/event/Events'
 

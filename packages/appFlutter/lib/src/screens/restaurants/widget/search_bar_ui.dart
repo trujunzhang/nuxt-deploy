@@ -110,6 +110,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
                       left: 16, right: 16, top: 4, bottom: 4),
                   child: TextField(
                     onChanged: (String txt) {
+                      bloc.gpsTrackStatus(false);
                       bloc.feedSearchVal(txt);
                     },
                     style: const TextStyle(

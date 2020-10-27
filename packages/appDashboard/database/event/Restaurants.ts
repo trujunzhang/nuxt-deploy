@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { IFBRestaurant } from 'ieattatypes'
+import { IFBRestaurant } from 'ieattatypes/types/index'
 import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
 import { FBCollections } from '~/database/constant'
 
