@@ -24,7 +24,7 @@ export const hasLoggedPages = (route) => {
 
 const myMiddleware: Middleware = ({ req, route, store, redirect }) => {
   // console.log('route.fullPath: ', JSON.stringify(route.fullPath)) // ok
-  console.log('route.Path: ', JSON.stringify(route)) // ok
+  // console.log('route.Path: ', JSON.stringify(route)) // ok
   const isLoggedPages = hasLoggedPages(route)
   const cookies = req ? new Cookies(req.headers.cookie) : new Cookies()
   const credential = cookies.get('credential') || false

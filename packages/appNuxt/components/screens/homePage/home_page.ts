@@ -16,12 +16,12 @@ import { FirestoreService, QueryBuilder } from '~/database/services/firestore_se
   }
 })
 export default class HomePage extends Vue {
-  public showNoResult: boolean = false
   public markers: any = []
 
   // public items: Array<IFBRestaurant> = loadRestaurants()
   public items: Array<IFBRestaurant> = []
 
+  private showNoResult: boolean = false
   private isLoading = false
   // The last visible document
   private lastVisible = null

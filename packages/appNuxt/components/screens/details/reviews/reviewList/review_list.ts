@@ -20,6 +20,7 @@ export default class ReviewsList extends Vue {
   // public items: Array<IFBReview> = loadReviews()
   public items: Array<IFBReview> = []
 
+  private isLoaded = false
   private isLoading = false
   // The last visible document
   private lastVisible
@@ -104,10 +105,17 @@ export default class ReviewsList extends Vue {
         // Get the last visible document
         this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
         // console.log('last', this.lastVisible)
+      },
+      emptyHint: () => {
       }
     })
     this.items = nextItem
+    this.isLoaded = true
     this.isLoading = false
+  }
+
+  showEmptyHint () {
+    return this.isLoaded && this.items.length === 0
   }
 
   async onWaypoint (e) {

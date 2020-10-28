@@ -26,6 +26,20 @@ export const starRegularDict = {
   5: 'i-stars--regular-5__373c0__N5JxY'
 }
 
+export const starRegularRestaurantDict = {
+  0: 'i-stars--regular-0',
+  0.5: '',
+  1: 'i-stars--regular-1',
+  1.5: 'i-stars--regular-1-half',
+  2: 'i-stars--regular-2',
+  2.5: 'i-stars--regular-2-half',
+  3: 'i-stars--regular-3',
+  3.5: 'i-stars--regular-3-half',
+  4: 'i-stars--regular-4',
+  4.5: 'i-stars--regular-4-half',
+  5: 'i-stars--regular-5'
+}
+
 export const starLargeDict = {
   0: 'i-stars--large-0__373c0__272jL',
   0.5: '',

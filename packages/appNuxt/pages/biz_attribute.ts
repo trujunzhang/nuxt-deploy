@@ -1,10 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
+import { IFBRestaurant } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import RestaurantForm from '~/components/screens/editRestaurant/restaurant_form.vue'
 import RestaurantMap from '~/components/screens/editRestaurant/restaurant_map.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
+
 const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
@@ -47,8 +48,7 @@ export default class EditRestaurant extends Vue {
     return false
   }
 
-  checkNewRestaurantPage (
-  ) {
+  checkNewRestaurantPage () {
     const restaurantId = this.$route.query.biz_id as string
     return restaurantId === undefined || restaurantId === null
   }

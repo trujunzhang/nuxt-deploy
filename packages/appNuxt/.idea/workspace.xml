@@ -11,8 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/thirdLogin/google_button.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/thirdLogin/google_button.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/userDetail/right/right_default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/userDetail/right/right_default.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/userDetail/right/right_default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/userDetail/right/right_default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/userDetail/user_left.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/userDetail/user_left.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/userDetail/user_left.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/userDetail/user_left.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/star_helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/star_helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/middleware/authenticated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/authenticated.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/middleware/path_match.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/middleware/path_match.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/biz_attribute.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/biz_attribute.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user_details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user_details.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user_details.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user_details.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user_details_reviews_self.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user_details_reviews_self.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user_details_reviews_self.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user_details_reviews_self.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,8 +169,8 @@
       <item itemvalue="Jest.geohash.geohash with 8 numberOfChars" />
       <item itemvalue="Jest.geohash.getGeoHashForRestaurant" />
       <item itemvalue="Jest.timeago.formatDateForPhoto" />
-      <item itemvalue="npm.dev-debug" />
       <item itemvalue="Jest.path.contains special string" />
+      <item itemvalue="npm.dev-debug" />
     </list>
     <recent_temporary>
       <list>
@@ -288,6 +303,7 @@
       <workItem from="1603780144731" duration="338000" />
       <workItem from="1603785256590" duration="1090000" />
       <workItem from="1603848358946" duration="2969000" />
+      <workItem from="1603867214753" duration="3662000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
@@ -756,10 +772,11 @@
     </state>
     <state x="100" y="23" width="1080" height="697" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602412333744" />
     <state x="100" y="13" width="1080" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1601378777463" />
-    <state x="341" y="155" width="765" height="548" key="find.popup" timestamp="1603849045670">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="512" y="209" width="1148" height="740" key="find.popup" timestamp="1603873060730">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="341" y="155" width="765" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1603849045670" />
+    <state x="512" y="209" width="1148" height="740" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1603873060730" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1601612382422">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

@@ -14,6 +14,8 @@ export default class GoogleLoginButton extends Vue {
   @auth.Mutation
   public SET_AUTH_USER!: (payload: IAuthUser | null) => void
 
+  private isLogging = false
+
   async afterSignInWithGoogle (res: any) {
     const model: IAuthUser = {
       uid: res.user.uid,
@@ -30,6 +32,7 @@ export default class GoogleLoginButton extends Vue {
       this.$fireStore,
       model)
     // Finally, return the last page.
+    this.isLogging = false
     this.goBack()
   }
 
@@ -40,13 +43,14 @@ export default class GoogleLoginButton extends Vue {
   }
 
   onButtonClick (event) {
-    // debugger
-    // const currentUser = this.$fireAuth.currentUser
-    // debugger
-
+    if(this.isLogging) {
+      return 
+    }
+    this.isLogging = true
     const provider = new firebase.auth.GoogleAuthProvider()
     this.$fireAuth.signInWithPopup(provider)
       .then(this.afterSignInWithGoogle).catch((ex) => {
+        this.isLogging = false
       // debugger
       })
   }

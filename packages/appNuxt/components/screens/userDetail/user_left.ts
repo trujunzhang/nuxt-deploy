@@ -11,6 +11,18 @@ export default class UserLeft extends Vue {
     return `${this.user.username}'s Profile`
   }
 
+  getUserProfileUrl () {
+    return `/user_details?userid=${this.user.id}`
+  }
+
+  getUserReviewsUrl () {
+    return `/user_details_reviews_self?userid=${this.user.id}`
+  }
+
+  getUserPhotosUrl () {
+    return `/user_details_photos_self?userid=${this.user.id}`
+  }
+
   mounted () {
   }
 }

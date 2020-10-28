@@ -11,8 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/restaurant_detail/restaurant_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/restaurant_detail/restaurant_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appNuxt/components/screens/userDetail/user_left.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/components/screens/userDetail/user_left.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +110,10 @@
       <workItem from="1602833946378" duration="60000" />
       <workItem from="1603004953374" duration="558000" />
       <workItem from="1603006289493" duration="8563000" />
+      <workItem from="1603856298144" duration="76000" />
+      <workItem from="1603856465708" duration="76000" />
+      <workItem from="1603856557740" duration="51000" />
+      <workItem from="1603867182536" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -261,10 +264,10 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="220" y="109" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1599894810273" />
-    <state x="141" y="39" key="SettingsEditor" timestamp="1603008800380">
+    <state x="141" y="39" key="SettingsEditor" timestamp="1603856540943">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603008800380" />
+    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603856540943" />
     <state width="500" height="445" key="SwitcherDM" timestamp="1603009043492">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

@@ -6,10 +6,12 @@ import UserLeft from '~/components/screens/userDetail/user_left.vue'
 import UserDefaultRight from '~/components/screens/userDetail/right/right_default.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
+import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
 const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
   components: {
+    PhotoFooter,
     UserLeft,
     UserTop,
     UserDefaultRight

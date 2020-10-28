@@ -9,9 +9,10 @@
         <!-- left -->
         <UserLeft :user="user" />
         <!-- right -->
-        <UserDefaultRight :user="user" />
+        <UserDefaultRight />
       </div>
     </div>
+    <PhotoFooter />
   </div>
 </template>
 
