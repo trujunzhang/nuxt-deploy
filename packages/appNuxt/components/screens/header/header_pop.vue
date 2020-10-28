@@ -56,7 +56,7 @@
             </div>
           </div>
         </a>
-            <a
+        <a
           class="lemon--a__373c0__IEZFH menu-item__373c0__3Vezz menu-item--highlight-auto__373c0__2vEUJ"
           href="/profile"
           aria-disabled="false"
@@ -194,15 +194,13 @@
       </div>
     </div>
     <div class="lemon--div__373c0__1mboc menu-section__373c0__11HSz border-color--default__373c0__3-ifU" role="presentation">
-      <form id="logout-form" class="lemon--form__373c0__2fChY" action="/logout" name="logout-form" method="post">
-        <input
-          name="csrftok"
-          class="input__373c0__1kQwh"
-          type="hidden"
-          placeholder=" "
-          value="eba20112f1fde4c24ff19cab245e8c86214eaddac5e0f086d653c48842b74621"
+      <div id="logout-form" class="lemon--form__373c0__2fChY">
+        <button
+          class="menu-item__373c0__3Vezz menu-item--highlight-auto__373c0__2vEUJ"
+          type="submit"
+          role="menuitem"
+          @click="onLogoutClick"
         >
-        <button class="menu-item__373c0__3Vezz menu-item--highlight-auto__373c0__2vEUJ" type="submit" role="menuitem" aria-disabled="false" tabindex="0">
           <div
             class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
           >
@@ -227,7 +225,7 @@
             </div>
           </div>
         </button>
-      </form>
+      </div>
     </div>
   </menu>
 </template>

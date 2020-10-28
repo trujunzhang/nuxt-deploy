@@ -12,7 +12,7 @@ const auth = namespace('auth')
 })
 export default class GoogleLoginButton extends Vue {
   @auth.Mutation
-  public SET_AUTH_USER!: (payload: IAuthUser) => void
+  public SET_AUTH_USER!: (payload: IAuthUser | null) => void
 
   async afterSignInWithGoogle (res: any) {
     const model: IAuthUser = {

@@ -25,7 +25,7 @@ export default class PhotoConfirm extends Vue {
   public user!: IAuthUser | null
 
   @auth.Mutation
-  public SET_AUTH_USER!: (payload: IAuthUser) => void
+  public SET_AUTH_USER!: (payload: IAuthUser | null) => void
 
   getPreviewStyle () {
     return `background-image: url(${this.image});`
@@ -51,7 +51,7 @@ export default class PhotoConfirm extends Vue {
         if (!this.user) {
           this.showAlertMessage = true
         }
-        const nextUser:IFBUser = await FirestoreService.instance.getData({
+        const nextUser: IFBUser = await FirestoreService.instance.getData({
           $fireStore: this.$fireStore,
           path: FBCollections.Users,
           uniqueId: (this.user as any).uid
@@ -75,7 +75,8 @@ export default class PhotoConfirm extends Vue {
         )
         this.SET_AUTH_USER(nextModel)
         // Final, go to the user's detail page.
-        this.$router.push(this.getUserProfileUrl(), () => {})
+        this.$router.push(this.getUserProfileUrl(), () => {
+        })
       })
       // eslint-disable-next-line handle-callback-err
       .catch((error) => {
