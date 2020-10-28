@@ -19,16 +19,7 @@ const config: NuxtConfiguration = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
-        /**
-         * Material Icon(Not Material design icon)
-         * Doc: https://google.github.io/material-design-icons/
-         */
-        href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
-      }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*

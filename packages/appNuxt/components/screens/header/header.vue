@@ -35,7 +35,6 @@
           <HeaderSearch />
           <!-- actions -->
           <div
-            v-if="false"
             class="lemon--div__373c0__1mboc hide-below-a__373c0__2So6H arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU nowrap__373c0__35McF"
           >
             <span
@@ -91,42 +90,61 @@
             <span
               v-if="user"
               class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-            ><div
-              class="lemon--div__373c0__1mboc tooltip-visible-area__373c0__2B2-h display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-              aria-label="Notifications"
-            ><div
-              class="lemon--div__373c0__1mboc tooltipContainer__373c0__2PjJt tooltip-visible-area-inner__373c0__3vACB display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-            ><div
-              class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"
-              aria-describedby="a29bca3a-7a64-4883-ae05-52c29e18aad7"
-            ><a
-              class="lemon--a__373c0__IEZFH header-link__373c0__2Szbt header-link--icon__373c0__2PBpK"
-              href="/user_details"
-            ><div
-              class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
-            ><div
-              class="lemon--div__373c0__1mboc notification-wrapper__373c0__125lD display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-            ><span
-              class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-notification-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c"
-              aria-hidden="true"
-              style="width:24px;height:24px"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              class="icon_svg"
-            ><path
-              d="M22.64 17.23A7.31 7.31 0 0 1 20 11.59V9A8 8 0 0 0 4 9v2.59a7.31 7.31 0 0 1-2.64 5.64A1 1 0 0 0 2 19h6a4 4 0 0 0 8 0h6a1 1 0 0 0 .64-1.77zM6 9a6 6 0 0 1 12 0v2.59c0 .472.038.943.11 1.41H5.89A9.36 9.36 0 0 0 6 11.59V9zm6 12a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2zm-7.72-4a9.42 9.42 0 0 0 1.08-2h13.28a9.42 9.42 0 0 0 1.08 2H4.28z"
-            ></path></svg></span></div></div></a></div></div></div></span>
+            >
+              <div
+                class="lemon--div__373c0__1mboc tooltip-visible-area__373c0__2B2-h display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
+                aria-label="Notifications"
+              >
+                <div
+                  class="lemon--div__373c0__1mboc tooltipContainer__373c0__2PjJt tooltip-visible-area-inner__373c0__3vACB display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
+                >
+                  <div
+                    class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"
+                    aria-describedby="a29bca3a-7a64-4883-ae05-52c29e18aad7"
+                  >
+                    <a
+                      class="lemon--a__373c0__IEZFH header-link__373c0__2Szbt header-link--icon__373c0__2PBpK"
+                      :href="getUserProfileUrl()"
+                    >
+                      <div
+                        class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
+                      >
+                        <div
+                          class="lemon--div__373c0__1mboc notification-wrapper__373c0__125lD display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
+                        >
+                          <span
+                            class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-notification-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c"
+                            aria-hidden="true"
+                            style="width:24px;height:24px"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              class="icon_svg"
+                            >
+                              <path
+                                d="M22.64 17.23A7.31 7.31 0 0 1 20 11.59V9A8 8 0 0 0 4 9v2.59a7.31 7.31 0 0 1-2.64 5.64A1 1 0 0 0 2 19h6a4 4 0 0 0 8 0h6a1 1 0 0 0 .64-1.77zM6 9a6 6 0 0 1 12 0v2.59c0 .472.038.943.11 1.41H5.89A9.36 9.36 0 0 0 6 11.59V9zm6 12a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2zm-7.72-4a9.42 9.42 0 0 0 1.08-2h13.28a9.42 9.42 0 0 0 1.08 2H4.28z"
+                              >
+                              </path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </span>
             <span
-              v-if="isLoaded&&!user"
+              v-if="shouldShowLoginBtn()"
               class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
             >
               <a
                 class="lemon--a__373c0__IEZFH button__373c0__3lYgT secondary__373c0__1bsQo"
                 style="--mousedown-x:20.9375px; --mousedown-y:21px; --button-width:80.5469px;"
-                href="/login?return_url=https://www.yelp.com/biz/the-ramen-bar-san-francisco"
+                href="/login"
               >
                 <div
                   class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
@@ -152,31 +170,46 @@
                 <span
                   class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
                   aria-label="Search"
-                ><div
-                  class="lemon--div__373c0__1mboc tooltipContainer__373c0__2PjJt display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                  disabled=""
-                ><div
-                  class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"
-                  aria-describedby="98376e48-ffad-45c9-85ab-95d34ff5a81f"
-                ><button
-                  class="header-link__373c0__2Szbt header-link--icon__373c0__2PBpK"
-                ><div
-                  class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
-                ><div
-                  class="lemon--div__373c0__1mboc notification-wrapper__373c0__125lD display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                ><span
-                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c"
-                  aria-hidden="true"
-                  style="width:24px;height:24px"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  class="icon_svg"
-                ><path
-                  d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
-                ></path></svg></span></div></div></button></div></div></span>
+                >
+                  <div
+                    class="lemon--div__373c0__1mboc tooltipContainer__373c0__2PjJt display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
+                    disabled=""
+                  >
+                    <div
+                      class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"
+                      aria-describedby="98376e48-ffad-45c9-85ab-95d34ff5a81f"
+                    >
+                      <button
+                        class="header-link__373c0__2Szbt header-link--icon__373c0__2PBpK"
+                      >
+                        <div
+                          class="lemon--div__373c0__1mboc padding-t1__373c0__2aTOb padding-r1__373c0__1xqrz padding-b1__373c0__3erWW padding-l1__373c0__1UBqt border-color--default__373c0__3-ifU"
+                        >
+                          <div
+                            class="lemon--div__373c0__1mboc notification-wrapper__373c0__125lD display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
+                          >
+                            <span
+                              class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c"
+                              aria-hidden="true"
+                              style="width:24px;height:24px"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                class="icon_svg"
+                              ><path
+                                d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
+                              ></path>
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </span>
               </div>
               <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU">
                 <div

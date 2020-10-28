@@ -29,6 +29,14 @@ export default class GoogleLoginButton extends Vue {
     await FirebaseHelper.onLoginAfterHook(
       this.$fireStore,
       model)
+    // Finally, return the last page.
+    this.goBack()
+  }
+
+  goBack () {
+    const returnUrl = (this.$route.query.return_url as string) || '/'
+    this.$router.push(returnUrl, () => {
+    })
   }
 
   onButtonClick (event) {
@@ -41,5 +49,8 @@ export default class GoogleLoginButton extends Vue {
       .then(this.afterSignInWithGoogle).catch((ex) => {
       // debugger
       })
+  }
+
+  mounted () {
   }
 }

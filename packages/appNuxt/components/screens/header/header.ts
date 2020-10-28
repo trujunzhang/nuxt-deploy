@@ -38,6 +38,17 @@ export default class HomeHeader extends Vue {
     this.showPopMenu = true
   }
 
+  shouldShowLoginBtn () {
+    return (this.isLoaded && !this.user)
+  }
+
+  getUserProfileUrl () {
+    if (this.user === null) {
+      throw new Error('not found logged user!')
+    }
+    return `/user_details?userid=${this.user.uid}`
+  }
+
   getUserPhotoUrl () {
     if (
       this.user === null ||
