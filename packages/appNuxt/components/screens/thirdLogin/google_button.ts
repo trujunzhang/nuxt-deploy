@@ -50,6 +50,7 @@ export default class GoogleLoginButton extends Vue {
     const provider = new firebase.auth.GoogleAuthProvider()
     this.$fireAuth.signInWithPopup(provider)
       .then(this.afterSignInWithGoogle).catch((ex) => {
+        console.log('google error:', ex)
         this.isLogging = false
       // debugger
       })
