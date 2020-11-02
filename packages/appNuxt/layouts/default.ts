@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import HomeHeader from '~/components/screens/header/header.vue'
+import HomeHeader from '~/components/screens/header/header_home.vue'
 import Error404 from '~/components/screens/error/404_error.vue'
 const ieattaConfigure = namespace('ieattaConfigure')
 

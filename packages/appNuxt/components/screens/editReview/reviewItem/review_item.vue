@@ -39,23 +39,34 @@
       <div class="lemon--div__09f24__1mboc arrange-unit__09f24__3IxLD border-color--default__09f24__1eOdn">
         <span
           class="lemon--span__09f24__3997G display--inline__09f24__EhyFv border-color--default__09f24__1eOdn"
-        ><div
-          :class="getRateStarClassName()"
-          role="img"
-        ><img
-          class="lemon--img__09f24__3GQUb offscreen__09f24__1VFco"
-          src="https://s3-media0.fl.yelpcdn.com/assets/public/stars.yji-9bec2045845c24d3bff3ddb582884eda.png"
-          width="132"
-          height="560"
-          alt=""
-        ></div></span>
+        >
+          <div
+            :class="getRateStarClassName()"
+            role="img"
+          >
+            <img
+              class="lemon--img__09f24__3GQUb offscreen__09f24__1VFco"
+              src="https://s3-media0.fl.yelpcdn.com/assets/public/stars.yji-9bec2045845c24d3bff3ddb582884eda.png"
+              width="132"
+              height="560"
+              alt=""
+            >
+          </div>
+        </span>
       </div>
       <div class="lemon--div__09f24__1mboc arrange-unit__09f24__3IxLD arrange-unit-fill__09f24__1v_h4 border-color--default__09f24__1eOdn">
-        <p
+        <span
           class="lemon--p__09f24__3Qnnj text__09f24__1RhSS text-color--subtle__09f24__2VYkF text-align--left__09f24__ceIWW"
         >
           {{ getReviewPublishedAt() }}
-        </p>
+        </span>
+        <span
+          v-if="showReviewEditBtn()"
+        >
+          <a :href="getEditReviewUrl()">
+            edit
+          </a>
+        </span>
       </div>
     </div>
     <div class="lemon--div__09f24__1mboc border-color--default__09f24__1eOdn">

@@ -1,5 +1,5 @@
-import { QuerySnapshot } from 'firebase/firebase-storage'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { QuerySnapshot } from 'firebase/firebase-storage'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
@@ -10,17 +10,28 @@ import ReviewItem from '~/components/screens/editReview/reviewItem/review_item.v
     ReviewItem
   }
 })
-export default class ReviewRight extends Vue {
+export default class UserDetailReviewSelf extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
   public items: Array<IFBReview> = []
 
+  // The last visible document
+  private lastVisible
+
   private isLoaded = false
   private isLoading = false
-  private isNewReview = false
 
   async firstPageLoad () {
     await this._fetchPage((query: any) => {
       return query
+    })
+  }
+
+  async nextPageLoad () {
+    if (this.lastVisible === undefined) {
+      return
+    }
+    await this._fetchPage((query: any) => {
+      return query.startAfter(this.lastVisible)
     })
   }
 
@@ -37,14 +48,18 @@ export default class ReviewRight extends Vue {
       $fireStore: this.$fireStore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
-        return queryBuilder(query)
-          .where('restaurantId', '==', this.restaurant.uniqueId)
-          .limit(6)
+        return queryBuilder(FirestoreService.instance.queryByCreatorId({
+          query,
+          userId: (this.$route.query.userid as string)
+        })).limit(2)
       },
       iterateDocumentSnapshots: (data: IFBReview) => {
-        if (this.isNewReview || (!!reviewId && data.uniqueId !== reviewId)) {
-          nextItem.push(data)
-        }
+        nextItem.push(data)
+      },
+      documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
+        // Get the last visible document
+        this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
+        // console.log('last', this.lastVisible)
       }
     })
     this.items = nextItem
@@ -52,18 +67,15 @@ export default class ReviewRight extends Vue {
     this.isLoading = false
   }
 
+  async onWaypoint (e) {
+    await this.nextPageLoad()
+  }
+
   showEmptyText () {
     return (this.isLoaded && this.items.length === 0)
   }
 
-  checkNewReviewPage (
-  ) {
-    const reviewId = this.$route.query.rid as string
-    return reviewId === undefined || reviewId === null
-  }
-
   async mounted () {
-    this.isNewReview = this.checkNewReviewPage()
     await this.firstPageLoad()
   }
 }

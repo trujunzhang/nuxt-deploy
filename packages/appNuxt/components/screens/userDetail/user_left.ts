@@ -1,5 +1,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBUser } from 'ieattatypes/types/index'
+import {
+  USER_MENU_PATH_DEFAULT, USER_MENU_PATH_PHOTOS, USER_MENU_PATH_RESTAURANTS, USER_MENU_PATH_REVIEWS
+} from '~/components/screens/userDetail/menu'
 
 @Component({
   components: {}
@@ -12,15 +15,27 @@ export default class UserLeft extends Vue {
   }
 
   getUserProfileUrl () {
-    return `/user_details?userid=${this.user.id}`
+    return `${USER_MENU_PATH_DEFAULT}?userid=${this.user.id}`
+  }
+
+  getUserRestaurantsUrl () {
+    return `${USER_MENU_PATH_RESTAURANTS}?userid=${this.user.id}`
   }
 
   getUserReviewsUrl () {
-    return `/user_details_reviews_self?userid=${this.user.id}`
+    return `${USER_MENU_PATH_REVIEWS}?userid=${this.user.id}`
   }
 
   getUserPhotosUrl () {
-    return `/user_details_photos_self?userid=${this.user.id}`
+    return `${USER_MENU_PATH_PHOTOS}?userid=${this.user.id}`
+  }
+
+  /**
+   * class="titled-nav_link is-active"
+   */
+  getMenuClassName (activePath) {
+    const { path } = this.$route
+    return (path === activePath) ? 'titled-nav_link is-active' : 'titled-nav_link'
   }
 
   mounted () {

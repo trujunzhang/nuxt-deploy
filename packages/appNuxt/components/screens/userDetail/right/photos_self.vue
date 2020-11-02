@@ -3,8 +3,6 @@
     <div id="super-container" class="content-container">
       <div class="container">
         <div class="js-media-landing_container" data-component-bound="true">
-          <!-- header -->
-          <RestaurantTitle :restaurant="restaurant" />
           <div class="media-landing js-media-landing">
             <div class="media-landing_gallery photos">
               <ul
@@ -23,29 +21,21 @@
                       height="226"
                       :src="getPhotoUrl(item)"
                     >
-
-                    <a
-                      class="biz-shim js-lightbox-media-link js-analytics-click"
-                      :href="getImageLink(item)"
-                    >
-                    </a>
                   </div>
                 </li>
-              </ul>
-              <div
-                v-if="showEmptyHint()"
-                class="feeds feed-module activity-feed"
-              >
-                <ul
-                  class="content-list"
+                <li
+                  v-if="showEmptyHint()"
                 >
-                  <li data-section-id="self">
+                  <div
+                    class="photo-box photo-box--interactive"
+                    style="text-align: center;"
+                  >
                     <p class="no-recent-activity nobtm">
                       No photos!
                     </p>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                </li>
+              </ul>
               <!-- infinite scroll -->
               <div v-waypoint="{ active: true, callback: onWaypoint}"></div>
             </div>
@@ -56,4 +46,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./photo_grid.ts"/>
+<script lang="ts" src="./photos_self.ts"/>

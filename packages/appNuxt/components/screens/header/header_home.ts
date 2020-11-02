@@ -3,6 +3,7 @@ import { namespace } from 'vuex-class'
 import vClickOutside from 'v-click-outside'
 import { IAuthUser } from '~/database/models/auth_user_model'
 
+import HomeLogo from '~/components/screens/header/home/home_logo.vue'
 import HeaderSearch from '~/components/screens/header/header_search.vue'
 import HeaderPop from '~/components/screens/header/header_pop.vue'
 const auth = namespace('auth')
@@ -12,6 +13,7 @@ const auth = namespace('auth')
     clickOutside: vClickOutside.directive
   },
   components: {
+    HomeLogo,
     HeaderSearch,
     HeaderPop
   }
@@ -25,7 +27,7 @@ export default class HomeHeader extends Vue {
   // public showPopMenu: boolean = true
 
   onClickOutside (event) {
-    console.log('Clicked outside. Event: ', event)
+    // console.log('Clicked outside. Event: ', event)
     this.showPopMenu = false
   }
 

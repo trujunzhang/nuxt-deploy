@@ -1,6 +1,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { IFBReview, IFBRestaurant } from 'ieattatypes'
 import { QuerySnapshot } from 'firebase/firebase-storage'
+import vClickOutside from 'v-click-outside'
 import { FBCollections } from '~/database/constant'
 // import { loadReviews } from '~/database/data/Reviews'
 import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_item.vue'
@@ -9,6 +10,9 @@ import NewReviewPanel from '~/components/screens/details/reviews/newReviewPanel/
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   components: {
     NewReviewPanel,
     ReviewItem,
@@ -19,6 +23,7 @@ export default class ReviewsList extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
   // public items: Array<IFBReview> = loadReviews()
   public items: Array<IFBReview> = []
+  public searchReviews: string = ''
 
   private isLoaded = false
   private isLoading = false
@@ -30,7 +35,7 @@ export default class ReviewsList extends Vue {
   // public showPopMenu: boolean = true
 
   onClickOutside (event) {
-    console.log('Clicked outside. Event: ', event)
+    // console.log('Clicked outside. Event: ', event)
     this.showPopMenu = false
   }
 
@@ -49,6 +54,20 @@ export default class ReviewsList extends Vue {
   onSortItemChanged (tag:string) {
     this.showPopMenu = false
     this.sortTitle = this.sortTitles[tag]
+  }
+
+  onSearchReviewsClick () {
+    // const query = this.searchReviews
+    const query: any = Object.assign(
+      this.$route.query,
+      {
+        q: this.searchReviews
+      }
+    )
+    if (this.searchReviews === '') {
+      delete query.q
+    }
+    this.$router.push({ path: this.$route.path, query }, () => {})
   }
 
   async firstPageLoad () {
@@ -94,9 +113,13 @@ export default class ReviewsList extends Vue {
       $fireStore: this.$fireStore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
-        return queryBuilder(this.sortQuery(query))
+        let nextQuery = queryBuilder(this.sortQuery(query))
           .where('restaurantId', '==', this.restaurant.uniqueId)
-          .limit(2)
+        const reviewQ = this.$route.query.q || ''
+        if (reviewQ !== '') { // Have review query.
+          nextQuery = nextQuery.where('body', '<', reviewQ)
+        }
+        return nextQuery.limit(2)
       },
       iterateDocumentSnapshots: (data: IFBReview) => {
         nextItem.push(data)

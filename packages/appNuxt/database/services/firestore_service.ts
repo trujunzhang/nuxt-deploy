@@ -11,6 +11,18 @@ export type DocumentSnapshotsEvent = (documentSnapshots: QuerySnapshot) => void
 export class FirestoreService {
   static instance = new FirestoreService()
 
+  queryByCreatorId (params:{
+    query: any,
+    userId: string
+  }) {
+    const {
+      query,
+      userId
+    } = params
+    return query.where('creatorId', '==', userId)
+      .orderBy('updatedAt', 'desc')
+  }
+
   queryPhotoByGeoHashFromRestaurant (
     params: {
       query: any,
@@ -23,7 +35,7 @@ export class FirestoreService {
     return query.where('geoHash', '==', restaurantGeoHash)
     // return query.where('geoHash', '>', restaurantGeoHash)
     // .orderBy('geoHash', 'desc')
-    .orderBy('updatedAt', 'desc')
+      .orderBy('updatedAt', 'desc')
   }
 
   async updateUser (

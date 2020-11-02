@@ -1,27 +1,32 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBPhoto } from 'ieattatypes/types/index'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { IFBRestaurant } from 'ieattatypes'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import RestaurantTitle from '~/components/screens/photoGrid/restaurantTitle/restaurant_title.vue'
 import { FBCollections } from '~/database/constant'
+import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'
+import NoResults from '~/components/screens/homePage/no_results.vue'
+import HomeFooter from '~/components/screens/footer/footer.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
   components: {
-    RestaurantTitle
+    HomeFooter,
+    RestaurantItem,
+    NoResults
   }
 })
-export default class PhotoGrid extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
+export default class UserDetailRestaurantsSelf extends Vue {
+  public markers: any = []
 
-  public items: Array<IFBPhoto> = []
+  public items: Array<IFBRestaurant> = []
 
-  private isLoaded = false
+  private showNoResult: boolean = false
   private isLoading = false
   // The last visible document
-  private lastVisible
+  private lastVisible = null
+  private find_desc: string | null = null
 
   showEmptyHint () {
-    return this.isLoaded && this.items.length === 0
+    return this.showNoResult
   }
 
   async firstPageLoad () {
@@ -30,6 +35,7 @@ export default class PhotoGrid extends Vue {
         return query
       },
       emptyHint: () => {
+        this.showNoResult = true
       }
     })
   }
@@ -61,16 +67,14 @@ export default class PhotoGrid extends Vue {
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
       $fireStore: this.$fireStore,
-      path: FBCollections.Photos,
+      path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
-        return queryBuilder(
-          FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
-            query,
-            restaurant: this.restaurant
-          })
-        ).limit(5 * 3)
+        return queryBuilder(FirestoreService.instance.queryByCreatorId({
+          query,
+          userId: (this.$route.query.userid as string)
+        })).limit(2)
       },
-      iterateDocumentSnapshots: (data: IFBPhoto) => {
+      iterateDocumentSnapshots: (data: IFBRestaurant) => {
         nextItem.push(data)
       },
       documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
@@ -81,7 +85,6 @@ export default class PhotoGrid extends Vue {
       emptyHint
     })
     this.items = nextItem
-    this.isLoaded = true
     this.isLoading = false
   }
 
@@ -90,30 +93,16 @@ export default class PhotoGrid extends Vue {
   }
 
   async mounted () {
+    this.find_desc = (this.$route.query.find_desc as any)
+    await this.resetPage()
+  }
+
+  async resetPage () {
+    this.showNoResult = false
+    this.items = []
+    this.isLoading = false
+    this.lastVisible = null
+
     await this.firstPageLoad()
-  }
-
-  /**
-   * Example:
-   *   href="/biz_photos/the-ramen-bar-san-francisco?select=J73NiWfGvXslEK2EMIPSbA"
-   * @param item
-   */
-  getImageLink (item: IFBPhoto) {
-    return `${this.getSeeAllLink()}?select=${item.uniqueId}`
-  }
-
-  getPhotoUrl (item: IFBPhoto) {
-    if (item.originalUrl === '') {
-      return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
-    }
-    return item.originalUrl
-  }
-
-  /**
-   * Example:
-   *   href="/biz_photos/the-ramen-bar-san-francisco"
-   */
-  getSeeAllLink () {
-    return `/biz_photos/${this.restaurant.slug}`
   }
 }

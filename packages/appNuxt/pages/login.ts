@@ -9,6 +9,6 @@ import GoogleLoginButton from '~/components/screens/thirdLogin/google_button.vue
     GoogleLoginButton
   }
 })
-export default class Login extends Vue {
+export default class LoginPage extends Vue {
 
 }

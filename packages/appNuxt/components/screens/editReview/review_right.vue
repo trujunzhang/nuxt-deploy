@@ -13,6 +13,7 @@
           v-for="(item) in items"
           :key="item.uniqueId"
           :review="item"
+          :show-edit-btn="false"
         />
         <div
           v-if="showEmptyText()"

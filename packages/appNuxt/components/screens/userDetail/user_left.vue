@@ -19,7 +19,7 @@
             <ul class="titled-nav_items">
               <li class="titled-nav_item">
                 <a
-                  class="titled-nav_link is-active"
+                  :class="getMenuClassName('/user_details')"
                   :href="getUserProfileUrl()"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
@@ -46,7 +46,10 @@
               </li>
 
               <li class="titled-nav_item">
-                <a class="titled-nav_link" href="/user_details_friends?userid=kIEHaO2vd6Lic4rwkMgH6Q">
+                <a
+                  :class="getMenuClassName('/user_details_restaurants_self')"
+                  :href="getUserRestaurantsUrl()"
+                >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
 
                     <div class="arrange_unit">
@@ -75,7 +78,7 @@
 
               <li class="titled-nav_item">
                 <a
-                  class="titled-nav_link"
+                  :class="getMenuClassName('/user_details_reviews_self')"
                   :href="getUserReviewsUrl()"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
@@ -103,7 +106,7 @@
 
               <li class="titled-nav_item">
                 <a
-                  class="titled-nav_link"
+                  :class="getMenuClassName('/user_details_photos_self')"
                   :href="getUserPhotosUrl()"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">

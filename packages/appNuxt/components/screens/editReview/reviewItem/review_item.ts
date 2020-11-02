@@ -7,6 +7,7 @@ import { formatDateForReview } from '~/database/utils/timeago_helper'
   components: {}
 })
 export default class ReviewItem extends Vue {
+  @Prop({}) showEditBtn!: boolean
   @Prop({}) review!: IFBReview
 
   /**
@@ -24,6 +25,17 @@ export default class ReviewItem extends Vue {
 
   getReviewPublishedAt () {
     return formatDateForReview(this.review.createdAt)
+  }
+
+  /**
+   * http://localhost:3000/writeareview/biz/3YVy-af7Ipl7TVft3kquWg
+   */
+  getEditReviewUrl () {
+    return `/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
+  }
+
+  showReviewEditBtn () {
+    return this.showEditBtn
   }
 
   getUserPhotoUrl () {

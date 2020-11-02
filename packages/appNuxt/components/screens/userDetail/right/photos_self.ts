@@ -1,18 +1,14 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBPhoto } from 'ieattatypes/types/index'
+import { IFBPhoto } from 'ieattatypes/types/index'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import RestaurantTitle from '~/components/screens/photoGrid/restaurantTitle/restaurant_title.vue'
 import { FBCollections } from '~/database/constant'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 
 @Component({
   components: {
-    RestaurantTitle
   }
 })
-export default class PhotoGrid extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
-
+export default class UserDetailPhotosSelf extends Vue {
   public items: Array<IFBPhoto> = []
 
   private isLoaded = false
@@ -63,12 +59,10 @@ export default class PhotoGrid extends Vue {
       $fireStore: this.$fireStore,
       path: FBCollections.Photos,
       queryBuilder: (query: any) => {
-        return queryBuilder(
-          FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
-            query,
-            restaurant: this.restaurant
-          })
-        ).limit(5 * 3)
+        return queryBuilder(FirestoreService.instance.queryByCreatorId({
+          query,
+          userId: (this.$route.query.userid as string)
+        })).limit(5 * 3)
       },
       iterateDocumentSnapshots: (data: IFBPhoto) => {
         nextItem.push(data)
@@ -93,27 +87,10 @@ export default class PhotoGrid extends Vue {
     await this.firstPageLoad()
   }
 
-  /**
-   * Example:
-   *   href="/biz_photos/the-ramen-bar-san-francisco?select=J73NiWfGvXslEK2EMIPSbA"
-   * @param item
-   */
-  getImageLink (item: IFBPhoto) {
-    return `${this.getSeeAllLink()}?select=${item.uniqueId}`
-  }
-
   getPhotoUrl (item: IFBPhoto) {
     if (item.originalUrl === '') {
       return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
     }
     return item.originalUrl
-  }
-
-  /**
-   * Example:
-   *   href="/biz_photos/the-ramen-bar-san-francisco"
-   */
-  getSeeAllLink () {
-    return `/biz_photos/${this.restaurant.slug}`
   }
 }

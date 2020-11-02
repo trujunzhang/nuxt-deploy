@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBUser } from 'ieattatypes/types/index'
+import { IFBRestaurant } from 'ieattatypes/types/index'
 import RestaurantItem from '~/components/screens/userDetail/items/restaurantItem/restaurant_item'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
@@ -49,10 +49,10 @@ export default class UserDefaultRight extends Vue {
       $fireStore: this.$fireStore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
-        const userId: any = this.$route.query.userid
-        const nextQuery = query.where('creatorId', '==', userId)
-          .orderBy('updatedAt', 'desc')
-
+        const nextQuery = FirestoreService.instance.queryByCreatorId({
+          query,
+          userId: (this.$route.query.userid as string)
+        })
         return queryBuilder(nextQuery).limit(5)
       },
       iterateDocumentSnapshots: (data: IFBRestaurant) => {
