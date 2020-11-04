@@ -1,18 +1,14 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto } from 'ieattatypes'
 import { IFBRestaurant } from 'ieattatypes/types/index'
-// import { loadPhotos } from '~/database/data/Photos'
-// import { PhotoHelper } from '~/database/photo_helper'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
-import { getGeoHashForRestaurant } from '~/database/utils/geohash_utils'
 
 @Component({
   components: {}
 })
 export default class RestaurantPhotoHeader extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
-  // public items: Array<IFBPhoto> = loadPhotos()
   public items: Array<IFBPhoto> = []
   public photosLen: number | null = null
   private isLoading = false

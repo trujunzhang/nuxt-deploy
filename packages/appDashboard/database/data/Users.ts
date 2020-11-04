@@ -1,6 +1,6 @@
 import { IFBUser } from 'ieattatypes/types/index'
-import { IFBRestaurant } from 'ieattatypes/types/index'
-import { restaurants } from '~/database/data/Restaurants'
+
+export const password = 'pwd123'
 
 export const filterUser = (id: string) => {
   for (let i = 0; i < users.length; i++) {

@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 import { IFBRestaurant } from 'ieattatypes/types/index'
-import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
+import { loadRestaurants } from '~/database/data/Restaurants'
 import { FBCollections } from '~/database/constant'
 
 export const uploadRestaurants = async ($fireStore: firebase.firestore.Firestore) => {
-  for (const index in restaurants) {
-    await uploadRestaurant($fireStore, restaurants[index])
+  for (const index in loadRestaurants()) {
+    await uploadRestaurant($fireStore, loadRestaurants()[index])
   }
 }
 

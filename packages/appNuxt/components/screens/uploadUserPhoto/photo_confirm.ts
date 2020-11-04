@@ -69,14 +69,12 @@ export default class PhotoConfirm extends Vue {
           })
         }
         // Then, update vue's store status.
-        const nextModel: IAuthUser = Object.assign(
-          this.user,
+        const nextModel: IAuthUser = Object.assign(this.user,
           { photoURL: originalUrl }
         )
         this.SET_AUTH_USER(nextModel)
         // Final, go to the user's detail page.
-        this.$router.push(this.getUserProfileUrl(), () => {
-        })
+        this.goBack()
       })
       // eslint-disable-next-line handle-callback-err
       .catch((error) => {
@@ -92,6 +90,12 @@ export default class PhotoConfirm extends Vue {
           1000
         )
       })
+  }
+
+  goBack () {
+    const returnUrl = (this.$route.query.return_url as string) || '/'
+    this.$router.push(returnUrl, () => {
+    })
   }
 
   async mounted () {

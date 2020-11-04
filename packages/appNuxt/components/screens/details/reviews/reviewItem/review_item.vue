@@ -9,7 +9,7 @@
     >
       <a
         class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-box-link__373c0__1YC9Y link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-        :href="getUserProfileUrl()"
+        :href="getReviewUserProfileUrl()"
       >
         <img
           class="lemon--img__373c0__3GQUb photo-box-img__373c0__35y5v"
@@ -31,7 +31,7 @@
         >
           <a
             class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
-            :href="getUserProfileUrl()"
+            :href="getReviewUserProfileUrl()"
           >
             {{ review.username }}
           </a>

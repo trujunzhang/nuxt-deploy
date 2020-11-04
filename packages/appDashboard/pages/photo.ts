@@ -17,6 +17,10 @@ export default class Index extends Vue {
       value: 'photoType'
     },
     {
+      text: 'CreatorId',
+      value: 'creatorId'
+    },
+    {
       text: 'GeoHash',
       value: 'geoHash'
     }
@@ -30,7 +34,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadPhotos(this.$fireStore)
+    await uploadPhotos(this.$fireAuth, this.$fireStore)
     this.loading = false
   }
 }

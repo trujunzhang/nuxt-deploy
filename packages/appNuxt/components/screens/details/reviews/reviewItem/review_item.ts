@@ -26,7 +26,7 @@ export default class ReviewItem extends Vue {
     return `lemon--div__373c0__1mboc i-stars__373c0__1T6rz ${starRegularDict[this.review.rate]} border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK`
   }
 
-  getUserProfileUrl () {
+  getReviewUserProfileUrl () {
     return `/user_details?userid=${this.review.creatorId}`
   }
 

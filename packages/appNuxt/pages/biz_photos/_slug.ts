@@ -27,11 +27,11 @@ export default class PhotoBrowse extends Vue {
     if (this.isLoading) {
       return
     }
-    const restaurantSlug = this.$route.params.slug as string
     await FirestoreService.instance.snapshotList({
       $fireStore: this.$fireStore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
+        const restaurantSlug = this.$route.params.slug as string
         return query.where('slug', '==', restaurantSlug)
       },
       iterateDocumentSnapshots: (data: IFBRestaurant) => {

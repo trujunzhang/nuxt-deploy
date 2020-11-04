@@ -2,10 +2,10 @@ import { IFBPhoto } from 'ieattatypes/types/index'
 import { PhotoType } from '~/database/constant'
 import { recipes } from '~/database/data/Recipes'
 import { users, filterUser } from '~/database/data/Users'
-import { restaurants } from '~/database/data/Restaurants'
+import { loadRestaurants } from '~/database/data/Restaurants'
 
 const getLocation = (item: IFBPhoto, restaurantId?: string) => {
-  restaurants.forEach((restaurant) => {
+  loadRestaurants().forEach((restaurant) => {
     if (restaurant.uniqueId === restaurantId) {
       // item
       item.geoHash = restaurant.geoHash
@@ -61,7 +61,7 @@ export const loadPhotos = (): IFBPhoto[] => {
     // console.log(JSON.stringify(item))
     return item
   })
-  console.log(JSON.stringify(next))
+  // console.log(JSON.stringify(next))
   return next
 }
 
@@ -748,6 +748,7 @@ export const photos: IFBPhoto[] =
     restaurantId: 'f1c0aff9-728b-4041-9560-c09578ce7b01',
     createdAt: '2017-10-10T06:06:40.578+0000',
     updatedAt: '2017-10-10T06:06:40.578+0000',
+    creatorId: 'zis2vkx9G2',
     geoHash: 'wtv8r4t',
     latitude: 32.402716,
     longitude: 120.550209,
@@ -765,6 +766,7 @@ export const photos: IFBPhoto[] =
     createdAt: '2017-10-11T04:43:15.638+0000',
     updatedAt: '2017-10-19T02:03:09.553+0000',
     recipeId: '823fab00-d58c-47c3-a77e-45156cb93d95',
+    creatorId: 'zis2vkx9G2',
     geoHash: 'wtv8r4t',
     latitude: 32.402716,
     longitude: 120.550209,
@@ -782,6 +784,7 @@ export const photos: IFBPhoto[] =
     createdAt: '2017-10-11T04:43:22.810+0000',
     updatedAt: '2017-10-19T02:03:15.904+0000',
     recipeId: '823fab00-d58c-47c3-a77e-45156cb93d95',
+    creatorId: 'zis2vkx9G2',
     geoHash: 'wtv8r4t',
     latitude: 32.402716,
     longitude: 120.550209,
@@ -799,6 +802,7 @@ export const photos: IFBPhoto[] =
     createdAt: '2017-10-11T04:43:37.425+0000',
     updatedAt: '2017-10-19T02:03:22.145+0000',
     recipeId: '823fab00-d58c-47c3-a77e-45156cb93d95',
+    creatorId: 'zis2vkx9G2',
     geoHash: 'wtv8r4t',
     latitude: 32.402716,
     longitude: 120.550209,
@@ -815,6 +819,7 @@ export const photos: IFBPhoto[] =
     restaurantId: 'f1c0aff9-728b-4041-9560-c09578ce7b01',
     createdAt: '2017-10-11T04:43:45.323+0000',
     updatedAt: '2017-10-19T02:03:29.018+0000',
+    creatorId: 'zis2vkx9G2',
     recipeId: '823fab00-d58c-47c3-a77e-45156cb93d95',
     geoHash: 'wtv8r4t',
     latitude: 32.402716,

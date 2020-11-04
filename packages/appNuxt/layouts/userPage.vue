@@ -14,15 +14,15 @@
 
         <!--  body -->
         <div
-          v-if="user"
+          v-if="detailUser"
           class="main-content-wrap main-content-wrap--full"
         >
           <!-- top -->
-          <UserTop :user="user" />
+          <UserTop :detail-user="detailUser" />
           <div id="super-container" class="content-container">
             <div class="clearfix layout-block layout-n user-details_container">
               <!-- left -->
-              <UserLeft :user="user" />
+              <UserLeft :detail-user="detailUser" />
               <!-- right -->
               <!-- Route -->
               <nuxt />

@@ -20,7 +20,7 @@ const ieattaConfigure = namespace('ieattaConfigure')
   }
 })
 export default class UserPageLayout extends Vue {
-  public user: IFBUser | null = null
+  public detailUser: IFBUser | null = null
   private isLoading = false
 
   @ieattaConfigure.State
@@ -34,11 +34,10 @@ export default class UserPageLayout extends Vue {
       return
     }
     this.isLoading = true
-    const userId: any = this.$route.query.userid
-    this.user = await FirestoreService.instance.getData({
+    this.detailUser = await FirestoreService.instance.getData({
       $fireStore: this.$fireStore,
       path: FBCollections.Users,
-      uniqueId: userId,
+      uniqueId: this.$route.query.userid as any,
       emptyHint: () => {
         this.SET_SHOW_404(true)
       }

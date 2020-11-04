@@ -36,7 +36,4 @@ export default class UploadPhoto extends Vue {
   isConfirmPanel () {
     return this.step === UPLOAD_PHOTO_STEP_CONFIRM
   }
-
-  mounted () {
-  }
 }

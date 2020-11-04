@@ -1,10 +1,7 @@
-// import { Md5Utils } from '@app/tools'
 import firebase from 'firebase'
 import { IFBUser } from 'ieattatypes/types/index'
-import { users } from '~/database/data/Users'
+import { users, password } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'
-
-const password = 'pwd123'
 
 export const uploadUsers = async ($fireAuth: firebase.auth.Auth, $fireStore: firebase.firestore.Firestore) => {
   for (const index in users) {
@@ -16,10 +13,6 @@ export const uploadUsers = async ($fireAuth: firebase.auth.Auth, $fireStore: fir
     }
   }
 }
-
-// const getEmailMd5 = (email: string) => {
-//   return Md5Utils.getMd5String(email)
-// }
 
 const createUser = async ($fireAuth: firebase.auth.Auth, $fireStore: firebase.firestore.Firestore, model: IFBUser) => {
   const cb = await $fireAuth.createUserWithEmailAndPassword(
@@ -48,12 +41,13 @@ const loginUser = async ($fireAuth: firebase.auth.Auth, $fireStore: firebase.fir
 }
 
 const uploadUser = async ($fireStore: firebase.firestore.Firestore, model: IFBUser, uid: string) => {
-  // const messageRef = $fireStore.collection(FBCollections.Users).doc(getEmailMd5(model.email))
   const messageRef = $fireStore.collection(FBCollections.Users).doc(uid)
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {
-      await messageRef.set(model)
+      await messageRef.set(
+        Object.assign(model, { id: uid })
+      )
     }
   } catch (e) {
     alert(e)

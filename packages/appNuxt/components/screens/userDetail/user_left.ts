@@ -8,26 +8,26 @@ import {
   components: {}
 })
 export default class UserLeft extends Vue {
-  @Prop({}) user!: IFBUser
+  @Prop({}) detailUser!: IFBUser
 
   getLeftTitle () {
-    return `${this.user.username}'s Profile`
+    return `${this.detailUser.username}'s Profile`
   }
 
   getUserProfileUrl () {
-    return `${USER_MENU_PATH_DEFAULT}?userid=${this.user.id}`
+    return `${USER_MENU_PATH_DEFAULT}?userid=${this.detailUser.id}`
   }
 
   getUserRestaurantsUrl () {
-    return `${USER_MENU_PATH_RESTAURANTS}?userid=${this.user.id}`
+    return `${USER_MENU_PATH_RESTAURANTS}?userid=${this.detailUser.id}`
   }
 
   getUserReviewsUrl () {
-    return `${USER_MENU_PATH_REVIEWS}?userid=${this.user.id}`
+    return `${USER_MENU_PATH_REVIEWS}?userid=${this.detailUser.id}`
   }
 
   getUserPhotosUrl () {
-    return `${USER_MENU_PATH_PHOTOS}?userid=${this.user.id}`
+    return `${USER_MENU_PATH_PHOTOS}?userid=${this.detailUser.id}`
   }
 
   /**

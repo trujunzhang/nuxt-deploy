@@ -25,4 +25,10 @@ export class ParseModelUsers {
     model.originalUrl = originalUrl
     model.updatedAt = getDateStringForCreatedOrUpdatedDate()
   }
+
+  static updateUserProfile (model: IFBUser, username: string) {
+    model.username = username
+    model.slug = slugifyToLower(username)
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate()
+  }
 }
