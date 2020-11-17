@@ -48,5 +48,8 @@
     "todosPopUpToggleClearCompleted": "Clear all completed",
     "todosCreateEditCompletedTxt": "Completed ?",
     "todosEmptyTopMsgDefaultTxt": "Nothing here",
-    "todosEmptyBottomDefaultMsgTxt": "Add a new item to get started"
+    "todosEmptyBottomDefaultMsgTxt": "Add a new item to get started",
+    "userMenuRestaurantsAppBarTitle": "restaurants",
+    "userMenuPhotosAppBarTitle": "photos",
+    "userMenuReviewsAppBarTitle": "reviews"
 }

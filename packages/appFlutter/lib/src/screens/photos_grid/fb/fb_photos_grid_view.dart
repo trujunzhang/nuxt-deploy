@@ -6,8 +6,8 @@ import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/logic/photos_results.dart';
+import 'package:ieatta/src/screens/photos_grid/fb/photos_body.dart';
 import 'package:provider/provider.dart';
-
 import 'fb_photos_pageview.dart';
 
 class FBPhotosGridView extends StatefulWidget {
@@ -69,35 +69,9 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
           List<ParseModelPhotos> photos = parsePhotosFilterByRestaurant(
               datas: fbSnapshot.data.documents, restaurant: restaurant);
 
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            primary: false,
-            padding: EdgeInsets.all(5),
-            itemCount: photos.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 200 / 200,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return buildGridItem(photos, index);
-            },
+          return PhotosBody(
+            photoList: photos,
           );
         });
-  }
-
-  Widget buildGridItem(List<ParseModelPhotos> photos, int index) {
-    ParseModelPhotos photo = photos[index];
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(Routes.online_photos_pageview,
-            arguments:
-                FBPhotosPageViewObject(photos: photos, selectedIndex: index));
-      },
-      child: Padding(
-        padding: EdgeInsets.all(5.0),
-        child: buildPhotoImage(photo),
-      ),
-    );
   }
 }

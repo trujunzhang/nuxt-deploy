@@ -1,16 +1,16 @@
 import firebase from 'firebase'
 import { IFBReview, IFBUser } from 'ieattatypes/types/index'
-import { reviews } from '~/database/data/Reviews'
-import { users, filterUser } from '~/database/data/Users'
+import { loadReviews } from '~/database/data/Reviews'
+import { filterUser } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'
 
 export const uploadReviews = async ($fireStore: firebase.firestore.Firestore) => {
-  for (const index in reviews) {
-    await uploadReview($fireStore, reviews[index])
+  for (const index in loadReviews()) {
+    await uploadReview($fireStore, loadReviews()[index])
   }
 }
 
-const fixUserId = async ($fireStore: firebase.firestore.Firestore, review: IFBReview) => {
+const fixUserIdForReview = async ($fireStore: firebase.firestore.Firestore, review: IFBReview) => {
   const creatorId = review.creatorId
   const user: IFBUser | null = filterUser(creatorId)
   if (user !== null) {
@@ -32,7 +32,7 @@ const uploadReview = async ($fireStore: firebase.firestore.Firestore, review: IF
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {
-      const userId = await fixUserId($fireStore, review)
+      const userId = await fixUserIdForReview($fireStore, review)
       review.creatorId = userId
       await messageRef.set(review)
     }

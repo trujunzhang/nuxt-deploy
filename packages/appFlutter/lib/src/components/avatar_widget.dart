@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 import 'package:ieatta/src/components/users/image.dart';
+import 'package:ieatta/src/layout/app_theme.dart';
 
 class AvatarWidget extends StatelessWidget {
   final AvatarUser user;
@@ -59,10 +60,26 @@ class AvatarWidget extends StatelessWidget {
                 decoration: _whiteBorderDecoration,
                 child: Container(
                   decoration: _greyBoxShadowDecoration,
-                  child: CircleAvatar(
-                    radius: radius,
-                    child: buildAvatarImage(user),
+                  child:
+                  Container(
+                    height: 120,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            color: AppTheme.grey.withOpacity(0.6),
+                            offset: const Offset(2.0, 4.0),
+                            blurRadius: 8),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(radius)),
+                      child: buildAvatarImage(user),
+                    ),
                   ),
+
                 ),
               ),
             ],

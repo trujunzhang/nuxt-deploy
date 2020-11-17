@@ -36,7 +36,7 @@ class TopBaseUserView extends StatelessWidget {
 
   Widget _buildPageIndex() {
     return Padding(
-        padding: EdgeInsets.only(bottom: 4),
+        padding: EdgeInsets.only(bottom: 6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

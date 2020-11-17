@@ -6,9 +6,8 @@ import 'package:ieatta/src/components/photos/photo_base_view.dart';
 import 'widget/top_user_view.dart';
 
 class FBPhotosPageViewObject {
-  final List<ParseModelPhotos> photos;
-
   final int selectedIndex;
+  final List<ParseModelPhotos> photos;
 
   FBPhotosPageViewObject({@required this.photos, @required this.selectedIndex});
 }
@@ -22,10 +21,10 @@ class FBPhotosPageView extends StatefulWidget {
 
 class _FBPhotosPageViewState extends State<FBPhotosPageView> {
   final pageIndexNotifier = ValueNotifier<int>(0);
-  List<ParseModelPhotos> photos = [];
   bool showInfoPanel = false;
   int selectedIndex = 0;
   PageController _pageController;
+  List<ParseModelPhotos> photos = [];
 
   @override
   void didChangeDependencies() {

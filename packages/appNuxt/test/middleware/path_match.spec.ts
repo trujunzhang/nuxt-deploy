@@ -17,11 +17,24 @@ describe('path', () => {
       name:
         'biz_user_photos-upload-id___en' // upload photo
     })).toBe(true)
-    // User details(3)
+    // User details(4)
     expect(hasLoggedPages({
       name:
-        'user_details___en' // user details
+        'user_details___en' // [user_detail_left_menu]: default
     })).toBe(true)
+    expect(hasLoggedPages({
+      name:
+        'user_details_restaurants_self___en' // [user_detail_left_menu]: restaurants
+    })).toBe(true)
+    expect(hasLoggedPages({
+      name:
+        'user_details_reviews_self___en' // [user_detail_left_menu]: reviews
+    })).toBe(true)
+    expect(hasLoggedPages({
+      name:
+        'user_details_photos_self___en' // [user_detail_left_menu]: photos
+    })).toBe(true)
+    // User edit pages(3)
     expect(hasLoggedPages({
       name:
         'user_photos-add___en' // upload user photo
@@ -29,6 +42,10 @@ describe('path', () => {
     expect(hasLoggedPages({
       name:
         'messaging-inbox___en' // user's message inbox
+    })).toBe(true)
+    expect(hasLoggedPages({
+      name:
+        'profile___en' // user's profile
     })).toBe(true)
   })
 })

@@ -11,7 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../appNuxt/components/screens/userDetail/user_left.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/components/screens/userDetail/user_left.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +114,22 @@
       <workItem from="1603856465708" duration="76000" />
       <workItem from="1603856557740" duration="51000" />
       <workItem from="1603867182536" duration="6000" />
+      <workItem from="1604539377772" duration="739000" />
+      <workItem from="1604625436143" duration="43000" />
+      <workItem from="1604626447597" duration="182000" />
+      <workItem from="1604626994179" duration="306000" />
+      <workItem from="1604650757632" duration="1487000" />
+      <workItem from="1604969618047" duration="324000" />
+      <workItem from="1605078755619" duration="2004000" />
+      <workItem from="1605169214831" duration="1157000" />
+      <workItem from="1605231618370" duration="250000" />
+      <workItem from="1605419861142" duration="319000" />
+      <workItem from="1605421205838" duration="3387000" />
+      <workItem from="1605429354340" duration="10000" />
+      <workItem from="1605429508257" duration="1108000" />
+      <workItem from="1605489869005" duration="4980000" />
+      <workItem from="1605508085701" duration="1144000" />
+      <workItem from="1605509990549" duration="266000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -268,19 +284,23 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603856540943" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1603009043492">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="750" height="588" key="SwitcherDM" timestamp="1605494884617">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1603009043492" />
+    <state width="750" height="601" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1605427728802" />
+    <state width="750" height="588" key="SwitcherDM/0.25.1920.1055@0.25.1920.1055" timestamp="1605494884617" />
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603086642872">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602236079383" />
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1603086642872" />
-    <state x="341" y="155" width="777" height="490" key="find.popup" timestamp="1603084800625">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="512" y="229" width="1166" height="647" key="find.popup" timestamp="1605509109757">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1603084800625" />
+    <state x="512" y="209" width="1166" height="662" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605423048776" />
+    <state x="512" y="229" width="1166" height="647" key="find.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1605509109757" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

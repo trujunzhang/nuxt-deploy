@@ -8,6 +8,7 @@ import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
+import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:meta/meta.dart';
 
 import 'firestore_photo.dart';
@@ -22,7 +23,6 @@ For cases where you need to have a special method such as bulk update specifical
 on a field, then is ok to use custom code and write it here. For example,
 setAllTodoComplete is require to change all todos item to have the complete status
 changed to true.
-
  */
 class FirestoreDatabase {
   FirestoreDatabase({@required this.uid}) : assert(uid != null);
@@ -58,11 +58,18 @@ class FirestoreDatabase {
     await FirestorePhoto().savePhoto(imagePath: imagePath, model: model);
   }
 
-  //Method to retrieve todoModel object based on the given todoId
+  //Method to retrieve photoModel object based on the given uniqueId
   Future<ParseModelPhotos> getPhoto({@required String uniqueId}) =>
       _firestoreService.getData(
         path: FirestorePath.photo(uniqueId),
         builder: (data, documentId) => ParseModelPhotos.fromJson(data),
+      );
+
+  //Method to retrieve userModel object based on the given userId
+  Future<ParseModelUsers> getUser({@required String userId}) =>
+      _firestoreService.getData(
+        path: FirestorePath.user(userId),
+        builder: (data, documentId) => ParseModelUsers.fromJson(data),
       );
 
   //Method to retrieve restaurant stream
@@ -93,6 +100,19 @@ class FirestoreDatabase {
           queryBuilder: (Query query) {
             return query
                 .where("restaurantId", isEqualTo: restaurantId)
+                .orderBy('updatedAt');
+          });
+
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<QuerySnapshot> userMenuStream({
+    @required String userId,
+    @required FBCollections path,
+  }) =>
+      _firestoreService.snapshotStream(
+          path: path,
+          queryBuilder: (Query query) {
+            return query
+                .where("creatorId", isEqualTo: userId)
                 .orderBy('updatedAt');
           });
 

@@ -39,8 +39,8 @@ class _TabBgState extends State<TabBg> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 62,
-//                      height: 0,
+                  // height: 62,
+                     height: 0,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
                     child: Row(

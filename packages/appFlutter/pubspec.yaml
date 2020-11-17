@@ -64,6 +64,9 @@ dependencies:
   # md5
   crypto: ^2.1.5
   fluttertoast: ^3.1.0
+  # logger file
+  synchronized: ^2.2.0+2
+  logger: ^0.9.4
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +91,7 @@ flutter:
     - lang/
     - assets/
     - assets/json/
+    - assets/images/
     - assets/placeholder/
   #  - images/a_dot_ham.jpeg
 

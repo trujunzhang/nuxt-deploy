@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+
+import 'arrow_helper.dart';
 
 class TopBackArrowView extends StatefulWidget {
   TopBackArrowView({Key key, this.isBackColor = false}) : super(key: key);
@@ -15,9 +18,9 @@ class _TopBackArrowViewState extends State<TopBackArrowView> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
+        padding: const EdgeInsets.only(top: 45.0,left: 12.0),
         child: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(getArrowBackIcon()),
             color: widget.isBackColor ? Colors.black : Colors.white,
             onPressed: () {
               Navigator.of(context).pop();

@@ -80,17 +80,17 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
     );
   }
 
-  final int SCROLL_TOP_H = 240;
+  final int SCROLL_TOP_H = 270;
 
   @override
   Widget build(BuildContext context) {
     _opacity =
         _scrollPosition < SCROLL_TOP_H ? _scrollPosition / SCROLL_TOP_H : 1;
     var iconColor = Colors.white;
-    var textColor = Colors.red.withOpacity(_opacity);
+    var textColor = Colors.black.withOpacity(_opacity);
     if (_opacity == 1) {
       iconColor = Colors.black;
-      textColor = Colors.red;
+      textColor = Colors.black;
     }
     // print('_opacity: ' + _opacity.toString());
 

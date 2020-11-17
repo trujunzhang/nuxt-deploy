@@ -11,3 +11,10 @@ List<ParseModelReviews> parseReviewsFilterByRestaurant(
       .toList();
   return result;
 }
+
+List<ParseModelReviews> parseReviews(List<DocumentSnapshot> datas) {
+  List<ParseModelReviews> result = datas.map((DocumentSnapshot snapshot) {
+    return ParseModelReviews.fromJson(snapshot.data);
+  }).toList();
+  return result;
+}

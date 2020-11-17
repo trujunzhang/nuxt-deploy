@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 enum DrawerIndex {
   HOME,
+  Settings,
   FeedBack,
   Help,
+  Profile,
   Share,
   About,
   Invite,
@@ -33,14 +35,14 @@ class DrawerList {
         icon: Icon(Icons.home),
       ),
       DrawerList(
-        index: DrawerIndex.Help,
-        labelName: 'Help',
-        icon: Icon(Icons.help),
+        index: DrawerIndex.Profile,
+        labelName: 'Profile',
+        icon: Icon(Icons.verified_user),
       ),
       DrawerList(
-        index: DrawerIndex.FeedBack,
-        labelName: 'FeedBack',
-        icon: Icon(Icons.feedback),
+        index: DrawerIndex.Settings,
+        labelName: 'Settings',
+        icon: Icon(Icons.settings),
       ),
       DrawerList(
         index: DrawerIndex.Invite,
@@ -48,15 +50,20 @@ class DrawerList {
         icon: Icon(Icons.group),
       ),
       DrawerList(
-        index: DrawerIndex.Share,
-        labelName: 'Rate the app',
-        icon: Icon(Icons.share),
+        index: DrawerIndex.Help,
+        labelName: 'Help',
+        icon: Icon(Icons.help),
       ),
-      DrawerList(
-        index: DrawerIndex.About,
-        labelName: 'About Us',
-        icon: Icon(Icons.info),
-      ),
+      // DrawerList(
+      //   index: DrawerIndex.Share,
+      //   labelName: 'Rate the app',
+      //   icon: Icon(Icons.share),
+      // ),
+      // DrawerList(
+      //   index: DrawerIndex.About,
+      //   labelName: 'About Us',
+      //   icon: Icon(Icons.info),
+      // ),
     ];
   }
 }

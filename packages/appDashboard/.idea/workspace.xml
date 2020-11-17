@@ -10,11 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/data/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/data/Users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/event/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/event/Users.ts" afterDir="false" />
-    </list>
+    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +112,7 @@
       <workItem from="1604449822499" duration="702000" />
       <workItem from="1604453861827" duration="356000" />
       <workItem from="1604455938142" duration="413000" />
+      <workItem from="1605576359454" duration="3514000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>
@@ -271,10 +268,15 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1599455552897" />
-    <state x="512" y="209" width="1202" height="740" key="find.popup" timestamp="1604453977083">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="512" y="229" width="1202" height="723" key="find.popup" timestamp="1605580054531">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="341" y="155" width="801" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1602140794414" />
     <state x="512" y="209" width="1202" height="740" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1604453977083" />
+    <state x="512" y="229" width="1202" height="723" key="find.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1605580054531" />
+    <state x="943" y="259" width="670" height="676" key="search.everywhere.popup" timestamp="1605578344680">
+      <screen x="0" y="25" width="1920" height="1055" />
+    </state>
+    <state x="943" y="259" width="670" height="676" key="search.everywhere.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1605578344680" />
   </component>
 </project>

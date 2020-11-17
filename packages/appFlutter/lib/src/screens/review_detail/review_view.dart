@@ -21,6 +21,26 @@ class ReviewView extends StatefulWidget {
 }
 
 class _ReviewViewState extends State<ReviewView> {
+  Widget _buildUserInfo() {
+    Widget view = Container(
+      width: 100,
+      height: 100,
+      child: AvatarWidget(
+        user: widget.reviewData,
+        isShowingUsernameLabel: true,
+        padding: EdgeInsets.only(right: 8.0),
+      ),
+    );
+
+    return InkWell(
+      child: view,
+      onTap: () {
+        Navigator.of(context).pushNamed(Routes.detail_common_user,
+            arguments: widget.reviewData.creatorId);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,15 +48,7 @@ class _ReviewViewState extends State<ReviewView> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 100,
-            height: 100,
-            child: AvatarWidget(
-              user: widget.reviewData,
-              isShowingUsernameLabel: true,
-              padding: EdgeInsets.only(right: 8.0),
-            ),
-          ),
+          _buildUserInfo(),
           Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +70,13 @@ class _ReviewViewState extends State<ReviewView> {
                     ],
                   ),
                 ),
-                Text(widget.note)
+                Text(
+                  widget.note,
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(height: 10),
               ],
             ),
           ),

@@ -59,7 +59,7 @@ class _SqlPhotosGridViewState extends State<SqlPhotosGridView> {
     }
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: ScrollPhysics(),
       primary: false,
       padding: EdgeInsets.all(5),
       itemCount: photos.length,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
+import 'package:provider/provider.dart';
 
 import 'draw_model.dart';
 import 'login/logged_user.dart';
@@ -30,6 +32,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     var loggedContainer = Container(
         width: double.infinity,
         height: 230,
@@ -81,7 +84,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Icons.power_settings_new,
                   color: Colors.red,
                 ),
-                onTap: () {},
+                onTap: () {
+                  showAlertDialog(context, authProvider);
+                },
               ),
               SizedBox(
                 height: MediaQuery.of(context).padding.bottom,
@@ -90,6 +95,39 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ),
         ],
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context, AuthProvider authProvider) {
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Continue"),
+      onPressed: () async {
+        await authProvider.signOut();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Alert"),
+      content: Text(
+          "Would you like to continue to log out?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 

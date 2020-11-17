@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBReview } from 'ieattatypes/types/index'
-import { reviews, loadReviews } from '~/database/data/Reviews'
+import { loadReviews } from '~/database/data/Reviews'
 import { uploadReviews } from '~/database/event/Reviews'
 
 @Component({

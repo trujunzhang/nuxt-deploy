@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
 import 'package:ieatta/src/layout/custom_drawer/drawer_user_controller.dart';
 import 'package:ieatta/src/layout/sidebar/feedback_screen.dart';
 import 'package:ieatta/src/layout/sidebar/help_screen.dart';
 import 'package:ieatta/src/layout/sidebar/invite_friend_screen.dart';
 import 'package:ieatta/src/screens/home/fitness_app_home_screen.dart';
+import 'package:ieatta/src/screens/user_profile/profile.dart';
 
 import 'custom_drawer/draw_model.dart';
 
@@ -21,9 +23,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   void initState() {
     drawerIndex = DrawerIndex.HOME;
     screenView = FitnessAppHomeScreen();
-//     screenView = HotelHomeScreen();
-//     screenView = FitnessAppHomeScreen();
-    //  screenView = DesignCourseHomeScreen();
+    // screenView = Profile();
 
     super.initState();
   }
@@ -58,6 +58,14 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
           screenView = FitnessAppHomeScreen();
+        });
+      } else if (drawerIndex == DrawerIndex.Profile) {
+        setState(() {
+          screenView = Profile();
+        });
+      } else if (drawerIndex == DrawerIndex.Settings) {
+        setState(() {
+          screenView = SettingScreen();
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {

@@ -15,6 +15,10 @@ import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_pageview.dart';
 import 'package:ieatta/src/screens/restaurant_detail/restaurant_page.dart';
 import 'package:ieatta/src/screens/review_detail/review_page.dart';
+import 'package:ieatta/src/screens/user_profile/pages/user_photos.dart';
+import 'package:ieatta/src/screens/user_profile/pages/user_restaurants.dart';
+import 'package:ieatta/src/screens/user_profile/pages/user_reviews.dart';
+import 'package:ieatta/src/screens/user_profile/user_detail.dart';
 
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
@@ -44,6 +48,12 @@ class Routes {
   static const String create_edit_review = '/create_edit_review';
   static const String detail_review = '/detail_review';
 
+  // User
+  static const String detail_common_user = '/detail_common_user';
+  static const String user_restaurants= '/user_restaurants';
+  static const String user_photos= '/user_photos';
+  static const String user_reviews= '/user_reviews';
+
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
     // login: (BuildContext context) => SignInScreen(),
@@ -67,5 +77,10 @@ class Routes {
     // Review
     create_edit_review: (context) => CreateEditReviewScreen(),
     detail_review: (context) => ReviewPage(),
+    // User
+    detail_common_user: (context) => UserDetail(),
+    user_restaurants: (context) => UserRestaurants(),
+    user_photos: (context) => UserPhotos(),
+    user_reviews: (context) => UserReviews(),
   };
 }

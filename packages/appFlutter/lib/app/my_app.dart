@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _syncLocalDb() async {
     var firebaseSync = FirebaseSync();
-    // await firebaseSync.start();
+    await firebaseSync.start();
 
     // For test
     // final db = await database.DBProvider.db.database;
