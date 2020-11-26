@@ -39,4 +39,19 @@ export class RouteHelper {
     }
     return `${path}?${convertQueryToString}`
   }
+
+  static getReviewSortLocation ($router: any, tag: string) {
+    const { path, query } = $router
+    const nextQuery = Object.assign({}, query)
+    if (tag === 'default') {
+      delete nextQuery.sort_by
+    } else {
+      nextQuery.sort_by = tag
+    }
+    const convertQueryToString = RouteHelper.convertQueryToString(nextQuery)
+    if (convertQueryToString === '') {
+      return path
+    }
+    return `${path}?${convertQueryToString}`
+  }
 }

@@ -9,7 +9,8 @@ export default class ReviewPop extends Vue {
   onSortItemClick (tag: string) {
     this.onSortItemChanged(tag)
     if (tag === 'default') {
-      this.$router.push(this.$route.path)
+      this.$router.push(this.$route.path, () => {
+      })
     } else {
       this.$router.push({
         path: this.$route.path,

@@ -25,6 +25,22 @@ describe('RouteHelper', () => {
     expect(RouteHelper.getReviewSearchLocation({
       path: '/biz/forno-vecchio',
       query: {
+        q: '123',
+        sort_by: 'date_asc'
+      }
+    }, 'xxx')
+    ).toBe('/biz/forno-vecchio?q=xxx&sort_by=date_asc')
+    expect(RouteHelper.getReviewSearchLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+        sort_by: 'date_asc',
+        q: '123'
+      }
+    }, 'xxx')
+    ).toBe('/biz/forno-vecchio?sort_by=date_asc&q=xxx')
+    expect(RouteHelper.getReviewSearchLocation({
+      path: '/biz/forno-vecchio',
+      query: {
         q: '123'
       }
     }, 'xxx')

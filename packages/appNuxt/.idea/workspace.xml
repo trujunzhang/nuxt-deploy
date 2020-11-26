@@ -11,7 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/reviews/review_pop.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/reviews/review_pop.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/utils/route_helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/utils/route_helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/database/utils/route_helper.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/database/utils/route_helper.spec.ts" afterDir="false" />
     </list>
@@ -48,7 +48,7 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.RouteHelper">
+  <component name="RunManager" selected="Jest.RouteHelper.getReviewSearchLocation with query xxx">
     <configuration name="RouteHelper" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -76,6 +76,20 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="RouteHelper.getReviewSearchLocation with query xxx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/database/utils/route_helper.spec.ts" />
+      <test-names>
+        <test-name value="RouteHelper" />
+        <test-name value="getReviewSearchLocation with query xxx" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="RouteHelper.getReviewSearchLocation" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -87,20 +101,6 @@
       <test-names>
         <test-name value="RouteHelper" />
         <test-name value="getReviewSearchLocation" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="geohash.getGeoHashForRestaurant" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/database/geohash_utils.spec.ts" />
-      <test-names>
-        <test-name value="geohash" />
-        <test-name value="getGeoHashForRestaurant" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -155,19 +155,19 @@
       <item itemvalue="JavaScript Debug.photo(single)" />
       <item itemvalue="JavaScript Debug.uploadImage" />
       <item itemvalue="JavaScript Debug.user_detail" />
-      <item itemvalue="Jest.geohash.getGeoHashForRestaurant" />
       <item itemvalue="Jest.path.contains special string" />
       <item itemvalue="Jest.RouteHelper.convertQueryToString" />
       <item itemvalue="Jest.RouteHelper.getReviewSearchLocation" />
       <item itemvalue="Jest.RouteHelper" />
+      <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
         <item itemvalue="Jest.RouteHelper" />
         <item itemvalue="Jest.RouteHelper.getReviewSearchLocation" />
         <item itemvalue="Jest.RouteHelper.convertQueryToString" />
         <item itemvalue="Jest.path.contains special string" />
-        <item itemvalue="Jest.geohash.getGeoHashForRestaurant" />
       </list>
     </recent_temporary>
   </component>
@@ -308,7 +308,7 @@
       <workItem from="1604469524649" duration="2632000" />
       <workItem from="1604473655510" duration="1010000" />
       <workItem from="1606205634830" duration="144000" />
-      <workItem from="1606355656562" duration="6323000" />
+      <workItem from="1606355656562" duration="6998000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
@@ -692,78 +692,78 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1101" height="466" key="DebuggerActiveHint/0.0.1280.800@0.0.1280.800" timestamp="1601187219217" />
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom" timestamp="1606375238693">
+    <state width="1259" height="264" key="GridCell.Tab.0.bottom" timestamp="1606375332460">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606375238693" />
+    <state width="1259" height="264" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606375332460" />
     <state width="1259" height="264" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1600913381798" />
-    <state width="1259" height="212" key="GridCell.Tab.0.center" timestamp="1606375238692">
+    <state width="1259" height="264" key="GridCell.Tab.0.center" timestamp="1606375332458">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1606375238692" />
+    <state width="1259" height="264" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1606375332458" />
     <state width="1259" height="264" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1600913381793" />
-    <state width="1259" height="212" key="GridCell.Tab.0.left" timestamp="1606375238692">
+    <state width="1259" height="264" key="GridCell.Tab.0.left" timestamp="1606375332457">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1606375238692" />
+    <state width="1259" height="264" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1606375332457" />
     <state width="1259" height="264" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1600913381786" />
-    <state width="1259" height="212" key="GridCell.Tab.0.right" timestamp="1606375238693">
+    <state width="1259" height="264" key="GridCell.Tab.0.right" timestamp="1606375332459">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1606375238693" />
+    <state width="1259" height="264" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1606375332459" />
     <state width="1259" height="264" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1600913381796" />
-    <state width="1259" height="264" key="GridCell.Tab.1.bottom" timestamp="1606374675353">
+    <state width="1259" height="264" key="GridCell.Tab.1.bottom" timestamp="1606375332465">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606374675353" />
+    <state width="1259" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606375332465" />
     <state width="1259" height="264" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1601455032378" />
-    <state width="1259" height="264" key="GridCell.Tab.1.center" timestamp="1606374675351">
+    <state width="1259" height="264" key="GridCell.Tab.1.center" timestamp="1606375332462">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1606374675351" />
+    <state width="1259" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1606375332462" />
     <state width="1259" height="264" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1601455032376" />
-    <state width="1259" height="264" key="GridCell.Tab.1.left" timestamp="1606374675346">
+    <state width="1259" height="264" key="GridCell.Tab.1.left" timestamp="1606375332461">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1606374675346" />
+    <state width="1259" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1606375332461" />
     <state width="1259" height="264" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1601455032375" />
-    <state width="1259" height="264" key="GridCell.Tab.1.right" timestamp="1606374675352">
+    <state width="1259" height="264" key="GridCell.Tab.1.right" timestamp="1606375332463">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1606374675352" />
+    <state width="1259" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1606375332463" />
     <state width="1259" height="264" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1601455032377" />
-    <state width="1259" height="264" key="GridCell.Tab.2.bottom" timestamp="1606374675365">
+    <state width="1259" height="264" key="GridCell.Tab.2.bottom" timestamp="1606375332468">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.2.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606374675365" />
-    <state width="1259" height="264" key="GridCell.Tab.2.center" timestamp="1606374675355">
+    <state width="1259" height="264" key="GridCell.Tab.2.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606375332468" />
+    <state width="1259" height="264" key="GridCell.Tab.2.center" timestamp="1606375332466">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.2.center/0.0.1280.800@0.0.1280.800" timestamp="1606374675355" />
-    <state width="1259" height="264" key="GridCell.Tab.2.left" timestamp="1606374675354">
+    <state width="1259" height="264" key="GridCell.Tab.2.center/0.0.1280.800@0.0.1280.800" timestamp="1606375332466" />
+    <state width="1259" height="264" key="GridCell.Tab.2.left" timestamp="1606375332465">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.2.left/0.0.1280.800@0.0.1280.800" timestamp="1606374675354" />
-    <state width="1259" height="264" key="GridCell.Tab.2.right" timestamp="1606374675360">
+    <state width="1259" height="264" key="GridCell.Tab.2.left/0.0.1280.800@0.0.1280.800" timestamp="1606375332465" />
+    <state width="1259" height="264" key="GridCell.Tab.2.right" timestamp="1606375332467">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.2.right/0.0.1280.800@0.0.1280.800" timestamp="1606374675360" />
-    <state width="1259" height="264" key="GridCell.Tab.3.bottom" timestamp="1606374675370">
+    <state width="1259" height="264" key="GridCell.Tab.2.right/0.0.1280.800@0.0.1280.800" timestamp="1606375332467" />
+    <state width="1259" height="264" key="GridCell.Tab.3.bottom" timestamp="1606375332472">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.3.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606374675370" />
-    <state width="1259" height="264" key="GridCell.Tab.3.center" timestamp="1606374675367">
+    <state width="1259" height="264" key="GridCell.Tab.3.bottom/0.0.1280.800@0.0.1280.800" timestamp="1606375332472" />
+    <state width="1259" height="264" key="GridCell.Tab.3.center" timestamp="1606375332469">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.3.center/0.0.1280.800@0.0.1280.800" timestamp="1606374675367" />
-    <state width="1259" height="264" key="GridCell.Tab.3.left" timestamp="1606374675366">
+    <state width="1259" height="264" key="GridCell.Tab.3.center/0.0.1280.800@0.0.1280.800" timestamp="1606375332469" />
+    <state width="1259" height="264" key="GridCell.Tab.3.left" timestamp="1606375332469">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.3.left/0.0.1280.800@0.0.1280.800" timestamp="1606374675366" />
-    <state width="1259" height="264" key="GridCell.Tab.3.right" timestamp="1606374675368">
+    <state width="1259" height="264" key="GridCell.Tab.3.left/0.0.1280.800@0.0.1280.800" timestamp="1606375332469" />
+    <state width="1259" height="264" key="GridCell.Tab.3.right" timestamp="1606375332470">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="264" key="GridCell.Tab.3.right/0.0.1280.800@0.0.1280.800" timestamp="1606374675368" />
+    <state width="1259" height="264" key="GridCell.Tab.3.right/0.0.1280.800@0.0.1280.800" timestamp="1606375332470" />
     <state x="141" y="39" key="SettingsEditor" timestamp="1601203491640">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -778,10 +778,10 @@
     </state>
     <state x="100" y="23" width="1080" height="697" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602412333744" />
     <state x="100" y="13" width="1080" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1601378777463" />
-    <state x="341" y="155" width="765" height="548" key="find.popup" timestamp="1606365243142">
+    <state x="341" y="155" width="765" height="548" key="find.popup" timestamp="1606375600337">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="341" y="155" width="765" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606365243142" />
+    <state x="341" y="155" width="765" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606375600337" />
     <state x="512" y="209" width="1148" height="740" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606205748402" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1601612382422">
       <screen x="0" y="0" width="1280" height="800" />
