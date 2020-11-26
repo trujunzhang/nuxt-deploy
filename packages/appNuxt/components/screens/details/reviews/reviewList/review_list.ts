@@ -40,6 +40,14 @@ export default class ReviewsList extends Vue {
     })
   }
 
+  searchQuery (query: any) {
+    const reviewQ = this.$route.query.q || ''
+    if (reviewQ !== '') { // Have review query.
+      return query.where('body', '<', reviewQ)
+    }
+    return query
+  }
+
   sortQuery (query: any) {
     const tag: string = (this.$route.query.sort_by as any) || 'default'
 
@@ -68,12 +76,10 @@ export default class ReviewsList extends Vue {
       $fireStore: this.$fireStore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
-        let nextQuery = queryBuilder(this.sortQuery(query))
-          .where('restaurantId', '==', this.restaurant.uniqueId)
-        const reviewQ = this.$route.query.q || ''
-        if (reviewQ !== '') { // Have review query.
-          nextQuery = nextQuery.where('body', '<', reviewQ)
-        }
+        let nextQuery = query.where('restaurantId', '==', this.restaurant.uniqueId)
+        nextQuery = this.searchQuery(nextQuery)
+        nextQuery = this.sortQuery(nextQuery)
+        nextQuery = queryBuilder(nextQuery)
         return nextQuery.limit(2)
       },
       iterateDocumentSnapshots: (data: IFBReview) => {
