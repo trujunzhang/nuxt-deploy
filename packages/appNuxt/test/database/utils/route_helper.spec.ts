@@ -70,4 +70,43 @@ describe('RouteHelper', () => {
     }, '')
     ).toBe('/biz/forno-vecchio')
   })
+
+  test('getReviewSortLocation with sort date_desc', () => {
+    expect(RouteHelper.getReviewSortLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+        q: '123'
+      }
+    }, 'date_desc')
+    ).toBe('/biz/forno-vecchio?q=123&sort_by=date_desc')
+    expect(RouteHelper.getReviewSortLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+        q: '123',
+        sort_by: 'date_asc'
+      }
+    }, 'date_desc')
+    ).toBe('/biz/forno-vecchio?q=123&sort_by=date_desc')
+    expect(RouteHelper.getReviewSortLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+        sort_by: 'date_asc',
+        q: '123'
+      }
+    }, 'date_desc')
+    ).toBe('/biz/forno-vecchio?sort_by=date_desc&q=123')
+    expect(RouteHelper.getReviewSortLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+        sort_by: 'date_asc'
+      }
+    }, 'date_desc')
+    ).toBe('/biz/forno-vecchio?sort_by=date_desc')
+    expect(RouteHelper.getReviewSortLocation({
+      path: '/biz/forno-vecchio',
+      query: {
+      }
+    }, 'date_desc')
+    ).toBe('/biz/forno-vecchio?sort_by=date_desc')
+  })
 })
