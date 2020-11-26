@@ -1,83 +1,29 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { IFBReview, IFBRestaurant } from 'ieattatypes'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import vClickOutside from 'v-click-outside'
 import { FBCollections } from '~/database/constant'
-// import { loadReviews } from '~/database/data/Reviews'
 import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_item.vue'
-import ReviewPop from '~/components/screens/details/reviews/review_pop.vue'
+import ReviewSearch from '~/components/screens/details/reviews/reviewList/review_search.vue'
+import ReviewSort from '~/components/screens/details/reviews/reviewList/review_sort.vue'
 import NewReviewPanel from '~/components/screens/details/reviews/newReviewPanel/new_review_panel.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
-import { RouteHelper } from '~/database/utils/route_helper'
 
 @Component({
-  directives: {
-    clickOutside: vClickOutside.directive
-  },
   components: {
     NewReviewPanel,
     ReviewItem,
-    ReviewPop
+    ReviewSearch,
+    ReviewSort
   }
 })
 export default class ReviewsList extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
-  // public items: Array<IFBReview> = loadReviews()
   public items: Array<IFBReview> = []
-  public searchReviews: string = ''
 
   private isLoaded = false
   private isLoading = false
   // The last visible document
   private lastVisible
-
-  public sortTitle: string = 'Yelp Sort'
-  public showPopMenu: boolean = false
-
-  // public showPopMenu: boolean = true
-
-  onClickOutside (event) {
-    // console.log('Clicked outside. Event: ', event)
-    this.showPopMenu = false
-  }
-
-  onSortIconClick () {
-    this.showPopMenu = true
-  }
-
-  private sortTitles = {
-    default: 'Yelp Sort',
-    date_desc: 'Newest First',
-    date_asc: 'Oldest First',
-    rating_desc: 'Highest Rated',
-    rating_asc: 'Lowest Rated'
-  }
-
-  onSortItemChanged (tag: string) {
-    this.showPopMenu = false
-    this.sortTitle = this.sortTitles[tag]
-  }
-
-  onSearchReviewsClick () {
-    // const query: any = Object.assign(
-    //   this.$route.query,
-    //   {
-    //     q: this.searchReviews
-    //   }
-    // )
-    // if (this.searchReviews === '') {
-    //   delete query.q
-    // }
-    const location = RouteHelper.getReviewSearchLocation(this.$route, this.searchReviews)
-    this.$router.push(location, () => {})
-    // this.$router.push({
-    //   path: this.$route.path,
-    //   query: {
-    //     wh: 'djzhang'
-    //   }
-    // }, () => {
-    // })
-  }
 
   async firstPageLoad () {
     await this._fetchPage((query: any) => {
@@ -155,8 +101,6 @@ export default class ReviewsList extends Vue {
   }
 
   async mounted () {
-    const tag: string = (this.$route.query.sort_by as any) || 'default'
-    this.sortTitle = this.sortTitles[tag]
     await this.resetPage()
   }
 
