@@ -96,7 +96,7 @@ class _DrawerUserControllerState extends State<DrawerUserController>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.white,
+      // backgroundColor: AppTheme.white,
       body: SingleChildScrollView(
         controller: scrollController,
         scrollDirection: Axis.horizontal,

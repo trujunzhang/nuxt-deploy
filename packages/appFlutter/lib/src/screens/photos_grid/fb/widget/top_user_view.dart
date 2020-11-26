@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 import 'package:ieatta/src/components/avatar_widget.dart';
+import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 
 class TopBaseUserView extends StatelessWidget {
   const TopBaseUserView(
       {Key key,
       @required this.user,
       @required this.selectedIndex,
-      @required this.totalCount})
+      @required this.totalCount, this.onEditPress})
       : super(key: key);
   final AvatarUser user;
   final int selectedIndex;
   final int totalCount;
+  final Function onEditPress;
 
   Widget _buildTitle(BuildContext context) {
     return Row(
       children: <Widget>[
         IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(getArrowBackIcon()),
             color: Colors.white,
             onPressed: () {
               Navigator.of(context).pop();
@@ -50,12 +52,40 @@ class TopBaseUserView extends StatelessWidget {
         ));
   }
 
+  Widget _buildRightEditBtn(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 30, right: 32),
+      child: Container(
+        // color: Colors.red,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            InkWell(
+              onTap: onEditPress,
+              child: Text(
+                "edit",
+                style: TextStyle(color: Colors.orangeAccent, fontSize: 18),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(top: 30.0),
-        child: Stack(
-          children: [_buildTitle(context), _buildPageIndex()],
-        ));
+        height: 120,
+        color: Colors.black,
+        child: Container(
+            padding: const EdgeInsets.only(top: 40.0),
+            child: Stack(
+              children: [
+                _buildTitle(context),
+                _buildPageIndex(),
+                _buildRightEditBtn(context)
+              ],
+            )));
   }
 }

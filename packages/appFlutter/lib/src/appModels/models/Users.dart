@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/core/database/firebase_helper.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
@@ -6,16 +7,16 @@ class ParseModelUsers {
   // Base(3)
   final String id;
   final String createdAt;
-  final String updatedAt;
+  String updatedAt;
 
   // Common(3)
-  final String username;
-  final String slug;
+  String username;
+  String slug;
   final String email;
 
   // Property(3)
   final String loginType;
-  final String originalUrl;
+  String originalUrl;
   final String thumbnailUrl;
 
   ParseModelUsers(
@@ -89,6 +90,27 @@ class ParseModelUsers {
         loginType,
         originalUrl,
         thumbnailUrl);
+  }
+
+  static ParseModelUsers updateUserPhoto({
+    @required ParseModelUsers model,
+    @required String originalUrl,
+  }) {
+    model.originalUrl = originalUrl;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
+
+    return model;
+  }
+
+  static ParseModelUsers updateUserProfile({
+    @required ParseModelUsers model,
+    @required String username,
+  }) {
+    model.username = username;
+    model.slug = slugifyToLower(username);
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
+
+    return model;
   }
 
   Map<String, dynamic> toMap() {

@@ -11,12 +11,12 @@ import 'package:ieatta/src/utils/toast.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
-class CreateEditPhotoScreen extends StatefulWidget {
+class CreatePhotoScreen extends StatefulWidget {
   @override
-  _CreateEditPhotoScreenState createState() => _CreateEditPhotoScreenState();
+  _CreatePhotoScreenState createState() => _CreatePhotoScreenState();
 }
 
-class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
+class _CreatePhotoScreenState extends State<CreatePhotoScreen> {
   TextEditingController _extraNoteController;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -101,7 +101,7 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                           final firestoreDatabase =
                               Provider.of<FirestoreDatabase>(context,
                                   listen: false);
-                          await firestoreDatabase.setPhoto(
+                          await firestoreDatabase.setNewPhoto(
                               imagePath: imagePath,
                               model: nextModel); // For photo.
                         } catch (e) {
@@ -110,12 +110,14 @@ class _CreateEditPhotoScreenState extends State<CreateEditPhotoScreen> {
                           });
                         }
 
-                        ToastUtils.showToast('saved successfully');
+                        ToastUtils.showToast(AppLocalizations.of(context)
+                            .translate("toastForSaveSuccess"));
                         // Navigate
                         Navigator.of(context).pop();
                       }
                     },
-              child: Text("Save"))
+              child: Text(AppLocalizations.of(context)
+                  .translate("editModelAppBarRightSaveTitle")))
         ],
       ),
       body: Center(

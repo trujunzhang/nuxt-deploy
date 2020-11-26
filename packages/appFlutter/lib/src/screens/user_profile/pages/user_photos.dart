@@ -51,12 +51,18 @@ class UserPhotosState extends State<UserPhotos> {
             builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
               if (fbSnapshot.hasError) {}
               if (!fbSnapshot.hasData) {
-                return Container();
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               }
 
               List<ParseModelPhotos> photos =
                   parsePhotos(fbSnapshot.data.documents);
-
+              if (photos.length == 0) {
+                return Center(
+                  child: Text('No Data'),
+                );
+              }
               return PhotosBody(
                 photoList: photos,
               );

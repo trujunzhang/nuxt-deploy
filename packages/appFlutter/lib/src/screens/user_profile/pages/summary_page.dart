@@ -6,10 +6,15 @@ import 'package:ieatta/src/components/users/image.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
 
 class SummaryPage extends StatefulWidget {
+  final bool isLoggedUser;
   final ParseModelUsers userData;
   final List<UserMenu> userMenus;
 
-  SummaryPage({Key key, @required this.userData, @required this.userMenus})
+  SummaryPage(
+      {Key key,
+      @required this.userData,
+      @required this.userMenus,
+      @required this.isLoggedUser})
       : super(key: key);
 
   @override
@@ -17,59 +22,81 @@ class SummaryPage extends StatefulWidget {
 }
 
 class _SummaryPageState extends State<SummaryPage> {
+  final Color TEXT_COLOR = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          // color: Color(0xf5f5f5),
-          // color: Color(0xcccccc),
-          color: Colors.lightBlue,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 40),
-              Container(
-                height: 120,
-                width: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: AppTheme.grey.withOpacity(0.6),
-                        offset: const Offset(2.0, 4.0),
-                        blurRadius: 8),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-                  child: buildParseModelUsersImage(widget.userData),
-                ),
+      body: Stack(
+        children: [
+          _buildPage(context),
+          widget.isLoggedUser
+              ? Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50.0, right: 12.0),
+                    child: IconButton(
+                        icon: Icon(Icons.edit),
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            Routes.edit_user,
+                          );
+                        }),
+                  ),
+                )
+              : null
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPage(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        color: Colors.lightBlue,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 40),
+            Container(
+              height: 120,
+              width: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: AppTheme.grey.withOpacity(0.6),
+                      offset: const Offset(2.0, 4.0),
+                      blurRadius: 8),
+                ],
               ),
-              SizedBox(height: 10),
-              Text(
-                widget.userData.username,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                child: buildParseModelUsersImage(widget.userData),
               ),
-              SizedBox(height: 20),
-              _buildActions(),
-              SizedBox(height: 40),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                child: buildStatisticInfo(),
-              ),
-              SizedBox(height: 20),
-              Container(
-                color: Colors.white,
-                child: buildRows(),
-              )
-            ],
-          ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              widget.userData.username,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
+            ),
+            // SizedBox(height: 20),
+            // _buildActions(),
+            SizedBox(height: 40),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              child: buildStatisticInfo(),
+            ),
+            SizedBox(height: 20),
+            Container(
+              color: Colors.white,
+              child: buildRows(),
+            )
+          ],
         ),
       ),
     );
@@ -109,14 +136,12 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               123.toString(),
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
             ),
             SizedBox(height: 4),
             Text(
               "Restaurants",
-              style: TextStyle(),
+              style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -125,14 +150,12 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               234.toString(),
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
             ),
             SizedBox(height: 4),
             Text(
               "Reviews",
-              style: TextStyle(),
+              style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -141,14 +164,12 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               345.toString(),
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
             ),
             SizedBox(height: 4),
             Text(
               "Photos",
-              style: TextStyle(),
+              style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -173,7 +194,10 @@ class _SummaryPageState extends State<SummaryPage> {
           leading: Icon(menu.icon),
           title: Row(
             children: [
-              Text(menu.title),
+              Text(
+                menu.title,
+                style: TextStyle(color: Colors.black),
+              ),
               SizedBox(
                 width: 6,
               ),

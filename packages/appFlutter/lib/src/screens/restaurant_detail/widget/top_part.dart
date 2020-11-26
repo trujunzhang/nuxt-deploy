@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/components/navigation/top_back_arrow_view.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'mc_lipper.dart';
 
@@ -86,7 +88,8 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
     );
   }
 
-  Widget buildFg() {
+  Widget buildFg(AuthUserModel user) {
+    bool enabled = user != null && widget.restaurant.creatorId == user.uid;
     return Positioned(
       top: 370.0,
       right: -20.0,
@@ -97,19 +100,21 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
             FloatingActionButton(
               heroTag: null,
               backgroundColor: Colors.white,
-              onPressed: () async {
-                final result = await Navigator.of(context).pushNamed(
-                    Routes.create_edit_restaurant,
-                    arguments: widget.restaurant);
-                if (result != null) {
-                  setState(() {
-                    title = result;
-                  });
-                }
-              },
+              onPressed: enabled
+                  ? () async {
+                      final result = await Navigator.of(context).pushNamed(
+                          Routes.create_edit_restaurant,
+                          arguments: widget.restaurant);
+                      if (result != null) {
+                        setState(() {
+                          title = result;
+                        });
+                      }
+                    }
+                  : null,
               child: Icon(
                 Icons.edit,
-                color: Color(0xFFE52020),
+                color: enabled ? Color(0xFFE52020) : Colors.grey,
               ),
             ),
             SizedBox(
@@ -163,13 +168,21 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      height: 420.0,
-      child: Stack(
-        children: <Widget>[buildBg(), buildFg(),
-          // TopBackArrowView()
-        ],
-      ),
-    );
+    final authService = Provider.of<AuthProvider>(context, listen: false);
+    return StreamBuilder<AuthUserModel>(
+        stream: authService.user,
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
+          final AuthUserModel user = snapshot.data;
+
+          return new Container(
+            height: 420.0,
+            child: Stack(
+              children: <Widget>[
+                buildBg(), buildFg(user),
+                // TopBackArrowView()
+              ],
+            ),
+          );
+        });
   }
 }

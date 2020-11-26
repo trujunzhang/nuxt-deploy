@@ -27,7 +27,7 @@ class DrawerList {
   String imageName;
   DrawerIndex index;
 
-  static List<DrawerList> getDrawerListArray() {
+  static List<DrawerList> getDrawerListArray(BuildContext context) {
     return [
       DrawerList(
         index: DrawerIndex.HOME,

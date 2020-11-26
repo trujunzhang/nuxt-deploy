@@ -60,8 +60,7 @@ class AvatarWidget extends StatelessWidget {
                 decoration: _whiteBorderDecoration,
                 child: Container(
                   decoration: _greyBoxShadowDecoration,
-                  child:
-                  Container(
+                  child: Container(
                     height: 120,
                     width: 120,
                     decoration: BoxDecoration(
@@ -74,25 +73,23 @@ class AvatarWidget extends StatelessWidget {
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(radius)),
+                      borderRadius: BorderRadius.all(Radius.circular(radius)),
                       child: buildAvatarImage(user),
                     ),
                   ),
-
                 ),
               ),
             ],
           ),
         ),
-       if(isShowingUsernameLabel)
-        Padding(
-          padding: const EdgeInsets.only(top: 4.0),
-          child: Text(
-            user.username,
-            textScaleFactor: 0.9,
+        if (isShowingUsernameLabel)
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+            child: Text(
+              user.username,
+              textScaleFactor: 0.9,
+            ),
           ),
-        ),
       ],
     );
 

@@ -17,6 +17,7 @@ class UserReviews extends StatefulWidget {
 
 class _UserReviewsState extends State<UserReviews> {
   String _userId;
+  List<ParseModelReviews> reviewList = [];
 
   @override
   void didChangeDependencies() {
@@ -49,15 +50,24 @@ class _UserReviewsState extends State<UserReviews> {
             path: FBCollections.Reviews,
           ),
           builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
-            if (fbSnapshot.hasError) {}
-            if (!fbSnapshot.hasData) {
-              return Container();
+            if (fbSnapshot.hasError) {
+              var x = 0;
             }
-            return ReviewsBody(
-                useScrollview: true,
-                reviewList: parseReviews(
-                  fbSnapshot.data.documents,
-                ));
+            if (!fbSnapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            reviewList = parseReviews(
+              fbSnapshot.data.documents,
+            );
+            if (reviewList.length == 0) {
+              return Center(
+                child: Text('No Data'),
+              );
+            }
+            return ReviewsBody(useScrollview: true, reviewList: reviewList);
           }),
     );
   }

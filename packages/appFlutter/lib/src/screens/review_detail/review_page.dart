@@ -63,7 +63,8 @@ class _ReviewPageState extends State<ReviewPage> {
             });
           }
         },
-        child: Text("Edit"));
+        child: Text(AppLocalizations.of(context)
+            .translate("reviewPageAppBarRightEditBtnTitle")));
     var actionsWidget = showEditBtn ? <Widget>[flatButton] : <Widget>[];
     return Scaffold(
         appBar: AppBar(

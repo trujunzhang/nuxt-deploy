@@ -1,7 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import { IAuthUser } from '~/database/models/auth_user_model'
 import { IFBUser } from 'ieattatypes/types/index'
+import { IAuthUser } from '~/database/models/auth_user_model'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
 import { ParseModelUsers } from '~/database/appModel/users'
@@ -14,6 +14,7 @@ const auth = namespace('auth')
 export default class UserProfilePage extends Vue {
   @auth.State
   public user!: IAuthUser | null
+
   @auth.Mutation
   public SET_AUTH_USER!: (payload: IAuthUser | null) => void
 
@@ -71,6 +72,7 @@ export default class UserProfilePage extends Vue {
       nextUser
     )
     if (this.$fireAuth.currentUser) {
+      // Update Firebase's user's name.
       await this.$fireAuth.currentUser.updateProfile({
         displayName,
         photoURL: this.user?.photoURL

@@ -81,7 +81,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.5,
-        color: Theme.of(context).iconTheme.color,
+        color: Colors.orangeAccent,
       ),
     );
   }

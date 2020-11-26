@@ -140,7 +140,7 @@ class _CameraScreenState extends State<CameraScreen>
     controller.dispose();
 
     Navigator.of(context)
-        .pushNamed(Routes.create_edit_photo, arguments: filePath)
+        .pushNamed(Routes.create_photo, arguments: filePath)
         .then((val) {
       setupCameras();
     });

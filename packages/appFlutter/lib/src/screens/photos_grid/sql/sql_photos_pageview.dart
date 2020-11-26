@@ -92,13 +92,9 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          height: 100,
-          color: Colors.black,
-          child: TopUserView(
-            selectedIndex: selectedIndex,
-            totalCount: photos.length,
-          ),
+        TopUserView(
+          selectedIndex: selectedIndex,
+          totalCount: photos.length,
         ),
         Container(
           height: 100,

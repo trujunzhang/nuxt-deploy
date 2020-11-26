@@ -4,7 +4,8 @@ import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/auth_widget_builder.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/camera/screens/camera_screen/camera_screen.dart';
-import 'package:ieatta/core/constants/app_themes.dart';
+import 'package:ieatta/core/constants/dark_theme.dart';
+import 'package:ieatta/core/constants/light_theme.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/providers/language_provider.dart';
@@ -66,7 +67,10 @@ class _MyAppState extends State<MyApp> {
                   debugShowCheckedModeBanner: false,
                   locale: languageProviderRef.appLocale,
                   //List of all supported locales
-                  supportedLocales: [Locale('en', 'US')],
+                  supportedLocales: [
+                    Locale('en', 'US'),
+                    Locale('zh', 'CN'),
+                  ],
                   //These delegates make sure that the localization data for the proper language is loaded
                   localizationsDelegates: [
                     //A class which loads the translations from JSON files
@@ -92,8 +96,8 @@ class _MyAppState extends State<MyApp> {
                   },
                   title: Provider.of<Flavor>(context).toString(),
                   routes: Routes.routes,
-                  theme: AppThemes.lightTheme,
-                  darkTheme: AppThemes.darkTheme,
+                  theme: AppLightTheme.lightTheme,
+                  darkTheme: AppDarkTheme.darkTheme,
                   themeMode: themeProviderRef.isDarkModeOn
                       ? ThemeMode.dark
                       : ThemeMode.light,

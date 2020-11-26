@@ -23,7 +23,10 @@ class _UserRestaurantsState extends State<UserRestaurants> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final String _userIdArg = ModalRoute.of(context).settings.arguments;
+    final String _userIdArg = ModalRoute
+        .of(context)
+        .settings
+        .arguments;
     if (_userIdArg != null) {
       _userId = _userIdArg;
     }
@@ -33,7 +36,7 @@ class _UserRestaurantsState extends State<UserRestaurants> {
   @override
   Widget build(BuildContext context) {
     final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
+    Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -53,14 +56,18 @@ class _UserRestaurantsState extends State<UserRestaurants> {
           builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
             if (fbSnapshot.hasError) {}
             if (!fbSnapshot.hasData) {
-              return Container();
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
             restaurantList =
                 parseRestaurants(fbSnapshot.data.documents);
-            return (restaurantList.length != 0)
-                ? PageBody(restaurantList: restaurantList)
-                : SearchEmpty();
-            return Container();
+            if (restaurantList.length == 0) {
+              return Center(
+                child: Text('No Data'),
+              );
+            }
+            return PageBody(restaurantList: restaurantList);
           }),
     );
   }

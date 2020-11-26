@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
           if (user == null) {
             return Container();
           }
-          return FetchUser(userId: user.uid);
+          return FetchUser(userId: user.uid,isLoggedUser: true,);
         });
   }
 }

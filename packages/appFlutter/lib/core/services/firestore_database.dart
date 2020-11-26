@@ -47,7 +47,7 @@ class FirestoreDatabase {
   }
 
   //Method to create/update photoModel
-  Future<void> setPhoto(
+  Future<void> setNewPhoto(
       {@required String imagePath, @required ParseModelPhotos model}) async {
     // Step1: Save photo to Firebase collection.
     await _firestoreService.setData(
@@ -56,6 +56,22 @@ class FirestoreDatabase {
     );
     // Step2: Save photo's file to Cloudinary.
     await FirestorePhoto().savePhoto(imagePath: imagePath, model: model);
+  }
+
+  //Method to create/update photoModel
+  Future<void> setPhoto(ParseModelPhotos model) async {
+    await _firestoreService.setData(
+      path: FirestorePath.photo(model.uniqueId),
+      data: model.toMap(),
+    );
+  }
+
+  //Method to create/update photoModel
+  Future<void> updateUser(ParseModelUsers model) async {
+    await _firestoreService.setData(
+      path: FirestorePath.user(model.id),
+      data: model.toMap(),
+    );
   }
 
   //Method to retrieve photoModel object based on the given uniqueId
@@ -111,9 +127,8 @@ class FirestoreDatabase {
       _firestoreService.snapshotStream(
           path: path,
           queryBuilder: (Query query) {
-            return query
-                .where("creatorId", isEqualTo: userId)
-                .orderBy('updatedAt');
+            return query.where("creatorId", isEqualTo: userId);
+            // .orderBy('updatedAt');
           });
 
 //Method to mark all todoModel to be complete

@@ -5,6 +5,8 @@
   "author": "Trujun Zhang",
   "private": true,
   "scripts": {
+    "postinstall": "yarn copy-mock-models",
+    "copy-mock-models": "cpx \"../appDashboard/database/data/**/*.*\" ./database/data",
     "dev-debug": "node --inspect node_modules/.bin/nuxt-ts",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
@@ -37,6 +39,7 @@
     "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
+    "cpx": "^1.5.0",
     "@nuxt/types": "^2.14.7",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/dotenv": "^1.4.1",

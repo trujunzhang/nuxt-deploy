@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
 
 import '../hotel_app_theme.dart';
@@ -17,6 +18,7 @@ class _AppBarUIState extends State<AppBarUI> {
         child: Container(
       decoration: BoxDecoration(
         color: HotelAppTheme.buildLightTheme().backgroundColor,
+        // color: Colors.red,
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -25,7 +27,6 @@ class _AppBarUIState extends State<AppBarUI> {
         ],
       ),
       child: Padding(
-//        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         padding: EdgeInsets.only(
             top: MediaQuery.of(context).padding.top + 4, left: 8, right: 8),
         child: Row(
@@ -33,7 +34,8 @@ class _AppBarUIState extends State<AppBarUI> {
             Expanded(
               child: Center(
                 child: Text(
-                  'Explore',
+                  AppLocalizations.of(context).translate("mainUITitle"),
+                  // 'Explore',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
 
 import 'widget/top_user_view.dart';
@@ -86,24 +86,44 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
         child: Container());
   }
 
+  Widget _buildPhotoInfo() {
+    ParseModelPhotos photo = photos[selectedIndex];
+    var note = photo.extraNote;
+    // var note = "The Firebase different prototype and test environments, anything from one-off prototyping sessions to production-scale continuous integration workflows.";
+
+    if (note == "") {
+      return Container();
+    }
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      color: Colors.black,
+      child: Padding(
+          padding: EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 48),
+          child: SingleChildScrollView(
+            child: Text(
+              note,
+              style: TextStyle(color: Colors.white),
+            ),
+          )),
+    );
+  }
+
   Widget _buildFg() {
+    ParseModelPhotos photo = photos[selectedIndex];
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          height: 100,
-          color: Colors.black,
-          child: TopBaseUserView(
-            user: photos[selectedIndex],
-            selectedIndex: selectedIndex,
-            totalCount: photos.length,
-          ),
+        TopBaseUserView(
+          onEditPress:(){
+            Navigator.of(context)
+                .pushNamed(Routes.edit_photo, arguments: photo);
+          },
+          user: photo,
+          selectedIndex: selectedIndex,
+          totalCount: photos.length,
         ),
-        Container(
-          height: 100,
-//          color: Colors.yellow,
-        )
+        _buildPhotoInfo()
       ],
     );
   }

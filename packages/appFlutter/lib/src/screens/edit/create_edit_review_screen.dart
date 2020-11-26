@@ -137,12 +137,14 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
                           });
                         }
 
-                        ToastUtils.showToast('saved successfully');
+                        ToastUtils.showToast(AppLocalizations.of(context)
+                            .translate("toastForSaveSuccess"));
                         // Navigate
                         Navigator.of(context).pop(returnModel);
                       }
                     },
-              child: Text("Save"))
+              child: Text(AppLocalizations.of(context)
+                  .translate("editModelAppBarRightSaveTitle")))
         ],
       ),
       body: _buildForm(context, selectedStar),

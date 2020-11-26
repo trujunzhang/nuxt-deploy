@@ -1,29 +1,26 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/location_utils.dart';
-import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/logic/bloc.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
-class CreateEditRestaurantScreen extends StatefulWidget {
+class EditPhotoScreen extends StatefulWidget {
   @override
-  _CreateEditRestaurantScreenState createState() =>
-      _CreateEditRestaurantScreenState();
+  _EditPhotoScreenState createState() => _EditPhotoScreenState();
 }
 
-class _CreateEditRestaurantScreenState
-    extends State<CreateEditRestaurantScreen> {
-  TextEditingController _displayNameController;
+class _EditPhotoScreenState extends State<EditPhotoScreen> {
   TextEditingController _extraNoteController;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  ParseModelRestaurants _restaurant;
+  ParseModelPhotos _photo;
   bool _isButtonDisabled = false;
 
   @override
@@ -34,38 +31,26 @@ class _CreateEditRestaurantScreenState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final ParseModelRestaurants _restaurantModel =
+    final ParseModelPhotos _photoModel =
         ModalRoute.of(context).settings.arguments;
-    if (_restaurantModel != null) {
-      _restaurant = _restaurantModel;
-    }
+    _photo = _photoModel;
 
-    String _displayName = _restaurant != null ? _restaurant.displayName : "";
-    String _extraNote = _restaurant != null ? _restaurant.extraNote : "";
-    _displayNameController = TextEditingController(text: _displayName);
+    String _extraNote = _photo != null ? _photo.extraNote : "";
     _extraNoteController = TextEditingController(text: _extraNote);
-
-    bloc.displayNameVal(_displayName);
     bloc.noteVal(_extraNote);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: bloc.displayNameStream,
-        builder: (BuildContext context, AsyncSnapshot displayNameSnapshot) {
-          return StreamBuilder(
-              stream: bloc.noteStream,
-              builder: (BuildContext context, AsyncSnapshot noteSnapshot) {
-                String displayNameVal = displayNameSnapshot.data;
-                String noteVal = noteSnapshot.data;
-                return _buildBody(context, displayNameVal, noteVal);
-              });
+        stream: bloc.noteStream,
+        builder: (BuildContext context, AsyncSnapshot noteSnapshot) {
+          String noteVal = noteSnapshot.data;
+          return _buildBody(context, noteVal);
         });
   }
 
-  Widget _buildBody(
-      BuildContext context, String displayNameVal, String noteVal) {
+  Widget _buildBody(BuildContext context, String noteVal) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
@@ -76,11 +61,11 @@ class _CreateEditRestaurantScreenState
             Navigator.of(context).pop();
           },
         ),
-        title: Text(_restaurant != null
+        title: Text(_photo != null
             ? AppLocalizations.of(context)
-                .translate("restaurantsCreateEditAppBarTitleEditTxt")
+                .translate("photosCreateEditAppBarTitleEditTxt")
             : AppLocalizations.of(context)
-                .translate("restaurantsCreateEditAppBarTitleNewTxt")),
+                .translate("photosCreateEditAppBarTitleNewTxt")),
         actions: <Widget>[
           FlatButton(
               onPressed: _isButtonDisabled
@@ -93,31 +78,20 @@ class _CreateEditRestaurantScreenState
                           _isButtonDisabled = true;
                         });
 
-                        AuthUserModel authUserModel =
-                            await authProvider.getAuthUserModel();
-
-                        LocationData locationData = await getCurrentLocation();
-                        ParseModelRestaurants lastModel = _restaurant != null
-                            ? _restaurant
-                            : ParseModelRestaurants.emptyRestaurant(
-                                authUserModel: authUserModel,
-                                latitude: locationData.latitude,
-                                longitude: locationData.longitude,
-                              );
-
-                        ParseModelRestaurants nextModel =
-                            ParseModelRestaurants.updateRestaurant(
-                          model: lastModel,
-                          nextDisplayName: displayNameVal,
-                          nextExtraNote: noteVal,
+                        ParseModelPhotos nextModel =
+                            ParseModelPhotos.updatePhoto(
+                          model: _photo,
+                          nextExtraNote: (noteVal != null && noteVal.length > 0)
+                              ? noteVal
+                              : "",
                         );
 
                         try {
                           final firestoreDatabase =
                               Provider.of<FirestoreDatabase>(context,
                                   listen: false);
-                          await firestoreDatabase.setRestaurant(
-                              model: nextModel); // For Restaurant.
+                          await firestoreDatabase
+                              .setPhoto(nextModel); // For photo.
                         } catch (e) {
                           setState(() {
                             _isButtonDisabled = false;
@@ -127,34 +101,21 @@ class _CreateEditRestaurantScreenState
                         ToastUtils.showToast(AppLocalizations.of(context)
                             .translate("toastForSaveSuccess"));
                         // Navigate
-                        Navigator.of(context).pop(displayNameVal);
+                        Navigator.of(context).pop();
                       }
                     },
               child: Text(AppLocalizations.of(context)
                   .translate("editModelAppBarRightSaveTitle")))
         ],
       ),
-      body: Shortcuts(
-        shortcuts: <LogicalKeySet, Intent>{
-          // Pressing enter on the field will now move to the next field.
-          LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-        },
-        child: FocusTraversalGroup(
-          child: Form(
-            autovalidate: true,
-            onChanged: () {
-              Form.of(primaryFocus.context).save();
-            },
-            child: _buildForm(context),
-          ),
-        ),
+      body: Center(
+        child: _buildForm(context),
       ),
     );
   }
 
   @override
   void dispose() {
-    _displayNameController.dispose();
     _extraNoteController.dispose();
     super.dispose();
   }
@@ -169,24 +130,6 @@ class _CreateEditRestaurantScreenState
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TextFormField(
-                controller: _displayNameController,
-                onChanged: (String txt) {
-                  bloc.displayNameVal(txt);
-                },
-                style: Theme.of(context).textTheme.bodyText2,
-                validator: (value) => value.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("restaurantsCreateEditTaskNameValidatorMsg")
-                    : null,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).iconTheme.color, width: 2)),
-                  labelText: AppLocalizations.of(context)
-                      .translate("restaurantsCreateEditTaskNameTxt"),
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: TextFormField(
@@ -195,7 +138,7 @@ class _CreateEditRestaurantScreenState
                   },
                   controller: _extraNoteController,
                   style: Theme.of(context).textTheme.bodyText2,
-                  maxLines: 15,
+                  maxLines: 5,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -208,6 +151,10 @@ class _CreateEditRestaurantScreenState
                         vertical: 10.0, horizontal: 10.0),
                   ),
                 ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height - 100,
+                child: buildPhotoImage(_photo),
               ),
             ],
           ),

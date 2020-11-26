@@ -29,7 +29,7 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
     }
 
     Navigator.of(context)
-        .pushNamed(Routes.create_edit_photo, arguments: image.path);
+        .pushNamed(Routes.create_photo, arguments: image.path);
   }
 
   @override

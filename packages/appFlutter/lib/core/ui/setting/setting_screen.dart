@@ -5,23 +5,25 @@ import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'setting_bar_ui.dart';
 import 'setting_language_actions.dart';
 
 class SettingScreen extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate("settingAppTitle")),
-      ),
+      // appBar: AppBar(
+      //   title: Text(AppLocalizations.of(context).translate("settingAppTitle")),
+      // ),
       body: _buildLayoutSection(context),
     );
   }
 
   Widget _buildLayoutSection(BuildContext context) {
+    final authProvider =
+    Provider.of<AuthProvider>(context, listen: false);
     return ListView(
       children: <Widget>[
+        SettingBarUI(),
         ListTile(
           title: Text(
               AppLocalizations.of(context).translate("settingThemeListTitle")),
@@ -51,7 +53,8 @@ class SettingScreen extends StatelessWidget {
               .translate("settingLogoutListSubTitle")),
           trailing: RaisedButton(
               onPressed: () {
-                _confirmSignOut(context);
+                showAlertDialog(context, authProvider);
+                // _confirmSignOut(context);
               },
               child: Text(AppLocalizations.of(context)
                   .translate("settingLogoutButton"))),
@@ -93,4 +96,41 @@ class SettingScreen extends StatelessWidget {
               ],
             ));
   }
+
+
+  showAlertDialog(BuildContext context, AuthProvider authProvider) {
+    // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text(AppLocalizations.of(context)
+          .translate("alertDialogCancelBtn")),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text(AppLocalizations.of(context)
+          .translate("alertDialogYesBtn")),
+      onPressed: () async {
+        await authProvider.signOut();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(AppLocalizations.of(context).translate("alertDialogTitle")),
+      content: Text(
+          AppLocalizations.of(context).translate("alertDialogMessage")),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }

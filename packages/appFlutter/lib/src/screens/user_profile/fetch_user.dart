@@ -7,8 +7,10 @@ import 'package:provider/provider.dart';
 
 class FetchUser extends StatelessWidget {
   final String userId;
+  final bool isLoggedUser;
 
-  const FetchUser({Key key, @required this.userId}) : super(key: key);
+  const FetchUser({Key key, @required this.userId, this.isLoggedUser = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class FetchUser extends StatelessWidget {
             return SummaryPage(
               userData: snapshot.data,
               userMenus: menus,
+              isLoggedUser: isLoggedUser,
             );
           } else {
             return Container();

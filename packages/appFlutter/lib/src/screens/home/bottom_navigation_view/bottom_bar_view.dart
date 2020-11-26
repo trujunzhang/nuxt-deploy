@@ -36,13 +36,22 @@ class _BottomBarViewState extends State<BottomBarView>
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
-        TabBg(
-            animationController: animationController,
-            tabIconsList: widget.tabIconsList,
-            changeIndex: widget.changeIndex),
-        TabFg(
-          animationController: animationController,
-          addClick: widget.addClick,
+        // TabBg(
+        //     animationController: animationController,
+        //     tabIconsList: widget.tabIconsList,
+        //     changeIndex: widget.changeIndex),
+        Container(
+          // color: Colors.red,
+          padding: const EdgeInsets.only(right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TabFg(
+                animationController: animationController,
+                addClick: widget.addClick,
+              )
+            ],
+          ),
         )
       ],
     );

@@ -11,7 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/lang/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/edit/user/user_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/edit/user/user_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +133,27 @@
       <workItem from="1605489869005" duration="4980000" />
       <workItem from="1605508085701" duration="1144000" />
       <workItem from="1605509990549" duration="266000" />
+      <workItem from="1605581275401" duration="523000" />
+      <workItem from="1605752987504" duration="681000" />
+      <workItem from="1605772833559" duration="466000" />
+      <workItem from="1605775216909" duration="134000" />
+      <workItem from="1605776785409" duration="715000" />
+      <workItem from="1605834327903" duration="1269000" />
+      <workItem from="1605859728216" duration="1230000" />
+      <workItem from="1605939827565" duration="812000" />
+      <workItem from="1606007558917" duration="3677000" />
+      <workItem from="1606028453827" duration="732000" />
+      <workItem from="1606091916120" duration="929000" />
+      <workItem from="1606093551841" duration="253000" />
+      <workItem from="1606095560809" duration="645000" />
+      <workItem from="1606096802813" duration="1328000" />
+      <workItem from="1606110179013" duration="3580000" />
+      <workItem from="1606118413448" duration="946000" />
+      <workItem from="1606198865454" duration="2548000" />
+      <workItem from="1606206066646" duration="1528000" />
+      <workItem from="1606210089200" duration="1381000" />
+      <workItem from="1606287342621" duration="1113000" />
+      <workItem from="1606289723495" duration="2405000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -280,27 +304,29 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="220" y="109" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1599894810273" />
-    <state x="141" y="39" key="SettingsEditor" timestamp="1603856540943">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603856540943" />
-    <state width="750" height="588" key="SwitcherDM" timestamp="1605494884617">
+    <state x="212" y="76" key="SettingsEditor" timestamp="1606028907748">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1603009043492" />
-    <state width="750" height="601" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1605427728802" />
-    <state width="750" height="588" key="SwitcherDM/0.25.1920.1055@0.25.1920.1055" timestamp="1605494884617" />
+    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603856540943" />
+    <state x="212" y="76" key="SettingsEditor/0.25.1920.1055@0.25.1920.1055" timestamp="1606028907748" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1606211150525">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1606211150525" />
+    <state width="750" height="601" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1606207748703" />
+    <state width="750" height="588" key="SwitcherDM/0.25.1920.1055@0.25.1920.1055" timestamp="1606029050695" />
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603086642872">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602236079383" />
     <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1603086642872" />
-    <state x="512" y="229" width="1166" height="647" key="find.popup" timestamp="1605509109757">
-      <screen x="0" y="25" width="1920" height="1055" />
+    <state x="512" y="209" width="1166" height="662" key="find.popup" timestamp="1606290733355">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1603084800625" />
-    <state x="512" y="209" width="1166" height="662" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605423048776" />
-    <state x="512" y="229" width="1166" height="647" key="find.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1605509109757" />
+    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606287483141" />
+    <state x="512" y="209" width="1166" height="662" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606290733355" />
+    <state x="341" y="175" width="778" height="490" key="find.popup/0.25.1280.775@0.25.1280.775" timestamp="1606096136140" />
+    <state x="512" y="229" width="1166" height="647" key="find.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1606092721475" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

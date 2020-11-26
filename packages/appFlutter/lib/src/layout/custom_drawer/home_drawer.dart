@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,6 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  List<DrawerList> drawerList = DrawerList.getDrawerListArray();
 
   @override
   void initState() {
@@ -32,6 +32,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    List<DrawerList> drawerList = DrawerList.getDrawerListArray(context);
     final authProvider = Provider.of<AuthProvider>(context);
     var loggedContainer = Container(
         width: double.infinity,
@@ -101,22 +102,24 @@ class _HomeDrawerState extends State<HomeDrawer> {
   showAlertDialog(BuildContext context, AuthProvider authProvider) {
     // set up the buttons
     Widget cancelButton = FlatButton(
-      child: Text("Cancel"),
+      child: Text(AppLocalizations.of(context)
+          .translate("alertDialogCancelBtn")),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
     Widget continueButton = FlatButton(
-      child: Text("Continue"),
+      child: Text(AppLocalizations.of(context)
+          .translate("alertDialogYesBtn")),
       onPressed: () async {
         await authProvider.signOut();
       },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Alert"),
+      title: Text(AppLocalizations.of(context).translate("alertDialogTitle")),
       content: Text(
-          "Would you like to continue to log out?"),
+          AppLocalizations.of(context).translate("alertDialogMessage")),
       actions: [
         cancelButton,
         continueButton,

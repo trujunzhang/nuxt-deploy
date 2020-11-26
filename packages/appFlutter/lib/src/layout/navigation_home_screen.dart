@@ -5,6 +5,7 @@ import 'package:ieatta/src/layout/custom_drawer/drawer_user_controller.dart';
 import 'package:ieatta/src/layout/sidebar/feedback_screen.dart';
 import 'package:ieatta/src/layout/sidebar/help_screen.dart';
 import 'package:ieatta/src/layout/sidebar/invite_friend_screen.dart';
+import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/home/fitness_app_home_screen.dart';
 import 'package:ieatta/src/screens/user_profile/profile.dart';
 
@@ -22,8 +23,9 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    screenView = FitnessAppHomeScreen();
+    // screenView = FitnessAppHomeScreen();
     // screenView = Profile();
+    screenView = EditUserScreen();
 
     super.initState();
   }

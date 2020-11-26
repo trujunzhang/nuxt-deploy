@@ -46,7 +46,7 @@ bool matchLocation(DocumentSnapshot firstVal, LocationData secondVal) {
 //  if (firstVal.data['displayName'] == 'city run') {
 //    print('distance: ' + distance.toString());
 //  }
-  return distance <= 1.0;
+  return distance <= 0.1;
 }
 
 List<ParseModelRestaurants> getSearchedExploreList(

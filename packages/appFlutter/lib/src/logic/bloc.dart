@@ -14,6 +14,10 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   var _noteController = BehaviorSubject<String>();
   var _rateController = BehaviorSubject<double>();
 
+  // For user
+  var _firstNameController = BehaviorSubject<String>();
+  var _lastNameController = BehaviorSubject<String>();
+
   // The following is values.
   Function(bool) get gpsTrackStatus => _gpsTrackController.sink.add;
   Function(String) get sinkColorName => _themeController.sink.add;
@@ -23,6 +27,10 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   Function(String) get displayNameVal => _displayNameController.sink.add;
   Function(String) get noteVal => _noteController.sink.add;
   Function(double) get rateVal => _rateController.sink.add;
+
+  // For user
+  Function(String) get firstNameVal => _firstNameController.sink.add;
+  Function(String) get lastNameVal => _lastNameController.sink.add;
 
   // The following is Stream.
   Stream<bool> get gpsTrackStatusStream => _gpsTrackController.stream;
@@ -34,6 +42,10 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   Stream<String> get noteStream=> _noteController.stream;
   Stream<double> get rateStream=> _rateController.stream;
 
+  // For user
+  Stream<String> get firstNameStream=> _firstNameController.stream;
+  Stream<String> get lastNameStream=> _lastNameController.stream;
+
   @override
   dispose() {
     _gpsTrackController?.close();
@@ -43,6 +55,10 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
 
     _displayNameController?.close();
     _noteController?.close();
+
+    // For user
+    _firstNameController?.close();
+    _lastNameController?.close();
   }
 }
 

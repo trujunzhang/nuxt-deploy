@@ -47,7 +47,7 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
           },
         ),
         title: Text(AppLocalizations.of(context)
-            .translate("photosLocalAppBarTitleTxt")),
+            .translate("photosBusinessPhotoAppBarTitleTxt")),
         actions: <Widget>[],
       ),
       body: buildPhotos(context),
@@ -68,7 +68,11 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
 
           List<ParseModelPhotos> photos = parsePhotosFilterByRestaurant(
               datas: fbSnapshot.data.documents, restaurant: restaurant);
-
+          if (photos.length == 0) {
+            return Center(
+              child: Text('No Data'),
+            );
+          }
           return PhotosBody(
             photoList: photos,
           );
