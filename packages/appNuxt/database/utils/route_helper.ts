@@ -18,11 +18,9 @@ export class RouteHelper {
    * @param query
    */
   static convertQueryToString (query: object) {
-    const keys = Object.keys(query)
-    const rows =
-      keys.map((key) => {
-        return `${key}=${query[key]}`
-      })
+    const rows = Object.keys(query).map((key) => {
+      return `${key}=${query[key]}`
+    })
 
     return rows.join('&')
   }
@@ -35,6 +33,10 @@ export class RouteHelper {
     } else {
       nextQuery.q = searchReviews
     }
-    return `/${path}?q=${searchReviews}`
+    const convertQueryToString = RouteHelper.convertQueryToString(nextQuery)
+    if (convertQueryToString === '') {
+      return path
+    }
+    return `${path}?${convertQueryToString}`
   }
 }
