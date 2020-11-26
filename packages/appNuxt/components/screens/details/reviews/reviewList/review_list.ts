@@ -8,6 +8,7 @@ import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_i
 import ReviewPop from '~/components/screens/details/reviews/review_pop.vue'
 import NewReviewPanel from '~/components/screens/details/reviews/newReviewPanel/new_review_panel.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { RouteHelper } from '~/database/utils/route_helper'
 
 @Component({
   directives: {
@@ -58,23 +59,24 @@ export default class ReviewsList extends Vue {
   }
 
   onSearchReviewsClick () {
-    const query: any = Object.assign(
-      this.$route.query,
-      {
-        q: this.searchReviews
-      }
-    )
-    if (this.searchReviews === '') {
-      delete query.q
-    }
-    // this.$router.push({ path: this.$route.path, query }, () => {})
-    this.$router.push({
-      path: this.$route.path,
-      query: {
-        wh: 'djzhang'
-      }
-    }, () => {
-    })
+    // const query: any = Object.assign(
+    //   this.$route.query,
+    //   {
+    //     q: this.searchReviews
+    //   }
+    // )
+    // if (this.searchReviews === '') {
+    //   delete query.q
+    // }
+    const location = RouteHelper.getReviewSearchLocation(this.$route, this.searchReviews)
+    this.$router.push(location, () => {})
+    // this.$router.push({
+    //   path: this.$route.path,
+    //   query: {
+    //     wh: 'djzhang'
+    //   }
+    // }, () => {
+    // })
   }
 
   async firstPageLoad () {
@@ -168,6 +170,6 @@ export default class ReviewsList extends Vue {
 
   @Watch('$route')
   async routeChanged (to: any, from: any) {
-    await this.resetPage()
+    // await this.resetPage()
   }
 }

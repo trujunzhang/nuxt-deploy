@@ -30,6 +30,7 @@
             <div
               class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-3__373c0__nws1y vertical-align-middle__373c0__1SDTo border-color--default__373c0__3-ifU"
             >
+              <!-- Search -->
               <div
                 class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
               >
@@ -95,6 +96,7 @@
                   </div>
                 </div>
               </div>
+              <!-- Sort -->
               <div
                 class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
               >
