@@ -32,6 +32,7 @@ export default class ReviewsList extends Vue {
 
   public sortTitle: string = 'Yelp Sort'
   public showPopMenu: boolean = false
+
   // public showPopMenu: boolean = true
 
   onClickOutside (event) {
@@ -51,13 +52,12 @@ export default class ReviewsList extends Vue {
     rating_asc: 'Lowest Rated'
   }
 
-  onSortItemChanged (tag:string) {
+  onSortItemChanged (tag: string) {
     this.showPopMenu = false
     this.sortTitle = this.sortTitles[tag]
   }
 
   onSearchReviewsClick () {
-    // const query = this.searchReviews
     const query: any = Object.assign(
       this.$route.query,
       {
@@ -67,7 +67,14 @@ export default class ReviewsList extends Vue {
     if (this.searchReviews === '') {
       delete query.q
     }
-    this.$router.push({ path: this.$route.path, query }, () => {})
+    // this.$router.push({ path: this.$route.path, query }, () => {})
+    this.$router.push({
+      path: this.$route.path,
+      query: {
+        wh: 'djzhang'
+      }
+    }, () => {
+    })
   }
 
   async firstPageLoad () {
@@ -160,7 +167,7 @@ export default class ReviewsList extends Vue {
   }
 
   @Watch('$route')
-  async routeChanged (to: any, from:any) {
+  async routeChanged (to: any, from: any) {
     await this.resetPage()
   }
 }

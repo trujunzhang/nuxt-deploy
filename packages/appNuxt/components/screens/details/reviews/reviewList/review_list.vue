@@ -52,7 +52,6 @@
                         type="text"
                         name="query"
                         value=""
-                        aria-labelledby="inline-search-0a35177c-04ac-4ca8-80ca-4ba10a05b67b"
                         class="input__373c0__1kQwh no-margin__373c0__2tp2T"
                         placeholder="Search within reviews"
                       >
