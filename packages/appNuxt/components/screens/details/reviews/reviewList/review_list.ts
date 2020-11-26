@@ -43,7 +43,7 @@ export default class ReviewsList extends Vue {
   searchQuery (query: any) {
     const reviewQ = this.$route.query.q || ''
     if (reviewQ !== '') { // Have review query.
-      return query.where('body', '<', reviewQ)
+      return query.where('body', '<', reviewQ).orderBy('body')
     }
     return query
   }
@@ -112,6 +112,7 @@ export default class ReviewsList extends Vue {
 
   async resetPage () {
     this.items = []
+    this.isLoaded = false
     this.isLoading = false
     this.lastVisible = null
 
@@ -120,6 +121,6 @@ export default class ReviewsList extends Vue {
 
   @Watch('$route')
   async routeChanged (to: any, from: any) {
-    // await this.resetPage()
+    await this.resetPage()
   }
 }
