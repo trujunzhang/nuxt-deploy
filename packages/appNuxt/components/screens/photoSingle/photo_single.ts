@@ -13,7 +13,6 @@ import { FBCollections } from '~/database/constant'
 })
 export default class PhotoSingle extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
-  // public items: Array<IFBPhoto> = loadPhotos()
   public items: Array<IFBPhoto> = []
   public photosLen: number | null = null
   public photoIndex: number = 0

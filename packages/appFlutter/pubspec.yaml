@@ -44,8 +44,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # Firebase(cloud_store,auth)
-  cloud_firestore: ^0.14.3+1 # BoringSSL_GRPC(0.0.3)
-  firebase_auth: ^0.18.3+1
+  cloud_firestore: ^0.13.5 # BoringSSL_GRPC(0.0.3)
+  firebase_auth: ^0.16.0
   # Third login
   flutter_auth_buttons: ^0.8.0
   google_sign_in: ^4.4.4

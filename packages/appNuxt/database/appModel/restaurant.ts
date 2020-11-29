@@ -47,6 +47,15 @@ export class ParseModelRestaurants {
     return restaurant
   }
 
+  static updateCover (
+    model: IFBRestaurant,
+    originalUrl: string): IFBRestaurant {
+    model.originalUrl = originalUrl
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate()
+
+    return model
+  }
+
   static updateRestaurant (
     model: IFBRestaurant,
     nextDisplayName: string,

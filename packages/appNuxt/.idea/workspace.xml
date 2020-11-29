@@ -12,8 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_search.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/reviews/reviewList/review_search.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,6 +311,10 @@
       <workItem from="1606205634830" duration="144000" />
       <workItem from="1606355656562" duration="8230000" />
       <workItem from="1606378009585" duration="1048000" />
+      <workItem from="1606464206098" duration="179000" />
+      <workItem from="1606467199435" duration="35000" />
+      <workItem from="1606467285140" duration="1554000" />
+      <workItem from="1606550734159" duration="1007000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
@@ -769,20 +774,20 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1601203491640" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1606377329326">
+    <state width="500" height="445" key="SwitcherDM" timestamp="1606553189429">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1606377329326" />
+    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1606553189429" />
     <state width="750" height="601" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1604470445567" />
     <state x="100" y="23" width="1080" height="697" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602412333744">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="100" y="23" width="1080" height="697" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602412333744" />
     <state x="100" y="13" width="1080" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1601378777463" />
-    <state x="341" y="155" width="765" height="548" key="find.popup" timestamp="1606375600337">
+    <state x="341" y="155" width="765" height="548" key="find.popup" timestamp="1606553419677">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="341" y="155" width="765" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606375600337" />
+    <state x="341" y="155" width="765" height="548" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606553419677" />
     <state x="512" y="209" width="1148" height="740" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606205748402" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1601612382422">
       <screen x="0" y="0" width="1280" height="800" />

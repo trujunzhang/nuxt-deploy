@@ -14,7 +14,6 @@
 
             <ul class="upload-previews" style="min-height: 226px;max-width: 226px;">
               <li class="upload-preview photo-box--bordered">
-
                 <div class="photo-box photo-box--interactive">
                   <div
                     class="photo-box-img photo-box--background"
@@ -36,7 +35,8 @@
                     </div>
                     <div
                       v-if="false"
-                      class="photo-box_status-icon photo-box_status-icon--success photo-box_status-indicator--success u-pull-right">
+                      class="photo-box_status-icon photo-box_status-icon--success photo-box_status-indicator--success u-pull-right"
+                    >
                       <span
                         style="width: 24px; height: 24px;"
                         class="icon icon--24-checkmark icon--size-24 icon--inverse icon--fallback-inverted"
@@ -50,7 +50,8 @@
                     </div>
                     <div
                       v-if="showAlertMessage"
-                      class="photo-box_status-icon photo-box_status-indicator--error u-pull-right">
+                      class="photo-box_status-icon photo-box_status-indicator--error u-pull-right"
+                    >
                       <span
                         style="width: 24px; height: 24px;"
                         class="icon icon--24-exclamation icon--size-24 icon--inverse icon--fallback-inverted"
@@ -67,7 +68,8 @@
 
                 <div
                   v-if="showAlertMessage"
-                  class="upload-preview_info upload-preview_info--error yform-help-inline yform-help-invalid">
+                  class="upload-preview_info upload-preview_info--error yform-help-inline yform-help-invalid"
+                >
                   <div>An error has occured in the upload, please try again later.</div>
                 </div>
               </li>
@@ -77,7 +79,8 @@
 
         <div
           v-if="showAlertMessage"
-          class="upload-fail-area">
+          class="upload-fail-area"
+        >
           Some of your photos were not uploaded successfully.
           <a href="/user_photos/add" class="ybtn ybtn--primary ybtn--small upload-continue-button">Continue</a>
         </div>

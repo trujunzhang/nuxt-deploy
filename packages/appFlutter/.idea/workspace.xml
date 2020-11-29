@@ -11,10 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/edit/user/user_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/edit/user/user_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +151,7 @@
       <workItem from="1606210089200" duration="1381000" />
       <workItem from="1606287342621" duration="1113000" />
       <workItem from="1606289723495" duration="2405000" />
+      <workItem from="1606454451245" duration="163000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
