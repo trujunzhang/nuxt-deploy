@@ -45,7 +45,7 @@ void main() async {
           ),
         ],
         child: MyApp(
-          databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
+          databaseBuilder: (_, uid) => FirestoreDatabase(),
         ),
       ),
     );

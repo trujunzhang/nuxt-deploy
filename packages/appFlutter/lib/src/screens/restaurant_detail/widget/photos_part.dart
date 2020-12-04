@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/camera/screens/types.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
@@ -40,9 +41,8 @@ class _PhotosPartState extends State<PhotosPart> {
     return Center(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(
-            Routes.app_camera,
-          );
+          Navigator.of(context).pushNamed(Routes.app_camera,
+              arguments: CAMERA_EVENT.TAKE_FOR_RESTAURANT);
         },
         child: Icon(Icons.add_a_photo, size: 50,),
       ),

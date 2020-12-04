@@ -5,12 +5,17 @@ import 'package:ieatta/camera/screens/camera_screen/widget/thumbnail_widget.dart
 import 'camera_button.dart';
 
 class CameraOptions extends StatefulWidget {
-  CameraOptions({Key key, this.takePicture, this.imagePath, this.switchCamera})
+  CameraOptions({Key key,
+    @required this.takePicture,
+    @required this.imagePath,
+    @required this.switchCamera,
+    @required this.afterTakeHook})
       : super(key: key);
 
   final Function takePicture;
   final String imagePath;
   final Function switchCamera;
+  final Function afterTakeHook;
 
   @override
   _CameraOptionsState createState() => _CameraOptionsState();
@@ -46,6 +51,7 @@ class _CameraOptionsState extends State<CameraOptions> {
             children: <Widget>[
               ThumbnailWidget(
                 imagePath: widget.imagePath,
+                afterTakeHook: widget.afterTakeHook,
                 size: 36.0,
               ),
               Expanded(

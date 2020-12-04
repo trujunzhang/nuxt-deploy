@@ -25,8 +25,7 @@ setAllTodoComplete is require to change all todos item to have the complete stat
 changed to true.
  */
 class FirestoreDatabase {
-  FirestoreDatabase({@required this.uid}) : assert(uid != null);
-  final String uid;
+  FirestoreDatabase() ;
 
   final _firestoreService = FirestoreService.instance;
 

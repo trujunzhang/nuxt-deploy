@@ -10,6 +10,7 @@ import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'bottom_navigation_view/models/tabIcon_data.dart';
 import 'fitness_app_theme.dart';
 import 'no_permission_view.dart';
+import 'package:ieatta/camera/screens/types.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   @override
@@ -135,7 +136,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
               Container(
                 color: Colors.transparent,
                 padding: EdgeInsets.only(
-                    bottom: 64 + MediaQuery.of(context).padding.bottom),
+                    bottom: MediaQuery.of(context).padding.bottom),
                 child: tabBody,
               ),
               bottomBar(),
@@ -153,9 +154,8 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         BottomBarView(
           tabIconsList: tabIconsList,
           addClick: () {
-            Navigator.of(context).pushNamed(
-              Routes.app_camera,
-            );
+            Navigator.of(context).pushNamed(Routes.app_camera,
+                arguments: CAMERA_EVENT.TAKE_FOR_RESTAURANT);
           },
           changeIndex: changeIndex,
         ),

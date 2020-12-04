@@ -44,6 +44,7 @@
 	"settingThemeListTitle": "黑暗主题",
 	"splashTitle": "欢迎来到 ",
 	"toastForSaveSuccess": "保存成功",
+    "toastForSaveFailure": "保存失败",
 	"todosCreateEditCompletedTxt": "完成了吗？",
 	"todosDismissibleMsgTxt": "删除",
 	"todosEmptyBottomDefaultMsgTxt": "添加新项目以开始使用",
@@ -61,5 +62,12 @@
 	"usersCreateEditFirstNameTxt": "名字",
 	"usersCreateEditFirstNameValidatorMsg": "名不能为空",
 	"usersCreateEditLastNameTxt": "姓",
-	"usersCreateEditLastNameValidatorMsg": "姓氏不能为空"
+	"usersCreateEditLastNameValidatorMsg": "姓氏不能为空",
+    "drawerMenuItemHome": "主页",
+    "drawerMenuItemProfile": "个人资料",
+    "drawerMenuItemSettings": "设置",
+    "drawerMenuItemInvite": "邀请朋友",
+    "drawerMenuItemHelp": "帮助",
+    "drawerMenuItemAbout": "关于",
+    "photosUploading": "正在上传..."
 }

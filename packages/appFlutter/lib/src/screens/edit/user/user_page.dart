@@ -2,12 +2,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
 import 'package:ieatta/src/logic/bloc.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
+import 'package:ieatta/camera/screens/types.dart';
 
 class UserPage extends StatefulWidget {
   final ParseModelUsers loggedUser;
@@ -24,6 +26,7 @@ class _UserPageState extends State<UserPage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isButtonDisabled = false;
+  String userWithOriginalUrl;
 
   getFirstName() {
     return widget.loggedUser.username.split(' ')[0];
@@ -41,6 +44,10 @@ class _UserPageState extends State<UserPage> {
     __lastNameController = TextEditingController(text: getLastName());
     bloc.firstNameVal(getFirstName());
     bloc.lastNameVal(getLastName());
+
+    setState(() {
+      userWithOriginalUrl = widget.loggedUser.originalUrl;
+    });
   }
 
   @override
@@ -100,11 +107,13 @@ class _UserPageState extends State<UserPage> {
                                 .updateUser(nextModel); // For Restaurant.
 
                             // Update Firebase's user's name.
-                            FirebaseUser user = await FirebaseAuth.instance.currentUser();
-                            UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
+                            FirebaseUser user =
+                                await FirebaseAuth.instance.currentUser();
+                            UserUpdateInfo userUpdateInfo =
+                                new UserUpdateInfo();
                             userUpdateInfo.displayName = displayName;
                             userUpdateInfo.photoUrl = user.photoUrl;
-                            user.updateProfile(userUpdateInfo);
+                            await user.updateProfile(userUpdateInfo);
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
@@ -139,7 +148,16 @@ class _UserPageState extends State<UserPage> {
               FlatButton(
                   child: const Text('(Add/Edit)'),
                   textColor: Color(0xff0073bb),
-                  onPressed: () async {})
+                  onPressed: () async {
+                    final result = await Navigator.of(context).pushNamed(
+                        Routes.app_camera,
+                        arguments: CAMERA_EVENT.TAKE_FOR_USER);
+                    if (result != null) {
+                      setState(() {
+                        userWithOriginalUrl = result;
+                      });
+                    }
+                  })
             ],
           ),
         ),
@@ -147,7 +165,7 @@ class _UserPageState extends State<UserPage> {
           height: 120,
           width: 120,
           padding: EdgeInsets.only(left: 16),
-          child: buildParseModelUsersImage(widget.loggedUser),
+          child: buildParseModelUsersImageWithOriginalUrl(userWithOriginalUrl),
         ),
         Shortcuts(
           shortcuts: <LogicalKeySet, Intent>{

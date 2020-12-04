@@ -8,7 +8,8 @@ class TopBaseUserView extends StatelessWidget {
       {Key key,
       @required this.user,
       @required this.selectedIndex,
-      @required this.totalCount, this.onEditPress})
+      @required this.totalCount,
+      this.onEditPress})
       : super(key: key);
   final AvatarUser user;
   final int selectedIndex;
@@ -84,7 +85,7 @@ class TopBaseUserView extends StatelessWidget {
               children: [
                 _buildTitle(context),
                 _buildPageIndex(),
-                _buildRightEditBtn(context)
+                if (onEditPress != null) _buildRightEditBtn(context)
               ],
             )));
   }

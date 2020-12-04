@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/app_localizations.dart';
 
 enum DrawerIndex {
   HOME,
@@ -31,27 +32,27 @@ class DrawerList {
     return [
       DrawerList(
         index: DrawerIndex.HOME,
-        labelName: 'Home',
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemHome"),
         icon: Icon(Icons.home),
       ),
       DrawerList(
         index: DrawerIndex.Profile,
-        labelName: 'Profile',
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemProfile"),
         icon: Icon(Icons.verified_user),
       ),
       DrawerList(
         index: DrawerIndex.Settings,
-        labelName: 'Settings',
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemSettings"),
         icon: Icon(Icons.settings),
       ),
       DrawerList(
         index: DrawerIndex.Invite,
-        labelName: 'Invite Friend',
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemInvite"),
         icon: Icon(Icons.group),
       ),
       DrawerList(
         index: DrawerIndex.Help,
-        labelName: 'Help',
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemHelp"),
         icon: Icon(Icons.help),
       ),
       // DrawerList(
@@ -59,11 +60,11 @@ class DrawerList {
       //   labelName: 'Rate the app',
       //   icon: Icon(Icons.share),
       // ),
-      // DrawerList(
-      //   index: DrawerIndex.About,
-      //   labelName: 'About Us',
-      //   icon: Icon(Icons.info),
-      // ),
+      DrawerList(
+        index: DrawerIndex.About,
+        labelName: AppLocalizations.of(context).translate("drawerMenuItemAbout"),
+        icon: Icon(Icons.info),
+      ),
     ];
   }
 }

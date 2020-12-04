@@ -3,19 +3,15 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
-import 'package:ieatta/src/screens/edit/user/user_page.dart';
 import 'package:provider/provider.dart';
 
-class EditUserScreen extends StatefulWidget {
-  @override
-  _EditUserScreenState createState() => _EditUserScreenState();
-}
+import 'camera_uploading_panel.dart';
 
-class _EditUserScreenState extends State<EditUserScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class CameraUploadingUser extends StatelessWidget {
+  final String imagePath;
+
+  const CameraUploadingUser({Key key, @required this.imagePath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +29,13 @@ class _EditUserScreenState extends State<EditUserScreen> {
               future: firestoreDatabase.getUser(userId: user.uid),
               builder: (context, AsyncSnapshot<ParseModelUsers> snapshot) {
                 if (snapshot.hasData) {
-                  return UserPage(
-                    loggedUser: snapshot.data,
-                  );
+                  return CameraUploadingPanel(
+                      loggedUser: snapshot.data, // User model.
+                      imagePath: imagePath);
                 } else {
                   return Container();
                 }
               });
         });
   }
-
 }

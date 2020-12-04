@@ -11,7 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/layout/sidebar/about_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/layout/sidebar/about_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +36,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -152,6 +157,17 @@
       <workItem from="1606287342621" duration="1113000" />
       <workItem from="1606289723495" duration="2405000" />
       <workItem from="1606454451245" duration="163000" />
+      <workItem from="1606694089349" duration="472000" />
+      <workItem from="1606720408839" duration="405000" />
+      <workItem from="1606724154247" duration="360000" />
+      <workItem from="1606962576578" duration="79000" />
+      <workItem from="1606962720558" duration="93000" />
+      <workItem from="1606963452099" duration="3952000" />
+      <workItem from="1606976508817" duration="5926000" />
+      <workItem from="1606984668278" duration="142000" />
+      <workItem from="1607055283883" duration="479000" />
+      <workItem from="1607063708716" duration="115000" />
+      <workItem from="1607069533682" duration="1096000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -296,38 +312,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="xxx" />
     <option name="LAST_COMMIT_MESSAGE" value="xxx" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="220" y="109" key="RollbackChangesDialog" timestamp="1599894810273">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="220" y="109" key="RollbackChangesDialog/0.0.1280.800@0.0.1280.800" timestamp="1599894810273" />
-    <state x="212" y="76" key="SettingsEditor" timestamp="1606028907748">
-      <screen x="0" y="25" width="1920" height="1055" />
-    </state>
-    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1603856540943" />
-    <state x="212" y="76" key="SettingsEditor/0.25.1920.1055@0.25.1920.1055" timestamp="1606028907748" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1606211150525">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1606211150525" />
-    <state width="750" height="601" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1606207748703" />
-    <state width="750" height="588" key="SwitcherDM/0.25.1920.1055@0.25.1920.1055" timestamp="1606029050695" />
-    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603086642872">
-      <screen x="0" y="23" width="1280" height="777" />
-    </state>
-    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1602236079383" />
-    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1603086642872" />
-    <state x="512" y="209" width="1166" height="662" key="find.popup" timestamp="1606290733355">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="341" y="155" width="777" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1606287483141" />
-    <state x="512" y="209" width="1166" height="662" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606290733355" />
-    <state x="341" y="175" width="778" height="490" key="find.popup/0.25.1280.775@0.25.1280.775" timestamp="1606096136140" />
-    <state x="512" y="229" width="1166" height="647" key="find.popup/0.25.1920.1055@0.25.1920.1055" timestamp="1606092721475" />
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1600338544771">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1600338544771" />
   </component>
 </project>

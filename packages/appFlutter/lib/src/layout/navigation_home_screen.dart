@@ -10,6 +10,7 @@ import 'package:ieatta/src/screens/home/fitness_app_home_screen.dart';
 import 'package:ieatta/src/screens/user_profile/profile.dart';
 
 import 'custom_drawer/draw_model.dart';
+import 'sidebar/about_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   @override
@@ -23,9 +24,9 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    // screenView = FitnessAppHomeScreen();
-    // screenView = Profile();
-    screenView = EditUserScreen();
+    screenView = FitnessAppHomeScreen(); // used
+    // screenView = Profile(); // test
+    // screenView = EditUserScreen(); // test
 
     super.initState();
   }
@@ -75,7 +76,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
         setState(() {
-          screenView = FeedbackScreen();
+          // screenView = FeedbackScreen();
+        });
+      } else if (drawerIndex == DrawerIndex.About) {
+        setState(() {
+          screenView = AboutScreen();
         });
       } else if (drawerIndex == DrawerIndex.Invite) {
         setState(() {

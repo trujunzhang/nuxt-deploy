@@ -6,8 +6,13 @@ import 'package:image_picker/image_picker.dart';
 class ThumbnailWidget extends StatefulWidget {
   final double size;
   final String imagePath;
+  final Function afterTakeHook;
 
-  const ThumbnailWidget({Key key, @required this.imagePath, this.size = 32.0})
+  const ThumbnailWidget({Key key,
+    @required this.imagePath,
+    @required this.afterTakeHook,
+    this.size = 32.0,
+  })
       : super(key: key);
 
   @override
@@ -27,9 +32,8 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
     if (image == null) {
       return;
     }
-
-    Navigator.of(context)
-        .pushNamed(Routes.create_photo, arguments: image.path);
+    widget.afterTakeHook(image.path, (val) {
+    });
   }
 
   @override

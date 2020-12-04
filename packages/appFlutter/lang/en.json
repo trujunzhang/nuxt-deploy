@@ -44,6 +44,7 @@
 	"settingThemeListTitle": "Dark theme",
 	"splashTitle": "Welcome to ",
 	"toastForSaveSuccess": "saved successfully",
+    "toastForSaveFailure": "saved failure",
 	"todosCreateEditCompletedTxt": "Completed ?",
 	"todosDismissibleMsgTxt": "Delete",
 	"todosEmptyBottomDefaultMsgTxt": "Add a new item to get started",
@@ -61,5 +62,12 @@
 	"usersCreateEditFirstNameTxt": "First Name",
 	"usersCreateEditFirstNameValidatorMsg": "First Name can't be empty",
 	"usersCreateEditLastNameTxt": "Last Name",
-	"usersCreateEditLastNameValidatorMsg": "Last Name can't be empty"
+	"usersCreateEditLastNameValidatorMsg": "Last Name can't be empty",
+    "drawerMenuItemHome": "Home",
+    "drawerMenuItemProfile": "Profile",
+    "drawerMenuItemSettings": "Settings",
+    "drawerMenuItemInvite": "Invite Friend",
+    "drawerMenuItemHelp": "Help",
+    "drawerMenuItemAbout": "About",
+    "photosUploading": "Uploading..."
 }

@@ -8,6 +8,7 @@ import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'mc_lipper.dart';
+import 'package:ieatta/camera/screens/types.dart';
 
 class ScreenTopPart extends StatefulWidget {
   ScreenTopPart({Key key, this.restaurant}) : super(key: key);
@@ -124,9 +125,8 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
               heroTag: null,
               backgroundColor: Colors.white,
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  Routes.app_camera,
-                );
+                Navigator.of(context).pushNamed(Routes.app_camera,
+                    arguments: CAMERA_EVENT.TAKE_FOR_RESTAURANT);
               },
               child: Icon(
                 Icons.photo_camera,

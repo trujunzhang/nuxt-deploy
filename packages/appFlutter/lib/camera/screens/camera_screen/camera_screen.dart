@@ -9,6 +9,9 @@ import 'package:path_provider/path_provider.dart';
 import 'widget/camera_options.dart';
 import 'widget/camera_preview_view.dart';
 
+import 'package:ieatta/camera/screens/types.dart';
+import 'widget/camera_uploading_user.dart';
+
 class CameraScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _CameraScreenState();
@@ -27,12 +30,25 @@ class _CameraScreenState extends State<CameraScreen>
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  CAMERA_EVENT camera_event;
+  CAMERA_PANEL camera_panel = CAMERA_PANEL.PANEL_NORMAL;
+
+  // CAMERA_PANEL camera_panel = CAMERA_PANEL.PANEL_UPLOADING;
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
     WidgetsBinding.instance.addObserver(this);
     setupCameras();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final CAMERA_EVENT _cameraEvent = ModalRoute.of(context).settings.arguments;
+
+    camera_event = _cameraEvent;
   }
 
   @override
@@ -139,15 +155,25 @@ class _CameraScreenState extends State<CameraScreen>
     print(filePath);
     controller.dispose();
 
-    Navigator.of(context)
-        .pushNamed(Routes.create_photo, arguments: filePath)
-        .then((val) {
+    afterTakeHook(filePath, (val) {
       setupCameras();
     });
+    return filePath;
+  }
+
+  void afterTakeHook(String filePath, Function cb) {
     setState(() {
       imagePath = filePath;
     });
-    return filePath;
+    if (camera_event == CAMERA_EVENT.TAKE_FOR_RESTAURANT) {
+      Navigator.of(context)
+          .pushNamed(Routes.create_photo, arguments: filePath)
+          .then(cb);
+    } else if (camera_event == CAMERA_EVENT.TAKE_FOR_USER) {
+      setState(() {
+        camera_panel = CAMERA_PANEL.PANEL_UPLOADING;
+      });
+    }
   }
 
   void _showCameraException(CameraException e) {
@@ -167,7 +193,10 @@ class _CameraScreenState extends State<CameraScreen>
         CameraOptions(
             switchCamera: switchCamera,
             takePicture: takePicture,
-            imagePath: imagePath) // option
+            afterTakeHook: afterTakeHook,
+            imagePath: imagePath),
+        if (camera_panel == CAMERA_PANEL.PANEL_UPLOADING)
+          CameraUploadingUser(imagePath: imagePath) // option
       ],
     );
   }

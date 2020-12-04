@@ -23,15 +23,19 @@ Widget buildAvatarImage(AvatarUser modelData) {
       errorWidget: (context, url, error) => _buildPlaceholderForUser());
 }
 
-Widget buildParseModelUsersImage(ParseModelUsers modelData) {
-  if (modelData.originalUrl == null || modelData.originalUrl == '') {
+Widget buildParseModelUsersImageWithOriginalUrl(String originalUrl) {
+  if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForUser();
   }
   return CachedNetworkImage(
       width: double.infinity,
       height: double.infinity,
-      imageUrl: modelData.originalUrl,
+      imageUrl: originalUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => _buildPlaceholderForUser(),
       errorWidget: (context, url, error) => _buildPlaceholderForUser());
+}
+
+Widget buildParseModelUsersImage(ParseModelUsers modelData) {
+  return buildParseModelUsersImageWithOriginalUrl(modelData.originalUrl);
 }
