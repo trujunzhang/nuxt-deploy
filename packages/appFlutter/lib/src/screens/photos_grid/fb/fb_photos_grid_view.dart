@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/logic/photos_results.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/photos_body.dart';
 import 'package:provider/provider.dart';
-import 'fb_photos_pageview.dart';
 
 class FBPhotosGridView extends StatefulWidget {
   FBPhotosGridView({Key key}) : super(key: key);
@@ -78,4 +75,5 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
           );
         });
   }
+
 }

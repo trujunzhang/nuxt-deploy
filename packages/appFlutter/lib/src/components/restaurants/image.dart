@@ -9,17 +9,21 @@ Widget _buildPlaceholderForRestaurant() {
   );
 }
 
-Widget buildRestaurantImage(ParseModelRestaurants modelData) {
-  if (modelData.originalUrl == null || modelData.originalUrl == '') {
+Widget buildParseModelRestaurantsImageWithOriginalUrl(String originalUrl) {
+  if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForRestaurant();
   }
   return CachedNetworkImage(
     width: double.infinity,
     height: double.infinity,
-    imageUrl: modelData.originalUrl,
+    imageUrl: originalUrl,
     // imageUrl: restaurantData.originalUrl+"xxx",
     fit: BoxFit.cover,
     placeholder: (context, url) => _buildPlaceholderForRestaurant(),
     errorWidget: (context, url, error) => _buildPlaceholderForRestaurant(),
   );
+}
+
+Widget buildRestaurantImage(ParseModelRestaurants modelData) {
+  return buildParseModelRestaurantsImageWithOriginalUrl(modelData.originalUrl);
 }

@@ -7,7 +7,7 @@ import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/core/ui/splash/splash_screen.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
-import 'package:ieatta/src/screens/edit/create_edit_restaurant_screen.dart';
+import 'package:ieatta/src/screens/edit/restaurant/create_edit_restaurant_screen.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/map/restaurants_map_page.dart';

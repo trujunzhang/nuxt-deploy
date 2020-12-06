@@ -29,7 +29,7 @@ class ParseModelRestaurants {
   String displayName;
   String slug;
   final String thumbnailUrl;
-  final String originalUrl;
+  String originalUrl;
 
   // for review(2)
   int rate;
@@ -119,6 +119,14 @@ class ParseModelRestaurants {
     );
   }
 
+  static ParseModelRestaurants updateCover(
+      {@required ParseModelRestaurants model, @required String originalUrl}) {
+    model.originalUrl = originalUrl;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
+
+    return model;
+  }
+
   static ParseModelRestaurants updateRestaurant(
       {@required ParseModelRestaurants model,
       @required String nextDisplayName,
@@ -150,13 +158,13 @@ class ParseModelRestaurants {
     var originalUrl = json['originalUrl'] as String;
     // for review(2)
     var rate = json['rate'];
-      if (rate is int) {
-        rate = rate as int;
-      }
+    if (rate is int) {
+      rate = rate as int;
+    }
 
-      if (rate is double) {
-        rate = rate.round();
-      }
+    if (rate is double) {
+      rate = rate.round();
+    }
 
     var reviewCount = json['reviewCount'] as int;
     // Google api(8)
