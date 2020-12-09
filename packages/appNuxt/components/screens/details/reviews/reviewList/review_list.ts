@@ -73,7 +73,7 @@ export default class ReviewsList extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
         let nextQuery = query.where('restaurantId', '==', this.restaurant.uniqueId)

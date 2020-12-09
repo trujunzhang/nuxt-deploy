@@ -33,7 +33,7 @@ export default class DetailPage extends Vue {
     this.isLoading = true
     const restaurantSlug = this.$route.params.slug as string
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
         return query.where('slug', '==', restaurantSlug)

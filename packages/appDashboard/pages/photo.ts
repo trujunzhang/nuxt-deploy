@@ -34,7 +34,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadPhotos(this.$fireAuth, this.$fireStore)
+    await uploadPhotos(this.$fire.auth, this.$fire.firestore)
     this.loading = false
   }
 }

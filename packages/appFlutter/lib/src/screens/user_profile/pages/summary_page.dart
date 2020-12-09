@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:ieatta/src/appModels/models/User_menu.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class SummaryPage extends StatefulWidget {
   final bool isLoggedUser;
@@ -22,7 +24,7 @@ class SummaryPage extends StatefulWidget {
 }
 
 class _SummaryPageState extends State<SummaryPage> {
-  final Color TEXT_COLOR = Colors.white;
+  // final Color TEXT_COLOR = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,6 @@ class _SummaryPageState extends State<SummaryPage> {
                     padding: const EdgeInsets.only(top: 50.0, right: 12.0),
                     child: IconButton(
                         icon: Icon(Icons.edit),
-                        color: Colors.white,
                         onPressed: () {
                           Navigator.of(context).pushNamed(
                             Routes.edit_user,
@@ -55,7 +56,7 @@ class _SummaryPageState extends State<SummaryPage> {
     return SingleChildScrollView(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        color: Colors.lightBlue,
+        // color: Colors.lightBlue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +83,9 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               widget.userData.username,
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
+                fontWeight: FontWeight.bold, fontSize: 22,
+                // color: TEXT_COLOR
+              ),
             ),
             // SizedBox(height: 20),
             // _buildActions(),
@@ -93,37 +96,11 @@ class _SummaryPageState extends State<SummaryPage> {
             ),
             SizedBox(height: 20),
             Container(
-              color: Colors.white,
-              child: buildRows(),
+              child: buildRows(context),
             )
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildActions() {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        FlatButton(
-          child: Icon(
-            Icons.message,
-            color: Colors.white,
-          ),
-          color: Colors.grey,
-          onPressed: () {},
-        ),
-        SizedBox(width: 10),
-        FlatButton(
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          color: Theme.of(context).accentColor,
-          onPressed: () {},
-        ),
-      ],
     );
   }
 
@@ -136,12 +113,14 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               123.toString(),
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
+                fontWeight: FontWeight.bold, fontSize: 22,
+                // color: TEXT_COLOR
+              ),
             ),
             SizedBox(height: 4),
             Text(
               "Restaurants",
-              style: TextStyle(color: TEXT_COLOR),
+              // style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -150,12 +129,14 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               234.toString(),
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
+                fontWeight: FontWeight.bold, fontSize: 22,
+                // color: TEXT_COLOR
+              ),
             ),
             SizedBox(height: 4),
             Text(
               "Reviews",
-              style: TextStyle(color: TEXT_COLOR),
+              // style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -164,12 +145,14 @@ class _SummaryPageState extends State<SummaryPage> {
             Text(
               345.toString(),
               style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 22, color: TEXT_COLOR),
+                fontWeight: FontWeight.bold, fontSize: 22,
+                // color: TEXT_COLOR
+              ),
             ),
             SizedBox(height: 4),
             Text(
               "Photos",
-              style: TextStyle(color: TEXT_COLOR),
+              // style: TextStyle(color: TEXT_COLOR),
             ),
           ],
         ),
@@ -177,7 +160,8 @@ class _SummaryPageState extends State<SummaryPage> {
     );
   }
 
-  Widget buildRows() {
+  Widget buildRows(BuildContext context) {
+    var isDarkModeOn = Provider.of<ThemeProvider>(context).isDarkModeOn;
     return ListView.builder(
       shrinkWrap: true,
       physics: ScrollPhysics(),
@@ -191,12 +175,13 @@ class _SummaryPageState extends State<SummaryPage> {
             Navigator.of(context)
                 .pushNamed(menu.routeName, arguments: widget.userData.id);
           },
-          leading: Icon(menu.icon),
+          leading: Icon(menu.icon,
+              color: isDarkModeOn ? Colors.white : Colors.black),
           title: Row(
             children: [
               Text(
                 menu.title,
-                style: TextStyle(color: Colors.black),
+                // style: TextStyle(color: Colors.black),
               ),
               SizedBox(
                 width: 6,

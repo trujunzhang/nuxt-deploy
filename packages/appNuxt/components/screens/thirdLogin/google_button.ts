@@ -29,7 +29,7 @@ export default class GoogleLoginButton extends Vue {
     cookies.set('credential', true, { path: '/' })
     // Update the firebase's user info.
     await FirebaseHelper.onLoginAfterHook(
-      this.$fireStore,
+      this.$fire.firestore,
       model)
     // Finally, return the last page.
     this.isLogging = false
@@ -48,7 +48,7 @@ export default class GoogleLoginButton extends Vue {
     }
     this.isLogging = true
     const provider = new firebase.auth.GoogleAuthProvider()
-    this.$fireAuth.signInWithPopup(provider)
+    this.$fire.auth.signInWithPopup(provider)
       .then(this.afterSignInWithGoogle).catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
@@ -58,7 +58,7 @@ export default class GoogleLoginButton extends Vue {
         const credential = error.credential
         console.log('google error:', errorMessage)
         this.isLogging = false
-      // debugger
+        // debugger
       })
   }
 

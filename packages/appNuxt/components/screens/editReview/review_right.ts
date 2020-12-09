@@ -34,7 +34,7 @@ export default class ReviewRight extends Vue {
     const reviewId = this.$route.query.rid as string
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
         return queryBuilder(query)

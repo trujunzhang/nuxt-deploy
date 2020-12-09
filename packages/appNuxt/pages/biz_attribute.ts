@@ -29,7 +29,7 @@ export default class EditRestaurant extends Vue {
     this.isLoading = true
     const restaurantId = this.$route.query.biz_id as string
     this.restaurant = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       uniqueId: restaurantId,
       emptyHint: () => {

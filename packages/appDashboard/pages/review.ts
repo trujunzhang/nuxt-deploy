@@ -30,7 +30,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadReviews(this.$fireStore)
+    await uploadReviews(this.$fire.firestore)
     this.loading = false
   }
 }

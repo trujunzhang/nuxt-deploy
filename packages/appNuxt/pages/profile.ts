@@ -61,19 +61,19 @@ export default class UserProfilePage extends Vue {
   async onSaveUserBtnClick () {
     const displayName = [this.firstName, this.lastName].join(' ')
     const nextUser: IFBUser = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Users,
       uniqueId: (this.user as any).uid
     })
     ParseModelUsers.updateUserProfile(nextUser, displayName)
     // First of all, save new photo url as user's originalUrl.
     await FirestoreService.instance.updateUser(
-      this.$fireStore,
+      this.$fire.firestore,
       nextUser
     )
-    if (this.$fireAuth.currentUser) {
+    if (this.$fire.auth.currentUser) {
       // Update Firebase's user's name.
-      await this.$fireAuth.currentUser.updateProfile({
+      await this.$fire.auth.currentUser.updateProfile({
         displayName,
         photoURL: this.user?.photoURL
       })

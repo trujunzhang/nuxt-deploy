@@ -44,7 +44,7 @@ export default class PhotoConfirm extends Vue {
             this.note
           )
         await FirestoreService.instance.setData(
-          this.$fireStore,
+          this.$fire.firestore,
           FBCollections.Photos,
           nextPhoto
         )

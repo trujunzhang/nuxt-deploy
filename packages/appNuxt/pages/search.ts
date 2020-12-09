@@ -3,7 +3,7 @@ import HomePage from '~/components/screens/homePage/home_page.vue'
 
 @Component({
   components: {
-    HomePage 
+    HomePage
   }
 })
 export default class SearchPage extends Vue {

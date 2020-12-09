@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 import 'package:ieatta/src/components/avatar_widget.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
+import 'package:provider/provider.dart';
 
 class TopBaseUserView extends StatelessWidget {
   const TopBaseUserView(
@@ -54,24 +57,40 @@ class TopBaseUserView extends StatelessWidget {
   }
 
   Widget _buildRightEditBtn(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 30, right: 32),
-      child: Container(
-        // color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            InkWell(
-              onTap: onEditPress,
-              child: Text(
-                "edit",
-                style: TextStyle(color: Colors.orangeAccent, fontSize: 18),
+    final authService = Provider.of<AuthProvider>(context, listen: false);
+
+    return StreamBuilder<AuthUserModel>(
+        stream: authService.user,
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
+          final AuthUserModel loggedUser = snapshot.data;
+
+          if (loggedUser == null) {
+            return Container();
+          }
+          if (loggedUser.uid != user.uid) {
+            return Container();
+          }
+
+          return Padding(
+            padding: EdgeInsets.only(top: 30, right: 32),
+            child: Container(
+              // color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: onEditPress,
+                    child: Text(
+                      "edit",
+                      style:
+                          TextStyle(color: Colors.orangeAccent, fontSize: 18),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 
   @override

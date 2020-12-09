@@ -47,7 +47,7 @@ class ParseModelReviews extends AvatarUser {
       this.restaurantId,
       this.eventId,
       this.recipeId})
-      : super(username, avatarUrl);
+      : super(creatorId, username, avatarUrl);
 
   factory ParseModelReviews.fromJson(Map<String, dynamic> json) {
     // Base(5)

@@ -58,7 +58,7 @@ export default class RestaurantForm extends Vue {
     this.lastCoverUrl = item.originalUrl
     const nextRestaurant = ParseModelRestaurants.updateCover(this.restaurant, item.originalUrl)
     await FirestoreService.instance.setData(
-      this.$fireStore,
+      this.$fire.firestore,
       FBCollections.Restaurants,
       nextRestaurant
     )
@@ -71,17 +71,15 @@ export default class RestaurantForm extends Vue {
     }
     this.showAlertMessage = false
     const lastRestaurant: IFBRestaurant = this.isNewRestaurant
-      ? ParseModelRestaurants.emptyRestaurant(
-        (this.user as any),
-        0, 0
-      ) : this.restaurant
+      ? ParseModelRestaurants.emptyRestaurant((this.user as any), 0, 0) : this.restaurant
+
     const nextRestaurant: IFBRestaurant = ParseModelRestaurants.updateRestaurant(
       lastRestaurant,
       this.displayName,
       this.note
     )
     await FirestoreService.instance.setData(
-      this.$fireStore,
+      this.$fire.firestore,
       FBCollections.Restaurants,
       nextRestaurant
     )
@@ -94,7 +92,7 @@ export default class RestaurantForm extends Vue {
     }
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Photos,
       queryBuilder: (query: any) => {
         return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({

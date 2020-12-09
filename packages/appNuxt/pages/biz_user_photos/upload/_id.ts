@@ -54,7 +54,7 @@ export default class UploadPhoto extends Vue {
     }
     this.isLoading = true
     this.restaurant = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       uniqueId: this.$route.params.id,
       emptyHint: () => {

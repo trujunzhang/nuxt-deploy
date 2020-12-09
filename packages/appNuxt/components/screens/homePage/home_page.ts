@@ -25,7 +25,7 @@ export default class HomePage extends Vue {
   private isLoading = false
   // The last visible document
   private lastVisible = null
-  private find_desc:string | null = null
+  private find_desc: string | null = null
 
   async firstPageLoad () {
     await this._fetchPage({
@@ -50,10 +50,10 @@ export default class HomePage extends Vue {
   }
 
   async _fetchPage (
-    params:{
-    queryBuilder: QueryBuilder,
-      emptyHint? :() => void
-  }) {
+    params: {
+      queryBuilder: QueryBuilder,
+      emptyHint?: () => void
+    }) {
     if (this.isLoading) {
       return
     }
@@ -64,7 +64,7 @@ export default class HomePage extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
         let nextQuery = query
@@ -111,7 +111,7 @@ export default class HomePage extends Vue {
   }
 
   @Watch('$route')
-  async routeChanged (to: any, from:any) {
+  async routeChanged (to: any, from: any) {
     this.find_desc = to.query.find_desc
     await this.resetPage()
   }

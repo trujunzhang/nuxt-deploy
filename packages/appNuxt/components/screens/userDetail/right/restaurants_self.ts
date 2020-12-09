@@ -66,7 +66,7 @@ export default class UserDetailRestaurantsSelf extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
         return queryBuilder(FirestoreService.instance.queryByCreatorId({

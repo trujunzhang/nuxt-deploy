@@ -21,7 +21,7 @@ export default class HeaderPop extends Vue {
     const cookies = new Cookies()
     cookies.remove('credential', { path: '/' })
     // Sign out.
-    await this.$fireAuth.signOut()
+    await this.$fire.auth.signOut()
     this.$router.push('/', () => {
     })
   }

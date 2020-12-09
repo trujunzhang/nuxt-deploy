@@ -10,12 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editRestaurant/restaurant_form.vue" afterDir="false" />
-    </list>
+    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +32,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -315,6 +311,7 @@
       <workItem from="1606467199435" duration="35000" />
       <workItem from="1606467285140" duration="1554000" />
       <workItem from="1606550734159" duration="1007000" />
+      <workItem from="1607335435560" duration="36000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>

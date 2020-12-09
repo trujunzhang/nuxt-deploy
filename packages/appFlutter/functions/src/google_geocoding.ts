@@ -19,7 +19,7 @@ export const getAddress = (lat, lng) => {
                 locations,
                 key: GOOGLE_API_KEY
             },
-            timeout: 1000 // milliseconds
+            timeout: 5000 // milliseconds
         })
         .then(r => {
             if (r.data.status === Status.OK) {

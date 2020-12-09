@@ -13,7 +13,7 @@ class AuthUserModel extends AvatarUser {
     this.phoneNumber,
     this.username,
     this.avatarUrl,
-  }) : super(username, avatarUrl);
+  }) : super(uid, username, avatarUrl);
 
   static AuthUserModel debugUser() {
     return AuthUserModel(uid: 'debug');

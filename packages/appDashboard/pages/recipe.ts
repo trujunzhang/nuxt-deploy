@@ -31,7 +31,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadRecipes(this.$fireStore)
+    await uploadRecipes(this.$fire.firestore)
     this.loading = false
   }
 }

@@ -49,7 +49,7 @@ const config: NuxtConfiguration = {
     '~/assets/yelp/yelp_main.yji-1229993919c737dc372d.chunk.css', // login
     '~/assets/yelp/yelp-frontend-gondola-war-compose-pkg.yji-64bc3df24d391f8b0102.css', // write review
     '~/assets/yelp/user_details-pkg.css', // user-detail
-    '~/assets/yelp/yelp_main.yji-40a04d475db89a3254a2.chunk.css',// header pop menu
+    '~/assets/yelp/yelp_main.yji-40a04d475db89a3254a2.chunk.css', // header pop menu
     '~/assets/yelp/header-pop.css' // header pop menu
   ],
   /*

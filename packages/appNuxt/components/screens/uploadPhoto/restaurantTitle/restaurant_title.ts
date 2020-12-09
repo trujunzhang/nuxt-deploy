@@ -11,7 +11,6 @@ export default class RestaurantTitle extends Vue {
     return `/biz/${this.restaurant.slug}`
   }
 
-
   /**
    * Example:
    *   href="/biz_photos/the-ramen-bar-san-francisco"

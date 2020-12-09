@@ -27,7 +27,7 @@ export default class PhotoSingle extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Photos,
       queryBuilder: (query: any) => {
         return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({

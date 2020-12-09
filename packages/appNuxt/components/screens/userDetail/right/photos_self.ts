@@ -56,7 +56,7 @@ export default class UserDetailPhotosSelf extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Photos,
       queryBuilder: (query: any) => {
         return queryBuilder(FirestoreService.instance.queryByCreatorId({

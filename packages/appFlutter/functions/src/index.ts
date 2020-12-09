@@ -1,8 +1,8 @@
 import * as functions from 'firebase-functions';
-import {IFBRestaurant, IFBPhoto} from 'ieattatypes'
-import {getAddress} from './google_geocoding'
-import {db} from "./util/admin";
-import {ParseModelPhotos} from "./appModels/Photos";
+import { IFBRestaurant, IFBPhoto } from 'ieattatypes'
+import { getAddress } from './google_geocoding'
+import { db, admin } from "./util/admin";
+import { ParseModelPhotos } from "./appModels/Photos";
 
 
 // // Start writing Firebase Functions
@@ -12,10 +12,25 @@ import {ParseModelPhotos} from "./appModels/Photos";
 //  response.send("Hello from Firebase!");
 // });
 
+// Take the text parameter passed to this HTTP endpoint and insert it into 
+// Cloud Firestore under the path /messages/:documentId/original
+exports.addMessage = functions.https.onRequest(async (req, res) => {
+    // Grab the text parameter.
+    const original = req.query.text;
+    // Push the new message into Cloud Firestore using the Firebase Admin SDK.
+    const writeResult = await admin.firestore().collection('messages').add({ original: original });
+    // Send back a message that we've succesfully written the message
+    res.json({ result: `Message with ID: ${writeResult.id} added.` });
+});
+
 exports.onRestaurantCreated = functions.firestore.document('restaurants/{restauranId}')
     .onCreate((snapshot, context) => {
         // Grab the current value of what was written to the Realtime Database.
-        const note = snapshot.data();
+        const newRestaruant = snapshot.data() as IFBRestaurant;
+        console.log('onRestaurantCreated: (newRestaruant)', JSON.stringify(newRestaruant))
+        const { latitude, longitude } = newRestaruant
+        getAddress(latitude, longitude);
+        debugger
         // console.log('restaurants:onCreate, original=', original);
         // console.log('Uppercasing', context.params.pushId, original);
         // const uppercase = original.toUpperCase();
@@ -49,12 +64,12 @@ exports.onRestaurantUpdated = functions.firestore.document('restaurants/{restaur
 exports.onPhotoCreated = functions.firestore.document('photos/{photoId}')
     .onCreate(async (snapshot, context) => {
         // Grab the current value of what was written to the Realtime Database.
-        const photo:IFBPhoto  = snapshot.data() as IFBPhoto;
+        const photo: IFBPhoto = snapshot.data() as IFBPhoto;
         console.log('photos:onCreate, [[[lastValue]]]=', JSON.stringify(photo));
 
         const photoRef = db.doc(`photos/${context.params.photoId}`);
         const photoSnap = await photoRef.get();
-        const photoData:IFBPhoto = photoSnap.data() as IFBPhoto;
+        const photoData: IFBPhoto = photoSnap.data() as IFBPhoto;
 
         return photoRef.update(
             ParseModelPhotos.updateStatus(photoData)

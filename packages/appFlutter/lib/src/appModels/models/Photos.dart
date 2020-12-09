@@ -69,7 +69,7 @@ class ParseModelPhotos extends AvatarUser {
     this.offlinePath,
     // extra(1)
     this.extraNote,
-  }) : super(username, avatarUrl);
+  }) : super(creatorId, username, avatarUrl);
 
   factory ParseModelPhotos.fromJson(Map<String, dynamic> json) {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);

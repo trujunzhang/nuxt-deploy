@@ -35,7 +35,7 @@ export default class UserPageLayout extends Vue {
     }
     this.isLoading = true
     this.detailUser = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Users,
       uniqueId: this.$route.query.userid as any,
       emptyHint: () => {

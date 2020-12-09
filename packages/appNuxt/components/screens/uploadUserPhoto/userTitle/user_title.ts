@@ -19,9 +19,9 @@ export default class UserTitle extends Vue {
   }
 
   getUserProfileUrl () {
-     if (this.user === null) {
-       throw new Error('not found logged user!')
-     }
-     return `/user_details?userid=${this.user.uid}`
-   }
+    if (this.user === null) {
+      throw new Error('not found logged user!')
+    }
+    return `/user_details?userid=${this.user.uid}`
+  }
 }

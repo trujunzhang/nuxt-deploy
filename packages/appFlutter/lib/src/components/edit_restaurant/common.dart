@@ -40,7 +40,7 @@ Widget buildCoverSectionTitle() {
           "Select Cover",
           style: TextStyle(
               fontSize: 22.0,
-              color: Colors.black,
+              // color: Colors.black,
               fontFamily: "SF-Pro-Display-Bold"),
         ),
       ],

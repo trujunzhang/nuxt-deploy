@@ -52,18 +52,18 @@ export default class PhotoConfirm extends Vue {
           this.showAlertMessage = true
         }
         const nextUser: IFBUser = await FirestoreService.instance.getData({
-          $fireStore: this.$fireStore,
+          $fireStore: this.$fire.firestore,
           path: FBCollections.Users,
           uniqueId: (this.user as any).uid
         })
         ParseModelUsers.updateUserPhoto(nextUser, originalUrl)
         // First of all, save new photo url as user's originalUrl.
         await FirestoreService.instance.updateUser(
-          this.$fireStore,
+          this.$fire.firestore,
           nextUser
         )
-        if (this.$fireAuth.currentUser) {
-          await this.$fireAuth.currentUser.updateProfile({
+        if (this.$fire.auth.currentUser) {
+          await this.$fire.auth.currentUser.updateProfile({
             displayName: this.user?.displayName,
             photoURL: originalUrl
           })

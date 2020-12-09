@@ -32,7 +32,7 @@ export default class WriteReview extends Vue {
     this.isLoading = true
     const restaurantId = this.$route.params.id
     this.restaurant = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       uniqueId: restaurantId,
       emptyHint: () => {
@@ -45,7 +45,7 @@ export default class WriteReview extends Vue {
     }
     const reviewId = this.$route.query.rid as string
     this.review = await FirestoreService.instance.getData({
-      $fireStore: this.$fireStore,
+      $fireStore: this.$fire.firestore,
       path: FBCollections.Reviews,
       uniqueId: reviewId,
       emptyHint: () => {

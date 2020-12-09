@@ -22,14 +22,14 @@ class TopUserView extends StatelessWidget {
     return StreamBuilder<AuthUserModel>(
         stream: authService.user,
         builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
-          final AuthUserModel user = snapshot.data;
+          final AuthUserModel loggedUser = snapshot.data;
 
-          if (user == null) {
+          if (loggedUser == null) {
             return Container();
           }
 
           return TopBaseUserView(
-            user: user,
+            user: loggedUser,
             selectedIndex: selectedIndex,
             totalCount: totalCount,
           );

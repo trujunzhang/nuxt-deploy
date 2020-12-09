@@ -72,9 +72,7 @@ class _ReviewViewState extends State<ReviewView> {
                 ),
                 Text(
                   widget.note,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(height: 10),
               ],

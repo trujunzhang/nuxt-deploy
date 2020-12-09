@@ -52,21 +52,21 @@ export default class ReviewForm extends Vue {
       (this.isNewReview ? 0 : this.review.rate)
     const lastReview = this.isNewReview
       ? ParseModelReviews.emptyReview(
-        (this.user as any),
-        this.restaurant.uniqueId
-      ) : this.review
+          (this.user as any),
+          this.restaurant.uniqueId
+        ) : this.review
     const nextReview: IFBReview = ParseModelReviews.updateReview(
       lastReview,
       this.selectedStar,
       this.note
     )
     await FirestoreService.instance.setData(
-      this.$fireStore,
+      this.$fire.firestore,
       FBCollections.Reviews,
       nextReview
     )
     await ReviewHelper.onSaveReviewAfterHook(
-      this.$fireStore,
+      this.$fire.firestore,
       this.restaurant.uniqueId,
       lastReviewRate,
       this.selectedStar,
