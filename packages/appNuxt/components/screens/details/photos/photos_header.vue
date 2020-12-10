@@ -17,15 +17,16 @@
             :href="getImageLink(item)"
             target=""
           ><img
+            v-lazy="getPhotoUrl(item)"
             class="lemon--img__373c0__3GQUb"
-            :src="getPhotoUrl(item)"
           ></a>
         </div>
       </div>
     </div>
     <div
       v-if="photosLen"
-      class="lemon--div__373c0__1mboc photo-header-buttons__373c0__3sXqc border-color--default__373c0__3-ifU">
+      class="lemon--div__373c0__1mboc photo-header-buttons__373c0__3sXqc border-color--default__373c0__3-ifU"
+    >
       <span
         class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-l2__373c0__wvUpT border-color--default__373c0__3-ifU"
       ><a

@@ -57,6 +57,10 @@ const config: NuxtConfiguration = {
    */
   plugins: [
     {
+      src: '~/plugins/lazyload.client.js',
+      mode: 'client'
+    },
+    {
       src: '~/plugins/v-waypoint.js',
       mode: 'client'
     },
