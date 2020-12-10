@@ -16,10 +16,10 @@
                     class="photo-box photo-box--interactive"
                   >
                     <img
+                      v-lazy="getPhotoUrl(item)"
                       class="photo-box-img"
                       width="226"
                       height="226"
-                      :src="getPhotoUrl(item)"
                     >
                   </div>
                 </li>

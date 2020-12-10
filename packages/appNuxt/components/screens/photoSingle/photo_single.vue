@@ -19,9 +19,9 @@
                   class="media js-media-photo"
                 >
                   <img
+                    v-lazy="currentImageUrl"
                     alt="Photo of The Ramen Bar - San Francisco, CA, United States. Menu 6/2018"
                     class="photo-box-img"
-                    :src="currentImageUrl"
                   >
                 </div>
 
