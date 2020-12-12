@@ -6,6 +6,7 @@ import 'package:location/location.dart' as GpsLocation;
 import 'package:permission_handler/permission_handler.dart'
     as PermissionHandler;
 
+import 'package:ieatta/src/logic/bloc.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'bottom_navigation_view/models/tabIcon_data.dart';
 import 'fitness_app_theme.dart';
@@ -19,6 +20,8 @@ class FitnessAppHomeScreen extends StatefulWidget {
 
 class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     with TickerProviderStateMixin {
+
+
   // Gps Location.
   AppPermissionStatus _permissionStatus = AppPermissionStatus.Undetermined;
 
@@ -92,6 +95,9 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   @override
   void initState() {
     requestAppPermission();
+
+    bloc.gpsTrackStatus(true);
+    bloc.feedSearchVal('');
 
     tabIconsList = TabIconData.resetTabIconsList();
     animationController = AnimationController(

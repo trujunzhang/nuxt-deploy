@@ -5,8 +5,7 @@ class LanguageProvider extends ChangeNotifier {
   // shared pref object
   SharedPreferenceHelper _sharedPrefsHelper;
 
-  // Locale _appLocale = Locale('en');
-  Locale _appLocale = Locale('zh');
+  Locale _appLocale = Locale('en');
 
   LanguageProvider() {
     _sharedPrefsHelper = SharedPreferenceHelper();

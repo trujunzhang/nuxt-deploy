@@ -40,8 +40,6 @@ class _FilterBarUIState extends State<FilterBarUI> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-//                      '530 hotels found',
-//                      'Auto location tracking',
           getRestaurantsCountInfo(
               gpsTrackVal: gpsTrackVal,
               restaurantsCountVal: restaurantsCountVal),

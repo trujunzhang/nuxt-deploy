@@ -15,7 +15,7 @@ class _SettingBarUIState extends State<SettingBarUI> {
       // color: Theme.of(context).accentColor,
       child: Padding(
         padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + 14, left: 8, right: 8),
+            top: MediaQuery.of(context).padding.top + 14 + 6, left: 8, right: 8),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -24,7 +24,7 @@ class _SettingBarUIState extends State<SettingBarUI> {
                   AppLocalizations.of(context).translate("settingAppTitle"),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 22,
+                    fontSize: 18,
                   ),
                 ),
               ),

@@ -115,6 +115,7 @@ class _HotelListViewState extends State<HotelListView> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 22,
+                                  color: Colors.black
                                 ),
                               ),
                               Row(

@@ -9,10 +9,10 @@ export const LOGGED_NAMES: Array<String> = [
   // Photo(1)
   'biz_user_photos-upload-id___en', // upload photo
   // User details(4)
-  'user_details___en', // [user_detail_left_menu]: default
-  'user_details_restaurants_self___en', // [user_detail_left_menu]: restaurants
-  'user_details_reviews_self___en', // [user_detail_left_menu]: reviews
-  'user_details_photos_self___en', // [user_detail_left_menu]: photos
+  // 'user_details___en', // [user_detail_left_menu]: default
+  // 'user_details_restaurants_self___en', // [user_detail_left_menu]: restaurants
+  // 'user_details_reviews_self___en', // [user_detail_left_menu]: reviews
+  // 'user_details_photos_self___en', // [user_detail_left_menu]: photos
   // User edit pages(3)
   'user_photos-add___en', // upload user photo
   'messaging-inbox___en', // user's message inbox
