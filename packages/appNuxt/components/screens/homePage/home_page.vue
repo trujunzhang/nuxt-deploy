@@ -18,6 +18,28 @@
             <NoResults
               v-if="showNoResult"
             />
+
+            <!-- PlaceHolder -->
+
+            <ul
+              v-if="shouldShowPlaceHolder()"
+              class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH">
+              <li
+                v-for="(item) in placeHolders"
+                :key="item"
+                class="lemon--li__373c0__1r9wz border-color--default__373c0__3-ifU"
+                style="border: 1px solid #eeeeef;height: 200px;margin-bottom: 20px;padding: 20px;"
+              >
+                <FacebookLoader
+                  :width="400"
+                  :height="100"
+                  :speed="2"
+                  primaryColor="#f3f3f3"
+                  secondaryColor="#ecebeb"
+                />
+              </li>
+            </ul>
+
             <!-- Restaurant List -->
             <div
               style="min-height: 300px;"
@@ -79,4 +101,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./home_page.ts"/>
+<script lang="ts" src="./home_page.ts" />

@@ -1,8 +1,10 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
 import { QuerySnapshot } from 'firebase/firebase-storage'
+import {
+  FacebookLoader
+} from 'vue-content-loader'
 import { FBCollections } from '~/database/constant'
-// import { restaurants, loadRestaurants } from '~/database/data/Restaurants'
 import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'
 import NoResults from '~/components/screens/homePage/no_results.vue'
 import HomeFooter from '~/components/screens/footer/footer.vue'
@@ -10,6 +12,7 @@ import { FirestoreService, QueryBuilder } from '~/database/services/firestore_se
 
 @Component({
   components: {
+    FacebookLoader,
     HomeFooter,
     RestaurantItem,
     NoResults
@@ -18,14 +21,20 @@ import { FirestoreService, QueryBuilder } from '~/database/services/firestore_se
 export default class HomePage extends Vue {
   public markers: any = []
 
+  public placeHolders: number[] = [0, 1, 2, 3, 4]
   // public items: Array<IFBRestaurant> = loadRestaurants()
   public items: Array<IFBRestaurant> = []
 
   private showNoResult: boolean = false
+  private isLoaded = false
   private isLoading = false
   // The last visible document
   private lastVisible = null
   private find_desc: string | null = null
+
+  shouldShowPlaceHolder () {
+    return this.isLoading && !this.isLoaded
+  }
 
   async firstPageLoad () {
     await this._fetchPage({
@@ -89,6 +98,7 @@ export default class HomePage extends Vue {
       emptyHint
     })
     this.items = nextItem
+    this.isLoaded = true
     this.isLoading = false
   }
 
