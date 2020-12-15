@@ -19,32 +19,33 @@
               v-if="showNoResult"
             />
 
-            <!-- PlaceHolder -->
-
-            <ul
-              v-if="shouldShowPlaceHolder()"
-              class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH">
-              <li
-                v-for="(item) in placeHolders"
-                :key="item"
-                class="lemon--li__373c0__1r9wz border-color--default__373c0__3-ifU"
-                style="border: 1px solid #eeeeef;height: 200px;margin-bottom: 20px;padding: 20px;"
-              >
-                <FacebookLoader
-                  :width="400"
-                  :height="100"
-                  :speed="2"
-                  primaryColor="#f3f3f3"
-                  secondaryColor="#ecebeb"
-                />
-              </li>
-            </ul>
-
             <!-- Restaurant List -->
             <div
-              style="min-height: 300px;"
+              style="min-height: 400px;"
               class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU"
             >
+              <!-- PlaceHolder -->
+              <ul
+                v-if="shouldShowPlaceHolder()"
+                style="margin-top: 25px;"
+                class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH">
+                <li
+                  v-for="(item) in placeHolders"
+                  :key="item"
+                  class="lemon--li__373c0__1r9wz border-color--default__373c0__3-ifU"
+                  style="border: 1px solid #eeeeef;height: 200px;margin-bottom: 20px;padding: 20px;"
+                >
+                  <FacebookLoader
+                    :width="400"
+                    :height="100"
+                    :speed="2"
+                    primaryColor="#f3f3f3"
+                    secondaryColor="#ecebeb"
+                  />
+                </li>
+              </ul>
+
+              <!-- Items -->
               <ul class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH">
                 <li
                   v-for="(item, index) in items"
