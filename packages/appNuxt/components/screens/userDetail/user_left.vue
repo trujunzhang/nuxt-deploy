@@ -19,8 +19,9 @@
             <ul class="titled-nav_items">
               <li class="titled-nav_item">
                 <a
-                  :class="getMenuClassName('/user_details')"
-                  :href="getUserProfileUrl()"
+                  :class="getMenuClassName('profile')"
+                  style="cursor:pointer;"
+                  @click="onMenuClick('profile')"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
 
@@ -47,8 +48,9 @@
 
               <li class="titled-nav_item">
                 <a
-                  :class="getMenuClassName('/user_details_restaurants_self')"
-                  :href="getUserRestaurantsUrl()"
+                  :class="getMenuClassName('restaurants')"
+                  style="cursor:pointer;"
+                  @click="onMenuClick('restaurants')"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
 
@@ -78,8 +80,9 @@
 
               <li class="titled-nav_item">
                 <a
-                  :class="getMenuClassName('/user_details_reviews_self')"
-                  :href="getUserReviewsUrl()"
+                  :class="getMenuClassName('reviews')"
+                  style="cursor:pointer;"
+                  @click="onMenuClick('reviews')"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
 
@@ -106,8 +109,9 @@
 
               <li class="titled-nav_item">
                 <a
-                  :class="getMenuClassName('/user_details_photos_self')"
-                  :href="getUserPhotosUrl()"
+                  :class="getMenuClassName('photos')"
+                  style="cursor:pointer;"
+                  @click="onMenuClick('photos')"
                 >
                   <div class="titled-nav_link-content arrange arrange--middle arrange--6">
 

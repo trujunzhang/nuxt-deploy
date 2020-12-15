@@ -14,28 +14,38 @@ export default class UserLeft extends Vue {
     return `${this.detailUser.username}'s Profile`
   }
 
-  getUserProfileUrl () {
-    return `${USER_MENU_PATH_DEFAULT}?userid=${this.detailUser.id}`
-  }
-
-  getUserRestaurantsUrl () {
-    return `${USER_MENU_PATH_RESTAURANTS}?userid=${this.detailUser.id}`
-  }
-
-  getUserReviewsUrl () {
-    return `${USER_MENU_PATH_REVIEWS}?userid=${this.detailUser.id}`
-  }
-
-  getUserPhotosUrl () {
-    return `${USER_MENU_PATH_PHOTOS}?userid=${this.detailUser.id}`
+  onMenuClick (tag: string) {
+    switch (tag) {
+      case 'profile': {
+        this.$router.push(`${USER_MENU_PATH_DEFAULT}?userid=${this.detailUser.id}`, () => {
+        })
+        break
+      }
+      case 'restaurants': {
+        this.$router.push(`${USER_MENU_PATH_DEFAULT}?menu=restaurants&userid=${this.detailUser.id}`, () => {
+        })
+        break
+      }
+      case 'reviews': {
+        this.$router.push(`${USER_MENU_PATH_DEFAULT}?menu=reviews&userid=${this.detailUser.id}`, () => {
+        })
+        break
+      }
+      case 'photos': {
+        this.$router.push(`${USER_MENU_PATH_DEFAULT}?menu=photos&userid=${this.detailUser.id}`, () => {
+        })
+        break
+      }
+    }
   }
 
   /**
    * class="titled-nav_link is-active"
    */
-  getMenuClassName (activePath) {
-    const { path } = this.$route
-    return (path === activePath) ? 'titled-nav_link is-active' : 'titled-nav_link'
+  getMenuClassName (activePath: string) {
+    // const { path } = this.$route
+    const menu = this.$route.query.menu || 'profile'
+    return (menu === activePath) ? 'titled-nav_link is-active' : 'titled-nav_link'
   }
 
   mounted () {

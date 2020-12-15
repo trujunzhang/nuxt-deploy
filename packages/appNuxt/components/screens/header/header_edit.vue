@@ -58,7 +58,7 @@
                     ><div
                       class="lemon--div__09f24__1mboc photo__09f24__3CeAG responsive-hidden-small responsive-hidden-medium border-color--default__09f24__1eOdn"
                     ><img
-                      :src="getUserPhotoUrl()"
+                      v-lazy="getUserPhotoUrl()"
                       class="lemon--img__09f24__3GQUb"
                       width="36"
                       height="36"

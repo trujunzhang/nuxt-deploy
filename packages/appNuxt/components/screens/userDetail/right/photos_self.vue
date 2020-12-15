@@ -1,8 +1,10 @@
 <template>
-  <div class="main-content-wrap main-content-wrap--full">
-    <div id="super-container" class="content-container">
+  <div
+    class="lemon--div__09f24__1mboc sidebar-inner__09f24__3rZeA sidebar-inner border-color--default__09f24__1eOdn"
+  >
+    <div id="super-container">
       <div class="container">
-        <div class="js-media-landing_container" data-component-bound="true">
+        <div class="js-media-landing_container">
           <div class="media-landing js-media-landing">
             <div class="media-landing_gallery photos">
               <ul
@@ -46,4 +48,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./photos_self.ts"/>
+<script lang="ts" src="./photos_self.ts" />
