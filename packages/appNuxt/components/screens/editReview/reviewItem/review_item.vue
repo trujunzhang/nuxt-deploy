@@ -12,8 +12,8 @@
             <div class="lemon--div__09f24__1mboc slim-avatar__09f24__X3jpv border-color--default__09f24__1eOdn">
               <div class="lemon--div__09f24__1mboc on-click-container border-color--default__09f24__1eOdn">
                 <img
+                  v-lazy="getUserPhotoUrl()"
                   class="lemon--img__09f24__3GQUb photo-box-img__09f24__3mj0s"
-                  :src="getUserPhotoUrl()"
                   width="30"
                   height="30"
                 >

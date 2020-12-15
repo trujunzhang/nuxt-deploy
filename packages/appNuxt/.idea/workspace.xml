@@ -12,8 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/homePage/home_page.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/homePage/home_page.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/editReview/reviewItem/review_item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editReview/reviewItem/review_item.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/editReview/reviewItem/review_item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/editReview/reviewItem/review_item.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,6 +320,7 @@
       <workItem from="1607997317499" duration="2069000" />
       <workItem from="1608018043833" duration="1563000" />
       <workItem from="1608021008240" duration="414000" />
+      <workItem from="1608025975259" duration="430000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>

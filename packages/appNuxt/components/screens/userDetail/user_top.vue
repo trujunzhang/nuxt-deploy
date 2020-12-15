@@ -9,10 +9,10 @@
             >
               <div>
                 <img
+                  v-lazy="getPhotoUrl()"
                   class="photo-box-img"
                   width="250"
                   height="250"
-                  :src="getPhotoUrl()"
                 >
               </div>
             </div>
