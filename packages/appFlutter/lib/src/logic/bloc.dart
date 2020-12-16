@@ -10,6 +10,7 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   var _searchValController = BehaviorSubject<String>();
   var _restaurantCountValController = BehaviorSubject<int>();
 
+  var _thumbnailController = BehaviorSubject<String>();
   var _displayNameController = BehaviorSubject<String>();
   var _noteController = BehaviorSubject<String>();
   var _rateController = BehaviorSubject<double>();
@@ -24,6 +25,7 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   Function(String) get feedSearchVal => _searchValController.sink.add;
   Function(int) get restaurantCountVal => _restaurantCountValController.sink.add;
 
+  Function(String) get thumbnailVal => _thumbnailController.sink.add;
   Function(String) get displayNameVal => _displayNameController.sink.add;
   Function(String) get noteVal => _noteController.sink.add;
   Function(double) get rateVal => _rateController.sink.add;
@@ -38,6 +40,7 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
   Stream<String> get recieveSearchVal => _searchValController.stream;
   Stream<int> get restaurantCountValStream => _restaurantCountValController.stream;
 
+  Stream<String> get thumbnailStream=> _thumbnailController.stream;
   Stream<String> get displayNameStream=> _displayNameController.stream;
   Stream<String> get noteStream=> _noteController.stream;
   Stream<double> get rateStream=> _rateController.stream;
@@ -53,6 +56,7 @@ class Bloc extends Object with ValueTransformer implements BaseBloc {
     _searchValController?.close();
     _restaurantCountValController?.close();
 
+    _thumbnailController?.close();
     _displayNameController?.close();
     _noteController?.close();
 

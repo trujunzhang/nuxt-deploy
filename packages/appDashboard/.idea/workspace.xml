@@ -10,7 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx" />
+    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/firebase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/restaurant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/restaurant.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,6 +124,10 @@
       <workItem from="1607392681472" duration="1247000" />
       <workItem from="1607394936673" duration="209000" />
       <workItem from="1607395678273" duration="38000" />
+      <workItem from="1608027569352" duration="223000" />
+      <workItem from="1608101334549" duration="511000" />
+      <workItem from="1608101943532" duration="224000" />
+      <workItem from="1608102922103" duration="684000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>

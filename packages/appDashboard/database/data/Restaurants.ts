@@ -1,9 +1,27 @@
-import { IFBRestaurant } from 'ieattatypes/types/index'
+import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { slugifyToLower } from '~/database/utils/slug_helper'
 import { convertToGeoHash } from '~/database/utils/geohash_utils'
+import { loadReviews } from '~/database/data/Reviews'
+
+const fixReviewStatistic = (item: IFBRestaurant) => {
+  const { uniqueId } = item
+  let rateForRestaurant: number = 0
+  let reviewCount: number = 0
+  for (const index in loadReviews()) {
+    const review: IFBReview = loadReviews()[index]
+    if (review.restaurantId === uniqueId) {
+      const { rate } = review
+      reviewCount += 1
+      rateForRestaurant += rate
+    }
+  }
+  item.rate = rateForRestaurant
+  item.reviewCount = reviewCount
+}
 
 export const loadRestaurants = (): IFBRestaurant[] => {
   const next = restaurants.map((item: IFBRestaurant) => {
+    fixReviewStatistic(item)
     item.geoHash = convertToGeoHash(item.latitude, item.longitude)
     // item.slug = slugifyToLower(item.displayName)
     // console.log(JSON.stringify(item))

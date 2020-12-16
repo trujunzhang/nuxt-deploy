@@ -6,6 +6,7 @@ import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:ieatta/src/logic/bloc.dart';
 
 import 'mc_lipper.dart';
 import 'package:ieatta/camera/screens/types.dart';
@@ -24,17 +25,23 @@ class _ScreenTopPartState extends State<ScreenTopPart> {
 
   void initState() {
     super.initState();
+    bloc.thumbnailVal(widget.restaurant.originalUrl);
     setState(() {
       title = widget.restaurant.displayName;
     });
   }
 
   Widget _buildImage() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 370.0,
-      child: buildRestaurantImage(widget.restaurant),
-    );
+    return StreamBuilder(
+        stream: bloc.thumbnailStream,
+        builder: (BuildContext context, AsyncSnapshot thumbnailSnapshot) {
+          String thumbnailVal = thumbnailSnapshot.data;
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: 370.0,
+            child: buildParseModelRestaurantsImageWithOriginalUrl(thumbnailVal),
+          );
+        });
   }
 
   Widget buildBg() {

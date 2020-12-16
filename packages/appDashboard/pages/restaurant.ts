@@ -26,8 +26,8 @@ export default class Index extends Vue {
       value: 'rate'
     },
     {
-      text: 'Address',
-      value: 'address'
+      text: 'ReviewCount',
+      value: 'reviewCount'
     },
     {
       text: 'GeoHash',

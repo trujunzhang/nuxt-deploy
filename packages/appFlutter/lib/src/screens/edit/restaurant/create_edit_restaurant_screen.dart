@@ -167,6 +167,7 @@ class _CreateEditRestaurantScreenState
   }
 
   onSelectCoverClick(ParseModelPhotos item) async {
+    bloc.thumbnailVal(item.originalUrl);
     setState(() {
       _restaurantCoverUrl = item.originalUrl;
     });
