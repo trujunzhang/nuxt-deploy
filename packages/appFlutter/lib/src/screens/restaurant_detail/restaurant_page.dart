@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
 
+import 'widget/events_part.dart';
 import 'widget/review_edit.dart';
 import 'widget/top_part.dart';
 import 'widget/photos_part.dart';
@@ -66,7 +67,11 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                   restaurant: _restaurant,
                 ),
               ),
-              buildReviewSectionTitle(),
+              buildTextSectionTitle("Events"),
+              EventsPart(
+                restaurantId: _restaurantId,
+              ),
+              buildTextSectionTitle("Reviews"),
               ReviewEdit(
                 restaurantId: _restaurantId,
               ),
@@ -87,7 +92,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
     _opacity =
         _scrollPosition < SCROLL_TOP_H ? _scrollPosition / SCROLL_TOP_H : 1;
     var iconColor = Colors.white;
-    var textColor = Colors.black.withOpacity(_opacity);
+    var textColor = Colors.white.withOpacity(_opacity);
     if (_opacity == 1) {
       iconColor = Colors.black;
       textColor = Colors.black;

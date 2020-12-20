@@ -8,6 +8,11 @@ export const menus: Array<IItem|IGroupItem> = [
     to: '/'
   },
   {
+    icon: 'book',
+    title: 'user',
+    to: '/user'
+  },
+  {
     icon: 'restaurant',
     title: 'restaurant',
     to: '/restaurant'
@@ -26,11 +31,6 @@ export const menus: Array<IItem|IGroupItem> = [
     icon: 'photo',
     title: 'photo',
     to: '/photo'
-  },
-  {
-    icon: 'book',
-    title: 'user',
-    to: '/user'
   },
   {
     icon: 'mdi-calendar-range',

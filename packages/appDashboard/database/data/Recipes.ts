@@ -2,7 +2,7 @@ import { IFBRecipe } from 'ieattatypes/types/index'
 
 export const recipes: IFBRecipe[] = [
   {
-    id: 'TFMuxD6Etf',
+    // id: 'TFMuxD6Etf',
     creatorId: 'zis2vkx9G2',
     displayName: 'Chicken Tacos',
     price: '12',
@@ -14,7 +14,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: '5gckWrMNxg',
+    // id: '5gckWrMNxg',
     creatorId: 'ua04ebIMCn',
     displayName: 'KOMODO 2.0 Seared top sirloin steak',
     price: '20',
@@ -26,7 +26,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'oOYmAf4GOs',
+    // id: 'oOYmAf4GOs',
     creatorId: 'ua04ebIMCn',
     displayName: 'Spicy Salmon Rice Bowl',
     price: '40',
@@ -38,7 +38,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'F1ruTbSMJG',
+    // id: 'F1ruTbSMJG',
     creatorId: 'W4Iqc2hYE5',
     displayName: 'Brutis Salad',
     price: '14',
@@ -50,7 +50,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'f39HB1FtU6',
+    // id: 'f39HB1FtU6',
     creatorId: 'tiBfFJkC71',
     displayName: 'Lobster roll',
     price: '30',
@@ -62,7 +62,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'AQ3Cvm1Id3',
+    // id: 'AQ3Cvm1Id3',
     creatorId: 'clB85fmtwS',
     displayName: 'Breakfast burrito',
     price: '22',
@@ -74,7 +74,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'RRhSW6dHfp',
+    // id: 'RRhSW6dHfp',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Lobster roll',
     price: '30',
@@ -86,7 +86,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'O164RiQhfH',
+    // id: 'O164RiQhfH',
     creatorId: 'zis2vkx9G2',
     displayName: 'Grilled chicken salad',
     price: '40',
@@ -98,7 +98,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'e3GIxMZrfX',
+    // id: 'e3GIxMZrfX',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Oatmeal crumble',
     price: '10',
@@ -110,7 +110,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: '1CNbFtVULN',
+    // id: '1CNbFtVULN',
     creatorId: 'zis2vkx9G2',
     displayName: 'Chicken koobideh for 2nd visit',
     price: '40',
@@ -122,7 +122,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'OcmYV8LFIh',
+    // id: 'OcmYV8LFIh',
     creatorId: 'zis2vkx9G2',
     displayName: 'House salad with salmon',
     price: '40',
@@ -134,7 +134,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: '9IugAv5UFJ',
+    // id: '9IugAv5UFJ',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Cobb Salad',
     price: '30',
@@ -146,7 +146,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'QDTgyhoV7K',
+    // id: 'QDTgyhoV7K',
     creatorId: 'tiBfFJkC71',
     displayName: 'Pecan pie',
     price: '10',
@@ -158,7 +158,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'hNLIi7AQjx',
+    // id: 'hNLIi7AQjx',
     creatorId: 'clB85fmtwS',
     displayName: 'Mac n cheese',
     price: '8',
@@ -170,7 +170,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'OLWeLxvqrs',
+    // id: 'OLWeLxvqrs',
     creatorId: 'clB85fmtwS',
     displayName: 'Meatball pie',
     price: '40',
@@ -182,7 +182,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'QSPLK8U0UX',
+    // id: 'QSPLK8U0UX',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Caprese salad',
     price: '18',
@@ -194,7 +194,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'AHlT6oyht0',
+    // id: 'AHlT6oyht0',
     creatorId: 'ua04ebIMCn',
     displayName: 'Pizza with chicken and garlic cloves',
     price: '20',
@@ -206,7 +206,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'EW6CciOKrx',
+    // id: 'EW6CciOKrx',
     creatorId: 'ua04ebIMCn',
     displayName: 'My Mongolian creation',
     price: '30',
@@ -218,7 +218,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'Ahwb8d5rKx',
+    // id: 'Ahwb8d5rKx',
     creatorId: 'zis2vkx9G2',
     displayName: 'Rose',
     price: '40',
@@ -230,7 +230,7 @@ export const recipes: IFBRecipe[] = [
     flag: '1'
   },
   {
-    id: 'DonWm6LRfA',
+    // id: 'DonWm6LRfA',
     creatorId: 'zis2vkx9G2',
     uniqueId: '823fab00-d58c-47c3-a77e-45156cb93d95',
     displayName: 'Rooster & Rice1',

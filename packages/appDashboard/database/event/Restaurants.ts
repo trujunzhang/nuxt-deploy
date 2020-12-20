@@ -6,11 +6,12 @@ import { getCreatorIdDict, fixCreatorId } from '~/database/event/userUid'
 
 export const uploadRestaurants = async ($fireAuth: firebase.auth.Auth, $fireStore: firebase.firestore.Firestore) => {
   const creatorIdDict = await getCreatorIdDict($fireAuth)
-  // for (const index in loadRestaurants()) {
-  //   await uploadRestaurant($fireStore, creatorIdDict, loadRestaurants()[index])
-  // }
+  for (const index in loadRestaurants()) {
+    await uploadRestaurant($fireStore, creatorIdDict, loadRestaurants()[index])
+  }
 
-  await uploadRestaurant($fireStore, creatorIdDict, loadRestaurants()[0])
+  // For debug firebase's function.
+  // await uploadRestaurant($fireStore, creatorIdDict, loadRestaurants()[0])
 }
 
 const uploadRestaurant = async ($fireStore: firebase.firestore.Firestore, creatorIdDict, restaurant: IFBRestaurant) => {

@@ -9,13 +9,13 @@
 import { AuthServiceConfig, FirebaseModuleConfiguration, FirestoreServiceConfig } from '@nuxtjs/firebase'
 
 const auth: AuthServiceConfig = {
-  emulatorPort: 9099,
-  emulatorHost: 'http://localhost'
+  // emulatorPort: 9099,
+  // emulatorHost: 'http://localhost'
 }
 
 const firestore: FirestoreServiceConfig = {
-  emulatorPort: 8080,
-  emulatorHost: 'localhost'
+  // emulatorPort: 8080,
+  // emulatorHost: 'localhost'
 }
 
 export const firebase: FirebaseModuleConfiguration = {

@@ -2,6 +2,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBEvent } from 'ieattatypes/types/index'
 import { events } from '~/database/data/Events'
 import { uploadEvents } from '~/database/event/Events'
+import { uploadRestaurants } from '~/database/event/Restaurants'
 
 @Component({
   components: {
@@ -31,7 +32,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadEvents(this.$fire.firestore)
+    await uploadEvents(this.$fire.auth, this.$fire.firestore)
     this.loading = false
   }
 }

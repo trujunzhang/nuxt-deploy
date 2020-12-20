@@ -31,14 +31,14 @@ Widget buildPhotoSectionTitle(BuildContext context, ParseModelRestaurants restau
   );
 }
 
-Widget buildReviewSectionTitle() {
+Widget buildTextSectionTitle(String text) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 24.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          "Reviews",
+          text,
           style: TextStyle(fontSize: 22.0, fontFamily: "SF-Pro-Display-Bold"),
         ),
       ],
