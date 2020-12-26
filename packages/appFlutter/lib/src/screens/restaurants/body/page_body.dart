@@ -31,7 +31,6 @@ class _PageBodyState extends State<PageBody> {
               child: HotelListView(
                 callback: () {
                   Navigator.of(context).pushNamed(
-//                    Routes.create_edit_restaurant,
                       Routes.detail_restaurant,
                       arguments: widget.restaurantList[index]);
                 },

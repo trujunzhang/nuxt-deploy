@@ -2,146 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7539015-a2a0-4c8b-95ee-4493e97d069e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/flutter-ieatta-lerna.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flutter-ieatta-lerna.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.tern-port" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.tern-project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vim-project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.org" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/iComponentActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/iRealmObjectsList.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmActions/iActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmActions/iParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmObjectsList/iActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmObjectsList/iParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmSaver/iActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/realmSaver/iParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/client/utils/iAddRecipesToEvent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/iAlert.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/iAuthSessionActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/iReactActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/login/iActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/login/iParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/iComponentActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/iParseAccess.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/iParseObjectsList.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/iParseSingle.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/iWriteParseObject.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/utils/iAfterFetchHook.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/utils/iListFetcher.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/utils/iPhotoEvents.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/utils/iSaveParseObjects.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/actions/web/utils/iSingleFetcher.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/editForm/iRNComponentParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iBaseParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iChoiceParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iDetailsParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iEditParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iRegisterParsms.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iTakePhotosParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/navigation/iUserProfile.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/iMobileRefreshHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/iNavigationHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/iOnSaveRealmModelAfterHookHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/mobileAppTable/iBase.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/mobileAppTable/iPushForDetailedPages.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appClient/utils/mobileAppTable/iPushForEditPage.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/iPhotoBrowser.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/iReviewsLinker.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/iWebParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/utils/helper/iPeopleInEventHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/appWeb/utils/helper/iPhotosScrollHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iCameraKit.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iFetchModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iGlobalModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iMobileApp.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iMobileModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iNavigations.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iPagesModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iParseTypes.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iPhotosModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iRegister.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iRelative.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iRestaurantsMap.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/iWebApp.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/common/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/generator/INewRealmObjectGenerator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/generator/iNewParseObjectGenerator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/iRealmReducer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iEditFormHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iParseDatabaseUtils.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iParseObjectsUtils.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iParseParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iRealmServices.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iSyncPostedAtHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/iUniqueIdHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/realm/iReamlFirstObjectHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/params/realm/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iEvents.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iParseBaseModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iPeopleInEvent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iPhotos.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iRecipes.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iRecords.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iRestaurants.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iReviews.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/parseModels/iUsers.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/query/iParseQuery.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/query/iRealmQuery.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/query/iWebPaginationTerms.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iEvents.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iPeopleInEvent.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iPhotos.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iRealmBaseModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iRecipes.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iRecords.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iRestaurants.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iReviews.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iUserDevices.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/database/realmModels/iUsers.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/global.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/iDatabase.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iSaveParseEditFormHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iSaveRealmsEditFormHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iSaveRealmsTakenPhotoHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iUserEmailForgotPasswordHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iUserEmailSignInHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iUserEmailSignUpHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/compevents/iUserSocialConnectHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/iActionsParams.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/iBasePropertiesHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/iRenderCustomIcon.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/iSyncModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/lib/helper/iDatabaseHelper.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/params/lib/iPhotos.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/parseCloud/iCloudActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/parseCloud/iCloudinaryCloud.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/parseCloud/iPhotoListUrls.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/parseCloud/iStatisticsModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/parseCloud/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/react-sticky.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/authModel/iAuthActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/authModel/iAuthInitialState.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/authSession/iAuthSessionInitialState.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/editModel/iEditModelActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/editModel/iEditModelInitialState.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/editModel/iEditModelPayloadActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/editModel/iEditModelReducer.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/iAlert.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/iBaseRedux.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/iReduceModels.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/iReduxActions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/redux/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/server/iServerRouterPattern.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/server/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/server/main.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/styled-jsx-css.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/styled-jsx.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/appDashboard/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +43,7 @@
       <workItem from="1600516569175" duration="269000" />
       <workItem from="1608112891340" duration="237000" />
       <workItem from="1608201292738" duration="411000" />
+      <workItem from="1608959734844" duration="22000" />
     </task>
     <servers />
   </component>

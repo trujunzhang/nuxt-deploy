@@ -1,73 +1,109 @@
-//import 'package:ieatta/src/parseModels/Database.dart';
-//
-//class ParseModelNewEvent extends DatabaseBaseModel {
-//  final String displayName;
-//  final String want;
-//  final DateTime start;
-//  final DateTime end;
-//
-//  // Pointer
-//  final restaurant;
-//
-//  ParseModelNewEvent(
-//      creator,
-//      String uniqueId,
-//      String id,
-//      DateTime createdAt,
-//      DateTime updatedAt,
-//      DateTime syncPostedAt,
-//      String flag,
-//      this.displayName,
-//      this.want,
-//      this.start,
-//      this.end,
-//      this.restaurant)
-//      : super(creator, uniqueId, id, createdAt, updatedAt, syncPostedAt, flag,
-//            );
-//}
-//
-//class ParseModelEvents extends ParseModelNewEvent {
-//  // Attributes
-////final String displayName;
-//  final String slug;
-//
-//  // Detailed Event Page
-//  final listPhotosDict;
-//
-//  ParseModelEvents(
-//      creator,
-//      String uniqueId,
-//      DateTime createdAt,
-//      DateTime updatedAt,
-//      DateTime syncPostedAt,
-//      String flag,
-//      String objectSchemaName,
-//      String id,
-//      String displayName,
-//      String want,
-//      DateTime start,
-//      DateTime end,
-//      restaurant,
-//      this.slug,
-//      this.listPhotosDict)
-//      : super(
-//            creator,
-//            uniqueId,
-//            createdAt,
-//            updatedAt,
-//            syncPostedAt,
-//            flag,
-//            objectSchemaName,
-//            id,
-//            displayName,
-//            want,
-//            start,
-//            end,
-//            restaurant); // IListPhotosDict<String>
-//
-////  factory ParseModelEvents.fromJson(Map<String, dynamic> json) {
-////    return ParseModelEvents(
-////    );
-////  }
-//
-//}
+import 'Database.dart';
+
+class ParseModelEvents {
+  // Base(5)
+  final String uniqueId;
+  final String creatorId;
+  final String createdAt;
+  final String updatedAt;
+  final String flag;
+
+  // Common(4)
+  final String displayName;
+  final String want;
+  final String start;
+  final String end;
+
+  // final DateTime start;
+  // final DateTime end;
+
+  // for review(2)
+  int rate;
+  int reviewCount;
+
+  // point(1)
+  final String restaurantId;
+
+  ParseModelEvents(
+      {
+      // Base(5)
+      this.uniqueId,
+      this.creatorId,
+      this.createdAt,
+      this.updatedAt,
+      this.flag,
+      // Common(4)
+      this.displayName,
+      this.want,
+      this.start,
+      this.end,
+        // for review(2)
+        this.rate,
+        this.reviewCount,
+      // point(1)
+      this.restaurantId});
+
+  factory ParseModelEvents.fromJson(Map<String, dynamic> json) {
+    // Base(5)
+    DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
+
+    // Common(4)
+    var displayName = json['displayName'] as String;
+    var want = json['want'] as String;
+    var start = json['start'] as String;
+    var end = json['end'] as String;
+
+    // for review(2)
+    var rate = json['rate'];
+    if (rate is int) {
+      rate = rate as int;
+    }
+
+    if (rate is double) {
+      rate = rate.round();
+    }
+
+    var reviewCount = json['reviewCount'] as int;
+    // point(1)
+    var restaurantId = json['restaurantId'] as String;
+
+    return ParseModelEvents(
+        // Base(5)
+        uniqueId: databaseBaseModel.uniqueId,
+        creatorId: databaseBaseModel.creatorId,
+        createdAt: databaseBaseModel.createdAt,
+        updatedAt: databaseBaseModel.updatedAt,
+        flag: databaseBaseModel.flag,
+        // Common(4)
+        displayName: displayName,
+        want: want,
+        start: start,
+        end: end,
+        // for review(2)
+        rate: rate,
+        reviewCount: reviewCount,
+        // point(1)
+        restaurantId: restaurantId);
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      // Base(5)
+      "uniqueId": uniqueId,
+      "creatorId": creatorId,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
+      "flag": flag,
+      // Common(4)
+      "displayName": displayName,
+      "want": want,
+      "start": start,
+      "end": end,
+      // for review(2)
+      'rate': rate,
+      'reviewCount': reviewCount,
+      // point(1)
+      "restaurantId": restaurantId,
+    };
+  }
+}

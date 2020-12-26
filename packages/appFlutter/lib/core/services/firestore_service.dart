@@ -73,12 +73,12 @@ class FirestoreService {
   }
 
   Stream<List<T>> collectionStream<T>({
-    @required FBCollections path,
+    @required String path,
     @required T builder(Map<String, dynamic> data, String documentID),
     Query queryBuilder(Query query),
     int sort(T lhs, T rhs),
   }) {
-    Query query = Firestore.instance.collection(fbCollectionToString(path));
+    Query query = Firestore.instance.collection(path);
     if (queryBuilder != null) {
       query = queryBuilder(query);
     }
@@ -100,6 +100,18 @@ class FirestoreService {
     Query queryBuilder(Query query),
   }) {
     Query query = Firestore.instance.collection(fbCollectionToString(path));
+    if (queryBuilder != null) {
+      query = queryBuilder(query);
+    }
+    final Stream<QuerySnapshot> snapshots = query.snapshots();
+    return snapshots;
+  }
+
+  Stream<QuerySnapshot> snapshotPathStream<DocumentSnapshot>({
+    @required String path,
+    Query queryBuilder(Query query),
+  }) {
+    Query query = Firestore.instance.collection(path);
     if (queryBuilder != null) {
       query = queryBuilder(query);
     }

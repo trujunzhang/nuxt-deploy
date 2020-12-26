@@ -45,7 +45,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
       @required AsyncSnapshot searchSnapshot, // search
       @required AsyncSnapshot fbSnapshot // Final, facebook collection.
       }) {
-    bool gpsTrackVal = gpsTrackSnapshot.data;
+    // TODO: DJZHANG
+    // bool gpsTrackVal = gpsTrackSnapshot.data; // used
+    bool gpsTrackVal = false ; // used
     if (gpsTrackVal && locationSnapshot.hasData == false) {
       return Center(
         child: CircularProgressIndicator(),
@@ -90,8 +92,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         builder: (BuildContext context, AsyncSnapshot locationSnapshot) {
           return StreamBuilder(
               //This StreamBuilder is to fetch GpsTrack status.
-              initialData: true,
-//              initialData: false,
+              initialData: true, // used
+             // initialData: false, // test
               stream: bloc.gpsTrackStatusStream,
               builder: (BuildContext context, AsyncSnapshot gpsTrackSnapshot) {
                 return StreamBuilder(

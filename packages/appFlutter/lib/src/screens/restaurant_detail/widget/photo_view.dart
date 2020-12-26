@@ -11,10 +11,10 @@ class PhotoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 12.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
       child: Container(
           width: 135.0,
-          height: 220.0,
+          height: 180.0,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.white,

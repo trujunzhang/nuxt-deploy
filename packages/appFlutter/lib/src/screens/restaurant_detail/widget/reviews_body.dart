@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
+import 'package:ieatta/src/screens/review_detail/review_item.dart';
 import 'package:ieatta/src/screens/review_detail/review_view.dart';
 
-class ReviewsBody extends StatefulWidget {
-  final bool useScrollview;
-  final List<ParseModelReviews> reviewList;
+class ReviewsBody extends StatelessWidget {
+  final bool useScrollView;
+  final List<ParseModelReviews> reviewsList;
 
-  ReviewsBody({Key key, @required this.reviewList, this.useScrollview = false})
+  const ReviewsBody(
+      {Key key, @required this.reviewsList, this.useScrollView = false})
       : super(key: key);
 
-  @override
-  ReviewsBodyState createState() => ReviewsBodyState();
-}
-
-class ReviewsBodyState extends State<ReviewsBody> {
-  Widget _buildReviewsListView(List<ParseModelReviews> reviewList) {
-    if (reviewList.length == 0) {
+  Widget _buildReviewsListView(
+      BuildContext context, List<ParseModelReviews> reviewsList) {
+    if (reviewsList.length == 0) {
       return Container(
         height: 60,
         child: Center(
@@ -27,24 +25,23 @@ class ReviewsBodyState extends State<ReviewsBody> {
     }
     List<Widget> list = new List<Widget>();
 
-    list.add(pageLine);
-    for (var i = 0; i < reviewList.length; i++) {
-      var reviewView = ReviewView(
-        reviewData: reviewList[i],
-        rate: reviewList[i].rate,
-        note: reviewList[i].body,
+    for (var i = 0; i < reviewsList.length; i++) {
+      var reviewView = ReviewItem(
+        reviewData: reviewsList[i],
+        rate: reviewsList[i].rate,
+        note: reviewsList[i].body,
       );
       Widget child = InkWell(
         child: reviewView,
         onTap: () {
           Navigator.of(context)
-              .pushNamed(Routes.detail_review, arguments: reviewList[i]);
+              .pushNamed(Routes.detail_review, arguments: reviewsList[i]);
         },
       );
       list.add(child);
-      list.add(pageLine);
+      // list.add(pageLine);
     }
-    if (widget.useScrollview) {
+    if (useScrollView) {
       return SingleChildScrollView(
         child: Column(
           children: list,
@@ -56,6 +53,6 @@ class ReviewsBodyState extends State<ReviewsBody> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildReviewsListView(widget.reviewList);
+    return _buildReviewsListView(context, reviewsList);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/src/components/app/app_header.dart';
 
 import '../hotel_app_theme.dart';
 
@@ -17,7 +18,7 @@ class _AppBarUIState extends State<AppBarUI> {
     return Container(
         child: Container(
       decoration: BoxDecoration(
-        color: HotelAppTheme.buildLightTheme().backgroundColor,
+        color: Color(0xff83CBEC),
         // color: Colors.red,
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -27,35 +28,25 @@ class _AppBarUIState extends State<AppBarUI> {
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + 4, left: 8, right: 8),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Text(
-                  AppLocalizations.of(context).translate("mainUITitle"),
-                  // 'Explore',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                  ),
-                ),
-              ),
-            ),
-            buildRightIcons()
-          ],
-        ),
-      ),
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + 10,
+              bottom: 4,
+              left: 8,
+              right: 8),
+          child: buildHeader()),
     ));
+  }
+
+  Widget buildHeader() {
+    return Stack(
+      children: [Center(child: appHeaderTitle()), buildRightIcons()],
+    );
   }
 
   Widget buildRightIcons() {
     return Container(
-      width: AppBar().preferredSize.height + 40,
-      height: AppBar().preferredSize.height,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Material(
@@ -71,7 +62,7 @@ class _AppBarUIState extends State<AppBarUI> {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.add,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).secondaryHeaderColor,
                 ),
               ),
             ),
@@ -89,7 +80,7 @@ class _AppBarUIState extends State<AppBarUI> {
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.photo_library,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).secondaryHeaderColor,
                 ),
               ),
             ),

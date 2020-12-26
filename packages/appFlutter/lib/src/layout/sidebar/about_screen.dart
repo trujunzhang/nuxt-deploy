@@ -50,6 +50,16 @@ class _AboutScreenState extends State<AboutScreen> {
               Container(
                 padding: const EdgeInsets.only(top: 16),
                 child: const Text(
+                  "This app is used to track restaurant's ate at, food that was eaten and who you were with.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 16),
+                child: const Text(
                   'Version: 7.1.1',
                   textAlign: TextAlign.center,
                   style: TextStyle(

@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRecipe } from 'ieattatypes/types/index'
-import { recipes } from '~/database/data/Recipes'
+import { loadRecipes } from '~/database/data/Recipes'
 import { uploadRecipes } from '~/database/event/Recipes'
 
 @Component({
@@ -18,12 +18,24 @@ export default class Index extends Vue {
       value: 'price'
     },
     {
+      text: 'Rate',
+      value: 'rate'
+    },
+    {
+      text: 'ReviewCount',
+      value: 'reviewCount'
+    },
+    {
+      text: 'RestaurantId',
+      value: 'restaurantId'
+    },
+    {
       text: 'Created',
       value: 'createdAt'
     }
   ]
 
-  public items: Array<IFBRecipe> = recipes
+  public items: Array<IFBRecipe> = loadRecipes()
 
   public search?: string = ''
 
@@ -31,7 +43,7 @@ export default class Index extends Vue {
 
   async importToFirebase () {
     this.loading = true
-    await uploadRecipes(this.$fire.firestore)
+    await uploadRecipes(this.$fire.auth, this.$fire.firestore)
     this.loading = false
   }
 }

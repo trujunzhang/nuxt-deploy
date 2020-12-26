@@ -41,7 +41,7 @@ Widget buildCoverSectionTitle() {
           style: TextStyle(
               fontSize: 22.0,
               // color: Colors.black,
-              fontFamily: "SF-Pro-Display-Bold"),
+          ),
         ),
       ],
     ),

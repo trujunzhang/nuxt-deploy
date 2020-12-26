@@ -10,6 +10,7 @@ import 'package:ieatta/src/layout/navigation_home_screen.dart';
 import 'package:ieatta/src/screens/edit/restaurant/create_edit_restaurant_screen.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
+import 'package:ieatta/src/screens/event_detail/event_page.dart';
 import 'package:ieatta/src/screens/map/restaurants_map_page.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
@@ -36,6 +37,10 @@ class Routes {
   static const String detail_restaurant = '/detail_restaurant';
   static const String map_restaurant = '/map_restaurant';
 
+  // Event
+  static const String create_edit_event = '/create_edit_event';
+  static const String detail_event = '/detail_event';
+
   // Camera
   static const String app_camera = '/app_camera';
 
@@ -54,9 +59,9 @@ class Routes {
   // User
   static const String detail_common_user = '/detail_common_user';
   static const String edit_user = '/edit_user';
-  static const String user_restaurants= '/user_restaurants';
-  static const String user_photos= '/user_photos';
-  static const String user_reviews= '/user_reviews';
+  static const String user_restaurants = '/user_restaurants';
+  static const String user_photos = '/user_photos';
+  static const String user_reviews = '/user_reviews';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
@@ -70,6 +75,10 @@ class Routes {
         CreateEditRestaurantScreen(),
     detail_restaurant: (BuildContext context) => RestaurantDetail(),
     map_restaurant: (BuildContext context) => RestaurantsMapPage(),
+    // Event
+    // create_edit_event: (BuildContext context) =>
+    //     CreateEditEventScreen(),
+    detail_event: (BuildContext context) => EventDetail(),
     // Camera
     app_camera: (context) => CameraScreen(),
     // Photos

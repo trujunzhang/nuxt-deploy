@@ -5,17 +5,14 @@ import 'dimens.dart';
 class RegisterTextStyles {
   static TextStyle pageTitle = TextStyle(
     fontSize: 22,
-    fontFamily: 'SF UI Display',
     fontWeight: FontWeight.w800,
   );
   static TextStyle signIn = TextStyle(
     fontSize: 16,
-    fontFamily: 'SF UI Display',
     fontWeight: FontWeight.bold,
   );
   static TextStyle signUp = TextStyle(
     fontSize: 16,
-    fontFamily: 'SF UI Display',
     fontWeight: FontWeight.bold,
   );
 }

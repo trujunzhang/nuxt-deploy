@@ -1,42 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/appModels/models/Reviews.dart';
+import 'package:ieatta/src/components/app/app_header.dart';
+import 'package:ieatta/src/components/app/page_section_title.dart';
+import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
 
-import 'widget/events_part.dart';
-import 'widget/review_edit.dart';
-import 'widget/top_part.dart';
-import 'widget/photos_part.dart';
-import 'widget/reviews_part.dart';
+import 'package:provider/provider.dart';
+import 'package:ieatta/core/services/firestore_database.dart';
+
+import 'widget/events_body.dart';
+import 'widget/info_part.dart';
+import 'widget/photos_body.dart';
+import 'widget/reviews_body.dart';
 
 class RestaurantDetail extends StatefulWidget {
+  RestaurantDetail({Key key}) : super(key: key);
+
   @override
-  _RestaurantDetailState createState() => new _RestaurantDetailState();
+  _RestaurantDetailState createState() => _RestaurantDetailState();
 }
 
 class _RestaurantDetailState extends State<RestaurantDetail> {
   ParseModelRestaurants _restaurant;
   String _restaurantId = "";
-
-  // Flutter web: animations and dynamic theming
-  // https://github.com/sbis04/explore/blob/master/lib/screens/home_page.dart
-  // https://blog.codemagic.io/flutter-web-animations-and-dynamic-theming/
-  ScrollController _scrollController;
-  double _scrollPosition = 0;
-  double _opacity = 0;
-
-  _scrollListener() {
-    // print("step 1");
-    setState(() {
-      _scrollPosition = _scrollController.position.pixels;
-    });
-  }
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
-    super.initState();
-  }
 
   @override
   void didChangeDependencies() {
@@ -46,78 +35,67 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
     if (_restaurantModel != null) {
       _restaurant = _restaurantModel;
       _restaurantId = _restaurantModel.uniqueId;
+      setState(() {
+        _restaurant = _restaurantModel;
+        _restaurantId = _restaurantModel.uniqueId;
+      });
     }
   }
 
-  Widget _buildBody() {
-    return Stack(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(centerTitle: true, title: appHeaderTitle()),
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    final firestoreDatabase =
+    Provider.of<FirestoreDatabase>(context, listen: false);
+    return ListView(
       children: [
-        SingleChildScrollView(
-          controller: _scrollController,
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              ScreenTopPart(
-                restaurant: _restaurant,
-              ),
-              buildPhotoSectionTitle(context, _restaurant),
-              Container(
-                height: 250,
-                child: PhotosPart(
-                  restaurant: _restaurant,
-                ),
-              ),
-              buildTextSectionTitle("Events"),
-              EventsPart(
-                restaurantId: _restaurantId,
-              ),
-              buildTextSectionTitle("Reviews"),
-              ReviewEdit(
-                restaurantId: _restaurantId,
-              ),
-              ReviewsPart(
-                restaurantId: _restaurantId,
-              ),
-            ],
+        InfoPart(
+          restaurant: _restaurant,
+        ),
+        // Line 1: Address
+        buildTextSectionTitle("Current Address"),
+        Container(
+            decoration: new BoxDecoration(color: Colors.white),
+            child: ListTile(
+              title: Text(_restaurant.address),
+            )),
+        // Line 2: Event
+        buildTextSectionTitle("Events Recorded"),
+        StreamBuilderView<List<ParseModelEvents>>(
+          stream: firestoreDatabase.eventsStream(_restaurantId),
+          render: (AsyncSnapshot fbSnapshot){
+            return EventsBody(eventsList: fbSnapshot.data);
+          },
+        ),
+        buildPhotoSectionTitle(context, _restaurant),
+        Container(
+          height: 160,
+          decoration: new BoxDecoration(color: Colors.white),
+          child:  StreamBuilderView<List<ParseModelPhotos>>(
+            stream: firestoreDatabase.photosInRestaurantStream(_restaurantId),
+            render: (AsyncSnapshot fbSnapshot){
+              return PhotosBody(photosList: fbSnapshot.data);
+            },
           ),
-        )
+        ),
+        buildTextSectionTitle("Review Highlights"),
+        Container(
+          decoration: new BoxDecoration(color: Colors.white),
+          child: StreamBuilderView<List<ParseModelReviews>>(
+            stream: firestoreDatabase.reviewsInRestaurantStream(_restaurantId),
+            render: (AsyncSnapshot fbSnapshot){
+              return ReviewsBody(reviewsList: fbSnapshot.data);
+            },
+          ),
+        ),
       ],
     );
   }
 
-  final int SCROLL_TOP_H = 270;
-
-  @override
-  Widget build(BuildContext context) {
-    _opacity =
-        _scrollPosition < SCROLL_TOP_H ? _scrollPosition / SCROLL_TOP_H : 1;
-    var iconColor = Colors.white;
-    var textColor = Colors.white.withOpacity(_opacity);
-    if (_opacity == 1) {
-      iconColor = Colors.black;
-      textColor = Colors.black;
-    }
-    // print('_opacity: ' + _opacity.toString());
-
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: iconColor),
-          backgroundColor:
-              Theme.of(context).bottomAppBarColor.withOpacity(_opacity),
-          elevation: _opacity < 0.7 ? 0 : _opacity,
-          centerTitle: true,
-          title: Text(
-            _restaurant.displayName,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 20,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w400,
-              letterSpacing: 3,
-            ),
-          ),
-        ),
-        body: _buildBody());
-  }
 }

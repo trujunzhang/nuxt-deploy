@@ -9,8 +9,12 @@ import { uploadPhotos } from '~/database/event/Photos'
 export default class Index extends Vue {
   public headers: Array<object> = [
     {
-      text: 'Url',
-      value: 'url'
+      text: 'RestaurantId',
+      value: 'restaurantId'
+    },
+    {
+      text: 'RecipeId',
+      value: 'recipeId'
     },
     {
       text: 'PhotoType',

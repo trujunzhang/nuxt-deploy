@@ -11,12 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../appDashboard/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appDashboard/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appDashboard/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../appDashboard/config/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appDashboard/database/data/Events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../appDashboard/database/data/Events.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/components/restaurant_detail/common.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/components/restaurant_detail/common.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/restaurant_detail/restaurant_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/restaurant_detail/restaurant_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_path.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_path.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/event_detail/event_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/event_detail/event_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/event_detail/widget/info_part.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/event_detail/widget/info_part.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +184,26 @@
       <workItem from="1608440503603" duration="23000" />
       <workItem from="1608443523951" duration="90000" />
       <workItem from="1608444898544" duration="334000" />
+      <workItem from="1608453370889" duration="45000" />
+      <workItem from="1608461635127" duration="389000" />
+      <workItem from="1608514251880" duration="4531000" />
+      <workItem from="1608534217248" duration="4818000" />
+      <workItem from="1608540830929" duration="1114000" />
+      <workItem from="1608612903853" duration="671000" />
+      <workItem from="1608792667439" duration="73000" />
+      <workItem from="1608795403717" duration="232000" />
+      <workItem from="1608795693001" duration="822000" />
+      <workItem from="1608797080030" duration="265000" />
+      <workItem from="1608797604303" duration="1591000" />
+      <workItem from="1608802600846" duration="1388000" />
+      <workItem from="1608804786330" duration="323000" />
+      <workItem from="1608946617466" duration="296000" />
+      <workItem from="1608949044103" duration="810000" />
+      <workItem from="1608950583819" duration="4000" />
+      <workItem from="1608951390541" duration="54000" />
+      <workItem from="1608958450901" duration="581000" />
+      <workItem from="1608966510088" duration="802000" />
+      <workItem from="1608967557956" duration="65000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>

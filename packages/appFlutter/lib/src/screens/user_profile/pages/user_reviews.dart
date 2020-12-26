@@ -67,7 +67,7 @@ class _UserReviewsState extends State<UserReviews> {
                 child: Text('No Data'),
               );
             }
-            return ReviewsBody(useScrollview: true, reviewList: reviewList);
+            return ReviewsBody(useScrollView: true, reviewsList: reviewList);
           }),
     );
   }

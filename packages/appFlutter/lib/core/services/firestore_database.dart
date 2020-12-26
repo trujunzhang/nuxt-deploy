@@ -5,6 +5,7 @@ import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_path.dart';
 import 'package:ieatta/core/services/firestore_service.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
+import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
@@ -25,7 +26,7 @@ setAllTodoComplete is require to change all todos item to have the complete stat
 changed to true.
  */
 class FirestoreDatabase {
-  FirestoreDatabase() ;
+  FirestoreDatabase();
 
   final _firestoreService = FirestoreService.instance;
 
@@ -93,6 +94,46 @@ class FirestoreDatabase {
       queryBuilder: (Query query) {
         return query.orderBy('updatedAt', descending: true);
       });
+
+  //Method to retrieve all users stream
+  Stream<List<ParseModelUsers>> allUsersStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.allUsers(),
+        builder: (data, documentId) => ParseModelUsers.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
+  //Method to retrieve event stream
+  Stream<List<ParseModelEvents>> eventsStream(String restaurantId) =>
+      _firestoreService.collectionStream(
+          path: FirestorePath.events(restaurantId),
+        builder: (data, documentId) => ParseModelEvents.fromJson(data),
+        queryBuilder: (Query query) {
+            return query.orderBy('updatedAt', descending: true);
+          },
+      );
+
+  //Method to retrieve photo stream in the restaurant
+  Stream<List<ParseModelPhotos>> photosInRestaurantStream(String restaurantId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.photosInRestaurant(restaurantId),
+        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
+  //Method to retrieve review stream in the restaurant
+  Stream<List<ParseModelReviews>> reviewsInRestaurantStream(String restaurantId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.reviewsInRestaurant(restaurantId),
+        builder: (data, documentId) => ParseModelReviews.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
 
   //Method to retrieve todoModel object based on the given todoId
   Stream<QuerySnapshot> photoStream(

@@ -7,14 +7,15 @@ class AppLightTheme {
 
   //constants color range for light theme
   static const Color _lightPrimaryColor = Colors.black;
+  static const Color _lightScaffoldBackgroundColor = Color(0xffF5F5F1);
   static const Color _lightPrimaryVariantColor = Colors.white;
   static const Color _lightSecondaryColor = Colors.green;
   static const Color _lightOnPrimaryColor = Colors.black;
   static const Color _lightButtonPrimaryColor = Colors.orangeAccent;
-  static const Color _lightAppBarColor = Colors.orangeAccent;
+  static const Color _lightAppBarColor = Color(0xff83CBEC);
   // static const Color _lightAppBarColor = Colors.white;
   // static Color _lightIconColor = Colors.orangeAccent;
-  static Color _lightIconColor = Colors.black;
+  static Color _lightIconColor = Colors.white;
   static Color _lightSnackBarBackgroundErrorColor = Colors.redAccent;
 
   //text theme for light theme
@@ -42,13 +43,14 @@ class AppLightTheme {
   //the light theme
   static final ThemeData lightTheme = ThemeData(
     fontFamily: AppFontFamily.productSans,
-    scaffoldBackgroundColor: _lightPrimaryVariantColor,
+    scaffoldBackgroundColor: _lightScaffoldBackgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: _lightButtonPrimaryColor,
     ),
     appBarTheme: AppBarTheme(
       color: _lightAppBarColor,
-      iconTheme: IconThemeData(color: _lightOnPrimaryColor),
+      // iconTheme: IconThemeData(color: _lightOnPrimaryColor),
+      iconTheme: IconThemeData(color: _lightIconColor),
       textTheme: _lightTextTheme,
     ),
     colorScheme: ColorScheme.light(

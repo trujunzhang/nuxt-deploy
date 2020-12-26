@@ -12,9 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/data/Events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/data/Events.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/data/PeopleInEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/data/PeopleInEvents.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/event/PeopleInEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/event/PeopleInEvents.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/event/userUid.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/event/userUid.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/peopleInEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/peopleInEvent.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="js.last.introduce.type" value="LET" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -137,6 +139,15 @@
       <workItem from="1608439207943" duration="643000" />
       <workItem from="1608443662303" duration="350000" />
       <workItem from="1608444305574" duration="105000" />
+      <workItem from="1608602192335" duration="1773000" />
+      <workItem from="1608624171199" duration="455000" />
+      <workItem from="1608792774143" duration="54000" />
+      <workItem from="1608792933015" duration="1008000" />
+      <workItem from="1608794104027" duration="892000" />
+      <workItem from="1608796624476" duration="50000" />
+      <workItem from="1608960658942" duration="19000" />
+      <workItem from="1608961044811" duration="1291000" />
+      <workItem from="1608967656579" duration="3037000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>

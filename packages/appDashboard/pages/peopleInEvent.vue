@@ -5,13 +5,13 @@
   >
     <base-material-card
       color="indigo"
-      icon="book"
+      icon="restaurant"
       inline
       class="px-5 py-3"
     >
       <template v-slot:after-heading>
         <div class="display-2 font-weight-light">
-          Review
+          People In Event
         </div>
       </template>
 
@@ -53,4 +53,4 @@
   </v-container>
 </template>
 
-<script lang="ts" src="./review.ts"/>
+<script lang="ts" src="./peopleInEvent.ts"/>

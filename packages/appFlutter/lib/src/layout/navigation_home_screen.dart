@@ -6,7 +6,7 @@ import 'package:ieatta/src/layout/sidebar/feedback_screen.dart';
 import 'package:ieatta/src/layout/sidebar/help_screen.dart';
 import 'package:ieatta/src/layout/sidebar/invite_friend_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
-import 'package:ieatta/src/screens/home/fitness_app_home_screen.dart';
+import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:ieatta/src/screens/user_profile/profile.dart';
 
 import 'custom_drawer/draw_model.dart';
@@ -24,7 +24,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    screenView = FitnessAppHomeScreen(); // used
+    screenView = HotelHomeScreen(); // used
     // screenView = Profile(); // test
     // screenView = EditUserScreen(); // test
 
@@ -60,7 +60,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       drawerIndex = drawerIndexData;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = FitnessAppHomeScreen();
+          screenView = HotelHomeScreen();
         });
       } else if (drawerIndex == DrawerIndex.Profile) {
         setState(() {

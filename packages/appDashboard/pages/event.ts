@@ -1,8 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBEvent } from 'ieattatypes/types/index'
-import { events } from '~/database/data/Events'
+import { loadEvents } from '~/database/data/Events'
 import { uploadEvents } from '~/database/event/Events'
-import { uploadRestaurants } from '~/database/event/Restaurants'
 
 @Component({
   components: {
@@ -15,6 +14,14 @@ export default class Index extends Vue {
       value: 'displayName'
     },
     {
+      text: 'Rate',
+      value: 'rate'
+    },
+    {
+      text: 'ReviewCount',
+      value: 'reviewCount'
+    },
+    {
       text: 'Start',
       value: 'start'
     },
@@ -24,7 +31,7 @@ export default class Index extends Vue {
     }
   ]
 
-  public items: Array<IFBEvent> = events
+  public items: Array<IFBEvent> = loadEvents()
 
   public search?: string = ''
 
