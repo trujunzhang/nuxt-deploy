@@ -12,6 +12,7 @@ import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/event_detail/event_page.dart';
 import 'package:ieatta/src/screens/map/restaurants_map_page.dart';
+import 'package:ieatta/src/screens/peopleInEvent_detail/peopleInEvent_page.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_grid_view.dart';
@@ -40,6 +41,9 @@ class Routes {
   // Event
   static const String create_edit_event = '/create_edit_event';
   static const String detail_event = '/detail_event';
+
+  // PeopleInEvent
+  static const String detail_people_in_event = '/detail_people_in_event';
 
   // Camera
   static const String app_camera = '/app_camera';
@@ -79,6 +83,8 @@ class Routes {
     // create_edit_event: (BuildContext context) =>
     //     CreateEditEventScreen(),
     detail_event: (BuildContext context) => EventDetail(),
+    // PeopleInEvent
+    detail_people_in_event: (BuildContext context) => PeopleInEventDetail(),
     // Camera
     app_camera: (context) => CameraScreen(),
     // Photos

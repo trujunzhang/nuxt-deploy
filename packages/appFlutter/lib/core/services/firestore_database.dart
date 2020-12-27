@@ -6,6 +6,7 @@ import 'package:ieatta/core/services/firestore_path.dart';
 import 'package:ieatta/core/services/firestore_service.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
@@ -33,7 +34,7 @@ class FirestoreDatabase {
   //Method to create/update restaurantModel
   Future<void> setRestaurant({@required ParseModelRestaurants model}) async {
     await _firestoreService.setData(
-      path: FirestorePath.restaurant(model.uniqueId),
+      path: FirestorePath.singleRestaurant(model.uniqueId),
       data: model.toMap(),
     );
   }
@@ -88,12 +89,27 @@ class FirestoreDatabase {
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
       );
 
-  //Method to retrieve restaurant stream
-  Stream<QuerySnapshot> restaurantStream() => _firestoreService.snapshotStream(
-      path: FBCollections.Restaurants,
-      queryBuilder: (Query query) {
-        return query.orderBy('updatedAt', descending: true);
-      });
+  // ===========================================================
+  // Stream: Single<Model>
+  // ===========================================================
+
+  //Method to retrieve single user stream
+  Stream<ParseModelUsers> singleUserStream(String userId) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.singleUser(userId),
+        builder: (data, documentId) => ParseModelUsers.fromJson(data),
+      );
+
+  //Method to retrieve single user stream
+  Stream<ParseModelRestaurants> singleRestaurantStream(String restaurantId) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.singleRestaurant(restaurantId),
+        builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
+      );
+
+  // ===========================================================
+  // Stream: List<Models>
+  // ===========================================================
 
   //Method to retrieve all users stream
   Stream<List<ParseModelUsers>> allUsersStream() =>
@@ -108,15 +124,27 @@ class FirestoreDatabase {
   //Method to retrieve event stream
   Stream<List<ParseModelEvents>> eventsStream(String restaurantId) =>
       _firestoreService.collectionStream(
-          path: FirestorePath.events(restaurantId),
+        path: FirestorePath.events(restaurantId),
         builder: (data, documentId) => ParseModelEvents.fromJson(data),
         queryBuilder: (Query query) {
-            return query.orderBy('updatedAt', descending: true);
-          },
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
+  //Method to retrieve peopleInEvent stream
+  Stream<List<ParseModelPeopleInEvent>> peopleInEventsStream(
+          String restaurantId, String eventId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.peopleInEvents(restaurantId, eventId),
+        builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
       );
 
   //Method to retrieve photo stream in the restaurant
-  Stream<List<ParseModelPhotos>> photosInRestaurantStream(String restaurantId) =>
+  Stream<List<ParseModelPhotos>> photosInRestaurantStream(
+          String restaurantId) =>
       _firestoreService.collectionStream(
         path: FirestorePath.photosInRestaurant(restaurantId),
         builder: (data, documentId) => ParseModelPhotos.fromJson(data),
@@ -126,7 +154,8 @@ class FirestoreDatabase {
       );
 
   //Method to retrieve review stream in the restaurant
-  Stream<List<ParseModelReviews>> reviewsInRestaurantStream(String restaurantId) =>
+  Stream<List<ParseModelReviews>> reviewsInRestaurantStream(
+          String restaurantId) =>
       _firestoreService.collectionStream(
         path: FirestorePath.reviewsInRestaurant(restaurantId),
         builder: (data, documentId) => ParseModelReviews.fromJson(data),
@@ -134,6 +163,28 @@ class FirestoreDatabase {
           return query.orderBy('updatedAt', descending: true);
         },
       );
+
+  //Method to retrieve review stream in the event
+  Stream<List<ParseModelReviews>> reviewsInEventStream(
+          String restaurantId, String eventId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.reviewsInEvent(restaurantId, eventId),
+        builder: (data, documentId) => ParseModelReviews.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
+  // ===========================================================
+  // Stream: QuerySnapshot
+  // ===========================================================
+
+  //Method to retrieve restaurant stream
+  Stream<QuerySnapshot> restaurantsStream() => _firestoreService.snapshotStream(
+      path: FBCollections.Restaurants,
+      queryBuilder: (Query query) {
+        return query.orderBy('updatedAt', descending: true);
+      });
 
   //Method to retrieve todoModel object based on the given todoId
   Stream<QuerySnapshot> photoStream(

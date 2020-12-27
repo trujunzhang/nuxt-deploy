@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Users.dart';
+
+import 'peopleInEvent_item.dart';
+
+class PeopleInEventBody extends StatelessWidget {
+  final List<ParseModelPeopleInEvent> peopleInEventsList;
+  final List<ParseModelUsers> users ;
+  const PeopleInEventBody({Key key, @required this.peopleInEventsList,@required this.users})
+      : super(key: key);
+
+  ParseModelUsers filterUser(ParseModelPeopleInEvent parseModelPeopleInEvent){
+    for (ParseModelUsers e in users) {
+      if (e.id == parseModelPeopleInEvent.userId) {
+        return e;
+      }
+    }
+  }
+
+  Widget buildEventsListView() {
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < peopleInEventsList.length; i++) {
+      list.add(PeopleInEventItem(
+        peopleInEventData: peopleInEventsList[i],
+        user: filterUser(peopleInEventsList[i]),
+      ));
+      if (i < peopleInEventsList.length - 1) {
+        list.add(Divider(
+          height: 1,
+        ));
+      }
+    }
+    return Column(children: list);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (peopleInEventsList.length == 0) {
+      return Container(
+        height: 60,
+        decoration: new BoxDecoration(color: Colors.white),
+        child: Center(
+          child: Text('no ordered people'),
+        ),
+      );
+    }
+    return buildEventsListView();
+  }
+}

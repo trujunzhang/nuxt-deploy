@@ -5,7 +5,7 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 import 'package:ieatta/src/logic/reviews_results.dart';
-import 'package:ieatta/src/screens/restaurant_detail/widget/reviews_body.dart';
+import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
 import 'package:provider/provider.dart';
 
 class UserReviews extends StatefulWidget {

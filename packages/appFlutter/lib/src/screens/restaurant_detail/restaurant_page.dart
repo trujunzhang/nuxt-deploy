@@ -7,6 +7,7 @@ import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
+import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
 
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
@@ -14,7 +15,6 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'widget/events_body.dart';
 import 'widget/info_part.dart';
 import 'widget/photos_body.dart';
-import 'widget/reviews_body.dart';
 
 class RestaurantDetail extends StatefulWidget {
   RestaurantDetail({Key key}) : super(key: key);
@@ -44,15 +44,15 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final firestoreDatabase =
+        Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
       appBar: new AppBar(centerTitle: true, title: appHeaderTitle()),
-      body: _buildBody(context),
+      body: _buildBody(context, firestoreDatabase),
     );
   }
 
-  Widget _buildBody(BuildContext context) {
-    final firestoreDatabase =
-    Provider.of<FirestoreDatabase>(context, listen: false);
+  Widget _buildBody(BuildContext context, FirestoreDatabase firestoreDatabase) {
     return ListView(
       children: [
         InfoPart(
@@ -69,7 +69,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
         buildTextSectionTitle("Events Recorded"),
         StreamBuilderView<List<ParseModelEvents>>(
           stream: firestoreDatabase.eventsStream(_restaurantId),
-          render: (AsyncSnapshot fbSnapshot){
+          render: (AsyncSnapshot fbSnapshot) {
             return EventsBody(eventsList: fbSnapshot.data);
           },
         ),
@@ -77,9 +77,9 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
         Container(
           height: 160,
           decoration: new BoxDecoration(color: Colors.white),
-          child:  StreamBuilderView<List<ParseModelPhotos>>(
+          child: StreamBuilderView<List<ParseModelPhotos>>(
             stream: firestoreDatabase.photosInRestaurantStream(_restaurantId),
-            render: (AsyncSnapshot fbSnapshot){
+            render: (AsyncSnapshot fbSnapshot) {
               return PhotosBody(photosList: fbSnapshot.data);
             },
           ),
@@ -89,7 +89,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
             stream: firestoreDatabase.reviewsInRestaurantStream(_restaurantId),
-            render: (AsyncSnapshot fbSnapshot){
+            render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },
           ),
@@ -97,5 +97,4 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
       ],
     );
   }
-
 }

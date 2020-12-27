@@ -45,5 +45,6 @@
   "recipe": "Recipe",
   "photo": "Photo",
   "user": "User",
-  "review": "review"
+  "review": "review",
+  "peopleInEvent": "peopleInEvent"
 }

@@ -13,7 +13,9 @@ class StreamBuilderView<T> extends StatelessWidget {
     return StreamBuilder(
         stream: stream,
         builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
-          if (fbSnapshot.hasError) {}
+          if (fbSnapshot.hasError) {
+            var error = fbSnapshot.error;
+          }
           if (!fbSnapshot.hasData) {
             return Container();
           }

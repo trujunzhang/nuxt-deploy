@@ -10,19 +10,6 @@ Widget _buildPlaceholderForUser() {
   );
 }
 
-Widget buildAvatarImage(AvatarUser modelData) {
-  if (modelData.avatarUrl == null || modelData.avatarUrl == '') {
-    return _buildPlaceholderForUser();
-  }
-  return CachedNetworkImage(
-      width: double.infinity,
-      height: double.infinity,
-      imageUrl: modelData.avatarUrl,
-      fit: BoxFit.cover,
-      placeholder: (context, url) => _buildPlaceholderForUser(),
-      errorWidget: (context, url, error) => _buildPlaceholderForUser());
-}
-
 Widget buildParseModelUsersImageWithOriginalUrl(String originalUrl) {
   if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForUser();
@@ -34,6 +21,10 @@ Widget buildParseModelUsersImageWithOriginalUrl(String originalUrl) {
       fit: BoxFit.cover,
       placeholder: (context, url) => _buildPlaceholderForUser(),
       errorWidget: (context, url, error) => _buildPlaceholderForUser());
+}
+
+Widget buildAvatarImage(AvatarUser modelData) {
+  return buildParseModelUsersImageWithOriginalUrl(modelData.avatarUrl);
 }
 
 Widget buildParseModelUsersImage(ParseModelUsers modelData) {

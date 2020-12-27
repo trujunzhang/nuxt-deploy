@@ -159,6 +159,7 @@ class ParseModelPhotos extends AvatarUser {
     };
   }
 
+
   static ParseModelPhotos emptyPhoto(
       {@required AuthUserModel authUserModel,
       @required String filePath,

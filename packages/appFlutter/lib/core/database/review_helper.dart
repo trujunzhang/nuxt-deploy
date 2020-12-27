@@ -14,7 +14,7 @@ class ReviewHelper {
   static onSaveReviewAfterHook(String restaurantId, double lastReviewRate,
       double selectedStar,bool isNew) async {
     var restaurant = await FirestoreService.instance.getData(
-      path: FirestorePath.restaurant(restaurantId),
+      path: FirestorePath.singleRestaurant(restaurantId),
       builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
     );
     int nextRate = restaurant.rate - lastReviewRate.round() + selectedStar.round();
@@ -22,6 +22,6 @@ class ReviewHelper {
     restaurant.reviewCount = restaurant.reviewCount + (isNew ? 1 : 0);
 
     await FirestoreService.instance.setData(
-        path: FirestorePath.restaurant(restaurantId), data: restaurant.toMap());
+        path: FirestorePath.singleRestaurant(restaurantId), data: restaurant.toMap());
   }
 }

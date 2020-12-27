@@ -106,7 +106,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       //This StreamBuilder is to fetch firebase collection.
                       stream:
                           Provider.of<FirestoreDatabase>(context, listen: false)
-                              .restaurantStream(),
+                              .restaurantsStream(),
                       builder:
                           (BuildContext context, AsyncSnapshot fbSnapshot) {
                         return buildRestaurantsList(

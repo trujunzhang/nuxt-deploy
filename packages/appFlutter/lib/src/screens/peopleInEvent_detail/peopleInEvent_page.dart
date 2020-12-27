@@ -11,30 +11,26 @@ import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/info_part.dart';
-import 'widget/peopleInEvent_body.dart';
 
-class EventDetail extends StatefulWidget {
-  EventDetail({Key key}) : super(key: key);
+class PeopleInEventDetail extends StatefulWidget {
+  PeopleInEventDetail({Key key}) : super(key: key);
 
   @override
-  EventDetailState createState() => EventDetailState();
+  EventPageState createState() => EventPageState();
 }
 
-class EventDetailState extends State<EventDetail> {
-  ParseModelEvents _event;
-  String _eventId = "";
+class EventPageState extends State<PeopleInEventDetail> {
+  ParseModelPeopleInEvent _peopleInEvent;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final ParseModelEvents _eventModel =
+    final ParseModelPeopleInEvent _peopleInEventModel =
         ModalRoute.of(context).settings.arguments;
-    if (_eventModel != null) {
-      _event = _eventModel;
-      _eventId = _eventModel.uniqueId;
+    if (_peopleInEventModel != null) {
+      _peopleInEvent = _peopleInEventModel;
       setState(() {
-        _event = _eventModel;
-        _eventId = _eventModel.uniqueId;
+        _peopleInEvent = _peopleInEventModel;
       });
     }
   }
@@ -61,30 +57,10 @@ class EventDetailState extends State<EventDetail> {
       shrinkWrap: true,
       children: [
         InfoPart(
-          event: _event,
+          peopleInEvent: _peopleInEvent,
         ),
         // Line 1: Ordered users list
         buildTextSectionTitle("People Ordered"),
-        StreamBuilderView<List<ParseModelPeopleInEvent>>(
-          stream: firestoreDatabase.peopleInEventsStream(
-              _event.restaurantId, _event.uniqueId),
-          render: (AsyncSnapshot fbSnapshot) {
-            return PeopleInEventBody(
-              peopleInEventsList: fbSnapshot.data,
-              users: users,
-            );
-          },
-        ),
-        buildTextSectionTitle("Review Highlights"),
-        Container(
-          decoration: new BoxDecoration(color: Colors.white),
-          child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase.reviewsInEventStream( _event.restaurantId, _event.uniqueId),
-            render: (AsyncSnapshot fbSnapshot){
-              return ReviewsBody(reviewsList: fbSnapshot.data);
-            },
-          ),
-        ),
       ],
     );
   }

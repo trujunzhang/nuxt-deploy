@@ -5,13 +5,13 @@ import 'package:ieatta/src/config/palette.dart';
 import 'users/image.dart';
 
 class ProfileAvatar extends StatelessWidget {
-  final AvatarUser user;
+  final String avatarUrl;
   final bool isActive;
   final bool hasBorder;
 
   const ProfileAvatar({
     Key key,
-    @required this.user,
+    @required this.avatarUrl,
     this.isActive = false,
     this.hasBorder = false,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class ProfileAvatar extends StatelessWidget {
             backgroundColor: Palette.facebookBlue,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: buildAvatarImage(user),
+              child: buildParseModelUsersImageWithOriginalUrl(avatarUrl),
             )),
         isActive
             ? Positioned(

@@ -10,17 +10,28 @@ class FirestorePath {
   // Users
   static String allUsers() => 'users';
 
+  static String singleUser(String userId) => 'users/$userId';
+
   // Restaurants
-  static String restaurant(String uniqueId) => 'restaurants/$uniqueId';
+  static String singleRestaurant(String uniqueId) => 'restaurants/$uniqueId';
 
   // Events
-  static String events(String uniqueId) => 'restaurants/$uniqueId/events';
+  static String events(String eventId) => 'restaurants/$eventId/events';
+
+  // PeopleInEvents
+  static String peopleInEvents(String restaurantId, String eventId) =>
+      'restaurants/$restaurantId/events/$eventId/peopleinevents';
 
   // Photos
-  static String photosInRestaurant(String uniqueId) => 'restaurants/$uniqueId/photos';
+  static String photosInRestaurant(String restaurantId) =>
+      'restaurants/$restaurantId/photos';
 
   // Reviews
-  static String reviewsInRestaurant(String uniqueId) => 'restaurants/$uniqueId/reviews';
+  static String reviewsInRestaurant(String restaurantId) =>
+      'restaurants/$restaurantId/reviews';
+
+  static String reviewsInEvent(String restaurantId, String eventId) =>
+      'restaurants/$restaurantId/events/$eventId/reviews';
 
   static String review(String uniqueId) => 'reviews/$uniqueId';
 

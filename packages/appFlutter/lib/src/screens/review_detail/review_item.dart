@@ -27,7 +27,7 @@ class ReviewItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            ProfileAvatar(user: reviewData),
+            ProfileAvatar(avatarUrl: reviewData.avatarUrl),
             SizedBox(width: 12),
             Text(reviewData.username)
           ],
