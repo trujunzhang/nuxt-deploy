@@ -8,9 +8,11 @@ class ParseModelRecipes {
   final String updatedAt;
   final String flag;
 
-  // Common(2)
+  // Common(4)
   final String displayName;
   final String price;
+  final String thumbnailUrl;
+  String originalUrl;
 
   // for review(2)
   final int rate;
@@ -27,9 +29,11 @@ class ParseModelRecipes {
       this.createdAt,
       this.updatedAt,
       this.flag,
-      // Common(2)
+      // Common(4)
       this.displayName,
       this.price,
+        this.thumbnailUrl,
+        this.originalUrl,
       // for review(2)
       this.rate,
       this.reviewCount,
@@ -41,9 +45,11 @@ class ParseModelRecipes {
     // Base(5)
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
-    // Common(2)
+    // Common(4)
     var displayName = json['displayName'] as String;
     var price = json['price'] as String;
+    var thumbnailUrl = json['thumbnailUrl'] as String;
+    var originalUrl = json['originalUrl'] as String;
 
     // for review(2)
     var rate = json['rate'];
@@ -66,9 +72,11 @@ class ParseModelRecipes {
         createdAt: databaseBaseModel.createdAt,
         updatedAt: databaseBaseModel.updatedAt,
         flag: databaseBaseModel.flag,
-        // Common(2)
+        // Common(4)
         displayName: displayName,
         price: price,
+        thumbnailUrl: thumbnailUrl,
+        originalUrl: originalUrl,
         // for review(2)
         rate: rate,
         reviewCount: reviewCount,
@@ -84,9 +92,11 @@ class ParseModelRecipes {
       "createdAt": createdAt,
       "updatedAt": updatedAt,
       "flag": flag,
-      // Common(2)
+      // Common(4)
       "displayName": displayName,
       "price": price,
+      'thumbnailUrl': thumbnailUrl,
+      'originalUrl': originalUrl,
       // for review(2)
       'rate': rate,
       'reviewCount': reviewCount,

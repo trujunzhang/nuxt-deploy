@@ -18,7 +18,7 @@ class PeopleInEventBody extends StatelessWidget {
     }
   }
 
-  Widget buildEventsListView() {
+  Widget buildPeopleInEventsListView() {
     List<Widget> list = new List<Widget>();
     for (var i = 0; i < peopleInEventsList.length; i++) {
       list.add(PeopleInEventItem(
@@ -45,6 +45,6 @@ class PeopleInEventBody extends StatelessWidget {
         ),
       );
     }
-    return buildEventsListView();
+    return buildPeopleInEventsListView();
   }
 }

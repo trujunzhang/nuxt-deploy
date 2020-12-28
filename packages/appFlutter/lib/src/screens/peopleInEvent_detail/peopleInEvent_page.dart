@@ -12,6 +12,7 @@ import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/info_part.dart';
+import 'widget/recipe_body.dart';
 
 class PeopleInEventDetail extends StatefulWidget {
   PeopleInEventDetail({Key key}) : super(key: key);
@@ -66,10 +67,10 @@ class EventPageState extends State<PeopleInEventDetail> {
           stream: firestoreDatabase.recipesStream(
               _peopleInEvent.restaurantId),
           render: (AsyncSnapshot fbSnapshot) {
-            // return PeopleInEventBody(
-            //   peopleInEventsList: fbSnapshot.data,
-            //   users: users,
-            // );
+            return RecipeBody(
+              recipesList: fbSnapshot.data,
+              peopleInEvent: _peopleInEvent,
+            );
           },
         ),
       ],

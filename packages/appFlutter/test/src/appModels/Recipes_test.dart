@@ -12,6 +12,10 @@ void main() {
     // Common(4)
     "displayName": 'Chicken Tacos',
     "price": "20",
+    "originalUrl":
+        "http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg",
+    "thumbnailUrl":
+        "http://res.cloudinary.com/di3fvexj8/image/upload/s--TqIOho75--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_ugrhuw",
     // for review(2)
     'rate': 12,
     'reviewCount': 3,
@@ -31,6 +35,10 @@ void main() {
     // Common(4)
     expect(map["displayName"], 'Chicken Tacos');
     expect(map["price"], "20");
+    expect(map['originalUrl'],
+        'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg');
+    expect(map['thumbnailUrl'],
+        "http://res.cloudinary.com/di3fvexj8/image/upload/s--TqIOho75--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_ugrhuw");
     // for review(2)
     expect(map['rate'], 12);
     expect(map['reviewCount'], 3);
@@ -50,6 +58,10 @@ void main() {
     // Common(4)
     expect(model.displayName, 'Chicken Tacos');
     expect(model.price, "20");
+    expect(model.originalUrl,
+        'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg');
+    expect(model.thumbnailUrl,
+        "http://res.cloudinary.com/di3fvexj8/image/upload/s--TqIOho75--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/o_ugrhuw");
     // for review(2)
     expect(model.rate, 12);
     expect(model.reviewCount, 3);
