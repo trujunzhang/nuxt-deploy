@@ -2,6 +2,7 @@ export enum FBCollections {
   Users = 'users',
   Restaurants = 'restaurants',
   Events = 'events',
+  PeopleInEvent= 'peopleinevents',
   Recipes = 'recipes',
   Photos = 'photos',
   Reviews = 'reviews'

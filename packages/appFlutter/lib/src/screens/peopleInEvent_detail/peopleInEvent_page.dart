@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
@@ -60,7 +61,17 @@ class EventPageState extends State<PeopleInEventDetail> {
           peopleInEvent: _peopleInEvent,
         ),
         // Line 1: Ordered users list
-        buildTextSectionTitle("People Ordered"),
+        buildTextSectionTitle("Ordered Recipes"),
+        StreamBuilderView<List<ParseModelRecipes>>(
+          stream: firestoreDatabase.recipesStream(
+              _peopleInEvent.restaurantId),
+          render: (AsyncSnapshot fbSnapshot) {
+            // return PeopleInEventBody(
+            //   peopleInEventsList: fbSnapshot.data,
+            //   users: users,
+            // );
+          },
+        ),
       ],
     );
   }

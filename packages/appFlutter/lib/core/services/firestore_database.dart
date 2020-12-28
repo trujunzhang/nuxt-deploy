@@ -8,6 +8,7 @@ import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
@@ -116,6 +117,16 @@ class FirestoreDatabase {
       _firestoreService.collectionStream(
         path: FirestorePath.allUsers(),
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
+  //Method to retrieve recipe stream
+  Stream<List<ParseModelRecipes>> recipesStream(String restaurantId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.recipes(restaurantId),
+        builder: (data, documentId) => ParseModelRecipes.fromJson(data),
         queryBuilder: (Query query) {
           return query.orderBy('updatedAt', descending: true);
         },

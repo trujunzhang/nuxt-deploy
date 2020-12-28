@@ -106,4 +106,5 @@ class ParseModelEvents {
       "restaurantId": restaurantId,
     };
   }
+
 }
