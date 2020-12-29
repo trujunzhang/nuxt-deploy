@@ -42,7 +42,7 @@ class InfoPart extends StatelessWidget {
         child: Padding(
             padding: EdgeInsets.only(),
             child: Container(
-              height: MediaQuery.of(context).size.width / 2 + 100,
+              height: MediaQuery.of(context).size.width / 2 + 90,
               color: Colors.white,
               child: _buildBody(context, user, restaurant),
             )));
@@ -67,7 +67,7 @@ class InfoPart extends StatelessWidget {
   Widget _buildUserInfo(BuildContext context, ParseModelUsers user) {
     return Container(
       padding: EdgeInsets.only(left: 24),
-      height: 130,
+      height: 120,
       // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

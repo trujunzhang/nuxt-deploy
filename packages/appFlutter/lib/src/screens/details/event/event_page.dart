@@ -22,7 +22,6 @@ class EventDetail extends StatefulWidget {
 
 class EventDetailState extends State<EventDetail> {
   ParseModelEvents _event;
-  String _eventId = "";
 
   @override
   void didChangeDependencies() {
@@ -31,10 +30,8 @@ class EventDetailState extends State<EventDetail> {
         ModalRoute.of(context).settings.arguments;
     if (_eventModel != null) {
       _event = _eventModel;
-      _eventId = _eventModel.uniqueId;
       setState(() {
         _event = _eventModel;
-        _eventId = _eventModel.uniqueId;
       });
     }
   }

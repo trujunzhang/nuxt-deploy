@@ -4,10 +4,24 @@ import 'package:ieatta/src/appModels/models/Events.dart';
 
 class EventItem extends StatelessWidget {
   final ParseModelEvents eventData;
+
   const EventItem({Key key, @required this.eventData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return Dismissible(
+      key: Key(eventData.uniqueId),
+      onDismissed: (direction) {
+        Scaffold
+            .of(context)
+            .showSnackBar(SnackBar(content: Text("Event ${eventData.displayName} deleted!")));
+      },
+      background: Container(color: Colors.red),
+      child: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,

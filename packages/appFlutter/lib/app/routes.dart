@@ -7,17 +7,18 @@ import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/core/ui/splash/splash_screen.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
+import 'package:ieatta/src/screens/details/recipe/reccipe_page.dart';
 import 'package:ieatta/src/screens/edit/restaurant/create_edit_restaurant_screen.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
-import 'package:ieatta/src/screens/event_detail/event_page.dart';
+import 'package:ieatta/src/screens/details/event/event_page.dart';
 import 'package:ieatta/src/screens/map/restaurants_map_page.dart';
-import 'package:ieatta/src/screens/peopleInEvent_detail/peopleInEvent_page.dart';
+import 'package:ieatta/src/screens/details/peopleInEvent/peopleInEvent_page.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_pageview.dart';
-import 'package:ieatta/src/screens/restaurant_detail/restaurant_page.dart';
+import 'package:ieatta/src/screens/details/restaurant/restaurant_page.dart';
 import 'package:ieatta/src/screens/review_detail/review_page.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_photos.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_restaurants.dart';
@@ -44,6 +45,9 @@ class Routes {
 
   // PeopleInEvent
   static const String detail_people_in_event = '/detail_people_in_event';
+
+  // Recipe
+  static const String detail_recipe = '/detail_recipe';
 
   // Camera
   static const String app_camera = '/app_camera';
@@ -85,6 +89,8 @@ class Routes {
     detail_event: (BuildContext context) => EventDetail(),
     // PeopleInEvent
     detail_people_in_event: (BuildContext context) => PeopleInEventDetail(),
+    // Recipe
+    detail_recipe: (BuildContext context) => RecipeDetail(),
     // Camera
     app_camera: (context) => CameraScreen(),
     // Photos

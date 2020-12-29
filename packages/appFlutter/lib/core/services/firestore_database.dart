@@ -164,6 +164,17 @@ class FirestoreDatabase {
         },
       );
 
+  //Method to retrieve photo stream in the recipe
+  Stream<List<ParseModelPhotos>> photosInRecipeStream(
+          String restaurantId, String recipeId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.photosInRecipe(restaurantId, recipeId),
+        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
+
   //Method to retrieve review stream in the restaurant
   Stream<List<ParseModelReviews>> reviewsInRestaurantStream(
           String restaurantId) =>
@@ -186,6 +197,16 @@ class FirestoreDatabase {
         },
       );
 
+  //Method to retrieve review stream in the event
+  Stream<List<ParseModelReviews>> reviewsInRecipeStream(
+      String restaurantId, String recipeId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.reviewsInRecipe(restaurantId, recipeId),
+        builder: (data, documentId) => ParseModelReviews.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
   // ===========================================================
   // Stream: QuerySnapshot
   // ===========================================================

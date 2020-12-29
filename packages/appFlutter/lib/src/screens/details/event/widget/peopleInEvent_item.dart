@@ -14,6 +14,17 @@ class PeopleInEventItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Dismissible(
+      key: Key(peopleInEventData.uniqueId),
+      onDismissed: (direction) {
+
+      },
+      background: Container(color: Colors.red),
+      child: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,

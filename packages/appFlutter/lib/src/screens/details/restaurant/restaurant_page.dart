@@ -12,9 +12,9 @@ import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 
+import '../photos_body.dart';
 import 'widget/events_body.dart';
 import 'widget/info_part.dart';
-import 'widget/photos_body.dart';
 
 class RestaurantDetail extends StatefulWidget {
   RestaurantDetail({Key key}) : super(key: key);
@@ -25,7 +25,6 @@ class RestaurantDetail extends StatefulWidget {
 
 class _RestaurantDetailState extends State<RestaurantDetail> {
   ParseModelRestaurants _restaurant;
-  String _restaurantId = "";
 
   @override
   void didChangeDependencies() {
@@ -34,10 +33,8 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
         ModalRoute.of(context).settings.arguments;
     if (_restaurantModel != null) {
       _restaurant = _restaurantModel;
-      _restaurantId = _restaurantModel.uniqueId;
       setState(() {
         _restaurant = _restaurantModel;
-        _restaurantId = _restaurantModel.uniqueId;
       });
     }
   }
@@ -65,30 +62,40 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
             child: ListTile(
               title: Text(_restaurant.address),
             )),
-        // Line 2: Event
+        // Line 2: Events
         buildTextSectionTitle("Events Recorded"),
         StreamBuilderView<List<ParseModelEvents>>(
-          stream: firestoreDatabase.eventsStream(_restaurantId),
+          stream: firestoreDatabase.eventsStream(_restaurant.uniqueId),
           render: (AsyncSnapshot fbSnapshot) {
             return EventsBody(eventsList: fbSnapshot.data);
           },
         ),
-        buildPhotoSectionTitle(context, _restaurant),
+        buildPhotoSectionTitle(context),
         Container(
           height: 160,
-          decoration: new BoxDecoration(color: Colors.white),
+          // decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelPhotos>>(
-            stream: firestoreDatabase.photosInRestaurantStream(_restaurantId),
+            stream: firestoreDatabase
+                .photosInRestaurantStream(_restaurant.uniqueId),
             render: (AsyncSnapshot fbSnapshot) {
               return PhotosBody(photosList: fbSnapshot.data);
             },
           ),
         ),
+        StreamBuilderView<List<ParseModelPhotos>>(
+          stream:
+              firestoreDatabase.photosInRestaurantStream(_restaurant.uniqueId),
+          render: (AsyncSnapshot fbSnapshot) {
+            return seeAllPhoto(fbSnapshot.data);
+          },
+        ),
+        // Line 3: Reviews
         buildTextSectionTitle("Review Highlights"),
         Container(
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase.reviewsInRestaurantStream(_restaurantId),
+            stream: firestoreDatabase
+                .reviewsInRestaurantStream(_restaurant.uniqueId),
             render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },
