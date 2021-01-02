@@ -46,11 +46,11 @@ class InfoPart extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: 22,
+              fontSize: 30,
             ),
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: 8),
         Padding(
           padding: EdgeInsets.only(left: 32, right: 32),
           child: Text(

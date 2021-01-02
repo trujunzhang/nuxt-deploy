@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
@@ -64,12 +66,57 @@ class InfoPart extends StatelessWidget {
           aspectRatio: 2,
           child: buildRestaurantImage(restaurant),
         ),
+        AspectRatio(
+          aspectRatio: 2,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            child: Container(
+              color: Colors.black.withOpacity(0.2),
+            ),
+          ),
+        ),
+        AspectRatio(
+          aspectRatio: 2,
+          child: buildInfo(restaurant, event),
+        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [_buildUserInfo(context, user)],
         )
       ],
     );
+  }
+
+  Widget buildInfo(ParseModelRestaurants restaurant, ParseModelEvents event) {
+    return Padding(
+        padding: EdgeInsets.only(left: 120, right: 20,bottom: 30),
+        child: Container(
+          // color: Colors.red,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                restaurant.displayName,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 30,
+                  color: Colors.white
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
+                event.displayName,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                    color: Colors.white
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 
   Widget _buildUserInfo(BuildContext context, ParseModelUsers user) {
