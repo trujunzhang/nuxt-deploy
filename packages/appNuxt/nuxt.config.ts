@@ -30,27 +30,29 @@ const config: NuxtConfiguration = {
    ** Global CSS
    */
   css: [
-    // Yelp
-    '~/assets/yelp/www-pkg.css',
-    '~/assets/yelp/yelp_main.yji-22eb7ca37aa9c2a9e02e.chunk.css',
-    '~/assets/yelp/yelp_main.yji-271f16fc22e123af321d.chunk.css',
-    '~/assets/yelp/yelp_main.yji-3393ab2dfef4b4a2df57.chunk.css',
-    '~/assets/yelp/yelp_main.yji-35d8cb3d82a3f152ac86.chunk.css',
-    '~/assets/yelp/yelp_main.yji-69de53e80a135072510a.chunk.css',
-    '~/assets/yelp/yelp_main.yji-7dab32cd9c7f313e550f.chunk.css',
-    '~/assets/yelp/yelp_main.yji-8d5d29ca662edc2d28e7.chunk.css',
-    '~/assets/yelp/yelp_main.yji-c53383bd1d24b6f19dcf.chunk.css',
-    '~/assets/yelp/yelp_main.yji-d75a74553877eb75e644.chunk.css',
-    '~/assets/yelp/yelp_main.yji-e48f2f3c5e0c7959125c.chunk.css',
-    '~/assets/yelp/yelp_main.yji-16c7642bdab4851d24ad.chunk.css',
-    '~/assets/yelp/yelp_main.yji-1b0bf22928eb6fb7052f.chunk.css', // detail
-    '~/assets/yelp/yelp_main.yji-80a57628ccb8d19d0d64.chunk.css', // detail
-    '~/assets/yelp/yelp_main.yji-114a96eff735dad9a39c.chunk.css', // detail-pagination
-    '~/assets/yelp/yelp_main.yji-1229993919c737dc372d.chunk.css', // login
-    '~/assets/yelp/yelp-frontend-gondola-war-compose-pkg.yji-64bc3df24d391f8b0102.css', // write review
-    '~/assets/yelp/user_details-pkg.css', // user-detail
-    '~/assets/yelp/yelp_main.yji-40a04d475db89a3254a2.chunk.css', // header pop menu
-    '~/assets/yelp/header-pop.css' // header pop menu
+    // All pages
+    '~/assets/nextYelp/www-pkg.css',
+    // Home
+    '~/assets/nextYelp/home/commons.yji-f7d7b4bddd5f87d22059.chunk.css',
+    // Detail(Restsurant)
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-0b2c399a119f11ac0c23.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-13eaf71b82d506b2186a.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-145d7f9712c3bf1b11b5.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-2704259869135d92a982.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-486cfbaafb47f9bfcf96.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-4b60f4155d191dc93e13.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-556e28a81efca75243ce.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-72b88d09d7327326cf19.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-7c0186d4db9fafb8d6ac.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-8e5a6a523b96573ee040.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-bc25e4695ae555d148d3.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-d3f8df1e32dd9002b298.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-de96676004b9da813ea2.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-f1220e1f35c9aed79322.chunk.css',
+    // Detail(Eventlist in the Restsurant)
+    '~/assets/nextYelp/detail/event/events-pkg.css',
+    '~/assets/nextYelp/detail/event/yelp_main.yji-556e28a81efca75243ce.chunk.css',
+    '~/assets/nextYelp/detail/event/yelp_main.yji-de96676004b9da813ea2.chunk.css'
   ],
   /*
    ** Plugins to load before mounting the App

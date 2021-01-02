@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/event/event_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/event/event_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/widget/info_part.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/widget/info_part.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +218,9 @@
       <workItem from="1609207540607" duration="2193000" />
       <workItem from="1609210247687" duration="75000" />
       <workItem from="1609226263309" duration="1386000" />
+      <workItem from="1609230872394" duration="646000" />
+      <workItem from="1609580146708" duration="807000" />
+      <workItem from="1609582642275" duration="3149000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>

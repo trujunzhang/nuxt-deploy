@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class EventItem extends StatelessWidget {
   final ParseModelEvents eventData;
 
   const EventItem({Key key, @required this.eventData}) : super(key: key);
 
+  void _showSnackBar(BuildContext context, String text) {
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
+  }
+
+  // Scaffold
+  //     .of(context)
+  //     .showSnackBar(SnackBar(content: Text("Event ${eventData.displayName} deleted!")));
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
+    return Slidable(
       key: Key(eventData.uniqueId),
-      onDismissed: (direction) {
-        Scaffold
-            .of(context)
-            .showSnackBar(SnackBar(content: Text("Event ${eventData.displayName} deleted!")));
-      },
-      background: Container(color: Colors.red),
+      direction: Axis.horizontal,
+      actionPane: SlidableBehindActionPane(),
+      actionExtentRatio: 0.25,
       child: _buildBody(context),
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () {},
+        ),
+      ],
     );
   }
 

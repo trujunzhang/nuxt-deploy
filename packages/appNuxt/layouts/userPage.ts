@@ -1,7 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import { IFBUser } from 'ieattatypes/types/index'
-import HomeHeader from '~/components/screens/header/header_home.vue'
+import HomeHeader from '~/components/screens/header/common/header_home.vue'
 import UserTop from '~/components/screens/userDetail/user_top.vue'
 import UserLeft from '~/components/screens/userDetail/user_left.vue'
 import { FirestoreService } from '~/database/services/firestore_service'

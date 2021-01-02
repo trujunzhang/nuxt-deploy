@@ -1,44 +1,33 @@
 <template>
   <div
-    class="lemon--div__373c0__1mboc container__373c0__3HMKB hoverable__373c0__VqkG7 margin-t3__373c0__1l90z margin-b3__373c0__q1DuY padding-t3__373c0__1gw9E padding-r3__373c0__57InZ padding-b3__373c0__342DA padding-l3__373c0__1scQ0 border--top__373c0__3gXLy border--right__373c0__1n3Iv border--bottom__373c0__3qNtD border--left__373c0__d1B7K border-color--default__373c0__3-ifU"
+    class=" container__09f24__21w3G hoverable__09f24__2nTf3 margin-t3__09f24__5bM2Z margin-b3__09f24__1DQ9x padding-t3__09f24__-R_5x padding-r3__09f24__1pBFG padding-b3__09f24__1vW6j padding-l3__09f24__1yCJf border--top__09f24__1H_WE border--right__09f24__28idl border--bottom__09f24__2FjZW border--left__09f24__33iol border-color--default__09f24__R1nRO"
     @mouseover="mouseover"
     @mouseleave="mouseleave"
   >
-    <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-      <div class="lemon--div__373c0__1mboc arrange__373c0__2C9bH border-color--default__373c0__3-ifU">
-        <div
-          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
-        >
-          <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-            <div
-              class="lemon--div__373c0__1mboc display--inline-block__373c0__1ZKqC margin-r3__373c0__r37sx border-color--default__373c0__3-ifU"
-            >
-              <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
+    <div class=" border-color--default__09f24__R1nRO">
+      <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
+        <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
+          <div class=" border-color--default__09f24__R1nRO">
+            <div class=" display--inline-block__09f24__FsgS4 margin-r3__09f24__2CcgQ border-color--default__09f24__R1nRO">
+              <div class=" border-color--default__09f24__R1nRO">
                 <div
-                  class="lemon--div__373c0__1mboc container__373c0__1sAOA dontTriggerCardClick__373c0__GpqIc container--responsive__373c0__KpQnU border-color--default__373c0__3-ifU"
+                  class=" container__09f24__2BlDc dontTriggerCardClick__09f24__2GWZF container--responsive__09f24__1BXoY container__09f24__1SkkV border-color--default__09f24__R1nRO"
+                  data-slidenum="0"
                 >
-                  <div
-                    class="lemon--div__373c0__1mboc container__373c0__3EC6S border-color--default__373c0__3-ifU"
-                  >
-                    <div
-                      class="lemon--div__373c0__1mboc child__373c0__1DxWZ border-color--default__373c0__3-ifU"
-                      style="transition: transform 150ms ease-in-out 0s;"
-                    >
-                      <div
-                        class="lemon--div__373c0__1mboc on-click-container border-color--default__373c0__3-ifU"
-                      >
+                  <div class=" container__09f24__15LDH border-color--default__09f24__R1nRO" aria-label="Slideshow">
+                    <div class=" child__09f24__27sCM border-color--default__09f24__R1nRO" style="transition:transform 150ms ease-in-out">
+                      <div class=" on-click-container border-color--default__09f24__R1nRO">
                         <a
-                          class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-box-link__373c0__1YC9Y link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
+                          class=" link__09f24__1kwXV photo-box-link__09f24__28L0f link-color--blue-dark__09f24__2DRa0 link-size--default__09f24__3xWLF"
                           :href="getDetailRestaurantUrl() "
-                        >
-                          <img
-                            v-lazy="`${getRestaurantPhotoUrl()}`"
-                            class="lemon--img__373c0__3GQUb photo-box-img__373c0__35y5v"
-                            :alt="`${restaurant.displayName}`"
-                            height="100%"
-                            width="100%"
-                          >
-                        </a>
+                        ><img
+                          v-lazy="`${getRestaurantPhotoUrl()}`"
+                          class=" photo-box-img__09f24__3F3c5"
+                          :alt="`${restaurant.displayName}`"
+                          height="100%"
+                          width="100%"
+                          draggable="true"
+                        ></a>
                       </div>
                     </div>
                   </div>
@@ -47,97 +36,72 @@
             </div>
           </div>
         </div>
-        <div
-          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-        >
-          <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-            <div
-              class="lemon--div__373c0__1mboc scrollablePhotos__373c0__1LEvd arrange__373c0__2C9bH border-color--default__373c0__3-ifU"
-            >
-              <div
-                class="lemon--div__373c0__1mboc mainAttributes__373c0__1r0QA arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-              >
-                <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                  <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                    <div
-                      class="lemon--div__373c0__1mboc businessNameWithNoVerifiedBadge__373c0__24q4s display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                    >
-                      <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                        <h4
-                          class="lemon--h4__373c0__1yd__ heading--h4__373c0__27bDo alternate__373c0__2Mge5"
-                        >
+        <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
+          <div class=" border-color--default__09f24__R1nRO">
+            <div class=" scrollablePhotos__09f24__1PpB8 arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
+              <div class=" mainAttributes__09f24__26-vh arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
+                <div class=" border-color--default__09f24__R1nRO">
+                  <div class=" border-color--default__09f24__R1nRO">
+                    <div class=" businessName__09f24__3Wql2 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
+                      <div class=" border-color--default__09f24__R1nRO">
+                        <h4 class=" heading--h4__09f24__2ijYq alternate__09f24__39r7c">
                           <span
-                            class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--black-regular__373c0__2vGEn text-align--left__373c0__2XGa- text-weight--bold__373c0__1elNz text-size--inherit__373c0__2fB3p"
-                          >{{ index + 1 }}.&nbsp;<a
-                            class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
+                            class=" text__09f24__2tZKC text-color--black-regular__09f24__1QxyO text-align--left__09f24__3Drs0 text-weight--bold__09f24__WGVdT text-size--inherit__09f24__2rwpp"
+                          >
+                            {{ index + 1 }}
+                            <!-- -->.&nbsp;<a
+                            class=" link__09f24__1kwXV link-color--inherit__09f24__3PYlA link-size--inherit__09f24__2Uj95"
                             :href="getDetailRestaurantUrl() "
                             target=""
                             :name="`${restaurant.displayName}`"
                             rel=""
-                          >{{ restaurant.displayName }}</a></span>
+                          >{{ restaurant.displayName }}</a>
+                          </span>
                         </h4>
                       </div>
                     </div>
                   </div>
-                  <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                    <div
-                      class="lemon--div__373c0__1mboc display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                    >
-                      <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                        <div
-                          class="lemon--div__373c0__1mboc attribute__373c0__1hPI_ display--inline-block__373c0__1ZKqC margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU"
-                        >
+                  <div class=" border-color--default__09f24__R1nRO">
+                    <div class=" display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
+                      <div class=" border-color--default__09f24__R1nRO">
+                        <div class=" attribute__09f24__3znwq display--inline-block__09f24__FsgS4 margin-r1__09f24__BCulR border-color--default__09f24__R1nRO">
                           <span
-                            class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-                          ><div
-                            :class="getRateStarClassName()"
-                            role="img"
-                          ><img
-                            class="lemon--img__373c0__3GQUb offscreen__373c0__1KofL"
-                            src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png"
-                            width="132"
-                            height="560"
-                            alt=""
-                          ></div></span>
+                            class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
+                          >
+                            <div
+                              :class="getRateStarClassName()"
+                              role="img"
+                            ><img
+                              class=" offscreen__09f24__1VFco"
+                              src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yji-52d3d7a328db670d4402843cbddeed89.png"
+                              width="132"
+                              height="560"
+                              alt=""
+                            ></div>
+                          </span>
                         </div>
-                        <div
-                          class="lemon--div__373c0__1mboc attribute__373c0__1hPI_ display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                        >
+                        <div class=" attribute__09f24__3znwq display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                           <span
-                            class="lemon--span__373c0__3997G text__373c0__2Kxyz reviewCount__373c0__2r4xT text-color--black-extra-light__373c0__2OyzO text-align--left__373c0__2XGa-"
+                            class=" text__09f24__2tZKC reviewCount__09f24__EUXPN text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0"
                           >{{ restaurant.reviewCount }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                    <div
-                      class="lemon--div__373c0__1mboc priceCategory__373c0__3zW0R display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-                    >
-                      <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                        <span
-                          class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-                        >
-                          <span
-                            class="lemon--span__373c0__3997G text__373c0__2Kxyz priceRange__373c0__2DY87 text-color--black-extra-light__373c0__2OyzO text-align--left__373c0__2XGa- text-bullet--after__373c0__3fS1Z"
-                          >$$</span>
-                        </span>
-                        <span
-                          class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-                        >
-                          <span
-                            class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-                          >
-                            <span
-                              class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--black-extra-light__373c0__2OyzO text-align--left__373c0__2XGa-"
-                            >
-                              <span
-                                class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--default__373c0__7tls6"
-                                style="text-decoration:none;"
-                              >{{ restaurant.address }}</span>
-                            </span>
-                          </span>
-                        </span>
+                  <div class=" border-color--default__09f24__R1nRO">
+                    <div class=" priceCategory__09f24__2IbAM display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
+                      <div class=" border-color--default__09f24__R1nRO">
+                        <span class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"><span
+                          class=" text__09f24__2tZKC priceRange__09f24__2O6le text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0 text-bullet--after__09f24__1MWoX"
+                        >$</span></span><span
+                        class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
+                      ><span
+                        class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
+                      ><span
+                        class=" text__09f24__2tZKC text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0 text-size--inherit__09f24__2rwpp"
+                      ><a
+                        class=" link__09f24__1kwXV link-color--inherit__09f24__3PYlA link-size--default__09f24__3xWLF"
+                      >{{ restaurant.address }}</a></span></span></span>
                       </div>
                     </div>
                   </div>
@@ -145,19 +109,13 @@
               </div>
             </div>
           </div>
-          <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-            <div
-              class="lemon--div__373c0__1mboc display--inline-block__373c0__1ZKqC margin-t1__373c0__oLmO6 border-color--default__373c0__3-ifU"
-            >
-              <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                <div
-                  class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-auto__373c0__1Ep_j vertical-align-middle__373c0__1SDTo border-color--default__373c0__3-ifU"
-                >
-                  <div
-                    class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-                  >
+          <div class=" border-color--default__09f24__R1nRO">
+            <div class=" display--inline-block__09f24__FsgS4 margin-t1__09f24__3OFkY border-color--default__09f24__R1nRO">
+              <div class=" border-color--default__09f24__R1nRO">
+                <div class=" arrange__09f24__AiSIM gutter-auto__09f24__2WJTk vertical-align-middle__09f24__zNCcM border-color--default__09f24__R1nRO">
+                  <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
                     <p
-                      class="lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--black-extra-light__373c0__2OyzO text-align--left__373c0__2XGa-"
+                      class=" text__09f24__2tZKC text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0"
                     >
                       {{ getRestaurantNote() }}
                     </p>
@@ -166,6 +124,7 @@
               </div>
             </div>
           </div>
+          <div class=" border-color--default__09f24__R1nRO"></div>
         </div>
       </div>
     </div>

@@ -40,6 +40,7 @@ class InfoPart extends StatelessWidget {
           padding: EdgeInsets.only(left: 24, right: 24),
           child: Text(
             restaurant.displayName,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 22,

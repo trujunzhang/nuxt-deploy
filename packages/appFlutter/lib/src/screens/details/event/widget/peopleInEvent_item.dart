@@ -3,6 +3,7 @@ import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/profile_avatar.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class PeopleInEventItem extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEventData;
@@ -11,18 +12,25 @@ class PeopleInEventItem extends StatelessWidget {
   const PeopleInEventItem(
       {Key key, @required this.peopleInEventData, @required this.user})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
+    return Slidable(
       key: Key(peopleInEventData.uniqueId),
-      onDismissed: (direction) {
-
-      },
-      background: Container(color: Colors.red),
+      direction: Axis.horizontal,
+      actionPane: SlidableBehindActionPane(),
+      actionExtentRatio: 0.25,
       child: _buildBody(context),
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () {},
+        ),
+      ],
     );
   }
+
 
   Widget _buildBody(BuildContext context) {
     return Container(

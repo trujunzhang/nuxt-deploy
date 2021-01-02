@@ -32,7 +32,7 @@ class _PageBodyState extends State<PageBody> {
                 callback: () {
                   Navigator.of(context).pushNamed(
                       Routes.detail_restaurant,
-                      arguments: widget.restaurantList[index]);
+                      arguments: widget.restaurantList[index].uniqueId);
                 },
                 restaurantData: widget.restaurantList[index],
               ),

@@ -4,7 +4,8 @@ import 'package:ieatta/src/appModels/models/Recipes.dart';
 
 Widget _buildPlaceholderForRecipe() {
   return Image.asset(
-    'assets/placeholder/menu_medium_square.png',
+    // 'assets/placeholder/menu_medium_square.png',
+    'assets/placeholder/business_large_square.png',
     fit: BoxFit.cover,
   );
 }

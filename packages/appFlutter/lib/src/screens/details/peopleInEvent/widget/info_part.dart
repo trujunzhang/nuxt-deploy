@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
@@ -27,29 +28,36 @@ class InfoPart extends StatelessWidget {
               stream: firestoreDatabase
                   .singleRestaurantStream(peopleInEvent.restaurantId),
               render: (AsyncSnapshot fbUserSnapshot) {
-                // Step2: fetch single restaurant model.
+                // Step2: fetch restaurant model.
                 ParseModelRestaurants restaurant = fbUserSnapshot.data;
-                return _buildCard(context, user, restaurant);
+                return StreamBuilderView<ParseModelEvents>(
+                    stream: firestoreDatabase.singleEventStream(
+                        peopleInEvent.restaurantId, peopleInEvent.eventId),
+                    render: (AsyncSnapshot fbUserSnapshot) {
+                      // Step2: fetch event model.
+                      ParseModelEvents event = fbUserSnapshot.data;
+                      return _buildCard(context, user, restaurant, event);
+                    });
               });
         });
   }
 
   Widget _buildCard(BuildContext context, ParseModelUsers user,
-      ParseModelRestaurants restaurant) {
+      ParseModelRestaurants restaurant, ParseModelEvents event) {
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 0.0),
         elevation: 0.0,
         child: Padding(
             padding: EdgeInsets.only(),
             child: Container(
-              height: MediaQuery.of(context).size.width / 2 + 90,
+              height: MediaQuery.of(context).size.width / 2 + 80,
               color: Colors.white,
-              child: _buildBody(context, user, restaurant),
+              child: _buildBody(context, user, restaurant, event),
             )));
   }
 
   Widget _buildBody(BuildContext context, ParseModelUsers user,
-      ParseModelRestaurants restaurant) {
+      ParseModelRestaurants restaurant, ParseModelEvents event) {
     return Stack(
       children: [
         AspectRatio(
@@ -67,7 +75,7 @@ class InfoPart extends StatelessWidget {
   Widget _buildUserInfo(BuildContext context, ParseModelUsers user) {
     return Container(
       padding: EdgeInsets.only(left: 24),
-      height: 120,
+      height: 115,
       // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +91,11 @@ class InfoPart extends StatelessWidget {
           SizedBox(height: 4),
           Text(user.username,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
-          SizedBox(height: 4),
+          // SizedBox(height: 4),
           Text(peopleInEvent.recipes.length.toString() + ' Recipes Ordered',
-              style: TextStyle(fontWeight: FontWeight.w200,
-                 color: Colors.grey,
+              style: TextStyle(
+                  fontWeight: FontWeight.w200,
+                  color: Colors.grey,
                   fontSize: 14)),
         ],
       ),

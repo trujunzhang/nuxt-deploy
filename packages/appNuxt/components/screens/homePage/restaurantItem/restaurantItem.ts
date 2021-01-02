@@ -26,17 +26,17 @@ export default class RestaurantItem extends Vue {
   }
 
   /**
-   * class="lemon--div__373c0__1mboc i-stars__373c0__1T6rz i-stars--regular-4__373c0__2YrSK border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
+   * class=" i-stars__09f24__1T6rz i-stars--regular-4-half__09f24__1YrPo border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw"
    */
   getRateStarClassName () {
-    return `lemon--div__373c0__1mboc i-stars__373c0__1T6rz ${
+    return `i-stars__09f24__1T6rz ${
       starRegularDict[
         calcRateForRestaurant(
           this.restaurant.rate,
           this.restaurant.reviewCount
         )
         ]
-    } border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK`
+    } border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw`
   }
 
   getDetailRestaurantUrl () {

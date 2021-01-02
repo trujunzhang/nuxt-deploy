@@ -3,9 +3,8 @@ import { IFBRestaurant } from 'ieattatypes'
 import { namespace } from 'vuex-class'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
 import ReviewsList from '~/components/screens/details/reviews/reviewList/review_list.vue'
-import RestaurantPhotoHeader from '~/components/screens/details/photos/photos_header.vue'
-import RestaurantInfo from '~/components/screens/details/info/info.vue'
-import RestaurantEvent from '~/components/screens/details/event/event.vue'
+import RestaurantInfo from '~/components/screens/details/restaurant/info/info.vue'
+import RestaurantEvent from '~/components/screens/details/restaurant/event/event.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
 const ieattaConfigure = namespace('ieattaConfigure')
@@ -13,7 +12,6 @@ const ieattaConfigure = namespace('ieattaConfigure')
 @Component({
   components: {
     PhotoFooter,
-    RestaurantPhotoHeader,
     RestaurantInfo,
     RestaurantEvent,
     ReviewsList

@@ -19,11 +19,13 @@ class FirestorePath {
   static String recipes(String restaurantId) => 'restaurants/$restaurantId/recipes';
 
   // Events
-  static String events(String eventId) => 'restaurants/$eventId/events';
+  static String events(String restaurantId) => 'restaurants/$restaurantId/events';
+  static String singleEvent(String restaurantId,String eventId) => 'restaurants/$restaurantId/events/$eventId';
 
   // PeopleInEvents
   static String peopleInEvents(String restaurantId, String eventId) =>
       'restaurants/$restaurantId/events/$eventId/peopleinevents';
+  static String singlePeopleInEvent(String restaurantId,String eventId, String peopleInEventId) => 'restaurants/$restaurantId/events/$eventId/peopleinevents/$peopleInEventId';
 
   // Photos
   static String photosInRestaurant(String restaurantId) =>

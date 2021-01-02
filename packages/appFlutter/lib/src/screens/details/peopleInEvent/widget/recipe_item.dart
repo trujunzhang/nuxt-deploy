@@ -24,7 +24,7 @@ class RecipeItem extends StatelessWidget {
             .pushNamed(Routes.detail_recipe, arguments: recipeData);
       },
       child: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+        padding: EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
         child: _buildBody(context),
       ),
     );

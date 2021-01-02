@@ -20,23 +20,19 @@ class RestaurantDetail extends StatefulWidget {
   RestaurantDetail({Key key}) : super(key: key);
 
   @override
-  _RestaurantDetailState createState() => _RestaurantDetailState();
+  restaurantDetailState createState() => restaurantDetailState();
 }
 
-class _RestaurantDetailState extends State<RestaurantDetail> {
-  ParseModelRestaurants _restaurant;
+class restaurantDetailState extends State<RestaurantDetail> {
+  String restaurantId;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final ParseModelRestaurants _restaurantModel =
-        ModalRoute.of(context).settings.arguments;
-    if (_restaurantModel != null) {
-      _restaurant = _restaurantModel;
-      setState(() {
-        _restaurant = _restaurantModel;
-      });
-    }
+    final String _restaurantId = ModalRoute.of(context).settings.arguments;
+    setState(() {
+      restaurantId = _restaurantId;
+    });
   }
 
   @override
@@ -44,28 +40,33 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
     final firestoreDatabase =
         Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
-      appBar: new AppBar(centerTitle: true, title: appHeaderTitle()),
-      body: _buildBody(context, firestoreDatabase),
-    );
+        appBar: new AppBar(centerTitle: true, title: appHeaderTitle()),
+        body: StreamBuilderView<ParseModelRestaurants>(
+            stream: firestoreDatabase.singleRestaurantStream(restaurantId),
+            render: (AsyncSnapshot fbUserSnapshot) {
+              ParseModelRestaurants restaurant = fbUserSnapshot.data;
+              return _buildBody(context, firestoreDatabase, restaurant);
+            }));
   }
 
-  Widget _buildBody(BuildContext context, FirestoreDatabase firestoreDatabase) {
+  Widget _buildBody(BuildContext context, FirestoreDatabase firestoreDatabase,
+      ParseModelRestaurants restaurant) {
     return ListView(
       children: [
         InfoPart(
-          restaurant: _restaurant,
+          restaurant: restaurant,
         ),
         // Line 1: Address
         buildTextSectionTitle("Current Address"),
         Container(
             decoration: new BoxDecoration(color: Colors.white),
             child: ListTile(
-              title: Text(_restaurant.address),
+              title: Text(restaurant.address),
             )),
         // Line 2: Events
         buildTextSectionTitle("Events Recorded"),
         StreamBuilderView<List<ParseModelEvents>>(
-          stream: firestoreDatabase.eventsStream(_restaurant.uniqueId),
+          stream: firestoreDatabase.eventsStream(restaurantId),
           render: (AsyncSnapshot fbSnapshot) {
             return EventsBody(eventsList: fbSnapshot.data);
           },
@@ -75,8 +76,8 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelPhotos>>(
-            stream: firestoreDatabase
-                .photosInRestaurantStream(_restaurant.uniqueId),
+            stream:
+                firestoreDatabase.photosInRestaurantStream(restaurantId),
             render: (AsyncSnapshot fbSnapshot) {
               return PhotosBody(photosList: fbSnapshot.data);
             },
@@ -84,7 +85,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
         ),
         StreamBuilderView<List<ParseModelPhotos>>(
           stream:
-              firestoreDatabase.photosInRestaurantStream(_restaurant.uniqueId),
+              firestoreDatabase.photosInRestaurantStream(restaurantId),
           render: (AsyncSnapshot fbSnapshot) {
             return seeAllPhoto(fbSnapshot.data);
           },
@@ -95,7 +96,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
             stream: firestoreDatabase
-                .reviewsInRestaurantStream(_restaurant.uniqueId),
+                .reviewsInRestaurantStream(restaurantId),
             render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },

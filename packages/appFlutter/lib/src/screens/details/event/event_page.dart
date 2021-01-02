@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
@@ -21,19 +22,16 @@ class EventDetail extends StatefulWidget {
 }
 
 class EventDetailState extends State<EventDetail> {
-  ParseModelEvents _event;
+  ParseModelEvents _lastEvent;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final ParseModelEvents _eventModel =
         ModalRoute.of(context).settings.arguments;
-    if (_eventModel != null) {
-      _event = _eventModel;
-      setState(() {
-        _event = _eventModel;
-      });
-    }
+    setState(() {
+      _lastEvent = _eventModel;
+    });
   }
 
   @override
@@ -45,26 +43,46 @@ class EventDetailState extends State<EventDetail> {
       body: StreamBuilderView<List<ParseModelUsers>>(
         stream: firestoreDatabase.allUsersStream(),
         render: (AsyncSnapshot fbUserSnapshot) {
+          // Step1: fetch all users.
           List<ParseModelUsers> users = fbUserSnapshot.data;
-          return _buildBody(users, firestoreDatabase);
+          return StreamBuilderView<ParseModelRestaurants>(
+              stream: firestoreDatabase
+                  .singleRestaurantStream(_lastEvent.restaurantId),
+              render: (AsyncSnapshot fbUserSnapshot) {
+                // Step2: fetch restaurant model.
+                ParseModelRestaurants restaurant = fbUserSnapshot.data;
+                return StreamBuilderView<ParseModelEvents>(
+                    stream: firestoreDatabase.singleEventStream(
+                        _lastEvent.restaurantId, _lastEvent.uniqueId),
+                    render: (AsyncSnapshot fbUserSnapshot) {
+                      // Step2: fetch event model.
+                      ParseModelEvents event = fbUserSnapshot.data;
+                      return _buildBody(
+                          firestoreDatabase, users, restaurant, event);
+                    });
+              });
         },
       ),
     );
   }
 
   Widget _buildBody(
-      List<ParseModelUsers> users, FirestoreDatabase firestoreDatabase) {
+      FirestoreDatabase firestoreDatabase,
+      List<ParseModelUsers> users,
+      ParseModelRestaurants restaurant,
+      ParseModelEvents event) {
     return ListView(
       shrinkWrap: true,
       children: [
         InfoPart(
-          event: _event,
+          restaurant: restaurant,
+          event: event,
         ),
         // Line 1: Ordered users list
         buildTextSectionTitle("People Ordered"),
         StreamBuilderView<List<ParseModelPeopleInEvent>>(
           stream: firestoreDatabase.peopleInEventsStream(
-              _event.restaurantId, _event.uniqueId),
+              restaurant.uniqueId, event.uniqueId),
           render: (AsyncSnapshot fbSnapshot) {
             return PeopleInEventBody(
               peopleInEventsList: fbSnapshot.data,
@@ -76,8 +94,9 @@ class EventDetailState extends State<EventDetail> {
         Container(
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase.reviewsInEventStream( _event.restaurantId, _event.uniqueId),
-            render: (AsyncSnapshot fbSnapshot){
+            stream: firestoreDatabase.reviewsInEventStream(
+                restaurant.uniqueId, event.uniqueId),
+            render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },
           ),

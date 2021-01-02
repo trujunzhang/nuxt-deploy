@@ -101,11 +101,26 @@ class FirestoreDatabase {
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
       );
 
-  //Method to retrieve single user stream
+  //Method to retrieve single restaurant stream
   Stream<ParseModelRestaurants> singleRestaurantStream(String restaurantId) =>
       _firestoreService.documentStream(
         path: FirestorePath.singleRestaurant(restaurantId),
         builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
+      );
+
+
+  //Method to retrieve single event stream
+  Stream<ParseModelEvents> singleEventStream(String restaurantId,String eventId) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.singleEvent(restaurantId,eventId),
+        builder: (data, documentId) => ParseModelEvents.fromJson(data),
+      );
+
+  //Method to retrieve single peopleInEvent stream
+  Stream<ParseModelPeopleInEvent> singlePeopleInEventStream(String restaurantId,String eventId, String peopleInEventId) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.singlePeopleInEvent(restaurantId,eventId,peopleInEventId),
+        builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
       );
 
   // ===========================================================
