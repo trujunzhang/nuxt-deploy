@@ -6,6 +6,7 @@ import { formatByTimeAgo, formatByTimeAgoForTest } from '~/database/utils/timeag
 import { calcRateForRestaurant } from '~/database/rate_utils'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
+import { FirestorePath } from '~/database/services/firestore_path'
 
 @Component({
   components: {}
@@ -48,6 +49,7 @@ export default class RestaurantInfo extends Vue {
   }
 
   public items: Array<IFBPhoto> = []
+  public photoItems: Array<number> = [0, 1, 2, 3]
   public photosLen: number | null = null
   private isLoading = false
 
@@ -57,9 +59,8 @@ export default class RestaurantInfo extends Vue {
     }
     this.isLoading = true
     const nextItem = this.items.concat([])
-    await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fire.firestore,
-      path: FBCollections.Photos,
+    await FirestoreService.instance.collectionStream({
+      query: new FirestorePath(this.$fire.firestore).photosInRestaurant(this.restaurant.uniqueId),
       queryBuilder: (query: any) => {
         return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
           query,
@@ -75,12 +76,16 @@ export default class RestaurantInfo extends Vue {
     this.isLoading = false
   }
 
+  showPhotoItem (index: number) {
+    return index < this.items.length
+  }
+
   /**
    * Example:
    *   href="/biz_photos/the-ramen-bar-san-francisco?select=J73NiWfGvXslEK2EMIPSbA"
-   * @param item
    */
-  getImageLink (item: IFBPhoto) {
+  getImageLink (index: number) {
+    const item: IFBPhoto = this.items[index]
     return `${this.getSeeAllLink()}?select=${item.uniqueId}`
   }
 
@@ -92,20 +97,24 @@ export default class RestaurantInfo extends Vue {
     return `/biz_photos/${this.restaurant.slug}`
   }
 
-  getPhotoUrl (item: IFBPhoto) {
+  getPhotoUrl (index: number) {
+    const item: IFBPhoto = this.items[index]
     if (item.originalUrl === '') {
       return require('~/assets/images/offline-sign-circular-band-label-sticker.png')
     }
     return item.originalUrl
   }
 
+  /**
+   * See 924 photos
+   */
   getPhotosLen () {
     if (this.photosLen === undefined ||
       !this.photosLen
     ) {
       return ''
     }
-    return 'See All ' + this.photosLen
+    return 'See ' + this.photosLen + ' photos'
   }
 
   async mounted () {

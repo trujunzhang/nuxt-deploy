@@ -36,7 +36,7 @@ class InfoPart extends StatelessWidget {
                     stream: firestoreDatabase.singleEventStream(
                         peopleInEvent.restaurantId, peopleInEvent.eventId),
                     render: (AsyncSnapshot fbUserSnapshot) {
-                      // Step2: fetch event model.
+                      // Step3: fetch event model.
                       ParseModelEvents event = fbUserSnapshot.data;
                       return _buildCard(context, user, restaurant, event);
                     });
@@ -48,14 +48,29 @@ class InfoPart extends StatelessWidget {
       ParseModelRestaurants restaurant, ParseModelEvents event) {
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 0.0),
-        elevation: 0.0,
-        child: Padding(
-            padding: EdgeInsets.only(),
-            child: Container(
-              height: MediaQuery.of(context).size.width / 2 + 80,
-              color: Colors.white,
-              child: _buildBody(context, user, restaurant, event),
-            )));
+        // elevation: 0.0,
+        child: Container(
+          height: MediaQuery.of(context).size.width / 2 + 80,
+          color: Colors.white,
+          child: _buildBody(context, user, restaurant, event),
+        ));
+  }
+
+  Widget buildBlurredImage(ParseModelRestaurants restaurant){
+   return Stack(
+     children: [
+       buildRestaurantImage(restaurant),
+       ClipRect(
+         child:
+       BackdropFilter(
+         filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+         child: Container(
+           color: Colors.black.withOpacity(0.2),
+         ),
+       ),
+       )
+     ],
+   );
   }
 
   Widget _buildBody(BuildContext context, ParseModelUsers user,
@@ -64,16 +79,7 @@ class InfoPart extends StatelessWidget {
       children: [
         AspectRatio(
           aspectRatio: 2,
-          child: buildRestaurantImage(restaurant),
-        ),
-        AspectRatio(
-          aspectRatio: 2,
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-            child: Container(
-              color: Colors.black.withOpacity(0.2),
-            ),
-          ),
+          child: buildBlurredImage(restaurant),
         ),
         AspectRatio(
           aspectRatio: 2,
@@ -89,7 +95,7 @@ class InfoPart extends StatelessWidget {
 
   Widget buildInfo(ParseModelRestaurants restaurant, ParseModelEvents event) {
     return Padding(
-        padding: EdgeInsets.only(left: 120, right: 20,bottom: 30),
+        padding: EdgeInsets.only(left: 100, right: 40, bottom: 35),
         child: Container(
           // color: Colors.red,
           child: Column(
@@ -99,20 +105,18 @@ class InfoPart extends StatelessWidget {
                 restaurant.displayName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30,
-                  color: Colors.white
-                ),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 30,
+                    color: Colors.white),
               ),
               SizedBox(height: 4),
               Text(
                 event.displayName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                    color: Colors.white
-                ),
+                    fontWeight: FontWeight.w200,
+                    fontSize: 16,
+                    color: Colors.white),
               ),
             ],
           ),
@@ -144,6 +148,7 @@ class InfoPart extends StatelessWidget {
                   fontWeight: FontWeight.w200,
                   color: Colors.grey,
                   fontSize: 14)),
+          SizedBox(height: 4),
         ],
       ),
     );

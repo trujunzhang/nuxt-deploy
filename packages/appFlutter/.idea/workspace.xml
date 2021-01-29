@@ -10,10 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/event/widget/info_part.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/event/widget/info_part.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/widget/info_part.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/widget/info_part.dart" afterDir="false" />
-    </list>
+    <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -223,6 +220,32 @@
       <workItem from="1609582642275" duration="3149000" />
       <workItem from="1609592446801" duration="1041000" />
       <workItem from="1609595319985" duration="208000" />
+      <workItem from="1609649705756" duration="84000" />
+      <workItem from="1609655416113" duration="26000" />
+      <workItem from="1609656351629" duration="1146000" />
+      <workItem from="1609658138318" duration="14000" />
+      <workItem from="1609658232235" duration="946000" />
+      <workItem from="1609662628902" duration="568000" />
+      <workItem from="1609758771319" duration="37000" />
+      <workItem from="1609758866972" duration="275000" />
+      <workItem from="1609840909195" duration="7000" />
+      <workItem from="1611741522062" duration="894000" />
+      <workItem from="1611743829143" duration="415000" />
+      <workItem from="1611744976383" duration="832000" />
+      <workItem from="1611746771006" duration="37000" />
+      <workItem from="1611754596397" duration="554000" />
+      <workItem from="1611755181146" duration="1735000" />
+      <workItem from="1611781929122" duration="1656000" />
+      <workItem from="1611783854026" duration="286000" />
+      <workItem from="1611828880493" duration="1480000" />
+      <workItem from="1611839502300" duration="1085000" />
+      <workItem from="1611841150556" duration="494000" />
+      <workItem from="1611841786401" duration="545000" />
+      <workItem from="1611895660167" duration="239000" />
+      <workItem from="1611900355997" duration="43000" />
+      <workItem from="1611901462778" duration="623000" />
+      <workItem from="1611902700151" duration="351000" />
+      <workItem from="1611903316076" duration="432000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>

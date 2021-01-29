@@ -73,12 +73,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="offers_virtual_tasting_sessions"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="offers_virtual_tasting_sessions"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -93,12 +93,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="offers_virtual_classes"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="offers_virtual_classes"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -113,12 +113,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="offers_virtual_consultations"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="offers_virtual_consultations"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -133,12 +133,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="offers_virtual_performances"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="offers_virtual_performances"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -166,12 +166,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="ActiveDeal"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="ActiveDeal"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -186,12 +186,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="RestaurantsDelivery"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="RestaurantsDelivery"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -206,12 +206,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="RestaurantsTakeOut"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="RestaurantsTakeOut"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -226,12 +226,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="GoodForKids"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="GoodForKids"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -273,12 +273,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="CA:San_Francisco::Outer_Sunset"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="CA:San_Francisco::Outer_Sunset"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -293,12 +293,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="CA:San_Francisco::Forest_Hill"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="CA:San_Francisco::Forest_Hill"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -313,12 +313,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="CA:San_Francisco::Stonestown"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="CA:San_Francisco::Stonestown"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -333,12 +333,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="checkbox"
-                                                                                                         value="CA:San_Francisco::Inner_Richmond"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="checkbox"
+                            value="CA:San_Francisco::Inner_Richmond"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -380,13 +380,13 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="radio"
-                                                                                                         value="g:-122.538757324,37.6794729302,-122.334136963,37.8423258493"
-                                                                                                         checked=""
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="radio"
+                            value="g:-122.538757324,37.6794729302,-122.334136963,37.8423258493"
+                            checked=""
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -401,12 +401,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="radio"
-                                                                                                         value="g:-122.487602234,37.7202197691,-122.385292053,37.8016462369"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="radio"
+                            value="g:-122.487602234,37.7202197691,-122.385292053,37.8016462369"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -421,12 +421,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="radio"
-                                                                                                         value="g:-122.462024689,37.7405847889,-122.410869598,37.7812980238"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="radio"
+                            value="g:-122.462024689,37.7405847889,-122.410869598,37.7812980238"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -441,12 +441,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="radio"
-                                                                                                         value="g:-122.449235916,37.7506973336,-122.423658371,37.7710539699"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="radio"
+                            value="g:-122.449235916,37.7506973336,-122.423658371,37.7710539699"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -461,12 +461,12 @@
                       <label class="">
                         <div class=" arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                           <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO"><input
-                                                                                                         type="radio"
-                                                                                                         value="g:-122.439644337,37.7583486931,-122.43324995,37.7634378511"
-                                                                                                         tabindex="0"
-                                                                                                         class="input__09f24__30UUZ"
-                                                                                                         placeholder=" "
-                                                                                                       >
+                            type="radio"
+                            value="g:-122.439644337,37.7583486931,-122.43324995,37.7634378511"
+                            tabindex="0"
+                            class="input__09f24__30UUZ"
+                            placeholder=" "
+                          >
                             <div class=" custom-input__09f24__RE3Tv"></div>
                           </div>
                           <div class=" center__09f24__32SVK arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
@@ -484,11 +484,12 @@
           </div>
           <div class=" leftRailSearchResultsContainer__09f24__3vlwA border-color--default__09f24__R1nRO">
             <div class=" border-color--default__09f24__R1nRO">
-<!--  placeholder -->
+              <!--  placeholder -->
               <ul
                 v-if="shouldShowPlaceHolder()"
                 style="margin-top: 25px;"
-                class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH">
+                class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH"
+              >
                 <li
                   v-for="(item) in placeHolders"
                   :key="item"
@@ -499,24 +500,21 @@
                     :width="400"
                     :height="100"
                     :speed="2"
-                    primaryColor="#f3f3f3"
-                    secondaryColor="#ecebeb"
+                    primary-color="#f3f3f3"
+                    secondary-color="#ecebeb"
                   />
                 </li>
               </ul>
-
-
 
               <ul class=" undefined list__09f24__17TsU">
                 <li
                   v-for="(item, index) in items"
                   :key="item.uniqueId"
-                  class=" border-color--default__09f24__R1nRO">
-<!-- item -->
+                  class=" border-color--default__09f24__R1nRO"
+                >
+                  <!-- item -->
                   <RestaurantItem :restaurant="item" :index="index" />
                 </li>
-
-
               </ul>
 
               <!-- infinite scroll -->
@@ -543,10 +541,10 @@
                       src="https://s3-media0.fl.yelpcdn.com/assets/public/logo_desktop_xsmall_outline.yji-17089be275f0e32eb065304790b0c35e.png"
                       alt="Yelp logo"
                     >, <!-- --> <img
-                      class=" align-bottom__09f24__2_PYL"
-                      src="https://s3-media0.fl.yelpcdn.com/assets/public/burst_desktop_xsmall_outline.yji-58cfc999e1f5da75e75ddf71c868c656.png"
-                      alt="Yelp burst"
-                    > <!-- -->and related marks
+                    class=" align-bottom__09f24__2_PYL"
+                    src="https://s3-media0.fl.yelpcdn.com/assets/public/burst_desktop_xsmall_outline.yji-58cfc999e1f5da75e75ddf71c868c656.png"
+                    alt="Yelp burst"
+                  > <!-- -->and related marks
                     are registered trademarks of Yelp.
                   </p>
                 </div>
@@ -592,7 +590,6 @@
                         @click="center=m.position"
                       />
                     </GmapMap>
-
                   </div>
                 </div>
               </div>

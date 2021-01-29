@@ -37,7 +37,7 @@
     >
       <template
         v-if="$vuetify.breakpoint.mdAndUP"
-        v-slot:append-outer
+        #append-outer
       >
         <v-btn
           class="mt-n2"
@@ -65,7 +65,7 @@
       origin="top right"
       transition="scale-transition"
     >
-      <template v-slot:activator="{ attrs, on }">
+      <template #activator="{ attrs, on }">
         <v-btn
           min-width="0"
           text
@@ -76,7 +76,7 @@
             color="red"
             overlap
           >
-            <template v-slot:badge>
+            <template #badge>
               <span class="caption">5</span>
             </template>
 
@@ -108,7 +108,7 @@
       origin="top right"
       transition="scale-transition"
     >
-      <template v-slot:activator="{ attrs, on }">
+      <template #activator="{ attrs, on }">
         <v-btn
           min-width="0"
           text

@@ -3,7 +3,6 @@ import { namespace } from 'vuex-class'
 import vClickOutside from 'v-click-outside'
 import { IAuthUser } from '~/database/models/auth_user_model'
 
-import HomeLogo from '~/components/screens/header/common/home_logo.vue'
 import HeaderSearch from '~/components/screens/header/common/header_search.vue'
 import HeaderPop from '~/components/screens/header/common/header_pop.vue'
 const auth = namespace('auth')
@@ -13,7 +12,6 @@ const auth = namespace('auth')
     clickOutside: vClickOutside.directive
   },
   components: {
-    HomeLogo,
     HeaderSearch,
     HeaderPop
   }

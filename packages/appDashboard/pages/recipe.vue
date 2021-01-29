@@ -9,7 +9,7 @@
       inline
       class="px-5 py-3"
     >
-      <template v-slot:after-heading>
+      <template #after-heading>
         <div class="display-2 font-weight-light">
           Recipe
         </div>

@@ -21,22 +21,26 @@ class ReviewItem extends StatelessWidget {
       @required this.note})
       : super(key: key);
 
-  Widget _buildInfo() {
+  Widget _buildInfo(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            ProfileAvatar(avatarUrl: reviewData.avatarUrl),
-            SizedBox(width: 12),
-            Text(reviewData.username)
-          ],
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(Routes.detail_common_user,
+                arguments: reviewData.creatorId);
+          },
+          child: Row(
+            children: [
+              ProfileAvatar(avatarUrl: reviewData.avatarUrl),
+              SizedBox(width: 12),
+              Text(reviewData.username)
+            ],
+          ),
         ),
-        Text(formatByTimeAgo(reviewData.updatedAt),
-       style: TextStyle(
-         color: Colors.grey,
-         fontSize: 15
-       ),
+        Text(
+          formatByTimeAgo(reviewData.updatedAt),
+          style: TextStyle(color: Colors.grey, fontSize: 15),
         )
       ],
     );
@@ -50,7 +54,7 @@ class ReviewItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildInfo(),
+            _buildInfo(context),
             SizedBox(height: 8),
             SmoothStarRating(
               allowHalfRating: true,
@@ -61,8 +65,9 @@ class ReviewItem extends StatelessWidget {
               borderColor: HotelAppTheme.buildLightTheme().primaryColor,
             ),
             SizedBox(height: 8),
-            Text(reviewData.body,
-                style: Theme.of(context).textTheme.bodyText2,
+            Text(
+              reviewData.body,
+              style: Theme.of(context).textTheme.bodyText2,
             )
           ],
         ),

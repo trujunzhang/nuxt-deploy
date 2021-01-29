@@ -6,13 +6,13 @@ import 'package:ieatta/core/providers/language_provider.dart';
 import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/flavor.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'core/logger/file_logger.dart';
 
 Future<String> _getDocsDir() async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
+    // final directory = await getApplicationDocumentsDirectory();
+    // return directory.path;
 }
 
 var _logFilename = 'back_to_now.txt';

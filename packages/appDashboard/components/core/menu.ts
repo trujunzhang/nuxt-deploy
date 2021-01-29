@@ -24,6 +24,11 @@ export const menus: Array<IItem|IGroupItem> = [
   },
   {
     icon: 'event',
+    title: 'waiter',
+    to: '/waiter'
+  },
+  {
+    icon: 'event',
     title: 'peopleInEvent',
     to: '/peopleInEvent'
   },

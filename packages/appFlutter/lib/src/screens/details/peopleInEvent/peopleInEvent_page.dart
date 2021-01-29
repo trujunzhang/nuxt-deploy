@@ -60,8 +60,12 @@ class EventPageState extends State<PeopleInEventDetail> {
     return ListView(
       shrinkWrap: true,
       children: [
-        InfoPart(
-          peopleInEvent: peopleInEvent,
+        Container(
+          height: MediaQuery.of(context).size.width / 2 + 80,
+          color: Colors.transparent,
+          child: InfoPart(
+            peopleInEvent: peopleInEvent,
+          ),
         ),
         // Line 1: Ordered users list
         buildTextSectionTitle("Ordered Recipes"),

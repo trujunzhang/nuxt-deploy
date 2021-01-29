@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 
 import 'widget/info_part.dart';
 import 'widget/peopleInEvent_body.dart';
+import 'widget/waiter_body.dart';
 
 class EventDetail extends StatefulWidget {
   EventDetail({Key key}) : super(key: key);
@@ -90,6 +92,21 @@ class EventDetailState extends State<EventDetail> {
             );
           },
         ),
+        // Line 2: Waiters list
+        buildTextSectionTitle("Waiters"),
+        Container(
+          height: 160,
+          child: StreamBuilderView<List<ParseModelPhotos>>(
+            stream: firestoreDatabase.waitersStream(restaurant.uniqueId),
+            render: (AsyncSnapshot fbSnapshot) {
+              return WaiterBody(
+                photosList: fbSnapshot.data,
+                event: event,
+              );
+            },
+          ),
+        ),
+        // Line 3: Reviews list
         buildTextSectionTitle("Review Highlights"),
         Container(
           decoration: new BoxDecoration(color: Colors.white),

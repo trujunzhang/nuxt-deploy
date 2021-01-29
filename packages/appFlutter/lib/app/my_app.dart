@@ -21,6 +21,7 @@ import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/database/localDatabase.dart' as database;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MyApp extends StatefulWidget {
   MyApp({Key key, @required this.databaseBuilder}) : super(key: key);
@@ -42,8 +43,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _syncLocalDb() async {
-    var firebaseSync = FirebaseSync();
-    await firebaseSync.start();
+    if (kIsWeb) {
+    } else {
+      var firebaseSync = FirebaseSync();
+      await firebaseSync.start();
+    }
 
     // For test
     // final db = await database.DBProvider.db.database;

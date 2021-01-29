@@ -25,7 +25,7 @@
                 <!-- detail -->
                 <RestaurantInfo :restaurant="restaurant" />
                 <!-- event -->
-                <RestaurantEvent :restaurant="restaurant" />
+                <RestaurantEvents :restaurant="restaurant" />
                 <!-- dish -->
                 <!-- reviews -->
                 <ReviewsList :restaurant="restaurant" />

@@ -8,11 +8,12 @@ class ParseModelEvents {
   final String updatedAt;
   final String flag;
 
-  // Common(4)
+  // Common(4+1)
   final String displayName;
   final String want;
   final String start;
   final String end;
+  final List<String> waiters;
 
   // final DateTime start;
   // final DateTime end;
@@ -32,14 +33,15 @@ class ParseModelEvents {
       this.createdAt,
       this.updatedAt,
       this.flag,
-      // Common(4)
+      // Common(4+1)
       this.displayName,
       this.want,
       this.start,
       this.end,
-        // for review(2)
-        this.rate,
-        this.reviewCount,
+      this.waiters,
+      // for review(2)
+      this.rate,
+      this.reviewCount,
       // point(1)
       this.restaurantId});
 
@@ -47,11 +49,12 @@ class ParseModelEvents {
     // Base(5)
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
-    // Common(4)
+    // Common(4+1)
     var displayName = json['displayName'] as String;
     var want = json['want'] as String;
     var start = json['start'] as String;
     var end = json['end'] as String;
+    var waiters = json['waiters'].cast<String>();
 
     // for review(2)
     var rate = json['rate'];
@@ -74,11 +77,12 @@ class ParseModelEvents {
         createdAt: databaseBaseModel.createdAt,
         updatedAt: databaseBaseModel.updatedAt,
         flag: databaseBaseModel.flag,
-        // Common(4)
+        // Common(4+1)
         displayName: displayName,
         want: want,
         start: start,
         end: end,
+        waiters: waiters,
         // for review(2)
         rate: rate,
         reviewCount: reviewCount,
@@ -94,11 +98,12 @@ class ParseModelEvents {
       "createdAt": createdAt,
       "updatedAt": updatedAt,
       "flag": flag,
-      // Common(4)
+      // Common(4+1)
       "displayName": displayName,
       "want": want,
       "start": start,
       "end": end,
+      "waiters": waiters,
       // for review(2)
       'rate': rate,
       'reviewCount': reviewCount,
@@ -106,5 +111,4 @@ class ParseModelEvents {
       "restaurantId": restaurantId,
     };
   }
-
 }

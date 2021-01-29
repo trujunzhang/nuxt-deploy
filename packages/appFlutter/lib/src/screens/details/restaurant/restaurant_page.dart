@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
@@ -15,15 +16,16 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import '../photos_body.dart';
 import 'widget/events_body.dart';
 import 'widget/info_part.dart';
+import 'widget/menus_body.dart';
 
 class RestaurantDetail extends StatefulWidget {
   RestaurantDetail({Key key}) : super(key: key);
 
   @override
-  restaurantDetailState createState() => restaurantDetailState();
+  RestaurantDetailState createState() => RestaurantDetailState();
 }
 
-class restaurantDetailState extends State<RestaurantDetail> {
+class RestaurantDetailState extends State<RestaurantDetail> {
   String restaurantId;
 
   @override
@@ -71,21 +73,31 @@ class restaurantDetailState extends State<RestaurantDetail> {
             return EventsBody(eventsList: fbSnapshot.data);
           },
         ),
-        buildPhotoSectionTitle(context),
+        // Line 3: Menus
+        buildMenusSectionTitle(context),
+        Container(
+          height: 160,
+          child: StreamBuilderView<List<ParseModelRecipes>>(
+            stream: firestoreDatabase.recipesStream(restaurantId),
+            render: (AsyncSnapshot fbSnapshot) {
+              return MenusBody(recipesList: fbSnapshot.data);
+            },
+          ),
+        ),
+        // Line 3: Photos
+        buildPhotosSectionTitle(context),
         Container(
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelPhotos>>(
-            stream:
-                firestoreDatabase.photosInRestaurantStream(restaurantId),
+            stream: firestoreDatabase.photosInRestaurantStream(restaurantId),
             render: (AsyncSnapshot fbSnapshot) {
               return PhotosBody(photosList: fbSnapshot.data);
             },
           ),
         ),
         StreamBuilderView<List<ParseModelPhotos>>(
-          stream:
-              firestoreDatabase.photosInRestaurantStream(restaurantId),
+          stream: firestoreDatabase.photosInRestaurantStream(restaurantId),
           render: (AsyncSnapshot fbSnapshot) {
             return seeAllPhoto(fbSnapshot.data);
           },
@@ -95,8 +107,7 @@ class restaurantDetailState extends State<RestaurantDetail> {
         Container(
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase
-                .reviewsInRestaurantStream(restaurantId),
+            stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId),
             render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },

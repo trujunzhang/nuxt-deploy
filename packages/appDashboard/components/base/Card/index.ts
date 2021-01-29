@@ -3,7 +3,7 @@ import Card from './Card'
 
 const VCustomCard = {
   install (Vue: VueConstructor, options?: any) {
-    Vue.component('v-state-select', Card)
+    Vue.component('VStateSelect', Card)
   }
 }
 

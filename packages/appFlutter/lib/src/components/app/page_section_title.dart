@@ -8,8 +8,8 @@ Widget buildTextSectionTitle(String text) {
       children: <Widget>[
         Text(
           text,
-          style: TextStyle(fontSize: 18.0,
-              fontWeight: FontWeight.w300,
+          style: TextStyle(fontSize: 17.0,
+              fontWeight: FontWeight.w400,
           ),
         ),
       ],

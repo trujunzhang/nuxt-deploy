@@ -3,7 +3,8 @@ import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 
-Widget buildPhotoSectionTitle(
+
+Widget buildMenusSectionTitle(
     BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
@@ -11,9 +12,41 @@ Widget buildPhotoSectionTitle(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          "Business Photo",
+          "On the Menu",
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 17.0,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Container(
+            width: 40,
+            height: 40,
+            child: InkWell(
+              onTap: () {
+                // Navigator.of(context).pushNamed(Routes.online_photos_gridview,
+                //     arguments: restaurant);
+              },
+              child: Icon(
+                Icons.add,
+                color: Colors.grey,
+              ),
+            )),
+      ],
+    ),
+  );
+}
+
+Widget buildPhotosSectionTitle(
+    BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          "Business Photos",
+          style: TextStyle(
+            fontSize: 17.0,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -34,6 +67,7 @@ Widget buildPhotoSectionTitle(
     ),
   );
 }
+
 
 Widget seeAllPhoto(List<ParseModelPhotos> photosList) {
   return Container(

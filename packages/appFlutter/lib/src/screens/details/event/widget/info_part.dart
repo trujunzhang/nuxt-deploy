@@ -16,7 +16,6 @@ class InfoPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 0.0),
-        elevation: 0.0,
         child: Padding(
             padding: EdgeInsets.only(),
             child: Container(
@@ -57,7 +56,7 @@ class InfoPart extends StatelessWidget {
             event.displayName,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w200,
               fontSize: 16,
             ),
           ),
@@ -94,18 +93,26 @@ class InfoPart extends StatelessWidget {
             ),
           ),
           const VerticalDivider(width: 8.0),
-          FlatButton(
+          FlatButton.icon(
             onPressed: () => print('Photo'),
-            child: Text(
-              'Write Review',
+            icon: const Icon(
+              Icons.create,
+              color: Colors.green,
+            ),
+            label: Text(
+              'Review',
               style: TextStyle(color: Color(0xff479EFF)),
             ),
           ),
           const VerticalDivider(width: 8.0),
-          FlatButton(
+          FlatButton.icon(
             onPressed: () => print('Room'),
-            child: Text(
-              'See Reviews',
+            icon: const Icon(
+              Icons.card_membership,
+              color: Colors.purpleAccent,
+            ),
+            label: Text(
+              'Reviews',
               style: TextStyle(color: Color(0xff479EFF)),
             ),
           ),

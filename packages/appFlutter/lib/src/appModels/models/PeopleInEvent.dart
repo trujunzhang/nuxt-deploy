@@ -16,7 +16,8 @@ class ParseModelPeopleInEvent {
   final String eventId;
   final String userId;
 
-  ParseModelPeopleInEvent({
+  ParseModelPeopleInEvent(
+      {
       // Base(5)
       this.uniqueId,
       this.creatorId,
@@ -29,8 +30,6 @@ class ParseModelPeopleInEvent {
       this.restaurantId,
       this.eventId,
       this.userId});
-
-
 
   factory ParseModelPeopleInEvent.fromJson(Map<String, dynamic> json) {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
@@ -59,7 +58,6 @@ class ParseModelPeopleInEvent {
     );
   }
 
-
   Map<String, dynamic> toMap() {
     return {
       // Base(5)
@@ -76,5 +74,4 @@ class ParseModelPeopleInEvent {
       "userId": userId,
     };
   }
-
 }

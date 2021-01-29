@@ -37,8 +37,7 @@ class PhotosBody extends StatelessWidget {
   }
 
   Widget buildEmptyPhotos(BuildContext context) {
-    return Container(
-        // color: Colors.red,
+    return Card(
         child: Center(
       child: InkWell(
         onTap: () {

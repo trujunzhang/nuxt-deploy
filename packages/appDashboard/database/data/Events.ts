@@ -3,7 +3,7 @@ import { loadReviews } from '~/database/data/Reviews'
 
 const fixReviewStatistic = (item: IFBEvent) => {
   const { uniqueId } = item
-  let rateForEvent : number = 0
+  let rateForEvent: number = 0
   let reviewCount: number = 0
   for (const index in loadReviews()) {
     const review: IFBReview = loadReviews()[index]
@@ -31,7 +31,7 @@ const events: IFBEvent[] = [
     // id: 'rJhHSODVpk',
     // url: 'https://www.yelp.com.sg/events/burbank-outdoor-skating-and-holiday-festivities-in-downtown-burbank',
     displayName: 'Outdoor Skating and Holiday Festivities in Downtown Burbank',
-    want: "Downtown Burbank Announces 2015 Return of Outdoor Skating and Holiday Festivities Downtown Burbank's most festive holiday tradition returns for outdoor ice skating, fundraising events, and special performances at The Rink in Downtown Burbank.\r\nThe fun begins December 10, 2015 and runs through January 3, 2016.",
+    want: 'Downtown Burbank Announces 2015 Return of Outdoor Skating and Holiday Festivities Downtown Burbank\'s most festive holiday tradition returns for outdoor ice skating, fundraising events, and special performances at The Rink in Downtown Burbank.\r\nThe fun begins December 10, 2015 and runs through January 3, 2016.',
     rate: 24,
     reviewCount: 9,
     creatorId: 'tiBfFJkC71',
@@ -41,6 +41,12 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:41:41.958+0000',
     updatedAt: '2017-11-06T02:56:45.356+0000',
     restaurantId: '035ac47c-5781-4da8-af21-35c97a46c101',
+    waiters: [
+      '12345678-b3a9-4302-9c23-c59b876da99e',
+      '23456789-b3a9-4302-9c23-c59b876da99e',
+      '34567890-b3a9-4302-9c23-c59b876da99e',
+      '45678901-b3a9-4302-9c23-c59b876da99e'
+    ],
     flag: '1'
   },
   {
@@ -57,13 +63,16 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:41:52.061+0000',
     updatedAt: '2017-10-09T07:31:53.383+0000',
     restaurantId: '035ac47c-5781-4da8-af21-35c97a46c101',
+    waiters: [
+      '56789012-b3a9-4302-9c23-c59b876da99e'
+    ],
     flag: '1'
   },
   {
     // id: 'qW9xkWamgp',
     // url: 'https://www.yelp.com/events/lafayette-bay-area-kids-book-fair-east-bay-edition',
-    displayName: "Bay Area Kids' Book Fair | East Bay Edition",
-    want: "Bay Area Festivals  is having its 2nd annual FREE Bay Area Kids' Book Fair. There will be story-telling all day and other free activities for attendees. The first 200 families will get a free goody bag. Attendees are encouraged to bring canned food to donate to the Food Bank. A free raffle ticket will be given for each canned food item! \r\nKids can meet their favorite characters including Pete the Cat, Clifford the Big Red Dog, The Very Hungry Caterpillar, and Curious George! \r\nAdmission and parking is free on the day to the general public.",
+    displayName: 'Bay Area Kids\' Book Fair | East Bay Edition',
+    want: 'Bay Area Festivals  is having its 2nd annual FREE Bay Area Kids\' Book Fair. There will be story-telling all day and other free activities for attendees. The first 200 families will get a free goody bag. Attendees are encouraged to bring canned food to donate to the Food Bank. A free raffle ticket will be given for each canned food item! \r\nKids can meet their favorite characters including Pete the Cat, Clifford the Big Red Dog, The Very Hungry Caterpillar, and Curious George! \r\nAdmission and parking is free on the day to the general public.',
     rate: 0,
     reviewCount: 0,
     creatorId: 'tiBfFJkC71',
@@ -73,6 +82,7 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:42:10.014+0000',
     updatedAt: '2017-10-09T07:31:02.457+0000',
     restaurantId: '0b92b483-8860-438b-961d-4fef4b124176',
+    waiters: [],
     flag: '1'
   },
   {
@@ -89,6 +99,7 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:42:27.673+0000',
     updatedAt: '2017-10-09T07:31:40.508+0000',
     restaurantId: '0b92b483-8860-438b-961d-4fef4b124176',
+    waiters: [],
     flag: '1'
   },
   {
@@ -104,13 +115,14 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-15T00:57:07.517+0000',
     updatedAt: '2017-10-15T01:00:10.812+0000',
     restaurantId: 'f1c0aff9-728b-4041-9560-c09578ce7b01',
+    waiters: [],
     flag: '1'
   },
   {
     // id: 'U7k75ovuk0',
     // url: 'https://www.yelp.com/events/san-francisco-sketch-the-block-art-night-market',
     displayName: 'Sketch the Block - art night market',
-    want: "Meet and mingle with the local artists that have created the many prints and books available at the gallery. This is a one night art market featuring prints, paintings, sketches, art books, zines and more! It's happening during the 2 Blocks of Art - Art Walk + Block Party, which is an art walk and multi-block gallery event happening the night of Oct. 13.\r\nIn addition to the artist tables, we'll have a bunch of great giveaways to be announced in the days leading up to the event.\r\n2 Blocks of Art - Art Walk + Block Party will be on Oct 13 from 5-9pm, in downtown SF, with Sketch the Block at Sketchpad Gallery at 505 Natoma.",
+    want: 'Meet and mingle with the local artists that have created the many prints and books available at the gallery. This is a one night art market featuring prints, paintings, sketches, art books, zines and more! It\'s happening during the 2 Blocks of Art - Art Walk + Block Party, which is an art walk and multi-block gallery event happening the night of Oct. 13.\r\nIn addition to the artist tables, we\'ll have a bunch of great giveaways to be announced in the days leading up to the event.\r\n2 Blocks of Art - Art Walk + Block Party will be on Oct 13 from 5-9pm, in downtown SF, with Sketch the Block at Sketchpad Gallery at 505 Natoma.',
     rate: 0,
     reviewCount: 0,
     creatorId: 'tiBfFJkC71',
@@ -120,6 +132,7 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:42:01.336+0000',
     updatedAt: '2017-10-09T07:29:19.443+0000',
     restaurantId: 'f603f752-5641-472d-bcd1-0dec921b8931',
+    waiters: [],
     flag: '1'
   },
   {
@@ -136,6 +149,7 @@ const events: IFBEvent[] = [
     createdAt: '2017-10-09T06:42:18.882+0000',
     updatedAt: '2017-10-09T07:31:30.377+0000',
     restaurantId: 'f603f752-5641-472d-bcd1-0dec921b8931',
+    waiters: [],
     flag: '1'
   }
 ]

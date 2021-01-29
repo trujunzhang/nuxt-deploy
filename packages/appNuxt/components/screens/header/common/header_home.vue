@@ -2,7 +2,10 @@
   <div class=" sticky-wrapper__09f24__3Aajw pageHeader__09f24__Ey1v7 border-color--default__09f24__R1nRO">
     <div class=" consumer-header-container__09f24__2iDVS border--bottom__09f24__2FjZW border-color--default__09f24__R1nRO background-color--white__09f24__2jFAt">
       <div class=" consumer-header__09f24__5vTsM border-color--default__09f24__R1nRO">
-        <div class=" arrange__09f24__AiSIM vertical-align-middle__09f24__zNCcM border-color--default__09f24__R1nRO">
+        <div
+          style="padding-bottom: 24px;"
+          class=" arrange__09f24__AiSIM vertical-align-middle__09f24__zNCcM border-color--default__09f24__R1nRO"
+        >
           <div class=" logo-arrange-unit__09f24__1sgq4 arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
             <div class=" margin-r4__09f24__1VfYY margin-sm-r0__09f24__tjYlH border-color--default__09f24__R1nRO">
               <div id="logo" class=" logo__09f24__26Nsn logo-image__09f24__ZKHhi logo-container__09f24__3Qmzx undefined border-color--default__09f24__R1nRO" data-analytics-label="logo">
@@ -24,7 +27,8 @@
                   <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
                     <div class=" search-suggest__09f24__1meTU">
                       <div class="">
-                        <form id="header_find_form" class=" find-near-form__09f24__2y8Yy" action="/search" role="search" method="get">
+                        <!--  search  -->
+                        <div id="header_find_form" class=" find-near-form__09f24__2y8Yy" role="search" method="get">
                           <div class=" undefined arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
                             <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
                               <div class=" find-near-arrange__09f24__10iE- arrange__09f24__AiSIM layout-equal__09f24__iAZL_ border-color--default__09f24__R1nRO">
@@ -80,78 +84,10 @@
                                     </div>
                                   </label>
                                 </div>
-                                <div
-                                  class=" responsive-gutter__09f24__giwcv location-arrange-unit__09f24__3JbAh find-near-arrange-unit__09f24__2nUgJ arrange-unit__09f24__1gZC1 layout-stack-gutter-1-5__09f24__q24D3 margin-sm-t1-5__09f24__23UyF border-color--default__09f24__R1nRO"
-                                >
-                                  <label
-                                    class=" label__09f24__23EB0 pseudo-input__09f24__3IGCg pseudo-input__09f24__14BtC pseudo-input--find-near__09f24__1gi9G pseudo-input--near__09f24__1SB0F"
-                                    for="search_location"
-                                  >
-                                    <span class=" pseudo-input-text__09f24__EWsQz display--inline__09f24__3iACj border-color--default__09f24__R1nRO">
-                                      <div
-                                        class=" pseudo-input-icon-container__09f24__31kP9 margin-r1-5__09f24__3fQB8 border-color--default__09f24__R1nRO"
-                                      >
-                                        <span
-                                          aria-hidden="false"
-                                          aria-label="Near"
-                                          class="icon--24-marker-v2 pseudo-input-icon__09f24__3Pmw2 css-1mpk29p"
-                                        >
-                                          <svg
-                                            width="24"
-                                            height="24"
-                                            class="icon_svg"
-                                          >
-                                            <path
-                                              d="M12 1.039a9.25 9.25 0 016.54 15.791l-5.83 5.84A1 1 0 0112 23a1 1 0 01-.71-.29l-5.83-5.88A9.25 9.25 0 0112 1.039zm0 2.011a7.25 7.25 0 00-5.13 12.37L12 20.54l5.13-5.12A7.25 7.25 0 0012 3.05zm0 3.2a4 4 0 110 8 4 4 0 010-8zm0 2a2 2 0 100 4 2 2 0 000-4z"
-                                            ></path>
-                                          </svg>
-                                        </span>
-                                      </div>
-                                    </span>
-                                    <div class=" border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw">
-                                      <div class=" typeahead__09f24__2mlJD border-color--default__09f24__R1nRO"><input
-                                        type="text"
-                                        autocomplete="off"
-                                        spellcheck="false"
-                                        tabindex="-1"
-                                        value=""
-                                        aria-hidden="true"
-                                        disabled=""
-                                        class="input__09f24__30UUZ input__09f24__1XNzA hidden-input__09f24__3e1WX"
-                                        placeholder=" "
-                                      ><input
-                                        id="search_location"
-                                        type="text"
-                                        value="San Francisco, CA"
-                                        autocomplete="off"
-                                        aria-autocomplete="list"
-                                        tabindex="0"
-                                        data-testid="suggest-location-input"
-                                        class="input__09f24__30UUZ input__09f24__1XNzA original-input__09f24__fFh2n"
-                                        placeholder="address, neighborhood, city, state or zip"
-                                      >
-                                      </div>
-                                      <input type="hidden" name="find_loc" value="San Francisco, CA">
-                                    </div>
-                                  </label>
-                                </div>
                               </div>
                             </div>
                             <div class=" buttons-arrange-unit__09f24__zksuB arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                               <div class=" arrange__09f24__AiSIM gutter-6__09f24__fMli3 layout-equal__09f24__iAZL_ border-color--default__09f24__R1nRO">
-                                <div class=" hidden-non-responsive-inline-block responsive-visible-small-inline-block arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
-                                  <a
-                                    class=" button__09f24__1hAjX secondary__09f24__3mm8J find-near-button__09f24__UO8nW"
-                                    data-testid="responsive-suggest-submit"
-                                    style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-                                    href="#"
-                                  >
-                                    <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO"><span
-                                      class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--inherit__09f24__1jgBv text-align--center__09f24__3NO89 text-weight--semibold__09f24__MTlNc text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"
-                                    >Cancel</span>
-                                    </div>
-                                  </a>
-                                </div>
                                 <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                                   <button
                                     class="button__09f24__1hAjX primary__09f24__LBFK2 find-near-button__09f24__UO8nW"
@@ -160,7 +96,9 @@
                                     type="submit"
                                     value="submit"
                                   >
-                                    <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO">
+                                    <div
+                                      class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO"
+                                    >
                                       <span
                                         class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--inherit__09f24__1jgBv text-align--center__09f24__3NO89 text-weight--semibold__09f24__MTlNc text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"
                                       >
@@ -169,7 +107,11 @@
                                           aria-label="Search"
                                           class="icon--24-search-v2 css-12anxc3"
                                         >
-                                          <svg width="24" height="24" class="icon_svg">
+                                          <svg
+                                            width="24"
+                                            height="24"
+                                            class="icon_svg"
+                                          >
                                             <path
                                               d="M21.853 20.355l-3.444-3.443a9.428 9.428 0 10-16.761-6.171 9.428 9.428 0 0015.348 7.586l3.443 3.442a1 1 0 101.414-1.414zM5.82 16.245a7.429 7.429 0 115.253 2.175 7.38 7.38 0 01-5.253-2.176z"
                                             ></path>
@@ -182,7 +124,7 @@
                               </div>
                             </div>
                           </div>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -191,43 +133,6 @@
             </div>
           </div>
           <div class=" hide-below-a__09f24__ndhoV arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO nowrap__09f24__26e9i">
-            <span
-              class=" display--inline__09f24__3iACj margin-r1__09f24__BCulR margin-l1__09f24__2txuN padding-r1__09f24__23Vay border-color--default__09f24__R1nRO"
-            >
-              <a
-                class=" header-link__09f24__3OkYO"
-                href="/advertise/consumer_header_redirect"
-              >
-                <div
-                  class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO"
-                >
-                  <div
-                    class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO"
-                  >
-                    <p
-                      class=" text__09f24__2tZKC text-color--normal__09f24__3oebo text-align--left__09f24__3Drs0 text-weight--semibold__09f24__MTlNc"
-                    >For Businesses</p>
-                  </div>
-                </div>
-              </a>
-            </span>
-            <span
-              class=" display--inline__09f24__3iACj margin-r1__09f24__BCulR padding-r1__09f24__23Vay border-color--default__09f24__R1nRO"
-            >
-              <a class=" header-link__09f24__3OkYO" href="/writeareview">
-                <div
-                  class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO"
-                >
-                  <div
-                    class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO"
-                  >
-                    <p
-                      class=" text__09f24__2tZKC text-color--normal__09f24__3oebo text-align--left__09f24__3Drs0 text-weight--semibold__09f24__MTlNc"
-                    >Write a Review</p>
-                  </div>
-                </div>
-              </a>
-            </span>
             <span
               class=" display--inline__09f24__3iACj margin-r1__09f24__BCulR border-color--default__09f24__R1nRO"
             >
@@ -250,12 +155,14 @@
                         class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO"
                       >
                         <div
+                          style="width: 24px;height: 24px;"
                           class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO"
                         >
                           <span aria-hidden="true" class="icon--24-message-v2 css-1mpk29p">
                             <svg
                               width="24"
                               height="24"
+                              style="width: 24px;height: 24px;"
                               class="icon_svg"
                             >
                               <path
@@ -292,12 +199,14 @@
                         class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO"
                       >
                         <div
+                          style="width: 24px;height: 24px;"
                           class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO"
                         >
                           <span aria-hidden="true" class="icon--24-notification-v2 css-1mpk29p">
                             <svg
                               width="24"
                               height="24"
+                              style="width: 24px;height: 24px;"
                               class="icon_svg"
                             >
                               <path

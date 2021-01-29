@@ -157,6 +157,15 @@ class FirestoreDatabase {
         },
       );
 
+  //Method to retrieve waiter stream
+  Stream<List<ParseModelPhotos>> waitersStream(String restaurantId) =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.waiters(restaurantId),
+        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
   //Method to retrieve peopleInEvent stream
   Stream<List<ParseModelPeopleInEvent>> peopleInEventsStream(
           String restaurantId, String eventId) =>

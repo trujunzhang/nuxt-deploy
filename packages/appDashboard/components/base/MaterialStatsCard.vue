@@ -5,7 +5,7 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <template v-slot:after-heading>
+    <template #after-heading>
       <div class="ml-auto text-right">
         <div
           class="body-3 grey--text font-weight-light"

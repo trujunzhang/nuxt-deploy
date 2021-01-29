@@ -1,7 +1,12 @@
 <template>
   <!--  Line1    -->
+
   <div class="lemon--div__373c0__1mboc photoHeader__373c0__YdvQE border-color--default__373c0__3-ifU" data-testid="photoHeader">
-    <div class="lemon--div__373c0__1mboc photo-header-content-container__373c0__2SmKC border-color--default__373c0__3-ifU">
+    <!--   info -->
+    <div
+      style="padding-bottom: 24px;"
+      class="lemon--div__373c0__1mboc photo-header-content-container__373c0__2SmKC border-color--default__373c0__3-ifU"
+    >
       <div class="lemon--div__373c0__1mboc photo-header-content__373c0__j8x16 padding-r2__373c0__28zpp border-color--default__373c0__3-ifU">
         <div class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-2__373c0__1DiLQ border-color--default__373c0__3-ifU">
           <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU">
@@ -9,7 +14,7 @@
               <h1
                 class="lemon--h1__373c0__2ZHSL heading--h1__373c0__dvYgw undefined heading--inline__373c0__10ozy"
               >
-                The Ramen Bar San Francisco
+                {{ restaurant.displayName }}
               </h1>
             </div>
             <div class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-1-5__373c0__2vL-3 vertical-align-middle__373c0__1SDTo margin-b2__373c0__abANL border-color--default__373c0__3-ifU">
@@ -18,94 +23,52 @@
                   class="lemon--span__373c0__3997G display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
                 >
                   <div
-                    class="lemon--div__373c0__1mboc i-stars__373c0__1T6rz i-stars--large-3__373c0__3_Jon border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
-                    aria-label="3 star rating"
+                    :class="getRateStarClassName()"
                     role="img"
-                  ><img
-                    class="lemon--img__373c0__3GQUb offscreen__373c0__1KofL"
-                    src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yji-52d3d7a328db670d4402843cbddeed89.png"
-                    width="132"
-                    height="560"
-                    alt=""
-                  ></div>
+                  >
+                    <img
+                      class="lemon--img__373c0__3GQUb offscreen__373c0__1KofL"
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yji-52d3d7a328db670d4402843cbddeed89.png"
+                      width="132"
+                      height="560"
+                      alt=""
+                    >
+                  </div>
                 </span>
               </div>
               <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU nowrap__373c0__35McF">
                 <span
                   class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-                >624 reviews</span>
+                >
+                  {{ getRateCountStr() }}
+                </span>
               </div>
+              <!-- Detail -->
               <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU">
                 <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
                   <div class="lemon--div__373c0__1mboc css-19sk4h4 display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU">
-                    <button
-                      class="button__373c0__3lYgT small__373c0__Wsszq tertiary-dark__373c0__3cLwZ"
-                      aria-describedby="858c06dd-c991-4f54-b839-e515e202afc0"
-                      type="submit"
-                      value="submit"
-                      style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
-                    >
-                      <div class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
-                        <span
-                          class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--small__373c0__3NVWO text--truncated__373c0__3sLaf"
-                        >Details</span>
-                      </div>
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <span class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU">
-              <span
-                class="lemon--span__373c0__3997G hovercard-trigger__373c0__2PQPP"
-              >
-                <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-                  <span
-                    class="lemon--span__373c0__3997G text__373c0__2Kxyz claim-text--light__373c0__1ip1u text-color--blue-regular__373c0__QFzix text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-bullet--after__373c0__3fS1Z text-size--large__373c0__3t60B"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="icon--16-claim-filled-v2 css-1jnn9ss"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="icon_svg">
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M1 8a7 7 0 1114 0A7 7 0 011 8zm7 2.51l3.58-3.6a1 1 0 10-1.41-1.42l-2.89 2.9-.94-.94a1 1 0 10-1.42 1.41l1.67 1.65a1 1 0 001.41 0z"
-                        ></path>
-                      </svg>
-                    </span>
-                    Claimed
-                  </span>
-                </div>
-              </span>
-            </span>
             <span
               class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU"
             ><span
               class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-bullet--after__373c0__3fS1Z text-size--large__373c0__3t60B"
-            >$$ </span></span><span
+            >$$ </span>
+            </span>
+            <span
               class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU"
-            ><span
-              class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-            ><a
-              class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
-              href="/c/sf/ramen"
-              target=""
-              name=""
-              rel=""
-            >Ramen</a>, </span><span
-              class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-            ><a
-              class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
-              href="/c/sf/noodles"
-              target=""
-              name=""
-              rel=""
-            >Noodles</a></span></span>
+            >
+              <span
+                class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
+              >
+                {{ restaurant.address }}
+              </span>
+            </span>
             <a
               class="lemon--a__373c0__IEZFH button__373c0__3lYgT small__373c0__Wsszq tertiary-dark__373c0__3cLwZ editCategories__373c0__3oys3"
-              href="/biz_attribute?biz_id=3YVy-af7Ipl7TVft3kquWg"
+              :href="getEditLink()"
               style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
             >
               <div class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"><span
@@ -114,19 +77,6 @@
               </div>
             </a>
             <div class="lemon--div__373c0__1mboc arrange__373c0__2C9bH margin-t1__373c0__oLmO6 border-color--default__373c0__3-ifU">
-              <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU">
-                <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-                  <div class="lemon--div__373c0__1mboc display--inline-block__373c0__1ZKqC margin-r1-5__373c0__1Vie3 border-color--default__373c0__3-ifU">
-                    <span
-                      class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--red__373c0__n7iaa text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-                    >Closed</span><span
-                      class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-l1__373c0__1khIQ border-color--default__373c0__3-ifU"
-                    ><span
-                      class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--white__373c0__22aE8 text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-                    >10:30 AM - 9:00 PM</span></span>
-                  </div>
-                </div>
-              </div>
               <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU">
                 <div class="lemon--div__373c0__1mboc alert-container__373c0__2_UFV display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU" aria-label="Info" role="alert">
                   <div
@@ -156,7 +106,9 @@
                       >
                         <p
                           class="lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--inherit__373c0__1lczC text-align--left__373c0__2XGa- text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B"
-                        >Hours updated 3 weeks ago</p>
+                        >
+                          {{ getUpdatedDateStr() }}
+                        </p>
                       </span>
                     </div>
                   </div>
@@ -169,222 +121,48 @@
       <div class="lemon--div__373c0__1mboc photo-header-buttons__373c0__3ZdZU border-color--default__373c0__3-ifU">
         <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
           <span
+            v-if="photosLen"
             class="lemon--span__373c0__3997G display--inline__373c0__3JqBP margin-l2__373c0__wvUpT border-color--default__373c0__3-ifU"
           >
             <a
               class="lemon--a__373c0__IEZFH button__373c0__3lYgT large__373c0__3EPuS secondary-dark__373c0__5iZ63"
-              href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3"
+              :href="getSeeAllLink()"
               style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
             >
-              <div class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"><span
-                class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
-              >See 924 photos</span></div>
+              <div class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
+                <span
+                  class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
+                >
+                  {{ getPhotosLen() }}
+                </span>
+              </div>
             </a>
           </span>
         </div>
       </div>
     </div>
+    <!--    photos -->
     <div class="lemon--div__373c0__1mboc carousel__373c0__pUIax border-color--default__373c0__3-ifU">
       <div class="lemon--div__373c0__1mboc scrollContainer__373c0__3qIqZ scrollContainerNoOverflow__373c0__3SY1f border-color--default__373c0__3-ifU nowrap__373c0__35McF">
         <div
+          v-for="(index) in photoItems"
+          :key="index"
           class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
           style="width: 319.5px;"
         >
           <a
+            v-if="showPhotoItem(index)"
             class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=LObLbzNNQp0cGckDb5krKQ"
-            target=""
-            name=""
-            rel=""
+            :href="getImageLink(index)"
             role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States. Shoyu bass with Chad shu"
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/LObLbzNNQp0cGckDb5krKQ/l.jpg"
-            width="319.5"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 319.5px;"
-        >
-          <a
-            class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=iBviYccii-QW-MdIlmypmw"
-            target=""
-            name=""
-            rel=""
-            role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States. Interior"
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/iBviYccii-QW-MdIlmypmw/l.jpg"
-            width="319.5"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 319.5px;"
-        >
-          <a
-            class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=LUX89q7_nP_RlB2g-FqxIg"
-            target=""
-            name=""
-            rel=""
-            role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States. Condiments tray on the table. Wish they were covered, especially since these were placed on the outdoor tables."
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/LUX89q7_nP_RlB2g-FqxIg/l.jpg"
-            width="319.5"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 319.5px;"
-        >
-          <a
-            class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=2OfRbPW1KL1VMzmXLJ053A"
-            target=""
-            name=""
-            rel=""
-            role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States. Wait at Lunch to experience the Ramen."
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/2OfRbPW1KL1VMzmXLJ053A/l.jpg"
-            width="319.5"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 568px;"
-        >
-          <a
-            class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=KsUZerrEbY-Pel191rXSlQ"
-            target=""
-            name=""
-            rel=""
-            role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States"
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/KsUZerrEbY-Pel191rXSlQ/l.jpg"
-            width="568"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 568px;"
-        >
-          <a
-            class="lemon--a__373c0__IEZFH link__373c0__1G70M photo-header-media-link__373c0__3nH1_ link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="/biz_photos/the-ramen-bar-san-francisco-san-francisco-3?select=C-nkvqssucYUknYjNJ1wXA"
-            target=""
-            name=""
-            rel=""
-            role="link"
-          ><img
-            class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
-            alt="Photo of The Ramen Bar San Francisco - San Francisco, CA, United States"
-            height="426"
-            src="https://s3-media0.fl.yelpcdn.com/bphoto/C-nkvqssucYUknYjNJ1wXA/l.jpg"
-            width="568"
-          ></a>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--loading__373c0__25x7S display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 319.5px;"
-        >
-          <div class="lemon--div__373c0__1mboc photo-header-media-shimmer__373c0__2uys6 border-color--default__373c0__3-ifU">
-            <svg
-              role="img"
-              class=""
-              aria-labelledby="Loading interface..."
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              uniqueKey="photo-header-media--vr4itnlnTXXFg2bCkGcU5A"
+          >
+            <img
+              v-lazy="getPhotoUrl(index)"
+              class="lemon--img__373c0__3GQUb photo-header-media-image__373c0__2Qf5H"
+              width="319.5"
+              height="426"
             >
-              <title>Loading
-                interface...
-              </title>
-              <rect
-                x="0"
-                y="0"
-                width="400"
-                height="130"
-                clip-path="url(#ocj4z4751o)"
-                style="fill: url(&quot;#thao06j17bl&quot;);"
-              ></rect>
-              <defs>
-                <clipPath id="ocj4z4751o">
-                  <rect x="0" y="0" width="100" height="100"></rect>
-                </clipPath>
-                <linearGradient id="thao06j17bl">
-                  <stop offset="0%" stop-color="#f0f0f0" stop-opacity="1">
-                    <animate attributeName="offset" values="-3; 1" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                  <stop offset="50%" stop-color="#e0e0e0" stop-opacity="1">
-                    <animate attributeName="offset" values="-2; 2" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                  <stop offset="100%" stop-color="#f0f0f0" stop-opacity="1">
-                    <animate attributeName="offset" values="-1; 3" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc photo-header-media__373c0__UThKJ photo-header-media--loading__373c0__25x7S display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 426px;"
-        >
-          <div class="lemon--div__373c0__1mboc photo-header-media-shimmer__373c0__2uys6 border-color--default__373c0__3-ifU">
-            <svg
-              role="img"
-              class=""
-              aria-labelledby="Loading interface..."
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              uniqueKey="photo-header-media--buRGvSb5SxSRwVojQ1NvZA"
-            >
-              <title>Loading
-                interface...
-              </title>
-              <rect
-                x="0"
-                y="0"
-                width="400"
-                height="130"
-                clip-path="url(#1ntrlx2xgac)"
-                style="fill: url(&quot;#lh4ycxhwak&quot;);"
-              ></rect>
-              <defs>
-                <clipPath id="1ntrlx2xgac">
-                  <rect x="0" y="0" width="100" height="100"></rect>
-                </clipPath>
-                <linearGradient id="lh4ycxhwak">
-                  <stop offset="0%" stop-color="#f0f0f0" stop-opacity="1">
-                    <animate attributeName="offset" values="-3; 1" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                  <stop offset="50%" stop-color="#e0e0e0" stop-opacity="1">
-                    <animate attributeName="offset" values="-2; 2" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                  <stop offset="100%" stop-color="#f0f0f0" stop-opacity="1">
-                    <animate attributeName="offset" values="-1; 3" dur="2s" repeatCount="indefinite"></animate>
-                  </stop>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+          </a>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ describe('FBCollections', () => {
     expect(FBCollections.Users).toBe('users')
     expect(FBCollections.Restaurants).toBe('restaurants')
     expect(FBCollections.Events).toBe('events')
+    expect(FBCollections.Waiters).toBe('waiters')
     expect(FBCollections.PeopleInEvent).toBe('peopleinevents')
     expect(FBCollections.Recipes).toBe('recipes')
     expect(FBCollections.Photos).toBe('photos')

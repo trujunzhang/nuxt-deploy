@@ -6,8 +6,9 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
-import 'package:ieatta/src/screens/review_detail/review_view.dart';
 import 'package:provider/provider.dart';
+
+import 'review_item.dart';
 
 class ReviewPage extends StatefulWidget {
   ReviewPage({Key key}) : super(key: key);
@@ -85,7 +86,7 @@ class _ReviewPageState extends State<ReviewPage> {
     return Padding(
       padding: EdgeInsets.only(top: 18.0),
       child: SingleChildScrollView(
-        child: ReviewView(
+        child: ReviewItem(
           reviewData: reviewData,
           rate: rate,
           note: note,

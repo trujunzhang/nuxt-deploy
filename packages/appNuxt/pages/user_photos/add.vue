@@ -7,7 +7,7 @@
         class="lemon--div__09f24__1mboc u-padding-t3 u-padding-b6 border-color--default__09f24__1eOdn"
       >
         <!-- title -->
-        <UserTitle  />
+        <UserTitle />
 
         <!--  body -->
         <PhotoForm

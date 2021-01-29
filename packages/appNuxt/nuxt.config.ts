@@ -32,9 +32,11 @@ const config: NuxtConfiguration = {
   css: [
     // All pages
     '~/assets/nextYelp/www-pkg.css',
+    '~/assets/nextYelp/inline.css',
     // Home
     '~/assets/nextYelp/home/commons.yji-f7d7b4bddd5f87d22059.chunk.css',
     // Detail(Restsurant)
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-de96676004b9da813ea2.chunk.css', // first
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-0b2c399a119f11ac0c23.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-13eaf71b82d506b2186a.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-145d7f9712c3bf1b11b5.chunk.css',
@@ -47,12 +49,11 @@ const config: NuxtConfiguration = {
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-8e5a6a523b96573ee040.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-bc25e4695ae555d148d3.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-d3f8df1e32dd9002b298.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-de96676004b9da813ea2.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-f1220e1f35c9aed79322.chunk.css',
     // Detail(Eventlist in the Restsurant)
-    '~/assets/nextYelp/detail/event/events-pkg.css',
-    '~/assets/nextYelp/detail/event/yelp_main.yji-556e28a81efca75243ce.chunk.css',
-    '~/assets/nextYelp/detail/event/yelp_main.yji-de96676004b9da813ea2.chunk.css'
+    '~/assets/nextYelp/detail/event/events-pkg.css'
+    // '~/assets/nextYelp/detail/event/yelp_main.yji-556e28a81efca75243ce.chunk.css', // the same
+    // '~/assets/nextYelp/detail/event/yelp_main.yji-de96676004b9da813ea2.chunk.css' // the same
   ],
   /*
    ** Plugins to load before mounting the App

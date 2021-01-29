@@ -55,7 +55,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
           recipe: _recipe,
         ),
         // Line 1:
-        buildPhotoSectionTitle(context),
+        buildPhotosSectionTitle(context),
         Container(
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),

@@ -7,7 +7,7 @@
     <ReviewForm
       :restaurant="restaurant"
       :review="review"
-      :isNewReview="isNewReview"
+      :is-new-review="isNewReview"
     />
     <!-- right -->
     <ReviewRight
