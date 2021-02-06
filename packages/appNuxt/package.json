@@ -45,6 +45,7 @@
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
+    "@nuxtjs/google-fonts": "^1.2.0",
     "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",

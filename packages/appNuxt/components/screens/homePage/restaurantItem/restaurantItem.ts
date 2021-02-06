@@ -27,6 +27,7 @@ export default class RestaurantItem extends Vue {
 
   /**
    * class=" i-stars__09f24__1T6rz i-stars--regular-4-half__09f24__1YrPo border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw"
+   * class=" i-stars__09f24__1T6rz i-stars--regular-4-half__09f24__1YrPo border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw"
    */
   getRateStarClassName () {
     return `i-stars__09f24__1T6rz ${
@@ -45,8 +46,8 @@ export default class RestaurantItem extends Vue {
 
   getRestaurantNote () {
     if (this.restaurant.extraNote !== '') {
-      return this.restaurant.extraNote
+      return '“' + this.restaurant.extraNote + '”'
     }
-    return 'no note'
+    return '“no note”'
   }
 }

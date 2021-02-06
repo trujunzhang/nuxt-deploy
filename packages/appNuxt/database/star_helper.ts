@@ -45,17 +45,17 @@ export const starRegularRestaurantDict = {
 }
 
 export const starLargeDict = {
-  0: 'i-stars--large-0__373c0__272jL',
+  0: 'i-stars--large-0__373c0__1_3c4',
   0.5: '',
-  1: 'i-stars--large-1__373c0__1kclN',
-  1.5: 'i-stars--large-1-half__373c0__1X_11',
-  2: 'i-stars--large-2__373c0__1nJlc',
-  2.5: 'i-stars--large-2-half__373c0__2c_Jf',
-  3: 'i-stars--large-3__373c0__3_Jon',
-  3.5: 'i-stars--large-3-half__373c0__2z4jR',
-  4: 'i-stars--large-4__373c0__1d6HV',
-  4.5: 'i-stars--large-4-half__373c0__2lYkD',
-  5: 'i-stars--large-5__373c0__1GcGD'
+  1: 'i-stars--large-1__373c0__2oRtm',
+  1.5: 'i-stars--large-1-half__373c0__hn9DQ',
+  2: 'i-stars--large-2__373c0__3McY3',
+  2.5: 'i-stars--large-2-half__373c0__2qtBa',
+  3: 'i-stars--large-3__373c0__JLUyg',
+  3.5: 'i-stars--large-3-half__373c0__vAKz5',
+  4: 'i-stars--large-4__373c0__eYFGi',
+  4.5: 'i-stars--large-4-half__373c0__3qH22',
+  5: 'i-stars--large-5__373c0__VWKG_'
 }
 
 export const starSmallDict = {

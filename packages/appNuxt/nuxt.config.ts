@@ -34,26 +34,24 @@ const config: NuxtConfiguration = {
     '~/assets/nextYelp/www-pkg.css',
     '~/assets/nextYelp/inline.css',
     // Home
-    '~/assets/nextYelp/home/commons.yji-f7d7b4bddd5f87d22059.chunk.css',
+    '~/assets/nextYelp/home/commons.yji-fbb79d3e4417bf4bcaab.chunk.css',
     // Detail(Restsurant)
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-de96676004b9da813ea2.chunk.css', // first
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-0b2c399a119f11ac0c23.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-13eaf71b82d506b2186a.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-145d7f9712c3bf1b11b5.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-126769d73c6b0af86825.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-209dcc516156687f98d4.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-256790039b66e6095768.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-2572f9e4356b1b134ecc.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-2704259869135d92a982.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-3160a9076269c6f9259d.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-3a10d0d60edf4463ca56.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-3b195866d8f5c80eebbf.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-486cfbaafb47f9bfcf96.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-4b60f4155d191dc93e13.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-556e28a81efca75243ce.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-72b88d09d7327326cf19.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-7c0186d4db9fafb8d6ac.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-8e5a6a523b96573ee040.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-bc25e4695ae555d148d3.chunk.css',
-    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-d3f8df1e32dd9002b298.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-a319b2a55541fefad13c.chunk.css',
+    '~/assets/nextYelp/detail/restaurant/yelp_main.yji-c429511094753ca2e1e9.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-f1220e1f35c9aed79322.chunk.css',
     // Detail(Eventlist in the Restsurant)
     '~/assets/nextYelp/detail/event/events-pkg.css'
-    // '~/assets/nextYelp/detail/event/yelp_main.yji-556e28a81efca75243ce.chunk.css', // the same
-    // '~/assets/nextYelp/detail/event/yelp_main.yji-de96676004b9da813ea2.chunk.css' // the same
   ],
   /*
    ** Plugins to load before mounting the App
@@ -81,8 +79,19 @@ const config: NuxtConfiguration = {
    */
   buildModules: [
     '@nuxtjs/dotenv',
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '@nuxtjs/google-fonts'
   ],
+  /**
+   * https://www.npmjs.com/package/@nuxtjs/google-fonts
+   */
+  googleFonts: {
+    /* module options */
+    families: {
+      // https://fonts.google.com/specimen/Poppins
+      Poppins: true
+    }
+  },
   /**
    * https://levelup.gitconnected.com/what-are-env-files-and-how-to-use-them-in-nuxt-7f194f083e3d
    * console.log(process.env.TEST_VARIABLE)
@@ -126,7 +135,8 @@ const config: NuxtConfiguration = {
     /*
      ** You can extend webpack config here
      */
-    extend (config, ctx) {}
+    extend (config, ctx) {
+    }
   },
   typescript: {
     typeCheck: false

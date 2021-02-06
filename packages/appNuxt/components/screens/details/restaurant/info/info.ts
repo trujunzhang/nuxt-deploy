@@ -23,17 +23,17 @@ export default class RestaurantInfo extends Vue {
   }
 
   /**
-   *  class="lemon--div__373c0__1mboc i-stars__373c0__1T6rz i-stars--large-3__373c0__3_Jon border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
+   *  class=" i-stars__373c0__1BRrc i-stars--large-3__373c0__JLUyg border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
    */
   getRateStarClassName () {
-    return `lemon--div__373c0__1mboc i-stars__373c0__1T6rz ${
+    return `i-stars__373c0__1BRrc  ${
       starLargeDict[
         calcRateForRestaurant(
           this.restaurant.rate,
           this.restaurant.reviewCount
         )
         ]
-    } border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK`
+    }  border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK`
   }
 
   getRateCountStr () {
@@ -45,7 +45,8 @@ export default class RestaurantInfo extends Vue {
    */
   getUpdatedDateStr () {
     const timeAgo: string = formatByTimeAgo(this.restaurant.updatedAt)
-    return `Hours updated ${timeAgo}`
+    // return `Hours updated ${timeAgo}`
+    return `Updated ${timeAgo}`
   }
 
   public items: Array<IFBPhoto> = []
