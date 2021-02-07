@@ -7,6 +7,7 @@ import ReviewSearch from '~/components/screens/details/reviews/reviewList/review
 import ReviewSort from '~/components/screens/details/reviews/reviewList/review_sort.vue'
 import NewReviewPanel from '~/components/screens/details/reviews/newReviewPanel/new_review_panel.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { FirestorePath } from '~/database/services/firestore_path'
 
 @Component({
   components: {
@@ -72,11 +73,10 @@ export default class ReviewsList extends Vue {
     }
     this.isLoading = true
     const nextItem = this.items.concat([])
-    await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fire.firestore,
-      path: FBCollections.Reviews,
+    await FirestoreService.instance.collectionStream({
+      query: new FirestorePath(this.$fire.firestore).reviewsInRestaurant(this.restaurant.uniqueId),
       queryBuilder: (query: any) => {
-        let nextQuery = query.where('restaurantId', '==', this.restaurant.uniqueId)
+        let nextQuery = query
         nextQuery = this.searchQuery(nextQuery)
         nextQuery = this.sortQuery(nextQuery)
         nextQuery = queryBuilder(nextQuery)

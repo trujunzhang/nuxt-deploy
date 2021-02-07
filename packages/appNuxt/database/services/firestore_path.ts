@@ -52,10 +52,13 @@ export class FirestorePath {
 
   // static String photosInRecipe(String restaurantId,String recipeId) =>
   //     'restaurants/$restaurantId/recipes/$recipeId/photos';
-  //
-  // // Reviews
-  // static String reviewsInRestaurant(String restaurantId) =>
-  //     'restaurants/$restaurantId/reviews';
+
+  // Reviews
+  reviewsInRestaurant (restaurantId: string): CollectionReference<DocumentData> {
+    // 'restaurants/$restaurantId/reviews';
+    return this.fireStore.collection(FBCollections.Restaurants).doc(restaurantId).collection(FBCollections.Reviews)
+  }
+
   //
   // static String reviewsInEvent(String restaurantId, String eventId) =>
   //     'restaurants/$restaurantId/events/$eventId/reviews';

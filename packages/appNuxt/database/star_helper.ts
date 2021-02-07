@@ -17,17 +17,17 @@ export const starRegularForEditReviewDict = {
  * height: 20px;
  */
 export const starRegularDict = {
-  0: 'i-stars--regular-0__09f24__3ocQa',
+  0: 'i-stars--regular-0__373c0__1ew52',
   0.5: '',
-  1: 'i-stars--regular-1__09f24__1HqiV',
-  1.5: 'i-stars--regular-1-half__09f24__1Ght9',
-  2: 'i-stars--regular-2__09f24__3LFi9',
-  2.5: 'i-stars--regular-2-half__09f24__3LuvJ',
-  3: 'i-stars--regular-3__09f24__Xlhbn',
-  3.5: 'i-stars--regular-3-half__09f24__dpRnb',
-  4: 'i-stars--regular-4__09f24__2YrSK',
-  4.5: 'i-stars--regular-4-half__09f24__1YrPo',
-  5: 'i-stars--regular-5__09f24__N5JxY'
+  1: 'i-stars--regular-1__373c0__3vajv',
+  1.5: 'i-stars--regular-1-half__373c0__urPPM',
+  2: 'i-stars--regular-2__373c0__2lHau',
+  2.5: 'i-stars--regular-2-half__373c0__32dd4',
+  3: 'i-stars--regular-3__373c0__31uEG',
+  3.5: 'i-stars--regular-3-half__373c0__IqMdX',
+  4: 'i-stars--regular-4__373c0__1W3ZU',
+  4.5: 'i-stars--regular-4-half__373c0__1qPS7',
+  5: 'i-stars--regular-5__373c0__1P0Eg'
 }
 
 export const starRegularRestaurantDict = {

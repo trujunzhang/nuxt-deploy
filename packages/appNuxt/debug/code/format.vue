@@ -21,7 +21,6 @@
                       class="lemon--div__373c0__1mboc stickySidebar--heightContext__373c0__133M8 tableLayoutFixed__373c0__12cEm arrange__373c0__2C9bH padding-b4__373c0__uiolV border--bottom__373c0__3qNtD border-color--default__373c0__3-ifU"
                     >
                       <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-grid-column--8__373c0__2dUx_ padding-r2__373c0__28zpp border-color--default__373c0__3-ifU">
-
                         <!--   Line21  (actions) -->
                         <RestaurantActions :restaurant="restaurant" />
                         <!--   Line2x  (events) -->

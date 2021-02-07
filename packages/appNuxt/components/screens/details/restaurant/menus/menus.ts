@@ -2,9 +2,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRecipe, IFBRestaurant } from 'ieattatypes/types'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FirestorePath } from '~/database/services/firestore_path'
+import MenuItem from '~/components/screens/details/restaurant/menus/menu_item.vue'
 
 @Component({
-  components: {}
+  components: {
+    MenuItem
+  }
 })
 export default class RestaurantMenus extends Vue {
   @Prop({}) restaurant!: IFBRestaurant
