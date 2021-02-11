@@ -2,7 +2,7 @@
   <!--  Section2[People Also Viewed]    -->
   <section
     style="margin-top: 48px;"
-    class=" margin-b6__373c0__2Azj6 padding-b6__373c0__1CV4k border--bottom__373c0__3qNtD border-color--default__373c0__3-ifU"
+    class=" margin-b6__373c0__2Azj6 border-color--default__373c0__3-ifU"
   >
     <div class=" arrange__373c0__2C9bH gutter-2__373c0__1DiLQ vertical-align-bottom__373c0__2xIbs margin-b3__373c0__q1DuY border-color--default__373c0__3-ifU">
       <div class=" arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU">

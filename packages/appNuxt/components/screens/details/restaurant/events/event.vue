@@ -32,30 +32,20 @@
                 {{ item.displayName }}
               </a>
             </h3>
-            <meta itemprop="startDate" content="2021-01-09T10:00:00-08:00">
             <div class="u-text-truncate u-space-b1 u-space-t1">
               <span aria-hidden="true" style="width: 24px; height: 24px;" class="icon icon--24-reservation icon--size-24">
                 <svg role="img" class="icon_svg">
-                  <use xlink:href="#24x24_reservation"></use>
+                  <use xlink:href="#24x24_reservation">
+                    <svg id="24x24_reservation" height="24" width="24"><path d="M18 21H6a3 3 0 01-3-3V6a3 3 0 013-3 1 1 0 012 0h8a1 1 0 012 0 3 3 0 013 3v12a3 3 0 01-3 3zm1-13H5v10c0 .551.449 1 1 1h12c.551 0 1-.449 1-1V8zm-6 5h4v4h-4v-4z"></path></svg>
+                  </use>
                 </svg>
               </span>
+              {{ getEventStartEndDate(item) }}
               Saturday, Jan 9, 10:00 am â€“ 12:00 pm
             </div>
-            <div class="u-text-truncate u-space-b1">
-              <span aria-hidden="true" style="width: 24px; height: 24px;" class="icon icon--24-marker icon--size-24">
-                <svg role="img" class="icon_svg">
-                  <use xlink:href="#24x24_marker"></use>
-                </svg>
-              </span>
-              ONLINE-ZOOM â€” Woodacre, CA
-            </div>
             <p class="event_desc" itemprop="description">
-              2021 is YOUR year to take your writing AND your life to that next level! In this extraordinary 2 hour writing &amp; mindfulness workshop you will learnâ€¦
+              {{ item.want }}
             </p>
-            <a href="/events/sf/browse?c=5">Lectures &amp; Books</a>
-            <span class="u-text-subtle u-space-l1">
-              2 are interested!
-            </span>
           </div>
         </div>
       </li>

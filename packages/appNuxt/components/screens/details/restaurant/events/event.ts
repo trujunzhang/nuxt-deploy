@@ -13,7 +13,15 @@ export default class RestaurantEvents extends Vue {
   private isLoaded = false
   private isLoading = false
 
-  getDetailEventUrl (event:IFBEvent) {
+  /**
+   * Sunday, Feb 14, 1:30 pm
+   * @param event
+   */
+  getEventStartEndDate (event: IFBEvent) {
+    return ''
+  }
+
+  getDetailEventUrl (event: IFBEvent) {
     // return `/events/${event.slug}`
   }
 

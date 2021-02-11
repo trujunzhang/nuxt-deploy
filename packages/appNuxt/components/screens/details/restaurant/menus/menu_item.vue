@@ -24,6 +24,22 @@
               >
             </div>
           </a>
+          <!--  price  -->
+          <div class=" overlay-container__373c0__Xg5rm border-color--default__373c0__3-ifU">
+            <div
+              style="height: 100px;"
+              class=" overlay-text-container__373c0__1ZySb border-color--default__373c0__3-ifU"
+            >
+              <h5
+                style="margin-top: 30px;"
+                class=" heading--h2__373c0__1g9VN"
+              >
+                <p class=" text__373c0__2Kxyz overlay-text__373c0__1Ad7k text-color--white__373c0__22aE8 text-align--center__373c0__3VrfZ text-size--inherit__373c0__2fB3p">
+                  {{ "$ "+recipe.price }}
+                </p>
+              </h5>
+            </div>
+          </div>
         </div>
         <div class=" padding-t1-5__373c0__n5dYm border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK">
           <div class=" border-color--default__373c0__3-ifU" aria-labelledby="businessPassport-8c65d634-9c71-4613-a3a6-0067092a2abe" role="region">
@@ -79,4 +95,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./menu_item.ts"/>
+<script lang="ts" src="./menu_item.ts" />

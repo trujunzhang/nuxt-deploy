@@ -10,7 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx" />
+    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/restaurant/events/event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/restaurant/events/event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/restaurant/events/event.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/restaurant/events/event.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -346,6 +350,10 @@
       <workItem from="1612590544216" duration="1367000" />
       <workItem from="1612614779817" duration="2963000" />
       <workItem from="1612665632777" duration="3513000" />
+      <workItem from="1612683144149" duration="1329000" />
+      <workItem from="1612691158964" duration="225000" />
+      <workItem from="1612761766349" duration="72000" />
+      <workItem from="1612777950553" duration="2056000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
