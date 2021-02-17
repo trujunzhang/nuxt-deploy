@@ -160,7 +160,7 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
   Widget _buildRatePanel(BuildContext context, double rateVal) {
     return SmoothStarRating(
         allowHalfRating: false,
-        onRatingChanged: (v) {
+        onRated: (v) {
           bloc.rateVal(v);
         },
         starCount: 5,

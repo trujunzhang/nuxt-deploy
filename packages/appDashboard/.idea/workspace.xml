@@ -11,7 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/../appFlutter/test/src/appModels/Events_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../appFlutter/test/src/appModels/Events_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +156,7 @@
       <workItem from="1611838903967" duration="396000" />
       <workItem from="1611840646674" duration="148000" />
       <workItem from="1611841521943" duration="37000" />
+      <workItem from="1613028626065" duration="1212000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>

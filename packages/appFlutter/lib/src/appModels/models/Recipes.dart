@@ -8,8 +8,9 @@ class ParseModelRecipes {
   final String updatedAt;
   final String flag;
 
-  // Common(4)
+  // Common(5)
   final String displayName;
+  String slug;
   final String price;
   final String thumbnailUrl;
   String originalUrl;
@@ -29,24 +30,25 @@ class ParseModelRecipes {
       this.createdAt,
       this.updatedAt,
       this.flag,
-      // Common(4)
+      // Common(5)
       this.displayName,
+      this.slug,
       this.price,
-        this.thumbnailUrl,
-        this.originalUrl,
+      this.thumbnailUrl,
+      this.originalUrl,
       // for review(2)
       this.rate,
       this.reviewCount,
       // point(1)
       this.restaurantId});
 
-
   factory ParseModelRecipes.fromJson(Map<String, dynamic> json) {
     // Base(5)
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
-    // Common(4)
+    // Common(5)
     var displayName = json['displayName'] as String;
+    var slug = json['slug'] as String;
     var price = json['price'] as String;
     var thumbnailUrl = json['thumbnailUrl'] as String;
     var originalUrl = json['originalUrl'] as String;
@@ -66,14 +68,15 @@ class ParseModelRecipes {
     var restaurantId = json['restaurantId'] as String;
 
     return ParseModelRecipes(
-      // Base(5)
+        // Base(5)
         uniqueId: databaseBaseModel.uniqueId,
         creatorId: databaseBaseModel.creatorId,
         createdAt: databaseBaseModel.createdAt,
         updatedAt: databaseBaseModel.updatedAt,
         flag: databaseBaseModel.flag,
-        // Common(4)
+        // Common(5)
         displayName: displayName,
+        slug: slug,
         price: price,
         thumbnailUrl: thumbnailUrl,
         originalUrl: originalUrl,
@@ -92,8 +95,9 @@ class ParseModelRecipes {
       "createdAt": createdAt,
       "updatedAt": updatedAt,
       "flag": flag,
-      // Common(4)
+      // Common(5)
       "displayName": displayName,
+      'slug': slug,
       "price": price,
       'thumbnailUrl': thumbnailUrl,
       'originalUrl': originalUrl,
@@ -104,5 +108,4 @@ class ParseModelRecipes {
       "restaurantId": restaurantId,
     };
   }
-
 }

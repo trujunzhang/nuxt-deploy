@@ -8,8 +8,9 @@ class ParseModelEvents {
   final String updatedAt;
   final String flag;
 
-  // Common(4+1)
+  // Common(5+1)
   final String displayName;
+  String slug;
   final String want;
   final String start;
   final String end;
@@ -33,8 +34,9 @@ class ParseModelEvents {
       this.createdAt,
       this.updatedAt,
       this.flag,
-      // Common(4+1)
+      // Common(5+1)
       this.displayName,
+        this.slug,
       this.want,
       this.start,
       this.end,
@@ -49,8 +51,9 @@ class ParseModelEvents {
     // Base(5)
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
-    // Common(4+1)
+    // Common(5+1)
     var displayName = json['displayName'] as String;
+    var slug = json['slug'] as String;
     var want = json['want'] as String;
     var start = json['start'] as String;
     var end = json['end'] as String;
@@ -77,8 +80,9 @@ class ParseModelEvents {
         createdAt: databaseBaseModel.createdAt,
         updatedAt: databaseBaseModel.updatedAt,
         flag: databaseBaseModel.flag,
-        // Common(4+1)
+        // Common(5+1)
         displayName: displayName,
+        slug: slug,
         want: want,
         start: start,
         end: end,
@@ -98,8 +102,9 @@ class ParseModelEvents {
       "createdAt": createdAt,
       "updatedAt": updatedAt,
       "flag": flag,
-      // Common(4+1)
+      // Common(5+1)
       "displayName": displayName,
+      'slug': slug,
       "want": want,
       "start": start,
       "end": end,

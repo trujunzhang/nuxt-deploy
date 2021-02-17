@@ -62,7 +62,7 @@ dependencies:
   shared_preferences: ^0.5.7
   # ui
   flutter_slidable: ^0.5.7
-  smooth_star_rating: ^1.0.4+2
+  smooth_star_rating: ^1.1.1
   # common
   slugify: ^1.0.0
   # timeAgo

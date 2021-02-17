@@ -9,8 +9,9 @@ void main() {
     "createdAt": '2017-10-09T06:41:41.958+0000',
     "updatedAt": '2017-11-06T02:56:45.356+0000',
     "flag": '1',
-    // Common(4)
+    // Common(5)
     "displayName": 'Chicken Tacos',
+    'slug': "slug",
     "price": "20",
     "originalUrl":
         "http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg",
@@ -32,8 +33,9 @@ void main() {
     expect(map["createdAt"], '2017-10-09T06:41:41.958+0000');
     expect(map["updatedAt"], '2017-11-06T02:56:45.356+0000');
     expect(map["flag"], "1");
-    // Common(4)
+    // Common(5)
     expect(map["displayName"], 'Chicken Tacos');
+    expect(map["slug"], 'slug');
     expect(map["price"], "20");
     expect(map['originalUrl'],
         'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg');
@@ -55,8 +57,9 @@ void main() {
     expect(model.createdAt, '2017-10-09T06:41:41.958+0000');
     expect(model.updatedAt, '2017-11-06T02:56:45.356+0000');
     expect(model.flag, "1");
-    // Common(4)
+    // Common(5)
     expect(model.displayName, 'Chicken Tacos');
+    expect(model.slug, 'slug');
     expect(model.price, "20");
     expect(model.originalUrl,
         'http://res.cloudinary.com/di3fvexj8/image/upload/v1507529311/politicl/o_ugrhuw.jpg');

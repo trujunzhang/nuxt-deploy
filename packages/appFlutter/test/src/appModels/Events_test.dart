@@ -9,8 +9,9 @@ void main() {
     "createdAt": '2017-10-09T06:41:41.958+0000',
     "updatedAt": '2017-11-06T02:56:45.356+0000',
     "flag": '1',
-    // Common(4+1)
+    // Common(5+1)
     "displayName": 'Outdoor Skating and Holiday Festivities',
+    'slug': "slug",
     "want": "Downtown Burbank Announces 2015 Return.",
     "start": '2017-06-28T10:30:57.566+0000',
     "end": '2017-06-30T11:30:57.566+0000',
@@ -33,8 +34,9 @@ void main() {
     expect(map["createdAt"], '2017-10-09T06:41:41.958+0000');
     expect(map["updatedAt"], '2017-11-06T02:56:45.356+0000');
     expect(map["flag"], "1");
-    // Common(4+1)
+    // Common(5+1)
     expect(map["displayName"], 'Outdoor Skating and Holiday Festivities');
+    expect(map["slug"], 'slug');
     expect(map["want"], "Downtown Burbank Announces 2015 Return.");
     expect(map["start"], '2017-06-28T10:30:57.566+0000');
     expect(map["end"], '2017-06-30T11:30:57.566+0000');
@@ -55,8 +57,9 @@ void main() {
     expect(model.createdAt, '2017-10-09T06:41:41.958+0000');
     expect(model.updatedAt, '2017-11-06T02:56:45.356+0000');
     expect(model.flag, "1");
-    // Common(4+1)
+    // Common(5+1)
     expect(model.displayName, 'Outdoor Skating and Holiday Festivities');
+    expect(model.slug, 'slug');
     expect(model.want, "Downtown Burbank Announces 2015 Return.");
     expect(model.start, '2017-06-28T10:30:57.566+0000');
     expect(model.end, '2017-06-30T11:30:57.566+0000');

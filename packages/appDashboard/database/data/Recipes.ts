@@ -1,5 +1,6 @@
 import { IFBRecipe, IFBReview } from 'ieattatypes/types/index'
 import { loadReviews } from '~/database/data/Reviews'
+import { slugifyToLower } from '~/database/utils/slug_helper'
 
 const fixReviewStatistic = (item: IFBRecipe) => {
   const { uniqueId } = item
@@ -20,6 +21,10 @@ const fixReviewStatistic = (item: IFBRecipe) => {
 export const loadRecipes = (): IFBRecipe[] => {
   const next = recipes.map((item: IFBRecipe) => {
     fixReviewStatistic(item)
+    // item.slug = slugifyToLower(item.displayName)
+    // console.log(JSON.stringify({
+    //   slug: item.slug
+    // }))
     // console.log(JSON.stringify(item))
     return item
   })
@@ -32,6 +37,7 @@ const recipes: IFBRecipe[] = [
     // id: 'TFMuxD6Etf',
     creatorId: 'zis2vkx9G2',
     displayName: 'Chicken Tacos',
+    slug: 'chicken-tacos',
     price: '12',
     rate: 4,
     reviewCount: 2,
@@ -48,6 +54,7 @@ const recipes: IFBRecipe[] = [
     // id: '5gckWrMNxg',
     creatorId: 'ua04ebIMCn',
     displayName: 'KOMODO 2.0 Seared top sirloin steak',
+    slug: 'komodo-2.0-seared-top-sirloin-steak',
     price: '20',
     rate: 4,
     reviewCount: 1,
@@ -64,6 +71,7 @@ const recipes: IFBRecipe[] = [
     // id: 'oOYmAf4GOs',
     creatorId: 'ua04ebIMCn',
     displayName: 'Spicy Salmon Rice Bowl',
+    slug: 'spicy-salmon-rice-bowl',
     price: '40',
     rate: 0,
     reviewCount: 0,
@@ -80,6 +88,7 @@ const recipes: IFBRecipe[] = [
     // id: 'F1ruTbSMJG',
     creatorId: 'W4Iqc2hYE5',
     displayName: 'Brutis Salad',
+    slug: 'brutis-salad',
     price: '14',
     rate: 6,
     reviewCount: 2,
@@ -96,6 +105,7 @@ const recipes: IFBRecipe[] = [
     // id: 'f39HB1FtU6',
     creatorId: 'tiBfFJkC71',
     displayName: 'Lobster roll',
+    slug: 'lobster-roll',
     price: '30',
     rate: 4,
     reviewCount: 1,
@@ -112,6 +122,7 @@ const recipes: IFBRecipe[] = [
     // id: 'AQ3Cvm1Id3',
     creatorId: 'clB85fmtwS',
     displayName: 'Breakfast burrito',
+    slug: 'breakfast-burrito',
     price: '22',
     rate: 0,
     reviewCount: 0,
@@ -128,6 +139,7 @@ const recipes: IFBRecipe[] = [
     // id: 'RRhSW6dHfp',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Lobster roll',
+    slug: 'lobster-roll',
     price: '30',
     rate: 0,
     reviewCount: 0,
@@ -144,6 +156,7 @@ const recipes: IFBRecipe[] = [
     // id: 'O164RiQhfH',
     creatorId: 'zis2vkx9G2',
     displayName: 'Grilled chicken salad',
+    slug: 'grilled-chicken-salad',
     price: '40',
     rate: 0,
     reviewCount: 0,
@@ -160,6 +173,7 @@ const recipes: IFBRecipe[] = [
     // id: 'e3GIxMZrfX',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Oatmeal crumble',
+    slug: 'oatmeal-crumble',
     price: '10',
     rate: 0,
     reviewCount: 0,
@@ -176,6 +190,7 @@ const recipes: IFBRecipe[] = [
     // id: '1CNbFtVULN',
     creatorId: 'zis2vkx9G2',
     displayName: 'Chicken koobideh for 2nd visit',
+    slug: 'chicken-koobideh-for-2nd-visit',
     price: '40',
     rate: 0,
     reviewCount: 0,
@@ -192,6 +207,7 @@ const recipes: IFBRecipe[] = [
     // id: 'OcmYV8LFIh',
     creatorId: 'zis2vkx9G2',
     displayName: 'House salad with salmon',
+    slug: 'house-salad-with-salmon',
     price: '40',
     rate: 0,
     reviewCount: 0,
@@ -208,6 +224,7 @@ const recipes: IFBRecipe[] = [
     // id: '9IugAv5UFJ',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Cobb Salad',
+    slug: 'cobb-salad',
     price: '30',
     rate: 0,
     reviewCount: 0,
@@ -224,6 +241,7 @@ const recipes: IFBRecipe[] = [
     // id: 'QDTgyhoV7K',
     creatorId: 'tiBfFJkC71',
     displayName: 'Pecan pie',
+    slug: 'pecan-pie',
     price: '10',
     rate: 0,
     reviewCount: 0,
@@ -240,6 +258,7 @@ const recipes: IFBRecipe[] = [
     // id: 'hNLIi7AQjx',
     creatorId: 'clB85fmtwS',
     displayName: 'Mac n cheese',
+    slug: 'mac-n-cheese',
     price: '8',
     rate: 0,
     reviewCount: 0,
@@ -256,6 +275,7 @@ const recipes: IFBRecipe[] = [
     // id: 'OLWeLxvqrs',
     creatorId: 'clB85fmtwS',
     displayName: 'Meatball pie',
+    slug: 'meatball-pie',
     price: '40',
     rate: 0,
     reviewCount: 0,
@@ -272,6 +292,7 @@ const recipes: IFBRecipe[] = [
     // id: 'QSPLK8U0UX',
     creatorId: 'PqAx0FCrEn',
     displayName: 'Caprese salad',
+    slug: 'caprese-salad',
     price: '18',
     rate: 0,
     reviewCount: 0,
@@ -288,6 +309,7 @@ const recipes: IFBRecipe[] = [
     // id: 'AHlT6oyht0',
     creatorId: 'ua04ebIMCn',
     displayName: 'Pizza with chicken and garlic cloves',
+    slug: 'pizza-with-chicken-and-garlic-cloves',
     price: '20',
     rate: 0,
     reviewCount: 0,
@@ -304,6 +326,7 @@ const recipes: IFBRecipe[] = [
     // id: 'EW6CciOKrx',
     creatorId: 'ua04ebIMCn',
     displayName: 'My Mongolian creation',
+    slug: 'my-mongolian-creation',
     price: '30',
     rate: 0,
     reviewCount: 0,
@@ -320,6 +343,7 @@ const recipes: IFBRecipe[] = [
     // id: 'Ahwb8d5rKx',
     creatorId: 'zis2vkx9G2',
     displayName: 'Rose',
+    slug: 'rose',
     price: '40',
     rate: 4,
     reviewCount: 1,
