@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
-import 'package:ieatta/src/screens/review_detail/review_item.dart';
+
+import 'review_item.dart';
 
 class ReviewsBody extends StatelessWidget {
   final List<ParseModelReviews> reviewsList;

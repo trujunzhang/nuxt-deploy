@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
@@ -23,9 +24,7 @@ class CreateEditRestaurantScreen extends StatefulWidget {
 
 class _CreateEditRestaurantScreenState
     extends State<CreateEditRestaurantScreen> {
-  TextEditingController _displayNameController;
-  TextEditingController _extraNoteController;
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Model
@@ -52,8 +51,6 @@ class _CreateEditRestaurantScreenState
 
     String _displayName = _restaurant != null ? _restaurant.displayName : "";
     String _extraNote = _restaurant != null ? _restaurant.extraNote : "";
-    _displayNameController = TextEditingController(text: _displayName);
-    _extraNoteController = TextEditingController(text: _extraNote);
 
     bloc.displayNameVal(_displayName);
     bloc.noteVal(_extraNote);
@@ -96,7 +93,7 @@ class _CreateEditRestaurantScreenState
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.validate()) {
+                        if (_formKey.currentState.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
@@ -179,7 +176,7 @@ class _CreateEditRestaurantScreenState
     List<Widget> list = new List<Widget>();
     list.add(_buildShortcuts());
     if (_restaurant != null) {
-      list.add(buildCoverImage(_restaurantCoverUrl));
+      // list.add(buildCoverImage(_restaurantCoverUrl));
       list.add(buildCoverSectionTitle());
       list.add(SelectRestaurantCover(
         restaurant: _restaurant,
@@ -201,65 +198,54 @@ class _CreateEditRestaurantScreenState
 
   @override
   void dispose() {
-    _displayNameController.dispose();
-    _extraNoteController.dispose();
     super.dispose();
   }
 
   Widget _buildForm(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextFormField(
-                controller: _displayNameController,
-                onChanged: (String txt) {
-                  bloc.displayNameVal(txt);
-                },
-                style: Theme.of(context).textTheme.bodyText2,
-                validator: (value) => value.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("restaurantsCreateEditTaskNameValidatorMsg")
-                    : null,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).iconTheme.color, width: 2)),
-                  labelText: AppLocalizations.of(context)
-                      .translate("restaurantsCreateEditTaskNameTxt"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: TextFormField(
-                  onChanged: (String txt) {
-                    bloc.noteVal(txt);
-                  },
-                  controller: _extraNoteController,
-                  style: Theme.of(context).textTheme.bodyText2,
-                  maxLines: 15,
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: FormBuilder(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled,
+            initialValue: {
+              'displayName': _restaurant != null ? _restaurant.displayName : "",
+              'note': _restaurant != null ? _restaurant.extraNote : "",
+            },
+            child: Column(
+              children: [
+                FormBuilderTextField(
+                  autovalidateMode: AutovalidateMode.always,
+                  name: 'displayName',
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).iconTheme.color,
-                            width: 2)),
+                    labelText: AppLocalizations.of(context)
+                        .translate("restaurantsCreateEditTaskNameTxt"),
+                  ),
+                  onChanged: (val) {
+                    bloc.displayNameVal(val);
+                  },
+                  // valueTransformer: (text) => num.tryParse(text),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.max(context, 70),
+                  ]),
+                  textInputAction: TextInputAction.next,
+                ),
+                FormBuilderTextField(
+                  autovalidateMode: AutovalidateMode.always,
+                  name: 'note',
+                  decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
                         .translate("modelCreateEditNotesTxt"),
-                    alignLabelWithHint: true,
-                    contentPadding: new EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 10.0),
                   ),
+                  onChanged: (val) {
+                    bloc.noteVal(val);
+                  },
+                  // valueTransformer: (text) => num.tryParse(text),
+                  validator: FormBuilderValidators.compose([]),
+                  maxLines: 15,
+                  textInputAction: TextInputAction.next,
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+              ],
+            )));
   }
 }

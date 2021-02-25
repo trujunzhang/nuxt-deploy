@@ -30,15 +30,14 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
         Provider.of<FirestoreDatabase>(context, listen: false);
 
     return StreamBuilder(
-        stream: firestoreDatabase.photoStream(restaurant: widget.restaurant),
+        stream: firestoreDatabase.photosInRestaurantStream(widget.restaurant.uniqueId),
         builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
           if (fbSnapshot.hasError) {}
           if (!fbSnapshot.hasData) {
             return Container();
           }
 
-          List<ParseModelPhotos> photos = parsePhotosFilterByRestaurant(
-              datas: fbSnapshot.data.documents, restaurant: widget.restaurant);
+          List<ParseModelPhotos> photos = fbSnapshot.data;
           if (photos.length == 0) {
             return Center(
               child: Text('No Data'),

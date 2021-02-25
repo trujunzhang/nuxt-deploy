@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
+import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class InfoPart extends StatelessWidget {
@@ -17,17 +22,20 @@ class InfoPart extends StatelessWidget {
             padding: EdgeInsets.only(),
             child: Container(
               color: Colors.white,
-              child: _buildBody(),
+              child: _buildBody(context),
             )));
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Column(
       children: [
         // Line 1
         SizedBox(height: 4),
         FlatButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(Routes.create_edit_restaurant,
+                arguments: restaurant);
+          },
           icon: Icon(Icons.edit),
           label: Text(
             'Edit Restaurant',
@@ -60,12 +68,14 @@ class InfoPart extends StatelessWidget {
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
-        _buildActionBar(),
+        _buildActionBar(context),
       ],
     );
   }
 
-  Widget _buildActionBar() {
+  Widget _buildActionBar(BuildContext context) {
+    final firestoreDatabase =
+        Provider.of<FirestoreDatabase>(context, listen: false);
     return Container(
       height: 40.0,
       child: Row(
@@ -84,7 +94,12 @@ class InfoPart extends StatelessWidget {
           ),
           const VerticalDivider(width: 8.0),
           FlatButton.icon(
-            onPressed: () => print('Photo'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                  Routes.create_edit_review,
+                  arguments: CreateEditReviewScreenObject(
+                      restaurantId: restaurant.uniqueId));
+            },
             icon: const Icon(
               Icons.create,
               color: Colors.green,
@@ -96,7 +111,12 @@ class InfoPart extends StatelessWidget {
           ),
           const VerticalDivider(width: 8.0),
           FlatButton.icon(
-            onPressed: () => print('Room'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.reviews_list,
+                  arguments: ReviewsListObject(
+                      stream: firestoreDatabase.reviewsInRestaurantStream(
+                          restaurant.uniqueId, -1)));
+            },
             icon: const Icon(
               Icons.card_membership,
               color: Colors.purpleAccent,

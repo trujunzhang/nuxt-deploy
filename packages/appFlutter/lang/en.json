@@ -32,6 +32,7 @@
 	"reviewsCreateEditAppBarTitleEditTxt": "Edit Review",
 	"reviewsCreateEditAppBarTitleNewTxt": "New Review",
 	"reviewsDetailPageAppBarTitleTxt": "Review",
+    "reviewsListPageAppBarTitleTxt": "Reviews",
 	"settingAppTitle": "Setting",
 	"settingLanguageListSubTitle": "Set Your Prefer Language",
 	"settingLanguageListTitle": "Language",

@@ -3,9 +3,7 @@ import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 
-
-Widget buildMenusSectionTitle(
-    BuildContext context) {
+Widget buildMenusSectionTitle(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -36,8 +34,7 @@ Widget buildMenusSectionTitle(
   );
 }
 
-Widget buildPhotosSectionTitle(
-    BuildContext context) {
+Widget buildPhotosSectionTitle(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -68,8 +65,7 @@ Widget buildPhotosSectionTitle(
   );
 }
 
-
-Widget seeAllPhoto(List<ParseModelPhotos> photosList) {
+Widget seeAllList(int len) {
   return Container(
     margin: EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 6),
     height: 60,
@@ -80,7 +76,7 @@ Widget seeAllPhoto(List<ParseModelPhotos> photosList) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'See all '+ (photosList.length.toString()),
+            'See all ' + (len.toString()),
             style: TextStyle(color: Colors.grey),
           ),
           Icon(

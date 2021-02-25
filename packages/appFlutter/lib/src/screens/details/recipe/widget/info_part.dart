@@ -18,11 +18,11 @@ class InfoPart extends StatelessWidget {
             padding: EdgeInsets.only(),
             child: Container(
               color: Colors.white,
-              child: _buildBody(),
+              child: _buildBody(context),
             )));
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Column(
       children: [
         // Line 1
@@ -61,12 +61,12 @@ class InfoPart extends StatelessWidget {
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
-        _buildActionBar(),
+        _buildActionBar(context),
       ],
     );
   }
 
-  Widget _buildActionBar() {
+ Widget _buildActionBar(BuildContext context) {
     return Container(
       height: 40.0,
       child: Row(

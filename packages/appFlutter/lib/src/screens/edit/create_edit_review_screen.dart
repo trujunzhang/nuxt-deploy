@@ -11,11 +11,13 @@ import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:provider/provider.dart';
 
 class CreateEditReviewScreenObject {
-  final ParseModelReviews reviewModel;
   final String restaurantId;
+  final ParseModelReviews reviewModel;
 
-  CreateEditReviewScreenObject(
-      {@required this.reviewModel, @required this.restaurantId});
+  CreateEditReviewScreenObject({
+    @required this.restaurantId,
+    this.reviewModel,
+  });
 }
 
 class CreateEditReviewScreen extends StatefulWidget {
@@ -127,7 +129,6 @@ class _CreateEditReviewScreenState extends State<CreateEditReviewScreen> {
                                   listen: false);
                           await firestoreDatabase.setReview(
                               model: nextModel); // For Review.
-
 
                           await ReviewHelper.onSaveReviewAfterHook(restaurantId,
                               lastReviewRate, selectedStar, _review == null);

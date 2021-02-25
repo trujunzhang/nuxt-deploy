@@ -9,7 +9,7 @@ import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
-import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
+import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/info_part.dart';

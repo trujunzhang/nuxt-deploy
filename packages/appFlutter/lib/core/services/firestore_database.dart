@@ -108,24 +108,36 @@ class FirestoreDatabase {
         builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
       );
 
-
   //Method to retrieve single event stream
-  Stream<ParseModelEvents> singleEventStream(String restaurantId,String eventId) =>
+  Stream<ParseModelEvents> singleEventStream(
+          String restaurantId, String eventId) =>
       _firestoreService.documentStream(
-        path: FirestorePath.singleEvent(restaurantId,eventId),
+        path: FirestorePath.singleEvent(restaurantId, eventId),
         builder: (data, documentId) => ParseModelEvents.fromJson(data),
       );
 
   //Method to retrieve single peopleInEvent stream
-  Stream<ParseModelPeopleInEvent> singlePeopleInEventStream(String restaurantId,String eventId, String peopleInEventId) =>
+  Stream<ParseModelPeopleInEvent> singlePeopleInEventStream(
+          String restaurantId, String eventId, String peopleInEventId) =>
       _firestoreService.documentStream(
-        path: FirestorePath.singlePeopleInEvent(restaurantId,eventId,peopleInEventId),
+        path: FirestorePath.singlePeopleInEvent(
+            restaurantId, eventId, peopleInEventId),
         builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
       );
 
   // ===========================================================
   // Stream: List<Models>
   // ===========================================================
+
+  //Method to retrieve all restaurants stream
+  Stream<List<ParseModelRestaurants>> allRestaurantsStream() =>
+      _firestoreService.collectionStream(
+        path: FirestorePath.allRestaurants(),
+        builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
+        queryBuilder: (Query query) {
+          return query.orderBy('updatedAt', descending: true);
+        },
+      );
 
   //Method to retrieve all users stream
   Stream<List<ParseModelUsers>> allUsersStream() =>
@@ -166,6 +178,7 @@ class FirestoreDatabase {
           return query.orderBy('updatedAt', descending: true);
         },
       );
+
   //Method to retrieve peopleInEvent stream
   Stream<List<ParseModelPeopleInEvent>> peopleInEventsStream(
           String restaurantId, String eventId) =>
@@ -201,12 +214,13 @@ class FirestoreDatabase {
 
   //Method to retrieve review stream in the restaurant
   Stream<List<ParseModelReviews>> reviewsInRestaurantStream(
-          String restaurantId) =>
+          String restaurantId, int limit) =>
       _firestoreService.collectionStream(
         path: FirestorePath.reviewsInRestaurant(restaurantId),
         builder: (data, documentId) => ParseModelReviews.fromJson(data),
         queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
+          var nextQuery = query.orderBy('updatedAt', descending: true);
+          return limit == -1 ? nextQuery : nextQuery.limit(limit);
         },
       );
 
@@ -223,7 +237,7 @@ class FirestoreDatabase {
 
   //Method to retrieve review stream in the event
   Stream<List<ParseModelReviews>> reviewsInRecipeStream(
-      String restaurantId, String recipeId) =>
+          String restaurantId, String recipeId) =>
       _firestoreService.collectionStream(
         path: FirestorePath.reviewsInRecipe(restaurantId, recipeId),
         builder: (data, documentId) => ParseModelReviews.fromJson(data),
@@ -231,6 +245,7 @@ class FirestoreDatabase {
           return query.orderBy('updatedAt', descending: true);
         },
       );
+
   // ===========================================================
   // Stream: QuerySnapshot
   // ===========================================================

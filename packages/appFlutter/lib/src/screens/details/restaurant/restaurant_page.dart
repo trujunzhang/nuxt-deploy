@@ -8,7 +8,7 @@ import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
-import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
+import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
 
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
@@ -84,7 +84,7 @@ class RestaurantDetailState extends State<RestaurantDetail> {
             },
           ),
         ),
-        // Line 3: Photos
+        // Line 4: Photos
         buildPhotosSectionTitle(context),
         Container(
           height: 160,
@@ -99,19 +99,25 @@ class RestaurantDetailState extends State<RestaurantDetail> {
         StreamBuilderView<List<ParseModelPhotos>>(
           stream: firestoreDatabase.photosInRestaurantStream(restaurantId),
           render: (AsyncSnapshot fbSnapshot) {
-            return seeAllPhoto(fbSnapshot.data);
+            return seeAllList(fbSnapshot.data.length);
           },
         ),
-        // Line 3: Reviews
+        // Line 5: Reviews
         buildTextSectionTitle("Review Highlights"),
         Container(
           decoration: new BoxDecoration(color: Colors.white),
           child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId),
+            stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId, 4),
             render: (AsyncSnapshot fbSnapshot) {
               return ReviewsBody(reviewsList: fbSnapshot.data);
             },
           ),
+        ),
+        StreamBuilderView<List<ParseModelReviews>>(
+          stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId, -1),
+          render: (AsyncSnapshot fbSnapshot) {
+            return seeAllList(fbSnapshot.data.length);
+          },
         ),
       ],
     );

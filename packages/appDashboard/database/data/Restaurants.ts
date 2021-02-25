@@ -35,7 +35,7 @@ const restaurants: IFBRestaurant[] =
   [{
     isNew: false,
     uniqueId: '035ac47c-5781-4da8-af21-35c97a46c101',
-    extraNote: '',
+    extraNote: 'we are a chain of Halal restaurant serving the bay area since 2010 we serve hand slaughter halal meat. We have been proudly serving the most authentic Mediterranean food in SF bay.',
     creatorId: 'PqAx0FCrEn',
     flag: '1',
     address: '724 S Broadway, Los Angeles, CA 90014, USA',

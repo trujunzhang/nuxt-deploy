@@ -7,7 +7,7 @@ import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
-import 'package:ieatta/src/screens/review_detail/reviews_body.dart';
+import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
 
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
@@ -71,7 +71,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
           stream: firestoreDatabase.photosInRecipeStream(
               _recipe.restaurantId, _recipe.uniqueId),
           render: (AsyncSnapshot fbSnapshot) {
-            return seeAllPhoto(fbSnapshot.data);
+            return seeAllList(fbSnapshot.data.length);
           },
         ),
         // Line 3: Reviews

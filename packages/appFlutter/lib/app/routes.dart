@@ -8,7 +8,7 @@ import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/core/ui/splash/splash_screen.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
 import 'package:ieatta/src/screens/details/recipe/reccipe_page.dart';
-import 'package:ieatta/src/screens/edit/restaurant/create_edit_restaurant_screen.dart';
+import 'package:ieatta/src/screens/edit/restaurant/restaurant_screen.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/details/event/event_page.dart';
@@ -19,7 +19,8 @@ import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_pageview.dart';
 import 'package:ieatta/src/screens/details/restaurant/restaurant_page.dart';
-import 'package:ieatta/src/screens/review_detail/review_page.dart';
+import 'package:ieatta/src/screens/reviews/detail/review_page.dart';
+import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_photos.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_restaurants.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_reviews.dart';
@@ -48,6 +49,9 @@ class Routes {
 
   // Recipe
   static const String detail_recipe = '/detail_recipe';
+
+  // Reviews List
+  static const String reviews_list= '/reviews_list';
 
   // Camera
   static const String app_camera = '/app_camera';
@@ -91,6 +95,8 @@ class Routes {
     detail_people_in_event: (BuildContext context) => PeopleInEventDetail(),
     // Recipe
     detail_recipe: (BuildContext context) => RecipeDetail(),
+    // Reviews List
+    reviews_list: (BuildContext context) => ReviewsListScreen(),
     // Camera
     app_camera: (context) => CameraScreen(),
     // Photos
