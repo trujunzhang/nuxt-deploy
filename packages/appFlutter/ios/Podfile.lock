@@ -332,7 +332,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - path_provider (0.0.1):
     - Flutter
-  - "permission_handler (5.0.0+hotfix.6)":
+  - "permission_handler (5.1.0+2)":
     - Flutter
   - PromisesObjC (1.2.8)
   - Reachability (3.2)
@@ -467,7 +467,7 @@ SPEC CHECKSUMS:
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
-  permission_handler: b7a0953389e699927c6217933754cdcd0fa2c5a7
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d

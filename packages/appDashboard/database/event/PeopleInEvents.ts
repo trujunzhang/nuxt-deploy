@@ -12,9 +12,10 @@ export const uploadPeopleInEvents = async ($fireAuth: firebase.auth.Auth, $fireS
 }
 
 const uploadPeopleInEvent = async ($fireStore: firebase.firestore.Firestore, creatorIdDict, peopleInEvent: IFBPeopleInEvent) => {
-  const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(peopleInEvent.restaurantId)
-    .collection(FBCollections.Events).doc(peopleInEvent.eventId)
-    .collection(FBCollections.PeopleInEvent).doc(peopleInEvent.uniqueId)
+  // const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(peopleInEvent.restaurantId)
+  //   .collection(FBCollections.Events).doc(peopleInEvent.eventId)
+  //   .collection(FBCollections.PeopleInEvent).doc(peopleInEvent.uniqueId)
+  const messageRef = $fireStore.collection(FBCollections.PeopleInEvent).doc(peopleInEvent.uniqueId)
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {

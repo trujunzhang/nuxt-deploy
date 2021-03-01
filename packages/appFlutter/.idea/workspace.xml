@@ -11,11 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/services/firestore_path.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/services/firestore_path.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/debug/multiprovider/multi_provider_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/debug/multiprovider/multi_provider_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/layout/navigation_home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/layout/navigation_home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/edit/event/event_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/edit/event/event_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +20,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1hMaoRiXAUybtyjLBKrsv0GrG4Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -264,6 +268,34 @@
       <workItem from="1613996981226" duration="2489000" />
       <workItem from="1614227717761" duration="555000" />
       <workItem from="1614240670131" duration="1491000" />
+      <workItem from="1614248610128" duration="227000" />
+      <workItem from="1614253275214" duration="199000" />
+      <workItem from="1614254937847" duration="28000" />
+      <workItem from="1614255585762" duration="465000" />
+      <workItem from="1614257451394" duration="2906000" />
+      <workItem from="1614263160345" duration="602000" />
+      <workItem from="1614264155634" duration="47000" />
+      <workItem from="1614264535500" duration="46000" />
+      <workItem from="1614299769894" duration="3413000" />
+      <workItem from="1614305417256" duration="352000" />
+      <workItem from="1614311337830" duration="1906000" />
+      <workItem from="1614315425395" duration="1717000" />
+      <workItem from="1614324310510" duration="1506000" />
+      <workItem from="1614328692681" duration="37000" />
+      <workItem from="1614332527729" duration="973000" />
+      <workItem from="1614334162279" duration="796000" />
+      <workItem from="1614343119152" duration="1141000" />
+      <workItem from="1614422118261" duration="161000" />
+      <workItem from="1614422555364" duration="108000" />
+      <workItem from="1614426575550" duration="790000" />
+      <workItem from="1614428499588" duration="287000" />
+      <workItem from="1614487114676" duration="2072000" />
+      <workItem from="1614507164025" duration="290000" />
+      <workItem from="1614508108290" duration="1113000" />
+      <workItem from="1614511555575" duration="427000" />
+      <workItem from="1614515451503" duration="1824000" />
+      <workItem from="1614518613330" duration="825000" />
+      <workItem from="1614574003399" duration="258000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>

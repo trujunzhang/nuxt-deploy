@@ -6,11 +6,13 @@ import 'peopleInEvent_item.dart';
 
 class PeopleInEventBody extends StatelessWidget {
   final List<ParseModelPeopleInEvent> peopleInEventsList;
-  final List<ParseModelUsers> users ;
-  const PeopleInEventBody({Key key, @required this.peopleInEventsList,@required this.users})
+  final List<ParseModelUsers> users;
+
+  const PeopleInEventBody(
+      {Key key, @required this.peopleInEventsList, @required this.users})
       : super(key: key);
 
-  ParseModelUsers filterUser(ParseModelPeopleInEvent parseModelPeopleInEvent){
+  ParseModelUsers filterUser(ParseModelPeopleInEvent parseModelPeopleInEvent) {
     for (ParseModelUsers e in users) {
       if (e.id == parseModelPeopleInEvent.userId) {
         return e;

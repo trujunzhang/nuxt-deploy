@@ -12,8 +12,9 @@ export const uploadRecipes = async ($fireAuth: firebase.auth.Auth, $fireStore: f
 }
 
 const uploadRecipe = async ($fireStore: firebase.firestore.Firestore, creatorIdDict, recipe: IFBRecipe) => {
-  const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(recipe.restaurantId)
-    .collection(FBCollections.Recipes).doc(recipe.uniqueId)
+  // const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(recipe.restaurantId)
+  //   .collection(FBCollections.Recipes).doc(recipe.uniqueId)
+  const messageRef = $fireStore.collection(FBCollections.Recipes).doc(recipe.uniqueId)
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {

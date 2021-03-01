@@ -113,10 +113,9 @@ class _HotelListViewState extends State<HotelListView> {
                                 widget.restaurantData.displayName,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 22,
-                                  color: Colors.black
-                                ),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 22,
+                                    color: Colors.black),
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,

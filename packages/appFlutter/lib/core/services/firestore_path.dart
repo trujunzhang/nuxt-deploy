@@ -8,34 +8,39 @@ class FirestorePath {
   static String todo(String uid, String todoId) => 'users/$uid/todos/$todoId';
 
   // Users
-  static String allUsers() => 'users';
-
   static String singleUser(String userId) => 'users/$userId';
 
   // Restaurants
-  static String allRestaurants() => 'restaurants';
-  static String singleRestaurant(String restaurantId) => 'restaurants/$restaurantId';
+  static String singleRestaurant(String restaurantId) =>
+      'restaurants/$restaurantId';
 
   // Recipes
-  static String recipes(String restaurantId) => 'restaurants/$restaurantId/recipes';
+  static String recipes(String restaurantId) =>
+      'restaurants/$restaurantId/recipes';
 
   // Events
-  static String events(String restaurantId) => 'restaurants/$restaurantId/events';
-  static String singleEvent(String restaurantId,String eventId) => 'restaurants/$restaurantId/events/$eventId';
+  static String events(String restaurantId) =>
+      'restaurants/$restaurantId/events';
+
+  static String singleEvent(String eventId) => 'events/$eventId';
 
   // Waiters
-  static String waiters(String restaurantId) => 'restaurants/$restaurantId/waiters';
+  static String waiters(String restaurantId) =>
+      'restaurants/$restaurantId/waiters';
 
   // PeopleInEvents
   static String peopleInEvents(String restaurantId, String eventId) =>
       'restaurants/$restaurantId/events/$eventId/peopleinevents';
-  static String singlePeopleInEvent(String restaurantId,String eventId, String peopleInEventId) => 'restaurants/$restaurantId/events/$eventId/peopleinevents/$peopleInEventId';
+
+  static String singlePeopleInEvent(
+          String restaurantId, String eventId, String peopleInEventId) =>
+      'restaurants/$restaurantId/events/$eventId/peopleinevents/$peopleInEventId';
 
   // Photos
   static String photosInRestaurant(String restaurantId) =>
       'restaurants/$restaurantId/photos';
 
-  static String photosInRecipe(String restaurantId,String recipeId) =>
+  static String photosInRecipe(String restaurantId, String recipeId) =>
       'restaurants/$restaurantId/recipes/$recipeId/photos';
 
   // Reviews

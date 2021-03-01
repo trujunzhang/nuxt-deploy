@@ -119,7 +119,14 @@ packages:
       name: connectivity
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.8+6"
+    version: "2.0.2"
+  connectivity_for_web:
+    dependency: transitive
+    description:
+      name: connectivity_for_web
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.1+4"
   connectivity_macos:
     dependency: transitive
     description:
@@ -155,6 +162,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
+  date_format:
+    dependency: "direct main"
+    description:
+      name: date_format
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.9"
   date_range_picker:
     dependency: transitive
     description:
@@ -340,6 +354,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.5.7"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.2+1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -503,21 +524,21 @@ packages:
       name: location
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.4"
   location_platform_interface:
     dependency: transitive
     description:
       name: location_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.0"
   location_web:
     dependency: transitive
     description:
       name: location_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   logger:
     dependency: "direct main"
     description:
@@ -615,14 +636,14 @@ packages:
       name: permission_handler
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.0.0+hotfix.6"
+    version: "5.1.0+2"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   petitparser:
     dependency: transitive
     description:
@@ -664,7 +685,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.5+1"
+    version: "4.3.3"
   quiver:
     dependency: transitive
     description:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/camera/screens/types.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/camera/screens/types.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 
@@ -10,7 +10,8 @@ class WaiterBody extends StatelessWidget {
   final List<ParseModelPhotos> photosList;
   final ParseModelEvents event;
 
-  const WaiterBody({Key key, @required this.photosList, @required this.event}) : super(key: key);
+  const WaiterBody({Key key, @required this.photosList, @required this.event})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class WaiterBody extends StatelessWidget {
     return buildPhotosListView();
   }
 
-  ParseModelPhotos filterWaiter(String waiterId){
+  ParseModelPhotos filterWaiter(String waiterId) {
     for (ParseModelPhotos e in photosList) {
       if (e.uniqueId == waiterId) {
         return e;

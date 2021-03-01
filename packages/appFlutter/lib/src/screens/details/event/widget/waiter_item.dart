@@ -19,7 +19,7 @@ class WaiterItem extends StatelessWidget {
             color: Colors.white,
           ),
           child: InkWell(
-            onTap: (){
+            onTap: () {
               // Navigator.of(context).pushNamed(Routes.online_photos_pageview,
               //     arguments: FBPhotosPageViewObject(
               //         photos: photosList, selectedIndex: index));

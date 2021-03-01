@@ -8,17 +8,6 @@ import 'package:ieatta/src/screens/restaurants/empty/search_empty.dart';
 import 'package:ieatta/src/screens/restaurants/empty/track_empty.dart';
 import 'package:location/location.dart';
 
-String getRestaurantsCountInfo({
-  @required bool gpsTrackVal,
-  @required int restaurantsCountVal,
-}) {
-  if (gpsTrackVal) {
-    return 'Auto location tracking';
-  }
-
-  return '$restaurantsCountVal restaurants found';
-}
-
 List<ParseModelRestaurants> parseRestaurants(List<DocumentSnapshot> datas) {
   List<ParseModelRestaurants> result = datas
       .map((DocumentSnapshot snapshot) {
@@ -93,19 +82,4 @@ List<ParseModelRestaurants> getTrackingExploreList(
     }
   }
   return parseRestaurants(listLocal);
-}
-
-Widget trackingExploreList(
-    List<DocumentSnapshot> datas, LocationData locationVal) {
-  List<DocumentSnapshot> listLocal = [];
-  for (int i = 0; i < datas.length; ++i) {
-    if (matchLocation(datas[i], locationVal)) {
-      listLocal.add(datas[i]);
-    }
-  }
-  return (listLocal.length != 0)
-      ? PageBody(
-          restaurantList: parseRestaurants(listLocal),
-        )
-      : TrackEmpty();
 }

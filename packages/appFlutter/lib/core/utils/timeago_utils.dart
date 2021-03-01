@@ -1,8 +1,7 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:date_format/date_format.dart';
 
-/**
- * updatedAt: '2017-11-07T07:43:10.690+0000',
- */
+/// updatedAt: '2017-11-07T07:43:10.690+0000',
 String formatByTimeAgo(String date) {
   var timeago = Jiffy(date).fromNow();
   return timeago;
@@ -13,7 +12,28 @@ String formatByTimeAgoForTest(String date) {
   return timeago;
 }
 
+String getDateIso8610String(DateTime date) {
+  var str = date.toIso8601String();
+  return str;
+}
+
 String getDateStringForCreatedOrUpdatedDate() {
   var str = DateTime.now().toIso8601String();
+  return str;
+}
+
+DateTime convertDateFromString(String strDate) {
+  DateTime nextDate = DateTime.parse(strDate);
+  return nextDate;
+}
+
+String formatDateStringTest(DateTime date) {
+  String str = formatDate(date, [yyyy, '-', mm, '-', dd,' ',HH, ':', nn]);
+  return str;
+}
+
+String formatDateString(String strDate) {
+  DateTime date = convertDateFromString(strDate);
+  String str = formatDate(date, [yyyy, '-', mm, '-', dd,' ',HH, ':', nn]);
   return str;
 }

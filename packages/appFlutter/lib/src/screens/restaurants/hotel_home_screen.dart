@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/logic/bloc.dart';
-import 'package:ieatta/src/logic/restaurants_results.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -25,101 +23,40 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
-  // Location
-  Location location = new Location();
   List<ParseModelRestaurants> restaurantList = [];
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  Widget buildRestaurantsList(
-      {@required AsyncSnapshot locationSnapshot, // Location
-      @required AsyncSnapshot gpsTrackSnapshot, // gps track
-      @required AsyncSnapshot searchSnapshot, // search
-      @required AsyncSnapshot fbSnapshot // Final, facebook collection.
-      }) {
+  Widget buildBody(BuildContext context) {
+    LocationData locationVal = Provider.of<LocationData>(context);
     // TODO: DJZHANG
-    // bool gpsTrackVal = gpsTrackSnapshot.data; // used
-    bool gpsTrackVal = false ; // used
-    if (gpsTrackVal && locationSnapshot.hasData == false) {
+    bool gpsTrackVal = false;
+    // bool gpsTrackVal = Provider.of<bool>(context);
+    String searchVal = Provider.of<String>(context);
+    if (gpsTrackVal && locationVal == null) {
       return Center(
         child: CircularProgressIndicator(),
       );
-    }
-//    print(locationSnapshot.data);
-//    print(gpsTrackSnapshot.data);
-//    print(searchSnapshot.data);
-    LocationData locationVal = locationSnapshot.data;
-    String searchVal = searchSnapshot.data;
-    if (fbSnapshot.hasError) {}
-    if (!fbSnapshot.hasData) {
-      return Center(child: CircularProgressIndicator());
     }
 
     if (gpsTrackVal && locationVal != null) {
       // enable gps track.
       restaurantList =
-          getTrackingExploreList(fbSnapshot.data.documents, locationVal);
+          FilterModels.instance.getTrackingExploreList(context, locationVal);
 
       return (restaurantList.length != 0)
           ? PageBody(restaurantList: restaurantList)
           : TrackEmpty();
     }
-    if (searchVal != null && searchVal != '') {
+    if (searchVal != '') {
       // Search model.
       restaurantList =
-          getSearchedExploreList(fbSnapshot.data.documents, searchVal);
+          FilterModels.instance.getSearchedExploreList(context, searchVal);
       return (restaurantList.length != 0)
           ? PageBody(restaurantList: restaurantList)
           : SearchEmpty();
     }
     // all
-    restaurantList = parseRestaurants(fbSnapshot.data.documents);
+    restaurantList = FilterModels.instance.getAllRestaurantsList(context);
     return PageBody(restaurantList: restaurantList);
-  }
-
-  Widget buildBody() {
-    return StreamBuilder(
-        //This StreamBuilder is to fetch location.
-        stream: location.onLocationChanged,
-        builder: (BuildContext context, AsyncSnapshot locationSnapshot) {
-          return StreamBuilder(
-              //This StreamBuilder is to fetch GpsTrack status.
-              initialData: true, // used
-             // initialData: false, // test
-              stream: bloc.gpsTrackStatusStream,
-              builder: (BuildContext context, AsyncSnapshot gpsTrackSnapshot) {
-                return StreamBuilder(
-                  //This StreamBuilder is to fetch Search Queries.
-                  initialData: '',
-                  stream: bloc.recieveSearchVal,
-                  builder:
-                      (BuildContext context, AsyncSnapshot searchSnapshot) {
-                    return StreamBuilder(
-                      //This StreamBuilder is to fetch firebase collection.
-                      stream:
-                          Provider.of<FirestoreDatabase>(context, listen: false)
-                              .restaurantsStream(),
-                      builder:
-                          (BuildContext context, AsyncSnapshot fbSnapshot) {
-                        return buildRestaurantsList(
-                            locationSnapshot: locationSnapshot,
-                            gpsTrackSnapshot: gpsTrackSnapshot,
-                            searchSnapshot: searchSnapshot,
-                            fbSnapshot: fbSnapshot);
-                      },
-                    );
-                  },
-                );
-              });
-        });
   }
 
   @override
@@ -154,7 +91,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 ),
               ];
             },
-            body: buildBody()));
+            body: buildBody(context)));
     return Theme(
       data: HotelAppTheme.buildLightTheme(),
       child: Container(

@@ -12,22 +12,22 @@ export const uploadReviews = async ($fireAuth: firebase.auth.Auth, $fireStore: f
 }
 
 const uploadReview = async ($fireStore: firebase.firestore.Firestore, creatorIdDict, review: IFBReview) => {
-  // const messageRef = $fireStore.collection(FBCollections.Reviews).doc(review.uniqueId)
-  let messageRef
-  if (review.reviewType === 'restaurant') {
-    messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
-      .collection(FBCollections.Reviews).doc(review.uniqueId)
-  }
-  if (review.reviewType === 'event') {
-    messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
-      .collection(FBCollections.Events).doc(review.eventId)
-      .collection(FBCollections.Reviews).doc(review.uniqueId)
-  }
-  if (review.reviewType === 'recipe') {
-    messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
-      .collection(FBCollections.Recipes).doc(review.recipeId)
-      .collection(FBCollections.Reviews).doc(review.uniqueId)
-  }
+  // let messageRef
+  // if (review.reviewType === 'restaurant') {
+  //   messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
+  //     .collection(FBCollections.Reviews).doc(review.uniqueId)
+  // }
+  // if (review.reviewType === 'event') {
+  //   messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
+  //     .collection(FBCollections.Events).doc(review.eventId)
+  //     .collection(FBCollections.Reviews).doc(review.uniqueId)
+  // }
+  // if (review.reviewType === 'recipe') {
+  //   messageRef = $fireStore.collection(FBCollections.Restaurants).doc(review.restaurantId)
+  //     .collection(FBCollections.Recipes).doc(review.recipeId)
+  //     .collection(FBCollections.Reviews).doc(review.uniqueId)
+  // }
+  const messageRef = $fireStore.collection(FBCollections.Reviews).doc(review.uniqueId)
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {

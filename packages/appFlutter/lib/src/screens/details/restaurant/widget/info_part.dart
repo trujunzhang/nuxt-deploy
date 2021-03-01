@@ -95,8 +95,7 @@ class InfoPart extends StatelessWidget {
           const VerticalDivider(width: 8.0),
           FlatButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(
-                  Routes.create_edit_review,
+              Navigator.of(context).pushNamed(Routes.create_edit_review,
                   arguments: CreateEditReviewScreenObject(
                       restaurantId: restaurant.uniqueId));
             },

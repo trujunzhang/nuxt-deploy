@@ -1,15 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
-import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
 import 'package:ieatta/src/components/users/image.dart';
-import 'package:provider/provider.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEvent;
@@ -18,34 +16,15 @@ class InfoPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
-    return StreamBuilderView<ParseModelUsers>(
-        stream: firestoreDatabase.singleUserStream(peopleInEvent.userId),
-        render: (AsyncSnapshot fbUserSnapshot) {
-          // Step1: fetch single user model.
-          ParseModelUsers user = fbUserSnapshot.data;
+    ParseModelRestaurants restaurant = FilterModels.instance
+        .getSingleRestaurant(context, peopleInEvent.restaurantId);
 
-          return StreamBuilderView<ParseModelRestaurants>(
-              stream: firestoreDatabase
-                  .singleRestaurantStream(peopleInEvent.restaurantId),
-              render: (AsyncSnapshot fbUserSnapshot) {
-                // Step2: fetch restaurant model.
-                ParseModelRestaurants restaurant = fbUserSnapshot.data;
-                return StreamBuilderView<ParseModelEvents>(
-                    stream: firestoreDatabase.singleEventStream(
-                        peopleInEvent.restaurantId, peopleInEvent.eventId),
-                    render: (AsyncSnapshot fbUserSnapshot) {
-                      // Step3: fetch event model.
-                      ParseModelEvents event = fbUserSnapshot.data;
-                      return _buildCard(context, user, restaurant, event);
-                    });
-              });
-        });
-  }
+    ParseModelEvents event =
+        FilterModels.instance.getSingleEvent(context, peopleInEvent.eventId);
 
-  Widget _buildCard(BuildContext context, ParseModelUsers user,
-      ParseModelRestaurants restaurant, ParseModelEvents event) {
+    ParseModelUsers user =
+        FilterModels.instance.getSingleUser(context, peopleInEvent.userId);
+
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 0.0),
         // elevation: 0.0,
@@ -56,21 +35,20 @@ class InfoPart extends StatelessWidget {
         ));
   }
 
-  Widget buildBlurredImage(ParseModelRestaurants restaurant){
-   return Stack(
-     children: [
-       buildRestaurantImage(restaurant),
-       ClipRect(
-         child:
-       BackdropFilter(
-         filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-         child: Container(
-           color: Colors.black.withOpacity(0.2),
-         ),
-       ),
-       )
-     ],
-   );
+  Widget buildBlurredImage(ParseModelRestaurants restaurant) {
+    return Stack(
+      children: [
+        buildRestaurantImage(restaurant),
+        ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            child: Container(
+              color: Colors.black.withOpacity(0.2),
+            ),
+          ),
+        )
+      ],
+    );
   }
 
   Widget _buildBody(BuildContext context, ParseModelUsers user,

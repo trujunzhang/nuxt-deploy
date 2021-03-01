@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/enums/permission_status.dart';
+import 'package:ieatta/src/logic/bloc.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:location/location.dart' as GpsLocation;
+import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart'
     as PermissionHandler;
+import 'package:provider/provider.dart';
 
 import 'no_permission_view.dart';
 
@@ -16,6 +19,9 @@ class _AppHomeScreenState extends State<AppHomeScreen>
     with TickerProviderStateMixin {
   // Gps Location.
   AppPermissionStatus _permissionStatus = AppPermissionStatus.Undetermined;
+
+  // Location
+  Location location = new Location();
 
   requestAppPermission() async {
     // Location
@@ -77,8 +83,8 @@ class _AppHomeScreenState extends State<AppHomeScreen>
 
   @override
   void initState() {
-    requestAppPermission();
     super.initState();
+    requestAppPermission();
   }
 
   @override
@@ -95,7 +101,14 @@ class _AppHomeScreenState extends State<AppHomeScreen>
         }
       case AppPermissionStatus.Granted:
         {
-          return HotelHomeScreen();
+          return MultiProvider(providers: [
+            StreamProvider<LocationData>.value(
+                value: location.onLocationChanged),
+            StreamProvider<bool>.value(
+                value: bloc.gpsTrackStatusStream, initialData: true),
+            StreamProvider<String>.value(
+                value: bloc.recieveSearchVal, initialData: ''),
+          ], child: HotelHomeScreen());
         }
       case AppPermissionStatus.Denied:
         {

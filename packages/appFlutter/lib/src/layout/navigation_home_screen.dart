@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/debug/multiprovider/multi_provider_screen.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
@@ -10,7 +11,7 @@ import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/restaurants/app_home_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:ieatta/src/screens/user_profile/profile.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'custom_drawer/draw_model.dart';
 import 'sidebar/about_screen.dart';
 
@@ -26,8 +27,8 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    // screenView = AppHomeScreen(); // used
-    screenView = MultiProviderScreen(); // test
+    screenView = AppHomeScreen(); // used
+    // screenView = MultiProviderScreen(); // test
     // screenView = Profile(); // test
     // screenView = EditUserScreen(); // test
 

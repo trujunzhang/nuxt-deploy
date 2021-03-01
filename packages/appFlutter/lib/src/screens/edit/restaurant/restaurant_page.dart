@@ -6,63 +6,35 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/location_utils.dart';
-import 'package:ieatta/src/appModels/models/Events.dart';
-import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/components/edit_restaurant/common.dart';
+import 'package:ieatta/src/providers/restaurant_state.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
-class CreateEditEventScreen extends StatefulWidget {
+import 'select_restaurant_cover.dart';
+
+class RestaurantPage extends StatefulWidget {
+  final ParseModelRestaurants restaurant;
+
+  const RestaurantPage({Key key, this.restaurant}) : super(key: key);
+
   @override
-  _CreateEditEventScreenState createState() => _CreateEditEventScreenState();
+  _RestaurantPageState createState() => _RestaurantPageState();
 }
 
-class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
+class _RestaurantPageState extends State<RestaurantPage> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  // Model
-  ParseModelEvents _event;
 
   // Event
   bool _isButtonDisabled = false;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final ParseModelEvents _eventModel =
-        ModalRoute.of(context).settings.arguments;
-    if (_eventModel != null) {
-      _event = _eventModel;
-    }
-
-    String _displayName = _event != null ? _event.displayName : "";
-
-    bloc.displayNameVal(_displayName);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: bloc.displayNameStream,
-        builder: (BuildContext context, AsyncSnapshot displayNameSnapshot) {
-          return StreamBuilder(
-              stream: bloc.noteStream,
-              builder: (BuildContext context, AsyncSnapshot noteSnapshot) {
-                String displayNameVal = displayNameSnapshot.data;
-                String noteVal = noteSnapshot.data;
-                return _buildScaffold(context, displayNameVal, noteVal);
-              });
-        });
-  }
-
-  Widget _buildScaffold(
-      BuildContext context, String displayNameVal, String noteVal) {
+    RestaurantState restaurantState =
+        Provider.of<RestaurantState>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
@@ -73,7 +45,7 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(_event != null
+          title: Text(widget.restaurant != null
               ? AppLocalizations.of(context)
                   .translate("restaurantsCreateEditAppBarTitleEditTxt")
               : AppLocalizations.of(context)
@@ -93,29 +65,32 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
                           AuthUserModel authUserModel =
                               await authProvider.getAuthUserModel();
 
-                          LocationData locationData =
-                              await getCurrentLocation();
-                          // ParseModelEvents lastModel = _event != null
-                          //     ? _event
-                          //     : ParseModelEvents.emptyRestaurant(
-                          //         authUserModel: authUserModel,
-                          //         latitude: locationData.latitude,
-                          //         longitude: locationData.longitude,
-                          //       );
+                          ParseModelRestaurants lastModel = widget.restaurant;
+                          if (widget.restaurant == null) {
+                            // New restaurant.
+                            LocationData locationData =
+                                await getCurrentLocation();
 
-                          // ParseModelEvents nextModel =
-                          //     ParseModelEvents.updateRestaurant(
-                          //   model: lastModel,
-                          //   nextDisplayName: displayNameVal,
-                          //   nextExtraNote: noteVal,
-                          // );
+                            lastModel = ParseModelRestaurants.emptyRestaurant(
+                              authUserModel: authUserModel,
+                              latitude: locationData.latitude,
+                              longitude: locationData.longitude,
+                            );
+                          }
+
+                          ParseModelRestaurants nextModel =
+                              ParseModelRestaurants.updateRestaurant(
+                            model: lastModel,
+                            nextDisplayName: restaurantState.getDisplayName(),
+                            nextExtraNote: restaurantState.getExtraNote(),
+                          );
 
                           try {
                             final firestoreDatabase =
                                 Provider.of<FirestoreDatabase>(context,
                                     listen: false);
-                            // await firestoreDatabase.setRestaurant(
-                            //     model: nextModel); // For Restaurant.
+                            await firestoreDatabase.setRestaurant(
+                                model: nextModel); // For Restaurant.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
@@ -125,14 +100,14 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
                           ToastUtils.showToast(AppLocalizations.of(context)
                               .translate("toastForSaveSuccess"));
                           // Navigate
-                          Navigator.of(context).pop(displayNameVal);
+                          Navigator.of(context).pop();
                         }
                       },
                 child: Text(AppLocalizations.of(context)
                     .translate("editModelAppBarRightSaveTitle")))
           ],
         ),
-        body: _buildBody());
+        body: _buildBody(context));
   }
 
   Widget _buildShortcuts() {
@@ -152,28 +127,39 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
+    List<Widget> list = new List<Widget>();
+    list.add(_buildShortcuts());
+    if (widget.restaurant != null) {
+      // list.add(buildCoverImage(_restaurantCoverUrl));
+      list.add(buildCoverSectionTitle());
+      list.add(SelectRestaurantCover(
+        restaurant: widget.restaurant,
+      ));
+      list.add(SizedBox(
+        height: 20,
+      ));
+    }
+
     return SingleChildScrollView(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_buildShortcuts()],
+      children: list,
     ));
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Widget _buildForm(BuildContext context) {
+    RestaurantState restaurantState =
+        Provider.of<RestaurantState>(context, listen: false);
     return Padding(
         padding: const EdgeInsets.all(10),
         child: FormBuilder(
             key: _formKey,
             autovalidateMode: AutovalidateMode.disabled,
             initialValue: {
-              'displayName': _event != null ? _event.displayName : "",
+              'displayName': restaurantState.getDisplayName(),
+              'note': restaurantState.getExtraNote()
             },
             child: Column(
               children: [
@@ -182,10 +168,10 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
                   name: 'displayName',
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
-                        .translate("restaurantsCreateEditTaskNameTxt"),
+                        .translate("restaurantsCreateEditDisplayNameTxt"),
                   ),
-                  onChanged: (val) {
-                    bloc.displayNameVal(val);
+                  onChanged: (String val) {
+                    restaurantState.setDisplayName(val);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
@@ -201,8 +187,8 @@ class _CreateEditEventScreenState extends State<CreateEditEventScreen> {
                     labelText: AppLocalizations.of(context)
                         .translate("modelCreateEditNotesTxt"),
                   ),
-                  onChanged: (val) {
-                    bloc.noteVal(val);
+                  onChanged: (String val) {
+                    restaurantState.setExtraNote(val);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([]),

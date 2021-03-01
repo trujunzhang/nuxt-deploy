@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
-import 'package:ieatta/src/components/firebase/stream_builder_view.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
 import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
-
-import 'package:provider/provider.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
 
 import '../photos_body.dart';
 import 'widget/events_body.dart';
@@ -39,20 +35,18 @@ class RestaurantDetailState extends State<RestaurantDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
         appBar: new AppBar(centerTitle: true, title: appHeaderTitle()),
-        body: StreamBuilderView<ParseModelRestaurants>(
-            stream: firestoreDatabase.singleRestaurantStream(restaurantId),
-            render: (AsyncSnapshot fbUserSnapshot) {
-              ParseModelRestaurants restaurant = fbUserSnapshot.data;
-              return _buildBody(context, firestoreDatabase, restaurant);
-            }));
+        body: _buildBody(context));
   }
 
-  Widget _buildBody(BuildContext context, FirestoreDatabase firestoreDatabase,
-      ParseModelRestaurants restaurant) {
+  Widget _buildBody(BuildContext context) {
+    ParseModelRestaurants restaurant =
+        FilterModels.instance.getSingleRestaurant(context, restaurantId);
+    List<ParseModelPhotos> photosList = FilterModels.instance
+        .getPhotosList(context, restaurantId, PhotoType.Restaurant);
+    List<ParseModelReviews> reviewsList = FilterModels.instance
+        .getReviewsList(context, restaurantId, ReviewType.Restaurant);
     return ListView(
       children: [
         InfoPart(
@@ -67,58 +61,31 @@ class RestaurantDetailState extends State<RestaurantDetail> {
             )),
         // Line 2: Events
         buildTextSectionTitle("Events Recorded"),
-        StreamBuilderView<List<ParseModelEvents>>(
-          stream: firestoreDatabase.eventsStream(restaurantId),
-          render: (AsyncSnapshot fbSnapshot) {
-            return EventsBody(eventsList: fbSnapshot.data);
-          },
-        ),
+        EventsBody(
+            eventsList:
+                FilterModels.instance.getEventsList(context, restaurantId)),
         // Line 3: Menus
         buildMenusSectionTitle(context),
         Container(
           height: 160,
-          child: StreamBuilderView<List<ParseModelRecipes>>(
-            stream: firestoreDatabase.recipesStream(restaurantId),
-            render: (AsyncSnapshot fbSnapshot) {
-              return MenusBody(recipesList: fbSnapshot.data);
-            },
-          ),
+          child: MenusBody(
+              recipesList:
+                  FilterModels.instance.getRecipesList(context, restaurantId)),
         ),
         // Line 4: Photos
         buildPhotosSectionTitle(context),
         Container(
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),
-          child: StreamBuilderView<List<ParseModelPhotos>>(
-            stream: firestoreDatabase.photosInRestaurantStream(restaurantId),
-            render: (AsyncSnapshot fbSnapshot) {
-              return PhotosBody(photosList: fbSnapshot.data);
-            },
-          ),
+          child: PhotosBody(photosList: photosList),
         ),
-        StreamBuilderView<List<ParseModelPhotos>>(
-          stream: firestoreDatabase.photosInRestaurantStream(restaurantId),
-          render: (AsyncSnapshot fbSnapshot) {
-            return seeAllList(fbSnapshot.data.length);
-          },
-        ),
+        seeAllList(photosList.length),
         // Line 5: Reviews
         buildTextSectionTitle("Review Highlights"),
         Container(
-          decoration: new BoxDecoration(color: Colors.white),
-          child: StreamBuilderView<List<ParseModelReviews>>(
-            stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId, 4),
-            render: (AsyncSnapshot fbSnapshot) {
-              return ReviewsBody(reviewsList: fbSnapshot.data);
-            },
-          ),
-        ),
-        StreamBuilderView<List<ParseModelReviews>>(
-          stream: firestoreDatabase.reviewsInRestaurantStream(restaurantId, -1),
-          render: (AsyncSnapshot fbSnapshot) {
-            return seeAllList(fbSnapshot.data.length);
-          },
-        ),
+            decoration: new BoxDecoration(color: Colors.white),
+            child: ReviewsBody(reviewsList: reviewsList)),
+        seeAllList(reviewsList.length),
       ],
     );
   }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
-
-import '../hotel_app_theme.dart';
 
 class AppBarUI extends StatefulWidget {
   AppBarUI({Key key}) : super(key: key);

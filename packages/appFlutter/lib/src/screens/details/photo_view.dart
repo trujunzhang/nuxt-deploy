@@ -16,14 +16,14 @@ class PhotoView extends StatelessWidget {
           width: 135.0,
           height: 180.0,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.white,
-              // boxShadow: [
-              //   BoxShadow(
-              //       color: Colors.black12,
-              //       blurRadius: 10.0,
-              //       offset: Offset(0.0, 10.0))
-              // ]
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.white,
+            // boxShadow: [
+            //   BoxShadow(
+            //       color: Colors.black12,
+            //       blurRadius: 10.0,
+            //       offset: Offset(0.0, 10.0))
+            // ]
           ),
           child: InkWell(
             onTap: callback,

@@ -18,6 +18,10 @@ export default class Index extends Vue {
       value: 'slug'
     },
     {
+      text: 'CreatedAt',
+      value: 'createdAt'
+    },
+    {
       text: 'CreatorId',
       value: 'creatorId'
     },

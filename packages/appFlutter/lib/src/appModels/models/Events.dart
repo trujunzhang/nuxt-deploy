@@ -1,3 +1,9 @@
+import 'package:flutter/foundation.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/utils/md5_utils.dart';
+import 'package:ieatta/core/utils/slug_helper.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
+
 import 'Database.dart';
 
 class ParseModelEvents {
@@ -9,11 +15,11 @@ class ParseModelEvents {
   final String flag;
 
   // Common(5+1)
-  final String displayName;
+  String displayName;
   String slug;
-  final String want;
-  final String start;
-  final String end;
+  String want;
+  String start;
+  String end;
   final List<String> waiters;
 
   // final DateTime start;
@@ -36,7 +42,7 @@ class ParseModelEvents {
       this.flag,
       // Common(5+1)
       this.displayName,
-        this.slug,
+      this.slug,
       this.want,
       this.start,
       this.end,
@@ -115,5 +121,46 @@ class ParseModelEvents {
       // point(1)
       "restaurantId": restaurantId,
     };
+  }
+
+  static emptyEvent(
+      {@required AuthUserModel authUserModel, @required String restaurantId}) {
+    return ParseModelEvents(
+        // Base(5)
+        uniqueId: documentIdFromCurrentDate(),
+        creatorId: authUserModel.uid,
+        createdAt: getDateStringForCreatedOrUpdatedDate(),
+        updatedAt: getDateStringForCreatedOrUpdatedDate(),
+        flag: '1',
+        // Common(5+1)
+        displayName: '',
+        slug: '',
+        want: '',
+        start: '',
+        end: '',
+        waiters: [],
+        // for review(2)
+        rate: 0,
+        reviewCount: 0,
+        // point(1)
+        restaurantId: restaurantId);
+  }
+
+  static ParseModelEvents updateEvent({
+    @required ParseModelEvents model,
+    @required String nextDisplayName,
+    @required String nextWant,
+    @required String nextStartDate,
+    @required String nextEndDate,
+  }) {
+    // DisplayName
+    model.displayName = nextDisplayName;
+    model.slug = slugifyToLower(nextDisplayName);
+    // Others
+    model.want = nextWant;
+    model.start = nextStartDate;
+    model.end = nextEndDate;
+
+    return model;
   }
 }

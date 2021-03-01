@@ -30,8 +30,7 @@ class _PageBodyState extends State<PageBody> {
                   left: 24, right: 24, top: 8, bottom: 16),
               child: HotelListView(
                 callback: () {
-                  Navigator.of(context).pushNamed(
-                      Routes.detail_restaurant,
+                  Navigator.of(context).pushNamed(Routes.detail_restaurant,
                       arguments: widget.restaurantList[index].uniqueId);
                 },
                 restaurantData: widget.restaurantList[index],

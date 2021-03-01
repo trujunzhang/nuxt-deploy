@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';

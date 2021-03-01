@@ -32,10 +32,22 @@ class FirestoreDatabase {
 
   final _firestoreService = FirestoreService.instance;
 
+  // ===========================================================
+  // Save: Single<Models>
+  // ===========================================================
+
   //Method to create/update restaurantModel
   Future<void> setRestaurant({@required ParseModelRestaurants model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singleRestaurant(model.uniqueId),
+      data: model.toMap(),
+    );
+  }
+
+  //Method to create/update restaurantModel
+  Future<void> setEvent({@required ParseModelEvents model}) async {
+    await _firestoreService.setData(
+      path: FirestorePath.singleEvent(model.uniqueId),
       data: model.toMap(),
     );
   }
@@ -91,63 +103,8 @@ class FirestoreDatabase {
       );
 
   // ===========================================================
-  // Stream: Single<Model>
-  // ===========================================================
-
-  //Method to retrieve single user stream
-  Stream<ParseModelUsers> singleUserStream(String userId) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.singleUser(userId),
-        builder: (data, documentId) => ParseModelUsers.fromJson(data),
-      );
-
-  //Method to retrieve single restaurant stream
-  Stream<ParseModelRestaurants> singleRestaurantStream(String restaurantId) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.singleRestaurant(restaurantId),
-        builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
-      );
-
-  //Method to retrieve single event stream
-  Stream<ParseModelEvents> singleEventStream(
-          String restaurantId, String eventId) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.singleEvent(restaurantId, eventId),
-        builder: (data, documentId) => ParseModelEvents.fromJson(data),
-      );
-
-  //Method to retrieve single peopleInEvent stream
-  Stream<ParseModelPeopleInEvent> singlePeopleInEventStream(
-          String restaurantId, String eventId, String peopleInEventId) =>
-      _firestoreService.documentStream(
-        path: FirestorePath.singlePeopleInEvent(
-            restaurantId, eventId, peopleInEventId),
-        builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
-      );
-
-  // ===========================================================
   // Stream: List<Models>
   // ===========================================================
-
-  //Method to retrieve all restaurants stream
-  Stream<List<ParseModelRestaurants>> allRestaurantsStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.allRestaurants(),
-        builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve all users stream
-  Stream<List<ParseModelUsers>> allUsersStream() =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.allUsers(),
-        builder: (data, documentId) => ParseModelUsers.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
 
   //Method to retrieve recipe stream
   Stream<List<ParseModelRecipes>> recipesStream(String restaurantId) =>

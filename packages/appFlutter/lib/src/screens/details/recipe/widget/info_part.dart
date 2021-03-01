@@ -52,8 +52,7 @@ class InfoPart extends StatelessWidget {
         SmoothStarRating(
           allowHalfRating: true,
           starCount: 5,
-          rating:
-              calcRateForRestaurant(recipe.rate, recipe.reviewCount),
+          rating: calcRateForRestaurant(recipe.rate, recipe.reviewCount),
           size: 20,
           color: HotelAppTheme.buildLightTheme().primaryColor,
           borderColor: HotelAppTheme.buildLightTheme().primaryColor,
@@ -66,7 +65,7 @@ class InfoPart extends StatelessWidget {
     );
   }
 
- Widget _buildActionBar(BuildContext context) {
+  Widget _buildActionBar(BuildContext context) {
     return Container(
       height: 40.0,
       child: Row(

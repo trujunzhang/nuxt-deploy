@@ -475,7 +475,7 @@
                 </translations>
             </concept_node>
             <concept_node>
-                <name>restaurantsCreateEditTaskNameTxt</name>
+                <name>restaurantsCreateEditDisplayNameTxt</name>
                 <definition_loaded>false</definition_loaded>
                 <description></description>
                 <comment></comment>
@@ -492,7 +492,7 @@
                 </translations>
             </concept_node>
             <concept_node>
-                <name>restaurantsCreateEditTaskNameValidatorMsg</name>
+                <name>restaurantsCreateEditDisplayNameValidatorMsg</name>
                 <definition_loaded>false</definition_loaded>
                 <description></description>
                 <comment></comment>

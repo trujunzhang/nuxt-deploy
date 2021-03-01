@@ -8,7 +8,8 @@ import 'package:ieatta/core/ui/setting/setting_screen.dart';
 import 'package:ieatta/core/ui/splash/splash_screen.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
 import 'package:ieatta/src/screens/details/recipe/reccipe_page.dart';
-import 'package:ieatta/src/screens/edit/restaurant/restaurant_screen.dart';
+import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
+import 'package:ieatta/src/screens/edit/restaurant/restaurant_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/details/event/event_page.dart';
@@ -84,12 +85,12 @@ class Routes {
     setting: (BuildContext context) => SettingScreen(),
     // Restaurant
     create_edit_restaurant: (BuildContext context) =>
-        CreateEditRestaurantScreen(),
+        CreateEditRestaurantProviderScreen(),
     detail_restaurant: (BuildContext context) => RestaurantDetail(),
     map_restaurant: (BuildContext context) => RestaurantsMapPage(),
     // Event
-    // create_edit_event: (BuildContext context) =>
-    //     CreateEditEventScreen(),
+    create_edit_event: (BuildContext context) =>
+        CreateEditEventProviderScreen(),
     detail_event: (BuildContext context) => EventDetail(),
     // PeopleInEvent
     detail_people_in_event: (BuildContext context) => PeopleInEventDetail(),

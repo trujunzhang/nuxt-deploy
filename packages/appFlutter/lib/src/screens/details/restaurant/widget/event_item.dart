@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class EventItem extends StatelessWidget {
   final ParseModelEvents eventData;

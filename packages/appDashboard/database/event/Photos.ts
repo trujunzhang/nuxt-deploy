@@ -12,16 +12,17 @@ export const uploadPhotos = async ($fireAuth: firebase.auth.Auth, $fireStore: fi
 }
 
 const uploadPhoto = async ($fireStore: firebase.firestore.Firestore, creatorIdDict, photo: IFBPhoto) => {
-  let messageRef
-  if (photo.photoType === 'restaurant') {
-    messageRef = $fireStore.collection(FBCollections.Restaurants).doc(photo.restaurantId)
-      .collection(FBCollections.Photos).doc(photo.uniqueId)
-  }
-  if (photo.photoType === 'recipe') {
-    messageRef = $fireStore.collection(FBCollections.Restaurants).doc(photo.restaurantId)
-      .collection(FBCollections.Recipes).doc(photo.recipeId)
-      .collection(FBCollections.Photos).doc(photo.uniqueId)
-  }
+  // let messageRef
+  // if (photo.photoType === 'restaurant') {
+  //   messageRef = $fireStore.collection(FBCollections.Restaurants).doc(photo.restaurantId)
+  //     .collection(FBCollections.Photos).doc(photo.uniqueId)
+  // }
+  // if (photo.photoType === 'recipe') {
+  //   messageRef = $fireStore.collection(FBCollections.Restaurants).doc(photo.restaurantId)
+  //     .collection(FBCollections.Recipes).doc(photo.recipeId)
+  //     .collection(FBCollections.Photos).doc(photo.uniqueId)
+  // }
+  const messageRef = $fireStore.collection(FBCollections.Photos).doc(photo.uniqueId)
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {

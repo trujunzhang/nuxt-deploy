@@ -11,7 +11,7 @@
     >
       <template #after-heading>
         <div class="display-2 font-weight-light">
-          Recipe
+          Recipes
         </div>
       </template>
 

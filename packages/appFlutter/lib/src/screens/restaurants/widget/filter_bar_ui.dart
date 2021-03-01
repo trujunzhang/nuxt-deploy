@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/logic/bloc.dart';
-import 'package:ieatta/src/logic/restaurants_results.dart';
 
 import '../hotel_app_theme.dart';
+
+String getRestaurantsCountInfo({
+  @required bool gpsTrackVal,
+  @required int restaurantsCountVal,
+}) {
+  if (gpsTrackVal) {
+    return 'Auto location tracking';
+  }
+
+  return '$restaurantsCountVal restaurants found';
+}
 
 class FilterBarUI extends StatefulWidget {
   FilterBarUI({Key key, @required this.mapClick}) : super(key: key);

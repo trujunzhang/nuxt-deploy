@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
@@ -30,7 +33,11 @@ class InfoPart extends StatelessWidget {
         // Line 1
         SizedBox(height: 4),
         FlatButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(Routes.create_edit_event,
+                arguments: CreateEditEventScreenObject(
+                    restaurantId: restaurant.uniqueId, eventModel: event));
+          },
           icon: Icon(Icons.edit),
           label: Text(
             'Edit Event',
@@ -61,8 +68,11 @@ class InfoPart extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 4),
         // Line 3
+        _buildDateInfo(),
+        SizedBox(height: 16),
+        // Line 4
         SmoothStarRating(
           allowHalfRating: true,
           starCount: 5,
@@ -75,6 +85,43 @@ class InfoPart extends StatelessWidget {
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
         _buildActionBar(context),
+      ],
+    );
+  }
+
+  Widget _buildDateInfo() {
+    return Table(
+      children: [
+        TableRow(children: [
+          Container(
+            padding: EdgeInsets.only(right: 12),
+            // color: Colors.red,
+            child: Text(
+              "Start Date:",
+              textAlign: TextAlign.end,
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Text(
+            formatDateString(event.start),
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ]),
+        TableRow(children: [
+          Container(
+            padding: EdgeInsets.only(right: 12),
+            // color: Colors.red,
+            child: Text(
+              "End Date:",
+              textAlign: TextAlign.end,
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Text(
+            formatDateString(event.end),
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ]),
       ],
     );
   }

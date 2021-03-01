@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/profile_avatar.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class PeopleInEventItem extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEventData;
@@ -12,6 +12,7 @@ class PeopleInEventItem extends StatelessWidget {
   const PeopleInEventItem(
       {Key key, @required this.peopleInEventData, @required this.user})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -31,7 +32,6 @@ class PeopleInEventItem extends StatelessWidget {
     );
   }
 
-
   Widget _buildBody(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
@@ -39,8 +39,8 @@ class PeopleInEventItem extends StatelessWidget {
         ),
         child: ListTile(
           onTap: () {
-            Navigator.of(context)
-                .pushNamed(Routes.detail_people_in_event, arguments: peopleInEventData);
+            Navigator.of(context).pushNamed(Routes.detail_people_in_event,
+                arguments: peopleInEventData);
           },
           leading: ProfileAvatar(avatarUrl: user.originalUrl),
           trailing: Icon(Icons.keyboard_arrow_right),
