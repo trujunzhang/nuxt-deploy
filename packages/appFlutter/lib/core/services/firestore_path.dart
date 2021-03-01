@@ -32,9 +32,8 @@ class FirestorePath {
   static String peopleInEvents(String restaurantId, String eventId) =>
       'restaurants/$restaurantId/events/$eventId/peopleinevents';
 
-  static String singlePeopleInEvent(
-          String restaurantId, String eventId, String peopleInEventId) =>
-      'restaurants/$restaurantId/events/$eventId/peopleinevents/$peopleInEventId';
+  static String singlePeopleInEvent(String peopleInEventId) =>
+      'peopleinevents/$peopleInEventId';
 
   // Photos
   static String photosInRestaurant(String restaurantId) =>

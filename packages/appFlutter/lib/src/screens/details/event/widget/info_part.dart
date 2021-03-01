@@ -4,6 +4,7 @@ import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/screens/details/event/select_person/select_person_screen.dart';
 import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -11,8 +12,13 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;
   final ParseModelEvents event;
+  final List<String> disorderedUserIds;
 
-  const InfoPart({Key key, @required this.restaurant, @required this.event})
+  const InfoPart(
+      {Key key,
+      @required this.restaurant,
+      @required this.event,
+      @required this.disorderedUserIds})
       : super(key: key);
 
   @override
@@ -133,7 +139,20 @@ class InfoPart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FlatButton(
-            onPressed: () => print('Live'),
+            onPressed: () {
+              Navigator.push<dynamic>(
+                context,
+                MaterialPageRoute<dynamic>(
+                    builder: (BuildContext context) => SelectPersonScreen(),
+                    settings: RouteSettings(
+                      arguments: SelectPersonScreenObject(
+                          restaurantId: restaurant.uniqueId,
+                          eventId: event.uniqueId,
+                          disorderedUserIds: disorderedUserIds),
+                    ),
+                    fullscreenDialog: true),
+              );
+            },
             child: Text(
               'Select Person',
               style: TextStyle(color: Color(0xff479EFF)),

@@ -27,11 +27,6 @@ class _CreateEditEventProviderScreenState
   CreateEditEventScreenObject screenObject;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final CreateEditEventScreenObject _screenObject =

@@ -3,7 +3,9 @@ import 'package:ieatta/core/database/firebase_helper.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 
-class ParseModelUsers {
+import 'Avatar_user.dart';
+
+class ParseModelUsers extends AvatarUser {
   // Base(3)
   final String id;
   final String createdAt;
@@ -31,7 +33,8 @@ class ParseModelUsers {
       // Property(3)
       this.loginType,
       this.originalUrl,
-      this.thumbnailUrl);
+      this.thumbnailUrl)
+      : super(id, username, originalUrl);
 
   factory ParseModelUsers.fromJson(Map<String, dynamic> json) {
     // Base(3)

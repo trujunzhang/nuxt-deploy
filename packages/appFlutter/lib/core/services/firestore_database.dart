@@ -44,7 +44,7 @@ class FirestoreDatabase {
     );
   }
 
-  //Method to create/update restaurantModel
+  //Method to create/update eventModel
   Future<void> setEvent({@required ParseModelEvents model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singleEvent(model.uniqueId),
@@ -52,6 +52,13 @@ class FirestoreDatabase {
     );
   }
 
+  //Method to create/update peopleInEventModel
+  Future<void> setPeopleInEvent({@required ParseModelPeopleInEvent model}) async {
+    await _firestoreService.setData(
+      path: FirestorePath.singlePeopleInEvent(model.uniqueId),
+      data: model.toMap(),
+    );
+  }
   //Method to create/update restaurantModel
   Future<void> setReview({@required ParseModelReviews model}) async {
     await _firestoreService.setData(

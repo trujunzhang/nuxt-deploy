@@ -60,9 +60,7 @@ class AvatarWidget extends StatelessWidget {
                 decoration: _whiteBorderDecoration,
                 child: Container(
                   decoration: _greyBoxShadowDecoration,
-                  child:
-
-                  Container(
+                  child: Container(
                     height: 120,
                     width: 120,
                     decoration: BoxDecoration(
@@ -79,8 +77,6 @@ class AvatarWidget extends StatelessWidget {
                       child: buildAvatarImage(user),
                     ),
                   ),
-
-
                 ),
               ),
             ],

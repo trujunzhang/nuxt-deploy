@@ -35,8 +35,7 @@ class FilterUtils {
   bool matchLocation(ParseModelRestaurants restaurant, LocationData secondVal) {
     Geoflutterfire geo = Geoflutterfire();
     GeoFirePoint myLocation = geo.point(
-        latitude: restaurant.latitude,
-        longitude: restaurant.longitude);
+        latitude: restaurant.latitude, longitude: restaurant.longitude);
     var distance =
         myLocation.distance(lat: secondVal.latitude, lng: secondVal.longitude);
 //  if (firstVal.data['displayName'] == 'city run') {
@@ -51,5 +50,28 @@ class FilterUtils {
         Provider.of<List<ParseModelRestaurants>>(context);
 
     return (users != null && restaurants == null);
+  }
+
+  List<String> getDisorderedUserIds(
+      List<String> userIds, List<ParseModelPeopleInEvent> peopleInEventsList) {
+    // Get the userIds from the peopleInEventsList.
+    List<String> orderedUserIds = List<String>();
+    objectToMap(ParseModelPeopleInEvent peopleInEvent) {
+      orderedUserIds.add(peopleInEvent.userId);
+    }
+
+    peopleInEventsList.forEach(objectToMap);
+
+    // Remove ordered userIds.
+    List<String> disorderedUserIds = List<String>();
+    filterOrderedUserIds(String userId) {
+      if (!orderedUserIds.contains(userId)) {
+        disorderedUserIds.add(userId);
+      }
+    }
+
+    userIds.forEach(filterOrderedUserIds);
+
+    return disorderedUserIds;
   }
 }

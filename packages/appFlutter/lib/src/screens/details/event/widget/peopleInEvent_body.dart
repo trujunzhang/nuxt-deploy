@@ -6,26 +6,20 @@ import 'peopleInEvent_item.dart';
 
 class PeopleInEventBody extends StatelessWidget {
   final List<ParseModelPeopleInEvent> peopleInEventsList;
-  final List<ParseModelUsers> users;
+  final Map<String, ParseModelUsers> usersDict;
 
   const PeopleInEventBody(
-      {Key key, @required this.peopleInEventsList, @required this.users})
+      {Key key, @required this.peopleInEventsList, @required this.usersDict})
       : super(key: key);
-
-  ParseModelUsers filterUser(ParseModelPeopleInEvent parseModelPeopleInEvent) {
-    for (ParseModelUsers e in users) {
-      if (e.id == parseModelPeopleInEvent.userId) {
-        return e;
-      }
-    }
-  }
 
   Widget buildPeopleInEventsListView() {
     List<Widget> list = new List<Widget>();
     for (var i = 0; i < peopleInEventsList.length; i++) {
+      ParseModelPeopleInEvent peopleInEvent = peopleInEventsList[i];
+      ParseModelUsers user = usersDict[peopleInEvent.userId];
       list.add(PeopleInEventItem(
-        peopleInEventData: peopleInEventsList[i],
-        user: filterUser(peopleInEventsList[i]),
+        peopleInEventData: peopleInEvent,
+        user: user,
       ));
       if (i < peopleInEventsList.length - 1) {
         list.add(Divider(

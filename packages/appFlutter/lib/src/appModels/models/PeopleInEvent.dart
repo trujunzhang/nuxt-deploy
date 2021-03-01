@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/utils/md5_utils.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
+
 import 'Database.dart';
 
 class ParseModelPeopleInEvent {
@@ -12,9 +17,9 @@ class ParseModelPeopleInEvent {
   final List<String> recipes;
 
   // point(3)
-  final String restaurantId;
-  final String eventId;
-  final String userId;
+  String restaurantId;
+  String eventId;
+  String userId;
 
   ParseModelPeopleInEvent(
       {
@@ -73,5 +78,36 @@ class ParseModelPeopleInEvent {
       "eventId": eventId,
       "userId": userId,
     };
+  }
+
+  static emptyPeopleInEvent({@required AuthUserModel authUserModel}) {
+    return ParseModelPeopleInEvent(
+      // Base(5)
+      uniqueId: documentIdFromCurrentDate(),
+      creatorId: authUserModel.uid,
+      createdAt: getDateStringForCreatedOrUpdatedDate(),
+      updatedAt: getDateStringForCreatedOrUpdatedDate(),
+      flag: '1',
+      // Common(1)
+      recipes: [],
+      // point(3)
+      restaurantId: '',
+      eventId: '',
+      userId: '',
+    );
+  }
+
+  static ParseModelPeopleInEvent updatePeopleInEvent({
+    @required ParseModelPeopleInEvent model,
+    @required String restaurantId,
+    @required String eventId,
+    @required String userId,
+  }) {
+    // point(3)
+    model.restaurantId = restaurantId;
+    model.eventId = eventId;
+    model.userId = userId;
+
+    return model;
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
@@ -45,7 +47,6 @@ class EventDetailState extends State<EventDetail> {
   }
 
   Widget _buildBody() {
-    List<ParseModelUsers> users = Provider.of<List<ParseModelUsers>>(context);
     ParseModelEvents event =
         FilterModels.instance.getSingleEvent(context, eventId);
 
@@ -55,19 +56,27 @@ class EventDetailState extends State<EventDetail> {
     List<ParseModelReviews> reviewsList = FilterModels.instance
         .getReviewsList(context, eventId, ReviewType.Event);
 
+    List<ParseModelPeopleInEvent> peopleInEventsList = FilterModels.instance
+        .getPeopleInEventsList(context, restaurant.uniqueId, event.uniqueId);
+
+    Map<String, ParseModelUsers> usersDict =
+        FilterModels.instance.getUsersDict(context);
+
+    List<String> disorderedUserIds = FilterUtils.instance
+        .getDisorderedUserIds(List.from(usersDict.keys), peopleInEventsList);
+
     return ListView(
       shrinkWrap: true,
       children: [
         InfoPart(
-          restaurant: restaurant,
-          event: event,
-        ),
+            restaurant: restaurant,
+            event: event,
+            disorderedUserIds: disorderedUserIds),
         // Line 1: Ordered users list
         buildTextSectionTitle("People Ordered"),
         PeopleInEventBody(
-          peopleInEventsList: FilterModels.instance.getPeopleInEventsList(
-              context, restaurant.uniqueId, event.uniqueId),
-          users: users,
+          peopleInEventsList: peopleInEventsList,
+          usersDict: usersDict,
         ),
         // Line 2: Waiters list
         buildTextSectionTitle("Waiters"),

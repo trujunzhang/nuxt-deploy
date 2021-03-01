@@ -34,6 +34,7 @@
     "eventsCreateEditWantTxt": "Want",
     "eventsCreateEditStartDateTxt": "Start Date",
     "eventsCreateEditEndDateTxt": "End Date",
+    "eventsSelectPersonTitleTxt": "Select Person",
 	"reviewPageAppBarRightEditBtnTitle": "编辑",
 	"reviewsCreateEditAppBarTitleEditTxt": "编辑评论",
 	"reviewsCreateEditAppBarTitleNewTxt": "新评论",

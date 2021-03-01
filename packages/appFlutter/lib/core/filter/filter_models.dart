@@ -7,7 +7,6 @@ import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
-import 'package:ieatta/src/screens/details/photo_view.dart';
 import 'package:location_platform_interface/location_platform_interface.dart';
 import 'package:provider/provider.dart';
 import 'package:ieatta/src/logic/bloc.dart';
@@ -37,6 +36,16 @@ class FilterModels {
   ParseModelUsers getSingleUser(BuildContext context, String uniqueId) {
     return Provider.of<List<ParseModelUsers>>(context)
         .singleWhere((user) => user.id == uniqueId);
+  }
+
+  Map<String, ParseModelUsers> getUsersDict(BuildContext context) {
+    Map hashMap = new Map<String, ParseModelUsers>();
+    objectToMap(ParseModelUsers user) {
+      hashMap[user.id] = user;
+    }
+
+    Provider.of<List<ParseModelUsers>>(context).forEach(objectToMap);
+    return hashMap;
   }
 
 // ===========================================================
