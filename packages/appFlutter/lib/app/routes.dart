@@ -9,8 +9,9 @@ import 'package:ieatta/core/ui/splash/splash_screen.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
 import 'package:ieatta/src/screens/details/recipe/reccipe_page.dart';
 import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
+import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/restaurant/restaurant_provider_screen.dart';
-import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
+import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
 import 'package:ieatta/src/screens/details/event/event_page.dart';
 import 'package:ieatta/src/screens/map/restaurants_map_page.dart';
@@ -20,7 +21,7 @@ import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_grid_view.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_pageview.dart';
 import 'package:ieatta/src/screens/details/restaurant/restaurant_page.dart';
-import 'package:ieatta/src/screens/reviews/detail/review_page.dart';
+import 'package:ieatta/src/screens/reviews/detail/review_screen.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_photos.dart';
 import 'package:ieatta/src/screens/user_profile/pages/user_restaurants.dart';
@@ -49,6 +50,7 @@ class Routes {
   static const String detail_people_in_event = '/detail_people_in_event';
 
   // Recipe
+  static const String create_edit_recipe = '/create_edit_recipe';
   static const String detail_recipe = '/detail_recipe';
 
   // Reviews List
@@ -97,6 +99,7 @@ class Routes {
     // Recipe
     detail_recipe: (BuildContext context) => RecipeDetail(),
     // Reviews List
+    create_edit_recipe: (context) => CreateEditRecipeProviderScreen(),
     reviews_list: (BuildContext context) => ReviewsListScreen(),
     // Camera
     app_camera: (context) => CameraScreen(),
@@ -108,8 +111,8 @@ class Routes {
     online_photos_gridview: (context) => FBPhotosGridView(),
     online_photos_pageview: (context) => FBPhotosPageView(),
     // Review
-    create_edit_review: (context) => CreateEditReviewScreen(),
-    detail_review: (context) => ReviewPage(),
+    create_edit_review: (context) => CreateEditReviewProviderScreen(),
+    detail_review: (context) => ReviewScreen(),
     // User
     detail_common_user: (context) => UserDetail(),
     edit_user: (context) => EditUserScreen(),

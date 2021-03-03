@@ -352,6 +352,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_rating_bar">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_rating_bar-3.2.0+1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_slidable">
           <value>
             <list>
@@ -942,6 +949,7 @@
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_keyboard_visibility_web-1.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_platform_widgets-0.32.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_plugin_android_lifecycle-1.0.8/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_rating_bar-3.2.0+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_slidable-0.5.7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_spinkit-4.1.2+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../flutterSDK/.pub-cache/hosted/pub.flutter-io.cn/flutter_svg-0.19.1/lib" />

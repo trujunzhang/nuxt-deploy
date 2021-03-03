@@ -33,6 +33,14 @@ class FirestoreDatabase {
   final _firestoreService = FirestoreService.instance;
 
   // ===========================================================
+  // Delete: <Models>
+  // ===========================================================
+  //Method to delete peopleInEventModel entry
+  Future<void> deletePeopleInEvent(ParseModelPeopleInEvent model) async {
+    await _firestoreService.deleteData(path: FirestorePath.singlePeopleInEvent(model.uniqueId));
+  }
+
+  // ===========================================================
   // Save: Single<Models>
   // ===========================================================
 
@@ -52,6 +60,13 @@ class FirestoreDatabase {
     );
   }
 
+  //Method to create/update recipeModel
+  Future<void> setRecipe({@required ParseModelRecipes model}) async {
+    await _firestoreService.setData(
+      path: FirestorePath.singleRecipe(model.uniqueId),
+      data: model.toMap(),
+    );
+  }
   //Method to create/update peopleInEventModel
   Future<void> setPeopleInEvent({@required ParseModelPeopleInEvent model}) async {
     await _firestoreService.setData(
@@ -112,16 +127,6 @@ class FirestoreDatabase {
   // ===========================================================
   // Stream: List<Models>
   // ===========================================================
-
-  //Method to retrieve recipe stream
-  Stream<List<ParseModelRecipes>> recipesStream(String restaurantId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.recipes(restaurantId),
-        builder: (data, documentId) => ParseModelRecipes.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
 
   //Method to retrieve event stream
   Stream<List<ParseModelEvents>> eventsStream(String restaurantId) =>

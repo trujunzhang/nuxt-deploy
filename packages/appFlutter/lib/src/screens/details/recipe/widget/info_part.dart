@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
+import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
+import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRecipes recipe;
@@ -28,7 +33,11 @@ class InfoPart extends StatelessWidget {
         // Line 1
         SizedBox(height: 4),
         FlatButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(Routes.create_edit_recipe,
+                arguments: CreateEditRecipeScreenObject(
+                    restaurantId: recipe.restaurantId, recipeModel: recipe));
+          },
           icon: Icon(Icons.edit),
           label: Text(
             'Edit Recipe',
@@ -49,14 +58,20 @@ class InfoPart extends StatelessWidget {
         ),
         SizedBox(height: 8),
         // Line 3
-        SmoothStarRating(
-          allowHalfRating: true,
-          starCount: 5,
-          rating: calcRateForRestaurant(recipe.rate, recipe.reviewCount),
-          size: 20,
-          color: HotelAppTheme.buildLightTheme().primaryColor,
-          borderColor: HotelAppTheme.buildLightTheme().primaryColor,
-        ),
+        RatingBar.builder(
+            initialRating:
+                calcRateForRestaurant(recipe.rate, recipe.reviewCount),
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemSize: 20,
+            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+            itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: HotelAppTheme.buildLightTheme().primaryColor,
+                ),
+            onRatingUpdate: (rating) {}),
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
@@ -72,7 +87,12 @@ class InfoPart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FlatButton.icon(
-            onPressed: () => print('Photo'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.create_edit_review,
+                  arguments: CreateEditReviewScreenObject(
+                      reviewType: ReviewType.Recipe,
+                      relatedId: recipe.uniqueId));
+            },
             icon: const Icon(
               Icons.create,
               color: Colors.green,
@@ -84,7 +104,12 @@ class InfoPart extends StatelessWidget {
           ),
           const VerticalDivider(width: 8.0),
           FlatButton.icon(
-            onPressed: () => print('Room'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.reviews_list,
+                  arguments: ReviewsListObject(
+                      reviewType: ReviewType.Recipe,
+                      relatedId: recipe.uniqueId));
+            },
             icon: const Icon(
               Icons.card_membership,
               color: Colors.purpleAccent,

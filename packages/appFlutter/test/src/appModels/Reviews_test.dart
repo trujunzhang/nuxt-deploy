@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 
@@ -70,11 +71,55 @@ void main() {
     expect(model.recipeId, "");
   });
 
+  test('Empty different review should correctly', () {
+    AuthUserModel authUserModel = AuthUserModel.mockedUser();
+
+    // ===========================================================
+    // Review: <For restaurant>
+    // ===========================================================
+    ParseModelReviews model = ParseModelReviews.emptyReview(
+        authUserModel: authUserModel,
+        reviewType: ReviewType.Restaurant,
+        relatedId: 'restaurantId');
+    // point(4)
+    expect(model.reviewType, "restaurant");
+    expect(model.restaurantId, 'restaurantId');
+    expect(model.eventId, "");
+    expect(model.recipeId, "");
+
+    // ===========================================================
+    // Review: <For event>
+    // ===========================================================
+    model = ParseModelReviews.emptyReview(
+        authUserModel: authUserModel,
+        reviewType: ReviewType.Event,
+        relatedId: 'eventId');
+    // point(4)
+    expect(model.reviewType, "event");
+    expect(model.restaurantId, '');
+    expect(model.eventId, 'eventId');
+    expect(model.recipeId, "");
+
+    // ===========================================================
+    // Review: <For recipe>
+    // ===========================================================
+    model = ParseModelReviews.emptyReview(
+        authUserModel: authUserModel,
+        reviewType: ReviewType.Recipe,
+        relatedId: 'recipeId');
+    // point(4)
+    expect(model.reviewType, "recipe");
+    expect(model.restaurantId, '');
+    expect(model.eventId, '');
+    expect(model.recipeId, "recipeId");
+  });
+
   test('Empty review should correctly', () {
-    String restaurantId = 'restaurantId ';
     AuthUserModel authUserModel = AuthUserModel.mockedUser();
     ParseModelReviews model = ParseModelReviews.emptyReview(
-        authUserModel: authUserModel, restaurantId: restaurantId);
+        authUserModel: authUserModel,
+        reviewType: ReviewType.Restaurant,
+        relatedId: 'restaurantId');
 
     // Base(5)
     expect(model.flag, "1");
@@ -90,7 +135,7 @@ void main() {
     expect(model.avatarUrl, authUserModel.avatarUrl);
     // point(4)
     expect(model.reviewType, "restaurant");
-    expect(model.restaurantId, restaurantId);
+    expect(model.restaurantId, 'restaurantId');
     expect(model.eventId, "");
     expect(model.recipeId, "");
   });

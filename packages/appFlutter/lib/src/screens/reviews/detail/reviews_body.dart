@@ -33,8 +33,6 @@ class ReviewsBody extends StatelessWidget {
         },
         child: ReviewItem(
           reviewData: review,
-          rate: review.rate,
-          note: review.body,
         ),
       );
       list.add(child);

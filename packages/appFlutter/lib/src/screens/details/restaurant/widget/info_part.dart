@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
+import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
+import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;
@@ -56,15 +58,20 @@ class InfoPart extends StatelessWidget {
         ),
         SizedBox(height: 8),
         // Line 3
-        SmoothStarRating(
-          allowHalfRating: true,
-          starCount: 5,
-          rating:
-              calcRateForRestaurant(restaurant.rate, restaurant.reviewCount),
-          size: 20,
-          color: HotelAppTheme.buildLightTheme().primaryColor,
-          borderColor: HotelAppTheme.buildLightTheme().primaryColor,
-        ),
+        RatingBar.builder(
+            initialRating:
+                calcRateForRestaurant(restaurant.rate, restaurant.reviewCount),
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemSize: 20,
+            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+            itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: HotelAppTheme.buildLightTheme().primaryColor,
+                ),
+            onRatingUpdate: (rating) {}),
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
@@ -82,7 +89,11 @@ class InfoPart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FlatButton.icon(
-            onPressed: () => print('Live'),
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.create_edit_event,
+                  arguments: CreateEditEventScreenObject(
+                      restaurantId: restaurant.uniqueId));
+            },
             icon: const Icon(
               Icons.add,
               color: Colors.red,
@@ -97,7 +108,8 @@ class InfoPart extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(Routes.create_edit_review,
                   arguments: CreateEditReviewScreenObject(
-                      restaurantId: restaurant.uniqueId));
+                      reviewType: ReviewType.Restaurant,
+                      relatedId: restaurant.uniqueId));
             },
             icon: const Icon(
               Icons.create,
@@ -113,8 +125,8 @@ class InfoPart extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(Routes.reviews_list,
                   arguments: ReviewsListObject(
-                      stream: firestoreDatabase.reviewsInRestaurantStream(
-                          restaurant.uniqueId, -1)));
+                      reviewType: ReviewType.Restaurant,
+                      relatedId: restaurant.uniqueId));
             },
             icon: const Icon(
               Icons.card_membership,

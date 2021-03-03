@@ -66,8 +66,8 @@ class FirestoreService {
     print('$path: $datas');
   }
 
-  Future<void> deleteData({@required FBCollections path}) async {
-    final reference = Firestore.instance.document(fbCollectionToString(path));
+  Future<void> deleteData({@required String path}) async {
+    final reference = Firestore.instance.document(path);
     print('delete: $path');
     await reference.delete();
   }

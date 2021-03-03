@@ -1,6 +1,13 @@
+import 'package:flutter/foundation.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/utils/md5_utils.dart';
+import 'package:ieatta/core/utils/slug_helper.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
+
+import 'Base_Review.dart';
 import 'Database.dart';
 
-class ParseModelRecipes {
+class ParseModelRecipes extends BaseReview {
   // Base(5)
   final String uniqueId;
   final String creatorId;
@@ -9,9 +16,9 @@ class ParseModelRecipes {
   final String flag;
 
   // Common(5)
-  final String displayName;
+  String displayName;
   String slug;
-  final String price;
+  String price;
   final String thumbnailUrl;
   String originalUrl;
 
@@ -40,7 +47,8 @@ class ParseModelRecipes {
       this.rate,
       this.reviewCount,
       // point(1)
-      this.restaurantId});
+      this.restaurantId})
+      : super(rate, reviewCount);
 
   factory ParseModelRecipes.fromJson(Map<String, dynamic> json) {
     // Base(5)
@@ -107,5 +115,41 @@ class ParseModelRecipes {
       // point(1)
       "restaurantId": restaurantId,
     };
+  }
+
+  static emptyRecipe(
+      {@required AuthUserModel authUserModel, @required String restaurantId}) {
+    return ParseModelRecipes(
+        // Base(5)
+        uniqueId: documentIdFromCurrentDate(),
+        creatorId: authUserModel.uid,
+        createdAt: getDateStringForCreatedOrUpdatedDate(),
+        updatedAt: getDateStringForCreatedOrUpdatedDate(),
+        flag: '1',
+        // Common(5)
+        displayName: '',
+        slug: '',
+        price: '',
+        thumbnailUrl: '',
+        originalUrl: '',
+        // for review(2)
+        rate: 0,
+        reviewCount: 0,
+        // point(1)
+        restaurantId: restaurantId);
+  }
+
+  static ParseModelRecipes updateRecipe({
+    @required ParseModelRecipes model,
+    @required String nextDisplayName,
+    @required String nextPrice,
+  }) {
+    // DisplayName
+    model.displayName = nextDisplayName;
+    model.slug = slugifyToLower(nextDisplayName);
+    // Others
+    model.price = nextPrice;
+
+    return model;
   }
 }

@@ -5,31 +5,30 @@ import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
-import 'package:ieatta/core/utils/timeago_utils.dart';
-import 'package:ieatta/src/appModels/models/Events.dart';
-import 'package:ieatta/src/providers/event_state.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
+import 'package:ieatta/src/providers/recipe_state.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
 
-class EventPage extends StatefulWidget {
-  final ParseModelEvents event;
+class RecipePage extends StatefulWidget {
+  final ParseModelRecipes recipe;
 
-  const EventPage({Key key, this.event}) : super(key: key);
+  const RecipePage({Key key, this.recipe}) : super(key: key);
 
   @override
-  _EventPageState createState() => _EventPageState();
+  _RecipePageState createState() => _RecipePageState();
 }
 
-class _EventPageState extends State<EventPage> {
+class _RecipePageState extends State<RecipePage> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // Event
+  // Recipe
   bool _isButtonDisabled = false;
 
   @override
   Widget build(BuildContext context) {
-    EventState eventState = Provider.of<EventState>(context, listen: false);
+    RecipeState recipeState = Provider.of<RecipeState>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
@@ -40,11 +39,11 @@ class _EventPageState extends State<EventPage> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(widget.event != null
+          title: Text(widget.recipe != null
               ? AppLocalizations.of(context)
-                  .translate("eventsCreateEditAppBarTitleEditTxt")
+                  .translate("recipesCreateEditAppBarTitleEditTxt")
               : AppLocalizations.of(context)
-                  .translate("eventsCreateEditAppBarTitleNewTxt")),
+                  .translate("recipesCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
             FlatButton(
                 onPressed: _isButtonDisabled
@@ -60,25 +59,24 @@ class _EventPageState extends State<EventPage> {
                           AuthUserModel authUserModel =
                               await authProvider.getAuthUserModel();
 
-                          ParseModelEvents lastModel = widget.event != null
-                              ? widget.event
-                              : ParseModelEvents.emptyEvent(
+                          ParseModelRecipes lastModel = widget.recipe != null
+                              ? widget.recipe
+                              : ParseModelRecipes.emptyRecipe(
                                   authUserModel: authUserModel,
-                                  restaurantId: eventState.restaurantId);
+                                  restaurantId: recipeState.restaurantId);
 
-                          ParseModelEvents nextModel =
-                              ParseModelEvents.updateEvent(
-                                  model: lastModel,
-                                  nextDisplayName: eventState.getDisplayName(),
-                                  nextWant: eventState.getWant(),
-                                  nextStartDate: eventState.getStartDate(),
-                                  nextEndDate: eventState.getEndDate());
+                          ParseModelRecipes nextModel =
+                              ParseModelRecipes.updateRecipe(
+                            model: lastModel,
+                            nextDisplayName: recipeState.getDisplayName(),
+                            nextPrice: recipeState.getPrice(),
+                          );
 
                           try {
                             final firestoreDatabase =
                                 Provider.of<FirestoreDatabase>(context,
                                     listen: false);
-                            await firestoreDatabase.setEvent(
+                            await firestoreDatabase.setRecipe(
                                 model: nextModel); // For Restaurant.
                           } catch (e) {
                             setState(() {
@@ -122,21 +120,15 @@ class _EventPageState extends State<EventPage> {
   }
 
   Widget _buildForm(BuildContext context) {
-    EventState eventState = Provider.of<EventState>(context, listen: false);
+    RecipeState recipeState = Provider.of<RecipeState>(context, listen: false);
     return Padding(
         padding: const EdgeInsets.all(10),
         child: FormBuilder(
             key: _formKey,
             autovalidateMode: AutovalidateMode.disabled,
             initialValue: {
-              'displayName': eventState.getDisplayName(),
-              'want': eventState.getWant(),
-              'startDate': widget.event == null
-                  ? DateTime.now()
-                  : convertDateFromString(eventState.getStartDate()),
-              'endDate': widget.event == null
-                  ? DateTime.now()
-                  : convertDateFromString(eventState.getEndDate()),
+              'displayName': recipeState.getDisplayName(),
+              'price': recipeState.getPrice(),
             },
             child: Column(
               children: [
@@ -145,10 +137,10 @@ class _EventPageState extends State<EventPage> {
                   name: 'displayName',
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditDisplayNameTxt"),
+                        .translate("recipesCreateEditDisplayNameTxt"),
                   ),
                   onChanged: (String val) {
-                    eventState.setDisplayName(val);
+                    recipeState.setDisplayName(val);
                   },
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -158,13 +150,13 @@ class _EventPageState extends State<EventPage> {
                 ),
                 FormBuilderTextField(
                   autovalidateMode: AutovalidateMode.always,
-                  name: 'want',
+                  name: 'price',
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditWantTxt"),
+                        .translate("recipesCreateEditPriceTxt"),
                   ),
                   onChanged: (String val) {
-                    eventState.setWant(val);
+                    recipeState.setPrice(val);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
@@ -172,42 +164,6 @@ class _EventPageState extends State<EventPage> {
                   ]),
                   maxLines: 15,
                   textInputAction: TextInputAction.next,
-                ),
-                FormBuilderDateTimePicker(
-                  name: 'startDate',
-                  // initialValue: DateTime.now(),
-                  inputType: InputType.both,
-                  decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditStartDateTxt"),
-                  ),
-                  initialTime: TimeOfDay(hour: 8, minute: 0),
-                  onChanged: (DateTime dt) {
-                    var val = getDateIso8610String(dt);
-                    eventState.setStartDate(val);
-                  },
-                  pickerType: PickerType.cupertino,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                  ]),
-                ),
-                FormBuilderDateTimePicker(
-                  name: 'endDate',
-                  // initialValue: DateTime.now(),
-                  inputType: InputType.both,
-                  decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditEndDateTxt"),
-                  ),
-                  initialTime: TimeOfDay(hour: 8, minute: 0),
-                  onChanged: (DateTime dt) {
-                    var val = getDateIso8610String(dt);
-                    eventState.setEndDate(val);
-                  },
-                  pickerType: PickerType.cupertino,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                  ]),
                 ),
               ],
             )));

@@ -4,9 +4,10 @@ import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 
+import 'Base_Review.dart';
 import 'Database.dart';
 
-class ParseModelEvents {
+class ParseModelEvents extends BaseReview {
   // Base(5)
   final String uniqueId;
   final String creatorId;
@@ -51,7 +52,8 @@ class ParseModelEvents {
       this.rate,
       this.reviewCount,
       // point(1)
-      this.restaurantId});
+      this.restaurantId})
+      : super(rate, reviewCount);
 
   factory ParseModelEvents.fromJson(Map<String, dynamic> json) {
     // Base(5)

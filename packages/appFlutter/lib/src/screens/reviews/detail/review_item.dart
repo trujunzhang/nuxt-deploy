@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
-import 'package:ieatta/src/components/profile_avatar.dart';
-import 'package:ieatta/src/components/users/image.dart';
-import 'package:ieatta/src/layout/app_theme.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
-import 'package:ieatta/src/components/avatar_widget.dart';
+import 'package:ieatta/src/components/profile_avatar.dart';
+import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewItem extends StatelessWidget {
   final ParseModelReviews reviewData;
-  final double rate;
-  final String note;
 
-  const ReviewItem(
-      {Key key,
-      @required this.reviewData,
-      @required this.rate,
-      @required this.note})
-      : super(key: key);
+  const ReviewItem({
+    Key key,
+    @required this.reviewData,
+  }) : super(key: key);
 
   Widget _buildInfo(BuildContext context) {
     return Row(
@@ -48,6 +41,7 @@ class ReviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print('review rate: ${reviewData.rate}');
     return Card(
       child: Container(
         padding: EdgeInsets.only(left: 12, right: 12, top: 16, bottom: 16),
@@ -56,14 +50,20 @@ class ReviewItem extends StatelessWidget {
           children: [
             _buildInfo(context),
             SizedBox(height: 8),
-            SmoothStarRating(
-              allowHalfRating: true,
-              starCount: 5,
-              rating: reviewData.rate,
-              size: 20,
-              color: HotelAppTheme.buildLightTheme().primaryColor,
-              borderColor: HotelAppTheme.buildLightTheme().primaryColor,
-            ),
+            RatingBar.builder(
+                initialRating: reviewData.rate,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: false,
+                itemCount: 5,
+                itemSize: 25,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: HotelAppTheme.buildLightTheme().primaryColor,
+                    ),
+                onRatingUpdate: (rating) {
+                }),
             SizedBox(height: 8),
             Text(
               reviewData.body,

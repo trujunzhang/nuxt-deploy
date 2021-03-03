@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/core/database/review_helper.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
-import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
+import 'package:ieatta/src/components/navigation/arrow_helper.dart';
+import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'review_item.dart';
 
-class ReviewPage extends StatefulWidget {
-  ReviewPage({Key key}) : super(key: key);
+class ReviewScreen extends StatefulWidget {
+  ReviewScreen({Key key}) : super(key: key);
 
   @override
-  _ReviewPageState createState() => _ReviewPageState();
+  _ReviewScreenState createState() => _ReviewScreenState();
 }
 
-class _ReviewPageState extends State<ReviewPage> {
+class _ReviewScreenState extends State<ReviewScreen> {
   ParseModelReviews reviewData;
-  double rate = 0;
-  String note = '';
+  String reviewId;
 
   @override
   void didChangeDependencies() {
@@ -31,8 +32,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
     setState(() {
       reviewData = _reviewModel;
-      rate = _reviewModel.rate;
-      note = _reviewModel.body;
+      reviewId = _reviewModel.uniqueId;
     });
   }
 
@@ -52,17 +52,12 @@ class _ReviewPageState extends State<ReviewPage> {
   Widget _buildBody(BuildContext context, bool showEditBtn) {
     var flatButton = FlatButton(
         onPressed: () async {
-          final result = await Navigator.of(context).pushNamed(
-              Routes.create_edit_review,
+          Navigator.of(context).pushNamed(Routes.create_edit_review,
               arguments: CreateEditReviewScreenObject(
-                  reviewModel: reviewData,
-                  restaurantId: reviewData.restaurantId));
-          if (result != null) {
-            setState(() {
-              rate = (result as ReviewReturnModel).rate;
-              note = (result as ReviewReturnModel).note;
-            });
-          }
+                reviewType: stringToReviewType(reviewData.reviewType),
+                relatedId: ParseModelReviews.getRelatedId(reviewData),
+                reviewModel: reviewData,
+              ));
         },
         child: Text(AppLocalizations.of(context)
             .translate("reviewPageAppBarRightEditBtnTitle")));
@@ -70,7 +65,7 @@ class _ReviewPageState extends State<ReviewPage> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.cancel),
+            icon: Icon(getArrowBackIcon()),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -79,18 +74,16 @@ class _ReviewPageState extends State<ReviewPage> {
               .translate("reviewsDetailPageAppBarTitleTxt")),
           actions: actionsWidget,
         ),
-        body: _buildSingleReview());
+        body: _buildSingleReview(context));
   }
 
-  Widget _buildSingleReview() {
-    return Padding(
-      padding: EdgeInsets.only(top: 18.0),
-      child: SingleChildScrollView(
-        child: ReviewItem(
-          reviewData: reviewData,
-          rate: rate,
-          note: note,
-        ),
+  Widget _buildSingleReview(BuildContext context) {
+    ParseModelReviews review =
+        FilterModels.instance.getSingleReview(context, reviewId);
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(top: 8.0),
+      child: ReviewItem(
+        reviewData: review,
       ),
     );
   }

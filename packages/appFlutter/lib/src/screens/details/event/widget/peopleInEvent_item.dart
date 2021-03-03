@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/profile_avatar.dart';
+import 'package:ieatta/src/utils/toast.dart';
+import 'package:provider/provider.dart';
 
 class PeopleInEventItem extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEventData;
@@ -26,7 +30,16 @@ class PeopleInEventItem extends StatelessWidget {
           caption: 'Delete',
           color: Colors.red,
           icon: Icons.delete,
-          onTap: () {},
+          onTap: () async {
+            try {
+              final firestoreDatabase =
+                  Provider.of<FirestoreDatabase>(context, listen: false);
+              await firestoreDatabase
+                  .deletePeopleInEvent(peopleInEventData); // For Restaurant.
+            } catch (e) {}
+            ToastUtils.showToast(AppLocalizations.of(context)
+                .translate("peopleInEventDeleteSuccess"));
+          },
         ),
       ],
     );

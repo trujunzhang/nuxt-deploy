@@ -17,7 +17,6 @@ import 'package:ieatta/core/ui/home/home.dart';
 import 'package:ieatta/debug/sql_photos_helper.dart';
 import 'package:ieatta/flavor.dart';
 import 'package:ieatta/src/layout/navigation_home_screen.dart';
-import 'package:ieatta/src/screens/edit/create_edit_review_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:ieatta/core/database/localDatabase.dart' as database;

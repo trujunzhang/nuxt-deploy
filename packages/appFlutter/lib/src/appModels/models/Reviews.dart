@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
@@ -97,7 +98,9 @@ class ParseModelReviews extends AvatarUser {
   }
 
   static emptyReview(
-      {@required AuthUserModel authUserModel, @required String restaurantId}) {
+      {@required AuthUserModel authUserModel,
+      @required ReviewType reviewType,
+      @required String relatedId}) {
     return ParseModelReviews(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
@@ -112,10 +115,10 @@ class ParseModelReviews extends AvatarUser {
       username: authUserModel.username,
       avatarUrl: authUserModel.avatarUrl,
       // point(4)
-      reviewType: 'restaurant',
-      restaurantId: restaurantId,
-      eventId: '',
-      recipeId: '',
+      reviewType: reviewTypeToString(reviewType),
+      restaurantId: reviewType == ReviewType.Restaurant ? relatedId : "",
+      eventId: reviewType == ReviewType.Event ? relatedId : "",
+      recipeId: reviewType == ReviewType.Recipe ? relatedId : "",
     );
   }
 
@@ -126,6 +129,19 @@ class ParseModelReviews extends AvatarUser {
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
     return model;
+  }
+
+  static String getRelatedId(ParseModelReviews mode) {
+    if (mode.reviewType == reviewTypeToString(ReviewType.Restaurant)) {
+      return mode.restaurantId;
+    }
+    if (mode.reviewType == reviewTypeToString(ReviewType.Event)) {
+      return mode.eventId;
+    }
+    if (mode.reviewType == reviewTypeToString(ReviewType.Recipe)) {
+      return mode.recipeId;
+    }
+    return '';
   }
 
   Map<String, dynamic> toMap() {

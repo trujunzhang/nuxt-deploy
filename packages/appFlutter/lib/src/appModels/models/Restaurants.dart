@@ -6,7 +6,9 @@ import 'package:ieatta/core/utils/slug_helper.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Database.dart';
 
-class ParseModelRestaurants {
+import 'Base_Review.dart';
+
+class ParseModelRestaurants extends BaseReview {
   // Base(5)
   final String uniqueId;
   final String creatorId;
@@ -77,7 +79,7 @@ class ParseModelRestaurants {
     this.country,
     this.postal_code,
     this.administrative_area,
-  });
+  }) : super(rate, reviewCount);
 
   static emptyRestaurant({
     @required AuthUserModel authUserModel,

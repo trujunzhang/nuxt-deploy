@@ -49,12 +49,13 @@ photoTypeToString(PhotoType path) {
 }
 
 enum ReviewType {
+  None,
   Restaurant,
   Event,
   Recipe,
 }
 
-reviewTypeToString(ReviewType path) {
+String reviewTypeToString(ReviewType path) {
   switch (path) {
     case ReviewType.Restaurant:
       return "restaurant";
@@ -65,4 +66,17 @@ reviewTypeToString(ReviewType path) {
     default:
       return "none";
   }
+}
+
+ReviewType stringToReviewType(String reviewType) {
+  if (reviewType == reviewTypeToString(ReviewType.Restaurant)) {
+    return ReviewType.Restaurant;
+  }
+  if (reviewType == reviewTypeToString(ReviewType.Event)) {
+    return ReviewType.Event;
+  }
+  if (reviewType == reviewTypeToString(ReviewType.Recipe)) {
+    return ReviewType.Recipe;
+  }
+  return ReviewType.None;
 }

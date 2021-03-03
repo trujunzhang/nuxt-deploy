@@ -185,6 +185,11 @@ class FilterModels {
         .toList();
   }
 
+  ParseModelReviews getSingleReview(BuildContext context, String uniqueId) {
+    return Provider.of<List<ParseModelReviews>>(context)
+        .singleWhere((recipe) => recipe.uniqueId == uniqueId);
+  }
+
 // ===========================================================
 // Model: PeopleInEvents
 // ===========================================================
