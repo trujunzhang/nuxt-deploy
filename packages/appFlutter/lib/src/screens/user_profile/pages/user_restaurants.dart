@@ -6,7 +6,6 @@ import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 import 'package:ieatta/src/logic/restaurants_results.dart';
 import 'package:ieatta/src/screens/restaurants/body/page_body.dart';
-import 'package:ieatta/src/screens/restaurants/empty/search_empty.dart';
 import 'package:provider/provider.dart';
 
 class UserRestaurants extends StatefulWidget {
@@ -23,10 +22,7 @@ class _UserRestaurantsState extends State<UserRestaurants> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final String _userIdArg = ModalRoute
-        .of(context)
-        .settings
-        .arguments;
+    final String _userIdArg = ModalRoute.of(context).settings.arguments;
     if (_userIdArg != null) {
       _userId = _userIdArg;
     }
@@ -36,7 +32,7 @@ class _UserRestaurantsState extends State<UserRestaurants> {
   @override
   Widget build(BuildContext context) {
     final firestoreDatabase =
-    Provider.of<FirestoreDatabase>(context, listen: false);
+        Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -60,8 +56,7 @@ class _UserRestaurantsState extends State<UserRestaurants> {
                 child: CircularProgressIndicator(),
               );
             }
-            restaurantList =
-                parseRestaurants(fbSnapshot.data.documents);
+            restaurantList = parseRestaurants(fbSnapshot.data.documents);
             if (restaurantList.length == 0) {
               return Center(
                 child: Text('No Data'),

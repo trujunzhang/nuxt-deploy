@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
@@ -131,12 +131,8 @@ class _EventPageState extends State<EventPage> {
             initialValue: {
               'displayName': eventState.getDisplayName(),
               'want': eventState.getWant(),
-              'startDate': widget.event == null
-                  ? DateTime.now()
-                  : convertDateFromString(eventState.getStartDate()),
-              'endDate': widget.event == null
-                  ? DateTime.now()
-                  : convertDateFromString(eventState.getEndDate()),
+              'startDate': convertDateFromString(eventState.getStartDate()),
+              'endDate': convertDateFromString(eventState.getEndDate()),
             },
             child: Column(
               children: [

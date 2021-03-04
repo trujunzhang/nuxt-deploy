@@ -37,7 +37,14 @@ class FirestoreDatabase {
   // ===========================================================
   //Method to delete peopleInEventModel entry
   Future<void> deletePeopleInEvent(ParseModelPeopleInEvent model) async {
-    await _firestoreService.deleteData(path: FirestorePath.singlePeopleInEvent(model.uniqueId));
+    await _firestoreService.deleteData(
+        path: FirestorePath.singlePeopleInEvent(model.uniqueId));
+  }
+
+  //Method to delete eventModel entry
+  Future<void> deleteEvent(ParseModelEvents model) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.singleEvent(model.uniqueId));
   }
 
   // ===========================================================
@@ -67,13 +74,16 @@ class FirestoreDatabase {
       data: model.toMap(),
     );
   }
+
   //Method to create/update peopleInEventModel
-  Future<void> setPeopleInEvent({@required ParseModelPeopleInEvent model}) async {
+  Future<void> setPeopleInEvent(
+      {@required ParseModelPeopleInEvent model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singlePeopleInEvent(model.uniqueId),
       data: model.toMap(),
     );
   }
+
   //Method to create/update restaurantModel
   Future<void> setReview({@required ParseModelReviews model}) async {
     await _firestoreService.setData(

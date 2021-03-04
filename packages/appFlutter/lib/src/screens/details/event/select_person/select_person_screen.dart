@@ -95,7 +95,7 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
           radius: 25.0,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25.0),
-            child: buildParseModelUsersImageWithOriginalUrl(user.originalUrl),
+            child: buildParseModelUsersImage(user),
           )),
       title: Text(user.username),
     );

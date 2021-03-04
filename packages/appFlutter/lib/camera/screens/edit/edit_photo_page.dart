@@ -2,36 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/core/database/review_helper.dart';
+import 'package:ieatta/camera/providers/photo_state.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
-import 'package:ieatta/src/appModels/models/Reviews.dart';
-import 'package:ieatta/src/providers/review_state.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-class ReviewPage extends StatefulWidget {
-  final ParseModelReviews review;
+class EditPhotoPage extends StatefulWidget {
+  final ParseModelPhotos photo;
 
-  const ReviewPage({Key key, this.review}) : super(key: key);
+  const EditPhotoPage({Key key, @required this.photo}) : super(key: key);
 
   @override
-  _ReviewPageState createState() => _ReviewPageState();
+  _EditPhotoPageState createState() => _EditPhotoPageState();
 }
 
-class _ReviewPageState extends State<ReviewPage> {
+class _EditPhotoPageState extends State<EditPhotoPage> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  // Review
   bool _isButtonDisabled = false;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context);
+    PhotoState photoState = Provider.of<PhotoState>(context, listen: false);
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -41,11 +43,8 @@ class _ReviewPageState extends State<ReviewPage> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(widget.review != null
-              ? AppLocalizations.of(context)
-                  .translate("reviewsCreateEditAppBarTitleEditTxt")
-              : AppLocalizations.of(context)
-                  .translate("reviewsCreateEditAppBarTitleNewTxt")),
+          title: Text(AppLocalizations.of(context)
+              .translate("photosCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
             FlatButton(
                 onPressed: _isButtonDisabled
@@ -57,41 +56,20 @@ class _ReviewPageState extends State<ReviewPage> {
                           setState(() {
                             _isButtonDisabled = true;
                           });
-
                           AuthUserModel authUserModel =
                               await authProvider.getAuthUserModel();
 
-                          double lastReviewRate = (widget.review == null
-                              ? 0.0
-                              : widget.review.rate);
-                          ParseModelReviews lastModel = widget.review != null
-                              ? widget.review
-                              : ParseModelReviews.emptyReview(
-                                  authUserModel: authUserModel,
-                                  reviewType: reviewState.getReviewType(),
-                                  relatedId: reviewState.getRelatedId());
+                          ParseModelPhotos nextModel =
+                              ParseModelPhotos.updatePhoto(
+                                  model: widget.photo,
+                                  nextExtraNote: photoState.getExtraNote());
 
-                          ParseModelReviews nextModel =
-                              ParseModelReviews.updateReview(
-                                  model: lastModel,
-                                  nextRate: reviewState.getRate(),
-                                  nextExtraNote: reviewState.getBody());
-
-                          ReviewReturnModel returnModel = ReviewReturnModel(
-                              reviewState.getRate(), reviewState.getBody());
                           try {
                             final firestoreDatabase =
                                 Provider.of<FirestoreDatabase>(context,
                                     listen: false);
-                            await firestoreDatabase.setReview(
-                                model: nextModel); // For Restaurant.
-                            await ReviewHelper(
-                                    lastReviewRate: lastReviewRate,
-                                    selectedStar: reviewState.getRate(),
-                                    isNew: widget.review == null)
-                                .onSaveReviewAfterHook(
-                                    reviewType: reviewState.getReviewType(),
-                                    relatedId: reviewState.getRelatedId());
+                            await firestoreDatabase
+                                .setPhoto(nextModel); // F photo.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
@@ -114,25 +92,18 @@ class _ReviewPageState extends State<ReviewPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 8),
-            _buildRatePanel(context),
+            // _buildImagePanel(context),
             _buildShortcuts()
           ],
         )));
   }
 
-  Widget _buildRatePanel(BuildContext context) {
-    ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
-    return SmoothStarRating(
-        allowHalfRating: false,
-        onRated: (double v) {
-          reviewState.setRate(v);
-        },
-        starCount: 5,
-        rating: reviewState.getRate(),
-        size: 40.0,
-        color: Colors.green,
-        borderColor: Colors.green,
-        spacing: 0.0);
+  Widget _buildImagePanel(BuildContext context) {
+    PhotoState photoState = Provider.of<PhotoState>(context, listen: false);
+    return Container(
+      height: MediaQuery.of(context).size.height - 100,
+      child: buildLocalImageView(photoState.getImgPath()),
+    );
   }
 
   Widget _buildShortcuts() {
@@ -153,31 +124,27 @@ class _ReviewPageState extends State<ReviewPage> {
   }
 
   Widget _buildForm(BuildContext context) {
-    ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
+    PhotoState photoState = Provider.of<PhotoState>(context, listen: false);
     return Padding(
         padding: const EdgeInsets.all(10),
         child: FormBuilder(
             key: _formKey,
             autovalidateMode: AutovalidateMode.disabled,
             initialValue: {
-              'body': reviewState.getBody(),
+              'extraNote': photoState.getExtraNote(),
             },
             child: Column(
               children: [
                 FormBuilderTextField(
                   autovalidateMode: AutovalidateMode.always,
-                  name: 'body',
+                  name: 'extraNote',
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
                         .translate("modelCreateEditNotesTxt"),
                   ),
                   onChanged: (String val) {
-                    reviewState.setBody(val);
+                    photoState.setExtraNote(val);
                   },
-                  // valueTransformer: (text) => num.tryParse(text),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                  ]),
                   maxLines: 15,
                   textInputAction: TextInputAction.next,
                 ),

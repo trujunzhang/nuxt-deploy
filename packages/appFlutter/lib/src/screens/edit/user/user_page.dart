@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
@@ -149,14 +150,18 @@ class _UserPageState extends State<UserPage> {
                   child: const Text('(Add/Edit)'),
                   textColor: Color(0xff0073bb),
                   onPressed: () async {
-                    final result = await Navigator.of(context).pushNamed(
-                        Routes.app_camera,
-                        arguments: CAMERA_EVENT.TAKE_FOR_USER);
-                    if (result != null) {
-                      setState(() {
-                        userWithOriginalUrl = result;
-                      });
-                    }
+                    Navigator.of(context).pushNamed(Routes.app_camera,
+                        arguments: CameraScreenObject(
+                            photoType: PhotoType.User,
+                            relatedId: widget.loggedUser.id));
+                    // final result = await Navigator.of(context).pushNamed(
+                    //     Routes.app_camera,
+                    //     arguments: CAMERA_EVENT.USER);
+                    // if (result != null) {
+                    //   setState(() {
+                    //     userWithOriginalUrl = result;
+                    //   });
+                    // }
                   })
             ],
           ),

@@ -42,5 +42,4 @@ class _EditUserScreenState extends State<EditUserScreen> {
               });
         });
   }
-
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
@@ -80,7 +81,7 @@ class ParseModelPhotos extends AvatarUser {
 
     // extra(1)
     var extraNote = json['extraNote'] as String;
-    // Common
+    // Common(3)
     var originalUrl = json['originalUrl'] as String;
     var thumbnailUrl = json['thumbnailUrl'] as String;
     var url = json['url'] as String;
@@ -143,6 +144,7 @@ class ParseModelPhotos extends AvatarUser {
       // Common(3)
       "thumbnailUrl": thumbnailUrl,
       "originalUrl": originalUrl,
+      "url": url,
       // point(4)
       "photoType": photoType,
       "restaurantId": restaurantId,
@@ -159,10 +161,12 @@ class ParseModelPhotos extends AvatarUser {
     };
   }
 
-  static ParseModelPhotos emptyPhoto(
-      {@required AuthUserModel authUserModel,
-      @required String filePath,
-      @required LocationData locationData}) {
+  static ParseModelPhotos emptyPhoto({
+    @required AuthUserModel authUserModel,
+    @required PhotoType photoType,
+    @required String relatedId,
+    @required String filePath,
+  }) {
     return ParseModelPhotos(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
@@ -174,18 +178,21 @@ class ParseModelPhotos extends AvatarUser {
       username: authUserModel.username,
       avatarUrl: authUserModel.avatarUrl,
       // Location(3)
-      geoHash: convertToGeoHash(locationData.latitude, locationData.longitude),
-      latitude: locationData.latitude,
-      longitude: locationData.longitude,
-      // Common
+      geoHash: '',
+      latitude: 0,
+      longitude: 0,
+      // Common(3)
       originalUrl: '',
       thumbnailUrl: '',
       url: '',
       // point(4)
-      photoType: '',
-      restaurantId: '',
-      recipeId: '',
-      userId: '',
+      photoType: photoTypeToString(photoType),
+      restaurantId:
+          (photoType == PhotoType.Restaurant || photoType == PhotoType.Waiter)
+              ? relatedId
+              : "",
+      recipeId: photoType == PhotoType.Recipe ? relatedId : "",
+      userId: photoType == PhotoType.User ? relatedId : "",
       // offline(1)
       offlinePath: filePath,
       // extra(1)

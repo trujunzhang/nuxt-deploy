@@ -1,16 +1,10 @@
-import 'package:cloudinary_client/models/CloudinaryResponse.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/core/utils/cloudinary_utils.dart';
-import 'package:ieatta/src/components/photos/image.dart';
-import 'package:ieatta/core/models/auth_user_model.dart';
-import 'package:ieatta/core/providers/auth_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/core/utils/cloudinary_utils.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
-import 'package:ieatta/src/screens/edit/user/user_page.dart';
 import 'package:ieatta/src/utils/toast.dart';
-import 'package:provider/provider.dart';
 
 class CameraUploadingPanel extends StatefulWidget {
   final String imagePath;

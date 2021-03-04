@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
 
 import 'widget/info_part.dart';
@@ -39,6 +41,12 @@ class EventPageState extends State<PeopleInEventDetail> {
     ParseModelPeopleInEvent peopleInEvent =
         FilterModels.instance.getSinglePeopleInEvent(context, peopleInEventId);
 
+    Map<String, ParseModelRecipes> recipesDict =
+        FilterModels.instance.getRecipesDict(context);
+
+    List<String> unorderedRecipeIds = FilterUtils.instance
+        .getUnorderedRecipeIds(List.from(recipesDict.keys), lastPeopleInEvent);
+
     return ListView(
       shrinkWrap: true,
       children: [
@@ -46,14 +54,13 @@ class EventPageState extends State<PeopleInEventDetail> {
           height: MediaQuery.of(context).size.width / 2 + 80,
           color: Colors.transparent,
           child: InfoPart(
-            peopleInEvent: peopleInEvent,
-          ),
+              peopleInEvent: peopleInEvent,
+              unorderedRecipeIds: unorderedRecipeIds),
         ),
         // Line 1: Ordered recipes list
         // buildTextSectionTitle("Ordered Recipes"),
         RecipeBody(
-          recipesList: FilterModels.instance
-              .getRecipesList(context, peopleInEvent.restaurantId),
+          recipesDict: recipesDict,
           peopleInEvent: peopleInEvent,
         ),
       ],

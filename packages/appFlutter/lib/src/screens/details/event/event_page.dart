@@ -11,7 +11,6 @@ import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
 import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
-import 'package:provider/provider.dart';
 
 import 'widget/info_part.dart';
 import 'widget/peopleInEvent_body.dart';
@@ -83,7 +82,7 @@ class EventDetailState extends State<EventDetail> {
         Container(
           height: 160,
           child: WaiterBody(
-            photosList: FilterModels.instance
+            waitersList: FilterModels.instance
                 .getWaitersList(context, restaurant.uniqueId),
             event: event,
           ),

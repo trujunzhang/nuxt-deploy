@@ -14,7 +14,7 @@ class ParseModelPeopleInEvent {
   final String flag;
 
   // Common(1)
-  final List<String> recipes;
+  List<String> recipes;
 
   // point(3)
   String restaurantId;
@@ -95,6 +95,17 @@ class ParseModelPeopleInEvent {
       eventId: '',
       userId: '',
     );
+  }
+
+  static ParseModelPeopleInEvent addRecipe({
+    @required ParseModelPeopleInEvent model,
+    @required String recipeId,
+  }) {
+    List<String> nextRecipes = model.recipes;
+    nextRecipes.add(recipeId);
+    model.recipes = nextRecipes;
+
+    return model;
   }
 
   static ParseModelPeopleInEvent updatePeopleInEvent({

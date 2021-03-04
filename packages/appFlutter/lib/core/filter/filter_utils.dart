@@ -52,6 +52,24 @@ class FilterUtils {
     return (users != null && restaurants == null);
   }
 
+  List<String> getUnorderedRecipeIds(
+      List<String> recipeIds, ParseModelPeopleInEvent peopleInEvent) {
+    // Get the userIds from the peopleInEventsList.
+    List<String> orderedRecipeIds = peopleInEvent.recipes;
+
+    // Remove ordered userIds.
+    List<String> unorderedRecipeIds = List<String>();
+    filterOrderedUserIds(String userId) {
+      if (!orderedRecipeIds.contains(userId)) {
+        unorderedRecipeIds.add(userId);
+      }
+    }
+
+    recipeIds.forEach(filterOrderedUserIds);
+
+    return unorderedRecipeIds;
+  }
+
   List<String> getDisorderedUserIds(
       List<String> userIds, List<ParseModelPeopleInEvent> peopleInEventsList) {
     // Get the userIds from the peopleInEventsList.

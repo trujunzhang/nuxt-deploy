@@ -28,12 +28,19 @@ DateTime convertDateFromString(String strDate) {
 }
 
 String formatDateStringTest(DateTime date) {
-  String str = formatDate(date, [yyyy, '-', mm, '-', dd,' ',HH, ':', nn]);
+  String str = formatDate(date, [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn]);
   return str;
 }
 
 String formatDateString(String strDate) {
   DateTime date = convertDateFromString(strDate);
-  String str = formatDate(date, [yyyy, '-', mm, '-', dd,' ',HH, ':', nn]);
+  String str = formatDate(date, [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn]);
   return str;
+}
+
+String getNowFormat() {
+  String strDate = getDateStringForCreatedOrUpdatedDate();
+  // String formatStr = formatDateString(strDate);
+  // return convertDateFromString(formatStr);
+  return formatDateString(strDate);
 }

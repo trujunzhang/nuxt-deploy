@@ -75,5 +75,4 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
           );
         });
   }
-
 }

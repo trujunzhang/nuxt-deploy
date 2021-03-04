@@ -1,5 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'arrow_helper.dart';
 
@@ -18,7 +18,7 @@ class _TopBackArrowViewState extends State<TopBackArrowView> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 45.0,left: 12.0),
+        padding: const EdgeInsets.only(top: 45.0, left: 12.0),
         child: IconButton(
             icon: Icon(getArrowBackIcon()),
             color: widget.isBackColor ? Colors.black : Colors.white,

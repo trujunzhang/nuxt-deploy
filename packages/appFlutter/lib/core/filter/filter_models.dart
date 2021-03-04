@@ -120,6 +120,17 @@ class FilterModels {
         .singleWhere((recipe) => recipe.uniqueId == uniqueId);
   }
 
+
+  Map<String, ParseModelRecipes> getRecipesDict(BuildContext context) {
+    Map hashMap = new Map<String, ParseModelRecipes>();
+    objectToMap(ParseModelRecipes recipe) {
+      hashMap[recipe.uniqueId] = recipe;
+    }
+
+    Provider.of<List<ParseModelRecipes>>(context).forEach(objectToMap);
+    return hashMap;
+  }
+
 // ===========================================================
 // Model: Photos
 // ===========================================================

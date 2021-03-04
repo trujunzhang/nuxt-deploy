@@ -21,7 +21,8 @@ class SelectRestaurantCover extends StatefulWidget {
 }
 
 class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
-  onSelectCoverClick(RestaurantState restaurantState,ParseModelPhotos item) async {
+  onSelectCoverClick(
+      RestaurantState restaurantState, ParseModelPhotos item) async {
     restaurantState.setCoverUrl(item.originalUrl);
     ParseModelRestaurants nextRestaurant = ParseModelRestaurants.updateCover(
         model: widget.restaurant, originalUrl: item.originalUrl);
@@ -31,7 +32,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
   @override
   Widget build(BuildContext context) {
     RestaurantState restaurantState =
-    Provider.of<RestaurantState>(context, listen: false);
+        Provider.of<RestaurantState>(context, listen: false);
     List<ParseModelPhotos> photosList = FilterModels.instance
         .getPhotosInRestaurantList(context, widget.restaurant.uniqueId);
     if (photosList.length == 0) {
@@ -51,19 +52,20 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
       ),
       itemBuilder: (BuildContext context, int index) {
         ParseModelPhotos photo = photosList[index];
-        return buildGridItem(context,restaurantState, photo);
+        return buildGridItem(context, restaurantState, photo);
       },
     );
   }
 
-  showSelectCoverIcon(RestaurantState restaurantState,ParseModelPhotos item) {
+  showSelectCoverIcon(RestaurantState restaurantState, ParseModelPhotos item) {
     return item.originalUrl == restaurantState.coverUrl;
   }
 
-  Widget buildGridItem(BuildContext context, RestaurantState restaurantState,ParseModelPhotos photo) {
+  Widget buildGridItem(BuildContext context, RestaurantState restaurantState,
+      ParseModelPhotos photo) {
     var body = InkWell(
       onTap: () {
-        onSelectCoverClick(restaurantState,photo);
+        onSelectCoverClick(restaurantState, photo);
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),
@@ -76,7 +78,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
     );
     List<Widget> list = new List<Widget>();
     list.add(body);
-    if (showSelectCoverIcon(restaurantState,photo)) {
+    if (showSelectCoverIcon(restaurantState, photo)) {
       list.add(selection);
     }
     return Stack(children: list);

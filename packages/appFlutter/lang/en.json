@@ -37,6 +37,7 @@
     "eventsSelectPersonTitleTxt": "Select Person",
     "peopleInEventDeleteSuccess": "Delete successfully",
     "peopleInEventDeleteFailure": "Delete failure",
+    "peopleInEventSelectRecipeTitleTxt": "Select Recipe",
 	"reviewPageAppBarRightEditBtnTitle": "Edit",
 	"reviewsCreateEditAppBarTitleEditTxt": "Edit Review",
 	"reviewsCreateEditAppBarTitleNewTxt": "New Review",

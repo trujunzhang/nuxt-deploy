@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
+import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
 
 import 'menu_item.dart';
 
 class MenusBody extends StatelessWidget {
   final List<ParseModelRecipes> recipesList;
+  final String restaurantId;
 
-  const MenusBody({Key key, @required this.recipesList}) : super(key: key);
+  const MenusBody(
+      {Key key, @required this.recipesList, @required this.restaurantId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +42,9 @@ class MenusBody extends StatelessWidget {
         child: Center(
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).pushNamed(Routes.app_camera,
-          //     arguments: CAMERA_EVENT.TAKE_FOR_RESTAURANT);
+          Navigator.of(context).pushNamed(Routes.create_edit_recipe,
+              arguments:
+                  CreateEditRecipeScreenObject(restaurantId: restaurantId));
         },
         child: Icon(
           Icons.add_box,

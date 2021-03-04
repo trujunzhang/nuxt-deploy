@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
 
-Widget buildMenusSectionTitle(BuildContext context) {
+Widget buildMenusSectionTitle(BuildContext context, String restaurantId) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -21,8 +22,9 @@ Widget buildMenusSectionTitle(BuildContext context) {
             height: 40,
             child: InkWell(
               onTap: () {
-                // Navigator.of(context).pushNamed(Routes.online_photos_gridview,
-                //     arguments: restaurant);
+                Navigator.of(context).pushNamed(Routes.create_edit_recipe,
+                    arguments: CreateEditRecipeScreenObject(
+                        restaurantId: restaurantId));
               },
               child: Icon(
                 Icons.add,
@@ -34,7 +36,8 @@ Widget buildMenusSectionTitle(BuildContext context) {
   );
 }
 
-Widget buildPhotosSectionTitle(BuildContext context) {
+Widget buildPhotosSectionTitle(
+    BuildContext context, PhotoType photoType, String relatedId) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -52,8 +55,9 @@ Widget buildPhotosSectionTitle(BuildContext context) {
             height: 40,
             child: InkWell(
               onTap: () {
-                // Navigator.of(context).pushNamed(Routes.online_photos_gridview,
-                //     arguments: restaurant);
+                Navigator.of(context).pushNamed(Routes.app_camera,
+                    arguments: CameraScreenObject(
+                        photoType: photoType, relatedId: relatedId));
               },
               child: Icon(
                 Icons.add_a_photo,

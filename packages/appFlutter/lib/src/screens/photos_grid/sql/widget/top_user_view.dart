@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
-import 'package:ieatta/src/appModels/models/photos_sql.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/widget/top_user_view.dart';
 import 'package:provider/provider.dart';
 
@@ -10,9 +9,7 @@ class TopUserView extends StatelessWidget {
   final int totalCount;
 
   const TopUserView(
-      {Key key,
-      @required this.selectedIndex,
-      @required this.totalCount})
+      {Key key, @required this.selectedIndex, @required this.totalCount})
       : super(key: key);
 
   @override

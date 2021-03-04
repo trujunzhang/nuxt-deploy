@@ -65,19 +65,24 @@ class RestaurantDetailState extends State<RestaurantDetail> {
             eventsList:
                 FilterModels.instance.getEventsList(context, restaurantId)),
         // Line 3: Menus
-        buildMenusSectionTitle(context),
+        buildMenusSectionTitle(context, restaurantId),
         Container(
           height: 160,
           child: MenusBody(
+              restaurantId: restaurantId,
               recipesList:
                   FilterModels.instance.getRecipesList(context, restaurantId)),
         ),
         // Line 4: Photos
-        buildPhotosSectionTitle(context),
+        buildPhotosSectionTitle(context, PhotoType.Restaurant, restaurantId),
         Container(
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),
-          child: PhotosBody(photosList: photosList),
+          child: PhotosBody(
+            photosList: photosList,
+            photoType: PhotoType.Restaurant,
+            relatedId: restaurantId,
+          ),
         ),
         seeAllList(photosList.length),
         // Line 5: Reviews

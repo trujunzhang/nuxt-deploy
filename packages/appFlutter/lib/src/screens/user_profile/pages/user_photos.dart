@@ -40,8 +40,8 @@ class UserPhotosState extends State<UserPhotos> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(
-              AppLocalizations.of(context).translate("userMenuPhotosAppBarTitle")),
+          title: Text(AppLocalizations.of(context)
+              .translate("userMenuPhotosAppBarTitle")),
         ),
         body: StreamBuilder(
             stream: firestoreDatabase.userMenuStream(

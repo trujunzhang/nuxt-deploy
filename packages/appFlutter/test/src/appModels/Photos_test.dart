@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
@@ -17,6 +18,7 @@ void main() {
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag",
     "originalUrl":
         "http://res.cloudinary.com/di3fvexj8/image/upload/v1507615599/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag.jpg",
+    "url": "",
     // point(4)
     "photoType": "restaurant",
     "restaurantId": "f1c0aff9-728b-4041-9560-c09578ce7b01",
@@ -45,7 +47,7 @@ void main() {
     expect(map["createdAt"], "2017-10-10T06:06:40.578+0000");
     expect(map["updatedAt"], "2017-10-10T06:06:40.578+0000");
     expect(map["flag"], "1");
-    // Common(3)
+    // Common(2)
     expect(map["thumbnailUrl"],
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag");
     expect(map["originalUrl"],
@@ -78,7 +80,7 @@ void main() {
     expect(model.createdAt, "2017-10-10T06:06:40.578+0000");
     expect(model.updatedAt, "2017-10-10T06:06:40.578+0000");
     expect(model.flag, "1");
-    // Common(3)
+    // Common(2)
     expect(model.thumbnailUrl,
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag");
     expect(model.originalUrl,
@@ -112,7 +114,7 @@ void main() {
     expect(model.createdAt, "2017-10-10T06:06:40.578+0000");
     expect(model.updatedAt != "2017-10-10T06:06:40.578+0000", true);
     expect(model.flag, "1");
-    // Common(3)
+    // Common(2)
     expect(model.thumbnailUrl,
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag");
     expect(model.originalUrl,
@@ -147,7 +149,7 @@ void main() {
     expect(model.createdAt, "2017-10-10T06:06:40.578+0000");
     expect(model.updatedAt, "2017-10-10T06:06:40.578+0000");
     expect(model.flag, "1");
-    // Common(3)
+    // Common(2)
     expect(model.thumbnailUrl,
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag");
     expect(
@@ -173,17 +175,75 @@ void main() {
         'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530628/politicl/o_luk1is.jpg');
   });
 
+  test('Empty different photoType should correctly', () {
+    AuthUserModel authUserModel = AuthUserModel.mockedUser();
+
+    // ===========================================================
+    // Review: <For restaurant>
+    // ===========================================================
+    ParseModelPhotos model = ParseModelPhotos.emptyPhoto(
+        filePath: '',
+        authUserModel: authUserModel,
+        photoType: PhotoType.Restaurant,
+        relatedId: 'restaurantId');
+    // point(4)
+    expect(model.photoType, "restaurant");
+    expect(model.restaurantId, 'restaurantId');
+    expect(model.recipeId, "");
+    expect(model.userId, "");
+
+    // ===========================================================
+    // Review: <For recipe>
+    // ===========================================================
+    model = ParseModelPhotos.emptyPhoto(
+        filePath: '',
+        authUserModel: authUserModel,
+        photoType: PhotoType.Recipe,
+        relatedId: 'recipeId');
+    // point(4)
+    expect(model.photoType, "recipe");
+    expect(model.restaurantId, '');
+    expect(model.recipeId, "recipeId");
+    expect(model.userId, "");
+
+    // ===========================================================
+    // Review: <For user>
+    // ===========================================================
+    model = ParseModelPhotos.emptyPhoto(
+        filePath: '',
+        authUserModel: authUserModel,
+        photoType: PhotoType.User,
+        relatedId: 'userId');
+    // point(4)
+    expect(model.photoType, "user");
+    expect(model.restaurantId, '');
+    expect(model.recipeId, "");
+    expect(model.userId, "userId");
+
+    // ===========================================================
+    // Review: <For waiter>
+    // ===========================================================
+    model = ParseModelPhotos.emptyPhoto(
+        filePath: '',
+        authUserModel: authUserModel,
+        photoType: PhotoType.Waiter,
+        relatedId: 'restaurantId');
+    // point(4)
+    expect(model.photoType, "waiter");
+    expect(model.restaurantId, 'restaurantId');
+    expect(model.recipeId, "");
+    expect(model.userId, "");
+  });
+
   test('Empty photo should correctly', () {
     AuthUserModel authUserModel = AuthUserModel.mockedUser();
     String filePath = 'localFile';
-    LocationData locationData = LocationData.fromMap({
-      "latitude": -118.247636,
-      "longitude": 34.051178,
-    });
     ParseModelPhotos model = ParseModelPhotos.emptyPhoto(
-        authUserModel: authUserModel,
-        filePath: filePath,
-        locationData: locationData);
+      authUserModel: authUserModel,
+      photoType: PhotoType.Restaurant,
+      relatedId: 'restaurantId',
+      filePath: filePath,
+    );
 
     // Base(5)
     expect(model.uniqueId.length > 0, true);
@@ -191,13 +251,18 @@ void main() {
     expect(model.createdAt != "", true);
     expect(model.updatedAt != '', true);
     expect(model.flag, '1');
-    // Common(3)
+    // Common(2)
     expect(model.thumbnailUrl, '');
     expect(model.originalUrl, '');
+    // point(4)
+    expect(model.photoType, "restaurant");
+    expect(model.restaurantId, "restaurantId");
+    expect(model.recipeId, "");
+    expect(model.userId, "");
     // Location(3)
-    expect(model.geoHash, 'ufbpqcem9fyx'.substring(0, numberOfCharsForPhoto));
-    expect(model.latitude, -118.247636);
-    expect(model.longitude, 34.051178);
+    expect(model.geoHash, '');
+    expect(model.latitude, 0);
+    expect(model.longitude, 0);
     // offline(1)
     expect(model.offlinePath, filePath); // updated
     // extra(1)

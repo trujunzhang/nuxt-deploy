@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/profile_avatar.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewItem extends StatelessWidget {
   final ParseModelReviews reviewData;
@@ -62,8 +62,7 @@ class ReviewItem extends StatelessWidget {
                       Icons.star,
                       color: HotelAppTheme.buildLightTheme().primaryColor,
                     ),
-                onRatingUpdate: (rating) {
-                }),
+                onRatingUpdate: (rating) {}),
             SizedBox(height: 8),
             Text(
               reviewData.body,

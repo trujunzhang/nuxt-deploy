@@ -37,6 +37,7 @@
     "eventsSelectPersonTitleTxt": "Select Person",
     "peopleInEventDeleteSuccess": "Delete successfully",
     "peopleInEventDeleteFailure": "Delete failure",
+    "peopleInEventSelectRecipeTitleTxt": "Select Recipe",
 	"reviewPageAppBarRightEditBtnTitle": "编辑",
 	"reviewsCreateEditAppBarTitleEditTxt": "编辑评论",
 	"reviewsCreateEditAppBarTitleNewTxt": "新评论",

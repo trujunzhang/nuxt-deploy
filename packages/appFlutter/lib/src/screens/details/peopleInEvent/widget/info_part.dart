@@ -8,11 +8,17 @@ import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
 import 'package:ieatta/src/components/users/image.dart';
+import 'package:ieatta/src/screens/details/peopleInEvent/select_recipe/select_recipe_screen.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEvent;
+  final List<String> unorderedRecipeIds;
 
-  const InfoPart({Key key, @required this.peopleInEvent}) : super(key: key);
+  const InfoPart(
+      {Key key,
+      @required this.peopleInEvent,
+      @required this.unorderedRecipeIds})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +72,51 @@ class InfoPart extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [_buildUserInfo(context, user)],
-        )
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [_buildButton(context)],
+        ),
       ],
     );
   }
 
+  Widget _buildButton(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.only(right: 14, bottom: 12),
+        // color: Colors.red,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            OutlinedButton.icon(
+              label: Text('Add People Ordered'),
+              icon: Icon(Icons.add, color: Colors.red),
+              style: OutlinedButton.styleFrom(
+                primary: Colors.black,
+                backgroundColor: Colors.white,
+                onSurface: Colors.grey,
+              ),
+              onPressed: () {
+                Navigator.push<dynamic>(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (BuildContext context) => SelectRecipeScreen(),
+                      settings: RouteSettings(
+                        arguments: SelectRecipeScreenObject(
+                            peopleInEvent: peopleInEvent,
+                            unorderedRecipeIds: unorderedRecipeIds),
+                      ),
+                      fullscreenDialog: true),
+                );
+              },
+            )
+          ],
+        ));
+  }
+
   Widget buildInfo(ParseModelRestaurants restaurant, ParseModelEvents event) {
     return Padding(
-        padding: EdgeInsets.only(left: 100, right: 40, bottom: 35),
+        padding: EdgeInsets.only(left: 100, right: 40, bottom: 45),
         child: Container(
           // color: Colors.red,
           child: Column(

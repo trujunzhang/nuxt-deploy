@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
@@ -10,7 +11,6 @@ import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;

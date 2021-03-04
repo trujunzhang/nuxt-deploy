@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/camera/widgets/switch_icon.dart';
 import 'package:ieatta/camera/screens/camera_screen/widget/thumbnail_widget.dart';
+import 'package:ieatta/camera/widgets/switch_icon.dart';
 
 import 'camera_button.dart';
 
 class CameraOptions extends StatefulWidget {
-  CameraOptions({Key key,
-    @required this.takePicture,
-    @required this.imagePath,
-    @required this.switchCamera,
-    @required this.afterTakeHook})
+  CameraOptions(
+      {Key key,
+      @required this.takePicture,
+      @required this.imagePath,
+      @required this.switchCamera,
+      @required this.afterTakeHook})
       : super(key: key);
 
   final Function takePicture;

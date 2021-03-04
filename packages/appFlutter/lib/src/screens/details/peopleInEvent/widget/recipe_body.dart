@@ -5,25 +5,17 @@ import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'recipe_item.dart';
 
 class RecipeBody extends StatelessWidget {
-  final List<ParseModelRecipes> recipesList;
+  final Map<String, ParseModelRecipes> recipesDict;
   final ParseModelPeopleInEvent peopleInEvent;
 
   const RecipeBody(
-      {Key key, @required this.recipesList, @required this.peopleInEvent})
+      {Key key, @required this.recipesDict, @required this.peopleInEvent})
       : super(key: key);
-
-  ParseModelRecipes filterRecipe(String recipeId) {
-    for (ParseModelRecipes e in recipesList) {
-      if (e.uniqueId == recipeId) {
-        return e;
-      }
-    }
-  }
 
   Widget buildRecipesListView() {
     List<Widget> list = new List<Widget>();
     for (var i = 0; i < peopleInEvent.recipes.length; i++) {
-      ParseModelRecipes recipe = filterRecipe(peopleInEvent.recipes[i]);
+      ParseModelRecipes recipe = recipesDict[peopleInEvent.recipes[i]];
       list.add(RecipeItem(
         recipeData: recipe,
       ));
@@ -38,7 +30,7 @@ class RecipeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (recipesList.length == 0) {
+    if (peopleInEvent.recipes.length == 0) {
       return Container(
         height: 60,
         decoration: new BoxDecoration(color: Colors.white),

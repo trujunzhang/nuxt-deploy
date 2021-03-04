@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 import 'package:ieatta/src/config/palette.dart';
 
 import 'users/image.dart';

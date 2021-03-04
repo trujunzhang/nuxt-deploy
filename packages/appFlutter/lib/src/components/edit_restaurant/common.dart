@@ -25,22 +25,24 @@ Widget buildCoverImage(String restaurantCoverUrl) {
     height: 200,
     child: img,
   );
-  return Padding(padding: EdgeInsets.only(
-     left: 12,
-      bottom: 12),child: container,);
+  return Padding(
+    padding: EdgeInsets.only(left: 12, bottom: 12),
+    child: container,
+  );
 }
 
 Widget buildCoverSectionTitle() {
   return Padding(
-    padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 24, bottom: 10.0),
+    padding:
+        const EdgeInsets.only(left: 8.0, right: 8.0, top: 24, bottom: 10.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           "Select Cover",
           style: TextStyle(
-              fontSize: 22.0,
-              // color: Colors.black,
+            fontSize: 22.0,
+            // color: Colors.black,
           ),
         ),
       ],

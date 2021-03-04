@@ -56,11 +56,15 @@ class _RecipeDetailState extends State<RecipeDetail> {
           recipe: recipe,
         ),
         // Line 1: Photos
-        buildPhotosSectionTitle(context),
+        buildPhotosSectionTitle(context, PhotoType.Recipe, recipeId),
         Container(
           height: 160,
           // decoration: new BoxDecoration(color: Colors.white),
-          child: PhotosBody(photosList: photosList),
+          child: PhotosBody(
+            photosList: photosList,
+            photoType: PhotoType.Recipe,
+            relatedId: recipeId,
+          ),
         ),
         seeAllList(photosList.length),
         // Line 3: Reviews

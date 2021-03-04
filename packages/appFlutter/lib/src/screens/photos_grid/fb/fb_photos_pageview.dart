@@ -115,7 +115,7 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TopBaseUserView(
-          onEditPress:(){
+          onEditPress: () {
             Navigator.of(context)
                 .pushNamed(Routes.edit_photo, arguments: photo);
           },

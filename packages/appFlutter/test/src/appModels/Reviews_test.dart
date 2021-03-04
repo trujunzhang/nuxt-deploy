@@ -71,7 +71,7 @@ void main() {
     expect(model.recipeId, "");
   });
 
-  test('Empty different review should correctly', () {
+  test('Empty different reviewType should correctly', () {
     AuthUserModel authUserModel = AuthUserModel.mockedUser();
 
     // ===========================================================

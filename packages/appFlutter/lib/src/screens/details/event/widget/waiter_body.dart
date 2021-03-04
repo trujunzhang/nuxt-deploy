@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 
 import 'waiter_item.dart';
 
 class WaiterBody extends StatelessWidget {
-  final List<ParseModelPhotos> photosList;
+  final List<ParseModelPhotos> waitersList;
   final ParseModelEvents event;
 
-  const WaiterBody({Key key, @required this.photosList, @required this.event})
+  const WaiterBody({Key key, @required this.waitersList, @required this.event})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (photosList.length == 0) {
+    if (waitersList.length == 0) {
       return buildEmptyPhotos(context);
     }
-    return buildPhotosListView();
+    return buildwaitersListView();
   }
 
   ParseModelPhotos filterWaiter(String waiterId) {
-    for (ParseModelPhotos e in photosList) {
+    for (ParseModelPhotos e in waitersList) {
       if (e.uniqueId == waiterId) {
         return e;
       }
     }
   }
 
-  Widget buildPhotosListView() {
+  Widget buildwaitersListView() {
     return ListView.builder(
       itemCount: event.waiters.length,
       scrollDirection: Axis.horizontal,
@@ -47,7 +48,8 @@ class WaiterBody extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).pushNamed(Routes.app_camera,
-              arguments: CAMERA_EVENT.TAKE_FOR_RESTAURANT);
+              arguments: CameraScreenObject(
+                  photoType: PhotoType.Waiter, relatedId: event.restaurantId));
         },
         child: Icon(
           Icons.add_a_photo,

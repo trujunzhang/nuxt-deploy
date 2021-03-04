@@ -33,6 +33,8 @@ enum PhotoType {
   Restaurant,
   Recipe,
   Waiter,
+  // Special for user.
+  User,
 }
 
 photoTypeToString(PhotoType path) {
@@ -43,6 +45,8 @@ photoTypeToString(PhotoType path) {
       return "recipe";
     case PhotoType.Waiter:
       return "waiter";
+    case PhotoType.User:
+      return "user";
     default:
       return "none";
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/camera/screens/camera_screen/camera_screen.dart';
-import 'package:ieatta/camera/screens/create_photo_screen.dart';
-import 'package:ieatta/camera/screens/edit_photo_screen.dart';
+import 'package:ieatta/camera/screens/edit/create_photo_provider_screen.dart';
+import 'package:ieatta/camera/screens/edit/edit_photo_provider_screen.dart';
 import 'package:ieatta/core/ui/auth/register_screen.dart';
 import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
@@ -104,8 +104,8 @@ class Routes {
     // Camera
     app_camera: (context) => CameraScreen(),
     // Photos
-    create_photo: (context) => CreatePhotoScreen(),
-    edit_photo: (context) => EditPhotoScreen(),
+    create_photo: (context) => CreatePhotoProviderScreen(),
+    edit_photo: (context) => EditPhotoProviderScreen(),
     local_photos_gridview: (context) => SqlPhotosGridView(),
     local_photos_pageview: (context) => SqlPhotosPageView(),
     online_photos_gridview: (context) => FBPhotosGridView(),

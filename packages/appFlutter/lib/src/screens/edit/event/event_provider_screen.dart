@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/providers/event_state.dart';
 import 'package:provider/provider.dart';
@@ -44,8 +45,8 @@ class _CreateEditEventProviderScreenState
               restaurantId: screenObject.restaurantId,
               displayName: event != null ? event.displayName : "",
               want: event != null ? event.want : "",
-              startDate: event != null ? event.start : "",
-              endDate: event != null ? event.end : "",
+              startDate: event != null ? event.start : getNowFormat(),
+              endDate: event != null ? event.end : getNowFormat(),
             ),
         child: EventPage(event: event));
   }

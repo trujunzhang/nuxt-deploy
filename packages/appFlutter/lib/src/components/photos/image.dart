@@ -1,7 +1,8 @@
+import 'dart:io' as io;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'dart:io' as io;
 
 Widget _buildPlaceholderForPhoto() {
   return Image.asset(

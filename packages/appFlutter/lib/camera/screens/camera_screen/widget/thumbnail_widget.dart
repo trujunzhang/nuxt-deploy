@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:ieatta/app/routes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -8,12 +8,12 @@ class ThumbnailWidget extends StatefulWidget {
   final String imagePath;
   final Function afterTakeHook;
 
-  const ThumbnailWidget({Key key,
+  const ThumbnailWidget({
+    Key key,
     @required this.imagePath,
     @required this.afterTakeHook,
     this.size = 32.0,
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ThumbnailWidgetState();
@@ -32,8 +32,7 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
     if (image == null) {
       return;
     }
-    widget.afterTakeHook(image.path, (val) {
-    });
+    widget.afterTakeHook(image.path, (val) {});
   }
 
   @override
