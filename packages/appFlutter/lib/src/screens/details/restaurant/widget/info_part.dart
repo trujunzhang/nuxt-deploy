@@ -64,6 +64,8 @@ class InfoPart extends StatelessWidget {
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
+            unratedColor:
+                HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
             itemCount: 5,
             itemSize: 20,
             itemPadding: EdgeInsets.symmetric(horizontal: 2.0),

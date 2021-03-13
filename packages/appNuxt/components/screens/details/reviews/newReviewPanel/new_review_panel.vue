@@ -167,9 +167,13 @@
             name=""
             rel=""
             role="link"
-          ><span
-            class=" war-link__373c0__6wz9H raw__373c0__3rcx7"
-          >Start your review of <strong>The Ramen Bar San Francisco</strong>.</span></a>
+          >
+            <span
+              class=" war-link__373c0__6wz9H raw__373c0__3rcx7"
+            >Start your review of <strong>
+              {{ relatedModel.displayName }}
+            </strong>.</span>
+          </a>
         </div>
       </div>
     </div>

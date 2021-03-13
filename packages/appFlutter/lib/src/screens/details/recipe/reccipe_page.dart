@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
@@ -7,7 +8,9 @@ import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
 import 'package:ieatta/src/components/app/page_section_title.dart';
 import 'package:ieatta/src/components/restaurant_detail/common.dart';
+import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_grid_view.dart';
 import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
+import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 
 import '../photos_body.dart';
 import 'widget/info_part.dart';
@@ -66,13 +69,23 @@ class _RecipeDetailState extends State<RecipeDetail> {
             relatedId: recipeId,
           ),
         ),
-        seeAllList(photosList.length),
+        seeAllList(photosList.length,(){
+          Navigator.of(context).pushNamed(Routes.online_photos_gridview,
+              arguments: FBPhotosGridViewObject(
+                  photoType: PhotoType.Recipe,
+                  relatedId: recipe.uniqueId));
+        }),
         // Line 3: Reviews
         buildTextSectionTitle("Review Highlights"),
         Container(
             decoration: new BoxDecoration(color: Colors.white),
             child: ReviewsBody(reviewsList: reviewsList)),
-        seeAllList(reviewsList.length),
+        seeAllList(reviewsList.length,(){
+          Navigator.of(context).pushNamed(Routes.reviews_list,
+              arguments: ReviewsListObject(
+                  reviewType: ReviewType.Recipe,
+                  relatedId: recipe.uniqueId));
+        }),
       ],
     );
   }

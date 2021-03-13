@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import { IFBRestaurant, IFBPhoto } from 'ieattatypes'
+// import { IFBRestaurant, IFBPhoto } from 'ieattatypes'
 import { getAddress } from './google_geocoding'
 import { db, admin } from "./util/admin";
 import { ParseModelPhotos } from "./appModels/Photos";
@@ -26,11 +26,11 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
 exports.onRestaurantCreated = functions.firestore.document('restaurants/{restauranId}')
     .onCreate((snapshot, context) => {
         // Grab the current value of what was written to the Realtime Database.
-        const newRestaruant = snapshot.data() as IFBRestaurant;
-        console.log('onRestaurantCreated: (newRestaruant)', JSON.stringify(newRestaruant))
-        const { latitude, longitude } = newRestaruant
-        getAddress(latitude, longitude);
-        debugger
+        // const newRestaruant = snapshot.data() as IFBRestaurant;
+        // console.log('onRestaurantCreated: (newRestaruant)', JSON.stringify(newRestaruant))
+        // const { latitude, longitude } = newRestaruant
+        // getAddress(latitude, longitude);
+        // debugger
         // console.log('restaurants:onCreate, original=', original);
         // console.log('Uppercasing', context.params.pushId, original);
         // const uppercase = original.toUpperCase();
@@ -43,18 +43,18 @@ exports.onRestaurantUpdated = functions.firestore.document('restaurants/{restaur
         // Grab the current value of what was written to the Realtime Database.
         const newValue = change.after;
 
-        const nextModel: IFBRestaurant = newValue.data() as IFBRestaurant;
+        // const nextModel: IFBRestaurant = newValue.data() as IFBRestaurant;
 
-        const isNew = nextModel.isNew;
-        const latitude = nextModel.latitude;
-        const longitude = nextModel.longitude;
+        // const isNew = nextModel.isNew;
+        // const latitude = nextModel.latitude;
+        // const longitude = nextModel.longitude;
 
 
         // console.log('restaurants:onUpdat[[[newValue]]]=', JSON.stringify(newValue));
         // console.log('restaurants:onUpdat[[[newValue]]]=', JSON.stringify(nextModel));
         // console.log('restaurants:onUpdat[[[newValue]]]=', JSON.stringify(nextModel.address));
         // console.log('restaurants:latitude, [[[newValue]]]=', JSON.stringify(latitude));
-        getAddress(latitude, longitude);
+        // getAddress(latitude, longitude);
 
         // const objectID = context.params.restauranId;
         // console.log('restaurants:onUpdate, [[[objectID]]]', objectID);
@@ -64,14 +64,14 @@ exports.onRestaurantUpdated = functions.firestore.document('restaurants/{restaur
 exports.onPhotoCreated = functions.firestore.document('photos/{photoId}')
     .onCreate(async (snapshot, context) => {
         // Grab the current value of what was written to the Realtime Database.
-        const photo: IFBPhoto = snapshot.data() as IFBPhoto;
-        console.log('photos:onCreate, [[[lastValue]]]=', JSON.stringify(photo));
+        // const photo: IFBPhoto = snapshot.data() as IFBPhoto;
+        // console.log('photos:onCreate, [[[lastValue]]]=', JSON.stringify(photo));
 
-        const photoRef = db.doc(`photos/${context.params.photoId}`);
-        const photoSnap = await photoRef.get();
-        const photoData: IFBPhoto = photoSnap.data() as IFBPhoto;
+        // const photoRef = db.doc(`photos/${context.params.photoId}`);
+        // const photoSnap = await photoRef.get();
+        // const photoData: IFBPhoto = photoSnap.data() as IFBPhoto;
 
-        return photoRef.update(
-            ParseModelPhotos.updateStatus(photoData)
-        );
+        // return photoRef.update(
+        //     ParseModelPhotos.updateStatus(photoData)
+        // );
     });

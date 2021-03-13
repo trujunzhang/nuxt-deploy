@@ -8,9 +8,10 @@ import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/providers/review_state.dart';
+import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewPage extends StatefulWidget {
   final ParseModelReviews review;
@@ -61,9 +62,6 @@ class _ReviewPageState extends State<ReviewPage> {
                           AuthUserModel authUserModel =
                               await authProvider.getAuthUserModel();
 
-                          double lastReviewRate = (widget.review == null
-                              ? 0.0
-                              : widget.review.rate);
                           ParseModelReviews lastModel = widget.review != null
                               ? widget.review
                               : ParseModelReviews.emptyReview(
@@ -77,8 +75,6 @@ class _ReviewPageState extends State<ReviewPage> {
                                   nextRate: reviewState.getRate(),
                                   nextExtraNote: reviewState.getBody());
 
-                          ReviewReturnModel returnModel = ReviewReturnModel(
-                              reviewState.getRate(), reviewState.getBody());
                           try {
                             final firestoreDatabase =
                                 Provider.of<FirestoreDatabase>(context,
@@ -86,10 +82,11 @@ class _ReviewPageState extends State<ReviewPage> {
                             await firestoreDatabase.setReview(
                                 model: nextModel); // For Restaurant.
                             await ReviewHelper(
-                                    lastReviewRate: lastReviewRate,
+                                    lastReviewRate: reviewState.getLastRate(),
                                     selectedStar: reviewState.getRate(),
                                     isNew: widget.review == null)
-                                .onSaveReviewAfterHook(
+                                .onSaveOrRemoveReviewAfterHook(
+                                    reviewHookType: ReviewHookType.Add,
                                     reviewType: reviewState.getReviewType(),
                                     relatedId: reviewState.getRelatedId());
                           } catch (e) {
@@ -122,17 +119,23 @@ class _ReviewPageState extends State<ReviewPage> {
 
   Widget _buildRatePanel(BuildContext context) {
     ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
-    return SmoothStarRating(
+    return RatingBar.builder(
+        initialRating: reviewState.getRate(),
+        minRating: 1,
+        direction: Axis.horizontal,
         allowHalfRating: false,
-        onRated: (double v) {
-          reviewState.setRate(v);
-        },
-        starCount: 5,
-        rating: reviewState.getRate(),
-        size: 40.0,
-        color: Colors.green,
-        borderColor: Colors.green,
-        spacing: 0.0);
+        unratedColor:
+            HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
+        itemCount: 5,
+        itemSize: 40,
+        itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+        itemBuilder: (context, index) => Icon(
+              Icons.star,
+              color: HotelAppTheme.buildLightTheme().primaryColor,
+            ),
+        onRatingUpdate: (rating) {
+          reviewState.setRate(rating);
+        });
   }
 
   Widget _buildShortcuts() {

@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant } from 'ieattatypes'
+import { IFBRestaurant } from 'ieattatypes/types'
 import { namespace } from 'vuex-class'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
 import ReviewsList from '~/components/screens/details/reviews/reviewList/review_list.vue'
@@ -8,7 +8,8 @@ import RestaurantActions from '~/components/screens/details/restaurant/actions/a
 import RestaurantEvents from '~/components/screens/details/restaurant/events/event.vue'
 import RestaurantMenus from '~/components/screens/details/restaurant/menus/menus.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
-import { FBCollections } from '~/database/constant'
+import { FBCollections, ReviewType } from '~/database/constant'
+
 const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
@@ -21,12 +22,23 @@ const ieattaConfigure = namespace('ieattaConfigure')
     ReviewsList
   }
 })
-export default class DetailPage extends Vue {
+export default class RestaurantDetailPage extends Vue {
   public restaurant: IFBRestaurant | null = null
   private isLoading = false
 
   @ieattaConfigure.Mutation
   public SET_SHOW_404!: (payload: boolean) => void
+
+  getReviewType () {
+    return ReviewType.Restaurant
+  }
+
+  getRelatedId () {
+    if (this.restaurant === null) {
+      return ''
+    }
+    return this.restaurant.uniqueId
+  }
 
   async _fetchPage () {
     if (this.isLoading) {

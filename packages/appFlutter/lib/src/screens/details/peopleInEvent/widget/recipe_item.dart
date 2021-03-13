@@ -1,20 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/rate_utils.dart';
+import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
+import 'package:ieatta/src/utils/toast.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
 
 class RecipeItem extends StatelessWidget {
+  final ParseModelPeopleInEvent peopleInEvent;
   final ParseModelRecipes recipeData;
 
-  const RecipeItem({Key key, @required this.recipeData}) : super(key: key);
-
+  const RecipeItem({Key key,
+    @required this.peopleInEvent,
+    @required this.recipeData,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    return Slidable(
+      key: Key(recipeData.uniqueId),
+      direction: Axis.horizontal,
+      actionPane: SlidableBehindActionPane(),
+      actionExtentRatio: 0.25,
+      child: _buildBody(context),
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Delete',
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () async {
+            ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.removeRecipe(
+              model: peopleInEvent,
+              recipeId: recipeData.uniqueId,
+            );
+
+            try {
+              final firestoreDatabase =
+              Provider.of<FirestoreDatabase>(context, listen: false);
+              await firestoreDatabase.setPeopleInEvent(
+                  model: nextModel); // For Restaurant.
+            } catch (e) {}
+            ToastUtils.showToast(AppLocalizations.of(context)
+                .translate("ModelItemsDeleteSuccess"));
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context)
@@ -22,7 +63,7 @@ class RecipeItem extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
-        child: _buildBody(context),
+        child: _buildCard(context),
       ),
     );
   }
@@ -68,7 +109,7 @@ class RecipeItem extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context) {
+  Widget _buildCard(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(
         Radius.circular(10.0),

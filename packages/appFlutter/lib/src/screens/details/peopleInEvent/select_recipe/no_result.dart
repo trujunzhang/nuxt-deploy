@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 
 class RecipesEmpty extends StatefulWidget {
-  RecipesEmpty({Key key}) : super(key: key);
+  final String restaurantId;
+  RecipesEmpty({Key key,@required this.restaurantId}) : super(key: key);
 
   @override
   _RecipesEmptyState createState() => _RecipesEmptyState();
@@ -31,7 +33,9 @@ class _RecipesEmptyState extends State<RecipesEmpty> {
             Radius.circular(32.0),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.create_edit_restaurant);
+            Navigator.of(context).pushNamed(Routes.create_edit_recipe,
+                arguments:
+                CreateEditRecipeScreenObject(restaurantId: widget.restaurantId));
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -54,7 +58,7 @@ class _RecipesEmptyState extends State<RecipesEmpty> {
         ),
         Container(
           margin: const EdgeInsets.only(bottom: 12),
-          child: Text('No Recipe'),
+          child: Text('No Unordered Recipes'),
         ),
         buildBtn()
       ],

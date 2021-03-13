@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 class RecipeState with ChangeNotifier {
   String displayName;
   String price;
+  String coverUrl;
   final String restaurantId;
 
-  RecipeState({
-  this.restaurantId,
-  this.displayName, this.price});
+  RecipeState({this.restaurantId, this.displayName, this.price, this.coverUrl});
 
   String getDisplayName() {
     return displayName;
@@ -15,6 +14,10 @@ class RecipeState with ChangeNotifier {
 
   String getPrice() {
     return price;
+  }
+
+  String getCoverUrl() {
+    return coverUrl;
   }
 
   void setDisplayName(String _displayName) {
@@ -27,4 +30,8 @@ class RecipeState with ChangeNotifier {
     notifyListeners();
   }
 
+  void setCoverUrl(String _coverUrl) {
+    coverUrl = _coverUrl;
+    notifyListeners();
+  }
 }

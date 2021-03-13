@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
 import 'package:provider/provider.dart';
 
+import 'no_result.dart';
+
 class SelectRecipeScreenObject {
   final ParseModelPeopleInEvent peopleInEvent;
-  final List<String> unorderedRecipeIds;
 
   SelectRecipeScreenObject({
     @required this.peopleInEvent,
-    @required this.unorderedRecipeIds,
   });
 }
 
@@ -40,33 +41,44 @@ class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, ParseModelRecipes> recipesDict =
-        FilterModels.instance.getRecipesDict(context);
-    List<String> recipeIds = List.from(recipesDict.keys);
-    List<String> unorderedRecipeIds = screenObject.unorderedRecipeIds;
-
     return Scaffold(
         appBar: AppBar(
             title: Text(AppLocalizations.of(context)
                 .translate("peopleInEventSelectRecipeTitleTxt"))),
-        body: Container(
-            padding: EdgeInsets.only(top: 16),
-            child: ListView.separated(
-              itemCount: unorderedRecipeIds.length,
-              separatorBuilder: (BuildContext context, int index) => Divider(),
-              itemBuilder: (BuildContext context, int index) {
-                return _buildUserItem(context, recipesDict[recipeIds[index]]);
-              },
-            )));
+        body: _buildBody(context));
+  }
+
+  Widget _buildBody(BuildContext context) {
+    Map<String, ParseModelRecipes> recipesDict = FilterModels.instance
+        .getRecipesDict(context, screenObject.peopleInEvent.restaurantId);
+    List<String> recipeIds = List.from(recipesDict.keys);
+
+    List<String> unorderedRecipeIds = FilterUtils.instance
+        .getUnorderedRecipeIds(recipeIds, screenObject.peopleInEvent);
+
+    if (unorderedRecipeIds.length == 0) {
+      return RecipesEmpty(
+        restaurantId: screenObject.peopleInEvent.restaurantId,
+      );
+    }
+
+    return Container(
+        padding: EdgeInsets.only(top: 16),
+        child: ListView.separated(
+          itemCount: unorderedRecipeIds.length,
+          separatorBuilder: (BuildContext context, int index) => Divider(),
+          itemBuilder: (BuildContext context, int index) {
+            return _buildUserItem(context, recipesDict[recipeIds[index]]);
+          },
+        ));
   }
 
   Widget _buildUserItem(BuildContext context, ParseModelRecipes recipe) {
     return ListTile(
       onTap: () async {
-        ParseModelPeopleInEvent lastModel = screenObject.peopleInEvent;
 
         ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.addRecipe(
-          model: lastModel,
+          model: screenObject.peopleInEvent,
           recipeId: recipe.uniqueId,
         );
 

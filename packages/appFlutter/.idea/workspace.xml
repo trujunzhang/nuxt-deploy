@@ -11,11 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/utils/timeago_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/utils/timeago_utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/restaurant/widget/event_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/restaurant/widget/event_item.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/edit/event/event_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/edit/event/event_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/edit/event/event_provider_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/edit/event/event_provider_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/appFlutter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/appFlutter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/event/widget/waiter_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/event/widget/waiter_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appNuxt/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,6 +331,26 @@
       <workItem from="1614852607669" duration="466000" />
       <workItem from="1614853590694" duration="666000" />
       <workItem from="1614855044977" duration="607000" />
+      <workItem from="1614856448813" duration="1235000" />
+      <workItem from="1614862575832" duration="1360000" />
+      <workItem from="1614864515112" duration="453000" />
+      <workItem from="1614865713830" duration="465000" />
+      <workItem from="1614867415684" duration="478000" />
+      <workItem from="1614868554583" duration="633000" />
+      <workItem from="1614869618263" duration="189000" />
+      <workItem from="1614870184462" duration="91000" />
+      <workItem from="1614908216998" duration="331000" />
+      <workItem from="1614916279166" duration="1388000" />
+      <workItem from="1614936702834" duration="302000" />
+      <workItem from="1614943336570" duration="633000" />
+      <workItem from="1614946861643" duration="86000" />
+      <workItem from="1614947018300" duration="1308000" />
+      <workItem from="1614948820953" duration="505000" />
+      <workItem from="1614950250718" duration="1318000" />
+      <workItem from="1614953113659" duration="141000" />
+      <workItem from="1615001430096" duration="889000" />
+      <workItem from="1615554548526" duration="60000" />
+      <workItem from="1615555624676" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>

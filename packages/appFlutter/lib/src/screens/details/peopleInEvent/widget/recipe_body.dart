@@ -17,6 +17,7 @@ class RecipeBody extends StatelessWidget {
     for (var i = 0; i < peopleInEvent.recipes.length; i++) {
       ParseModelRecipes recipe = recipesDict[peopleInEvent.recipes[i]];
       list.add(RecipeItem(
+        peopleInEvent: peopleInEvent,
         recipeData: recipe,
       ));
       if (i < peopleInEvent.recipes.length - 1) {
@@ -32,7 +33,7 @@ class RecipeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     if (peopleInEvent.recipes.length == 0) {
       return Container(
-        height: 60,
+        height: 160,
         decoration: new BoxDecoration(color: Colors.white),
         child: Center(
           child: Text('no recipes'),

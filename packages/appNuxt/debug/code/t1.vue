@@ -1,120 +1,147 @@
 <template>
-
-  <!--   Line22   (menu) -->
-  <section class="lemon--section__373c0__fNwDM margin-t4__373c0__1TRkQ padding-t4__373c0__3hVZ3 border-color--default__373c0__3-ifU">
+  <div
+    class="lemon--div__373c0__1mboc search-suggest-arrange-unit__373c0__3SJDR arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
+  >
     <div
-      class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-auto__373c0__1Ep_j vertical-align-middle__373c0__1SDTo margin-b3__373c0__q1DuY border-color--default__373c0__3-ifU"
+      class="lemon--div__373c0__1mboc search-suggest-container-outer__373c0__1JORv border-color--default__373c0__3-ifU"
     >
-      <div class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU">
-        <h4
-          class="lemon--h4__373c0__1yd__ heading--h4__373c0__27bDo heading--inline__373c0__10ozy"
+      <div
+        class="lemon--div__373c0__1mboc search-suggest-container-inner__373c0__2ddQW border-color--default__373c0__3-ifU"
+      >
+        <div
+          class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-2__373c0__1DiLQ border-color--default__373c0__3-ifU"
         >
-          On the Menu
-        </h4>
-      </div>
-    </div>
-    <h5 class="lemon--h5__373c0__3evKh heading--h5__373c0__1WgmC">Popular Dishes</h5>
-    <div class="lemon--div__373c0__1mboc margin-t2__373c0__1CFWK border-color--default__373c0__3-ifU">
-      <div class="lemon--div__373c0__1mboc outerContainer__373c0__2M9_G border-color--default__373c0__3-ifU">
-        <div class="lemon--div__373c0__1mboc innerContainer__373c0__rp6qn border-color--default__373c0__3-ifU">
-          <div class="lemon--div__373c0__1mboc scrollContainer__373c0__3nnaG border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-            <!--  recipe items  -->
-            <div
-              v-for="(item) in items"
-              :key="item.uniqueId"
-              class="lemon--div__373c0__1mboc display--inline-block__373c0__1ZKqC margin-r2__373c0__1MwD- border-color--default__373c0__3-ifU"
-              style="white-space: normal; vertical-align: top;"
-            >
-              <div class="lemon--div__373c0__1mboc dishWrapper__373c0__2DGAl border-color--default__373c0__3-ifU">
-                <div class="lemon--div__373c0__1mboc dish__373c0__SkM-8 border-color--default__373c0__3-ifU">
-                  <a
-                    class="lemon--a__373c0__IEZFH link__373c0__1G70M link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-                    href="javascript:;"
-                    target=""
-                    name=""
-                    rel=""
-                    role="link"
+          <div
+            class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
+          >
+            <div class="lemon--div__373c0__1mboc search-suggest__373c0__31JJZ">
+              <div class="lemon--div__373c0__1mboc">
+                <div
+                  id="header_find_form"
+                  class="lemon--form__373c0__2fChY find-near-form__373c0__QkXpc"
+                >
+                  <div
+                    class="lemon--div__373c0__1mboc undefined arrange__373c0__2C9bH border-color--default__373c0__3-ifU"
                   >
-                    <div class="lemon--div__373c0__1mboc dishPassport__373c0__2J1D1 border-color--default__373c0__3-ifU background-color--white__373c0__2uyKj">
-                      <div class="lemon--div__373c0__1mboc dishPhoto__373c0__uq3ZD border-color--default__373c0__3-ifU">
+                    <div
+                      class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
+                    >
+                      <div
+                        class="lemon--div__373c0__1mboc find-near-arrange__373c0__dhora arrange__373c0__2C9bH layout-equal__373c0__Z9vkY border-color--default__373c0__3-ifU"
+                      >
                         <div
-                          class="lemon--div__373c0__1mboc dishPhotoBackground__373c0__2JKs_"
-                          style="background-image: url(&quot;https://s3-media0.fl.yelpcdn.com/bphoto/yU02a3EC2kQnF65gHiQMtg/258s.jpg&quot;);"
+                          class="lemon--div__373c0__1mboc find-near-arrange-unit__373c0__1x8M9 arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
                         >
-                          <img
-                            class="lemon--img__373c0__3GQUb dishImage__373c0__2aSSy"
-                            src="https://s3-media0.fl.yelpcdn.com/bphoto/yU02a3EC2kQnF65gHiQMtg/258s.jpg"
-                            alt="Soy Cured Egg"
-                          ></div>
-                      </div>
-                      <div class="lemon--div__373c0__1mboc  border-color--default__373c0__3-ifU">
-                        <div class="lemon--div__373c0__1mboc  border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-                          <div class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU">
-                            <p
-                              class="lemon--p__373c0__3Qnnj text__373c0__2Kxyz text-color--normal__373c0__3xep9 text-align--left__373c0__2XGa- text-weight--bold__373c0__1elNz text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
+                          <label
+                            class="lemon--label__373c0__2BjWI label__373c0__2kYNn pseudo-input__373c0__5zGeH pseudo-input--find-near__373c0__2MkBe pseudo-input--find__373c0__tF4yY"
+                            for="search_description"
+                          >
+                            <span
+                              class="lemon--span__373c0__3997G pseudo-input-text__373c0__1Waqo display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
                             >
-                              {{ item.displayName }}
-                            </p>
-                          </div>
-                          <span class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--subtle__373c0__3DZpi text-align--left__373c0__2XGa-">14 Photos&nbsp;</span><span
-                          class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--subtle__373c0__3DZpi text-align--left__373c0__2XGa- text-bullet--before__373c0__VC-O0"
-                        >41 Reviews</span>
+                              <div
+                                class="lemon--div__373c0__1mboc pseudo-input-icon-container__373c0__2jsaM margin-r1-5__373c0__1Vie3 border-color--default__373c0__3-ifU"
+                              >
+                                <span
+                                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c pseudo-input-icon__373c0__1e_Dt"
+                                  aria-hidden="false"
+                                  aria-label="Find"
+                                  style="width: 24px; height: 24px;"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    class="icon_svg"
+                                  >
+                                    <path
+                                      d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
+                                    >
+                                    </path>
+                                  </svg>
+                                </span>
+                              </div>
+                            </span>
+                            <div
+                              class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
+                            >
+                              <div
+                                class="lemon--div__373c0__1mboc typeahead__373c0__HGjy7 border-color--default__373c0__3-ifU"
+                              >
+                                <input
+                                  id="search_description"
+                                  v-model="search"
+                                  autocomplete="off"
+                                  aria-autocomplete="list"
+                                  name="find_desc"
+                                  class="input__373c0__1kQwh original-input__373c0__3YWBR"
+                                  type="text"
+                                  placeholder="tacos, cheap dinner, Max’s"
+                                  @keydown.enter.prevent="onSearchClick"
+                                >
+                              </div>
+                            </div>
+                          </label>
                         </div>
                       </div>
                     </div>
-                  </a>
+                    <div
+                      class="lemon--div__373c0__1mboc buttons-arrange-unit__373c0__3npNo arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
+                    >
+                      <div
+                        class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-6__373c0__15Q_2 layout-equal__373c0__Z9vkY border-color--default__373c0__3-ifU"
+                      >
+                        <div
+                          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
+                        >
+                          <button
+                            class="button__373c0__3lYgT primary__373c0__2ZWOb find-near-button__373c0__3S334"
+                            type="submit"
+                            value="submit"
+                            style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
+                            @click="onSearchClick"
+                          >
+                            <div
+                              class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
+                            >
+                              <span
+                                class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
+                              >
+                                <span
+                                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--currentColor__373c0__x-sG2 icon--v2__373c0__1yp8c"
+                                  aria-hidden="false"
+                                  aria-label="Search"
+                                  style="width: 24px; height: 24px;color:white"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    class="icon_svg"
+                                  >
+                                    <path
+                                      d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
+                                    ></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div
-          v-if="false"
-          class="lemon--div__373c0__1mboc button__373c0__IT_bJ left__373c0__13zzY inactive__373c0__3U8Om border-color--default__373c0__3-ifU" style="top: 75px;">
-          <div class="lemon--div__373c0__1mboc icon__373c0__1WoJW border-color--default__373c0__3-ifU" role="button" aria-label="Previous" tabindex="0">
-            <span
-              aria-hidden="true"
-              class="icon--24-chevron-left-v2 css-21pvts"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                class="icon_svg"
-              >
-                <path
-                  d="M14.25 17.58a1 1 0 01-.71-.3L9 12.7a1 1 0 010-1.4l4.5-4.58A1 1 0 0115 6.7a1 1 0 010 1.42L11.15 12 15 15.88a1 1 0 010 1.42 1 1 0 01-.75.28z"
-                ></path>
-              </svg>
-            </span>
-          </div>
-        </div>
-        <div
-          v-if="false"
-          class="lemon--div__373c0__1mboc button__373c0__IT_bJ right__373c0__K70fs active__373c0__1Vrlp border-color--default__373c0__3-ifU" style="top: 75px;">
-          <div class="lemon--div__373c0__1mboc icon__373c0__1WoJW border-color--default__373c0__3-ifU" role="button" aria-label="Next" tabindex="0">
-            <span
-              aria-hidden="true"
-              class="icon--24-chevron-right-v2 css-1bbgc59"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                class="icon_svg"
-              >
-                <path
-                  d="M9.75 17.58a1 1 0 01-.7-.28 1 1 0 010-1.42l3.8-3.88L9 8.12a1 1 0 111.41-1.42L15 11.3a1 1 0 010 1.4l-4.5 4.58a1 1 0 01-.75.3z"
-                ></path>
-              </svg>
-            </span>
-          </div>
-        </div>
       </div>
     </div>
-  </section>
-
+  </div>
 
 </template>
 
-<script lang="ts" src="./menus.ts" />
+<script lang="ts" src="./header_search.ts"/>

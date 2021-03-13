@@ -116,7 +116,10 @@
             </div>
           </div>
           <!-- Write a review -->
-          <NewReviewPanel :restaurant="restaurant" />
+          <NewReviewPanel
+            :related-model="relatedModel"
+            :review-type="reviewType"
+            :related-id="relatedId" />
           <ul class=" undefined list__373c0__3GI_T">
             <!-- Review Item -->
             <li
@@ -126,6 +129,22 @@
               <ReviewItem :review="item" />
             </li>
           </ul>
+          <div
+            v-if="showEmptyHint()"
+            class="feeds feed-module activity-feed"
+          >
+            <ul
+              class="content-list"
+            >
+              <li data-section-id="self">
+                <p class="no-recent-activity nobtm">
+                  We don't have any recent reviews for you right now.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- infinite scroll -->
+          <div v-waypoint="{ active: true, callback: onWaypoint}"></div>
         </div>
       </div>
     </section>

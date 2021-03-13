@@ -1,6 +1,7 @@
 import { IFBEvent, IFBReview } from 'ieattatypes/types/index'
 import { loadReviews } from '~/database/data/Reviews'
 import { slugifyToLower } from '~/database/utils/slug_helper'
+import { ReviewType } from '~/database/constant'
 
 const fixReviewStatistic = (item: IFBEvent) => {
   const { uniqueId } = item
@@ -8,7 +9,7 @@ const fixReviewStatistic = (item: IFBEvent) => {
   let reviewCount: number = 0
   for (const index in loadReviews()) {
     const review: IFBReview = loadReviews()[index]
-    if (review.eventId === uniqueId) {
+    if (review.eventId === uniqueId && review.reviewType === ReviewType.Event) {
       const { rate } = review
       reviewCount += 1
       rateForEvent += rate
@@ -79,7 +80,7 @@ const events: IFBEvent[] = [
     // id: 'qW9xkWamgp',
     // url: 'https://www.yelp.com/events/lafayette-bay-area-kids-book-fair-east-bay-edition',
     displayName: 'Bay Area Kids\' Book Fair | East Bay Edition',
-    slug: "bay-area-kids'-book-fair-or-east-bay-edition",
+    slug: 'bay-area-kids\'-book-fair-or-east-bay-edition',
     want: 'Bay Area Festivals  is having its 2nd annual FREE Bay Area Kids\' Book Fair. There will be story-telling all day and other free activities for attendees. The first 200 families will get a free goody bag. Attendees are encouraged to bring canned food to donate to the Food Bank. A free raffle ticket will be given for each canned food item! \r\nKids can meet their favorite characters including Pete the Cat, Clifford the Big Red Dog, The Very Hungry Caterpillar, and Curious George! \r\nAdmission and parking is free on the day to the general public.',
     rate: 0,
     reviewCount: 0,

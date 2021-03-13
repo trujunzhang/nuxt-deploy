@@ -2,6 +2,7 @@ import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { slugifyToLower } from '~/database/utils/slug_helper'
 import { convertToGeoHash } from '~/database/utils/geohash_utils'
 import { loadReviews } from '~/database/data/Reviews'
+import { ReviewType } from '~/database/constant'
 
 const fixReviewStatistic = (item: IFBRestaurant) => {
   const { uniqueId } = item
@@ -9,7 +10,7 @@ const fixReviewStatistic = (item: IFBRestaurant) => {
   let reviewCount: number = 0
   for (const index in loadReviews()) {
     const review: IFBReview = loadReviews()[index]
-    if (review.restaurantId === uniqueId) {
+    if (review.restaurantId === uniqueId && review.reviewType === ReviewType.Restaurant) {
       const { rate } = review
       reviewCount += 1
       rateForRestaurant += rate

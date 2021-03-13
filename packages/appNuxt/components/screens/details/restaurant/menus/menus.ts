@@ -2,11 +2,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRecipe, IFBRestaurant } from 'ieattatypes/types'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FirestorePath } from '~/database/services/firestore_path'
-import MenuItem from '~/components/screens/details/restaurant/menus/menu_item.vue'
+import RecipesList from '~/components/screens/details/recipes/recipes_list.vue'
 
 @Component({
   components: {
-    MenuItem
+    RecipesList
   }
 })
 export default class RestaurantMenus extends Vue {
@@ -31,7 +31,7 @@ export default class RestaurantMenus extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.collectionStream({
-      query: new FirestorePath(this.$fire.firestore).recipes(this.restaurant.uniqueId),
+      query: new FirestorePath(this.$fire.firestore).getRecipesList(this.restaurant.uniqueId),
       queryBuilder: (query: any) => {
         return query.orderBy('updatedAt', 'desc')
       },

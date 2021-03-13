@@ -120,14 +120,14 @@ class FilterModels {
         .singleWhere((recipe) => recipe.uniqueId == uniqueId);
   }
 
-
-  Map<String, ParseModelRecipes> getRecipesDict(BuildContext context) {
+  Map<String, ParseModelRecipes> getRecipesDict(
+      BuildContext context, String restaurantId) {
     Map hashMap = new Map<String, ParseModelRecipes>();
     objectToMap(ParseModelRecipes recipe) {
       hashMap[recipe.uniqueId] = recipe;
     }
 
-    Provider.of<List<ParseModelRecipes>>(context).forEach(objectToMap);
+    getRecipesList(context, restaurantId).forEach(objectToMap);
     return hashMap;
   }
 
@@ -158,9 +158,14 @@ class FilterModels {
         case PhotoType.Recipe:
           return photo.recipeId == relatedId &&
               photo.photoType == photoTypeToString(photoType);
+        case PhotoType.User:
+          return photo.userId == relatedId &&
+              photo.photoType == photoTypeToString(photoType);
         case PhotoType.Waiter:
           return photo.restaurantId == relatedId &&
               photo.photoType == photoTypeToString(photoType);
+        case PhotoType.None:
+          return false;
       }
       return false;
     }
@@ -187,6 +192,8 @@ class FilterModels {
         case ReviewType.Recipe:
           return review.recipeId == relatedId &&
               review.reviewType == reviewTypeToString(reviewType);
+        case ReviewType.None:
+          return false;
       }
       return false;
     }

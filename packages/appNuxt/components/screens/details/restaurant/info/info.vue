@@ -107,7 +107,7 @@
           v-for="(index) in photoItems"
           :key="index"
           class=" photo-header-media__373c0__UThKJ photo-header-media--overlay__373c0__1Pq9Z display--inline-block__373c0__1ZKqC border-color--default__373c0__3-ifU"
-          style="width: 319.5px;"
+          style="width: 25%;"
         >
           <a
             v-if="showPhotoItem(index)"

@@ -6,7 +6,7 @@ import { calcRateForRestaurant } from '~/database/rate_utils'
 @Component({
   components: {}
 })
-export default class MenuItem extends Vue {
+export default class RecipeItem extends Vue {
   @Prop({}) recipe!: IFBRecipe
 
   getRecipePhotoUrl () {

@@ -47,6 +47,12 @@ class FirestoreDatabase {
         path: FirestorePath.singleEvent(model.uniqueId));
   }
 
+  //Method to delete reviewModel entry
+  Future<void> deleteReview(ParseModelReviews model) async {
+    await _firestoreService.deleteData(
+        path: FirestorePath.singleReview(model.uniqueId));
+  }
+
   // ===========================================================
   // Save: Single<Models>
   // ===========================================================
@@ -132,97 +138,6 @@ class FirestoreDatabase {
       _firestoreService.getData(
         path: FirestorePath.user(userId),
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
-      );
-
-  // ===========================================================
-  // Stream: List<Models>
-  // ===========================================================
-
-  //Method to retrieve event stream
-  Stream<List<ParseModelEvents>> eventsStream(String restaurantId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.events(restaurantId),
-        builder: (data, documentId) => ParseModelEvents.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve waiter stream
-  Stream<List<ParseModelPhotos>> waitersStream(String restaurantId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.waiters(restaurantId),
-        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve peopleInEvent stream
-  Stream<List<ParseModelPeopleInEvent>> peopleInEventsStream(
-          String restaurantId, String eventId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.peopleInEvents(restaurantId, eventId),
-        builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve photo stream in the restaurant
-  Stream<List<ParseModelPhotos>> photosInRestaurantStream(
-          String restaurantId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.photosInRestaurant(restaurantId),
-        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve photo stream in the recipe
-  Stream<List<ParseModelPhotos>> photosInRecipeStream(
-          String restaurantId, String recipeId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.photosInRecipe(restaurantId, recipeId),
-        builder: (data, documentId) => ParseModelPhotos.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve review stream in the restaurant
-  Stream<List<ParseModelReviews>> reviewsInRestaurantStream(
-          String restaurantId, int limit) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.reviewsInRestaurant(restaurantId),
-        builder: (data, documentId) => ParseModelReviews.fromJson(data),
-        queryBuilder: (Query query) {
-          var nextQuery = query.orderBy('updatedAt', descending: true);
-          return limit == -1 ? nextQuery : nextQuery.limit(limit);
-        },
-      );
-
-  //Method to retrieve review stream in the event
-  Stream<List<ParseModelReviews>> reviewsInEventStream(
-          String restaurantId, String eventId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.reviewsInEvent(restaurantId, eventId),
-        builder: (data, documentId) => ParseModelReviews.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
-      );
-
-  //Method to retrieve review stream in the event
-  Stream<List<ParseModelReviews>> reviewsInRecipeStream(
-          String restaurantId, String recipeId) =>
-      _firestoreService.collectionStream(
-        path: FirestorePath.reviewsInRecipe(restaurantId, recipeId),
-        builder: (data, documentId) => ParseModelReviews.fromJson(data),
-        queryBuilder: (Query query) {
-          return query.orderBy('updatedAt', descending: true);
-        },
       );
 
   // ===========================================================

@@ -1,6 +1,7 @@
 import { IFBRecipe, IFBReview } from 'ieattatypes/types/index'
 import { loadReviews } from '~/database/data/Reviews'
 import { slugifyToLower } from '~/database/utils/slug_helper'
+import { ReviewType } from '~/database/constant'
 
 const fixReviewStatistic = (item: IFBRecipe) => {
   const { uniqueId } = item
@@ -8,7 +9,7 @@ const fixReviewStatistic = (item: IFBRecipe) => {
   let reviewCount: number = 0
   for (const index in loadReviews()) {
     const review: IFBReview = loadReviews()[index]
-    if (review.recipeId === uniqueId) {
+    if (review.recipeId === uniqueId && review.reviewType === ReviewType.Recipe) {
       const { rate } = review
       reviewCount += 1
       rateForRecipe += rate

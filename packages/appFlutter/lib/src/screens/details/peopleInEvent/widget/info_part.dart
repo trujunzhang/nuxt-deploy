@@ -104,7 +104,7 @@ class InfoPart extends StatelessWidget {
                       settings: RouteSettings(
                         arguments: SelectRecipeScreenObject(
                             peopleInEvent: peopleInEvent,
-                            unorderedRecipeIds: unorderedRecipeIds),
+                        ),
                       ),
                       fullscreenDialog: true),
                 );

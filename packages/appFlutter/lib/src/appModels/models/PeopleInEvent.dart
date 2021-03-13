@@ -103,6 +103,18 @@ class ParseModelPeopleInEvent {
   }) {
     List<String> nextRecipes = model.recipes;
     nextRecipes.add(recipeId);
+    // Delete duplicates from a list
+    model.recipes = nextRecipes.toSet().toList();
+
+    return model;
+  }
+
+  static ParseModelPeopleInEvent removeRecipe({
+    @required ParseModelPeopleInEvent model,
+    @required String recipeId,
+  }) {
+    List<String> nextRecipes = model.recipes;
+    nextRecipes.remove(recipeId);
     model.recipes = nextRecipes;
 
     return model;

@@ -95,4 +95,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./menu_item.ts" />
+<script lang="ts" src="./recipe_item.ts"/>

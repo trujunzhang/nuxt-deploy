@@ -44,14 +44,7 @@ class FirestorePath {
       'restaurants/$restaurantId/recipes/$recipeId/photos';
 
   // Reviews
-  static String reviewsInRestaurant(String restaurantId) =>
-      'restaurants/$restaurantId/reviews';
-
-  static String reviewsInEvent(String restaurantId, String eventId) =>
-      'restaurants/$restaurantId/events/$eventId/reviews';
-
-  static String reviewsInRecipe(String restaurantId, String recipeId) =>
-      'restaurants/$restaurantId/recipes/$recipeId/reviews';
+  static String singleReview(String reviewId) => 'reviews/$reviewId';
 
   static String review(String uniqueId) => 'reviews/$uniqueId';
 

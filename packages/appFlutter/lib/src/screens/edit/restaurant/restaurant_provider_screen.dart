@@ -17,18 +17,13 @@ class _CreateEditRestaurantProviderScreenState
   ParseModelRestaurants _restaurant;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final ParseModelRestaurants _restaurantModel =
         ModalRoute.of(context).settings.arguments;
-    if (_restaurantModel != null) {
+    setState(() {
       _restaurant = _restaurantModel;
-    }
+    });
   }
 
   @override

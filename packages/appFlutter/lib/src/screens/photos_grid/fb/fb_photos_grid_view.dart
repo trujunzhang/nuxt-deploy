@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/logic/photos_results.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/photos_body.dart';
-import 'package:provider/provider.dart';
+
+class FBPhotosGridViewObject {
+  final String relatedId;
+  final PhotoType photoType;
+
+  FBPhotosGridViewObject({@required this.relatedId, @required this.photoType});
+}
 
 class FBPhotosGridView extends StatefulWidget {
   FBPhotosGridView({Key key}) : super(key: key);
@@ -15,7 +20,7 @@ class FBPhotosGridView extends StatefulWidget {
 }
 
 class _FBPhotosGridViewState extends State<FBPhotosGridView> {
-  ParseModelRestaurants restaurant;
+  FBPhotosGridViewObject gridViewObject;
 
   @override
   void initState() {
@@ -26,10 +31,10 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final ParseModelRestaurants _restaurant =
+    final FBPhotosGridViewObject _gridViewObject =
         ModalRoute.of(context).settings.arguments;
     setState(() {
-      restaurant = _restaurant;
+      gridViewObject = _gridViewObject;
     });
   }
 
@@ -52,27 +57,16 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
   }
 
   Widget buildPhotos(BuildContext context) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
+    List<ParseModelPhotos> photosList = FilterModels.instance.getPhotosList(
+        context, gridViewObject.relatedId, gridViewObject.photoType);
 
-    return StreamBuilder(
-        stream: firestoreDatabase.photoStream(restaurant: restaurant),
-        builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
-          if (fbSnapshot.hasError) {}
-          if (!fbSnapshot.hasData) {
-            return Container();
-          }
-
-          List<ParseModelPhotos> photos = parsePhotosFilterByRestaurant(
-              datas: fbSnapshot.data.documents, restaurant: restaurant);
-          if (photos.length == 0) {
-            return Center(
-              child: Text('No Data'),
-            );
-          }
-          return PhotosBody(
-            photoList: photos,
-          );
-        });
+    if (photosList.length == 0) {
+      return Center(
+        child: Text('No Data'),
+      );
+    }
+    return PhotosBody(
+      photoList: photosList,
+    );
   }
 }

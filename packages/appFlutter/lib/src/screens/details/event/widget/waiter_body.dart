@@ -16,8 +16,8 @@ class WaiterBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (waitersList.length == 0) {
-      return buildEmptyPhotos(context);
+    if (event.waiters.length == 0) {
+      return buildEmptyWaiters(context);
     }
     return buildwaitersListView();
   }
@@ -42,7 +42,7 @@ class WaiterBody extends StatelessWidget {
     );
   }
 
-  Widget buildEmptyPhotos(BuildContext context) {
+  Widget buildEmptyWaiters(BuildContext context) {
     return Card(
         child: Center(
       child: InkWell(

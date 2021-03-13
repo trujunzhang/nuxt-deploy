@@ -42,6 +42,7 @@ class _CreateEditReviewProviderScreenState
     return ChangeNotifierProvider<ReviewState>(
         create: (context) => ReviewState(
             rate: review != null ? review.rate : 0,
+            lastRate: review != null ? review.rate : 0,
             body: review != null ? review.body : '',
             reviewType: screenObject.reviewType,
             relatedId: screenObject.relatedId),

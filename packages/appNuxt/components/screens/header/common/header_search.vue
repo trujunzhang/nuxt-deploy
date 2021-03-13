@@ -1,128 +1,94 @@
 <template>
-  <div
-    class="lemon--div__373c0__1mboc search-suggest-arrange-unit__373c0__3SJDR arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-  >
-    <div
-      class="lemon--div__373c0__1mboc search-suggest-container-outer__373c0__1JORv border-color--default__373c0__3-ifU"
-    >
-      <div
-        class="lemon--div__373c0__1mboc search-suggest-container-inner__373c0__2ddQW border-color--default__373c0__3-ifU"
-      >
-        <div
-          class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-2__373c0__1DiLQ border-color--default__373c0__3-ifU"
-        >
-          <div
-            class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-          >
-            <div class="lemon--div__373c0__1mboc search-suggest__373c0__31JJZ">
-              <div class="lemon--div__373c0__1mboc">
+  <div class=" search-suggest-arrange-unit__09f24__3vLVY arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
+    <div class=" search-suggest-container-outer__09f24__rSgmm border-color--default__09f24__R1nRO">
+      <div class=" search-suggest-container-inner__09f24__2C9vZ border-color--default__09f24__R1nRO">
+        <div class=" arrange__09f24__AiSIM gutter-2__09f24__UKBse border-color--default__09f24__R1nRO">
+          <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
+            <div class=" search-suggest__09f24__1meTU">
+              <div class="">
+                <!--  Form -->
                 <div
                   id="header_find_form"
-                  class="lemon--form__373c0__2fChY find-near-form__373c0__QkXpc"
+                  class="find-near-form__09f24__2y8Yy"
                 >
-                  <div
-                    class="lemon--div__373c0__1mboc undefined arrange__373c0__2C9bH border-color--default__373c0__3-ifU"
-                  >
-                    <div
-                      class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-                    >
-                      <div
-                        class="lemon--div__373c0__1mboc find-near-arrange__373c0__dhora arrange__373c0__2C9bH layout-equal__373c0__Z9vkY border-color--default__373c0__3-ifU"
-                      >
-                        <div
-                          class="lemon--div__373c0__1mboc find-near-arrange-unit__373c0__1x8M9 arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
-                        >
+                  <div class=" undefined arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
+                    <div class=" arrange-unit__09f24__1gZC1 arrange-unit-fill__09f24__O6JFU border-color--default__09f24__R1nRO">
+                      <div class=" find-near-arrange__09f24__10iE- arrange__09f24__AiSIM layout-equal__09f24__iAZL_ border-color--default__09f24__R1nRO">
+                        <div class=" find-near-arrange-unit__09f24__2nUgJ arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                           <label
-                            class="lemon--label__373c0__2BjWI label__373c0__2kYNn pseudo-input__373c0__5zGeH pseudo-input--find-near__373c0__2MkBe pseudo-input--find__373c0__tF4yY"
+                            class=" label__09f24__23EB0 pseudo-input__09f24__3IGCg pseudo-input__09f24__14BtC pseudo-input--find-near__09f24__1gi9G pseudo-input--find__09f24__2RFJW"
                             for="search_description"
                           >
-                            <span
-                              class="lemon--span__373c0__3997G pseudo-input-text__373c0__1Waqo display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
-                            >
-                              <div
-                                class="lemon--div__373c0__1mboc pseudo-input-icon-container__373c0__2jsaM margin-r1-5__373c0__1Vie3 border-color--default__373c0__3-ifU"
-                              >
-                                <span
-                                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--black-regular__373c0__2b8r3 icon--v2__373c0__1yp8c pseudo-input-icon__373c0__1e_Dt"
-                                  aria-hidden="false"
-                                  aria-label="Find"
-                                  style="width: 24px; height: 24px;"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    class="icon_svg"
-                                  >
+                            <span class=" pseudo-input-text__09f24__EWsQz display--inline__09f24__3iACj border-color--default__09f24__R1nRO">
+                              <div class=" pseudo-input-icon-container__09f24__31kP9 margin-r1-5__09f24__3fQB8 border-color--default__09f24__R1nRO">
+                                <span aria-hidden="false" aria-label="Find" class="icon--24-search-v2 pseudo-input-icon__09f24__3Pmw2 css-1mpk29p">
+                                  <svg width="24" height="24" class="icon_svg">
                                     <path
-                                      d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
-                                    >
-                                    </path>
+                                      d="M21.853 20.355l-3.444-3.443a9.428 9.428 0 10-16.761-6.171 9.428 9.428 0 0015.348 7.586l3.443 3.442a1 1 0 101.414-1.414zM5.82 16.245a7.429 7.429 0 115.253 2.175 7.38 7.38 0 01-5.253-2.176z"
+                                    ></path>
                                   </svg>
                                 </span>
                               </div>
                             </span>
-                            <div
-                              class="lemon--div__373c0__1mboc border-color--default__373c0__3-ifU overflow--hidden__373c0__2y4YK"
-                            >
-                              <div
-                                class="lemon--div__373c0__1mboc typeahead__373c0__HGjy7 border-color--default__373c0__3-ifU"
-                              >
-                                <input
-                                  id="search_description"
-                                  v-model="search"
-                                  autocomplete="off"
-                                  aria-autocomplete="list"
-                                  name="find_desc"
-                                  class="input__373c0__1kQwh original-input__373c0__3YWBR"
-                                  type="text"
-                                  placeholder="tacos, cheap dinner, Max’s"
-                                  @keydown.enter.prevent="onSearchClick"
-                                >
-                              </div>
+                            <div class=" border-color--default__09f24__R1nRO overflow--hidden__09f24__3u-sw">
+                              <div class=" typeahead__09f24__2mlJD border-color--default__09f24__R1nRO"><input
+                                type="text"
+                                autocomplete="off"
+                                spellcheck="false"
+                                tabindex="-1"
+                                value=""
+                                aria-hidden="true"
+                                disabled=""
+                                class="input__09f24__30UUZ input__09f24__1XNzA hidden-input__09f24__3e1WX"
+                                placeholder=" "
+                              ><input
+                                id="search_description"
+                                type="text"
+                                value=""
+                                autocomplete="off"
+                                aria-autocomplete="list"
+                                tabindex="0"
+                                name="find_desc"
+                                data-testid="suggest-desc-input"
+                                class="input__09f24__30UUZ input__09f24__1XNzA original-input__09f24__fFh2n"
+                                placeholder="tacos, cheap dinner, Max’s"
+                              ></div>
                             </div>
                           </label>
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="lemon--div__373c0__1mboc buttons-arrange-unit__373c0__3npNo arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
-                    >
-                      <div
-                        class="lemon--div__373c0__1mboc arrange__373c0__2C9bH gutter-6__373c0__15Q_2 layout-equal__373c0__Z9vkY border-color--default__373c0__3-ifU"
-                      >
-                        <div
-                          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
-                        >
+                    <div class=" buttons-arrange-unit__09f24__zksuB arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
+                      <div class=" arrange__09f24__AiSIM gutter-6__09f24__fMli3 layout-equal__09f24__iAZL_ border-color--default__09f24__R1nRO">
+                        <div class=" hidden-non-responsive-inline-block responsive-visible-small-inline-block arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
+                          <a
+                            class=" button__09f24__1hAjX secondary__09f24__3mm8J find-near-button__09f24__UO8nW"
+                            data-testid="responsive-suggest-submit"
+                            style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
+                            href="https://www.yelp.com/search?find_desc=&amp;find_loc=Mountain+View%2C+CA#"
+                          >
+                            <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO"><span
+                              class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--inherit__09f24__1jgBv text-align--center__09f24__3NO89 text-weight--semibold__09f24__MTlNc text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"
+                            >Cancel</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                           <button
-                            class="button__373c0__3lYgT primary__373c0__2ZWOb find-near-button__373c0__3S334"
+                            class="button__09f24__1hAjX primary__09f24__LBFK2 find-near-button__09f24__UO8nW"
+                            data-testid="suggest-submit"
+                            style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
                             type="submit"
                             value="submit"
-                            style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
-                            @click="onSearchClick"
                           >
-                            <div
-                              class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
-                            >
+                            <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO">
                               <span
-                                class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
+                                class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--inherit__09f24__1jgBv text-align--center__09f24__3NO89 text-weight--semibold__09f24__MTlNc text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"
                               >
-                                <span
-                                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--currentColor__373c0__x-sG2 icon--v2__373c0__1yp8c"
-                                  aria-hidden="false"
-                                  aria-label="Search"
-                                  style="width: 24px; height: 24px;color:white"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    class="icon_svg"
-                                  >
+                                <span aria-hidden="false" aria-label="Search" class="icon--24-search-v2 css-12anxc3">
+                                  <svg width="24" height="24" class="icon_svg">
                                     <path
-                                      d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
+                                      d="M21.853 20.355l-3.444-3.443a9.428 9.428 0 10-16.761-6.171 9.428 9.428 0 0015.348 7.586l3.443 3.442a1 1 0 101.414-1.414zM5.82 16.245a7.429 7.429 0 115.253 2.175 7.38 7.38 0 01-5.253-2.176z"
                                     ></path>
                                   </svg>
                                 </span>
@@ -143,4 +109,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./header_search.ts"/>
+<script lang="ts" src="./header_search.ts" />

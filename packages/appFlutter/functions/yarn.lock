@@ -1047,10 +1047,6 @@ iconv-lite@0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-"ieattatypes@https://github.com/trujunzhang/ieattatypes":
-  version "2.0.2"
-  resolved "https://github.com/trujunzhang/ieattatypes#9c96e7a5312e41631110158d54ad35e3dd0f2105"
-
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"

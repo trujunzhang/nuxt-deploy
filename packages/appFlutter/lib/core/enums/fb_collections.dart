@@ -30,6 +30,7 @@ fbCollectionToString(FBCollections path) {
 }
 
 enum PhotoType {
+  None,
   Restaurant,
   Recipe,
   Waiter,
@@ -50,6 +51,22 @@ photoTypeToString(PhotoType path) {
     default:
       return "none";
   }
+}
+
+PhotoType stringToPhotoType(String photoType) {
+  if (photoType == photoTypeToString(PhotoType.Restaurant)) {
+    return PhotoType.Restaurant;
+  }
+  if (photoType == photoTypeToString(PhotoType.Recipe)) {
+    return PhotoType.Recipe;
+  }
+  if (photoType == photoTypeToString(PhotoType.Waiter)) {
+    return PhotoType.Waiter;
+  }
+  if (photoType == photoTypeToString(PhotoType.User)) {
+    return PhotoType.User;
+  }
+  return PhotoType.None;
 }
 
 enum ReviewType {

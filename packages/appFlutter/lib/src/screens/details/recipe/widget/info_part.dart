@@ -58,12 +58,25 @@ class InfoPart extends StatelessWidget {
         ),
         SizedBox(height: 8),
         // Line 3
+        Center(
+          child: Text(
+            '\$' + recipe.price,
+            style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(0.6)),
+          ),
+        ),
+        SizedBox(height: 4),
+        // Line 4
         RatingBar.builder(
             initialRating:
                 calcRateForRestaurant(recipe.rate, recipe.reviewCount),
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
+            unratedColor:
+                HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
             itemCount: 5,
             itemSize: 20,
             itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
@@ -73,7 +86,7 @@ class InfoPart extends StatelessWidget {
                 ),
             onRatingUpdate: (rating) {}),
         SizedBox(height: 8),
-        // Line 4
+        // Line 5
         const Divider(height: 10.0, thickness: 0.5),
         _buildActionBar(context),
       ],

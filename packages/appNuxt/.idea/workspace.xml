@@ -11,9 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/../appFlutter/.idea/appFlutter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../appFlutter/.idea/appFlutter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appFlutter/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appFlutter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +23,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -39,6 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="js.last.introduce.type" value="CONST" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -49,20 +59,7 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.RouteHelper.getReviewSortLocation with default query">
-    <configuration name="RouteHelper" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/database/utils/route_helper.spec.ts" />
-      <test-names>
-        <test-name value="RouteHelper" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Jest.timeago.formatDateStringTest">
     <configuration name="RouteHelper.getReviewSearchLocation with empty query" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -119,6 +116,20 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="timeago.formatDateStringTest" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/database/utils/timeago.spec.ts" />
+      <test-names>
+        <test-name value="timeago" />
+        <test-name value="formatDateStringTest" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="detail" type="JavascriptDebugType" uri="http://localhost:3000/biz/forno-vecchio">
       <method v="2" />
     </configuration>
@@ -156,19 +167,19 @@
       <item itemvalue="JavaScript Debug.photo(single)" />
       <item itemvalue="JavaScript Debug.uploadImage" />
       <item itemvalue="JavaScript Debug.user_detail" />
-      <item itemvalue="Jest.RouteHelper" />
       <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with sort date_desc" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with default query" />
       <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with empty query" />
+      <item itemvalue="Jest.timeago.formatDateStringTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.timeago.formatDateStringTest" />
         <item itemvalue="Jest.RouteHelper.getReviewSortLocation with default query" />
         <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with empty query" />
         <item itemvalue="Jest.RouteHelper.getReviewSortLocation with sort date_desc" />
         <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
-        <item itemvalue="Jest.RouteHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -355,6 +366,20 @@
       <workItem from="1612761766349" duration="72000" />
       <workItem from="1612777950553" duration="2056000" />
       <workItem from="1613968018623" duration="150000" />
+      <workItem from="1615019067572" duration="1088000" />
+      <workItem from="1615034022278" duration="1697000" />
+      <workItem from="1615036784108" duration="2001000" />
+      <workItem from="1615039216285" duration="915000" />
+      <workItem from="1615115475852" duration="2121000" />
+      <workItem from="1615187111709" duration="3794000" />
+      <workItem from="1615207318363" duration="96000" />
+      <workItem from="1615208214101" duration="3636000" />
+      <workItem from="1615462781430" duration="2004000" />
+      <workItem from="1615553310461" duration="1088000" />
+      <workItem from="1615555127108" duration="425000" />
+      <workItem from="1615555970563" duration="3087000" />
+      <workItem from="1615559726639" duration="919000" />
+      <workItem from="1615642286518" duration="614000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>

@@ -4,7 +4,7 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/edit_restaurant/common.dart';
-import 'package:ieatta/src/components/photos/image.dart';
+import 'package:ieatta/src/components/photos/photo_base_view.dart';
 import 'package:ieatta/src/providers/restaurant_state.dart';
 import 'package:provider/provider.dart';
 
@@ -58,6 +58,10 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
   }
 
   showSelectCoverIcon(RestaurantState restaurantState, ParseModelPhotos item) {
+    if (item.originalUrl == '') {
+      // Offline mode.
+      return false;
+    }
     return item.originalUrl == restaurantState.coverUrl;
   }
 
@@ -69,7 +73,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),
-        child: buildPhotoImage(photo),
+        child: PhotoBaseView(photoData: photo),
       ),
     );
     var selection = Row(

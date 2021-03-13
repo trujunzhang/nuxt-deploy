@@ -12,7 +12,7 @@ class ParseModelRecipes extends BaseReview {
   final String uniqueId;
   final String creatorId;
   final String createdAt;
-  final String updatedAt;
+  String updatedAt;
   final String flag;
 
   // Common(5)
@@ -23,8 +23,8 @@ class ParseModelRecipes extends BaseReview {
   String originalUrl;
 
   // for review(2)
-  final int rate;
-  final int reviewCount;
+  int rate;
+  int reviewCount;
 
   // point(1)
   final String restaurantId;
@@ -139,6 +139,14 @@ class ParseModelRecipes extends BaseReview {
         restaurantId: restaurantId);
   }
 
+  static ParseModelRecipes updateCover(
+      {@required ParseModelRecipes model, @required String originalUrl}) {
+    model.originalUrl = originalUrl;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
+
+    return model;
+  }
+
   static ParseModelRecipes updateRecipe({
     @required ParseModelRecipes model,
     @required String nextDisplayName,
@@ -149,6 +157,7 @@ class ParseModelRecipes extends BaseReview {
     model.slug = slugifyToLower(nextDisplayName);
     // Others
     model.price = nextPrice;
+    model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
     return model;
   }

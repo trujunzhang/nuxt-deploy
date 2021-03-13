@@ -9,10 +9,10 @@ export enum FBCollections {
 }
 
 export enum PhotoType {
-  // User = 'user',
   Restaurant = 'restaurant',
   Recipe = 'recipe',
   Waiter = 'waiter',
+  User = 'user',
 }
 
 export enum ReviewType {

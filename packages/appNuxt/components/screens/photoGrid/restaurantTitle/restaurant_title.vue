@@ -15,7 +15,7 @@
                     class="photo-box-img"
                     width="30"
                     height="30"
-                    :src="getRestaurantPhotoUrl()"
+                    v-lazy="`${getRestaurantPhotoUrl()}`"
                   >
                 </a>
               </div>

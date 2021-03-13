@@ -1,7 +1,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { IFBReview, IFBRestaurant } from 'ieattatypes'
+import { IFBReview, IFBRestaurant, IFBEvent, IFBRecipe } from 'ieattatypes/types'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import { FBCollections } from '~/database/constant'
+import { FBCollections, ReviewType } from '~/database/constant'
 import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_item.vue'
 import ReviewSearch from '~/components/screens/details/reviews/reviewList/review_search.vue'
 import ReviewSort from '~/components/screens/details/reviews/reviewList/review_sort.vue'
@@ -18,7 +18,9 @@ import { FirestorePath } from '~/database/services/firestore_path'
   }
 })
 export default class ReviewsList extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
+  @Prop({}) relatedModel!: IFBRestaurant | IFBEvent | IFBRecipe
+  @Prop({}) reviewType!: ReviewType
+  @Prop({}) relatedId!: string
   public items: Array<IFBReview> = []
 
   private isLoaded = false
@@ -74,7 +76,7 @@ export default class ReviewsList extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.collectionStream({
-      query: new FirestorePath(this.$fire.firestore).reviewsInRestaurant(this.restaurant.uniqueId),
+      query: new FirestorePath(this.$fire.firestore).getReviewsList(this.relatedId, this.reviewType),
       queryBuilder: (query: any) => {
         let nextQuery = query
         nextQuery = this.searchQuery(nextQuery)

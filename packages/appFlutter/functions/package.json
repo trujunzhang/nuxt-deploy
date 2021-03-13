@@ -15,11 +15,13 @@
   "engines": {
     "node": "12"
   },
+  "bak": {
+    "ieattatypes": "https://github.com/trujunzhang/ieattatypes"
+  },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.1.13",
     "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.11.0",
-    "ieattatypes": "https://github.com/trujunzhang/ieattatypes"
+    "firebase-functions": "^3.11.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.2",

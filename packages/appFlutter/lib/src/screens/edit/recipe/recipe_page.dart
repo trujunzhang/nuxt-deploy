@@ -6,9 +6,12 @@ import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
+import 'package:ieatta/src/components/edit_restaurant/common.dart';
 import 'package:ieatta/src/providers/recipe_state.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
+
+import 'select_recipe_cover.dart';
 
 class RecipePage extends StatefulWidget {
   final ParseModelRecipes recipe;
@@ -94,12 +97,29 @@ class _RecipePageState extends State<RecipePage> {
                     .translate("editModelAppBarRightSaveTitle")))
           ],
         ),
-        body: SingleChildScrollView(
-            child: Column(
+        body: _buildBody(context));
+  }
+
+  Widget _buildBody(BuildContext context) {
+    List<Widget> list = new List<Widget>();
+    list.add(_buildShortcuts());
+    if (widget.recipe != null) {
+      // list.add(buildCoverImage(_restaurantCoverUrl));
+      list.add(buildCoverSectionTitle());
+      list.add(SelectRecipeCover(
+        recipe: widget.recipe,
+      ));
+      list.add(SizedBox(
+        height: 20,
+      ));
+    }
+
+    return SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_buildShortcuts()],
-        )));
+          children: list,
+        ));
   }
 
   Widget _buildShortcuts() {
@@ -161,8 +181,9 @@ class _RecipePageState extends State<RecipePage> {
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
+                    FormBuilderValidators.numeric(context),
                   ]),
-                  maxLines: 15,
+                  maxLines: 5,
                   textInputAction: TextInputAction.next,
                 ),
               ],

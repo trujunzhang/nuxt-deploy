@@ -15,9 +15,8 @@
             v-if="false"
             class="media-avatar">
             <div class="photo-box pb-120s">
-              <a href="/events/woodacre-creative-visioning-2021-manifesting-your-creative-and-life-dreams">
+              <a :href="getDetailEventUrl(item)">
                 <img
-                  alt="Creative Visioning 2021: Manifesting Your Creative &amp; Life Dreams"
                   class="photo-box-img"
                   height="120"
                   src="https://s3-media0.fl.yelpcdn.com/ephoto/SQipAUOXfUxPsc_U5cmpRg/120s.jpg"
@@ -28,7 +27,7 @@
           </div>
           <div class="media-story u-space-l1">
             <h3>
-              <a href="/events/woodacre-creative-visioning-2021-manifesting-your-creative-and-life-dreams">
+              <a :href="getDetailEventUrl(item)">
                 {{ item.displayName }}
               </a>
             </h3>
@@ -41,7 +40,6 @@
                 </svg>
               </span>
               {{ getEventStartEndDate(item) }}
-              Saturday, Jan 9, 10:00 am â€“ 12:00 pm
             </div>
             <p class="event_desc" itemprop="description">
               {{ item.want }}

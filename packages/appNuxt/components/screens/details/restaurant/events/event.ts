@@ -2,6 +2,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBEvent, IFBRestaurant } from 'ieattatypes/types'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FirestorePath } from '~/database/services/firestore_path'
+import { formatDateString } from '~/database/utils/timeago_helper'
 
 @Component({
   components: {}
@@ -18,11 +19,11 @@ export default class RestaurantEvents extends Vue {
    * @param event
    */
   getEventStartEndDate (event: IFBEvent) {
-    return ''
+    return `${formatDateString(event.start)} / ${formatDateString(event.end)}`
   }
 
   getDetailEventUrl (event: IFBEvent) {
-    // return `/events/${event.slug}`
+    return `/events/${event.slug}`
   }
 
   showEmptyHint () {
@@ -36,7 +37,7 @@ export default class RestaurantEvents extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.collectionStream({
-      query: new FirestorePath(this.$fire.firestore).events(this.restaurant.uniqueId),
+      query: new FirestorePath(this.$fire.firestore).getEventsList(this.restaurant.uniqueId),
       queryBuilder: (query: any) => {
         return query.orderBy('updatedAt', 'desc')
       },

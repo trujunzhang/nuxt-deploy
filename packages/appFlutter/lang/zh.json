@@ -35,7 +35,7 @@
     "eventsCreateEditStartDateTxt": "Start Date",
     "eventsCreateEditEndDateTxt": "End Date",
     "eventsSelectPersonTitleTxt": "Select Person",
-    "peopleInEventDeleteSuccess": "Delete successfully",
+    "ModelItemsDeleteSuccess": "Delete successfully",
     "peopleInEventDeleteFailure": "Delete failure",
     "peopleInEventSelectRecipeTitleTxt": "Select Recipe",
 	"reviewPageAppBarRightEditBtnTitle": "编辑",

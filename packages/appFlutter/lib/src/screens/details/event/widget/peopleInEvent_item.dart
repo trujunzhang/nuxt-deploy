@@ -38,7 +38,7 @@ class PeopleInEventItem extends StatelessWidget {
                   .deletePeopleInEvent(peopleInEventData); // For Restaurant.
             } catch (e) {}
             ToastUtils.showToast(AppLocalizations.of(context)
-                .translate("peopleInEventDeleteSuccess"));
+                .translate("ModelItemsDeleteSuccess"));
           },
         ),
       ],

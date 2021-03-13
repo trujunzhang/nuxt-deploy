@@ -1,4 +1,4 @@
-import { formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview } from '~/database/utils/timeago_helper'
+import { convertDateFromString, formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview, formatDateStringTest } from '~/database/utils/timeago_helper'
 
 describe('timeago', () => {
   test('javascript date/time', () => {
@@ -17,6 +17,12 @@ describe('timeago', () => {
     expect(str).toBe('07/11/2017')
     str = formatDateForReview('2017-01-07T07:43:10.690+0000')
     expect(str).toBe('07/01/2017')
+  })
+
+  test('formatDateStringTest', () => {
+    const date: Date = convertDateFromString('2017-11-07T07:43:10.690+0000')
+    const str = formatDateStringTest(date)
+    expect(str).toBe('2017-11-07 15:43')
   })
 
   test('formatByTimeAgoForTest', () => {

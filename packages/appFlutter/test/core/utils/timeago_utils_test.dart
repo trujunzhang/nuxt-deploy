@@ -16,12 +16,20 @@ void main() {
 
   testWidgets('formatDateString', (WidgetTester tester) async {
     var str = "2017-11-07T07:43:10.690+0000";
-    var expectedStr =  formatDateString(str);
+    var expectedStr = formatDateString(str);
     var x = 0;
     expect(expectedStr, '2017-11-07 07:43');
   });
 
-  testWidgets('Jiffy timeago functions test', (WidgetTester tester) async {
+  testWidgets('formatDateStringTest functions test',
+      (WidgetTester tester) async {
+    DateTime date = convertDateFromString('2017-11-07T07:43:10.690+0000');
+    var str = formatDateStringTest(date);
+    expect(str, '2017-11-07 07:43');
+  });
+
+  testWidgets('formatByTimeAgoForTest functions test',
+      (WidgetTester tester) async {
     // updatedAt: '2017-11-07T07:43:10.690+0000',
     // Jiffy("2011-10-31").fromNow();
     // Jiffy("2011-10-31").from('')

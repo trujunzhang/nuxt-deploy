@@ -56,4 +56,12 @@ void main() {
     expect(model.eventId, '4918e004-9792-40e4-9b3e-2040e7f028d1');
     expect(model.userId, 'zis2vkx9G2');
   });
+
+  test('addRecipe without multiple recipeId should correctly', () {
+    ParseModelPeopleInEvent model = ParseModelPeopleInEvent.fromJson(json);
+    ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.addRecipe(
+        model: model, recipeId: model.recipes[0]);
+
+    expect(nextModel.recipes.length, 2);
+  });
 }

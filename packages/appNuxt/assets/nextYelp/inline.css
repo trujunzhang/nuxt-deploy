@@ -8,3 +8,36 @@
   top: -0.1em;
   fill: white;
 }
+
+.css-1wu4sus {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  fill: rgb(43, 39, 60);
+  position: relative;
+  top: 0px;
+}
+
+.css-1c2abjj {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+  top: -0.1em;
+  fill: black;
+}
+
+.css-1mpk29p {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+  top: -0.1em;
+  fill: rgba(43,39,60,1);
+}

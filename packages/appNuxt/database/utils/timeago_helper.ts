@@ -20,6 +20,24 @@ export const getDateStringForCreatedOrUpdatedDate = (): string => {
   return str
 }
 
+export const convertDateFromString = (strDate: string): Date => {
+  const nextDate = new Date(strDate)
+  return nextDate
+}
+
+export const formatDateStringTest = (date: Date): string => {
+  const str = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' +
+    ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2)
+  return str
+}
+
+export const formatDateString = (strDate: string): string => {
+  const date: Date = convertDateFromString(strDate)
+  const str = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' +
+    ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2)
+  return str
+}
+
 /**
  * 12/11/2018
  * @param date: '2017-11-07T07:43:10.690+0000'

@@ -6,7 +6,7 @@ This class work together with FirestoreService and FirestoreDatabase.
 
 import { CollectionReference, DocumentData } from 'firebase/firebase-storage'
 import firebase from 'firebase'
-import { FBCollections } from '~/database/constant'
+import { FBCollections, PhotoType, ReviewType } from '~/database/constant'
 
 export class FirestorePath {
   private fireStore: firebase.firestore.Firestore
@@ -19,6 +19,11 @@ export class FirestorePath {
 
   // // Users
   // static String allUsers() => 'users';
+  getUsersList (): CollectionReference<DocumentData> {
+    const ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Users)
+    return ref
+  }
+
   //
   // static String singleUser(String userId) => 'users/$userId';
   //
@@ -26,37 +31,79 @@ export class FirestorePath {
   // static String singleRestaurant(String restaurantId) => 'restaurants/$restaurantId';
   //
   // Recipes
-  recipes (restaurantId: string): CollectionReference<DocumentData> {
-    return this.fireStore.collection(FBCollections.Restaurants).doc(restaurantId).collection(FBCollections.Recipes)
-    // return 'restaurants/$restaurantId/recipes';
+  getRecipesList (restaurantId: string): CollectionReference<DocumentData> {
+    let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Recipes)
+    ref = ref.where('restaurantId', '==', restaurantId)
+    return ref
   }
 
   // Events
-  events (restaurantId: string): CollectionReference<DocumentData> {
-    return this.fireStore.collection(FBCollections.Restaurants).doc(restaurantId).collection(FBCollections.Events)
-    // return 'restaurants/$restaurantId/events';
+  getEventsList (restaurantId: string): CollectionReference<DocumentData> {
+    let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Events)
+    ref = ref.where('restaurantId', '==', restaurantId)
+    return ref
   }
 
   // static String singleEvent(String restaurantId,String eventId) => 'restaurants/$restaurantId/events/$eventId';
   //
-  // // PeopleInEvents
-  // static String peopleInEvents(String restaurantId, String eventId) =>
-  //     'restaurants/$restaurantId/events/$eventId/peopleinevents';
-  // static String singlePeopleInEvent(String restaurantId,String eventId, String peopleInEventId) => 'restaurants/$restaurantId/events/$eventId/peopleinevents/$peopleInEventId';
-  //
+  // PeopleInEvents
+  getPeopleInEventsList (eventId: string): CollectionReference<DocumentData> {
+    let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.PeopleInEvent)
+    ref = ref.where('eventId', '==', eventId)
+    return ref
+  }
+
   // Photos
-  photosInRestaurant (restaurantId: string): CollectionReference<DocumentData> {
-    return this.fireStore.collection(FBCollections.Restaurants).doc(restaurantId).collection(FBCollections.Photos)
-    // return 'restaurants/$restaurantId/photos'
+  getPhotosList (relatedId: string, photoType: PhotoType): CollectionReference<DocumentData> {
+    let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Photos)
+
+    ref = ref.where('photoType', '==', photoType)
+
+    switch (photoType) {
+      case PhotoType.Restaurant: {
+        ref = ref.where('restaurantId', '==', relatedId)
+        break
+      }
+      case PhotoType.Recipe: {
+        ref = ref.where('recipeId', '==', relatedId)
+        break
+      }
+      case PhotoType.Waiter: {
+        ref = ref.where('restaurantId', '==', relatedId)
+        break
+      }
+      case PhotoType.User: {
+        ref = ref.where('userId', '==', relatedId)
+        break
+      }
+    }
+    return ref
   }
 
   // static String photosInRecipe(String restaurantId,String recipeId) =>
   //     'restaurants/$restaurantId/recipes/$recipeId/photos';
 
   // Reviews
-  reviewsInRestaurant (restaurantId: string): CollectionReference<DocumentData> {
-    // 'restaurants/$restaurantId/reviews';
-    return this.fireStore.collection(FBCollections.Restaurants).doc(restaurantId).collection(FBCollections.Reviews)
+  getReviewsList (relatedId: string, reviewType: ReviewType): CollectionReference<DocumentData> {
+    let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Reviews)
+
+    ref = ref.where('reviewType', '==', reviewType)
+
+    switch (reviewType) {
+      case ReviewType.Restaurant: {
+        ref = ref.where('restaurantId', '==', relatedId)
+        break
+      }
+      case ReviewType.Event: {
+        ref = ref.where('eventId', '==', relatedId)
+        break
+      }
+      case ReviewType.Recipe: {
+        ref = ref.where('recipeId', '==', relatedId)
+        break
+      }
+    }
+    return ref
   }
 
   //

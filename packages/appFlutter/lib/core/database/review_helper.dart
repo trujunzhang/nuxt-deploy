@@ -7,33 +7,32 @@ import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 
-class ReviewReturnModel {
-  final double rate;
-  final String note;
-
-  ReviewReturnModel(this.rate, this.note);
-}
+enum ReviewHookType { Add, Remove }
 
 class ReviewHelper {
   final double lastReviewRate;
   final double selectedStar;
   final bool isNew;
 
-  ReviewHelper({this.lastReviewRate, this.selectedStar, this.isNew});
+  ReviewHelper({@required this.lastReviewRate, this.selectedStar, this.isNew});
 
-  updateReview(BaseReview baseReview) {
-    int nextRate =
-        baseReview.rate - lastReviewRate.round() + selectedStar.round();
-    baseReview.rate = nextRate;
+  updateSavedReview(BaseReview baseReview) {
+    baseReview.rate = baseReview.rate - lastReviewRate.round() + selectedStar.round();
     baseReview.reviewCount = baseReview.reviewCount + (isNew ? 1 : 0);
   }
 
-  onSaveReviewAfterHook({
+  updateRemovedReview(BaseReview baseReview) {
+    baseReview.rate = baseReview.rate - lastReviewRate.round();
+    baseReview.reviewCount = baseReview.reviewCount - 1;
+  }
+
+  onSaveOrRemoveReviewAfterHook({
+    @required ReviewHookType reviewHookType,
     @required ReviewType reviewType,
     @required String relatedId,
   }) async {
     // Get the related models.
-    var relatedModel = null;
+    var relatedModel;
     if (reviewType == ReviewType.Restaurant) {
       relatedModel = await FirestoreService.instance.getData(
         path: FirestorePath.singleRestaurant(relatedId),
@@ -52,7 +51,18 @@ class ReviewHelper {
     }
 
     // Update the rate/count.
-    updateReview(relatedModel);
+    switch (reviewHookType) {
+      case ReviewHookType.Add:
+        {
+          updateSavedReview(relatedModel);
+          break;
+        }
+      case ReviewHookType.Remove:
+        {
+          updateRemovedReview(relatedModel);
+          break;
+        }
+    }
 
     // Save the related models.
     if (reviewType == ReviewType.Restaurant) {

@@ -42,7 +42,7 @@ class EventPageState extends State<PeopleInEventDetail> {
         FilterModels.instance.getSinglePeopleInEvent(context, peopleInEventId);
 
     Map<String, ParseModelRecipes> recipesDict =
-        FilterModels.instance.getRecipesDict(context);
+        FilterModels.instance.getRecipesDict(context,peopleInEvent.restaurantId);
 
     List<String> unorderedRecipeIds = FilterUtils.instance
         .getUnorderedRecipeIds(List.from(recipesDict.keys), lastPeopleInEvent);

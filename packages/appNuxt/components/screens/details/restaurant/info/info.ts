@@ -2,10 +2,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types'
 import { IFBPhoto } from 'ieattatypes/types/index'
 import { starLargeDict } from '~/database/star_helper'
-import { formatByTimeAgo, formatByTimeAgoForTest } from '~/database/utils/timeago_helper'
+import { formatByTimeAgo } from '~/database/utils/timeago_helper'
 import { calcRateForRestaurant } from '~/database/rate_utils'
 import { FirestoreService } from '~/database/services/firestore_service'
-import { FBCollections } from '~/database/constant'
+import { PhotoType } from '~/database/constant'
 import { FirestorePath } from '~/database/services/firestore_path'
 
 @Component({
@@ -61,7 +61,7 @@ export default class RestaurantInfo extends Vue {
     this.isLoading = true
     const nextItem = this.items.concat([])
     await FirestoreService.instance.collectionStream({
-      query: new FirestorePath(this.$fire.firestore).photosInRestaurant(this.restaurant.uniqueId),
+      query: new FirestorePath(this.$fire.firestore).getPhotosList(this.restaurant.uniqueId, PhotoType.Restaurant),
       queryBuilder: (query: any) => {
         return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
           query,
