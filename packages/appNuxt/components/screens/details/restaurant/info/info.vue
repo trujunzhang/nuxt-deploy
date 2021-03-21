@@ -85,7 +85,7 @@
         >
           <a
             class=" button__373c0__3lYgT large__373c0__3EPuS secondary-dark__373c0__5iZ63"
-            href="https://www.yelp.com/biz_photos/the-ramen-bar-san-francisco-san-francisco-3"
+            :href="getSeeAllLink()"
             style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
           >
             <div

@@ -1,13 +1,14 @@
 import firebase from 'firebase'
 import { IFBPhoto, IFBRestaurant, IFBRecipe, IFBReview, IFBEvent, IFBPeopleInEvent } from 'ieattatypes/types/index'
-import { password, users } from '~/database/data/Users'
+import { password, loadUsers } from '~/database/data/Users'
 
 export const getCreatorIdDict = async ($fireAuth: firebase.auth.Auth) => {
   const creatorIdDict = {}
-  for (const index in users) {
-    const userId = users[index].id
+  const clone = loadUsers().slice()
+  for (const index in clone) {
+    const userId = clone[index].id
     const cb = await $fireAuth.signInWithEmailAndPassword(
-      users[index].email,
+      loadUsers()[index].email,
       password
     )
     const onlineUser: any = cb.user?.toJSON()

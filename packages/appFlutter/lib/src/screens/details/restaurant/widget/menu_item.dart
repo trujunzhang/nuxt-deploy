@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 
 class MenuItem extends StatelessWidget {
   final VoidCallback callback;
@@ -50,14 +48,9 @@ class MenuItem extends StatelessWidget {
           Row(
             children: <Widget>[
               // Rating star view
-              SmoothStarRating(
-                allowHalfRating: true,
-                starCount: 5,
-                rating: calcRateForRestaurant(
-                    recipeData.rate, recipeData.reviewCount),
-                size: 15,
-                color: HotelAppTheme.buildLightTheme().primaryColor,
-                borderColor: HotelAppTheme.buildLightTheme().primaryColor,
+              RatingImage(baseReview: recipeData,
+                imageWidth: 70,
+                imageHeight: 13,
               ),
             ],
           ),

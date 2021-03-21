@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import vClickOutside from 'v-click-outside'
 import ReviewPop from '~/components/screens/details/reviews/review_pop.vue'
 
@@ -13,8 +13,6 @@ import ReviewPop from '~/components/screens/details/reviews/review_pop.vue'
 export default class ReviewSort extends Vue {
   public sortTitle: string = 'Yelp Sort'
   public showPopMenu: boolean = false
-
-  // public showPopMenu: boolean = true
 
   onClickOutside (event) {
     // console.log('Clicked outside. Event: ', event)

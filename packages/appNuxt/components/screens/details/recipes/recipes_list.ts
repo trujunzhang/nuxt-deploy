@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRecipe, IFBRestaurant } from 'ieattatypes/types'
+import { IFBRecipe } from 'ieattatypes/types'
 import RecipeItem from '~/components/screens/details/recipes/recipe_item.vue'
 
 @Component({

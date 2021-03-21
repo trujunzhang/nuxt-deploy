@@ -81,10 +81,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
     ParseModelReviews review =
         FilterModels.instance.getSingleReview(context, reviewId);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(top: 8.0),
-      child: ReviewItem(
-        reviewData: review,
-      ),
-    );
+        padding: EdgeInsets.only(top: 8.0),
+        child: Container(
+          decoration: new BoxDecoration(color: Colors.white),
+          child: ReviewItem(
+            reviewData: review,
+          ),
+        ));
   }
 }

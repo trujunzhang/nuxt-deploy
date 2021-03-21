@@ -2,4 +2,4 @@
   <HomePage />
 </template>
 
-<script lang="ts" src="./search.ts"/>
+<script lang="ts" src="./search.ts" />

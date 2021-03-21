@@ -14,6 +14,7 @@
         <nuxt />
       </div>
     </div>
+    <PhotoFooter />
   </div>
 </template>
 

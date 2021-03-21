@@ -1,9 +1,7 @@
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import {
-  FacebookLoader
-} from 'vue-content-loader'
+import { FacebookLoader } from 'vue-content-loader'
 import { FBCollections } from '~/database/constant'
 import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'
 import NoResults from '~/components/screens/homePage/no_results.vue'
@@ -22,7 +20,6 @@ export default class HomePage extends Vue {
   public markers: any = []
 
   public placeHolders: number[] = [0, 1, 2, 3, 4]
-  // public items: Array<IFBRestaurant> = loadRestaurants()
   public items: Array<IFBRestaurant> = []
 
   private showNoResult: boolean = false

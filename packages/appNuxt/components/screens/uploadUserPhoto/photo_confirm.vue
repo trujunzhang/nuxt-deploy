@@ -43,7 +43,8 @@
                       >
                         <svg role="img" class="icon_svg">
                           <use xlink:href="#24x24_checkmark">
-                            <svg id="24x24_checkmark" height="24" viewBox="0 0 24 24" width="24"><path d="M19.698 7.748L9.895 17.994 4.292 12.14a1.07 1.07 0 0 1 0-1.464.96.96 0 0 1 1.4 0l4.203 4.39 8.403-8.782a.96.96 0 0 1 1.4 0c.387.405.387 1.06 0 1.464z"></path></svg>
+                            <svg id="24x24_checkmark" height="24" viewBox="0 0 24 24" width="24"><path
+                              d="M19.698 7.748L9.895 17.994 4.292 12.14a1.07 1.07 0 0 1 0-1.464.96.96 0 0 1 1.4 0l4.203 4.39 8.403-8.782a.96.96 0 0 1 1.4 0c.387.405.387 1.06 0 1.464z"></path></svg>
                           </use>
                         </svg>
                       </span>
@@ -58,7 +59,8 @@
                       >
                         <svg role="img" class="icon_svg">
                           <use xlink:href="#24x24_exclamation">
-                            <svg id="24x24_exclamation" height="24" viewBox="0 0 24 24" width="24"><path d="M12 15a2 2 0 0 1-2-2V4a2 2 0 0 1 4 0v9a2 2 0 0 1-2 2zm0 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"></path></svg>
+                            <svg id="24x24_exclamation" height="24" viewBox="0 0 24 24" width="24"><path
+                              d="M12 15a2 2 0 0 1-2-2V4a2 2 0 0 1 4 0v9a2 2 0 0 1-2 2zm0 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"></path></svg>
                           </use>
                         </svg>
                       </span>

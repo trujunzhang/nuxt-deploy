@@ -140,7 +140,7 @@
                       </div>
                     </div>
                   </li>
-                  <li>
+                  <li v-if="false">
                     <span class="event-details_ticket-info">
                       <span aria-hidden="true" style="width: 24px; height: 24px;" class="icon icon--24-ticket icon--size-24 u-space-r1">
                         <svg role="img" class="icon_svg">

@@ -1,8 +1,8 @@
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import UserDefaultRight from '~/components/screens/userDetail/right/right_default.vue'
-import UserDetailPhotosSelf from '~/components/screens/userDetail/right/photos_self.vue'
-import UserDetailRestaurantsSelf from '~/components/screens/userDetail/right/restaurants_self.vue'
-import UserDetailReviewsSelf from '~/components/screens/userDetail/right/reviews_self.vue'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import UserDefaultRight from '~/components/screens/details/user/right/right_default.vue'
+import UserDetailPhotosSelf from '~/components/screens/details/user/right/photos_self.vue'
+import UserDetailRestaurantsSelf from '~/components/screens/details/user/right/restaurants_self.vue'
+import UserDetailReviewsSelf from '~/components/screens/details/user/right/reviews_self.vue'
 
 @Component({
   layout (context) {

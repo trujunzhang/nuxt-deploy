@@ -7,6 +7,7 @@ import { calcRateForRestaurant } from '~/database/rate_utils'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { PhotoType } from '~/database/constant'
 import { FirestorePath } from '~/database/services/firestore_path'
+import { getSeeAllPhotoLink, getSinglePhotoLink } from '~/utils/linkHelper/photos'
 
 @Component({
   components: {}
@@ -63,10 +64,7 @@ export default class RestaurantInfo extends Vue {
     await FirestoreService.instance.collectionStream({
       query: new FirestorePath(this.$fire.firestore).getPhotosList(this.restaurant.uniqueId, PhotoType.Restaurant),
       queryBuilder: (query: any) => {
-        return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
-          query,
-          restaurant: this.restaurant
-        })
+        return query.orderBy('updatedAt', 'desc')
       },
       iterateDocumentSnapshots: (data: IFBPhoto) => {
         nextItem.push(data)
@@ -87,7 +85,7 @@ export default class RestaurantInfo extends Vue {
    */
   getImageLink (index: number) {
     const item: IFBPhoto = this.items[index]
-    return `${this.getSeeAllLink()}?select=${item.uniqueId}`
+    return getSinglePhotoLink(this.restaurant, PhotoType.Restaurant, item.uniqueId)
   }
 
   /**
@@ -95,7 +93,7 @@ export default class RestaurantInfo extends Vue {
    *   href="/biz_photos/the-ramen-bar-san-francisco"
    */
   getSeeAllLink () {
-    return `/biz_photos/${this.restaurant.slug}`
+    return getSeeAllPhotoLink(this.restaurant, PhotoType.Restaurant)
   }
 
   getPhotoUrl (index: number) {

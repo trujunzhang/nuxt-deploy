@@ -47,11 +47,11 @@
                           >
                             {{ index + 1 }}
                             <!-- -->.&nbsp;<a
-                              class=" link__09f24__1kwXV link-color--inherit__09f24__3PYlA link-size--inherit__09f24__2Uj95"
-                              :href="getDetailRestaurantUrl() "
-                              :name="`${restaurant.displayName}`"
-                              rel=""
-                            >{{ restaurant.displayName }}</a>
+                            class=" link__09f24__1kwXV link-color--inherit__09f24__3PYlA link-size--inherit__09f24__2Uj95"
+                            :href="getDetailRestaurantUrl() "
+                            :name="`${restaurant.displayName}`"
+                            rel=""
+                          >{{ restaurant.displayName }}</a>
                           </span>
                         </h4>
                       </div>

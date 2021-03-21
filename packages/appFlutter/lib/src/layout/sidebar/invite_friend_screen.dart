@@ -15,6 +15,10 @@ class _InviteFriendState extends State<InviteFriend> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Invite friends'),
+      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -76,7 +80,7 @@ class _InviteFriendState extends State<InviteFriend> {
                             Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Text(
-                                'Share',
+                                'Invite',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,

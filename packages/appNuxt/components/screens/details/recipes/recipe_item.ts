@@ -2,6 +2,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRecipe } from 'ieattatypes/types'
 import { starRegularDict } from '~/database/star_helper'
 import { calcRateForRestaurant } from '~/database/rate_utils'
+import { getDetailRecipeLink } from '~/utils/linkHelper/detail'
 
 @Component({
   components: {}
@@ -31,6 +32,6 @@ export default class RecipeItem extends Vue {
   }
 
   getDetailRecipeUrl () {
-    // return `/biz/${this.recipe.slug}`
+    return getDetailRecipeLink(this.recipe)
   }
 }

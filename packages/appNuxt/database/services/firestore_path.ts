@@ -54,7 +54,7 @@ export class FirestorePath {
   }
 
   // Photos
-  getPhotosList (relatedId: string, photoType: PhotoType): CollectionReference<DocumentData> {
+  getPhotosList (relatedId: string, photoType: string): CollectionReference<DocumentData> {
     let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Photos)
 
     ref = ref.where('photoType', '==', photoType)
@@ -84,7 +84,7 @@ export class FirestorePath {
   //     'restaurants/$restaurantId/recipes/$recipeId/photos';
 
   // Reviews
-  getReviewsList (relatedId: string, reviewType: ReviewType): CollectionReference<DocumentData> {
+  getReviewsList (relatedId: string, reviewType: string): CollectionReference<DocumentData> {
     let ref: CollectionReference<DocumentData> = this.fireStore.collection(FBCollections.Reviews)
 
     ref = ref.where('reviewType', '==', reviewType)

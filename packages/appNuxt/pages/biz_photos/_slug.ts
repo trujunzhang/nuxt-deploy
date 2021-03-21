@@ -1,11 +1,12 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant } from 'ieattatypes/types/index'
+import { Component, Vue } from 'vue-property-decorator'
+import { IFBRestaurant, IFBRecipe } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import PhotoSingle from '~/components/screens/photoSingle/photo_single.vue'
 import PhotoGrid from '~/components/screens/photoGrid/photo_grid.vue'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
-import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
-import { FBCollections } from '~/database/constant'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { getPhotoRelatedPath } from '~/database/constant'
+
 const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({
@@ -16,7 +17,7 @@ const ieattaConfigure = namespace('ieattaConfigure')
   }
 })
 export default class PhotoBrowse extends Vue {
-  public restaurant: IFBRestaurant | null = null
+  public relatedModel: IFBRestaurant | IFBRecipe | null = null
   private isLoading = false
   private photoSelectId: string | null = null
 
@@ -27,15 +28,16 @@ export default class PhotoBrowse extends Vue {
     if (this.isLoading) {
       return
     }
+    const photoType = this.$route.query.type as string
     await FirestoreService.instance.snapshotList({
       $fireStore: this.$fire.firestore,
-      path: FBCollections.Restaurants,
+      path: getPhotoRelatedPath(photoType),
       queryBuilder: (query: any) => {
-        const restaurantSlug = this.$route.params.slug as string
-        return query.where('slug', '==', restaurantSlug)
+        const slug = this.$route.params.slug as string
+        return query.where('slug', '==', slug)
       },
       iterateDocumentSnapshots: (data: IFBRestaurant) => {
-        this.restaurant = data
+        this.relatedModel = data
       },
       emptyHint: () => {
         this.SET_SHOW_404(true)

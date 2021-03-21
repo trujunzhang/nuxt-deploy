@@ -2,11 +2,13 @@ import { IFBReview } from 'ieattatypes/types/index'
 import { getDateStringForCreatedOrUpdatedDate } from '~/database/utils/timeago_helper'
 import { documentIdFromCurrentDate } from '~/database/utils/md5_utils'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { ReviewType } from '~/database/constant'
 
 export class ParseModelReviews {
   static emptyReview (
     authUserModel: IAuthUser,
-    restaurantId: string
+    relatedId: string,
+    reviewType: string
   ) {
     const review: IFBReview = {
       // Base(5)
@@ -22,10 +24,10 @@ export class ParseModelReviews {
       username: authUserModel.displayName,
       avatarUrl: authUserModel.photoURL,
       // point(4)
-      reviewType: 'restaurant',
-      restaurantId,
-      eventId: '',
-      recipeId: ''
+      reviewType,
+      restaurantId: reviewType === ReviewType.Restaurant ? relatedId : '',
+      eventId: reviewType === ReviewType.Event ? relatedId : '',
+      recipeId: reviewType === ReviewType.Recipe ? relatedId : ''
     }
     return review
   }

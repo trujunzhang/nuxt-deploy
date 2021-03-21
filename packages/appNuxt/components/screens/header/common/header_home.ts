@@ -1,10 +1,11 @@
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import vClickOutside from 'v-click-outside'
 import { IAuthUser } from '~/database/models/auth_user_model'
 
 import HeaderSearch from '~/components/screens/header/common/header_search.vue'
 import HeaderPop from '~/components/screens/header/common/header_pop.vue'
+
 const auth = namespace('auth')
 
 @Component({
@@ -22,6 +23,7 @@ export default class HomeHeader extends Vue {
 
   public isLoaded: boolean = false
   public showPopMenu: boolean = false
+
   // public showPopMenu: boolean = true
 
   onClickOutside (event) {
@@ -65,6 +67,6 @@ export default class HomeHeader extends Vue {
   }
 
   @Watch('$route')
-  routeChanged (to: any, from:any) {
+  routeChanged (to: any, from: any) {
   }
 }

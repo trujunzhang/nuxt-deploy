@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 import 'package:ieatta/src/screens/details/event/select_person/select_person_screen.dart';
 import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 
 class InfoPart extends StatelessWidget {
@@ -82,21 +80,7 @@ class InfoPart extends StatelessWidget {
         _buildDateInfo(),
         SizedBox(height: 16),
         // Line 4
-        RatingBar.builder(
-            initialRating: calcRateForRestaurant(event.rate, event.reviewCount),
-            minRating: 1,
-            direction: Axis.horizontal,
-            allowHalfRating: true,
-            unratedColor:
-                HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
-            itemCount: 5,
-            itemSize: 20,
-            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-            itemBuilder: (context, _) => Icon(
-                  Icons.star,
-                  color: HotelAppTheme.buildLightTheme().primaryColor,
-                ),
-            onRatingUpdate: (rating) {}),
+        RatingImage(baseReview: event),
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),

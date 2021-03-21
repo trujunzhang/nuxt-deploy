@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRecipes recipe;
@@ -69,22 +67,7 @@ class InfoPart extends StatelessWidget {
         ),
         SizedBox(height: 4),
         // Line 4
-        RatingBar.builder(
-            initialRating:
-                calcRateForRestaurant(recipe.rate, recipe.reviewCount),
-            minRating: 1,
-            direction: Axis.horizontal,
-            allowHalfRating: true,
-            unratedColor:
-                HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
-            itemCount: 5,
-            itemSize: 20,
-            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-            itemBuilder: (context, _) => Icon(
-                  Icons.star,
-                  color: HotelAppTheme.buildLightTheme().primaryColor,
-                ),
-            onRatingUpdate: (rating) {}),
+        RatingImage(baseReview: recipe),
         SizedBox(height: 8),
         // Line 5
         const Divider(height: 10.0, thickness: 0.5),

@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import { namespace } from 'vuex-class'
 import Cookies from 'universal-cookie'
@@ -58,7 +58,7 @@ export default class GoogleLoginButton extends Vue {
         const credential = error.credential
         console.log('google error:', errorMessage)
         this.isLogging = false
-        // debugger
+      // debugger
       })
   }
 

@@ -1,7 +1,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
-import { starRegularDict } from '~/database/star_helper'
+import { starRegularForHomeRestaurantsDict } from '~/database/star_helper'
 import { calcRateForRestaurant } from '~/database/rate_utils'
+import { getDetailRestaurantLink } from '~/utils/linkHelper/detail'
 
 @Component({
   components: {}
@@ -30,7 +31,7 @@ export default class RestaurantItem extends Vue {
    */
   getRateStarClassName () {
     return `i-stars__09f24__1T6rz ${
-      starRegularDict[
+      starRegularForHomeRestaurantsDict[
         calcRateForRestaurant(
           this.restaurant.rate,
           this.restaurant.reviewCount
@@ -40,7 +41,7 @@ export default class RestaurantItem extends Vue {
   }
 
   getDetailRestaurantUrl () {
-    return `/biz/${this.restaurant.slug}`
+    return getDetailRestaurantLink(this.restaurant)
   }
 
   getRestaurantNote () {

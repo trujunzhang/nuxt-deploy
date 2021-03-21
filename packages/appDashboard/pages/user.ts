@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBUser } from 'ieattatypes/types/index'
-import { users, loadUsers } from '~/database/data/Users'
+import { loadUsers } from '~/database/data/Users'
 import { uploadUsers } from '~/database/event/Users'
 
 @Component({

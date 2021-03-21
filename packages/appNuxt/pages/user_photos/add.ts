@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import PhotoConfirm from '~/components/screens/uploadUserPhoto/photo_confirm.vue'
 import PhotoForm from '~/components/screens/uploadUserPhoto/photo_form.vue'
 import UserTitle from '~/components/screens/uploadUserPhoto/userTitle/user_title.vue'
@@ -18,6 +18,7 @@ const UPLOAD_PHOTO_STEP_CONFIRM = 'UPLOAD_PHOTO_STEP_CONFIRM'
 export default class UploadPhoto extends Vue {
   private image: string | ArrayBuffer | null = null
   private step: string = UPLOAD_PHOTO_STEP_NORMAL
+
   // private step: string = UPLOAD_PHOTO_STEP_CONFIRM
 
   onUploadImageHook (imgData: string) {

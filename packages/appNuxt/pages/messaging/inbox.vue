@@ -17,4 +17,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./inbox.ts"/>
+<script lang="ts" src="./inbox.ts" />

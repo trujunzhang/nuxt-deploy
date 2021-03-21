@@ -3,9 +3,9 @@ import { IFBUser } from 'ieattatypes/types/index'
 export const password = 'pwd123'
 
 export const filterUser = (id: string) => {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].id === id) {
-      return users[i]
+  for (let i = 0; i < loadUsers().length; i++) {
+    if (loadUsers()[i].id === id) {
+      return loadUsers()[i]
     }
   }
   return null
@@ -22,7 +22,7 @@ export const loadUsers = (): IFBUser[] => {
   return next
 }
 
-export const users: IFBUser[] = [
+const users: IFBUser[] = [
   {
     id: 'PqAx0FCrEn',
     username: 'Derek Hele',

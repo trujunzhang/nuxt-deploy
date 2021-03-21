@@ -15,6 +15,10 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('About'),
+      ),
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -48,7 +52,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 16, left: 32, right: 32),
                 child: const Text(
                   "This app is used to track restaurant's ate at, food that was eaten and who you were with.",
                   textAlign: TextAlign.center,

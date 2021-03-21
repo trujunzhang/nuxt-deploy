@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import HomePage from '~/components/screens/homePage/home_page.vue'
 
 @Component({

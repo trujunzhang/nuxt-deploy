@@ -50,18 +50,21 @@ class RestaurantDetailState extends State<RestaurantDetail> {
         .getPhotosList(context, restaurantId, PhotoType.Restaurant);
     List<ParseModelReviews> reviewsList = FilterModels.instance
         .getReviewsList(context, restaurantId, ReviewType.Restaurant);
+    String address = restaurant.address;
     return ListView(
       children: [
         InfoPart(
           restaurant: restaurant,
         ),
         // Line 1: Address
-        buildTextSectionTitle("Current Address"),
-        Container(
-            decoration: new BoxDecoration(color: Colors.white),
-            child: ListTile(
-              title: Text(restaurant.address),
-            )),
+        address == '' ? Container() : buildTextSectionTitle("Current Address"),
+        address == ''
+            ? Container()
+            : Container(
+                decoration: new BoxDecoration(color: Colors.white),
+                child: ListTile(
+                  title: Text(restaurant.address),
+                )),
         // Line 2: Events
         buildTextSectionTitle("Events Recorded"),
         EventsBody(

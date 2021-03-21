@@ -1,13 +1,15 @@
-import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
+import { IFBPhoto, IFBRestaurant, IFBRecipe } from 'ieattatypes/types/index'
 import { getDateStringForCreatedOrUpdatedDate } from '~/database/utils/timeago_helper'
 import { documentIdFromCurrentDate } from '~/database/utils/md5_utils'
 import { convertToGeoHash } from '~/database/utils/geohash_utils'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { PhotoType } from '~/database/constant'
 
 export class ParseModelPhotos {
   static emptyPhotoForRestaurant (
     authUserModel: IAuthUser,
-    restaurant: IFBRestaurant,
+    relatedId: string,
+    photoType: string,
     originalUrl: string,
     extraNote: string
   ) {
@@ -22,18 +24,17 @@ export class ParseModelPhotos {
       username: authUserModel.displayName,
       avatarUrl: authUserModel.photoURL,
       // Location(3)
-      geoHash: convertToGeoHash(restaurant.latitude, restaurant.longitude),
-      latitude: restaurant.latitude,
-      longitude: restaurant.longitude,
+      geoHash: '',
+      latitude: 0,
+      longitude: 0,
       // Common
       originalUrl,
       thumbnailUrl: '',
-      url: '',
       // point(4)
-      photoType: '',
-      restaurantId: restaurant.uniqueId,
-      recipeId: '',
-      userId: '',
+      photoType,
+      restaurantId: photoType === PhotoType.Restaurant ? relatedId : '',
+      recipeId: photoType === PhotoType.Recipe ? relatedId : '',
+      userId: photoType === PhotoType.User ? relatedId : '',
       // offline(1)
       offlinePath: '',
       // extra(1)

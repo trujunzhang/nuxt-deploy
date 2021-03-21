@@ -23,7 +23,7 @@ export default class RestaurantEvents extends Vue {
   }
 
   getDetailEventUrl (event: IFBEvent) {
-    return `/events/${event.slug}`
+    return `/event/${event.slug}`
   }
 
   showEmptyHint () {

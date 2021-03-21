@@ -38,4 +38,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./header_login.ts"/>
+<script lang="ts" src="./header_login.ts" />

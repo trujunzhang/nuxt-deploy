@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant } from 'ieattatypes/types/index'
+import { IFBRestaurant, IFBRecipe } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import { OnToggleFormStepFunc } from '~/components/screens/uploadPhoto/type'
 import { PhotoHelper } from '~/database/photo_helper'
@@ -13,7 +13,7 @@ const auth = namespace('auth')
   components: {}
 })
 export default class PhotoConfirm extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
+  @Prop({}) relatedModel!: IFBRestaurant|IFBRecipe
   /**
    * image is data:image/png;base64.
    */
@@ -28,6 +28,7 @@ export default class PhotoConfirm extends Vue {
 
   async onUploadClick () {
     this.showAlertMessage = false
+    const photoType = this.$route.query.type as string
     await PhotoHelper.uploadImage(
       this.image,
       (progressEvent) => {
@@ -39,7 +40,8 @@ export default class PhotoConfirm extends Vue {
         const nextPhoto =
           ParseModelPhotos.emptyPhotoForRestaurant(
             (this.user as any),
-            this.restaurant,
+            this.relatedModel.uniqueId,
+            photoType,
             originalUrl,
             this.note
           )

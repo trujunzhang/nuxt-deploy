@@ -68,7 +68,7 @@ dependencies:
   # https://github.com/sarbagyastha/flutter_rating_bar
   # Icons.star_border | Icons.star
   flutter_rating_bar: ^3.2.0+1
-  smooth_star_rating: ^1.1.1
+  # smooth_star_rating: ^1.1.1
   flutter_spinkit: ^4.1.2
   # common
   slugify: ^1.0.0
@@ -107,6 +107,7 @@ flutter:
     - assets/json/
     - assets/images/
     - assets/placeholder/
+    - assets/stars/small/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

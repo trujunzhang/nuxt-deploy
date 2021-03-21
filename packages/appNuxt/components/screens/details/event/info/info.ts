@@ -5,6 +5,7 @@ import { FBCollections } from '~/database/constant'
 import { formatDateString } from '~/database/utils/timeago_helper'
 import { starLargeDict } from '~/database/star_helper'
 import { calcRateForRestaurant } from '~/database/rate_utils'
+import { getDetailRestaurantLink } from '~/utils/linkHelper/detail'
 
 @Component({
   components: {}
@@ -71,7 +72,7 @@ export default class EventInfo extends Vue {
     if (this.restaurant === null) {
       return ''
     }
-    return `/biz/${this.restaurant.slug}`
+    return getDetailRestaurantLink(this.restaurant)
   }
 
   getRestaurantPhotoUrl () {

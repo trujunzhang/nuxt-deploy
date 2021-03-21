@@ -11,10 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/orderedPeople/ordered_people.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/details/event/waiters/waiters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/header/common/header_home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/header/common/header_home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/header/common/header_search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/header/common/header_search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/screens/homePage/home_page.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,7 +379,24 @@
       <workItem from="1615555127108" duration="425000" />
       <workItem from="1615555970563" duration="3087000" />
       <workItem from="1615559726639" duration="919000" />
-      <workItem from="1615642286518" duration="614000" />
+      <workItem from="1615642286518" duration="703000" />
+      <workItem from="1615643984598" duration="2564000" />
+      <workItem from="1615687511600" duration="390000" />
+      <workItem from="1615699847571" duration="4755000" />
+      <workItem from="1615705077549" duration="1110000" />
+      <workItem from="1615716427231" duration="755000" />
+      <workItem from="1615717294072" duration="486000" />
+      <workItem from="1615717962917" duration="401000" />
+      <workItem from="1615718815959" duration="2842000" />
+      <workItem from="1615722845596" duration="332000" />
+      <workItem from="1615723894044" duration="3528000" />
+      <workItem from="1615729858791" duration="635000" />
+      <workItem from="1615730612317" duration="2073000" />
+      <workItem from="1615733173860" duration="44000" />
+      <workItem from="1615794915292" duration="703000" />
+      <workItem from="1615795901077" duration="258000" />
+      <workItem from="1615802887934" duration="2340000" />
+      <workItem from="1615807309106" duration="390000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>

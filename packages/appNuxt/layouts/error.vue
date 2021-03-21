@@ -2,4 +2,4 @@
   <Error404 />
 </template>
 
-<script lang="ts" src="./error.ts"/>
+<script lang="ts" src="./error.ts" />

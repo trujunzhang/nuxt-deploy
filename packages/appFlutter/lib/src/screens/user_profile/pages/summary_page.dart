@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:ieatta/src/appModels/models/User_menu.dart';
@@ -29,6 +30,10 @@ class _SummaryPageState extends State<SummaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Profile'),
+      ),
       body: Stack(
         children: [
           _buildPage(context),
@@ -111,49 +116,46 @@ class _SummaryPageState extends State<SummaryPage> {
         Column(
           children: <Widget>[
             Text(
-              123.toString(),
+              widget.userMenus[0].value.toString(),
               style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 22,
                 // color: TEXT_COLOR
               ),
             ),
             SizedBox(height: 4),
-            Text(
-              "Restaurants",
-              // style: TextStyle(color: TEXT_COLOR),
-            ),
+            Text(widget.userMenus[0].title
+                // style: TextStyle(color: TEXT_COLOR),
+                ),
           ],
         ),
         Column(
           children: <Widget>[
             Text(
-              234.toString(),
+              widget.userMenus[1].value.toString(),
               style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 22,
                 // color: TEXT_COLOR
               ),
             ),
             SizedBox(height: 4),
-            Text(
-              "Reviews",
-              // style: TextStyle(color: TEXT_COLOR),
-            ),
+            Text(widget.userMenus[1].title
+                // style: TextStyle(color: TEXT_COLOR),
+                ),
           ],
         ),
         Column(
           children: <Widget>[
             Text(
-              345.toString(),
+              widget.userMenus[2].value.toString(),
               style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 22,
                 // color: TEXT_COLOR
               ),
             ),
             SizedBox(height: 4),
-            Text(
-              "Photos",
-              // style: TextStyle(color: TEXT_COLOR),
-            ),
+            Text(widget.userMenus[2].title
+                // style: TextStyle(color: TEXT_COLOR),
+                ),
           ],
         ),
       ],

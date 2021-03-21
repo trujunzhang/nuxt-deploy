@@ -4,6 +4,7 @@ import { IFBReview } from 'ieattatypes'
 import { starRegularDict } from '~/database/star_helper'
 import { formatDateForReview } from '~/database/utils/timeago_helper'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { getEditReviewLink } from '~/utils/linkHelper/reviews'
 
 const auth = namespace('auth')
 
@@ -51,7 +52,7 @@ export default class ReviewItem extends Vue {
    * http://localhost:3000/writeareview/biz/3YVy-af7Ipl7TVft3kquWg
    */
   getEditReviewUrl () {
-    return `/writeareview/biz/${this.review.restaurantId}?rid=${this.review.uniqueId}`
+    return getEditReviewLink(this.review)
   }
 
   showReviewEditBtn () {

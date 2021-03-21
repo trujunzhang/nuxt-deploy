@@ -88,6 +88,13 @@ class FilterModels {
         .singleWhere((restaurant) => restaurant.uniqueId == uniqueId);
   }
 
+  List<ParseModelRestaurants> getRestaurantsListByUser(
+      BuildContext context, String userId) {
+    return Provider.of<List<ParseModelRestaurants>>(context)
+        .where((restaurant) => restaurant.creatorId == userId)
+        .toList();
+  }
+
 // ===========================================================
 // Model: Events
 // ===========================================================
@@ -175,6 +182,13 @@ class FilterModels {
         .toList();
   }
 
+  List<ParseModelPhotos> getPhotosListByUser(
+      BuildContext context, String userId) {
+    return Provider.of<List<ParseModelPhotos>>(context)
+        .where((photo) => photo.creatorId == userId)
+        .toList();
+  }
+
 // ===========================================================
 // Model: Reviews
 // ===========================================================
@@ -203,9 +217,16 @@ class FilterModels {
         .toList();
   }
 
+  List<ParseModelReviews> getReviewsListByUser(
+      BuildContext context, String userId) {
+    return Provider.of<List<ParseModelReviews>>(context)
+        .where((review) => review.creatorId == userId)
+        .toList();
+  }
+
   ParseModelReviews getSingleReview(BuildContext context, String uniqueId) {
     return Provider.of<List<ParseModelReviews>>(context)
-        .singleWhere((recipe) => recipe.uniqueId == uniqueId);
+        .singleWhere((review) => review.uniqueId == uniqueId);
   }
 
 // ===========================================================

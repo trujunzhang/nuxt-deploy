@@ -72,6 +72,20 @@ export const starSmallDict = {
   5: 'i-stars--small-5__373c0__3wo2U'
 }
 
+export const starExtraLargeForReviewDict = {
+  0: 'i-stars--large-0__09f24__272jL',
+  0.5: '',
+  1: 'i-stars--large-1__09f24__1kclN',
+  1.5: 'i-stars--large-1-half__09f24__1X_11',
+  2: 'i-stars--large-2__09f24__1nJlc',
+  2.5: 'i-stars--large-2-half__09f24__2c_Jf',
+  3: 'i-stars--large-3__09f24__3_Jon',
+  3.5: 'i-stars--large-3-half__09f24__2z4jR',
+  4: 'i-stars--large-4__09f24__1d6HV',
+  4.5: 'i-stars--large-4-half__09f24__2lYkD',
+  5: 'i-stars--large-5__09f24__1GcGD'
+}
+
 export const starExtraLargeDict = {
   0: 'i-selector-stars--extra-large-0__09f24__3GE2w',
   0.5: '',
@@ -86,6 +100,23 @@ export const starExtraLargeDict = {
   5: 'i-selector-stars--extra-large-5__09f24__2J5b0'
 }
 
+/**
+ * width: 108px;
+ * height: 20px;
+ */
+export const starRegularForHomeRestaurantsDict = {
+  0: 'i-stars--regular-0__09f24__3ocQa',
+  0.5: '',
+  1: 'i-stars--regular-1__09f24__1HqiV',
+  1.5: 'i-stars--regular-1-half__09f24__1Ght9',
+  2: 'i-stars--regular-2__09f24__3LFi9',
+  2.5: 'i-stars--regular-2-half__09f24__3LuvJ',
+  3: 'i-stars--regular-3__09f24__Xlhbn',
+  3.5: 'i-stars--regular-3-half__09f24__dpRnb',
+  4: 'i-stars--regular-4__09f24__2YrSK',
+  4.5: 'i-stars--regular-4-half__09f24__1YrPo',
+  5: 'i-stars--regular-5__09f24__N5JxY'
+}
 // export const starRegularDict = {
 //   0: '',
 //   0.5: '',

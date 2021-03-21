@@ -25,7 +25,9 @@
               <UserLeft :detail-user="detailUser" />
               <!-- right -->
               <!-- Route -->
-              <nuxt />
+              <div class="column column-beta ">
+                <nuxt />
+              </div>
             </div>
           </div>
           <PhotoFooter />
@@ -35,4 +37,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./userPage.ts"/>
+<script lang="ts" src="./userPage.ts" />

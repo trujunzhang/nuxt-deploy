@@ -1,5 +1,7 @@
 <template>
-  <div class=" margin-b5__373c0__2ErL8 border-color--default__373c0__3-ifU">
+  <div
+    v-if="user"
+    class=" margin-b5__373c0__2ErL8 border-color--default__373c0__3-ifU">
     <div
       class=" war-container__373c0__2o39o padding-t3__373c0__1gw9E padding-r3__373c0__57InZ padding-b3__373c0__342DA padding-l3__373c0__1scQ0 border-color--default__373c0__3-ifU shadow--inline__373c0__2099Z"
     >
@@ -7,27 +9,27 @@
         class=" arrange__373c0__2C9bH gutter-3__373c0__nws1y grid__373c0__1Pz7f layout-stack-small__373c0__27wVp vertical-align-middle__373c0__1SDTo border-color--default__373c0__3-ifU"
       >
         <div class=" arrange-unit__373c0__o3tjT arrange-unit-grid-column--6__373c0__iqF-j border-color--default__373c0__3-ifU">
-          <div class=" border-color--default__373c0__3-ifU" role="region" aria-label="Trujun Z.">
+          <!--  User Info -->
+          <div
+            class=" border-color--default__373c0__3-ifU"
+            role="region"
+            :aria-label="getUserTitle()"
+          >
             <div class=" arrange__373c0__2C9bH gutter-1-5__373c0__2vL-3 vertical-align-middle__373c0__1SDTo border-color--default__373c0__3-ifU">
               <div class=" arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU">
                 <div class=" avatar__373c0__3kiBW border-color--default__373c0__3-ifU">
                   <div class=" on-click-container border-color--default__373c0__3-ifU">
                     <a
                       class=" link__373c0__1G70M photo-box-link__373c0__1YC9Y link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-                      href="https://www.yelp.com/user_details?userid=kIEHaO2vd6Lic4rwkMgH6Q"
-                      target=""
-                      name=""
-                      rel=""
+                      :href="getUserProfileUrl()"
                     >
                       <img
+                        v-lazy="`${getUserPhotoUrl()}`"
                         class=" photo-box-img__373c0__35y5v"
-                        src="https://s3-media0.fl.yelpcdn.com/photo/Hjd0EAdSH-gYJbRBF5nAnw/60s.jpg"
-                        alt="Photo of Trujun Z."
                         height="64"
                         width="64"
-                        loading="lazy"
-                        draggable="true"
-                      ></a>
+                      >
+                    </a>
                   </div>
                 </div>
               </div>
@@ -35,18 +37,14 @@
                 <div class=" user-passport-info border-color--default__373c0__3-ifU">
                   <span
                     class=" text__373c0__2Kxyz fs-block text-color--black-regular__373c0__2vGEn text-align--left__373c0__2XGa- text-weight--bold__373c0__1elNz text-size--large__373c0__3t60B"
-                  ><a
-                    class=" link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
-                    href="https://www.yelp.com/user_details?userid=kIEHaO2vd6Lic4rwkMgH6Q"
-                    target=""
-                    name=""
-                    rel=""
-                  >Trujun Z.</a></span>
-                  <div class=" responsive-hidden-small__373c0__2vDff border-color--default__373c0__3-ifU">
-                    <span
-                      class=" text__373c0__2Kxyz text-color--normal__373c0__3xep9 text-align--left__373c0__2XGa-"
-                    >Manhattan, NY</span>
-                  </div>
+                  >
+                    <a
+                      class=" link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
+                      :href="getUserProfileUrl()"
+                    >
+                      {{ getUserTitle() }}
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -162,7 +160,7 @@
           </div>
           <a
             class=" link__373c0__1G70M link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="https://www.yelp.com/writeareview/biz/3YVy-af7Ipl7TVft3kquWg?return_url=%2Fbiz%2F3YVy-af7Ipl7TVft3kquWg"
+            :href="getWriteReviewLink()"
             target=""
             name=""
             rel=""
@@ -171,7 +169,7 @@
             <span
               class=" war-link__373c0__6wz9H raw__373c0__3rcx7"
             >Start your review of <strong>
-              {{ relatedModel.displayName }}
+              {{ getTitle() }}
             </strong>.</span>
           </a>
         </div>

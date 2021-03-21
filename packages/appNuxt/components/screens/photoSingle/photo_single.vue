@@ -3,9 +3,9 @@
     <div id="super-container" class="content-container">
       <div class="container media-details js-media-details">
         <!-- header -->
-        <RestaurantTitle
+        <TopTitle
           :photos-len="photosLen"
-          :restaurant="restaurant"
+          :related-model="relatedModel"
         />
         <!-- body -->
         <div class="media-details_container media-details_container--fixed-height media-details_container--with-sidebar">

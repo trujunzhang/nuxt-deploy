@@ -42,6 +42,7 @@
                                 class="input__09f24__30UUZ input__09f24__1XNzA hidden-input__09f24__3e1WX"
                                 placeholder=" "
                               ><input
+                                v-model="search"
                                 id="search_description"
                                 type="text"
                                 value=""
@@ -75,6 +76,7 @@
                         </div>
                         <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                           <button
+                            @click="onSearchClick"
                             class="button__09f24__1hAjX primary__09f24__LBFK2 find-near-button__09f24__UO8nW"
                             data-testid="suggest-submit"
                             style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"

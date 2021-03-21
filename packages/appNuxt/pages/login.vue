@@ -8,11 +8,11 @@
             <p class="subheading">New to IEATTA? </p>
             <p class="legal-copy">
               By logging in, you agree to IEATTA’s <a
-                class="legal-link"
-                href="https://www.yelp.com/static?p=tos"
-              >Terms of
-                Service</a> and <a class="legal-link" href="https://www.yelp.com/tos/privacy_policy">Privacy
-                Policy</a>.
+              class="legal-link"
+              href="https://www.yelp.com/static?p=tos"
+            >Terms of
+              Service</a> and <a class="legal-link" href="https://www.yelp.com/tos/privacy_policy">Privacy
+              Policy</a>.
             </p>
           </div>
           <ul class="ylist">
@@ -27,4 +27,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./login.ts"/>
+<script lang="ts" src="./login.ts" />

@@ -55,4 +55,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./find_friends.ts"/>
+<script lang="ts" src="./find_friends.ts" />

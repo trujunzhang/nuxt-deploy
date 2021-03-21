@@ -1,14 +1,14 @@
 <template>
   <div
-    v-if="restaurant"
+    v-if="relatedModel"
   >
     <PhotoGrid
       v-if="!photoSelectId"
-      :restaurant="restaurant"
+      :related-model="relatedModel"
     />
     <PhotoSingle
       v-if="photoSelectId"
-      :restaurant="restaurant"
+      :related-model="relatedModel"
     />
     <PhotoFooter />
   </div>

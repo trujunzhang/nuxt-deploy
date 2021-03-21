@@ -35,4 +35,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./footer.ts"/>
+<script lang="ts" src="./footer.ts" />

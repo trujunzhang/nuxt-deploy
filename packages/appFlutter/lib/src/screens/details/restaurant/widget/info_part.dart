@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
 import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
-import 'package:provider/provider.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;
@@ -58,22 +54,7 @@ class InfoPart extends StatelessWidget {
         ),
         SizedBox(height: 8),
         // Line 3
-        RatingBar.builder(
-            initialRating:
-                calcRateForRestaurant(restaurant.rate, restaurant.reviewCount),
-            minRating: 1,
-            direction: Axis.horizontal,
-            allowHalfRating: true,
-            unratedColor:
-                HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
-            itemCount: 5,
-            itemSize: 20,
-            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-            itemBuilder: (context, _) => Icon(
-                  Icons.star,
-                  color: HotelAppTheme.buildLightTheme().primaryColor,
-                ),
-            onRatingUpdate: (rating) {}),
+        RatingImage(baseReview: restaurant),
         SizedBox(height: 8),
         // Line 4
         const Divider(height: 10.0, thickness: 0.5),
@@ -83,8 +64,6 @@ class InfoPart extends StatelessWidget {
   }
 
   Widget _buildActionBar(BuildContext context) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
     return Container(
       height: 40.0,
       child: Row(

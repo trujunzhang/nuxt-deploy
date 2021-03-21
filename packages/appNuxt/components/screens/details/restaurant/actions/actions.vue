@@ -5,7 +5,7 @@
       <a
         class=" button__373c0__3lYgT primary__373c0__2ZWOb button--icon__373c0__2j9IF"
         style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-        href="https://www.yelp.com/writeareview/biz/3YVy-af7Ipl7TVft3kquWg?return_url=%2Fbiz%2F3YVy-af7Ipl7TVft3kquWg&amp;source=biz_details_war_button"
+        :href="getWriteReviewUrl()"
       >
         <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
           <span
@@ -37,7 +37,7 @@
       <a
         class=" button__373c0__3lYgT secondary__373c0__1bsQo button--icon__373c0__2j9IF"
         style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-        href="https://www.yelp.com/biz_user_photos/3YVy-af7Ipl7TVft3kquWg/upload"
+        :href="getUploadImageUrl()"
       >
         <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
           <span
@@ -65,76 +65,6 @@
           >Add Photo</span>
         </div>
       </a>
-    </div>
-    <div class=" arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-      <button
-        class="button__373c0__3lYgT secondary__373c0__1bsQo button--icon__373c0__2j9IF"
-        data-testid="shareButton"
-        style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-        type="submit"
-        value="submit"
-      >
-        <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
-          <span
-            class=" display--inline__373c0__3JqBP margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU"
-          >
-            <span
-              aria-hidden="true"
-              style="fill: black;"
-              class="icon--24-share-v2 button-icon__373c0__2HeR8 css-12anxc3"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                class="icon_svg"
-              >
-                <path
-                  d="M13 5.414V17a1 1 0 01-2 0V5.414L9.707 6.707a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 11-1.414 1.414L13 5.414zM17 11a1 1 0 010-2h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2v-9a2 2 0 012-2h3a1 1 0 110 2H4v9h16v-9h-3z"
-                ></path>
-              </svg>
-            </span>
-          </span>
-          <span
-            class=" text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
-          >Share</span>
-        </div>
-      </button>
-    </div>
-    <div class=" arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU nowrap__373c0__35McF">
-      <button
-        class="button__373c0__3lYgT secondary__373c0__1bsQo button--icon__373c0__2j9IF"
-        data-testid="saveButton"
-        style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-        type="submit"
-        value="submit"
-      >
-        <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
-          <span
-            class=" display--inline__373c0__3JqBP margin-r1__373c0__zyKmV border-color--default__373c0__3-ifU"
-          >
-            <span
-              aria-hidden="true"
-              style="fill: black;"
-              class="icon--24-save-outline-v2 button-icon__373c0__2HeR8 css-12anxc3"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                class="icon_svg"
-              >
-                <path
-                  d="M12 16.202l-5.445 3.63A1 1 0 015 19V5a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1.555.832L12 16.202zM7 6v11.131l4.445-2.963a1 1 0 011.11 0L17 17.13V6H7z"
-                ></path>
-              </svg>
-            </span>
-          </span>
-          <span
-            class=" text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--large__373c0__3t60B text--truncated__373c0__3sLaf"
-          >Save</span>
-        </div>
-      </button>
     </div>
     <div class=" arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"></div>
   </div>

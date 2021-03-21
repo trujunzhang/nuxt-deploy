@@ -1,18 +1,19 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto, IFBRestaurant } from 'ieattatypes/types/index'
-import RestaurantTitle from '~/components/screens/photoSingle/restaurantTitle/restaurant_title.vue'
+import TopTitle from '~/components/screens/photoSingle/topTitle/top_title.vue'
 import { PhotoHelper } from '~/database/photo_helper'
 import { formatDateForPhoto } from '~/database/utils/timeago_helper'
-import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
-import { FBCollections } from '~/database/constant'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { FirestorePath } from '~/database/services/firestore_path'
+import { getSeeAllPhotoLink, getSinglePhotoLink } from '~/utils/linkHelper/photos'
 
 @Component({
   components: {
-    RestaurantTitle
+    TopTitle
   }
 })
 export default class PhotoSingle extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
+  @Prop({}) relatedModel!: IFBRestaurant
   public items: Array<IFBPhoto> = []
   public photosLen: number | null = null
   public photoIndex: number = 0
@@ -26,14 +27,11 @@ export default class PhotoSingle extends Vue {
     }
     this.isLoading = true
     const nextItem = this.items.concat([])
-    await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fire.firestore,
-      path: FBCollections.Photos,
+    const photoType = this.$route.query.type as string
+    await FirestoreService.instance.collectionStream({
+      query: new FirestorePath(this.$fire.firestore).getPhotosList(this.relatedModel.uniqueId, photoType),
       queryBuilder: (query: any) => {
-        return FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
-          query,
-          restaurant: this.restaurant
-        })
+        return query.orderBy('updatedAt', 'desc')
       },
       iterateDocumentSnapshots: (data: IFBPhoto) => {
         nextItem.push(data)
@@ -64,7 +62,8 @@ export default class PhotoSingle extends Vue {
    * @param item
    */
   getImageLink (item: IFBPhoto) {
-    return `${this.getSeeAllLink()}?select=${item.uniqueId}`
+    const photoType = this.$route.query.type as string
+    return getSinglePhotoLink(this.relatedModel, photoType, item.uniqueId)
   }
 
   getPhotoPublishedAt () {
@@ -99,11 +98,8 @@ export default class PhotoSingle extends Vue {
    *   href="/biz_photos/the-ramen-bar-san-francisco"
    */
   getSeeAllLink () {
-    return `/biz_photos/${this.restaurant.slug}`
-  }
-
-  getDetailRestaurantUrl () {
-    return `/biz/${this.restaurant.slug}`
+    const photoType = this.$route.query.type as string
+    return getSeeAllPhotoLink(this.relatedModel, photoType)
   }
 
   getCurrentImageUrl () {

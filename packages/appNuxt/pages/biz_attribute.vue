@@ -30,7 +30,9 @@
                   />
                 </div>
 
-                <div class="lemon--div__373c0__1mboc rightRailContainer__373c0__1fHyi border-color--default__373c0__3-ifU">
+                <div
+                  v-if="false"
+                  class="lemon--div__373c0__1mboc rightRailContainer__373c0__1fHyi border-color--default__373c0__3-ifU">
                   <!-- map -->
                   <RestaurantMap />
                 </div>

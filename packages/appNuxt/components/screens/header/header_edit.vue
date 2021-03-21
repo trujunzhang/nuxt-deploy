@@ -7,15 +7,12 @@
       <div class="lemon--div__09f24__1mboc content__09f24__2byvy">
         <div class="lemon--div__09f24__1mboc header-arrange__09f24__26Zfh arrange__09f24__2v3uJ gutter-18__09f24__d_yUz vertical-align-middle__09f24__1tXIr border-color--default__09f24__1eOdn">
           <div class="lemon--div__09f24__1mboc arrange-unit__09f24__3IxLD border-color--default__09f24__1eOdn" data-testid="logo-unit">
-            <div class="lemon--div__09f24__1mboc border-color--default__09f24__1eOdn" data-testid="logo-outter-wrapper">
-              <div class="lemon--div__09f24__1mboc border-color--default__09f24__1eOdn" data-testid="logo-inner-wrapper">
-                <div id="logo" class="lemon--div__09f24__1mboc logo__09f24__2iPWz border-color--default__09f24__1eOdn" data-analytics-label="logo">
+            <div class=" border-color--default__09f24__R1nRO" data-testid="logo-outter-wrapper">
+              <div class=" logo-inner-wrapper__09f24__KEfiX border-color--default__09f24__R1nRO" data-testid="logo-inner-wrapper">
+                <div id="logo" class=" logo__09f24__26Nsn logo-image__09f24__ZKHhi logo__09f24__2_AgU border-color--default__09f24__R1nRO" data-analytics-label="logo">
                   <a
-                    class="lemon--a__09f24__IEZFH link__09f24__1MGLa logo-link__09f24__270y- link-color--blue-dark__09f24__tK18E link-size--default__09f24__QvrjA"
+                    class=" link__09f24__1kwXV logo-link__09f24__3oxr_ link-color--blue-dark__09f24__2DRa0 link-size--default__09f24__3xWLF"
                     href="/"
-                    target=""
-                    name=""
-                    rel=""
                     role="link"
                   >Yelp</a>
                 </div>
@@ -96,4 +93,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./header_edit.ts"/>
+<script lang="ts" src="./header_edit.ts" />

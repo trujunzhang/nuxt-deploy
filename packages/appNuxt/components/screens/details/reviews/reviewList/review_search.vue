@@ -1,60 +1,56 @@
 <template>
-  <div
-    class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
-  >
-    <div class="lemon--form__373c0__2fChY">
-      <div
-        class="lemon--div__373c0__1mboc arrange__373c0__2C9bH border-color--default__373c0__3-ifU"
-      >
-        <div
-          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT arrange-unit-fill__373c0__3Sfw1 border-color--default__373c0__3-ifU"
+  <div class=" arrange-unit__373c0__o3tjT padding-r3__373c0__57InZ border-color--default__373c0__3-ifU">
+    <div class="">
+      <div class=" inline-search-container__373c0__1KujM border-color--default__373c0__3-ifU">
+        <label
+          id="inline-search-d99a8890-0bc0-4692-b4f2-534572d5d9e9"
+          class=" label__373c0__2kYNn offscreen__373c0__1m54U"
         >
-          <label
-            id="inline-search-0a35177c-04ac-4ca8-80ca-4ba10a05b67b"
-            class="lemon--label__373c0__2BjWI label__373c0__2kYNn offscreen__373c0__1m54U"
-          ><span
-            class="lemon--span__373c0__3997G text__373c0__2Kxyz text-color--normal__373c0__3xep9 text-align--left__373c0__2XGa- text-weight--bold__373c0__1elNz"
+          <span
+            class=" text__373c0__2Kxyz text-color--normal__373c0__3xep9 text-align--left__373c0__2XGa- text-weight--bold__373c0__1elNz"
           >Search within reviews</span>
-          </label>
-          <input
-            v-model="searchReviews"
-            type="text"
-            name="query"
-            value=""
-            class="input__373c0__1kQwh no-margin__373c0__2tp2T"
-            placeholder="Search within reviews"
-          >
-        </div>
-        <div
-          class="lemon--div__373c0__1mboc arrange-unit__373c0__o3tjT border-color--default__373c0__3-ifU"
-        >
-          <button
-            class="button__373c0__3lYgT small__373c0__Wsszq primary__373c0__2ZWOb inline-search-button__373c0__2x4ge inline-search-button--no-margin__373c0__3uu32"
-            style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-            type="submit"
-            value="submit"
-            @click="onSearchReviewsClick"
-          >
-            <div
-              class="lemon--div__373c0__1mboc button-content__373c0__1QNtB border-color--default__373c0__3-ifU"
+        </label>
+        <div class=" floating-label-container__373c0__HMENw border-color--default__373c0__3-ifU">
+          <label class="">
+            <input
+              v-model="searchReviews"
+              name="query"
+              aria-labelledby="inline-search-d99a8890-0bc0-4692-b4f2-534572d5d9e9"
+              class="input__373c0__1kQwh no-margin__373c0__2tp2T inline-search__373c0__1HMvs"
+              type="text"
+              placeholder=" "
+              value=""
             >
+            <div class=" floating-label__373c0__2cRgY border-color--default__373c0__3-ifU">
               <span
-                class="lemon--span__373c0__3997G text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--small__373c0__3NVWO text--truncated__373c0__3sLaf"
+                class=" text__373c0__2Kxyz floating-label-text__373c0__3rZHW text-color--inherit__373c0__1lczC text-align--left__373c0__2XGa-"
+              >Search within reviews</span>
+            </div>
+          </label>
+        </div>
+        <div class=" inline-search-button-container__373c0__1DQpj border-color--default__373c0__3-ifU">
+          <button
+            @click="onSearchReviewsClick"
+            class="button__373c0__3lYgT secondary__373c0__1bsQo button--icon__373c0__2j9IF inline-search-button-v2__373c0__15kf3"
+            style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
+          >
+            <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
+              <span
+                class=" display--inline__373c0__3JqBP border-color--default__373c0__3-ifU"
               >
                 <span
-                  class="lemon--span__373c0__3997G icon__373c0__ehCWV icon--24-search-v2 icon--currentColor__373c0__x-sG2 icon--v2__373c0__1yp8c"
                   aria-hidden="true"
-                  style="width:24px;height:24px;color:white;"
+                  class="icon--16-search-v2 button-icon__373c0__2HeR8 css-1c2abjj"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
                     class="icon_svg"
-                  ><path
-                    d="M22.46 21.05l-3.72-3.72a10 10 0 1 0-1.41 1.41l3.72 3.72a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM5.34 16.66A8 8 0 1 1 16.66 5.353 8 8 0 0 1 5.34 16.66z"
-                  ></path>
+                  >
+                    <path
+                      d="M14.62 13.21l-2-2a6.47 6.47 0 10-1.42 1.42l2 2a1 1 0 00.71.3 1 1 0 00.7-1.71l.01-.01zM4.23 10.54a4.46 4.46 0 116.31 0 4.45 4.45 0 01-6.31 0z"
+                    ></path>
                   </svg>
                 </span>
               </span>
@@ -66,4 +62,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./review_search.ts"/>
+<script lang="ts" src="./review_search.ts" />

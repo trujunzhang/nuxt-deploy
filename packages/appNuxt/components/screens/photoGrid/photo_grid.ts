@@ -1,17 +1,18 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBRestaurant, IFBPhoto } from 'ieattatypes/types/index'
+import { IFBPhoto, IFBRecipe, IFBRestaurant } from 'ieattatypes/types/index'
 import { QuerySnapshot } from 'firebase/firebase-storage'
-import RestaurantTitle from '~/components/screens/photoGrid/restaurantTitle/restaurant_title.vue'
-import { FBCollections } from '~/database/constant'
+import TopTitle from '~/components/screens/photoGrid/topTitle/top_title.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { FirestorePath } from '~/database/services/firestore_path'
+import { getSeeAllPhotoLink, getSinglePhotoLink } from '~/utils/linkHelper/photos'
 
 @Component({
   components: {
-    RestaurantTitle
+    TopTitle
   }
 })
 export default class PhotoGrid extends Vue {
-  @Prop({}) restaurant!: IFBRestaurant
+  @Prop({}) relatedModel!: IFBRestaurant | IFBRecipe
 
   public items: Array<IFBPhoto> = []
 
@@ -59,15 +60,12 @@ export default class PhotoGrid extends Vue {
     } = params
     this.isLoading = true
     const nextItem = this.items.concat([])
-    await FirestoreService.instance.snapshotList({
-      $fireStore: this.$fire.firestore,
-      path: FBCollections.Photos,
+    const photoType = this.$route.query.type as string
+    await FirestoreService.instance.collectionStream({
+      query: new FirestorePath(this.$fire.firestore).getPhotosList(this.relatedModel.uniqueId, photoType),
       queryBuilder: (query: any) => {
         return queryBuilder(
-          FirestoreService.instance.queryPhotoByGeoHashFromRestaurant({
-            query,
-            restaurant: this.restaurant
-          })
+          query.orderBy('updatedAt', 'desc')
         ).limit(5 * 3)
       },
       iterateDocumentSnapshots: (data: IFBPhoto) => {
@@ -76,7 +74,6 @@ export default class PhotoGrid extends Vue {
       documentSnapshotsEvent: (documentSnapshots: QuerySnapshot) => {
         // Get the last visible document
         this.lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
-        // console.log('last', this.lastVisible)
       },
       emptyHint
     })
@@ -99,7 +96,8 @@ export default class PhotoGrid extends Vue {
    * @param item
    */
   getImageLink (item: IFBPhoto) {
-    return `${this.getSeeAllLink()}?select=${item.uniqueId}`
+    const photoType = this.$route.query.type as string
+    return getSinglePhotoLink(this.relatedModel, photoType, item.uniqueId)
   }
 
   getPhotoUrl (item: IFBPhoto) {
@@ -114,6 +112,7 @@ export default class PhotoGrid extends Vue {
    *   href="/biz_photos/the-ramen-bar-san-francisco"
    */
   getSeeAllLink () {
-    return `/biz_photos/${this.restaurant.slug}`
+    const photoType = this.$route.query.type as string
+    return getSeeAllPhotoLink(this.relatedModel, photoType)
   }
 }

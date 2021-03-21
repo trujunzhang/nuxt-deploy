@@ -29,10 +29,10 @@
 
             <small class="main-footer_copyright">
               Copyright © 2004–2020 Yelp Inc. Yelp, <img
-                src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_styleguide/17089be275f0/assets/img/logos/logo_desktop_xsmall_outline.png"
-                alt="Yelp logo"
-                class="main-footer_logo-copyright"
-              >,
+              src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_styleguide/17089be275f0/assets/img/logos/logo_desktop_xsmall_outline.png"
+              alt="Yelp logo"
+              class="main-footer_logo-copyright"
+            >,
               <img
                 src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_styleguide/58cfc999e1f5/assets/img/logos/burst_desktop_xsmall_outline.png"
                 alt="Yelp burst"
@@ -47,4 +47,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./register.ts"/>
+<script lang="ts" src="./register.ts" />

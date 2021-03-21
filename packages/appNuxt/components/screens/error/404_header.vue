@@ -14,4 +14,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./404_header.ts"/>
+<script lang="ts" src="./404_header.ts" />

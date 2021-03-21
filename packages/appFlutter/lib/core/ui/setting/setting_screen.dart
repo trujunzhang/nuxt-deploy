@@ -11,9 +11,10 @@ import 'setting_language_actions.dart';
 class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(AppLocalizations.of(context).translate("settingAppTitle")),
-      // ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(AppLocalizations.of(context).translate("settingAppTitle")),
+      ),
       body: _buildLayoutSection(context),
     );
   }
@@ -23,7 +24,7 @@ class SettingScreen extends StatelessWidget {
     Provider.of<AuthProvider>(context, listen: false);
     return ListView(
       children: <Widget>[
-        SettingBarUI(),
+        // SettingBarUI(),
         ListTile(
           title: Text(
               AppLocalizations.of(context).translate("settingThemeListTitle")),

@@ -1,9 +1,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBPhoto, IFBRecipe } from 'ieattatypes/types/index'
+import { IFBPhoto } from 'ieattatypes/types/index'
 
 @Component({
-  components: {
-  }
+  components: {}
 })
 export default class WaiterItem extends Vue {
   @Prop({}) waiter!: IFBPhoto

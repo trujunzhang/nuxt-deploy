@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import GoogleLoginButton from '~/components/screens/thirdLogin/google_button.vue'
 
 @Component({

@@ -16,10 +16,6 @@ export default class RestaurantMenus extends Vue {
   private isLoaded = false
   private isLoading = false
 
-  getDetailRecipeUrl (event:IFBRecipe) {
-    // return `/events/${event.slug}`
-  }
-
   showEmptyHint () {
     return this.isLoaded && this.items.length === 0
   }

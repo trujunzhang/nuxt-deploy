@@ -111,6 +111,7 @@
                         <div class=" dropdown__09f24__1279X" role="presentation">
                           <div>
                             <button
+                              @click="onHeaderIconClick"
                               class="link__09f24__1WgUJ"
                               aria-label="Toggle Menu"
                               aria-haspopup="menu"
@@ -137,6 +138,13 @@
                                 </span>
                               </div>
                             </button>
+                            <!-- pop menu -->
+                            <div
+                              v-if="showPopMenu"
+                              v-click-outside="onClickOutside"
+                            >
+                              <HeaderPop />
+                            </div>
                           </div>
                         </div>
                       </div>

@@ -25,4 +25,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./add.ts"/>
+<script lang="ts" src="./add.ts" />

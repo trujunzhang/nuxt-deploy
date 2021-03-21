@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import Header404 from '~/components/screens/error/404_header.vue'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
 

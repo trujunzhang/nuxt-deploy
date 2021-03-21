@@ -45,20 +45,28 @@
                                 class="lemon--span__09f24__3997G type--media-minimal__09f24__115O9 display--inline__09f24__EhyFv border-color--default__09f24__1eOdn"
                               >
                                 <a
-                                  @click="onToggleFormStep"
                                   class="lemon--a__09f24__IEZFH link__09f24__1MGLa link--media__09f24__sRBFb link-color--blue-dark__09f24__tK18E link-size--default__09f24__QvrjA"
-                                  rel=""
-                                  role="button"
-                                ><div class="lemon--div__09f24__1mboc action-link-icon-wrapper__09f24__14UwF border-color--default__09f24__1eOdn"><div
-                                  class="lemon--div__09f24__1mboc border-color--default__09f24__1eOdn"
-                                ><span
-                                  class="lemon--span__09f24__3997G icon__09f24__ehCWV icon--24-trash icon--currentColor__09f24__x-sG2"
-                                  aria-hidden="false"
-                                  aria-label="Delete"
-                                  style="width: 24px; height: 24px;"
-                                ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path
-                                  d="M5 7V5a1 1 0 0 1 1-1h4V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1h4a1 1 0 0 1 1 1v2H5zm13 12a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V8h12v11zm-8-8H9v8h1v-8zm5 0h-1v8h1v-8z"
-                                ></path></svg></span></div></div></a></span>
+                                  @click="onToggleFormStep"
+                                >
+                                  <div class="lemon--div__09f24__1mboc action-link-icon-wrapper__09f24__14UwF border-color--default__09f24__1eOdn"><div
+                                    class="lemon--div__09f24__1mboc border-color--default__09f24__1eOdn"
+                                  >
+                                    <span
+                                      class="lemon--span__09f24__3997G icon__09f24__ehCWV icon--24-trash icon--currentColor__09f24__x-sG2"
+                                      aria-hidden="false"
+                                      aria-label="Delete"
+                                      style="width: 24px; height: 24px;"
+                                    >
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path
+                                        d="M5 7V5a1 1 0 0 1 1-1h4V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1h4a1 1 0 0 1 1 1v2H5zm13 12a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V8h12v11zm-8-8H9v8h1v-8zm5 0h-1v8h1v-8z"
+                                      >
+                                      </path>
+                                      </svg>
+                                    </span>
+                                  </div>
+                                  </div>
+                                </a>
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -75,8 +83,8 @@
                         >Optional</span></span></label>
                         <div class="lemon--div__09f24__1mboc textarea-wrapper__09f24__38YT8 border-color--default__09f24__1eOdn">
                           <textarea
-                            v-model="note"
                             id="textarea-state-idle"
+                            v-model="note"
                             rows="2"
                             maxlength="140"
                             class="textarea__09f24__3F7d7 textarea-resize--vertical__09f24__1BRXb no-margin__09f24__3aFrL"
@@ -99,11 +107,11 @@
                       <div class="lemon--div__09f24__1mboc display--inline-block__09f24__3L1EB u-space-r1 border-color--default__09f24__1eOdn">
                         <p class="lemon--p__09f24__3Qnnj text__09f24__1RhSS text-color--normal__09f24__3mwlT text-align--left__09f24__ceIWW">
                           <button
-                            @click="onToggleFormStep"
                             class="link__09f24__3OPFW"
                             type="submit"
                             value="submit"
                             style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;"
+                            @click="onToggleFormStep"
                           >
                             <div class="lemon--div__09f24__1mboc button-content__09f24__2pi7R border-color--default__09f24__1eOdn">
                               <span
@@ -123,9 +131,9 @@
                           <button class="button__09f24__x6eud primary__09f24__APzmn" type="button" style="--mousedown-x:0px; --mousedown-y:0px; --button-width:0px;">
                             <div class="lemon--div__09f24__1mboc button-content__09f24__2pi7R border-color--default__09f24__1eOdn">
                               <span
-                                @click="onUploadClick"
                                 class="lemon--span__09f24__3997G text__09f24__1RhSS button-content-text__09f24__2MxzI text-color--inherit__09f24__GVMzL text-align--center__09f24__3uzgA text-size--inherit__09f24__1CbOX text--truncated__09f24__1gXXn"
                                 style="color: white;"
+                                @click="onUploadClick"
                               >Upload</span>
                             </div>
                           </button>

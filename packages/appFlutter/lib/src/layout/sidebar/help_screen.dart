@@ -17,7 +17,10 @@ class _HelpScreenState extends State<HelpScreen> {
     return Container(
       // color: AppTheme.nearlyWhite,
       child: Scaffold(
-        // backgroundColor: AppTheme.nearlyWhite,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Help'),
+        ),
         body: Column(
           children: <Widget>[
             Container(

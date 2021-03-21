@@ -1,8 +1,8 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
-import RestaurantForm from '~/components/screens/editRestaurant/restaurant_form.vue'
-import RestaurantMap from '~/components/screens/editRestaurant/restaurant_map.vue'
+import RestaurantForm from '~/components/screens/edit/restaurant/restaurant_form.vue'
+import RestaurantMap from '~/components/screens/edit/restaurant/restaurant_map.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
 

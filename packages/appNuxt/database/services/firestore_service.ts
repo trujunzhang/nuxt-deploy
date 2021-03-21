@@ -3,6 +3,7 @@ import { DocumentSnapshot, QuerySnapshot, CollectionReference, DocumentData } fr
 import { IFBPhoto, IFBRestaurant, IFBReview, IFBUser } from 'ieattatypes/types/index'
 import { FBCollections } from '~/database/constant'
 import { getGeoHashForRestaurant } from '~/database/utils/geohash_utils'
+import { IFBRecipe } from 'ieattatypes/types'
 
 export type QueryBuilder = (query: any) => any
 export type IterateDocumentSnapshots = (data: any) => void
@@ -51,7 +52,7 @@ export class FirestoreService {
   async setData (
     $fireStore: firebase.firestore.Firestore,
     path: string,
-    model: IFBRestaurant | IFBPhoto | IFBReview
+    model: IFBRestaurant | IFBPhoto | IFBReview | IFBRecipe
   ) {
     const messageRef = $fireStore.collection(path).doc(model.uniqueId)
     await messageRef.set(model)

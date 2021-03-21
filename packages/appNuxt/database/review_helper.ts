@@ -1,23 +1,28 @@
 import firebase from 'firebase'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
-import { FBCollections } from '~/database/constant'
+import { IFBEvent, IFBRecipe } from 'ieattatypes/types'
+import { FBCollections, getReviewRelatedPath } from '~/database/constant'
 
 export class ReviewHelper {
   static async onSaveReviewAfterHook (
     $fireStore: firebase.firestore.Firestore,
-    restaurantId: string,
+    relatedtId: string,
+    reviewType: string,
     lastReviewRate: number,
     selectedStar: number,
     isNew: boolean
   ) {
-    const messageRef = $fireStore.collection(FBCollections.Restaurants).doc(restaurantId)
+    // Step1: get the online model.
+    const messageRef = $fireStore.collection(getReviewRelatedPath(reviewType)).doc(relatedtId)
     const documentSnapshot = await messageRef.get()
-    const restaurant: IFBRestaurant | null | any = documentSnapshot.data()
-    const nextRate = restaurant.rate - lastReviewRate + selectedStar
-    const reviewCount = restaurant.reviewCount
+    const relatedModel: IFBRestaurant | IFBEvent | IFBRecipe | null | any = documentSnapshot.data()
+    // Step2: Add rating to the model.
+    const nextRate = relatedModel.rate - lastReviewRate + selectedStar
+    const reviewCount = relatedModel.reviewCount
     const nextReviewCount = reviewCount + (isNew ? 1 : 0)
 
-    const nextRestaurant = Object.assign(restaurant, {
+    // Step3: Save the online model.
+    const nextRestaurant = Object.assign(relatedModel, {
       rate: nextRate,
       reviewCount: nextReviewCount
     })

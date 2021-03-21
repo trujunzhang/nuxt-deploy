@@ -33,9 +33,9 @@ class _UserDetailState extends State<UserDetail> {
             userId: _userId,
           ),
         ),
-        TopBackArrowView(
-          isBackColor: false,
-        ),
+        // TopBackArrowView(
+        //   isBackColor: false,
+        // ),
       ],
     ));
   }

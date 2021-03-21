@@ -30,4 +30,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./waiter_item.ts"/>
+<script lang="ts" src="./waiter_item.ts" />

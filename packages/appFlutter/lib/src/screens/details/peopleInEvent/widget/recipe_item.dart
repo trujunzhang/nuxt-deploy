@@ -3,14 +3,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
 
@@ -18,10 +16,12 @@ class RecipeItem extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEvent;
   final ParseModelRecipes recipeData;
 
-  const RecipeItem({Key key,
+  const RecipeItem({
+    Key key,
     @required this.peopleInEvent,
     @required this.recipeData,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -36,14 +36,15 @@ class RecipeItem extends StatelessWidget {
           color: Colors.red,
           icon: Icons.delete,
           onTap: () async {
-            ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.removeRecipe(
+            ParseModelPeopleInEvent nextModel =
+                ParseModelPeopleInEvent.removeRecipe(
               model: peopleInEvent,
               recipeId: recipeData.uniqueId,
             );
 
             try {
               final firestoreDatabase =
-              Provider.of<FirestoreDatabase>(context, listen: false);
+                  Provider.of<FirestoreDatabase>(context, listen: false);
               await firestoreDatabase.setPeopleInEvent(
                   model: nextModel); // For Restaurant.
             } catch (e) {}
@@ -86,15 +87,7 @@ class RecipeItem extends StatelessWidget {
           Row(
             children: <Widget>[
               // Rating star view
-              SmoothStarRating(
-                allowHalfRating: true,
-                starCount: 5,
-                rating: calcRateForRestaurant(
-                    recipeData.rate, recipeData.reviewCount),
-                size: 20,
-                color: HotelAppTheme.buildLightTheme().primaryColor,
-                borderColor: HotelAppTheme.buildLightTheme().primaryColor,
-              ),
+              RatingImage(baseReview: recipeData),
               SizedBox(
                 width: 10.0,
               ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ieatta/core/utils/rate_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ieatta/src/components/widgets/rating_image.dart';
 
 import '../hotel_app_theme.dart';
 
@@ -151,28 +150,8 @@ class _HotelListViewState extends State<HotelListView> {
                                 padding: const EdgeInsets.only(top: 4),
                                 child: Row(
                                   children: <Widget>[
-                                    RatingBar.builder(
-                                        initialRating: calcRateForRestaurant(
-                                            widget.restaurantData.rate,
-                                            widget.restaurantData.reviewCount),
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        unratedColor:
-                                            HotelAppTheme.buildLightTheme()
-                                                .primaryColor
-                                                .withAlpha(50),
-                                        itemCount: 5,
-                                        itemSize: 20,
-                                        itemPadding: EdgeInsets.symmetric(
-                                            horizontal: 2.0),
-                                        itemBuilder: (context, _) => Icon(
-                                              Icons.star,
-                                              color: HotelAppTheme
-                                                      .buildLightTheme()
-                                                  .primaryColor,
-                                            ),
-                                        onRatingUpdate: (rating) {}),
+                                    RatingImage(
+                                        baseReview: widget.restaurantData),
                                     Text(
                                       ' ${widget.restaurantData.reviewCount} Reviews',
                                       style: TextStyle(

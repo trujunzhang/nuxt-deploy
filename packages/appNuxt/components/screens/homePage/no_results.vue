@@ -7,7 +7,7 @@
             class="lemon--h1__09f24__2ZHSL heading--h3__09f24__3gZ0A"
           >
             <span class="lemon--span__09f24__3997G raw__09f24__3Obuy">
-            {{getNoResultTitle()}}
+            {{ getNoResultTitle() }}
             </span>
           </h1>
         </div>
@@ -75,9 +75,9 @@
             </ul>
           </div>
         </div>
-        <div 
-v-if="false"
-        class="lemon--div__09f24__1mboc border-color--default__09f24__R1nRO">
+        <div
+          v-if="false"
+          class="lemon--div__09f24__1mboc border-color--default__09f24__R1nRO">
           <div class="lemon--div__09f24__1mboc noResultsSearchFeedback__09f24__3cPV8 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
             <div class="lemon--div__09f24__1mboc border-color--default__09f24__R1nRO">
               <div class="lemon--div__09f24__1mboc border-color--default__09f24__R1nRO">
@@ -118,13 +118,13 @@ v-if="false"
                 <div class="lemon--div__09f24__1mboc margin-t3__09f24__5bM2Z border-color--default__09f24__R1nRO">
                   <p class="lemon--p__09f24__3Qnnj text__09f24__2tZKC text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0">
                     Got search feedback? <a
-                      class="lemon--a__09f24__IEZFH link__09f24__1kwXV link-color--blue-dark__09f24__2DRa0 link-size--default__09f24__3xWLF"
-                      href="/contact?topic=feedback"
-                      target=""
-                      name=""
-                      rel=""
-                      role="button"
-                    >Help us improve.</a>
+                    class="lemon--a__09f24__IEZFH link__09f24__1kwXV link-color--blue-dark__09f24__2DRa0 link-size--default__09f24__3xWLF"
+                    href="/contact?topic=feedback"
+                    target=""
+                    name=""
+                    rel=""
+                    role="button"
+                  >Help us improve.</a>
                   </p>
                 </div>
               </div>

@@ -51,7 +51,14 @@ const config: NuxtConfiguration = {
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-c429511094753ca2e1e9.chunk.css',
     '~/assets/nextYelp/detail/restaurant/yelp_main.yji-f1220e1f35c9aed79322.chunk.css',
     // Detail(Eventlist in the Restsurant)
-    '~/assets/nextYelp/detail/event/events-pkg.css'
+    '~/assets/nextYelp/detail/event/events-pkg.css',
+    // Detail(user)
+    '~/assets/nextYelp/detail/user/user_details-pkg.css',
+    // Upload(photo)
+    '~/assets/nextYelp/upload/shared-95c6e8b3bc52716f5b6cf7a7345609239b35aa17.yji-3453bf8cedd22ced5a10.chunk.css',
+    // Edit(review)
+    '~/assets/nextYelp/edit/review/commons.yji-8028c29a577202181adb.chunk.css',
+    '~/assets/nextYelp/edit/review/gondola-war-compose.yji-1689adbe421f3873d4be.chunk.css'
   ],
   /*
    ** Plugins to load before mounting the App

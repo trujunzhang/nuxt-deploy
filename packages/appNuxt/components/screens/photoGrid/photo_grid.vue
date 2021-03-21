@@ -4,7 +4,7 @@
       <div class="container">
         <div class="js-media-landing_container" data-component-bound="true">
           <!-- header -->
-          <RestaurantTitle :restaurant="restaurant" />
+          <TopTitle :related-model="relatedModel" />
           <div class="media-landing js-media-landing">
             <div class="media-landing_gallery photos">
               <ul
@@ -56,4 +56,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./photo_grid.ts"/>
+<script lang="ts" src="./photo_grid.ts" />

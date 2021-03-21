@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/core/enums/fb_collections.dart';
-import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
-import 'package:ieatta/src/logic/reviews_results.dart';
 import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
-import 'package:provider/provider.dart';
 
 class UserReviews extends StatefulWidget {
   UserReviews({Key key}) : super(key: key);
@@ -17,7 +14,6 @@ class UserReviews extends StatefulWidget {
 
 class _UserReviewsState extends State<UserReviews> {
   String _userId;
-  List<ParseModelReviews> reviewList = [];
 
   @override
   void didChangeDependencies() {
@@ -31,44 +27,32 @@ class _UserReviewsState extends State<UserReviews> {
 
   @override
   Widget build(BuildContext context) {
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(getArrowBackIcon()),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Text(AppLocalizations.of(context)
-            .translate("userMenuReviewsAppBarTitle")),
-      ),
-      body: StreamBuilder(
-          stream: firestoreDatabase.userMenuStream(
-            userId: _userId,
-            path: FBCollections.Reviews,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(getArrowBackIcon()),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          builder: (BuildContext context, AsyncSnapshot fbSnapshot) {
-            if (fbSnapshot.hasError) {
-              var x = 0;
-            }
-            if (!fbSnapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+          title: Text(AppLocalizations.of(context)
+              .translate("userMenuReviewsAppBarTitle")),
+        ),
+        body: _buildBody(context));
+  }
 
-            reviewList = parseReviews(
-              fbSnapshot.data.documents,
-            );
-            if (reviewList.length == 0) {
-              return Center(
-                child: Text('No Data'),
-              );
-            }
-            return ReviewsBody(useScrollView: true, reviewsList: reviewList);
-          }),
-    );
+  Widget _buildBody(BuildContext context) {
+    List<ParseModelReviews> reviewsList =
+        FilterModels.instance.getReviewsListByUser(context, _userId);
+    if (reviewsList.length == 0) {
+      return Center(
+        child: Text('No Data'),
+      );
+    }
+    return SingleChildScrollView(
+        padding: EdgeInsets.only(top: 18.0),
+        child: Container(
+            decoration: new BoxDecoration(color: Colors.white),
+            child: ReviewsBody(reviewsList: reviewsList)));
   }
 }

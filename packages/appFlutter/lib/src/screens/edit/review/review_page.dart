@@ -119,6 +119,17 @@ class _ReviewPageState extends State<ReviewPage> {
 
   Widget _buildRatePanel(BuildContext context) {
     ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
+    double rating = reviewState.getRate();
+    return Container(
+        width: 220,
+        height: 40,
+        child: Image(
+            image: AssetImage('assets/stars/small/$rating.png'),
+            fit: BoxFit.cover));
+  }
+
+  Widget _buildRatePanelxxx(BuildContext context) {
+    ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
     return RatingBar.builder(
         initialRating: reviewState.getRate(),
         minRating: 1,

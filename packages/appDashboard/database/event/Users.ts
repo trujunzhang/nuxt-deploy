@@ -1,14 +1,14 @@
 import firebase from 'firebase'
 import { IFBUser } from 'ieattatypes/types/index'
-import { users, password } from '~/database/data/Users'
+import { loadUsers, password } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'
 
 export const uploadUsers = async ($fireAuth: firebase.auth.Auth, $fireStore: firebase.firestore.Firestore) => {
-  for (const index in users) {
+  for (const index in loadUsers()) {
     try {
-      await createUser($fireAuth, $fireStore, users[index])
+      await createUser($fireAuth, $fireStore, loadUsers()[index])
     } catch (e) {
-      await loginUser($fireAuth, $fireStore, users[index])
+      await loginUser($fireAuth, $fireStore, loadUsers()[index])
       // alert(e)
     }
   }
@@ -45,8 +45,9 @@ const uploadUser = async ($fireStore: firebase.firestore.Firestore, model: IFBUs
   try {
     const doc = await messageRef.get()
     if (!doc.data()) {
+      const nextUser = Object.assign({}, model)
       await messageRef.set(
-        Object.assign(model, { id: uid })
+        Object.assign(nextUser, { id: uid })
       )
     }
   } catch (e) {

@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types'
 import { namespace } from 'vuex-class'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'

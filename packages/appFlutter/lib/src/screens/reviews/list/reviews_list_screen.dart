@@ -54,6 +54,8 @@ class _ReviewsListScreenState extends State<ReviewsListScreen> {
         context, reviewsListObject.relatedId, reviewsListObject.reviewType);
     return SingleChildScrollView(
         padding: EdgeInsets.only(top: 18.0),
-        child: ReviewsBody(reviewsList: reviewsList));
+        child: Container(
+            decoration: new BoxDecoration(color: Colors.white),
+            child: ReviewsBody(reviewsList: reviewsList)));
   }
 }

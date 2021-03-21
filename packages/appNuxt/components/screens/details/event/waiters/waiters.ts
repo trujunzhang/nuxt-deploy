@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBEvent, IFBPhoto, IFBRecipe } from 'ieattatypes/types/index'
+import { IFBEvent, IFBPhoto } from 'ieattatypes/types/index'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FirestorePath } from '~/database/services/firestore_path'
 import { PhotoType } from '~/database/constant'

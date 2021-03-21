@@ -5,9 +5,7 @@
         <div class=" photo__373c0__1tYpH border-color--default__373c0__3-ifU" style="height: 186px;">
           <a
             class=" link__373c0__1G70M photo-link__373c0__1sZ41 link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="https://www.yelp.com/biz/kirimachi-ramen-san-francisco-2?page_src=related_bizes"
-            target=""
-            name=""
+            :href="getDetailRecipeUrl()"
             rel=""
           >
             <div
@@ -35,7 +33,7 @@
                 class=" heading--h2__373c0__1g9VN"
               >
                 <p class=" text__373c0__2Kxyz overlay-text__373c0__1Ad7k text-color--white__373c0__22aE8 text-align--center__373c0__3VrfZ text-size--inherit__373c0__2fB3p">
-                  {{ "$ "+recipe.price }}
+                  {{ '$ ' + recipe.price }}
                 </p>
               </h5>
             </div>
@@ -53,10 +51,7 @@
                       <a
                         id="businessPassport-8c65d634-9c71-4613-a3a6-0067092a2abe"
                         class=" link__373c0__1G70M link-color--inherit__373c0__3dzpk link-size--inherit__373c0__1VFlE"
-                        href="https://www.yelp.com/biz/kirimachi-ramen-san-francisco-2?page_src=related_bizes"
-                        target=""
-                        name=""
-                        rel=""
+                        :href="getDetailRecipeUrl()"
                       >{{ recipe.displayName }}</a>
                     </p>
                   </div>
@@ -95,4 +90,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./recipe_item.ts"/>
+<script lang="ts" src="./recipe_item.ts" />

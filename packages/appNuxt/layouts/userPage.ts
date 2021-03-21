@@ -1,13 +1,14 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import { IFBUser } from 'ieattatypes/types/index'
 import HomeHeader from '~/components/screens/header/common/header_home.vue'
-import UserTop from '~/components/screens/userDetail/user_top.vue'
-import UserLeft from '~/components/screens/userDetail/user_left.vue'
+import UserTop from '~/components/screens/details/user/user_top.vue'
+import UserLeft from '~/components/screens/details/user/user_left.vue'
 import { FirestoreService } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
 import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
 import Error404 from '~/components/screens/error/404_error.vue'
+
 const ieattaConfigure = namespace('ieattaConfigure')
 
 @Component({

@@ -36,14 +36,19 @@ class ReviewsBody extends StatelessWidget {
         ),
       );
       list.add(child);
+      if (i < reviewsList.length - 1) {
+        list.add(Divider(
+          height: 1,
+        ));
+      }
     }
-    if (useScrollView) {
-      return SingleChildScrollView(
-        child: Column(
-          children: list,
-        ),
-      );
-    }
+    // if (useScrollView) {
+    //   return SingleChildScrollView(
+    //     child: Column(
+    //       children: list,
+    //     ),
+    //   );
+    // }
     return Column(children: list);
   }
 }

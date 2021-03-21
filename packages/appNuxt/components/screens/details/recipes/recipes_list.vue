@@ -30,4 +30,4 @@
   </section>
 </template>
 
-<script lang="ts" src="./recipes_list.ts"/>
+<script lang="ts" src="./recipes_list.ts" />

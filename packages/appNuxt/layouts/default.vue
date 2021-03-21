@@ -17,4 +17,4 @@
   </div>
 </template>
 
-<script lang="ts" src="./default.ts"/>
+<script lang="ts" src="./default.ts" />
