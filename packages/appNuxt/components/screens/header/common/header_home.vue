@@ -26,7 +26,7 @@
               <span class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO" aria-label="Messages">
                 <div class="  css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                   <div class=" border-color--default__09f24__R1nRO" aria-describedby="9b7b90b6-defb-456b-9e96-5f913efb4694">
-                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="https://www.yelp.com/messaging/inbox">
+                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="messaging/inbox">
                       <div class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO">
                         <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                           <span aria-hidden="true" class="icon--24-message-v2 css-1mpk29p">
@@ -47,7 +47,7 @@
               <div class=" tooltip-visible-area__09f24__2xHx6 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO" aria-label="Notifications">
                 <div class=" tooltip-visible-area-inner__09f24__B_5VT css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                   <div class=" border-color--default__09f24__R1nRO" aria-describedby="918b9ede-c80c-4422-890e-813160f94c9e">
-                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="https://www.yelp.com/user_details">
+                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="user_details">
                       <div class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO">
                         <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                           <span aria-hidden="true" class="icon--24-notification-v2 css-1mpk29p">

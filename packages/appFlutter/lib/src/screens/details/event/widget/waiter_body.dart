@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/types.dart';
-import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_screen.dart';
 
 import 'waiter_item.dart';
 
 class WaiterBody extends StatelessWidget {
-  final List<ParseModelPhotos> waitersList;
+  final Map<String, ParseModelPhotos> waitersDict;
   final ParseModelEvents event;
 
-  const WaiterBody({Key key, @required this.waitersList, @required this.event})
+  const WaiterBody({Key key, @required this.waitersDict, @required this.event})
       : super(key: key);
 
   @override
@@ -19,24 +17,17 @@ class WaiterBody extends StatelessWidget {
     if (event.waiters.length == 0) {
       return buildEmptyWaiters(context);
     }
-    return buildwaitersListView();
+    return buildWaitersListView();
   }
 
-  ParseModelPhotos filterWaiter(String waiterId) {
-    for (ParseModelPhotos e in waitersList) {
-      if (e.uniqueId == waiterId) {
-        return e;
-      }
-    }
-  }
-
-  Widget buildwaitersListView() {
+  Widget buildWaitersListView() {
     return ListView.builder(
       itemCount: event.waiters.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int index) {
+        String waiterId = event.waiters[index];
         return WaiterItem(
-          photoData: filterWaiter(event.waiters[index]),
+          photoData: waitersDict[waiterId],
         );
       },
     );
@@ -47,13 +38,21 @@ class WaiterBody extends StatelessWidget {
         child: Center(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.app_camera,
-              arguments: CameraScreenObject(
-                  photoType: PhotoType.Waiter, relatedId: event.restaurantId));
+          Navigator.push<dynamic>(
+            context,
+            MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => SelectWaiterScreen(),
+                settings: RouteSettings(
+                  arguments: SelectWaiterScreenObject(
+                    event: event,
+                  ),
+                ),
+                fullscreenDialog: true),
+          );
         },
         child: Icon(
-          Icons.add_a_photo,
-          color: Colors.blueGrey,
+          Icons.add,
+          color: Colors.deepOrangeAccent,
           size: 50,
         ),
       ),

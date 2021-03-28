@@ -28,6 +28,7 @@ class SelectRecipeScreen extends StatefulWidget {
 class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
   // Model
   SelectRecipeScreenObject screenObject;
+  bool isSaving = false;
 
   @override
   void didChangeDependencies() {
@@ -76,7 +77,12 @@ class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
   Widget _buildUserItem(BuildContext context, ParseModelRecipes recipe) {
     return ListTile(
       onTap: () async {
-
+        if(isSaving == true){
+          return;
+        }
+        setState(() {
+          isSaving = true;
+        });
         ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.addRecipe(
           model: screenObject.peopleInEvent,
           recipeId: recipe.uniqueId,

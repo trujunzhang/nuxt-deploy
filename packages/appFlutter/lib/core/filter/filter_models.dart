@@ -34,7 +34,8 @@ class FilterModels {
 // ===========================================================
 
   ParseModelUsers getSingleUser(BuildContext context, String uniqueId) {
-    return Provider.of<List<ParseModelUsers>>(context)
+    var list = Provider.of<List<ParseModelUsers>>(context);
+    return list
         .singleWhere((user) => user.id == uniqueId);
   }
 
@@ -258,5 +259,17 @@ class FilterModels {
             waiter.restaurantId == restaurantId &&
             waiter.photoType == photoTypeToString(PhotoType.Waiter))
         .toList();
+  }
+
+
+  Map<String, ParseModelPhotos> getWaitersDict(
+      BuildContext context, String restaurantId) {
+    Map hashMap = new Map<String, ParseModelPhotos>();
+    objectToMap(ParseModelPhotos waiter) {
+      hashMap[waiter.uniqueId] = waiter;
+    }
+
+    getWaitersList(context, restaurantId).forEach(objectToMap);
+    return hashMap;
   }
 }

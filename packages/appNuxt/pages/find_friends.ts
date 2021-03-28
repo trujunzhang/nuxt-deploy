@@ -7,5 +7,5 @@ import PhotoFooter from '~/components/screens/footer/footer_photo.vue'
   }
 })
 export default class FindFriendsPage extends Vue {
-
+  private isSending = false
 }

@@ -77,9 +77,12 @@ class _RecipeDetailState extends State<RecipeDetail> {
         }),
         // Line 3: Reviews
         buildTextSectionTitle("Review Highlights"),
-        Container(
-            decoration: new BoxDecoration(color: Colors.white),
-            child: ReviewsBody(reviewsList: reviewsList)),
+        Padding(
+          padding: EdgeInsets.only(bottom: reviewsList.length == 0 ? 16 : 0),
+          child: Container(
+              decoration: new BoxDecoration(color: Colors.white),
+              child: ReviewsBody(reviewsList: reviewsList)),
+        ),
         seeAllList(reviewsList.length,(){
           Navigator.of(context).pushNamed(Routes.reviews_list,
               arguments: ReviewsListObject(

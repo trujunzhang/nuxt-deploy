@@ -5,6 +5,7 @@ import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
@@ -26,7 +27,6 @@ class EventDetail extends StatefulWidget {
 }
 
 class EventDetailState extends State<EventDetail> {
-  ParseModelEvents _lastEvent;
   String eventId;
 
   @override
@@ -35,7 +35,6 @@ class EventDetailState extends State<EventDetail> {
     final ParseModelEvents _eventModel =
         ModalRoute.of(context).settings.arguments;
     setState(() {
-      _lastEvent = _eventModel;
       eventId = _eventModel.uniqueId;
     });
   }
@@ -66,6 +65,9 @@ class EventDetailState extends State<EventDetail> {
     List<String> disorderedUserIds = FilterUtils.instance
         .getDisorderedUserIds(List.from(usersDict.keys), peopleInEventsList);
 
+    Map<String, ParseModelPhotos> waitersDict =
+        FilterModels.instance.getWaitersDict(context, restaurant.uniqueId);
+
     return ListView(
       shrinkWrap: true,
       children: [
@@ -80,21 +82,23 @@ class EventDetailState extends State<EventDetail> {
           usersDict: usersDict,
         ),
         // Line 2: Waiters list
-        buildTextSectionTitle("Waiters"),
+        buildWaitersSectionTitle(context, event),
         Container(
           height: 160,
           child: WaiterBody(
-            waitersList: FilterModels.instance
-                .getWaitersList(context, restaurant.uniqueId),
             event: event,
+            waitersDict: waitersDict,
           ),
         ),
         // Line 3: Reviews list
         buildTextSectionTitle("Review Highlights"),
-        Container(
-            decoration: new BoxDecoration(color: Colors.white),
-            child: ReviewsBody(reviewsList: reviewsList)),
-        seeAllList(reviewsList.length,(){
+        Padding(
+          padding: EdgeInsets.only(bottom: reviewsList.length == 0 ? 16 : 0),
+          child: Container(
+              decoration: new BoxDecoration(color: Colors.white),
+              child: ReviewsBody(reviewsList: reviewsList)),
+        ),
+        seeAllList(reviewsList.length, () {
           Navigator.of(context).pushNamed(Routes.reviews_list,
               arguments: ReviewsListObject(
                   reviewType: ReviewType.Event, relatedId: event.uniqueId));

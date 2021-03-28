@@ -8,9 +8,11 @@ import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
 import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/providers/user_state.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
 import 'package:ieatta/camera/screens/types.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class UserPage extends StatefulWidget {
   final ParseModelUsers loggedUser;
@@ -22,52 +24,13 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  TextEditingController _firstNameController;
-  TextEditingController __lastNameController;
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isButtonDisabled = false;
-  String userWithOriginalUrl;
-
-  getFirstName() {
-    return widget.loggedUser.username.split(' ')[0];
-  }
-
-  getLastName() {
-    var s = widget.loggedUser.username.split(' ');
-    return s.length == 2 ? s[1] : '';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _firstNameController = TextEditingController(text: getFirstName());
-    __lastNameController = TextEditingController(text: getLastName());
-    bloc.firstNameVal(getFirstName());
-    bloc.lastNameVal(getLastName());
-
-    setState(() {
-      userWithOriginalUrl = widget.loggedUser.originalUrl;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: bloc.firstNameStream,
-        builder: (BuildContext context, AsyncSnapshot displayNameSnapshot) {
-          return StreamBuilder(
-              stream: bloc.lastNameStream,
-              builder: (BuildContext context, AsyncSnapshot noteSnapshot) {
-                String firstNameVal = displayNameSnapshot.data;
-                String lastNameVal = noteSnapshot.data;
-                return _buildBody(context, firstNameVal, lastNameVal);
-              });
-        });
-  }
-
-  Widget _buildBody(
-      BuildContext context, String firstNameVal, String lastNameVal) {
+    UserState userState = Provider.of<UserState>(context, listen: false);
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -84,19 +47,18 @@ class _UserPageState extends State<UserPage> {
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.validate()) {
+                        if (_formKey.currentState.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
                             _isButtonDisabled = true;
                           });
-                          var displayName =
-                              [firstNameVal, lastNameVal].join(' ');
-                          ParseModelUsers lastModel = widget.loggedUser;
+
+                          var displayName = userState.getUsername();
 
                           ParseModelUsers nextModel =
                               ParseModelUsers.updateUserProfile(
-                            model: lastModel,
+                            model: widget.loggedUser,
                             username: displayName,
                           );
 
@@ -124,17 +86,19 @@ class _UserPageState extends State<UserPage> {
                           ToastUtils.showToast(AppLocalizations.of(context)
                               .translate("toastForSaveSuccess"));
                           // Navigate
-                          Navigator.of(context).pop(firstNameVal);
+                          Navigator.of(context).pop();
                         }
                       },
                 child: Text(AppLocalizations.of(context)
                     .translate("editModelAppBarRightSaveTitle")))
           ],
         ),
-        body: _buildList());
+        body: _buildList(context));
   }
 
-  Widget _buildList() {
+  Widget _buildList(BuildContext context) {
+    UserState userState = Provider.of<UserState>(context, listen: true);
+    String userWithOriginalUrl = userState.getCoverUrl();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -150,18 +114,14 @@ class _UserPageState extends State<UserPage> {
                   child: const Text('(Add/Edit)'),
                   textColor: Color(0xff0073bb),
                   onPressed: () async {
-                    Navigator.of(context).pushNamed(Routes.app_camera,
+                    final result = await Navigator.of(context).pushNamed(
+                        Routes.app_camera,
                         arguments: CameraScreenObject(
                             photoType: PhotoType.User,
                             relatedId: widget.loggedUser.id));
-                    // final result = await Navigator.of(context).pushNamed(
-                    //     Routes.app_camera,
-                    //     arguments: CAMERA_EVENT.USER);
-                    // if (result != null) {
-                    //   setState(() {
-                    //     userWithOriginalUrl = result;
-                    //   });
-                    // }
+                    if (result != null) {
+                      userState.setCoverUrl(result);
+                    }
                   })
             ],
           ),
@@ -174,7 +134,6 @@ class _UserPageState extends State<UserPage> {
         ),
         Shortcuts(
           shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
             LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
           },
           child: FocusTraversalGroup(
@@ -190,67 +149,53 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
-  @override
-  void dispose() {
-    _firstNameController.dispose();
-    __lastNameController.dispose();
-    super.dispose();
-  }
-
   Widget _buildForm(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextFormField(
-                controller: _firstNameController,
-                onChanged: (String txt) {
-                  bloc.firstNameVal(txt);
-                },
-                style: Theme.of(context).textTheme.bodyText2,
-                validator: (value) => value.isEmpty
-                    ? AppLocalizations.of(context)
-                        .translate("usersCreateEditFirstNameValidatorMsg")
-                    : null,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).iconTheme.color, width: 2)),
-                  labelText: AppLocalizations.of(context)
-                      .translate("usersCreateEditFirstNameTxt"),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: TextFormField(
-                  controller: __lastNameController,
-                  onChanged: (String txt) {
-                    bloc.lastNameVal(txt);
-                  },
-                  style: Theme.of(context).textTheme.bodyText2,
-                  validator: (value) => value.isEmpty
-                      ? AppLocalizations.of(context)
-                          .translate("usersCreateEditLastNameValidatorMsg")
-                      : null,
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: FormBuilder(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.disabled,
+            initialValue: {
+              'firstName': userState.getFirstName(),
+              'secondName': userState.getSecondName(),
+            },
+            child: Column(
+              children: [
+                FormBuilderTextField(
+                  autovalidateMode: AutovalidateMode.always,
+                  name: 'firstName',
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).iconTheme.color,
-                            width: 2)),
+                    labelText: AppLocalizations.of(context)
+                        .translate("usersCreateEditFirstNameTxt"),
+                  ),
+                  onChanged: (String val) {
+                    userState.setFirstName(val);
+                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.max(context, 15),
+                  ]),
+                  textInputAction: TextInputAction.next,
+                ),
+                FormBuilderTextField(
+                  autovalidateMode: AutovalidateMode.always,
+                  name: 'secondName',
+                  decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)
                         .translate("usersCreateEditLastNameTxt"),
                   ),
+                  onChanged: (String val) {
+                    userState.setSecondName(val);
+                  },
+                  // valueTransformer: (text) => num.tryParse(text),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.max(context, 15),
+                  ]),
+                  textInputAction: TextInputAction.next,
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+              ],
+            )));
   }
 }

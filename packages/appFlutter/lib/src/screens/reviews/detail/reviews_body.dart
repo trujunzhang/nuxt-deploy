@@ -42,13 +42,6 @@ class ReviewsBody extends StatelessWidget {
         ));
       }
     }
-    // if (useScrollView) {
-    //   return SingleChildScrollView(
-    //     child: Column(
-    //       children: list,
-    //     ),
-    //   );
-    // }
     return Column(children: list);
   }
 }

@@ -8,10 +8,8 @@ import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/providers/review_state.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 import 'package:ieatta/src/utils/toast.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewPage extends StatefulWidget {
   final ParseModelReviews review;
@@ -110,43 +108,70 @@ class _ReviewPageState extends State<ReviewPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 8),
-            _buildRatePanel(context),
+            SizedBox(height: 12),
+            Container(
+              padding: EdgeInsets.only(left: 12),
+              width: 300,
+              height: 50,
+              child: _buildRatePanel(context),
+            ),
             _buildShortcuts()
           ],
         )));
   }
 
   Widget _buildRatePanel(BuildContext context) {
-    ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
+    ReviewState reviewState = Provider.of<ReviewState>(context, listen: true);
     double rating = reviewState.getRate();
-    return Container(
-        width: 220,
-        height: 40,
-        child: Image(
-            image: AssetImage('assets/stars/small/$rating.png'),
-            fit: BoxFit.cover));
+    return Stack(
+      children: [
+        Container(
+            width: 300,
+            height: 50,
+            child: Image(
+                image: AssetImage('assets/stars/large/$rating.png'),
+                fit: BoxFit.cover)),
+        ListView.builder(
+            itemCount: 5,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Container(
+                padding: EdgeInsets.only(right: 10),
+                width: 60,
+                height: 50,
+                child: InkWell(
+                  onTap: () {
+                    reviewState.setRate((index + 1).roundToDouble());
+                  },
+                  child: Container(
+                      // color: Colors.red.withOpacity(0.2),
+                      ),
+                ),
+              );
+            })
+      ],
+    );
   }
 
   Widget _buildRatePanelxxx(BuildContext context) {
     ReviewState reviewState = Provider.of<ReviewState>(context, listen: false);
-    return RatingBar.builder(
-        initialRating: reviewState.getRate(),
-        minRating: 1,
-        direction: Axis.horizontal,
-        allowHalfRating: false,
-        unratedColor:
-            HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
-        itemCount: 5,
-        itemSize: 40,
-        itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-        itemBuilder: (context, index) => Icon(
-              Icons.star,
-              color: HotelAppTheme.buildLightTheme().primaryColor,
-            ),
-        onRatingUpdate: (rating) {
-          reviewState.setRate(rating);
-        });
+    // return RatingBar.builder(
+    //     initialRating: reviewState.getRate(),
+    //     minRating: 1,
+    //     direction: Axis.horizontal,
+    //     allowHalfRating: false,
+    //     unratedColor:
+    //         HotelAppTheme.buildLightTheme().primaryColor.withAlpha(50),
+    //     itemCount: 5,
+    //     itemSize: 40,
+    //     itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+    //     itemBuilder: (context, index) => Icon(
+    //           Icons.star,
+    //           color: HotelAppTheme.buildLightTheme().primaryColor,
+    //         ),
+    //     onRatingUpdate: (rating) {
+    //       reviewState.setRate(rating);
+    //     });
   }
 
   Widget _buildShortcuts() {

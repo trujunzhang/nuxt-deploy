@@ -1,8 +1,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes/types/index'
+import { namespace } from 'vuex-class'
 import RestaurantItem from '~/components/screens/details/user/items/restaurantItem/restaurant_item'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
+import { IAuthUser } from '~/database/models/auth_user_model'
+
+const auth = namespace('auth')
 
 @Component({
   components: {
@@ -10,6 +14,9 @@ import { FBCollections } from '~/database/constant'
   }
 })
 export default class UserDefaultRight extends Vue {
+  @auth.State
+  public user!: IAuthUser | null
+
   public items: Array<IFBRestaurant> = []
 
   private showNoResult: boolean = false
@@ -49,9 +56,10 @@ export default class UserDefaultRight extends Vue {
       $fireStore: this.$fire.firestore,
       path: FBCollections.Restaurants,
       queryBuilder: (query: any) => {
+        const userId = this.$route.query.userid as any || this.user?.uid
         const nextQuery = FirestoreService.instance.queryByCreatorId({
           query,
-          userId: (this.$route.query.userid as string)
+          userId
         })
         return queryBuilder(nextQuery).limit(5)
       },

@@ -64,9 +64,7 @@
                         <div class=" hidden-non-responsive-inline-block responsive-visible-small-inline-block arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                           <a
                             class=" button__09f24__1hAjX secondary__09f24__3mm8J find-near-button__09f24__UO8nW"
-                            data-testid="responsive-suggest-submit"
                             style="--mousedown-x:0px;--mousedown-y:0px;--button-width:0px"
-                            href="https://www.yelp.com/search?find_desc=&amp;find_loc=Mountain+View%2C+CA#"
                           >
                             <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO"><span
                               class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--inherit__09f24__1jgBv text-align--center__09f24__3NO89 text-weight--semibold__09f24__MTlNc text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"

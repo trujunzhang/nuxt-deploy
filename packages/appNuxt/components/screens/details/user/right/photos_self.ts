@@ -1,13 +1,20 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { IFBPhoto } from 'ieattatypes/types/index'
 import { QuerySnapshot } from 'firebase/firebase-storage'
+import { namespace } from 'vuex-class'
 import { FBCollections } from '~/database/constant'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
+import { IAuthUser } from '~/database/models/auth_user_model'
+
+const auth = namespace('auth')
 
 @Component({
   components: {}
 })
 export default class UserDetailPhotosSelf extends Vue {
+  @auth.State
+  public user!: IAuthUser | null
+
   public items: Array<IFBPhoto> = []
 
   private isLoaded = false
@@ -58,9 +65,10 @@ export default class UserDetailPhotosSelf extends Vue {
       $fireStore: this.$fire.firestore,
       path: FBCollections.Photos,
       queryBuilder: (query: any) => {
+        const userId = this.$route.query.userid as any || this.user?.uid
         return queryBuilder(FirestoreService.instance.queryByCreatorId({
           query,
-          userId: (this.$route.query.userid as string)
+          userId
         })).limit(5 * 3)
       },
       iterateDocumentSnapshots: (data: IFBPhoto) => {

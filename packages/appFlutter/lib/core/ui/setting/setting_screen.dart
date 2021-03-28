@@ -25,21 +25,21 @@ class SettingScreen extends StatelessWidget {
     return ListView(
       children: <Widget>[
         // SettingBarUI(),
-        ListTile(
-          title: Text(
-              AppLocalizations.of(context).translate("settingThemeListTitle")),
-          subtitle: Text(AppLocalizations.of(context)
-              .translate("settingThemeListSubTitle")),
-          trailing: Switch(
-            activeColor: Theme.of(context).appBarTheme.color,
-            activeTrackColor: Theme.of(context).textTheme.headline6.color,
-            value: Provider.of<ThemeProvider>(context).isDarkModeOn,
-            onChanged: (booleanValue) {
-              Provider.of<ThemeProvider>(context, listen: false)
-                  .updateTheme(booleanValue);
-            },
-          ),
-        ),
+        // ListTile(
+        //   title: Text(
+        //       AppLocalizations.of(context).translate("settingThemeListTitle")),
+        //   subtitle: Text(AppLocalizations.of(context)
+        //       .translate("settingThemeListSubTitle")),
+        //   trailing: Switch(
+        //     activeColor: Theme.of(context).appBarTheme.color,
+        //     activeTrackColor: Theme.of(context).textTheme.headline6.color,
+        //     value: Provider.of<ThemeProvider>(context).isDarkModeOn,
+        //     onChanged: (booleanValue) {
+        //       Provider.of<ThemeProvider>(context, listen: false)
+        //           .updateTheme(booleanValue);
+        //     },
+        //   ),
+        // ),
         ListTile(
           title: Text(AppLocalizations.of(context)
               .translate("settingLanguageListTitle")),

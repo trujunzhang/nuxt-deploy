@@ -25,8 +25,6 @@ class RecipePage extends StatefulWidget {
 class _RecipePageState extends State<RecipePage> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  // Recipe
   bool _isButtonDisabled = false;
 
   @override
@@ -189,4 +187,5 @@ class _RecipePageState extends State<RecipePage> {
               ],
             )));
   }
+
 }

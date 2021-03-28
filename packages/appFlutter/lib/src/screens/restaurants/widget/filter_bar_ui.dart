@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/providers/home_state.dart';
+import 'package:provider/provider.dart';
 
 import '../hotel_app_theme.dart';
 
@@ -26,21 +28,16 @@ class FilterBarUI extends StatefulWidget {
 class _FilterBarUIState extends State<FilterBarUI> {
   @override
   Widget build(BuildContext context) {
+    HomeState homeState = Provider.of<HomeState>(context, listen: true);
+    bool gpsTrackVal = homeState.getGpsTrack();
     return StreamBuilder(
-        //This StreamBuilder is to fetch GpsTrack status.
-        initialData: true,
-        stream: bloc.gpsTrackStatusStream,
-        builder: (BuildContext context, AsyncSnapshot gpsTrackSnapshot) {
-          return StreamBuilder(
-              //This StreamBuilder is to fetch restaurants count.
-              initialData: 0,
-              stream: bloc.restaurantCountValStream,
-              builder: (BuildContext context,
-                  AsyncSnapshot restaurantsCountSnapshot) {
-                bool gpsTrackVal = gpsTrackSnapshot.data;
-                int restaurantsCountVal = restaurantsCountSnapshot.data;
-                return _buildBody(context, gpsTrackVal, restaurantsCountVal);
-              });
+        //This StreamBuilder is to fetch restaurants count.
+        initialData: 0,
+        stream: bloc.restaurantCountValStream,
+        builder:
+            (BuildContext context, AsyncSnapshot restaurantsCountSnapshot) {
+          int restaurantsCountVal = restaurantsCountSnapshot.data;
+          return _buildBody(context, gpsTrackVal, restaurantsCountVal);
         });
   }
 

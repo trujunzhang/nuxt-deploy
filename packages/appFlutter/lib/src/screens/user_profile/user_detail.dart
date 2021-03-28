@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/src/components/navigation/top_back_arrow_view.dart';
+import 'package:ieatta/core/models/auth_user_model.dart';
+import 'package:ieatta/core/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'fetch_user.dart';
 
@@ -25,18 +27,18 @@ class _UserDetailState extends State<UserDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          child: FetchUser(
+    final authService = Provider.of<AuthProvider>(context, listen: false);
+    return StreamBuilder<AuthUserModel>(
+        stream: authService.user,
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
+          final AuthUserModel user = snapshot.data;
+          if (snapshot.hasData == false || user == null) {
+            return Container();
+          }
+          return FetchUser(
             userId: _userId,
-          ),
-        ),
-        // TopBackArrowView(
-        //   isBackColor: false,
-        // ),
-      ],
-    ));
+            isLoggedUser: user.uid == _userId,
+          );
+        });
   }
 }

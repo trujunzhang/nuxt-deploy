@@ -21,7 +21,7 @@ class ParseModelEvents extends BaseReview {
   String want;
   String start;
   String end;
-  final List<String> waiters;
+  List<String> waiters;
 
   // final DateTime start;
   // final DateTime end;
@@ -162,6 +162,15 @@ class ParseModelEvents extends BaseReview {
     model.want = nextWant;
     model.start = nextStartDate;
     model.end = nextEndDate;
+
+    return model;
+  }
+
+  static ParseModelEvents addWaiter({ @required ParseModelEvents model,@required  String waiterId}) {
+    List<String> nextRecipes = model.waiters;
+    nextRecipes.add(waiterId);
+    // Delete duplicates from a list
+    model.waiters = nextRecipes.toSet().toList();
 
     return model;
   }

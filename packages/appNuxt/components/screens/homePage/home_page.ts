@@ -75,8 +75,9 @@ export default class HomePage extends Vue {
       queryBuilder: (query: any) => {
         let nextQuery = query
 
-        if (this.find_desc !== null && this.find_desc !== undefined) {
-          nextQuery = nextQuery.where('displayName', '>=', this.find_desc)
+        const search = this.find_desc
+        if (search !== null && search !== undefined) {
+          nextQuery = nextQuery.where('displayName', '>=', search)
             .orderBy('displayName', 'desc')
         }
 

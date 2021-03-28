@@ -132,7 +132,7 @@ class InfoPart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          FlatButton(
+          FlatButton.icon(
             onPressed: () {
               Navigator.push<dynamic>(
                 context,
@@ -147,8 +147,12 @@ class InfoPart extends StatelessWidget {
                     fullscreenDialog: true),
               );
             },
-            child: Text(
-              'Select Person',
+            icon: const Icon(
+              Icons.add_box_outlined,
+              color: Colors.red,
+            ),
+            label: Text(
+              'Person',
               style: TextStyle(color: Color(0xff479EFF)),
             ),
           ),

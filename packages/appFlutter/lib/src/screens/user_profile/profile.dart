@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
         stream: authService.user,
         builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
           final AuthUserModel user = snapshot.data;
-          if (user == null) {
+          if (snapshot.hasData == false||user == null) {
             return Container();
           }
           return FetchUser(

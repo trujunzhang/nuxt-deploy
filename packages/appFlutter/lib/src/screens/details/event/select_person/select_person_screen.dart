@@ -32,6 +32,8 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
   // Model
   SelectPersonScreenObject screenObject;
 
+  bool isSaving = false;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -44,30 +46,37 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, ParseModelUsers> usersDict =
-        FilterModels.instance.getUsersDict(context);
-    List<String> userIds = List.from(usersDict.keys);
-
     return Scaffold(
         appBar: AppBar(
             title: Text(AppLocalizations.of(context)
                 .translate("eventsSelectPersonTitleTxt"))),
-        body: Container(
-            padding: EdgeInsets.only(top: 16),
-            child: ListView.separated(
-              itemCount: screenObject.disorderedUserIds.length,
-              separatorBuilder: (BuildContext context, int index) => Divider(),
-              // itemExtent: 80.0,
-              itemBuilder: (BuildContext context, int index) {
-                return _buildUserItem(context, usersDict[userIds[index]]);
-              },
-            )));
+        body: _buildBody(context));
+  }
+
+  Widget _buildBody(BuildContext context) {
+    Map<String, ParseModelUsers> usersDict =
+        FilterModels.instance.getUsersDict(context);
+    List<String> userIds = List.from(usersDict.keys);
+    return ListView.separated(
+      padding: EdgeInsets.only(top: 16),
+      itemCount: screenObject.disorderedUserIds.length,
+      separatorBuilder: (BuildContext context, int index) => Divider(),
+      itemBuilder: (BuildContext context, int index) {
+        return _buildUserItem(context, usersDict[userIds[index]]);
+      },
+    );
   }
 
   Widget _buildUserItem(BuildContext context, ParseModelUsers user) {
     final authProvider = Provider.of<AuthProvider>(context);
     return ListTile(
       onTap: () async {
+        if(isSaving == true){
+          return;
+        }
+        setState(() {
+          isSaving = true;
+        });
         AuthUserModel authUserModel = await authProvider.getAuthUserModel();
         ParseModelPeopleInEvent lastModel =
             ParseModelPeopleInEvent.emptyPeopleInEvent(

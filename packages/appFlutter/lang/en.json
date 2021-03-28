@@ -35,6 +35,7 @@
     "eventsCreateEditStartDateTxt": "Start Date",
     "eventsCreateEditEndDateTxt": "End Date",
     "eventsSelectPersonTitleTxt": "Select Person",
+    "eventsSelectWaiterTitleTxt": "Select Waiter",
     "ModelItemsDeleteSuccess": "Delete successfully",
     "peopleInEventDeleteFailure": "Delete failure",
     "peopleInEventSelectRecipeTitleTxt": "Select Recipe",

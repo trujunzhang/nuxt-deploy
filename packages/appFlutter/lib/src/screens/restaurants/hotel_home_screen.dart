@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/providers/home_state.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -27,10 +28,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   Widget buildBody(BuildContext context) {
     LocationData locationVal = Provider.of<LocationData>(context);
-    // TODO: DJZHANG
-    bool gpsTrackVal = false;
-    // bool gpsTrackVal = Provider.of<bool>(context);
-    String searchVal = Provider.of<String>(context);
+    HomeState homeState = Provider.of<HomeState>(context, listen: true);
+    bool gpsTrackVal = homeState.getGpsTrack();
+    String searchVal = homeState.getSearch();
     if (gpsTrackVal && locationVal == null) {
       return Center(
         child: CircularProgressIndicator(),

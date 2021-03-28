@@ -1,9 +1,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { QuerySnapshot } from 'firebase/firebase-storage'
+import { namespace } from 'vuex-class'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 import { FBCollections } from '~/database/constant'
 import ReviewItem from '~/components/screens/edit/review/reviewItem/review_item.vue'
+import { IAuthUser } from '~/database/models/auth_user_model'
+const auth = namespace('auth')
 
 @Component({
   components: {
@@ -11,6 +14,9 @@ import ReviewItem from '~/components/screens/edit/review/reviewItem/review_item.
   }
 })
 export default class UserDetailReviewSelf extends Vue {
+  @auth.State
+  public user!: IAuthUser | null
+
   @Prop({}) restaurant!: IFBRestaurant
   public items: Array<IFBReview> = []
 
@@ -42,15 +48,15 @@ export default class UserDetailReviewSelf extends Vue {
       return
     }
     this.isLoading = true
-    const reviewId = this.$route.query.rid as string
     const nextItem = this.items.concat([])
     await FirestoreService.instance.snapshotList({
       $fireStore: this.$fire.firestore,
       path: FBCollections.Reviews,
       queryBuilder: (query: any) => {
+        const userId = this.$route.query.userid as any || this.user?.uid
         return queryBuilder(FirestoreService.instance.queryByCreatorId({
           query,
-          userId: (this.$route.query.userid as string)
+          userId
         })).limit(2)
       },
       iterateDocumentSnapshots: (data: IFBReview) => {

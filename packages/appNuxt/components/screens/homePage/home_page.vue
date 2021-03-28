@@ -13,7 +13,7 @@
                 style="margin-top: 25px;"
                 class="lemon--ul__373c0__1_cxs undefined list__373c0__2G8oH"
               >
-                <li
+                <liNoResults
                   v-for="(item) in placeHolders"
                   :key="item"
                   class="lemon--li__373c0__1r9wz border-color--default__373c0__3-ifU"
@@ -26,7 +26,7 @@
                     primary-color="#f3f3f3"
                     secondary-color="#ecebeb"
                   />
-                </li>
+                </liNoResults>
               </ul>
               <ul class=" undefined list__09f24__17TsU">
                 <li class=" border-color--default__09f24__R1nRO">
@@ -45,6 +45,9 @@
               </ul>
               <!-- infinite scroll -->
               <div v-waypoint="{ active: true, callback: onWaypoint}"></div>
+              <div v-if="showNoResult">
+                <NoResults />
+              </div>
             </div>
           </div>
         </div>

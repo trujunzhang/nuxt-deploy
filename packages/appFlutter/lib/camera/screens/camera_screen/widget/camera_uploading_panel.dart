@@ -20,7 +20,7 @@ class CameraUploadingPanel extends StatefulWidget {
 
 class _CameraUploadingPanelState extends State<CameraUploadingPanel> {
   uploadImageAsUserPhotoUrl() async {
-    var originalUrl = null;
+    var originalUrl;
     try {
       originalUrl =
           await CloudinaryUtils.uploadToCloudinary(imagePath: widget.imagePath);

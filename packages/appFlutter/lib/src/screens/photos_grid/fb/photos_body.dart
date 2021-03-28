@@ -15,7 +15,7 @@ class PhotosBody extends StatefulWidget {
 }
 
 class _PhotosBodyState extends State<PhotosBody> {
-  Widget buildGridItem(List<ParseModelPhotos> photos, int index) {
+  Widget _buildGridItem(List<ParseModelPhotos> photos, int index) {
     ParseModelPhotos photo = photos[index];
     return InkWell(
       onTap: () {
@@ -43,7 +43,7 @@ class _PhotosBodyState extends State<PhotosBody> {
         childAspectRatio: 200 / 200,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return buildGridItem(widget.photoList, index);
+        return _buildGridItem(widget.photoList, index);
       },
     );
   }

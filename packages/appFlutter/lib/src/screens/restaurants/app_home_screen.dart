@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/enums/permission_status.dart';
-import 'package:ieatta/src/logic/bloc.dart';
+import 'package:ieatta/src/providers/home_state.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
 import 'package:location/location.dart' as GpsLocation;
 import 'package:location/location.dart';
@@ -81,6 +81,12 @@ class _AppHomeScreenState extends State<AppHomeScreen>
     }
   }
 
+  HomeState homeState = HomeState(
+    // TODO: DJZHANG
+    gpsTrack:true,
+    // gpsTrack: false,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -104,10 +110,8 @@ class _AppHomeScreenState extends State<AppHomeScreen>
           return MultiProvider(providers: [
             StreamProvider<LocationData>.value(
                 value: location.onLocationChanged),
-            StreamProvider<bool>.value(
-                value: bloc.gpsTrackStatusStream, initialData: true),
-            StreamProvider<String>.value(
-                value: bloc.recieveSearchVal, initialData: ''),
+            ChangeNotifierProvider<HomeState>.value(
+                value: homeState),
           ], child: HotelHomeScreen());
         }
       case AppPermissionStatus.Denied:

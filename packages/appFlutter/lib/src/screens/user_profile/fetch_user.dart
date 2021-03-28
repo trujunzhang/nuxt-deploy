@@ -14,6 +14,9 @@ class FetchUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ParseModelUsers user = FilterModels.instance.getSingleUser(context, userId);
+    if(user == null){
+      return Container();
+    }
     List<UserMenu> menus = UserMenu.updateUserMenus(context, userId);
     return SummaryPage(
       userData: user,
