@@ -14,7 +14,7 @@ List<ParseModelPhotos> parsePhotosFilterByRestaurant(
     {List<DocumentSnapshot> datas, ParseModelRestaurants restaurant}) {
   List<ParseModelPhotos> result = datas
       .map((DocumentSnapshot snapshot) {
-        return ParseModelPhotos.fromJson(snapshot.data);
+        return ParseModelPhotos.fromJson(snapshot.data());
       })
       // .where((ParseModelPhotos value) => photoIsInRestaurant(restaurant, value))
       .toList();
@@ -25,7 +25,7 @@ List<ParseModelPhotos> parsePhotos(
     List<DocumentSnapshot> datas) {
   List<ParseModelPhotos> result = datas
       .map((DocumentSnapshot snapshot) {
-    return ParseModelPhotos.fromJson(snapshot.data);
+    return ParseModelPhotos.fromJson(snapshot.data());
   })
       .toList();
   return result;

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+// import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
-import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'setting_bar_ui.dart';
+
 import 'setting_language_actions.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -65,37 +64,38 @@ class SettingScreen extends StatelessWidget {
   }
 
   _confirmSignOut(BuildContext context) {
-    showPlatformDialog(
-        context: context,
-        builder: (_) => PlatformAlertDialog(
-              android: (_) => MaterialAlertDialogData(
-                  backgroundColor: Theme.of(context).appBarTheme.color),
-              title: Text(
-                  AppLocalizations.of(context).translate("alertDialogTitle")),
-              content: Text(
-                  AppLocalizations.of(context).translate("alertDialogMessage")),
-              actions: <Widget>[
-                PlatformDialogAction(
-                  child: PlatformText(AppLocalizations.of(context)
-                      .translate("alertDialogCancelBtn")),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                PlatformDialogAction(
-                  child: PlatformText(AppLocalizations.of(context)
-                      .translate("alertDialogYesBtn")),
-                  onPressed: () {
-                    final authProvider =
-                        Provider.of<AuthProvider>(context, listen: false);
-
-                    authProvider.signOut();
-
-                    Navigator.pop(context);
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Routes.login, ModalRoute.withName(Routes.login));
-                  },
-                )
-              ],
-            ));
+    // TODO: DJZHANG
+    // showPlatformDialog(
+    //     context: context,
+    //     builder: (_) => PlatformAlertDialog(
+    //           android: (_) => MaterialAlertDialogData(
+    //               backgroundColor: Theme.of(context).appBarTheme.color),
+    //           title: Text(
+    //               AppLocalizations.of(context).translate("alertDialogTitle")),
+    //           content: Text(
+    //               AppLocalizations.of(context).translate("alertDialogMessage")),
+    //           actions: <Widget>[
+    //             PlatformDialogAction(
+    //               child: PlatformText(AppLocalizations.of(context)
+    //                   .translate("alertDialogCancelBtn")),
+    //               onPressed: () => Navigator.pop(context),
+    //             ),
+    //             PlatformDialogAction(
+    //               child: PlatformText(AppLocalizations.of(context)
+    //                   .translate("alertDialogYesBtn")),
+    //               onPressed: () {
+    //                 final authProvider =
+    //                     Provider.of<AuthProvider>(context, listen: false);
+    //
+    //                 authProvider.signOut();
+    //
+    //                 Navigator.pop(context);
+    //                 Navigator.of(context).pushNamedAndRemoveUntil(
+    //                     Routes.login, ModalRoute.withName(Routes.login));
+    //               },
+    //             )
+    //           ],
+    //         ));
   }
 
 

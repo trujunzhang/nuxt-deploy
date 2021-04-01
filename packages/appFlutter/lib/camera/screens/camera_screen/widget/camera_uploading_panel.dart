@@ -41,11 +41,9 @@ class _CameraUploadingPanelState extends State<CameraUploadingPanel> {
     await FirestoreDatabase().updateUser(nextModel);
 
     // Update Firebase's user's name.
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
-    userUpdateInfo.displayName = widget.loggedUser.username;
-    userUpdateInfo.photoUrl = originalUrl;
-    await user.updateProfile(userUpdateInfo);
+    User user = FirebaseAuth.instance.currentUser;
+    await user.updateProfile(
+        displayName: widget.loggedUser.username, photoURL: originalUrl);
 
     ToastUtils.showToast(
         AppLocalizations.of(context).translate("toastForSaveSuccess"));

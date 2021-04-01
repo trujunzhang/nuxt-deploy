@@ -53,7 +53,7 @@ class _ReviewsListScreenState extends State<ReviewsListScreen> {
     List<ParseModelReviews> reviewsList = FilterModels.instance.getReviewsList(
         context, reviewsListObject.relatedId, reviewsListObject.reviewType);
     return SingleChildScrollView(
-        padding: EdgeInsets.only(top: 18.0),
+        padding: EdgeInsets.only(top: 8.0),
         child: Container(
             decoration: new BoxDecoration(color: Colors.white),
             child: ReviewsBody(reviewsList: reviewsList)));

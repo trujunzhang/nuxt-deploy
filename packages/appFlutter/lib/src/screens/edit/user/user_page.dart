@@ -54,7 +54,7 @@ class _UserPageState extends State<UserPage> {
                             _isButtonDisabled = true;
                           });
 
-                          var displayName = userState.getUsername();
+                          String displayName = userState.getUsername();
 
                           ParseModelUsers nextModel =
                               ParseModelUsers.updateUserProfile(
@@ -70,13 +70,10 @@ class _UserPageState extends State<UserPage> {
                                 .updateUser(nextModel); // For Restaurant.
 
                             // Update Firebase's user's name.
-                            FirebaseUser user =
-                                await FirebaseAuth.instance.currentUser();
-                            UserUpdateInfo userUpdateInfo =
-                                new UserUpdateInfo();
-                            userUpdateInfo.displayName = displayName;
-                            userUpdateInfo.photoUrl = user.photoUrl;
-                            await user.updateProfile(userUpdateInfo);
+                            User user = await FirebaseAuth.instance.currentUser;
+
+                            await user.updateProfile(
+                                displayName:displayName, photoURL:user.photoURL);
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;

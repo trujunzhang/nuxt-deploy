@@ -5,7 +5,7 @@ List<ParseModelReviews> parseReviewsFilterByRestaurant(
     {List<DocumentSnapshot> datas, String restaurantId}) {
   List<ParseModelReviews> result = datas
       .map((DocumentSnapshot snapshot) {
-        return ParseModelReviews.fromJson(snapshot.data);
+        return ParseModelReviews.fromJson(snapshot.data());
       })
       .where((ParseModelReviews value) => value.restaurantId == restaurantId)
       .toList();
@@ -14,7 +14,7 @@ List<ParseModelReviews> parseReviewsFilterByRestaurant(
 
 List<ParseModelReviews> parseReviews(List<DocumentSnapshot> datas) {
   List<ParseModelReviews> result = datas.map((DocumentSnapshot snapshot) {
-    return ParseModelReviews.fromJson(snapshot.data);
+    return ParseModelReviews.fromJson(snapshot.data());
   }).toList();
   return result;
 }

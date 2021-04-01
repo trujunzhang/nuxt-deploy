@@ -14,6 +14,7 @@ import 'package:ieatta/core/providers/language_provider.dart';
 import 'package:ieatta/core/providers/theme_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/flavor.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 // import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,9 @@ void main() async {
   // await Lager.log('ENTERED main() ...');
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) async {
     runApp(

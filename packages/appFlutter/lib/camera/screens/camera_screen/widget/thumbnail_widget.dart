@@ -28,7 +28,7 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
   }
 
   Future getImage() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    PickedFile image = await ImagePicker().getImage(source: ImageSource.gallery);
     if (image == null) {
       return;
     }

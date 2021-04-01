@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> _syncLocalDb() async {
     if (kIsWeb) {
     } else {
+      // TODO: DJZHANG
       var firebaseSync = FirebaseSync();
       await firebaseSync.start();
     }

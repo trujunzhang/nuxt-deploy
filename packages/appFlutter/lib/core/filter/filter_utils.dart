@@ -38,9 +38,6 @@ class FilterUtils {
         latitude: restaurant.latitude, longitude: restaurant.longitude);
     var distance =
         myLocation.distance(lat: secondVal.latitude, lng: secondVal.longitude);
-//  if (firstVal.data['displayName'] == 'city run') {
-//    print('distance: ' + distance.toString());
-//  }
     return distance <= 0.1;
   }
 

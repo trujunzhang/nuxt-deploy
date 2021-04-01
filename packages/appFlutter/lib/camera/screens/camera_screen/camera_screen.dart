@@ -153,13 +153,14 @@ class _CameraScreenState extends State<CameraScreen>
     }
 
     try {
+      // TODO: DJZHANG
       // XFile file = await cameraController.takePicture();
       // print('File information:');
       // print('- Path: ${file.path}');
       // print('- Name: ${file.name}');
       // print('- MIME type: ${file.mimeType}');
       // File newImage = await file.copy('$path/filename.jpg');
-      await cameraController.takePicture(filePath);
+      // await cameraController.takePicture(filePath);
     } on CameraException catch (e) {
       _showCameraException(e);
       return null;

@@ -64,7 +64,7 @@ class _AboutScreenState extends State<AboutScreen> {
               Container(
                 padding: const EdgeInsets.only(top: 16),
                 child: const Text(
-                  'Version: 9.1.1',
+                  'Version: 10.2.1',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,

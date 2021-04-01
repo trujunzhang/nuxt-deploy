@@ -39,18 +39,18 @@ class AuthProvider extends ChangeNotifier {
   Status get status => _status;
 
   Stream<AuthUserModel> get user =>
-      _auth.onAuthStateChanged.map(_userFromFirebase);
+      _auth.authStateChanges().map(_userFromFirebase);
 
   AuthProvider() {
     //initialise object
     _auth = FirebaseAuth.instance;
 
     //listener for authentication changes such as user sign in and sign out
-    _auth.onAuthStateChanged.listen(onAuthStateChanged);
+    _auth.authStateChanges().listen(onAuthStateChanged);
   }
 
   //Create user object based on the given FirebaseUser
-  AuthUserModel _userFromFirebase(FirebaseUser user) {
+  AuthUserModel _userFromFirebase(User user) {
     if (user == null) {
       return null;
     }
@@ -60,18 +60,19 @@ class AuthProvider extends ChangeNotifier {
         email: user.email ?? "",
         username: user.displayName,
         phoneNumber: user.phoneNumber,
-        avatarUrl: user.photoUrl);
+        avatarUrl: user.photoURL
+    );
   }
 
   Future<AuthUserModel> getAuthUserModel() async {
     FirebaseAuth _auth = FirebaseAuth.instance;
-    FirebaseUser firebaseUser = await _auth.currentUser();
+    User firebaseUser = await _auth.currentUser;
 
     return _userFromFirebase(firebaseUser);
   }
 
   //Method to detect live auth changes such as user sign in and sign out
-  Future<void> onAuthStateChanged(FirebaseUser firebaseUser) async {
+  Future<void> onAuthStateChanged(User firebaseUser) async {
     if (firebaseUser == null) {
       _status = Status.Unauthenticated;
     } else {
@@ -87,7 +88,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       _status = Status.Registering;
       notifyListeners();
-      final AuthResult result = await _auth.createUserWithEmailAndPassword(
+      final UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       return _userFromFirebase(result.user);
@@ -122,17 +123,17 @@ class AuthProvider extends ChangeNotifier {
       // Login via google api
       GoogleSignInAccount googleUser = await _googleSignIn.signIn();
       GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
+      final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      AuthResult authResult = await _auth.signInWithCredential(credential);
-      final FirebaseUser user = authResult.user;
+      UserCredential authResult = await _auth.signInWithCredential(credential);
+      final User user = authResult.user;
       // Update the firebase's user info.
       final String uid = user.uid;
       final String email = user.email;
       final String displayName = user.displayName;
-      final String photoURL = user.photoUrl;
+      final String photoURL = user.photoURL;
       IAuthUser model = IAuthUser(uid, email, displayName, photoURL);
       await FirebaseHelper.onLoginAfterHook(model);
       return true;

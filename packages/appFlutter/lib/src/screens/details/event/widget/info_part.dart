@@ -82,9 +82,33 @@ class InfoPart extends StatelessWidget {
         // Line 4
         RatingImage(baseReview: event),
         SizedBox(height: 8),
-        // Line 4
+        // Line 5
+        _buildWant(),
+        // Line 6
         const Divider(height: 10.0, thickness: 0.5),
         _buildActionBar(context),
+      ],
+    );
+  }
+
+  Widget _buildWant() {
+    if (event.want == '') {
+      return Container();
+    }
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 32, right: 32),
+          child: Divider(height: 10.0, thickness: 0.5),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 32, right: 32, top: 8),
+          child: Text(
+            event.want,
+            style: TextStyle(fontSize: 14),
+          ),
+        ),
+        SizedBox(height: 8),
       ],
     );
   }

@@ -57,8 +57,32 @@ class InfoPart extends StatelessWidget {
         RatingImage(baseReview: restaurant),
         SizedBox(height: 8),
         // Line 4
-        const Divider(height: 10.0, thickness: 0.5),
+        _buildNote(),
+        // Line 5
+        Divider(height: 10.0, thickness: 0.5),
         _buildActionBar(context),
+      ],
+    );
+  }
+
+  Widget _buildNote() {
+    if (restaurant.extraNote == '') {
+      return Container();
+    }
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 32, right: 32),
+          child: Divider(height: 10.0, thickness: 0.5),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 32, right: 32, top: 8),
+          child: Text(
+            restaurant.extraNote,
+            style: TextStyle(fontSize: 14),
+          ),
+        ),
+        SizedBox(height: 8),
       ],
     );
   }

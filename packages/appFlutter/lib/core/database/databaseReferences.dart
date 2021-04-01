@@ -5,10 +5,10 @@ class DatabaseReferences {
       photos, // Photos
       users;
 
-  Firestore firestore;
+  FirebaseFirestore firestore;
 
   DatabaseReferences() {
-    firestore = Firestore.instance;
+    firestore = FirebaseFirestore.instance;
     restaurants = firestore.collection('restaurants');
     photos = firestore.collection('photos');
     users = firestore.collection('users');
