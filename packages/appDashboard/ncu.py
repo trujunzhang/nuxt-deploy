@@ -1,5 +1,5 @@
 
-# yarn add  @nuxt/typescript-runtime @nuxtjs/firebase cross-env express firebase geohash nuxt nuxt-i18n ts-loader vue-property-decorator vue-class-component
+# yarn add  @nuxtjs/firebase cross-env express firebase geohash nuxt nuxt-i18n ts-loader vue-property-decorator vue-class-component
 
 
 
