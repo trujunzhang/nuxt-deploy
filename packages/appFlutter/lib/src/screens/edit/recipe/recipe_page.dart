@@ -46,7 +46,7 @@ class _RecipePageState extends State<RecipePage> {
               : AppLocalizations.of(context)
                   .translate("recipesCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
@@ -176,12 +176,10 @@ class _RecipePageState extends State<RecipePage> {
                   onChanged: (String val) {
                     recipeState.setPrice(val);
                   },
-                  // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.numeric(context),
                   ]),
-                  maxLines: 5,
                   textInputAction: TextInputAction.next,
                 ),
               ],

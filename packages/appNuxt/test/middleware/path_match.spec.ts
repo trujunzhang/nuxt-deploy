@@ -2,15 +2,25 @@ import { hasLoggedPages } from '~/middleware/authenticated'
 
 describe('path', () => {
   test('contains special string', () => {
-    // Restaurant(1)
+    // Restaurant(edit)
     expect(hasLoggedPages({
       name:
         'biz_attribute___en' // edit restaurant
     })).toBe(true)
+    // Event(edit)
+    expect(hasLoggedPages({
+      name:
+        'event_attribute___en' // edit restaurant
+    })).toBe(true)
+    // Recipe(edit)
+    expect(hasLoggedPages({
+      name:
+        'recipe_attribute___en' // edit restaurant
+    })).toBe(true)
     // Review(1)
     expect(hasLoggedPages({
       name:
-        'writeareview-biz-id___en' // write a review
+        'writeareview-id___en' // write a review
     })).toBe(true)
     // Photo(1)
     expect(hasLoggedPages({

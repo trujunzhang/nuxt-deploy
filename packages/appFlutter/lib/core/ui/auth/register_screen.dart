@@ -153,10 +153,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ? Center(
                         child: null,
                       )
-                    : FlatButton(
-                        child: Text(AppLocalizations.of(context)
-                            .translate("loginBtnLinkSignIn")),
-                        textColor: Theme.of(context).iconTheme.color,
+                    : TextButton(
+                        child: Text(
+                            AppLocalizations.of(context)
+                                .translate("loginBtnLinkSignIn"),
+                            style: TextStyle(
+                              color: Theme.of(context).iconTheme.color,
+                            )),
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(Routes.login);

@@ -87,7 +87,7 @@ export default class EventInfo extends Vue {
    *   href="/biz_attribute?biz_id=3YVy-af7Ipl7TVft3kquWg"
    */
   getEditLink () {
-    // return `/biz_attribute?biz_id=${this.restaurant.uniqueId}`
+    return `/event_attribute?e_id=${this.event.uniqueId}`
   }
 
   private isLoading = false

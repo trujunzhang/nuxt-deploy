@@ -152,10 +152,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     ? Center(
                         child: null,
                       )
-                    : FlatButton(
-                        child: Text(AppLocalizations.of(context)
-                            .translate("loginBtnLinkCreateAccount")),
-                        textColor: Theme.of(context).iconTheme.color,
+                    : TextButton(
+                        child: Text(
+                          AppLocalizations.of(context)
+                              .translate("loginBtnLinkCreateAccount"),
+                          style: TextStyle(
+                            color: Theme.of(context).iconTheme.color,
+                          ),
+                        ),
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(Routes.register);

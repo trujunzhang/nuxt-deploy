@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/camera/screens/camera_screen/widget/thumbnail_widget.dart';
 import 'package:ieatta/camera/widgets/switch_icon.dart';
+import 'package:camerawesome/models/flashmodes.dart';
 
 import 'camera_button.dart';
 
 class CameraOptions extends StatefulWidget {
   CameraOptions(
       {Key key,
-      @required this.takePicture,
       @required this.imagePath,
+      @required this.takePicture,
       @required this.switchCamera,
-      @required this.afterTakeHook})
+      @required this.afterTakeHook,
+      @required this.onFlashTap,
+      @required this.switchFlash})
       : super(key: key);
 
   final Function takePicture;
   final String imagePath;
   final Function switchCamera;
   final Function afterTakeHook;
+  final Function onFlashTap;
+  final ValueNotifier<CameraFlashes> switchFlash;
 
   @override
   _CameraOptionsState createState() => _CameraOptionsState();
 }
 
 class _CameraOptionsState extends State<CameraOptions> {
+  IconData _getFlashIcon() {
+    switch (widget.switchFlash.value) {
+      case CameraFlashes.NONE:
+        return Icons.flash_off;
+      case CameraFlashes.ON:
+        return Icons.flash_on;
+      case CameraFlashes.AUTO:
+        return Icons.flash_auto;
+      case CameraFlashes.ALWAYS:
+        return Icons.highlight;
+      default:
+        return Icons.flash_off;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -33,9 +54,18 @@ class _CameraOptionsState extends State<CameraOptions> {
         iconTheme: IconThemeData(color: Colors.white),
         actionsIconTheme: IconThemeData(color: Colors.white),
         leading: CloseButton(),
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                  onTap: widget.onFlashTap,
+                  child: Icon(
+                    _getFlashIcon(),
+                  ))),
+        ],
       ),
       bottomNavigationBar: getCameraButtonRow(),
-    );
+    ));
   }
 
   Widget getCameraButtonRow() {

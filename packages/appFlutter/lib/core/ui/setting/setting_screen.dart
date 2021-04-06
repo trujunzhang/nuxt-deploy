@@ -54,7 +54,6 @@ class SettingScreen extends StatelessWidget {
           trailing: RaisedButton(
               onPressed: () {
                 showAlertDialog(context, authProvider);
-                // _confirmSignOut(context);
               },
               child: Text(AppLocalizations.of(context)
                   .translate("settingLogoutButton"))),
@@ -63,52 +62,16 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
-  _confirmSignOut(BuildContext context) {
-    // TODO: DJZHANG
-    // showPlatformDialog(
-    //     context: context,
-    //     builder: (_) => PlatformAlertDialog(
-    //           android: (_) => MaterialAlertDialogData(
-    //               backgroundColor: Theme.of(context).appBarTheme.color),
-    //           title: Text(
-    //               AppLocalizations.of(context).translate("alertDialogTitle")),
-    //           content: Text(
-    //               AppLocalizations.of(context).translate("alertDialogMessage")),
-    //           actions: <Widget>[
-    //             PlatformDialogAction(
-    //               child: PlatformText(AppLocalizations.of(context)
-    //                   .translate("alertDialogCancelBtn")),
-    //               onPressed: () => Navigator.pop(context),
-    //             ),
-    //             PlatformDialogAction(
-    //               child: PlatformText(AppLocalizations.of(context)
-    //                   .translate("alertDialogYesBtn")),
-    //               onPressed: () {
-    //                 final authProvider =
-    //                     Provider.of<AuthProvider>(context, listen: false);
-    //
-    //                 authProvider.signOut();
-    //
-    //                 Navigator.pop(context);
-    //                 Navigator.of(context).pushNamedAndRemoveUntil(
-    //                     Routes.login, ModalRoute.withName(Routes.login));
-    //               },
-    //             )
-    //           ],
-    //         ));
-  }
-
-
   showAlertDialog(BuildContext context, AuthProvider authProvider) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text(AppLocalizations.of(context)
           .translate("alertDialogCancelBtn")),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = TextButton(
       child: Text(AppLocalizations.of(context)
           .translate("alertDialogYesBtn")),
       onPressed: () async {

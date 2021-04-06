@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/camera/screens/camera_screen/camera_screen.dart';
+import 'package:ieatta/camera/screens/camera_screen/take_camera_screen.dart';
 import 'package:ieatta/camera/screens/edit/create_photo_provider_screen.dart';
 import 'package:ieatta/camera/screens/edit/edit_photo_provider_screen.dart';
 import 'package:ieatta/core/ui/auth/register_screen.dart';
@@ -102,7 +102,7 @@ class Routes {
     create_edit_recipe: (context) => CreateEditRecipeProviderScreen(),
     reviews_list: (BuildContext context) => ReviewsListScreen(),
     // Camera
-    app_camera: (context) => CameraScreen(),
+    app_camera: (context) => TakeCameraScreen(),
     // Photos
     create_photo: (context) => CreatePhotoProviderScreen(),
     edit_photo: (context) => EditPhotoProviderScreen(),

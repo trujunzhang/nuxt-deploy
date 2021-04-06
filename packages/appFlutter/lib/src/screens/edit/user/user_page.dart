@@ -43,7 +43,7 @@ class _UserPageState extends State<UserPage> {
           title: Text(AppLocalizations.of(context)
               .translate("usersCreateEditAppBarTitleEditTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
@@ -73,7 +73,8 @@ class _UserPageState extends State<UserPage> {
                             User user = await FirebaseAuth.instance.currentUser;
 
                             await user.updateProfile(
-                                displayName:displayName, photoURL:user.photoURL);
+                                displayName: displayName,
+                                photoURL: user.photoURL);
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
@@ -107,9 +108,9 @@ class _UserPageState extends State<UserPage> {
                 'Your Profile Photo',
                 style: TextStyle(fontSize: 14),
               ),
-              FlatButton(
-                  child: const Text('(Add/Edit)'),
-                  textColor: Color(0xff0073bb),
+              TextButton(
+                  child: const Text('(Add/Edit)',
+                      style: TextStyle(color: Color(0xff0073bb))),
                   onPressed: () async {
                     final result = await Navigator.of(context).pushNamed(
                         Routes.app_camera,

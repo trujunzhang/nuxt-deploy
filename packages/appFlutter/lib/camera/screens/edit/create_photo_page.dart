@@ -42,7 +42,7 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
           title: Text(AppLocalizations.of(context)
               .translate("photosCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
@@ -94,7 +94,7 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 8),
+            SizedBox(height: 0),
             _buildImagePanel(context),
             _buildShortcuts()
           ],
@@ -104,7 +104,7 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
   Widget _buildImagePanel(BuildContext context) {
     PhotoState photoState = Provider.of<PhotoState>(context, listen: false);
     return Container(
-      height: MediaQuery.of(context).size.height - 100,
+      height: MediaQuery.of(context).size.height,
       child: buildLocalImageView(photoState.getImgPath()),
     );
   }

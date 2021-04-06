@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/auth_widget_builder.dart';
 import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/camera_screen/camera_screen.dart';
 import 'package:ieatta/core/constants/dark_theme.dart';
 import 'package:ieatta/core/constants/light_theme.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
@@ -116,7 +115,7 @@ class _MyAppState extends State<MyApp> {
 //                        : NavigationHomeScreen();
 //                            : Material(child: HotelHomeScreen());
 //                            : Material(child: FitnessAppHomeScreen());
-//                            : Material(child: CameraScreen());
+//                            : Material(child: TakeCameraScreen());
                       }
 
                       return Material(

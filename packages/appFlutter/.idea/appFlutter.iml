@@ -107,6 +107,12 @@
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_keyboard_visibility/example_old/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_keyboard_visibility/example_old/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_keyboard_visibility/example_old/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/camerawesome/example/.dart_tool" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

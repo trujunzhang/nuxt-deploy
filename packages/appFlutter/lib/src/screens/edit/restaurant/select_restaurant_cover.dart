@@ -32,7 +32,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
   @override
   Widget build(BuildContext context) {
     RestaurantState restaurantState =
-        Provider.of<RestaurantState>(context, listen: false);
+        Provider.of<RestaurantState>(context, listen: true);
     List<ParseModelPhotos> photosList = FilterModels.instance
         .getPhotosInRestaurantList(context, widget.restaurant.uniqueId);
     if (photosList.length == 0) {

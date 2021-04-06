@@ -44,9 +44,9 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
             },
           ),
           title: Text(AppLocalizations.of(context)
-              .translate("photosCreateEditAppBarTitleNewTxt")),
+              .translate("photosCreateEditAppBarTitleEditTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {

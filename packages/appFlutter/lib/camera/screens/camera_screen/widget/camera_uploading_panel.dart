@@ -60,9 +60,13 @@ class _CameraUploadingPanelState extends State<CameraUploadingPanel> {
 
   @override
   Widget build(BuildContext context) {
-    var flatButton = FlatButton(
-        child: Text(AppLocalizations.of(context).translate("photosUploading")),
-        textColor: Color(0xff0073bb),
+    var flatButton = TextButton(
+        child: Text(
+          AppLocalizations.of(context).translate("photosUploading"),
+          style: TextStyle(
+            color: Color(0xff0073bb),
+          ),
+        ),
         onPressed: () async {});
     return Container(
       color: Colors.white,

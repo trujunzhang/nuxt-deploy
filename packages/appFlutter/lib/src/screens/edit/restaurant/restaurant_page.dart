@@ -51,7 +51,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
               : AppLocalizations.of(context)
                   .translate("restaurantsCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {

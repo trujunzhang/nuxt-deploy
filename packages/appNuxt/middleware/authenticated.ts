@@ -2,10 +2,12 @@ import { Middleware } from '@nuxt/types'
 import Cookies from 'universal-cookie'
 
 export const LOGGED_NAMES: Array<String> = [
-  // Restaurant(1)
+  // Editing(1)
   'biz_attribute___en', // edit restaurant
+  'event_attribute___en', // edit event
+  'recipe_attribute___en', // edit recipe
   // Review(1)
-  'writeareview-biz-id___en', // write a review
+  'writeareview-id___en', // write a review
   // Photo(1)
   'biz_user_photos-upload-id___en', // upload photo
   // User details(4)

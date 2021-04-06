@@ -26,6 +26,19 @@
                   >
                     {{ getRateCountStr() }}
                   </span>
+
+                  <a
+                    :href="getEditLink()"
+                    class=" button__373c0__3lYgT small__373c0__Wsszq tertiary-dark__373c0__3cLwZ editCategories__373c0__3oys3"
+                    style="border: 1px solid black;"
+                  >
+                    <div class=" button-content__373c0__1QNtB border-color--default__373c0__3-ifU">
+                      <span
+                        style="color: black;"
+                        class=" text__373c0__2Kxyz button-content-text__373c0__Z-7FO text-color--inherit__373c0__1lczC text-align--center__373c0__3VrfZ text-weight--semibold__373c0__2l0fe text-size--small__373c0__3NVWO text--truncated__373c0__3sLaf"
+                      >Edit</span>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

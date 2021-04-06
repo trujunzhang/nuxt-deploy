@@ -46,7 +46,7 @@ class _ReviewPageState extends State<ReviewPage> {
               : AppLocalizations.of(context)
                   .translate("reviewsCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {

@@ -50,7 +50,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
   }
 
   Widget _buildBody(BuildContext context, bool showEditBtn) {
-    var flatButton = FlatButton(
+    var flatButton = TextButton(
         onPressed: () async {
           Navigator.of(context).pushNamed(Routes.create_edit_review,
               arguments: CreateEditReviewScreenObject(

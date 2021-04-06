@@ -101,14 +101,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
   showAlertDialog(BuildContext context, AuthProvider authProvider) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text(AppLocalizations.of(context)
           .translate("alertDialogCancelBtn")),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = TextButton(
       child: Text(AppLocalizations.of(context)
           .translate("alertDialogYesBtn")),
       onPressed: () async {

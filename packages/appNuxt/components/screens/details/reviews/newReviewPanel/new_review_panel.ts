@@ -53,6 +53,5 @@ export default class NewReviewPanel extends Vue {
    */
   getWriteReviewLink () {
     return getWriteReviewLink(this.relatedModel, this.reviewType)
-    // return `/writeareview/biz/${this.relatedModel.uniqueId}?type=${this.reviewType}`
   }
 }

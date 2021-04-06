@@ -30,7 +30,7 @@ class InfoPart extends StatelessWidget {
       children: [
         // Line 1
         SizedBox(height: 4),
-        FlatButton.icon(
+        TextButton.icon(
           onPressed: () {
             Navigator.of(context).pushNamed(Routes.create_edit_recipe,
                 arguments: CreateEditRecipeScreenObject(
@@ -82,7 +82,7 @@ class InfoPart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          FlatButton.icon(
+          TextButton.icon(
             onPressed: () {
               Navigator.of(context).pushNamed(Routes.create_edit_review,
                   arguments: CreateEditReviewScreenObject(
@@ -99,7 +99,7 @@ class InfoPart extends StatelessWidget {
             ),
           ),
           const VerticalDivider(width: 8.0),
-          FlatButton.icon(
+          TextButton.icon(
             onPressed: () {
               Navigator.of(context).pushNamed(Routes.reviews_list,
                   arguments: ReviewsListObject(

@@ -46,7 +46,7 @@ class _EventPageState extends State<EventPage> {
               : AppLocalizations.of(context)
                   .translate("eventsCreateEditAppBarTitleNewTxt")),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {

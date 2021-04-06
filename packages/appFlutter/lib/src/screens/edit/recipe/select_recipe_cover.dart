@@ -31,7 +31,7 @@ class _SelectRecipeCoverState extends State<SelectRecipeCover> {
 
   @override
   Widget build(BuildContext context) {
-    RecipeState recipeState = Provider.of<RecipeState>(context, listen: false);
+    RecipeState recipeState = Provider.of<RecipeState>(context, listen: true);
     List<ParseModelPhotos> photosList = FilterModels.instance
         .getPhotosList(context, widget.recipe.uniqueId, PhotoType.Recipe);
     if (photosList.length == 0) {

@@ -62,10 +62,15 @@ class _AppHomeScreenState extends State<AppHomeScreen>
       PermissionHandler.Permission.storage, // local store
       PermissionHandler.Permission.camera // take photo
     ].request();
-    if (permissions[PermissionHandler.Permission.microphone] ==
-                PermissionHandler.PermissionStatus.granted // audio
-            &&
-            permissions[PermissionHandler.Permission.storage] ==
+    // var x = permissions[PermissionHandler.Permission.microphone];
+    // var y = permissions[PermissionHandler.Permission.storage];
+    // var z = permissions[PermissionHandler.Permission.camera];
+
+    if (
+        // permissions[PermissionHandler.Permission.microphone] ==
+        // PermissionHandler.PermissionStatus.granted // audio
+        // &&
+        permissions[PermissionHandler.Permission.storage] ==
                 PermissionHandler.PermissionStatus.granted // local store
             &&
             permissions[PermissionHandler.Permission.camera] ==
@@ -83,7 +88,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
 
   HomeState homeState = HomeState(
     // TODO: DJZHANG
-    gpsTrack:true,
+    gpsTrack: true,
     // gpsTrack: false,
   );
 
@@ -110,8 +115,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
           return MultiProvider(providers: [
             StreamProvider<LocationData>.value(
                 value: location.onLocationChanged),
-            ChangeNotifierProvider<HomeState>.value(
-                value: homeState),
+            ChangeNotifierProvider<HomeState>.value(value: homeState),
           ], child: HotelHomeScreen());
         }
       case AppPermissionStatus.Denied:
