@@ -1,4 +1,5 @@
 import { convertDateFromString, formatByTimeAgoForTest, formatDateForPhoto, formatDateForReview, formatDateStringTest } from '~/database/utils/timeago_helper'
+import moment from 'moment'
 
 describe('timeago', () => {
   test('javascript date/time', () => {
@@ -23,6 +24,12 @@ describe('timeago', () => {
     const date: Date = convertDateFromString('2017-11-07T07:43:10.690+0000')
     const str = formatDateStringTest(date)
     expect(str).toBe('2017-11-07 15:43')
+  })
+
+  test('String to date', () => {
+    const str = moment('2021-03-05 08:15 am').toDate()
+    // const str = new Date('2021-03-05 08:15 am').toISOString()
+    // expect(str).toBe('2017-11-07 15:43')
   })
 
   test('formatByTimeAgoForTest', () => {

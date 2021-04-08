@@ -70,9 +70,10 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
 
   Widget _buildCurrentImage(int index) {
     return Container(
+      color: Colors.black,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      child: PhotoBaseView(photoData: photos[index]),
+      child: PhotoBaseView(photoData: photos[index], fit: BoxFit.fitWidth),
     );
   }
 

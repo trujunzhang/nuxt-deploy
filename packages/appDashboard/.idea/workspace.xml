@@ -10,7 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx" />
+    <list default="true" id="32651f69-a23f-45ac-a56a-217952171a45" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/firebase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/event/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/event/Users.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,6 +176,7 @@
       <workItem from="1615688639407" duration="1425000" />
       <workItem from="1617436248566" duration="358000" />
       <workItem from="1617454099299" duration="11000" />
+      <workItem from="1617889151537" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599453717386</created>

@@ -18,7 +18,7 @@ Widget _buildPlaceholderForOfflinePhoto() {
   );
 }
 
-Widget buildOnlineImageView(String imagePath) {
+Widget buildOnlineImageView(String imagePath, BoxFit fit) {
   if (imagePath == null || imagePath == '') {
     return _buildPlaceholderForPhoto();
   }
@@ -26,14 +26,14 @@ Widget buildOnlineImageView(String imagePath) {
     width: double.infinity,
     height: double.infinity,
     imageUrl: imagePath,
-    fit: BoxFit.cover,
+    fit: fit,
     placeholder: (context, url) => _buildPlaceholderForPhoto(),
     errorWidget: (context, url, error) => _buildPlaceholderForPhoto(),
   );
 }
 
 Widget buildPhotoImageWithLocalImage(
-    ParseModelPhotos modelData, bool localFileExist) {
+    ParseModelPhotos modelData, bool localFileExist, BoxFit fit) {
   if (modelData.originalUrl == null || modelData.originalUrl == '') {
     if (modelData.offlinePath != null && modelData.offlinePath != '') {
       if (localFileExist) {
@@ -47,11 +47,11 @@ Widget buildPhotoImageWithLocalImage(
       return _buildPlaceholderForOfflinePhoto();
     }
   }
-  return buildOnlineImageView(modelData.originalUrl);
+  return buildOnlineImageView(modelData.originalUrl, fit);
 }
 
 Widget buildPhotoImage(ParseModelPhotos modelData) {
-  return buildOnlineImageView(modelData.originalUrl);
+  return buildOnlineImageView(modelData.originalUrl, BoxFit.cover);
 }
 
 Widget _buildFileImageView(String imagePath) {
@@ -65,7 +65,7 @@ Widget _buildFileImageView(String imagePath) {
 
 Widget buildLocalImageView(String imagePath) {
   if (imagePath.contains('http')) {
-    return buildOnlineImageView(imagePath);
+    return buildOnlineImageView(imagePath, BoxFit.cover);
   }
   return _buildFileImageView(imagePath);
 }

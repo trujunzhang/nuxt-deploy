@@ -26,8 +26,8 @@ const waiters : IFBPhoto[] = [
     longitude: 34.044561,
     offlinePath: '',
     extraNote: '',
-    username: '',
-    avatarUrl: ''
+    username: 'Nkechi Jim',
+    avatarUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530628/politicl/o_luk1is.jpg'
   },
   {
     uniqueId: '23456789-b3a9-4302-9c23-c59b876da99e',
@@ -45,8 +45,8 @@ const waiters : IFBPhoto[] = [
     longitude: 34.044561,
     offlinePath: '',
     extraNote: '',
-    username: '',
-    avatarUrl: ''
+    username: 'Sarah Holl',
+    avatarUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530582/politicl/o_zeno6i.jpg'
   },
   {
     uniqueId: '34567890-b3a9-4302-9c23-c59b876da99e',
@@ -64,8 +64,8 @@ const waiters : IFBPhoto[] = [
     longitude: 34.044561,
     offlinePath: '',
     extraNote: '',
-    username: '',
-    avatarUrl: ''
+    username: 'Cheryl Philly',
+    avatarUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530609/politicl/o_ycidf6.jpg'
   },
   {
     uniqueId: '45678901-b3a9-4302-9c23-c59b876da99e',
@@ -83,8 +83,8 @@ const waiters : IFBPhoto[] = [
     longitude: 34.044561,
     offlinePath: '',
     extraNote: '',
-    username: '',
-    avatarUrl: ''
+    username: 'Derek Hele',
+    avatarUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530557/politicl/o_dogqeq.jpg'
   },
   {
     uniqueId: '56789012-b3a9-4302-9c23-c59b876da99e',
@@ -102,7 +102,7 @@ const waiters : IFBPhoto[] = [
     longitude: 34.044561,
     offlinePath: '',
     extraNote: '',
-    username: '',
-    avatarUrl: ''
+    username: 'Jaron Lawrence',
+    avatarUrl: 'http://res.cloudinary.com/di3fvexj8/image/upload/v1507530533/politicl/o_zhkvq8.jpg'
   }
 ]

@@ -10,7 +10,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx" />
+    <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/appModel/event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/appModel/event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/database/utils/timeago.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/database/utils/timeago.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -54,7 +61,7 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.timeago.formatDateStringTest">
+  <component name="RunManager" selected="Jest.timeago.String to date">
     <configuration name="RouteHelper.getReviewSearchLocation with empty query" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -66,20 +73,6 @@
       <test-names>
         <test-name value="RouteHelper" />
         <test-name value="getReviewSearchLocation with empty query" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="RouteHelper.getReviewSearchLocation with query xxx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/database/utils/route_helper.spec.ts" />
-      <test-names>
-        <test-name value="RouteHelper" />
-        <test-name value="getReviewSearchLocation with query xxx" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -108,6 +101,20 @@
       <test-names>
         <test-name value="RouteHelper" />
         <test-name value="getReviewSortLocation with sort date_desc" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="timeago.String to date" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/database/utils/timeago.spec.ts" />
+      <test-names>
+        <test-name value="timeago" />
+        <test-name value="String to date" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -162,19 +169,19 @@
       <item itemvalue="JavaScript Debug.photo(single)" />
       <item itemvalue="JavaScript Debug.uploadImage" />
       <item itemvalue="JavaScript Debug.user_detail" />
-      <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with sort date_desc" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with default query" />
       <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with empty query" />
       <item itemvalue="Jest.timeago.formatDateStringTest" />
+      <item itemvalue="Jest.timeago.String to date" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.timeago.String to date" />
         <item itemvalue="Jest.timeago.formatDateStringTest" />
         <item itemvalue="Jest.RouteHelper.getReviewSortLocation with default query" />
         <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with empty query" />
         <item itemvalue="Jest.RouteHelper.getReviewSortLocation with sort date_desc" />
-        <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with query xxx" />
       </list>
     </recent_temporary>
   </component>
@@ -400,6 +407,10 @@
       <workItem from="1617625796302" duration="1453000" />
       <workItem from="1617710995981" duration="1132000" />
       <workItem from="1617712166411" duration="897000" />
+      <workItem from="1617713304366" duration="266000" />
+      <workItem from="1617714595914" duration="819000" />
+      <workItem from="1617716755159" duration="256000" />
+      <workItem from="1617793500424" duration="1273000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>

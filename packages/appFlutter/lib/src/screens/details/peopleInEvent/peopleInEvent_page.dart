@@ -57,6 +57,7 @@ class EventPageState extends State<PeopleInEventDetail> {
               peopleInEvent: peopleInEvent,
               unorderedRecipeIds: unorderedRecipeIds),
         ),
+        SizedBox(height: 12),
         // Line 1: Ordered recipes list
         // buildTextSectionTitle("Ordered Recipes"),
         RecipeBody(

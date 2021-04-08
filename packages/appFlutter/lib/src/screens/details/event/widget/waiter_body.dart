@@ -7,9 +7,14 @@ import 'waiter_item.dart';
 
 class WaiterBody extends StatelessWidget {
   final Map<String, ParseModelPhotos> waitersDict;
+  final List<ParseModelPhotos> waitersInEventList;
   final ParseModelEvents event;
 
-  const WaiterBody({Key key, @required this.waitersDict, @required this.event})
+  const WaiterBody(
+      {Key key,
+      @required this.waitersDict,
+      @required this.event,
+      @required this.waitersInEventList})
       : super(key: key);
 
   @override
@@ -27,7 +32,9 @@ class WaiterBody extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         String waiterId = event.waiters[index];
         return WaiterItem(
-          photoData: waitersDict[waiterId],
+          waiterIndex: index,
+          waitersInEventList: waitersInEventList,
+          waiterData: waitersDict[waiterId],
         );
       },
     );

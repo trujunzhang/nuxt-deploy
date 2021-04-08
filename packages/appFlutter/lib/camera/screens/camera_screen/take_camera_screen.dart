@@ -140,13 +140,11 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
           right: 0,
           child: Center(
             child: CameraAwesome(
-              selectDefaultSize: (availableSizes) {
-                this._availableSizes = availableSizes;
-                return availableSizes[0];
-              },
+              selectDefaultSize: (List<Size> availableSizes) => Size(1920, 1080),
               captureMode: _captureMode,
               photoSize: _photoSize,
               sensor: _sensor,
+              fitted: true,
             ),
           ),
         ),

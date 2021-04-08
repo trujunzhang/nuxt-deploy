@@ -20,28 +20,19 @@ class ReviewItem extends StatelessWidget {
   }) : super(key: key);
 
   Widget _buildInfo(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        InkWell(
-          onTap: () {
-            Navigator.of(context).pushNamed(Routes.detail_common_user,
-                arguments: reviewData.creatorId);
-          },
-          child: Row(
-            children: [
-              ProfileAvatar(avatarUrl: reviewData.avatarUrl),
-              SizedBox(width: 12),
-              Text(reviewData.username)
-            ],
-          ),
-        ),
-        Text(
+    return ListTile(
+        onTap: () {
+          Navigator.of(context).pushNamed(Routes.detail_common_user,
+              arguments: reviewData.creatorId);
+        },
+        leading: ProfileAvatar(avatarUrl: reviewData.avatarUrl),
+        title: Text(reviewData.username),
+        trailing: Text(
           formatByTimeAgo(reviewData.updatedAt),
-          style: TextStyle(color: Colors.grey, fontSize: 15),
-        )
-      ],
-    );
+          style: TextStyle(color: Colors.grey,
+              // fontSize: 15
+          ),
+        ));
   }
 
   @override
@@ -81,23 +72,27 @@ class ReviewItem extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     double rating = reviewData.rate;
     return Container(
-      padding: EdgeInsets.only(left: 12, right: 12, top: 16, bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfo(context),
-          SizedBox(height: 12),
-          Container(
-              width: 120,
-              height: 18,
-              child: Image(
-                  image: AssetImage('assets/stars/small/$rating.png'),
-                  fit: BoxFit.cover)),
-          SizedBox(height: 8),
-          Text(
-            reviewData.body,
-            style: Theme.of(context).textTheme.bodyText2,
-          )
+          ListTile(
+              title: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 12),
+                      // color: Colors.blue,
+                      width: 120,
+                      height: 30,
+                      child: Image(
+                          image: AssetImage('assets/stars/small/$rating.png'),
+                          fit: BoxFit.cover)),
+                ],
+              ),
+              subtitle: Text(
+                reviewData.body,
+                style: Theme.of(context).textTheme.bodyText2,
+              )),
         ],
       ),
     );

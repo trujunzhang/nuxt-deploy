@@ -35,8 +35,7 @@ class FilterModels {
 
   ParseModelUsers getSingleUser(BuildContext context, String uniqueId) {
     var list = Provider.of<List<ParseModelUsers>>(context);
-    return list
-        .singleWhere((user) => user.id == uniqueId);
+    return list.singleWhere((user) => user.id == uniqueId);
   }
 
   Map<String, ParseModelUsers> getUsersDict(BuildContext context) {
@@ -261,6 +260,14 @@ class FilterModels {
         .toList();
   }
 
+  List<ParseModelPhotos> getWaitersListForEvent(
+      Map<String, ParseModelPhotos> waitersDict, ParseModelEvents event) {
+    List<ParseModelPhotos> list = [];
+    event.waiters.forEach((waiterId) {
+      list.add(waitersDict[waiterId]);
+    });
+    return list;
+  }
 
   Map<String, ParseModelPhotos> getWaitersDict(
       BuildContext context, String restaurantId) {

@@ -15,17 +15,18 @@ void main() {
   });
 
   testWidgets('formatDateString', (WidgetTester tester) async {
-    var str = "2017-11-07T07:43:10.690+0000";
-    var expectedStr = formatDateString(str);
-    var x = 0;
+    var expectedStr = formatDateString("2017-11-07T07:43:10.690+0000");
     expect(expectedStr, '2017-11-07 07:43');
   });
 
   testWidgets('formatDateStringTest functions test',
       (WidgetTester tester) async {
-    DateTime date = convertDateFromString('2017-11-07T07:43:10.690+0000');
-    var str = formatDateStringTest(date);
+    var str = formatDateStringTest(
+        convertDateFromString('2017-11-07T07:43:10.690+0000'));
     expect(str, '2017-11-07 07:43');
+    str = formatDateStringTest(
+        convertDateFromString('2017-11-07T17:43:10.690+0000'));
+    expect(str, '2017-11-07 17:43');
   });
 
   testWidgets('formatByTimeAgoForTest functions test',

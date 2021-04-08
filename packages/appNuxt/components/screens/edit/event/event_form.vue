@@ -35,7 +35,17 @@
         />
       </li>
 
+      <li class="BusinessName">
+        <label class="u-nowrap" for="attr_Want">Start Date</label>
 
+        <VueCtkDateTimePicker v-model="starDate" />
+      </li>
+
+      <li class="BusinessName">
+        <label class="u-nowrap" for="attr_Want">End Date</label>
+
+        <VueCtkDateTimePicker v-model="endDate" />
+      </li>
     </ul>
 
     <div class="form-footer">

@@ -12,7 +12,6 @@ import { uploadRecipes } from '~/database/event/Recipes'
   components: {}
 })
 export default class Index extends Vue {
-
   public loading?: boolean = false
 
   async importToFirebase () {

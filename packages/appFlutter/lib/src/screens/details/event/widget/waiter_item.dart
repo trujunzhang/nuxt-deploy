@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
+import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
 
 class WaiterItem extends StatelessWidget {
-  final ParseModelPhotos photoData;
+  final int waiterIndex;
+  final List<ParseModelPhotos> waitersInEventList;
+  final ParseModelPhotos waiterData;
 
-  const WaiterItem({Key key, this.photoData}) : super(key: key);
+  const WaiterItem(
+      {Key key,
+      @required this.waiterData,
+      @required this.waiterIndex,
+      @required this.waitersInEventList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +29,11 @@ class WaiterItem extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              // Navigator.of(context).pushNamed(Routes.online_photos_pageview,
-              //     arguments: FBPhotosPageViewObject(
-              //         photos: photosList, selectedIndex: index));
+              Navigator.of(context).pushNamed(Routes.online_photos_pageview,
+                  arguments: FBPhotosPageViewObject(
+                      photos: waitersInEventList, selectedIndex: waiterIndex));
             },
-            child: PhotoBaseView(photoData: photoData),
+            child: PhotoBaseView(photoData: waiterData),
           )),
     );
   }

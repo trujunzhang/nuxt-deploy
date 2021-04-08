@@ -68,6 +68,9 @@ class EventDetailState extends State<EventDetail> {
     Map<String, ParseModelPhotos> waitersDict =
         FilterModels.instance.getWaitersDict(context, restaurant.uniqueId);
 
+    List<ParseModelPhotos> waitersInEventList =
+        FilterModels.instance.getWaitersListForEvent(waitersDict, event);
+
     return ListView(
       shrinkWrap: true,
       children: [
@@ -86,9 +89,9 @@ class EventDetailState extends State<EventDetail> {
         Container(
           height: 160,
           child: WaiterBody(
-            event: event,
-            waitersDict: waitersDict,
-          ),
+              event: event,
+              waitersDict: waitersDict,
+              waitersInEventList: waitersInEventList),
         ),
         // Line 3: Reviews list
         buildTextSectionTitle("Review Highlights"),
