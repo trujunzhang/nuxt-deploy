@@ -55,7 +55,7 @@ class FilterUtils {
     List<String> selectedWaiterIds = event.waiters;
 
     // Remove selected waiters ids.
-    List<String> unselectedWaiterIds = List<String>();
+    List<String> unselectedWaiterIds = [];
     filterSelectedWaiterIds(String userId) {
       if (!selectedWaiterIds.contains(userId)) {
         unselectedWaiterIds.add(userId);
@@ -73,7 +73,7 @@ class FilterUtils {
     List<String> orderedRecipeIds = peopleInEvent.recipes;
 
     // Remove ordered recipes ids.
-    List<String> unorderedRecipeIds = List<String>();
+    List<String> unorderedRecipeIds = [];
     filterOrderedRecipeIds(String userId) {
       if (!orderedRecipeIds.contains(userId)) {
         unorderedRecipeIds.add(userId);
@@ -88,7 +88,7 @@ class FilterUtils {
   List<String> getDisorderedUserIds(
       List<String> userIds, List<ParseModelPeopleInEvent> peopleInEventsList) {
     // Get the userIds from the peopleInEventsList.
-    List<String> orderedUserIds = List<String>();
+    List<String> orderedUserIds = [];
     objectToMap(ParseModelPeopleInEvent peopleInEvent) {
       orderedUserIds.add(peopleInEvent.userId);
     }
@@ -96,7 +96,7 @@ class FilterUtils {
     peopleInEventsList.forEach(objectToMap);
 
     // Remove ordered userIds.
-    List<String> disorderedUserIds = List<String>();
+    List<String> disorderedUserIds = [];
     filterOrderedUserIds(String userId) {
       if (!orderedUserIds.contains(userId)) {
         disorderedUserIds.add(userId);

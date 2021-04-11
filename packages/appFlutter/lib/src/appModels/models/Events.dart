@@ -166,11 +166,21 @@ class ParseModelEvents extends BaseReview {
     return model;
   }
 
-  static ParseModelEvents addWaiter({ @required ParseModelEvents model,@required  String waiterId}) {
-    List<String> nextRecipes = model.waiters;
-    nextRecipes.add(waiterId);
+  static ParseModelEvents addWaiter(
+      {@required ParseModelEvents model, @required String waiterId}) {
+    List<String> nextWaiters = model.waiters;
+    nextWaiters.add(waiterId);
     // Delete duplicates from a list
-    model.waiters = nextRecipes.toSet().toList();
+    model.waiters = nextWaiters.toSet().toList();
+
+    return model;
+  }
+
+  static ParseModelEvents removeWaiter(
+      {@required ParseModelEvents model, @required String waiterId}) {
+    List<String> nextWaiters = model.waiters;
+    nextWaiters.remove(waiterId);
+    model.waiters = nextWaiters;
 
     return model;
   }

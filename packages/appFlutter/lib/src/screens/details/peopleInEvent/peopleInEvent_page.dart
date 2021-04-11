@@ -64,6 +64,7 @@ class EventPageState extends State<PeopleInEventDetail> {
           recipesDict: recipesDict,
           peopleInEvent: peopleInEvent,
         ),
+        SizedBox(height: 12),
       ],
     );
   }

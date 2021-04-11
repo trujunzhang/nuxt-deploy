@@ -59,7 +59,7 @@ Widget _buildFileImageView(String imagePath) {
     io.File(
       imagePath,
     ),
-    fit: BoxFit.fill,
+    fit: BoxFit.fitWidth,
   );
 }
 

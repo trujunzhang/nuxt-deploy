@@ -80,7 +80,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [buildSelectedIcon()],
     );
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     list.add(body);
     if (showSelectCoverIcon(restaurantState, photo)) {
       list.add(selection);

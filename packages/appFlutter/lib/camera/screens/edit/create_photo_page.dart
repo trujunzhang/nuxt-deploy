@@ -104,7 +104,8 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
   Widget _buildImagePanel(BuildContext context) {
     PhotoState photoState = Provider.of<PhotoState>(context, listen: false);
     return Container(
-      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      // height: MediaQuery.of(context).size.height,
       child: buildLocalImageView(photoState.getImgPath()),
     );
   }

@@ -56,13 +56,12 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
   Widget _buildBody(BuildContext context) {
     Map<String, ParseModelUsers> usersDict =
         FilterModels.instance.getUsersDict(context);
-    List<String> userIds = List.from(usersDict.keys);
     return ListView.separated(
       padding: EdgeInsets.only(top: 16),
       itemCount: screenObject.disorderedUserIds.length,
       separatorBuilder: (BuildContext context, int index) => Divider(),
       itemBuilder: (BuildContext context, int index) {
-        return _buildUserItem(context, usersDict[userIds[index]]);
+        return _buildUserItem(context, usersDict[screenObject.disorderedUserIds[index]]);
       },
     );
   }

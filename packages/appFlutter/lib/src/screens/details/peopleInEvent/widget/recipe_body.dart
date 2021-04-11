@@ -13,18 +13,18 @@ class RecipeBody extends StatelessWidget {
       : super(key: key);
 
   Widget buildRecipesListView() {
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     for (var i = 0; i < peopleInEvent.recipes.length; i++) {
       ParseModelRecipes recipe = recipesDict[peopleInEvent.recipes[i]];
       list.add(RecipeItem(
         peopleInEvent: peopleInEvent,
         recipeData: recipe,
       ));
-      if (i < peopleInEvent.recipes.length - 1) {
-        list.add(Divider(
-          height: 1,
-        ));
-      }
+      // if (i < peopleInEvent.recipes.length - 1) {
+      //   list.add(Divider(
+      //     height: 1,
+      //   ));
+      // }
     }
     return Column(children: list);
   }
@@ -32,11 +32,14 @@ class RecipeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (peopleInEvent.recipes.length == 0) {
-      return Container(
-        height: 160,
-        decoration: new BoxDecoration(color: Colors.white),
-        child: Center(
-          child: Text('no recipes'),
+      return Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Container(
+          height: 160,
+          decoration: new BoxDecoration(color: Colors.white),
+          child: Center(
+            child: Text('no recipes'),
+          ),
         ),
       );
     }

@@ -71,6 +71,7 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
 
   Widget _buildCurrentImage(int index) {
     return Container(
+      color: Colors.black,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: buildLocalImageView(photos[index].offlinePath),

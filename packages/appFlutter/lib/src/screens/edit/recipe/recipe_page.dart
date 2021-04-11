@@ -99,7 +99,7 @@ class _RecipePageState extends State<RecipePage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     list.add(_buildShortcuts());
     if (widget.recipe != null) {
       // list.add(buildCoverImage(_restaurantCoverUrl));

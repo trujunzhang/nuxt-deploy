@@ -13,7 +13,7 @@ class PeopleInEventBody extends StatelessWidget {
       : super(key: key);
 
   Widget buildPeopleInEventsListView() {
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     for (var i = 0; i < peopleInEventsList.length; i++) {
       ParseModelPeopleInEvent peopleInEvent = peopleInEventsList[i];
       ParseModelUsers user = usersDict[peopleInEvent.userId];

@@ -140,11 +140,20 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
           right: 0,
           child: Center(
             child: CameraAwesome(
-              selectDefaultSize: (List<Size> availableSizes) => Size(1920, 1080),
+              // selectDefaultSize: (availableSizes) {
+              //   this._availableSizes = availableSizes;
+              //   return availableSizes[0];
+              // },
+              // selectDefaultSize: (List<Size> availableSizes) => Size(
+              //     MediaQuery.of(context).size.width,
+              //     MediaQuery.of(context).size.height),
+              selectDefaultSize: (List<Size> availableSizes) =>
+                  // Size(1920, 1080),
+                  Size(1024, 768),
               captureMode: _captureMode,
               photoSize: _photoSize,
               sensor: _sensor,
-              fitted: true,
+              // fitted: true,
             ),
           ),
         ),
@@ -153,7 +162,7 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
           takePicture: takePicture,
           switchCamera: onChangeSensorTap,
           afterTakeHook: afterTakeHook,
-          onFlashTap:onFlashTap,
+          onFlashTap: onFlashTap,
           switchFlash: _switchFlash,
         ),
         if (camera_panel == CAMERA_PANEL.PANEL_UPLOADING)

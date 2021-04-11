@@ -22,7 +22,7 @@ class ReviewsBody extends StatelessWidget {
         ),
       );
     }
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
 
     for (var i = 0; i < reviewsList.length; i++) {
       var review = reviewsList[i];

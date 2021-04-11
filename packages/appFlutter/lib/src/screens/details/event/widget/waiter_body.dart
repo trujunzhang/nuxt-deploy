@@ -35,6 +35,7 @@ class WaiterBody extends StatelessWidget {
           waiterIndex: index,
           waitersInEventList: waitersInEventList,
           waiterData: waitersDict[waiterId],
+          event: event,
         );
       },
     );

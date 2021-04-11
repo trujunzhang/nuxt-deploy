@@ -79,7 +79,7 @@ class _SelectRecipeCoverState extends State<SelectRecipeCover> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [buildSelectedIcon()],
     );
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     list.add(body);
     if (showSelectCoverIcon(recipeState, photo)) {
       list.add(selection);

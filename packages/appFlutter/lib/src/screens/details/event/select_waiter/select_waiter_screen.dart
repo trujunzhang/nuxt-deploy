@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
@@ -44,8 +47,20 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(AppLocalizations.of(context)
-                .translate("eventsSelectWaiterTitleTxt"))),
+          title: Text(AppLocalizations.of(context)
+              .translate("eventsSelectWaiterTitleTxt")),
+          actions: [
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(onTap: () {
+                  String restaurantId = screenObject.event.restaurantId;
+                  Navigator.of(context).pushNamed(Routes.app_camera,
+                      arguments: CameraScreenObject(
+                          photoType: PhotoType.Waiter,
+                          relatedId: restaurantId));
+                }, child: Icon(Icons.add,color: Colors.white,))),
+          ],
+        ),
         body: _buildBody(context));
   }
 
@@ -82,7 +97,7 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
   Widget _buildGridItem(BuildContext context, ParseModelPhotos waiter) {
     return InkWell(
       onTap: () async {
-        if(isSaving == true){
+        if (isSaving == true) {
           return;
         }
         setState(() {
@@ -96,7 +111,7 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
         try {
           final firestoreDatabase =
               Provider.of<FirestoreDatabase>(context, listen: false);
-          await firestoreDatabase.setEvent(model: nextModel); // For Restaurant.
+          await firestoreDatabase.setEvent(model: nextModel); // For event.
         } catch (e) {}
 
         // Navigate

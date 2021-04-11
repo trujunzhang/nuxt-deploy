@@ -29,8 +29,9 @@ class ReviewItem extends StatelessWidget {
         title: Text(reviewData.username),
         trailing: Text(
           formatByTimeAgo(reviewData.updatedAt),
-          style: TextStyle(color: Colors.grey,
-              // fontSize: 15
+          style: TextStyle(
+            color: Colors.grey,
+            // fontSize: 15
           ),
         ));
   }
@@ -77,22 +78,24 @@ class ReviewItem extends StatelessWidget {
         children: [
           _buildInfo(context),
           ListTile(
-              title: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(bottom: 12),
-                      // color: Colors.blue,
-                      width: 120,
-                      height: 30,
-                      child: Image(
-                          image: AssetImage('assets/stars/small/$rating.png'),
-                          fit: BoxFit.cover)),
-                ],
-              ),
-              subtitle: Text(
-                reviewData.body,
-                style: Theme.of(context).textTheme.bodyText2,
-              )),
+            title: Row(
+              children: [
+                Container(
+                    // color: Colors.blue,
+                    width: 120,
+                    height: 18,
+                    child: Image(
+                        image: AssetImage('assets/stars/small/$rating.png'),
+                        fit: BoxFit.cover)),
+              ],
+            ),
+            subtitle: Container(
+                padding: EdgeInsets.only(top: 12, bottom: 12),
+                child: Text(
+                  reviewData.body,
+                  style: Theme.of(context).textTheme.bodyText2,
+                )),
+          ),
         ],
       ),
     );

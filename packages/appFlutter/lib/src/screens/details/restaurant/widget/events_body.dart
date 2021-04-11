@@ -9,7 +9,7 @@ class EventsBody extends StatelessWidget {
   const EventsBody({Key key, @required this.eventsList}) : super(key: key);
 
   Widget buildEventsListView() {
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     for (var i = 0; i < eventsList.length; i++) {
       list.add(EventItem(
         eventData: eventsList[i],

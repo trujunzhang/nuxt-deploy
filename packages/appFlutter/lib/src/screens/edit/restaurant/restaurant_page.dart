@@ -128,7 +128,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 
   Widget _buildBody(BuildContext context) {
-    List<Widget> list = new List<Widget>();
+    List<Widget> list = [];
     list.add(_buildShortcuts());
     if (widget.restaurant != null) {
       // list.add(buildCoverImage(_restaurantCoverUrl));
