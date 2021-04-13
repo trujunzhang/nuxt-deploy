@@ -13,14 +13,12 @@ import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;
   final ParseModelEvents event;
-  final List<String> disorderedUserIds;
 
-  const InfoPart(
-      {Key key,
-      @required this.restaurant,
-      @required this.event,
-      @required this.disorderedUserIds})
-      : super(key: key);
+  const InfoPart({
+    Key key,
+    @required this.restaurant,
+    @required this.event,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,9 +162,9 @@ class InfoPart extends StatelessWidget {
                     builder: (BuildContext context) => SelectPersonScreen(),
                     settings: RouteSettings(
                       arguments: SelectPersonScreenObject(
-                          restaurantId: restaurant.uniqueId,
-                          eventId: event.uniqueId,
-                          disorderedUserIds: disorderedUserIds),
+                        restaurantId: restaurant.uniqueId,
+                        eventId: event.uniqueId,
+                      ),
                     ),
                     fullscreenDialog: true),
               );

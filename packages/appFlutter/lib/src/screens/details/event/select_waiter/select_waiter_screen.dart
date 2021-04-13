@@ -10,6 +10,7 @@ import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
 import 'package:provider/provider.dart';
+import 'package:another_flushbar/flushbar.dart';
 
 import 'no_result.dart';
 
@@ -52,13 +53,18 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
           actions: [
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(onTap: () {
-                  String restaurantId = screenObject.event.restaurantId;
-                  Navigator.of(context).pushNamed(Routes.app_camera,
-                      arguments: CameraScreenObject(
-                          photoType: PhotoType.Waiter,
-                          relatedId: restaurantId));
-                }, child: Icon(Icons.add,color: Colors.white,))),
+                child: GestureDetector(
+                    onTap: () {
+                      String restaurantId = screenObject.event.restaurantId;
+                      Navigator.of(context).pushNamed(Routes.app_camera,
+                          arguments: CameraScreenObject(
+                              photoType: PhotoType.Waiter,
+                              relatedId: restaurantId));
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ))),
           ],
         ),
         body: _buildBody(context));
@@ -103,19 +109,48 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
         setState(() {
           isSaving = true;
         });
-        ParseModelEvents nextModel = ParseModelEvents.addWaiter(
-          model: screenObject.event,
-          waiterId: waiter.uniqueId,
+
+        var _flushBar = Flushbar(
+          flushbarPosition: FlushbarPosition.TOP,
+          flushbarStyle: FlushbarStyle.GROUNDED,
+          backgroundColor: Colors.red,
+          boxShadows: [
+            BoxShadow(
+              color: Colors.red[800],
+              offset: Offset(0.0, 2.0),
+              blurRadius: 3.0,
+            )
+          ],
+          isDismissible: false,
+          duration: Duration(seconds: 4),
+          // now we want to swipe to the sides
+          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+          // The default curve is Curves.easeOut
+          forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+          title: 'Saving...',
+          message: "Select a waiter photo",
+          icon: Icon(
+            Icons.save_rounded,
+            color: Colors.blue,
+          ),
         );
 
+        _flushBar.show(context);
+
         try {
+          ParseModelEvents nextModel = ParseModelEvents.addWaiter(
+            model: screenObject.event,
+            waiterId: waiter.uniqueId,
+          );
+
           final firestoreDatabase =
               Provider.of<FirestoreDatabase>(context, listen: false);
           await firestoreDatabase.setEvent(model: nextModel); // For event.
         } catch (e) {}
 
-        // Navigate
-        Navigator.of(context).pop();
+        setState(() {
+          isSaving = false;
+        });
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),

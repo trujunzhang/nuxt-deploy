@@ -85,5 +85,6 @@
     "drawerMenuItemInvite": "Invite Friend",
     "drawerMenuItemHelp": "Help",
     "drawerMenuItemAbout": "About",
-    "photosUploading": "Uploading..."
+    "photosUploading": "Uploading...",
+	"addingItemText": "Saving..."
 }

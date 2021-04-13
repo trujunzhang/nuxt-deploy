@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/image.dart';
+import 'package:ieatta/src/components/photos/photo_base_view.dart';
 
 import 'fb_photos_pageview.dart';
 
@@ -25,7 +26,7 @@ class _PhotosBodyState extends State<PhotosBody> {
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),
-        child: buildPhotoImage(photo),
+        child: PhotoBaseView(photoData: photo, fit: BoxFit.cover),
       ),
     );
   }

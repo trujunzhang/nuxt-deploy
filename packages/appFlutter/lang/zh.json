@@ -85,5 +85,6 @@
     "drawerMenuItemInvite": "邀请朋友",
     "drawerMenuItemHelp": "帮助",
     "drawerMenuItemAbout": "关于",
-    "photosUploading": "正在上传..."
+    "photosUploading": "正在上传...",
+	"addingItemText": "Saving..."
 }

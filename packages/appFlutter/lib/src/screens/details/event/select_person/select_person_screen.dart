@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:provider/provider.dart';
 
 class SelectPersonScreenObject {
   final String restaurantId;
   final String eventId;
-  final List<String> disorderedUserIds;
 
   SelectPersonScreenObject({
     @required this.restaurantId,
     @required this.eventId,
-    @required this.disorderedUserIds,
   });
 }
 
@@ -54,14 +54,21 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
+    List<ParseModelPeopleInEvent> peopleInEventsList = FilterModels.instance
+        .getPeopleInEventsList(context, screenObject.restaurantId, screenObject.eventId);
+
     Map<String, ParseModelUsers> usersDict =
         FilterModels.instance.getUsersDict(context);
+
+    List<String> disorderedUserIds = FilterUtils.instance
+        .getDisorderedUserIds(List.from(usersDict.keys), peopleInEventsList);
+
     return ListView.separated(
       padding: EdgeInsets.only(top: 16),
-      itemCount: screenObject.disorderedUserIds.length,
+      itemCount: disorderedUserIds.length,
       separatorBuilder: (BuildContext context, int index) => Divider(),
       itemBuilder: (BuildContext context, int index) {
-        return _buildUserItem(context, usersDict[screenObject.disorderedUserIds[index]]);
+        return _buildUserItem(context, usersDict[disorderedUserIds[index]]);
       },
     );
   }
@@ -70,34 +77,63 @@ class _SelectPersonScreenState extends State<SelectPersonScreen> {
     final authProvider = Provider.of<AuthProvider>(context);
     return ListTile(
       onTap: () async {
-        if(isSaving == true){
+        if (isSaving == true) {
           return;
         }
         setState(() {
           isSaving = true;
         });
-        AuthUserModel authUserModel = await authProvider.getAuthUserModel();
-        ParseModelPeopleInEvent lastModel =
-            ParseModelPeopleInEvent.emptyPeopleInEvent(
-          authUserModel: authUserModel,
+
+        var _flushBar = Flushbar(
+          flushbarPosition: FlushbarPosition.TOP,
+          flushbarStyle: FlushbarStyle.GROUNDED,
+          backgroundColor: Colors.red,
+          boxShadows: [
+            BoxShadow(
+              color: Colors.red[800],
+              offset: Offset(0.0, 2.0),
+              blurRadius: 3.0,
+            )
+          ],
+          isDismissible: false,
+          duration: Duration(seconds: 4),
+          // now we want to swipe to the sides
+          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+          // The default curve is Curves.easeOut
+          forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+          title: 'Saving...',
+          message: user.username,
+          icon: Icon(
+            Icons.save_rounded,
+            color: Colors.blue,
+          ),
         );
 
-        ParseModelPeopleInEvent nextModel =
-            ParseModelPeopleInEvent.updatePeopleInEvent(
-                model: lastModel,
-                restaurantId: screenObject.restaurantId,
-                eventId: screenObject.eventId,
-                userId: user.id);
+        _flushBar.show(context);
 
         try {
+          AuthUserModel authUserModel = await authProvider.getAuthUserModel();
+          ParseModelPeopleInEvent lastModel =
+              ParseModelPeopleInEvent.emptyPeopleInEvent(
+            authUserModel: authUserModel,
+          );
+
+          ParseModelPeopleInEvent nextModel =
+              ParseModelPeopleInEvent.updatePeopleInEvent(
+                  model: lastModel,
+                  restaurantId: screenObject.restaurantId,
+                  eventId: screenObject.eventId,
+                  userId: user.id);
+
           final firestoreDatabase =
               Provider.of<FirestoreDatabase>(context, listen: false);
           await firestoreDatabase.setPeopleInEvent(
               model: nextModel); // For Restaurant.
         } catch (e) {}
 
-        // Navigate
-        Navigator.of(context).pop();
+        setState(() {
+          isSaving = false;
+        });
       },
       leading: CircleAvatar(
           radius: 25.0,

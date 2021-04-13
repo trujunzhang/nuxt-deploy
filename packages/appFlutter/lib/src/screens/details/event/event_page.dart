@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
-import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
@@ -62,9 +61,6 @@ class EventDetailState extends State<EventDetail> {
     Map<String, ParseModelUsers> usersDict =
         FilterModels.instance.getUsersDict(context);
 
-    List<String> disorderedUserIds = FilterUtils.instance
-        .getDisorderedUserIds(List.from(usersDict.keys), peopleInEventsList);
-
     Map<String, ParseModelPhotos> waitersDict =
         FilterModels.instance.getWaitersDict(context, restaurant.uniqueId);
 
@@ -77,7 +73,7 @@ class EventDetailState extends State<EventDetail> {
         InfoPart(
             restaurant: restaurant,
             event: event,
-            disorderedUserIds: disorderedUserIds),
+        ),
         // Line 1: Ordered users list
         buildTextSectionTitle("People Ordered"),
         PeopleInEventBody(
