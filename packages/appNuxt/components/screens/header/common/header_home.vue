@@ -110,7 +110,7 @@
                       <div class=" inline__09f24__2fx1q">
                         <div class=" dropdown__09f24__1279X" role="presentation">
                           <div>
-                            <button
+                            <div
                               class="link__09f24__1WgUJ"
                               @click="onHeaderIconClick"
                             >
@@ -130,7 +130,7 @@
                                   </span>
                                 </span>
                               </div>
-                            </button>
+                            </div>
                             <!-- pop menu -->
                             <div
                               v-if="showPopMenu"
