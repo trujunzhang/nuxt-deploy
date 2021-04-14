@@ -3,6 +3,7 @@ import { firebase } from './config/firebase'
 import en from './locales/en.json'
 
 const config: NuxtConfiguration = {
+  target: 'static',
   /*
    ** Headers of the page
    */
