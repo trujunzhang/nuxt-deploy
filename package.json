@@ -15,6 +15,7 @@
   "scripts": {
     "start": "lerna run --scope=ieatta-nuxt start --stream",
     "build": "lerna run --scope=ieatta-nuxt build --stream",
+    "generate": "lerna run --scope=ieatta-nuxt generate --stream",
     "rm.defines": "lerna run rm.assets --stream",
     "rm.defines.pending": "find . -name '@types' -type d | xargs rm -rf",
     "rm.yarn.lock": "find . -name 'yarn.lock' -type f -delete",
