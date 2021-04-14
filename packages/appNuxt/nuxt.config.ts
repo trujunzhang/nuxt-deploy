@@ -148,6 +148,9 @@ const config: NuxtConfiguration = {
   },
   typescript: {
     typeCheck: false
+  },
+  generate: {
+    fallback: true
   }
 }
 
