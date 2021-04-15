@@ -101,7 +101,7 @@
                                     class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
                                   >
                                     <img
-                                      :src="getUserPhotoUrl()"
+                                      v-lazy="getUserPhotoUrl()"
                                       class=" photo__09f24__2fK6m"
                                       height="36"
                                       width="36"
