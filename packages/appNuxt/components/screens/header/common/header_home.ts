@@ -26,6 +26,14 @@ export default class HomeHeader extends Vue {
 
   // public showPopMenu: boolean = true
 
+  shouldShowUserBtn () {
+    return (this.isLoaded && this.user !== null)
+  }
+
+  shouldShowLoginBtn () {
+    return (this.isLoaded && !this.user)
+  }
+
   onClickOutside (event) {
     // console.log('Clicked outside. Event: ', event)
     this.showPopMenu = false
@@ -38,10 +46,6 @@ export default class HomeHeader extends Vue {
 
   onHeaderIconClick () {
     this.showPopMenu = true
-  }
-
-  shouldShowLoginBtn () {
-    return (this.isLoaded && !this.user)
   }
 
   getUserProfileUrl () {
@@ -64,9 +68,5 @@ export default class HomeHeader extends Vue {
 
   mounted () {
     this.isLoaded = true
-  }
-
-  @Watch('$route')
-  routeChanged (to: any, from: any) {
   }
 }

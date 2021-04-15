@@ -77,32 +77,11 @@
           </div>
           <!-- Logged user  -->
           <div
-            v-if="user"
+            v-if="shouldShowUserBtn()"
             class=" auth-arrange-unit__09f24__1ndPl arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO nowrap__09f24__26e9i"
           >
             <div class=" auth-arrange-unit-inner__09f24__IoV6U arrange__09f24__AiSIM border-color--default__09f24__R1nRO">
-              <div class=" search-button-container__09f24__3jX4H arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
-                <span class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO" aria-label="Search">
-                  <div class="  css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO" disabled="">
-                    <div class=" border-color--default__09f24__R1nRO" aria-describedby="e1c5268f-1ea4-4039-975b-db591177a2de">
-                      <button class="header-link__09f24__3OkYO header-link--icon__09f24___Aj0f">
-                        <div class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO">
-                          <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
-                            <span aria-hidden="true" class="icon--24-search-v2 css-1mpk29p">
-                              <svg width="24" height="24" class="icon_svg">
-                                <path
-                                  d="M21.853 20.355l-3.444-3.443a9.428 9.428 0 10-16.761-6.171 9.428 9.428 0 0015.348 7.586l3.443 3.442a1 1 0 101.414-1.414zM5.82 16.245a7.429 7.429 0 115.253 2.175 7.38 7.38 0 01-5.253-2.176z"
-                                ></path>
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </span>
-              </div>
-
+              <!--  User's avatar -->
               <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
                 <div class=" display--inline-block__09f24__FsgS4 margin-l2__09f24__1aIU3 border-color--default__09f24__R1nRO">
                   <div class=" auth-tooltip-container__09f24__3QwXx css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
@@ -122,7 +101,7 @@
                                     class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
                                   >
                                     <img
-                                      v-lazy="`${getUserPhotoUrl()}`"
+                                      :src="getUserPhotoUrl()"
                                       class=" photo__09f24__2fK6m"
                                       height="36"
                                       width="36"
@@ -148,6 +127,8 @@
 
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
