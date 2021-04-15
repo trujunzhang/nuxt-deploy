@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="user"
+    v-if="shouldShowUserBtn()"
     class=" margin-b5__373c0__2ErL8 border-color--default__373c0__3-ifU">
     <div
       class=" war-container__373c0__2o39o padding-t3__373c0__1gw9E padding-r3__373c0__57InZ padding-b3__373c0__342DA padding-l3__373c0__1scQ0 border-color--default__373c0__3-ifU shadow--inline__373c0__2099Z"

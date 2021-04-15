@@ -33,7 +33,7 @@
           <div class="lemon--div__09f24__1mboc arrange-unit__09f24__3IxLD border-color--default__09f24__1eOdn nowrap__09f24__29i9N">
             <div class="lemon--div__09f24__1mboc inline__09f24__2fx1q">
               <div
-                v-if="user"
+                v-if="shouldShowUserBtn()"
                 class="lemon--div__09f24__1mboc dropdown__09f24__37RYY"
                 role="presentation"
               >

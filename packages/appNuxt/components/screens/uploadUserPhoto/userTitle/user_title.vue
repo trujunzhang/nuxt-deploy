@@ -4,7 +4,7 @@
       <div class="arrange_unit arrange_unit--fill">
         <ul class="breadcrumbs">
           <li
-            v-if="user"
+            v-if="shouldShowUserBtn()"
           >
             <a
               :href="getUserProfileUrl()"

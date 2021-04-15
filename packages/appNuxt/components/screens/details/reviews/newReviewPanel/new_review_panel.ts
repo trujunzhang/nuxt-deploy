@@ -18,6 +18,12 @@ export default class NewReviewPanel extends Vue {
   @Prop({}) relatedId!: string
   @Prop({}) relatedModel!: IFBRestaurant | IFBEvent | IFBRecipe
 
+  public isLoaded: boolean = false
+
+  shouldShowUserBtn () {
+    return (this.isLoaded && this.user !== null)
+  }
+
   getUserTitle () {
     if (this.user === null) {
       return ''
@@ -53,5 +59,9 @@ export default class NewReviewPanel extends Vue {
    */
   getWriteReviewLink () {
     return getWriteReviewLink(this.relatedModel, this.reviewType)
+  }
+
+  mounted () {
+    this.isLoaded = true
   }
 }

@@ -13,6 +13,10 @@ export default class EditHeader extends Vue {
 
   public isLoaded: boolean = false
 
+  shouldShowUserBtn () {
+    return (this.isLoaded && this.user !== null)
+  }
+
   getUserPhotoUrl () {
     if (
       this.user === null ||
