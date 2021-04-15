@@ -18,8 +18,14 @@ export default class UserProfilePage extends Vue {
   @auth.Mutation
   public SET_AUTH_USER!: (payload: IAuthUser | null) => void
 
+  public isLoaded: boolean = false
+
   public firstName: string = ''
   public lastName: string = ''
+
+  shouldShowUser () {
+    return (this.isLoaded && this.user !== null)
+  }
 
   getFirstName () {
     if (this.user === null) {
@@ -94,6 +100,7 @@ export default class UserProfilePage extends Vue {
   }
 
   mounted () {
+    this.isLoaded = true
     this.firstName = this.getFirstName()
     this.lastName = this.getLastName()
   }
