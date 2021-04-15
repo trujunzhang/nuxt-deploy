@@ -5,7 +5,6 @@
         <div class=" photo__373c0__1tYpH border-color--default__373c0__3-ifU" style="height: 186px;">
           <a
             class=" link__373c0__1G70M photo-link__373c0__1sZ41 link-color--blue-dark__373c0__85-Nu link-size--default__373c0__7tls6"
-            href="https://www.yelp.com/biz/kirimachi-ramen-san-francisco-2?page_src=related_bizes"
             target=""
             name=""
             rel=""
