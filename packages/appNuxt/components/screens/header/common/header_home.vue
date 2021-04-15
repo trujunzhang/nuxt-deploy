@@ -25,7 +25,7 @@
             <span class=" display--inline__09f24__3iACj margin-r1__09f24__BCulR border-color--default__09f24__R1nRO">
               <span class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO" aria-label="Messages">
                 <div class="  css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
-                  <div class=" border-color--default__09f24__R1nRO" aria-describedby="9b7b90b6-defb-456b-9e96-5f913efb4694">
+                  <div class=" border-color--default__09f24__R1nRO">
                     <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="/messaging/inbox">
                       <div class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO">
                         <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
@@ -46,8 +46,8 @@
             <span class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO">
               <div class=" tooltip-visible-area__09f24__2xHx6 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO" aria-label="Notifications">
                 <div class=" tooltip-visible-area-inner__09f24__B_5VT css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
-                  <div class=" border-color--default__09f24__R1nRO" aria-describedby="918b9ede-c80c-4422-890e-813160f94c9e">
-                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="user_details">
+                  <div class=" border-color--default__09f24__R1nRO">
+                    <a class=" header-link__09f24__3OkYO header-link--icon__09f24___Aj0f" href="/user_details">
                       <div class=" padding-t1__09f24__2GVpG padding-r1__09f24__23Vay padding-b1__09f24__1d8yO padding-l1__09f24__aqYTU border-color--default__09f24__R1nRO">
                         <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
                           <span aria-hidden="true" class="icon--24-notification-v2 css-1mpk29p">
@@ -102,6 +102,50 @@
                   </div>
                 </span>
               </div>
+
+              <div class=" arrange-unit__09f24__1gZC1 border-color--default__09f24__R1nRO">
+                <div class=" display--inline-block__09f24__FsgS4 margin-l2__09f24__1aIU3 border-color--default__09f24__R1nRO">
+                  <div class=" auth-tooltip-container__09f24__3QwXx css-19sk4h4 display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
+                    <div class=" notification-wrapper__09f24__3YKGg display--inline-block__09f24__FsgS4 border-color--default__09f24__R1nRO">
+                      <div class=" inline__09f24__2fx1q">
+                        <div class=" dropdown__09f24__1279X" role="presentation">
+                          <div>
+                            <div
+                              class="link__09f24__1WgUJ"
+                              @click="onHeaderIconClick"
+                            >
+                              <div class=" button-content__09f24__2SF6G border-color--default__09f24__R1nRO">
+                                <span
+                                  class=" text__09f24__2tZKC button-content-text__09f24__3OonI text-color--blue-dark__09f24__2-BTl text-align--center__09f24__3NO89 text-size--large__09f24__3-9KJ text--truncated__09f24__2NCmr"
+                                >
+                                  <span
+                                    class=" display--inline__09f24__3iACj border-color--default__09f24__R1nRO"
+                                  >
+                                    <img
+                                      v-lazy="`${getUserPhotoUrl()}`"
+                                      class=" photo__09f24__2fK6m"
+                                      height="36"
+                                      width="36"
+                                    >
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                            <!-- pop menu -->
+                            <div
+                              v-if="showPopMenu"
+                              v-click-outside="onClickOutside"
+                            >
+                              <HeaderPop />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
