@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
+import 'package:ieatta/src/screens/reviews/review_router.dart';
 
 import 'review_item.dart';
 
@@ -8,9 +10,7 @@ class ReviewsBody extends StatelessWidget {
   final List<ParseModelReviews> reviewsList;
   final bool useScrollView;
 
-  const ReviewsBody(
-      {Key key, @required this.reviewsList, this.useScrollView = false})
-      : super(key: key);
+  const ReviewsBody({Key? key, required this.reviewsList, this.useScrollView = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,7 @@ class ReviewsBody extends StatelessWidget {
       var review = reviewsList[i];
       Widget child = InkWell(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(Routes.detail_review, arguments: review);
+          NavigatorUtils.push(context, '${ReviewRouter.reviewDetailPage}?${ParamsHelper.ID}=${review.uniqueId}');
         },
         child: ReviewItem(
           reviewData: review,

@@ -12,8 +12,8 @@ class SocialLoginScreen extends StatefulWidget {
 }
 
 class _SocialLoginScreenState extends State<SocialLoginScreen> {
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -26,14 +26,12 @@ class SettingLanguageActions extends StatelessWidget {
         PopupMenuItem<LanguagesActions>(
           value: LanguagesActions.english,
           enabled: _appCurrentLocale == Locale("en") ? false : true,
-          child: Text(AppLocalizations.of(context)
-              .translate("settingPopUpToggleEnglish")),
+          child: Text(S.of(context).settingPopUpToggleEnglish),
         ),
         PopupMenuItem<LanguagesActions>(
           value: LanguagesActions.chinese,
           enabled: _appCurrentLocale == Locale("zh") ? false : true,
-          child: Text(AppLocalizations.of(context)
-              .translate("settingPopUpToggleChinese")),
+          child: Text(S.of(context).settingPopUpToggleChinese),
         ),
       ],
     );

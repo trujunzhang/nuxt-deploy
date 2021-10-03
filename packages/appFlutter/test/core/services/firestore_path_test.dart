@@ -5,7 +5,7 @@ void main() {
   testWidgets('Firestore path functions test', (WidgetTester tester) async {
     expect(FirestorePath.singleRestaurant('uniqueId'), 'restaurants/uniqueId');
     expect(FirestorePath.review('uniqueId'), 'reviews/uniqueId');
-    expect(FirestorePath.photo('uniqueId'), 'photos/uniqueId');
+    expect(FirestorePath.singlePhoto('uniqueId'), 'photos/uniqueId');
     expect(FirestorePath.user('id'), 'users/id');
   });
 }

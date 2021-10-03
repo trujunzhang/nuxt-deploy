@@ -1,3 +1,5 @@
+// https://csdcorp.com/blog/coding/null-safety-firstwhere/
+import 'package:collection/collection.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
@@ -7,9 +9,9 @@ import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
+import 'package:ieatta/src/logic/bloc.dart';
 import 'package:location_platform_interface/location_platform_interface.dart';
 import 'package:provider/provider.dart';
-import 'package:ieatta/src/logic/bloc.dart';
 
 import 'filter_utils.dart';
 
@@ -33,13 +35,13 @@ class FilterModels {
 // Model: Users
 // ===========================================================
 
-  ParseModelUsers getSingleUser(BuildContext context, String uniqueId) {
-    var list = Provider.of<List<ParseModelUsers>>(context);
-    return list.singleWhere((user) => user.id == uniqueId);
+  ParseModelUsers? getSingleUser(BuildContext context, String uniqueId) {
+    List<ParseModelUsers> list = Provider.of<List<ParseModelUsers>>(context);
+    return list.singleWhereOrNull((ParseModelUsers user) => user.id == uniqueId);
   }
 
   Map<String, ParseModelUsers> getUsersDict(BuildContext context) {
-    Map hashMap = new Map<String, ParseModelUsers>();
+    Map<String, ParseModelUsers> hashMap = new Map<String, ParseModelUsers>();
     objectToMap(ParseModelUsers user) {
       hashMap[user.id] = user;
     }
@@ -52,8 +54,7 @@ class FilterModels {
 // Model: Restaurants
 // ===========================================================
 
-  List<ParseModelRestaurants> parseRestaurants(
-      List<ParseModelRestaurants> list) {
+  List<ParseModelRestaurants> parseRestaurants(List<ParseModelRestaurants> list) {
     bloc.restaurantCountVal(list.length);
     return list;
   }
@@ -62,34 +63,26 @@ class FilterModels {
     return parseRestaurants(Provider.of<List<ParseModelRestaurants>>(context));
   }
 
-  List<ParseModelRestaurants> getTrackingExploreList(
-      BuildContext context, LocationData locationVal) {
-    List<ParseModelRestaurants> nextList =
-        Provider.of<List<ParseModelRestaurants>>(context)
-            .where((restaurant) =>
-                FilterUtils.instance.matchLocation(restaurant, locationVal))
-            .toList();
+  List<ParseModelRestaurants> getTrackingExploreList(BuildContext context, LocationData locationVal) {
+    List<ParseModelRestaurants> nextList = Provider.of<List<ParseModelRestaurants>>(context)
+        .where((restaurant) => FilterUtils.instance.matchLocation(restaurant, locationVal))
+        .toList();
     return parseRestaurants(nextList);
   }
 
-  List<ParseModelRestaurants> getSearchedExploreList(
-      BuildContext context, String searchVal) {
-    List<ParseModelRestaurants> nextList =
-        Provider.of<List<ParseModelRestaurants>>(context)
-            .where((restaurant) => FilterUtils.instance
-                .matchString(restaurant.displayName, searchVal))
-            .toList();
+  List<ParseModelRestaurants> getSearchedExploreList(BuildContext context, String searchVal) {
+    List<ParseModelRestaurants> nextList = Provider.of<List<ParseModelRestaurants>>(context)
+        .where((restaurant) => FilterUtils.instance.matchString(restaurant.displayName, searchVal))
+        .toList();
     return parseRestaurants(nextList);
   }
 
-  ParseModelRestaurants getSingleRestaurant(
-      BuildContext context, String uniqueId) {
+  ParseModelRestaurants? getSingleRestaurant(BuildContext context, String uniqueId) {
     return Provider.of<List<ParseModelRestaurants>>(context)
-        .singleWhere((restaurant) => restaurant.uniqueId == uniqueId);
+        .singleWhereOrNull((restaurant) => restaurant.uniqueId == uniqueId);
   }
 
-  List<ParseModelRestaurants> getRestaurantsListByUser(
-      BuildContext context, String userId) {
+  List<ParseModelRestaurants> getRestaurantsListByUser(BuildContext context, String userId) {
     return Provider.of<List<ParseModelRestaurants>>(context)
         .where((restaurant) => restaurant.creatorId == userId)
         .toList();
@@ -99,37 +92,30 @@ class FilterModels {
 // Model: Events
 // ===========================================================
 
-  List<ParseModelEvents> getEventsList(
-      BuildContext context, String restaurantId) {
-    return Provider.of<List<ParseModelEvents>>(context)
-        .where((event) => event.restaurantId == restaurantId)
-        .toList();
+  List<ParseModelEvents> getEventsList(BuildContext context, String restaurantId) {
+    return Provider.of<List<ParseModelEvents>>(context).where((event) => event.restaurantId == restaurantId).toList();
   }
 
-  ParseModelEvents getSingleEvent(BuildContext context, String uniqueId) {
-    return Provider.of<List<ParseModelEvents>>(context)
-        .singleWhere((event) => event.uniqueId == uniqueId);
+  ParseModelEvents? getSingleEvent(BuildContext context, String uniqueId) {
+    return Provider.of<List<ParseModelEvents>>(context).singleWhereOrNull((event) => event.uniqueId == uniqueId);
   }
 
 // ===========================================================
 // Model: Recipes
 // ===========================================================
 
-  List<ParseModelRecipes> getRecipesList(
-      BuildContext context, String restaurantId) {
+  List<ParseModelRecipes> getRecipesList(BuildContext context, String restaurantId) {
     return Provider.of<List<ParseModelRecipes>>(context)
         .where((recipe) => recipe.restaurantId == restaurantId)
         .toList();
   }
 
-  ParseModelRecipes getSingleRecipe(BuildContext context, String uniqueId) {
-    return Provider.of<List<ParseModelRecipes>>(context)
-        .singleWhere((recipe) => recipe.uniqueId == uniqueId);
+  ParseModelRecipes? getSingleRecipe(BuildContext context, String uniqueId) {
+    return Provider.of<List<ParseModelRecipes>>(context).singleWhereOrNull((recipe) => recipe.uniqueId == uniqueId);
   }
 
-  Map<String, ParseModelRecipes> getRecipesDict(
-      BuildContext context, String restaurantId) {
-    Map hashMap = new Map<String, ParseModelRecipes>();
+  Map<String, ParseModelRecipes> getRecipesDict(BuildContext context, String restaurantId) {
+    Map<String, ParseModelRecipes> hashMap = new Map<String, ParseModelRecipes>();
     objectToMap(ParseModelRecipes recipe) {
       hashMap[recipe.uniqueId] = recipe;
     }
@@ -142,20 +128,19 @@ class FilterModels {
 // Model: Photos
 // ===========================================================
 
-  List<ParseModelPhotos> getPhotosInRestaurantList(
-      BuildContext context, String relatedId) {
-    filterPhotoList(ParseModelPhotos photo) {
-      return photo.restaurantId == relatedId &&
-          photo.photoType == photoTypeToString(PhotoType.Restaurant);
-    }
-
-    return Provider.of<List<ParseModelPhotos>>(context)
-        .where(filterPhotoList)
-        .toList();
+  ParseModelPhotos? getSinglePhoto(BuildContext context, String uniqueId) {
+    return Provider.of<List<ParseModelPhotos>>(context).singleWhereOrNull((photo) => photo.uniqueId == uniqueId);
   }
 
-  List<ParseModelPhotos> getPhotosList(
-      BuildContext context, String relatedId, PhotoType photoType) {
+  List<ParseModelPhotos> getPhotosInRestaurantList(BuildContext context, String relatedId) {
+    filterPhotoList(ParseModelPhotos photo) {
+      return photo.restaurantId == relatedId && photo.photoType == photoTypeToString(PhotoType.Restaurant);
+    }
+
+    return Provider.of<List<ParseModelPhotos>>(context).where(filterPhotoList).toList();
+  }
+
+  List<ParseModelPhotos> getPhotosList(BuildContext context, String relatedId, PhotoType photoType) {
     filterPhotoList(ParseModelPhotos photo) {
       switch (photoType) {
         case PhotoType.Restaurant: // Contains restaurants and waiters.
@@ -163,115 +148,88 @@ class FilterModels {
               (photo.photoType == photoTypeToString(photoType) ||
                   photo.photoType == photoTypeToString(PhotoType.Waiter));
         case PhotoType.Recipe:
-          return photo.recipeId == relatedId &&
-              photo.photoType == photoTypeToString(photoType);
+          return photo.recipeId == relatedId && photo.photoType == photoTypeToString(photoType);
         case PhotoType.User:
-          return photo.userId == relatedId &&
-              photo.photoType == photoTypeToString(photoType);
+          return photo.userId == relatedId && photo.photoType == photoTypeToString(photoType);
         case PhotoType.Waiter:
-          return photo.restaurantId == relatedId &&
-              photo.photoType == photoTypeToString(photoType);
+          return photo.restaurantId == relatedId && photo.photoType == photoTypeToString(photoType);
         case PhotoType.None:
           return false;
       }
-      return false;
     }
 
-    return Provider.of<List<ParseModelPhotos>>(context)
-        .where(filterPhotoList)
-        .toList();
+    return Provider.of<List<ParseModelPhotos>>(context).where(filterPhotoList).toList();
   }
 
-  List<ParseModelPhotos> getPhotosListByUser(
-      BuildContext context, String userId) {
-    return Provider.of<List<ParseModelPhotos>>(context)
-        .where((photo) => photo.creatorId == userId)
-        .toList();
+  List<ParseModelPhotos> getPhotosListByUser(BuildContext context, String userId) {
+    return Provider.of<List<ParseModelPhotos>>(context).where((photo) => photo.creatorId == userId).toList();
   }
 
 // ===========================================================
 // Model: Reviews
 // ===========================================================
 
-  List<ParseModelReviews> getReviewsList(
-      BuildContext context, String relatedId, ReviewType reviewType) {
+  List<ParseModelReviews> getReviewsList(BuildContext context, String relatedId, ReviewType reviewType) {
     filterReviewsList(ParseModelReviews review) {
       switch (reviewType) {
         case ReviewType.Restaurant:
-          return review.restaurantId == relatedId &&
-              review.reviewType == reviewTypeToString(reviewType);
+          return review.restaurantId == relatedId && review.reviewType == reviewTypeToString(reviewType);
         case ReviewType.Event:
-          return review.eventId == relatedId &&
-              review.reviewType == reviewTypeToString(reviewType);
+          return review.eventId == relatedId && review.reviewType == reviewTypeToString(reviewType);
         case ReviewType.Recipe:
-          return review.recipeId == relatedId &&
-              review.reviewType == reviewTypeToString(reviewType);
+          return review.recipeId == relatedId && review.reviewType == reviewTypeToString(reviewType);
         case ReviewType.None:
           return false;
       }
-      return false;
     }
 
-    return Provider.of<List<ParseModelReviews>>(context)
-        .where(filterReviewsList)
-        .toList();
+    return Provider.of<List<ParseModelReviews>>(context).where(filterReviewsList).toList();
   }
 
-  List<ParseModelReviews> getReviewsListByUser(
-      BuildContext context, String userId) {
-    return Provider.of<List<ParseModelReviews>>(context)
-        .where((review) => review.creatorId == userId)
-        .toList();
+  List<ParseModelReviews> getReviewsListByUser(BuildContext context, String userId) {
+    return Provider.of<List<ParseModelReviews>>(context).where((review) => review.creatorId == userId).toList();
   }
 
-  ParseModelReviews getSingleReview(BuildContext context, String uniqueId) {
-    return Provider.of<List<ParseModelReviews>>(context)
-        .singleWhere((review) => review.uniqueId == uniqueId);
+  ParseModelReviews? getSingleReview(BuildContext context, String uniqueId) {
+    return Provider.of<List<ParseModelReviews>>(context).singleWhereOrNull((review) => review.uniqueId == uniqueId);
   }
 
 // ===========================================================
 // Model: PeopleInEvents
 // ===========================================================
-  List<ParseModelPeopleInEvent> getPeopleInEventsList(
-      BuildContext context, String restaurantId, String eventId) {
+  List<ParseModelPeopleInEvent> getPeopleInEventsList(BuildContext context,
+      {required String restaurantId, required String eventId}) {
     return Provider.of<List<ParseModelPeopleInEvent>>(context)
-        .where((peopleInEvent) =>
-            peopleInEvent.restaurantId == restaurantId &&
-            peopleInEvent.eventId == eventId)
+        .where((peopleInEvent) => peopleInEvent.restaurantId == restaurantId && peopleInEvent.eventId == eventId)
         .toList();
   }
 
-  ParseModelPeopleInEvent getSinglePeopleInEvent(
-      BuildContext context, String uniqueId) {
+  ParseModelPeopleInEvent? getSinglePeopleInEvent(BuildContext context, String uniqueId) {
     return Provider.of<List<ParseModelPeopleInEvent>>(context)
-        .singleWhere((peopleInEvent) => peopleInEvent.uniqueId == uniqueId);
+        .singleWhereOrNull((peopleInEvent) => peopleInEvent.uniqueId == uniqueId);
   }
 
 // ===========================================================
 // Model: Waiters
 // ===========================================================
 
-  List<ParseModelPhotos> getWaitersList(
-      BuildContext context, String restaurantId) {
+  List<ParseModelPhotos> getWaitersList(BuildContext context, String restaurantId) {
     return Provider.of<List<ParseModelPhotos>>(context)
-        .where((waiter) =>
-            waiter.restaurantId == restaurantId &&
-            waiter.photoType == photoTypeToString(PhotoType.Waiter))
+        .where(
+            (waiter) => waiter.restaurantId == restaurantId && waiter.photoType == photoTypeToString(PhotoType.Waiter))
         .toList();
   }
 
-  List<ParseModelPhotos> getWaitersListForEvent(
-      Map<String, ParseModelPhotos> waitersDict, ParseModelEvents event) {
+  List<ParseModelPhotos> getWaitersListForEvent(Map<String, ParseModelPhotos> waitersDict, ParseModelEvents event) {
     List<ParseModelPhotos> list = [];
     event.waiters.forEach((waiterId) {
-      list.add(waitersDict[waiterId]);
+      list.add(waitersDict[waiterId]!);
     });
     return list;
   }
 
-  Map<String, ParseModelPhotos> getWaitersDict(
-      BuildContext context, String restaurantId) {
-    Map hashMap = new Map<String, ParseModelPhotos>();
+  Map<String, ParseModelPhotos> getWaitersDict(BuildContext context, String restaurantId) {
+    Map<String, ParseModelPhotos> hashMap = new Map<String, ParseModelPhotos>();
     objectToMap(ParseModelPhotos waiter) {
       hashMap[waiter.uniqueId] = waiter;
     }

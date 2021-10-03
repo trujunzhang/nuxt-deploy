@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 import 'package:ieatta/src/screens/reviews/detail/reviews_body.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
-class UserReviews extends StatefulWidget {
-  UserReviews({Key key}) : super(key: key);
+class UserReviews extends StatelessWidget {
+  UserReviews({Key? key, required this.userId}) : super(key: key);
 
-  @override
-  _UserReviewsState createState() => _UserReviewsState();
-}
-
-class _UserReviewsState extends State<UserReviews> {
-  String _userId;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final String _userIdArg = ModalRoute.of(context).settings.arguments;
-    if (_userIdArg != null) {
-      _userId = _userIdArg;
-    }
-    // print('_userId: $_userId');
-  }
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +18,16 @@ class _UserReviewsState extends State<UserReviews> {
           leading: IconButton(
             icon: Icon(getArrowBackIcon()),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("userMenuReviewsAppBarTitle")),
+          title: Text(S.of(context).userMenuReviewsAppBarTitle),
         ),
         body: _buildBody(context));
   }
 
   Widget _buildBody(BuildContext context) {
-    List<ParseModelReviews> reviewsList =
-        FilterModels.instance.getReviewsListByUser(context, _userId);
+    List<ParseModelReviews> reviewsList = FilterModels.instance.getReviewsListByUser(context, userId);
     if (reviewsList.length == 0) {
       return Center(
         child: Text('No Data'),
@@ -52,7 +36,6 @@ class _UserReviewsState extends State<UserReviews> {
     return SingleChildScrollView(
         padding: EdgeInsets.only(top: 18.0),
         child: Container(
-            decoration: new BoxDecoration(color: Colors.white),
-            child: ReviewsBody(reviewsList: reviewsList)));
+            decoration: new BoxDecoration(color: Colors.white), child: ReviewsBody(reviewsList: reviewsList)));
   }
 }

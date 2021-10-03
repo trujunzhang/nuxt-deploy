@@ -5,14 +5,14 @@ import 'package:ieatta/src/layout/app_theme.dart';
 
 class AvatarWidget extends StatelessWidget {
   final AvatarUser user;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final EdgeInsetsGeometry padding;
   final bool isLarge;
   final bool isShowingUsernameLabel;
   final bool isCurrentUserStory;
 
   const AvatarWidget({
-    @required this.user,
+    required this.user,
     this.onTap,
     this.padding = const EdgeInsets.all(8.0),
     this.isLarge = false,
@@ -38,9 +38,7 @@ class AvatarWidget extends StatelessWidget {
   );
   static const _greyBoxShadowDecoration = BoxDecoration(
     shape: BoxShape.circle,
-    boxShadow: [
-      BoxShadow(color: Colors.grey, blurRadius: 1.0, spreadRadius: 1.0)
-    ],
+    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 1.0, spreadRadius: 1.0)],
   );
 
   @override
@@ -66,10 +64,7 @@ class AvatarWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       boxShadow: <BoxShadow>[
-                        BoxShadow(
-                            color: AppTheme.grey.withOpacity(0.6),
-                            offset: const Offset(2.0, 4.0),
-                            blurRadius: 8),
+                        BoxShadow(color: AppTheme.grey.withOpacity(0.6), offset: const Offset(2.0, 4.0), blurRadius: 8),
                       ],
                     ),
                     child: ClipRRect(
@@ -86,7 +81,7 @@ class AvatarWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4.0),
             child: Text(
-              user.username,
+              user.username!,
               textScaleFactor: 0.9,
             ),
           ),

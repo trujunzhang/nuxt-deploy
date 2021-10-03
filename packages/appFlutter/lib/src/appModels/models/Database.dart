@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:ieatta/src/appConstants/Types.dart';
 import 'package:ieatta/src/appConstants/appConstants.dart';
 import 'package:ieatta/src/appModels/models/helper/ParseModelsHelper.dart';
@@ -12,13 +11,7 @@ class DatabaseBaseModel {
 
   final String flag;
 
-//  final String createdAt;
-//  final String updatedAt;
-//  final String syncPostedAt;
-//  final String flag;
-
-  DatabaseBaseModel(
-      this.creatorId, this.uniqueId, this.createdAt, this.updatedAt, this.flag);
+  DatabaseBaseModel(this.creatorId, this.uniqueId, this.createdAt, this.updatedAt, this.flag);
 
   static fromJson(Map<String, dynamic> json) {
     String uniqueId = ParseModelsHelper.getUniqueId(json);
@@ -30,8 +23,7 @@ class DatabaseBaseModel {
     return DatabaseBaseModel(creatorId, uniqueId, createdAt, updatedAt, flag);
   }
 
-  static String buildCreateSql(
-      Map<String, String> tableFields, Types_modal objectSchemaName) {
+  static String buildCreateSql(Map<String, String> tableFields, Types_modal objectSchemaName) {
     List<String> fields = [];
     tableFields.forEach((key, value) => fields.add('$key $value'));
     var fieldsString = fields.join(',');
@@ -42,6 +34,6 @@ class DatabaseBaseModel {
     return createSql;
   }
 
-  @protected
-  Future<int> upsert(txn) async {}
+// @protected
+// Future<int> upsert(txn) async {}
 }

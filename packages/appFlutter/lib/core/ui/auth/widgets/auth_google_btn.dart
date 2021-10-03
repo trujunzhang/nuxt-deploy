@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
+import 'package:ieatta/third/flutter_auth_buttons/lib/flutter_auth_buttons.dart';
 import 'package:provider/provider.dart';
 
 class AuthGoogleBtn extends StatefulWidget {
-  AuthGoogleBtn({Key key, this.isSignIn, this.scaffoldKey}) : super(key: key);
+  AuthGoogleBtn({Key? key, required this.isSignIn, this.scaffoldKey}) : super(key: key);
 
   final bool isSignIn;
   final scaffoldKey;
@@ -21,7 +21,7 @@ class _AuthGoogleBtnState extends State<AuthGoogleBtn> {
     if (authProvider.status == Status.Authenticating ||
         authProvider.status == Status.Registering ||
         authProvider.status == Status.GoogleAuthenticating) {
-      return  Center(
+      return Center(
         child: CircularProgressIndicator(),
       );
     }
@@ -36,8 +36,7 @@ class _AuthGoogleBtnState extends State<AuthGoogleBtn> {
 
             if (!status) {
               widget.scaffoldKey.currentState.showSnackBar(SnackBar(
-                content: Text(AppLocalizations.of(context)
-                    .translate("GoogleLoginError")),
+                content: Text(S.of(context).GoogleLoginError),
               ));
             }
           },

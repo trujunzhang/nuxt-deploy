@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
@@ -32,22 +31,22 @@ class ParseModelRecipes extends BaseReview {
   ParseModelRecipes(
       {
       // Base(5)
-      this.uniqueId,
-      this.creatorId,
-      this.createdAt,
-      this.updatedAt,
-      this.flag,
+      required this.uniqueId,
+      required this.creatorId,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.flag,
       // Common(5)
-      this.displayName,
-      this.slug,
-      this.price,
-      this.thumbnailUrl,
-      this.originalUrl,
+      required this.displayName,
+      required this.slug,
+      required this.price,
+      required this.thumbnailUrl,
+      required this.originalUrl,
       // for review(2)
-      this.rate,
-      this.reviewCount,
+      required this.rate,
+      required this.reviewCount,
       // point(1)
-      this.restaurantId})
+      required this.restaurantId})
       : super(rate, reviewCount);
 
   factory ParseModelRecipes.fromJson(Map<String, dynamic> json) {
@@ -55,11 +54,11 @@ class ParseModelRecipes extends BaseReview {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
     // Common(5)
-    var displayName = json['displayName'] as String;
-    var slug = json['slug'] as String;
-    var price = json['price'] as String;
-    var thumbnailUrl = json['thumbnailUrl'] as String;
-    var originalUrl = json['originalUrl'] as String;
+    String displayName = json['displayName'];
+    String slug = json['slug'];
+    String price = json['price'];
+    String thumbnailUrl = json['thumbnailUrl'];
+    String originalUrl = json['originalUrl'];
 
     // for review(2)
     var rate = json['rate'];
@@ -71,9 +70,9 @@ class ParseModelRecipes extends BaseReview {
       rate = rate.round();
     }
 
-    var reviewCount = json['reviewCount'] as int;
+    int reviewCount = json['reviewCount'];
     // point(1)
-    var restaurantId = json['restaurantId'] as String;
+    String restaurantId = json['restaurantId'];
 
     return ParseModelRecipes(
         // Base(5)
@@ -117,12 +116,11 @@ class ParseModelRecipes extends BaseReview {
     };
   }
 
-  static emptyRecipe(
-      {@required AuthUserModel authUserModel, @required String restaurantId}) {
+  static emptyRecipe({required AuthUserModel? authUserModel, required String restaurantId}) {
     return ParseModelRecipes(
         // Base(5)
         uniqueId: documentIdFromCurrentDate(),
-        creatorId: authUserModel.uid,
+        creatorId: authUserModel!.uid,
         createdAt: getDateStringForCreatedOrUpdatedDate(),
         updatedAt: getDateStringForCreatedOrUpdatedDate(),
         flag: '1',
@@ -139,8 +137,7 @@ class ParseModelRecipes extends BaseReview {
         restaurantId: restaurantId);
   }
 
-  static ParseModelRecipes updateCover(
-      {@required ParseModelRecipes model, @required String originalUrl}) {
+  static ParseModelRecipes updateCover({required ParseModelRecipes model, required String originalUrl}) {
     model.originalUrl = originalUrl;
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
@@ -148,9 +145,9 @@ class ParseModelRecipes extends BaseReview {
   }
 
   static ParseModelRecipes updateRecipe({
-    @required ParseModelRecipes model,
-    @required String nextDisplayName,
-    @required String nextPrice,
+    required ParseModelRecipes model,
+    required String nextDisplayName,
+    required String nextPrice,
   }) {
     // DisplayName
     model.displayName = nextDisplayName;

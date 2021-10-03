@@ -1,0 +1,20 @@
+language: dart
+sudo: required
+dart:
+  - stable
+  - dev
+dart_task:
+  # As long as you don't want any other configuration, you can just use the name
+  # of a task instead of "name: true".
+- test: --platform vm
+- test: --platform chrome
+- test: --platform firefox
+  install_dartium: true
+  # Warnings are fatal, but we only analyze the lib/ directory.
+- dartanalyzer: --fatal-warnings lib
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - $HOME/.pub-cache

@@ -8,18 +8,16 @@ class TopUserView extends StatelessWidget {
   final int selectedIndex;
   final int totalCount;
 
-  const TopUserView(
-      {Key key, @required this.selectedIndex, @required this.totalCount})
-      : super(key: key);
+  const TopUserView({Key? key, required this.selectedIndex, required this.totalCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthProvider>(context, listen: false);
 
-    return StreamBuilder<AuthUserModel>(
+    return StreamBuilder<AuthUserModel?>(
         stream: authService.user,
-        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
-          final AuthUserModel loggedUser = snapshot.data;
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel?> snapshot) {
+          final AuthUserModel? loggedUser = snapshot.data;
 
           if (loggedUser == null) {
             return Container();

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
@@ -24,28 +23,28 @@ class ParseModelPeopleInEvent {
   ParseModelPeopleInEvent(
       {
       // Base(5)
-      this.uniqueId,
-      this.creatorId,
-      this.createdAt,
-      this.updatedAt,
-      this.flag,
+      required this.uniqueId,
+      required this.creatorId,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.flag,
       // Common(1)
-      this.recipes,
+      required this.recipes,
       // point(3)
-      this.restaurantId,
-      this.eventId,
-      this.userId});
+      required this.restaurantId,
+      required this.eventId,
+      required this.userId});
 
   factory ParseModelPeopleInEvent.fromJson(Map<String, dynamic> json) {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
     // Common(1)
-    var recipes = json['recipes'].cast<String>();
+    List<String> recipes = json['recipes'].cast<String>();
 
     // point(3)
-    var restaurantId = json['restaurantId'] as String;
-    var eventId = json['eventId'] as String;
-    var userId = json['userId'] as String;
+    String restaurantId = json['restaurantId'];
+    String eventId = json['eventId'];
+    String userId = json['userId'];
 
     return ParseModelPeopleInEvent(
       // Base(5)
@@ -80,11 +79,11 @@ class ParseModelPeopleInEvent {
     };
   }
 
-  static emptyPeopleInEvent({@required AuthUserModel authUserModel}) {
+  static emptyPeopleInEvent({required AuthUserModel? authUserModel}) {
     return ParseModelPeopleInEvent(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
-      creatorId: authUserModel.uid,
+      creatorId: authUserModel!.uid,
       createdAt: getDateStringForCreatedOrUpdatedDate(),
       updatedAt: getDateStringForCreatedOrUpdatedDate(),
       flag: '1',
@@ -98,8 +97,8 @@ class ParseModelPeopleInEvent {
   }
 
   static ParseModelPeopleInEvent addRecipe({
-    @required ParseModelPeopleInEvent model,
-    @required String recipeId,
+    required ParseModelPeopleInEvent model,
+    required String recipeId,
   }) {
     List<String> nextRecipes = model.recipes;
     nextRecipes.add(recipeId);
@@ -110,8 +109,8 @@ class ParseModelPeopleInEvent {
   }
 
   static ParseModelPeopleInEvent removeRecipe({
-    @required ParseModelPeopleInEvent model,
-    @required String recipeId,
+    required ParseModelPeopleInEvent model,
+    required String recipeId,
   }) {
     List<String> nextRecipes = model.recipes;
     nextRecipes.remove(recipeId);
@@ -121,10 +120,10 @@ class ParseModelPeopleInEvent {
   }
 
   static ParseModelPeopleInEvent updatePeopleInEvent({
-    @required ParseModelPeopleInEvent model,
-    @required String restaurantId,
-    @required String eventId,
-    @required String userId,
+    required ParseModelPeopleInEvent model,
+    required String restaurantId,
+    required String eventId,
+    required String userId,
   }) {
     // point(3)
     model.restaurantId = restaurantId;

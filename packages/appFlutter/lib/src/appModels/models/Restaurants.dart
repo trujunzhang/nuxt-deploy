@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
@@ -38,58 +37,58 @@ class ParseModelRestaurants extends BaseReview {
   int reviewCount;
 
   // Google api(8)
-  final String address;
-  final String street_number;
-  final String route;
-  final String locality;
-  final String sublocality;
-  final String country;
-  final String postal_code;
-  final String administrative_area;
+  final String? address;
+  final String? street_number;
+  final String? route;
+  final String? locality;
+  final String? sublocality;
+  final String? country;
+  final String? postal_code;
+  final String? administrative_area;
 
   ParseModelRestaurants({
     // Base(5)
-    this.uniqueId,
-    this.creatorId,
-    this.createdAt,
-    this.updatedAt,
-    this.flag,
+    required this.uniqueId,
+    required this.creatorId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.flag,
     // extra(1)
-    this.extraNote,
+    required this.extraNote,
     // Check google(1)
-    this.isNew,
+    required this.isNew,
     // Location(3)
-    this.geoHash,
-    this.latitude,
-    this.longitude,
+    required this.geoHash,
+    required this.latitude,
+    required this.longitude,
     // Common(4)
-    this.displayName,
-    this.slug,
-    this.thumbnailUrl,
-    this.originalUrl,
+    required this.displayName,
+    required this.slug,
+    required this.thumbnailUrl,
+    required this.originalUrl,
     // for review(2)
-    this.rate,
-    this.reviewCount,
+    required this.rate,
+    required this.reviewCount,
     // Google api(8)
-    this.address,
-    this.street_number,
-    this.route,
-    this.locality,
-    this.sublocality,
-    this.country,
-    this.postal_code,
-    this.administrative_area,
+    required this.address,
+    required this.street_number,
+    required this.route,
+    required this.locality,
+    required this.sublocality,
+    required this.country,
+    required this.postal_code,
+    required this.administrative_area,
   }) : super(rate, reviewCount);
 
   static emptyRestaurant({
-    @required AuthUserModel authUserModel,
-    @required double latitude,
-    @required double longitude,
+    required AuthUserModel? authUserModel,
+    required double latitude,
+    required double longitude,
   }) {
     return ParseModelRestaurants(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
-      creatorId: authUserModel.uid,
+      creatorId: authUserModel!.uid,
       createdAt: getDateStringForCreatedOrUpdatedDate(),
       updatedAt: getDateStringForCreatedOrUpdatedDate(),
       flag: '1',
@@ -121,8 +120,7 @@ class ParseModelRestaurants extends BaseReview {
     );
   }
 
-  static ParseModelRestaurants updateCover(
-      {@required ParseModelRestaurants model, @required String originalUrl}) {
+  static ParseModelRestaurants updateCover({required ParseModelRestaurants model, required String originalUrl}) {
     model.originalUrl = originalUrl;
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
@@ -130,9 +128,7 @@ class ParseModelRestaurants extends BaseReview {
   }
 
   static ParseModelRestaurants updateRestaurant(
-      {@required ParseModelRestaurants model,
-      @required String nextDisplayName,
-      @required String nextExtraNote}) {
+      {required ParseModelRestaurants model, required String nextDisplayName, required String nextExtraNote}) {
     model.displayName = nextDisplayName;
     model.slug = slugifyToLower(nextDisplayName);
     model.extraNote = nextExtraNote;
@@ -146,18 +142,18 @@ class ParseModelRestaurants extends BaseReview {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
     // extra(1)
-    var extraNote = json['extraNote'] as String;
+    String extraNote = json['extraNote'];
     // Check google(1)
-    var isNew = json['isNew'] as bool;
+    bool isNew = json['isNew'];
     // Location(3)
-    var geoHash = json['geoHash'] as String;
-    var latitude = json['latitude'] as double;
-    var longitude = json['longitude'] as double;
+    String geoHash = json['geoHash'];
+    double latitude = json['latitude'];
+    double longitude = json['longitude'];
     // Common(4)
-    var displayName = json['displayName'] as String;
-    var slug = json['slug'] as String;
-    var thumbnailUrl = json['thumbnailUrl'] as String;
-    var originalUrl = json['originalUrl'] as String;
+    String displayName = json['displayName'];
+    String slug = json['slug'];
+    String thumbnailUrl = json['thumbnailUrl'];
+    String originalUrl = json['originalUrl'];
     // for review(2)
     var rate = json['rate'];
     if (rate is int) {
@@ -168,16 +164,16 @@ class ParseModelRestaurants extends BaseReview {
       rate = rate.round();
     }
 
-    var reviewCount = json['reviewCount'] as int;
+    int reviewCount = json['reviewCount'];
     // Google api(8)
-    var address = json['address'] as String;
-    var street_number = json['street_number'] as String;
-    var route = json['route'] as String;
-    var locality = json['locality'] as String;
-    var sublocality = json['sublocality'] as String;
-    var country = json['country'] as String;
-    var postal_code = json['postal_code'] as String;
-    var administrative_area = json['administrative_area'] as String;
+    String address = json['address'];
+    String street_number = json['street_number'];
+    String route = json['route'];
+    String locality = json['locality'];
+    String sublocality = json['sublocality'];
+    String country = json['country'];
+    String postal_code = json['postal_code'];
+    String administrative_area = json['administrative_area'];
 
     return ParseModelRestaurants(
       // Base(5)

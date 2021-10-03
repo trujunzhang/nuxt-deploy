@@ -13,8 +13,8 @@ class SelectRecipeCover extends StatefulWidget {
   final ParseModelRecipes recipe;
 
   SelectRecipeCover({
-    Key key,
-    @required this.recipe,
+    Key? key,
+    required this.recipe,
   }) : super(key: key);
 
   @override
@@ -24,16 +24,15 @@ class SelectRecipeCover extends StatefulWidget {
 class _SelectRecipeCoverState extends State<SelectRecipeCover> {
   onSelectCoverClick(RecipeState recipeState, ParseModelPhotos item) async {
     recipeState.setCoverUrl(item.originalUrl);
-    ParseModelRecipes nextRecipe= ParseModelRecipes.updateCover(
-        model: widget.recipe, originalUrl: item.originalUrl);
+    ParseModelRecipes nextRecipe = ParseModelRecipes.updateCover(model: widget.recipe, originalUrl: item.originalUrl);
     await FirestoreDatabase().setRecipe(model: nextRecipe);
   }
 
   @override
   Widget build(BuildContext context) {
     RecipeState recipeState = Provider.of<RecipeState>(context, listen: true);
-    List<ParseModelPhotos> photosList = FilterModels.instance
-        .getPhotosList(context, widget.recipe.uniqueId, PhotoType.Recipe);
+    List<ParseModelPhotos> photosList =
+        FilterModels.instance.getPhotosList(context, widget.recipe.uniqueId, PhotoType.Recipe);
     if (photosList.length == 0) {
       return Center(
         child: Text('No Data'),
@@ -64,8 +63,7 @@ class _SelectRecipeCoverState extends State<SelectRecipeCover> {
     return item.originalUrl == recipeState.coverUrl;
   }
 
-  Widget buildGridItem(
-      BuildContext context, RecipeState recipeState, ParseModelPhotos photo) {
+  Widget buildGridItem(BuildContext context, RecipeState recipeState, ParseModelPhotos photo) {
     var body = InkWell(
       onTap: () {
         onSelectCoverClick(recipeState, photo);

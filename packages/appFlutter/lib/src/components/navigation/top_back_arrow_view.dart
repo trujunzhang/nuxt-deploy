@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 import 'arrow_helper.dart';
 
 class TopBackArrowView extends StatefulWidget {
-  TopBackArrowView({Key key, this.isBackColor = false}) : super(key: key);
+  TopBackArrowView({Key? key, this.isBackColor = false}) : super(key: key);
 
   final bool isBackColor;
 
@@ -23,7 +23,7 @@ class _TopBackArrowViewState extends State<TopBackArrowView> {
             icon: Icon(getArrowBackIcon()),
             color: widget.isBackColor ? Colors.black : Colors.white,
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             }),
       ),
     );

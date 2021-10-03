@@ -12,21 +12,19 @@ class AppDarkTheme {
   static const Color _darkOnPrimaryColor = Colors.white;
   static const Color _darkButtonPrimaryColor = Colors.deepPurpleAccent;
   static const Color _darkAppBarColor = Colors.deepPurpleAccent;
+
   // static Color _darkIconColor = Colors.deepPurpleAccent;
   static Color _darkIconColor = Colors.blue;
   static Color _darkSnackBarBackgroundErrorColor = Colors.redAccent;
 
   //text theme for dark theme
-  static final TextStyle _darkScreenHeadingTextStyle =
-      TextStyle(fontSize: 20.0, color: _darkOnPrimaryColor);
-  static final TextStyle _darkScreenTaskNameTextStyle =
-      TextStyle(fontSize: 16.0, color: _darkOnPrimaryColor);
-  static final TextStyle _darkScreenTaskDurationTextStyle =
-      TextStyle(fontSize: 14.0, color: Colors.grey);
-  static final TextStyle _darkScreenButtonTextStyle = TextStyle(
-      fontSize: 14.0, color: _darkOnPrimaryColor, fontWeight: FontWeight.w500);
-  static final TextStyle _darkScreenCaptionTextStyle = TextStyle(
-      fontSize: 12.0, color: _darkAppBarColor, fontWeight: FontWeight.w100);
+  static final TextStyle _darkScreenHeadingTextStyle = TextStyle(fontSize: 20.0, color: _darkOnPrimaryColor);
+  static final TextStyle _darkScreenTaskNameTextStyle = TextStyle(fontSize: 16.0, color: _darkOnPrimaryColor);
+  static final TextStyle _darkScreenTaskDurationTextStyle = TextStyle(fontSize: 14.0, color: Colors.grey);
+  static final TextStyle _darkScreenButtonTextStyle =
+      TextStyle(fontSize: 14.0, color: _darkOnPrimaryColor, fontWeight: FontWeight.w500);
+  static final TextStyle _darkScreenCaptionTextStyle =
+      TextStyle(fontSize: 12.0, color: _darkAppBarColor, fontWeight: FontWeight.w100);
 
   static final TextTheme _darkTextTheme = TextTheme(
     headline5: _darkScreenHeadingTextStyle,
@@ -56,16 +54,13 @@ class AppDarkTheme {
       secondary: _darkSecondaryColor,
       onPrimary: _darkOnPrimaryColor,
     ),
-    snackBarTheme:
-        SnackBarThemeData(backgroundColor: _darkSnackBarBackgroundErrorColor),
+    snackBarTheme: SnackBarThemeData(backgroundColor: _darkSnackBarBackgroundErrorColor),
     iconTheme: IconThemeData(
       color: _darkIconColor,
     ),
     popupMenuTheme: PopupMenuThemeData(color: _darkAppBarColor),
     textTheme: _darkTextTheme,
-    buttonTheme: ButtonThemeData(
-        buttonColor: _darkButtonPrimaryColor,
-        textTheme: ButtonTextTheme.primary),
+    buttonTheme: ButtonThemeData(buttonColor: _darkButtonPrimaryColor, textTheme: ButtonTextTheme.primary),
     unselectedWidgetColor: _darkPrimaryColor,
     inputDecorationTheme: InputDecorationTheme(
         fillColor: _darkPrimaryColor,

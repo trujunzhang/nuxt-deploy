@@ -9,12 +9,11 @@ class SqlPhotosPageViewObject {
 
   final int selectedIndex;
 
-  SqlPhotosPageViewObject(
-      {@required this.photos, @required this.selectedIndex});
+  SqlPhotosPageViewObject({required this.photos, required this.selectedIndex});
 }
 
 class SqlPhotosPageView extends StatefulWidget {
-  SqlPhotosPageView({Key key}) : super(key: key);
+  SqlPhotosPageView({Key? key}) : super(key: key);
 
   @override
   _SqlPhotosPageViewState createState() => _SqlPhotosPageViewState();
@@ -25,19 +24,18 @@ class _SqlPhotosPageViewState extends State<SqlPhotosPageView> {
   List<SqlPhotos> photos = [];
   int selectedIndex = 0;
   bool showInfoPanel = false;
-  PageController _pageController;
+  late PageController _pageController;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final SqlPhotosPageViewObject _object =
-        ModalRoute.of(context).settings.arguments;
+    final Object? _object = ModalRoute.of(context)!.settings.arguments;
     setState(() {
-      photos = _object.photos;
-      selectedIndex = _object.selectedIndex;
+      photos = (_object as SqlPhotosPageViewObject).photos;
+      selectedIndex = (_object as SqlPhotosPageViewObject).selectedIndex;
     });
-    _pageController = PageController(initialPage: _object.selectedIndex);
+    _pageController = PageController(initialPage: (_object as SqlPhotosPageViewObject).selectedIndex);
   }
 
   @override

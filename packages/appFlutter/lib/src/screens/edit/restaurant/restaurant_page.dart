@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
@@ -9,16 +9,17 @@ import 'package:ieatta/core/utils/location_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/edit_restaurant/common.dart';
 import 'package:ieatta/src/providers/restaurant_state.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 import 'select_restaurant_cover.dart';
 
 class RestaurantPage extends StatefulWidget {
-  final ParseModelRestaurants restaurant;
+  final ParseModelRestaurants? restaurant;
 
-  const RestaurantPage({Key key, this.restaurant}) : super(key: key);
+  const RestaurantPage({Key? key, this.restaurant}) : super(key: key);
 
   @override
   _RestaurantPageState createState() => _RestaurantPageState();
@@ -33,8 +34,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   @override
   Widget build(BuildContext context) {
-    RestaurantState restaurantState =
-        Provider.of<RestaurantState>(context, listen: false);
+    RestaurantState restaurantState = Provider.of<RestaurantState>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         key: _scaffoldKey,
@@ -42,69 +42,59 @@ class _RestaurantPageState extends State<RestaurantPage> {
           leading: IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
           title: Text(widget.restaurant != null
-              ? AppLocalizations.of(context)
-                  .translate("restaurantsCreateEditAppBarTitleEditTxt")
-              : AppLocalizations.of(context)
-                  .translate("restaurantsCreateEditAppBarTitleNewTxt")),
+              ? S.of(context).restaurantsCreateEditAppBarTitleEditTxt
+              : S.of(context).restaurantsCreateEditAppBarTitleNewTxt),
           actions: <Widget>[
             TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.saveAndValidate()) {
+                        if (_formKey.currentState!.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
                             _isButtonDisabled = true;
                           });
 
-                          AuthUserModel authUserModel =
-                              await authProvider.getAuthUserModel();
+                          AuthUserModel? authUserModel = await authProvider.getAuthUserModel();
 
-                          ParseModelRestaurants lastModel = widget.restaurant;
+                          ParseModelRestaurants lastModel = widget.restaurant!;
                           if (widget.restaurant == null) {
                             // New restaurant.
-                            LocationData locationData =
-                                await getCurrentLocation();
+                            LocationData locationData = await getCurrentLocation();
 
                             lastModel = ParseModelRestaurants.emptyRestaurant(
                               authUserModel: authUserModel,
-                              latitude: locationData.latitude,
-                              longitude: locationData.longitude,
+                              latitude: locationData.latitude!,
+                              longitude: locationData.longitude!,
                             );
                           }
 
-                          ParseModelRestaurants nextModel =
-                              ParseModelRestaurants.updateRestaurant(
+                          ParseModelRestaurants nextModel = ParseModelRestaurants.updateRestaurant(
                             model: lastModel,
                             nextDisplayName: restaurantState.getDisplayName(),
                             nextExtraNote: restaurantState.getExtraNote(),
                           );
 
                           try {
-                            final firestoreDatabase =
-                                Provider.of<FirestoreDatabase>(context,
-                                    listen: false);
-                            await firestoreDatabase.setRestaurant(
-                                model: nextModel); // For Restaurant.
+                            final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+                            await firestoreDatabase.setRestaurant(model: nextModel); // For Restaurant.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
                             });
                           }
 
-                          ToastUtils.showToast(AppLocalizations.of(context)
-                              .translate("toastForSaveSuccess"));
+                          Toast.show(S.of(context).toastForSaveSuccess);
                           // Navigate
-                          Navigator.of(context).pop();
+                          AppNavigator.goBack(context);
                         }
                       },
-                child: Text(AppLocalizations.of(context)
-                    .translate("editModelAppBarRightSaveTitle")))
+                child: Text(S.of(context).editModelAppBarRightSaveTitle))
           ],
         ),
         body: _buildBody(context));
@@ -119,7 +109,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
       child: FocusTraversalGroup(
         child: Form(
           onChanged: () {
-            Form.of(primaryFocus.context).save();
+            // TODO:[2021-8-18] djzhang
+            // Form.of(primaryFocus.context).save();
           },
           child: _buildForm(context),
         ),
@@ -134,7 +125,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
       // list.add(buildCoverImage(_restaurantCoverUrl));
       list.add(buildCoverSectionTitle());
       list.add(SelectRestaurantCover(
-        restaurant: widget.restaurant,
+        restaurant: widget.restaurant!,
       ));
       list.add(SizedBox(
         height: 20,
@@ -150,28 +141,23 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 
   Widget _buildForm(BuildContext context) {
-    RestaurantState restaurantState =
-        Provider.of<RestaurantState>(context, listen: false);
+    RestaurantState restaurantState = Provider.of<RestaurantState>(context, listen: false);
     return Padding(
         padding: const EdgeInsets.all(10),
         child: FormBuilder(
             key: _formKey,
             autovalidateMode: AutovalidateMode.disabled,
-            initialValue: {
-              'displayName': restaurantState.getDisplayName(),
-              'note': restaurantState.getExtraNote()
-            },
+            initialValue: {'displayName': restaurantState.getDisplayName(), 'note': restaurantState.getExtraNote()},
             child: Column(
               children: [
                 FormBuilderTextField(
                   autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("restaurantsCreateEditDisplayNameTxt"),
+                    labelText: S.of(context).restaurantsCreateEditDisplayNameTxt,
                   ),
-                  onChanged: (String val) {
-                    restaurantState.setDisplayName(val);
+                  onChanged: (String? val) {
+                    restaurantState.setDisplayName(val!);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
@@ -184,11 +170,10 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'note',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("modelCreateEditNotesTxt"),
+                    labelText: S.of(context).modelCreateEditNotesTxt,
                   ),
-                  onChanged: (String val) {
-                    restaurantState.setExtraNote(val);
+                  onChanged: (String? val) {
+                    restaurantState.setExtraNote(val!);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([]),

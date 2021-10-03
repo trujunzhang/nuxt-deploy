@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
 import 'package:ieatta/src/components/widgets/rating_image.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/src/screens/details/detail_router.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
@@ -17,9 +19,9 @@ class RecipeItem extends StatelessWidget {
   final ParseModelRecipes recipeData;
 
   const RecipeItem({
-    Key key,
-    @required this.peopleInEvent,
-    @required this.recipeData,
+    Key? key,
+    required this.peopleInEvent,
+    required this.recipeData,
   }) : super(key: key);
 
   @override
@@ -36,20 +38,16 @@ class RecipeItem extends StatelessWidget {
           color: Colors.red,
           icon: Icons.delete,
           onTap: () async {
-            ParseModelPeopleInEvent nextModel =
-                ParseModelPeopleInEvent.removeRecipe(
+            ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.removeRecipe(
               model: peopleInEvent,
               recipeId: recipeData.uniqueId,
             );
 
             try {
-              final firestoreDatabase =
-                  Provider.of<FirestoreDatabase>(context, listen: false);
-              await firestoreDatabase.setPeopleInEvent(
-                  model: nextModel); // For Restaurant.
+              final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+              await firestoreDatabase.setPeopleInEvent(model: nextModel); // For Restaurant.
             } catch (e) {}
-            ToastUtils.showToast(AppLocalizations.of(context)
-                .translate("ModelItemsDeleteSuccess"));
+            Toast.show(S.of(context).ModelItemsDeleteSuccess);
           },
         ),
       ],
@@ -59,8 +57,7 @@ class RecipeItem extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(Routes.detail_recipe, arguments: recipeData);
+        NavigatorUtils.push(context, '${DetailRouter.detailRecipePage}?${ParamsHelper.ID}=${recipeData.uniqueId}');
       },
       child: Container(
         padding: EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
@@ -79,10 +76,7 @@ class RecipeItem extends StatelessWidget {
         children: <Widget>[
           Text(
             recipeData.displayName,
-            style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           Row(
             children: <Widget>[
@@ -143,10 +137,7 @@ class RecipeItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '\$' + recipeData.price,
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orangeAccent),
+                      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.orangeAccent),
                     ),
                     // Text("Min order", style: TextStyle(color: Colors.grey))
                   ],

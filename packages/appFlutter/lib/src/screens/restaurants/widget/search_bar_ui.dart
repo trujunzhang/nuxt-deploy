@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../hotel_app_theme.dart';
 
 class SearchBarUI extends StatefulWidget {
-  SearchBarUI({Key key}) : super(key: key);
+  SearchBarUI({Key? key}) : super(key: key);
 
   @override
   _SearchBarUIState createState() => _SearchBarUIState();
@@ -24,10 +24,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
             Radius.circular(38.0),
           ),
           boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.withOpacity(0.4),
-                offset: const Offset(0, 2),
-                blurRadius: 8.0),
+            BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),
           ],
         ),
         child: Material(
@@ -44,8 +41,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Icon(FontAwesomeIcons.locationArrow,
-                  size: 20,
-                  color: HotelAppTheme.buildLightTheme().backgroundColor),
+                  size: 20, color: HotelAppTheme.buildLightTheme().backgroundColor),
             ),
           ),
         ),
@@ -70,8 +66,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Icon(FontAwesomeIcons.locationArrow,
-                size: 20, color: Colors.grey),
+            child: Icon(FontAwesomeIcons.locationArrow, size: 20, color: Colors.grey),
           ),
         ),
       ),
@@ -89,8 +84,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
           _buildGpsTrackBtn(context),
           Expanded(
             child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 6, right: 6, top: 8, bottom: 8),
+              padding: const EdgeInsets.only(left: 6, right: 6, top: 8, bottom: 8),
               child: Container(
                 decoration: BoxDecoration(
                   color: HotelAppTheme.buildLightTheme().backgroundColor,
@@ -98,15 +92,11 @@ class _SearchBarUIState extends State<SearchBarUI> {
                     Radius.circular(38.0),
                   ),
                   boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        offset: const Offset(0, 2),
-                        blurRadius: 8.0),
+                    BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0),
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 4, bottom: 4),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
                   child: TextField(
                     onChanged: (String txt) {
                       homeState.setSearch(txt);
@@ -133,10 +123,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
                 Radius.circular(38.0),
               ),
               boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.4),
-                    offset: const Offset(0, 2),
-                    blurRadius: 8.0),
+                BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),
               ],
             ),
             child: Material(
@@ -150,9 +137,8 @@ class _SearchBarUIState extends State<SearchBarUI> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.search,
-                      size: 20,
-                      color: HotelAppTheme.buildLightTheme().backgroundColor),
+                  child:
+                      Icon(FontAwesomeIcons.search, size: 20, color: HotelAppTheme.buildLightTheme().backgroundColor),
                 ),
               ),
             ),

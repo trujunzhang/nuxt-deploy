@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/photos_body.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
-class UserPhotos extends StatefulWidget {
-  UserPhotos({Key key}) : super(key: key);
+class UserPhotos extends StatelessWidget {
+  UserPhotos({Key? key, required this.userId}) : super(key: key);
 
-  @override
-  UserPhotosState createState() => UserPhotosState();
-}
-
-class UserPhotosState extends State<UserPhotos> {
-  String _userId;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final String _userIdArg = ModalRoute.of(context).settings.arguments;
-    if (_userIdArg != null) {
-      _userId = _userIdArg;
-    }
-  }
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +18,16 @@ class UserPhotosState extends State<UserPhotos> {
           leading: IconButton(
             icon: Icon(getArrowBackIcon()),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("userMenuPhotosAppBarTitle")),
+          title: Text(S.of(context).userMenuPhotosAppBarTitle),
         ),
         body: _buildBody(context));
   }
 
   Widget _buildBody(BuildContext context) {
-    List<ParseModelPhotos> photosList =
-        FilterModels.instance.getPhotosListByUser(context, _userId);
+    List<ParseModelPhotos> photosList = FilterModels.instance.getPhotosListByUser(context, userId);
 
     if (photosList.length == 0) {
       return Center(

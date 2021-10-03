@@ -1,13 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
-import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
-import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
+import 'package:ieatta/third/GeoFlutterFire/lib/geoflutterfire.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -34,23 +30,19 @@ class FilterUtils {
 
   bool matchLocation(ParseModelRestaurants restaurant, LocationData secondVal) {
     Geoflutterfire geo = Geoflutterfire();
-    GeoFirePoint myLocation = geo.point(
-        latitude: restaurant.latitude, longitude: restaurant.longitude);
-    var distance =
-        myLocation.distance(lat: secondVal.latitude, lng: secondVal.longitude);
+    GeoFirePoint myLocation = geo.point(latitude: restaurant.latitude, longitude: restaurant.longitude);
+    var distance = myLocation.distance(lat: secondVal.latitude!, lng: secondVal.longitude!);
     return distance <= 0.1;
   }
 
   bool checkStreamsReady(BuildContext context) {
     List<ParseModelUsers> users = Provider.of<List<ParseModelUsers>>(context);
-    List<ParseModelRestaurants> restaurants =
-        Provider.of<List<ParseModelRestaurants>>(context);
+    List<ParseModelRestaurants> restaurants = Provider.of<List<ParseModelRestaurants>>(context);
 
     return (users != null && restaurants == null);
   }
 
-  List<String> getUnselectedWaiterIds(
-      List<String> waiterIds, ParseModelEvents event) {
+  List<String> getUnselectedWaiterIds(List<String> waiterIds, ParseModelEvents event) {
     // Get the waiters ids from the event's waiters.
     List<String> selectedWaiterIds = event.waiters;
 
@@ -67,8 +59,7 @@ class FilterUtils {
     return unselectedWaiterIds;
   }
 
-  List<String> getUnorderedRecipeIds(
-      List<String> recipeIds, ParseModelPeopleInEvent peopleInEvent) {
+  List<String> getUnorderedRecipeIds(List<String> recipeIds, ParseModelPeopleInEvent peopleInEvent) {
     // Get the ordered recipes ids from the peopleInEvent's recipes.
     List<String> orderedRecipeIds = peopleInEvent.recipes;
 
@@ -85,8 +76,7 @@ class FilterUtils {
     return unorderedRecipeIds;
   }
 
-  List<String> getDisorderedUserIds(
-      List<String> userIds, List<ParseModelPeopleInEvent> peopleInEventsList) {
+  List<String> getDisorderedUserIds(List<String> userIds, List<ParseModelPeopleInEvent> peopleInEventsList) {
     // Get the userIds from the peopleInEventsList.
     List<String> orderedUserIds = [];
     objectToMap(ParseModelPeopleInEvent peopleInEvent) {

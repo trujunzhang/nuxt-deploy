@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
-import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
+import 'package:ieatta/src/screens/details/detail_router.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
 
 import 'menu_item.dart';
 
@@ -9,9 +11,7 @@ class MenusBody extends StatelessWidget {
   final List<ParseModelRecipes> recipesList;
   final String restaurantId;
 
-  const MenusBody(
-      {Key key, @required this.recipesList, @required this.restaurantId})
-      : super(key: key);
+  const MenusBody({Key? key, required this.recipesList, required this.restaurantId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,12 @@ class MenusBody extends StatelessWidget {
       itemCount: recipesList.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int index) {
+        ParseModelRecipes recipe = recipesList[index];
         return MenuItem(
           callback: () {
-            Navigator.of(context)
-                .pushNamed(Routes.detail_recipe, arguments: recipesList[index]);
+            NavigatorUtils.push(context, '${DetailRouter.detailRecipePage}?${ParamsHelper.ID}=${recipe.uniqueId}');
           },
-          recipeData: recipesList[index],
+          recipeData: recipe,
         );
       },
     );
@@ -42,9 +42,7 @@ class MenusBody extends StatelessWidget {
         child: Center(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.create_edit_recipe,
-              arguments:
-                  CreateEditRecipeScreenObject(restaurantId: restaurantId));
+          NavigatorUtils.push(context, '${EditRouter.editRecipePage}?${ParamsHelper.RESTAURANT_ID}=$restaurantId');
         },
         child: Icon(
           Icons.add_box,

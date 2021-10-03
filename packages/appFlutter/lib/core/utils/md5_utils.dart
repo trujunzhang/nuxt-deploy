@@ -1,6 +1,6 @@
-import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart'; // for the utf8.encode method
 
 String getMd5Str(String str) {

@@ -3,7 +3,7 @@ import 'package:ieatta/core/caches/sharedpref/shared_preference_helper.dart';
 
 class LanguageProvider extends ChangeNotifier {
   // shared pref object
-  SharedPreferenceHelper _sharedPrefsHelper;
+  SharedPreferenceHelper? _sharedPrefsHelper;
 
   Locale _appLocale = Locale('en');
 
@@ -12,7 +12,7 @@ class LanguageProvider extends ChangeNotifier {
   }
 
   Locale get appLocale {
-    _sharedPrefsHelper.appLocale.then((localeValue) {
+    _sharedPrefsHelper!.appLocale.then((localeValue) {
       if (localeValue != null) {
         _appLocale = Locale(localeValue);
       }
@@ -28,7 +28,7 @@ class LanguageProvider extends ChangeNotifier {
       _appLocale = Locale("en");
     }
 
-    _sharedPrefsHelper.changeLanguage(languageCode);
+    _sharedPrefsHelper!.changeLanguage(languageCode);
     notifyListeners();
   }
 }

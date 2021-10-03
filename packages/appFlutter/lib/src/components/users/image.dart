@@ -10,7 +10,7 @@ Widget _buildPlaceholderForUser() {
   );
 }
 
-Widget buildParseModelUsersImageWithOriginalUrl(String originalUrl) {
+Widget buildParseModelUsersImageWithOriginalUrl(String? originalUrl) {
   if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForUser();
   }

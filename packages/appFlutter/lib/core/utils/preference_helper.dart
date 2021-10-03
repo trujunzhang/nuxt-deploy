@@ -1,9 +1,9 @@
 import 'dart:async';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesHelper {
-  static Future<SharedPreferences> get sharedPrefs =>
-      SharedPreferences.getInstance();
+  static Future<SharedPreferences> get sharedPrefs => SharedPreferences.getInstance();
 
   static Future<bool> getBool(String key) async {
     final prefs = await sharedPrefs;

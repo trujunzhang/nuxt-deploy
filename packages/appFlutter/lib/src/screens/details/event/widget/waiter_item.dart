@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 class WaiterItem extends StatelessWidget {
@@ -17,11 +17,11 @@ class WaiterItem extends StatelessWidget {
   final ParseModelEvents event;
 
   const WaiterItem(
-      {Key key,
-      @required this.waiterData,
-      @required this.waiterIndex,
-      @required this.waitersInEventList,
-      @required this.event})
+      {Key? key,
+      required this.waiterData,
+      required this.waiterIndex,
+      required this.waitersInEventList,
+      required this.event})
       : super(key: key);
 
   @override
@@ -37,10 +37,8 @@ class WaiterItem extends StatelessWidget {
           ),
           child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.online_photos_pageview,
-                    arguments: FBPhotosPageViewObject(
-                        photos: waitersInEventList,
-                        selectedIndex: waiterIndex));
+                AppNavigator.popFullScreen(context, FBPhotosPageView(),
+                    FBPhotosPageViewObject(photos: waitersInEventList, selectedIndex: waiterIndex));
               },
               child: _buildItem(context))),
     );
@@ -68,12 +66,10 @@ class WaiterItem extends StatelessWidget {
               waiterId: waiterData.uniqueId,
             );
             try {
-              final firestoreDatabase =
-                  Provider.of<FirestoreDatabase>(context, listen: false);
+              final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
               await firestoreDatabase.setEvent(model: nextModel); // For event.
             } catch (e) {}
-            ToastUtils.showToast(AppLocalizations.of(context)
-                .translate("ModelItemsDeleteSuccess"));
+            Toast.show(S.of(context).ModelItemsDeleteSuccess);
           },
         ),
       ],

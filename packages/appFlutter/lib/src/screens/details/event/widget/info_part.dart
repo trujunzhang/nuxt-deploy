@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
+import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/widgets/rating_image.dart';
-import 'package:ieatta/src/screens/details/event/select_person/select_person_screen.dart';
-import 'package:ieatta/src/screens/edit/event/event_provider_screen.dart';
-import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
-import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
+import 'package:ieatta/src/screens/details/event/select_person/select_person_provider.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRestaurants restaurant;
   final ParseModelEvents event;
 
   const InfoPart({
-    Key key,
-    @required this.restaurant,
-    @required this.event,
+    Key? key,
+    required this.restaurant,
+    required this.event,
   }) : super(key: key);
 
   @override
@@ -39,9 +43,8 @@ class InfoPart extends StatelessWidget {
         SizedBox(height: 4),
         TextButton.icon(
           onPressed: () {
-            Navigator.of(context).pushNamed(Routes.create_edit_event,
-                arguments: CreateEditEventScreenObject(
-                    restaurantId: restaurant.uniqueId, eventModel: event));
+            NavigatorUtils.push(context,
+                '${EditRouter.editEventPage}?${ParamsHelper.ID}=${event.uniqueId}&${ParamsHelper.RESTAURANT_ID}=${restaurant.uniqueId}');
           },
           icon: Icon(Icons.edit),
           label: Text(
@@ -149,6 +152,9 @@ class InfoPart extends StatelessWidget {
   }
 
   Widget _buildActionBar(BuildContext context) {
+    List<ParseModelPeopleInEvent> peopleInEventsList = FilterModels.instance
+        .getPeopleInEventsList(context, restaurantId: restaurant.uniqueId, eventId: event.uniqueId);
+    Map<String, ParseModelUsers> usersDict = FilterModels.instance.getUsersDict(context);
     return Container(
       height: 40.0,
       child: Row(
@@ -156,17 +162,13 @@ class InfoPart extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () {
-              Navigator.push<dynamic>(
+              List<String> disorderedUserIds =
+                  FilterUtils.instance.getDisorderedUserIds(List.from(usersDict.keys), peopleInEventsList);
+              AppNavigator.popFullScreen(
                 context,
-                MaterialPageRoute<dynamic>(
-                    builder: (BuildContext context) => SelectPersonScreen(),
-                    settings: RouteSettings(
-                      arguments: SelectPersonScreenObject(
-                        restaurantId: restaurant.uniqueId,
-                        eventId: event.uniqueId,
-                      ),
-                    ),
-                    fullscreenDialog: true),
+                SelectPersonProvider(),
+                SelectPersonScreenObject(
+                    restaurantId: restaurant.uniqueId, eventId: event.uniqueId, disorderedUserIds: disorderedUserIds),
               );
             },
             icon: const Icon(
@@ -181,9 +183,8 @@ class InfoPart extends StatelessWidget {
           const VerticalDivider(width: 8.0),
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(Routes.create_edit_review,
-                  arguments: CreateEditReviewScreenObject(
-                      reviewType: ReviewType.Event, relatedId: event.uniqueId));
+              NavigatorUtils.push(
+                  context, ParamsHelper.getNewReviewPath(reviewType: ReviewType.Event, relatedId: event.uniqueId));
             },
             icon: const Icon(
               Icons.create,
@@ -197,9 +198,8 @@ class InfoPart extends StatelessWidget {
           const VerticalDivider(width: 8.0),
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(Routes.reviews_list,
-                  arguments: ReviewsListObject(
-                      reviewType: ReviewType.Event, relatedId: event.uniqueId));
+              NavigatorUtils.push(
+                  context, ParamsHelper.getReviewListPath(reviewType: ReviewType.Event, relatedId: event.uniqueId));
             },
             icon: const Icon(
               Icons.card_membership,

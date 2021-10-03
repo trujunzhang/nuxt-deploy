@@ -8,10 +8,10 @@ class PhotoState with ChangeNotifier {
   String extraNote;
 
   PhotoState({
-    this.imgPath,
-    this.photoType,
-    this.relatedId,
-    @required this.extraNote,
+    this.imgPath = "",
+    this.photoType = PhotoType.None,
+    this.relatedId = "",
+    required this.extraNote,
   });
 
   String getImgPath() {

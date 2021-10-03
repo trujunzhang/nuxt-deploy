@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:geohash/geohash.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/third/dart-geohash/lib/geohash.dart';
 
 void main() {
   test('number of chars', () {

@@ -8,11 +8,11 @@ class EventState with ChangeNotifier {
   final String restaurantId;
 
   EventState(
-      {this.restaurantId,
-      this.displayName,
-      this.want,
-      this.startDate,
-      this.endDate});
+      {required this.restaurantId,
+      required this.displayName,
+      required this.want,
+      required this.startDate,
+      required this.endDate});
 
   String getDisplayName() {
     return displayName;

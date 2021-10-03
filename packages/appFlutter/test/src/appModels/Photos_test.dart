@@ -18,7 +18,7 @@ void main() {
         "http://res.cloudinary.com/di3fvexj8/image/upload/s--zE0P3i_b--/c_fill,f_auto,h_348,q_auto,w_348/v1/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag",
     "originalUrl":
         "http://res.cloudinary.com/di3fvexj8/image/upload/v1507615599/politicl/b2eccd155ad6639c29e51f9b0d2549f6_image_bjvqag.jpg",
-    "url": "",
+    // "url": "",
     // point(4)
     "photoType": "restaurant",
     "restaurantId": "f1c0aff9-728b-4041-9560-c09578ce7b01",

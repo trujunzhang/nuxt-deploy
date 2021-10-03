@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 
-bool photoIsInRestaurant(
-    ParseModelRestaurants restaurant, ParseModelPhotos photo) {
+bool photoIsInRestaurant(ParseModelRestaurants restaurant, ParseModelPhotos photo) {
   if (restaurant.geoHash == photo.geoHash) {
     return true;
   }
@@ -11,22 +10,18 @@ bool photoIsInRestaurant(
 }
 
 List<ParseModelPhotos> parsePhotosFilterByRestaurant(
-    {List<DocumentSnapshot> datas, ParseModelRestaurants restaurant}) {
-  List<ParseModelPhotos> result = datas
-      .map((DocumentSnapshot snapshot) {
-        return ParseModelPhotos.fromJson(snapshot.data());
-      })
+    {List<DocumentSnapshot>? datas, ParseModelRestaurants? restaurant}) {
+  List<ParseModelPhotos> result = datas!.map((DocumentSnapshot snapshot) {
+    return ParseModelPhotos.fromJson(snapshot.data() as Map<String, dynamic>);
+  })
       // .where((ParseModelPhotos value) => photoIsInRestaurant(restaurant, value))
       .toList();
   return result;
 }
 
-List<ParseModelPhotos> parsePhotos(
-    List<DocumentSnapshot> datas) {
-  List<ParseModelPhotos> result = datas
-      .map((DocumentSnapshot snapshot) {
-    return ParseModelPhotos.fromJson(snapshot.data());
-  })
-      .toList();
+List<ParseModelPhotos> parsePhotos(List<DocumentSnapshot> datas) {
+  List<ParseModelPhotos> result = datas.map((DocumentSnapshot snapshot) {
+    return ParseModelPhotos.fromJson(snapshot.data() as Map<String, dynamic>);
+  }).toList();
   return result;
 }

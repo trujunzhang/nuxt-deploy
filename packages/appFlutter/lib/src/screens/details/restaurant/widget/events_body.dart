@@ -6,7 +6,7 @@ import 'event_item.dart';
 class EventsBody extends StatelessWidget {
   final List<ParseModelEvents> eventsList;
 
-  const EventsBody({Key key, @required this.eventsList}) : super(key: key);
+  const EventsBody({Key? key, required this.eventsList}) : super(key: key);
 
   Widget buildEventsListView() {
     List<Widget> list = [];

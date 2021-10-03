@@ -5,25 +5,23 @@ class CameraButton extends StatefulWidget {
   final dynamic takePicture;
 
   const CameraButton({
-    Key key,
-    @required this.takePicture,
+    Key? key,
+    required this.takePicture,
   }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _CameraButtonState();
 }
 
-class _CameraButtonState extends State<CameraButton>
-    with TickerProviderStateMixin<CameraButton> {
+class _CameraButtonState extends State<CameraButton> with TickerProviderStateMixin<CameraButton> {
   double bigSize = 72.0, smallSize = 64.0;
   double borderRadius = 72.0;
   bool camera = true;
-  AnimationController _controller;
+  AnimationController? _controller;
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 6));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 6));
     super.initState();
   }
 
@@ -40,13 +38,11 @@ class _CameraButtonState extends State<CameraButton>
         decoration: BoxDecoration(
             color: Colors.transparent,
             shape: BoxShape.circle,
-            border:
-                Border.all(color: Colors.white.withOpacity(0.9), width: 4.0)),
+            border: Border.all(color: Colors.white.withOpacity(0.9), width: 4.0)),
         child: Container(
           width: size,
           height: size,
-          decoration:
-              BoxDecoration(color: Colors.white70, shape: BoxShape.circle),
+          decoration: BoxDecoration(color: Colors.white70, shape: BoxShape.circle),
         ),
       ),
     );

@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/camera/screens/navigate_helper.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
-import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_screen.dart';
-import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
+import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_provider.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 Widget buildWaitersSectionTitle(BuildContext context, ParseModelEvents event) {
+  Map<String, ParseModelPhotos> waitersDict = FilterModels.instance.getWaitersDict(context, event.restaurantId);
+
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -24,16 +31,12 @@ Widget buildWaitersSectionTitle(BuildContext context, ParseModelEvents event) {
             height: 40,
             child: InkWell(
               onTap: () {
-                Navigator.push<dynamic>(
+                List<String> unselectedWaiterIds =
+                    FilterUtils.instance.getUnselectedWaiterIds(List.from(waitersDict.keys), event);
+                AppNavigator.popFullScreen(
                   context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => SelectWaiterScreen(),
-                      settings: RouteSettings(
-                        arguments: SelectWaiterScreenObject(
-                          event: event,
-                        ),
-                      ),
-                      fullscreenDialog: true),
+                  SelectWaiterProvider(),
+                  SelectWaiterScreenObject(event: event, unselectedWaiterIds: unselectedWaiterIds),
                 );
               },
               child: Icon(
@@ -45,6 +48,8 @@ Widget buildWaitersSectionTitle(BuildContext context, ParseModelEvents event) {
     ),
   );
 }
+
+
 Widget buildMenusSectionTitle(BuildContext context, String restaurantId) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
@@ -63,9 +68,7 @@ Widget buildMenusSectionTitle(BuildContext context, String restaurantId) {
             height: 40,
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.create_edit_recipe,
-                    arguments: CreateEditRecipeScreenObject(
-                        restaurantId: restaurantId));
+                NavigatorUtils.push(context, '${EditRouter.newRecipePage}?${ParamsHelper.RESTAURANT_ID}=$restaurantId');
               },
               child: Icon(
                 Icons.add,
@@ -77,8 +80,7 @@ Widget buildMenusSectionTitle(BuildContext context, String restaurantId) {
   );
 }
 
-Widget buildPhotosSectionTitle(
-    BuildContext context, PhotoType photoType, String relatedId) {
+Widget buildPhotosSectionTitle(BuildContext context, PhotoType photoType, String relatedId) {
   return Padding(
     padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 4.0),
     child: Row(
@@ -96,9 +98,7 @@ Widget buildPhotosSectionTitle(
             height: 40,
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.app_camera,
-                    arguments: CameraScreenObject(
-                        photoType: photoType, relatedId: relatedId));
+                PhotoNavigatorHelper.pop(context, photoType: photoType, relatedId: relatedId);
               },
               child: Icon(
                 Icons.add_a_photo,
@@ -109,6 +109,7 @@ Widget buildPhotosSectionTitle(
     ),
   );
 }
+
 
 Widget seeAllList(int len, GestureTapCallback onTap) {
   if (len == 0) {

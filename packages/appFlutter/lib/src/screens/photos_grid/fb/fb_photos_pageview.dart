@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/camera/screens/edit_photo_router.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
 
@@ -9,11 +11,11 @@ class FBPhotosPageViewObject {
   final int selectedIndex;
   final List<ParseModelPhotos> photos;
 
-  FBPhotosPageViewObject({@required this.photos, @required this.selectedIndex});
+  FBPhotosPageViewObject({required this.photos, required this.selectedIndex});
 }
 
 class FBPhotosPageView extends StatefulWidget {
-  FBPhotosPageView({Key key}) : super(key: key);
+  FBPhotosPageView({Key? key}) : super(key: key);
 
   @override
   _FBPhotosPageViewState createState() => _FBPhotosPageViewState();
@@ -23,20 +25,19 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
   final pageIndexNotifier = ValueNotifier<int>(0);
   bool showInfoPanel = false;
   int selectedIndex = 0;
-  PageController _pageController;
+  late PageController _pageController;
   List<ParseModelPhotos> photos = [];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final FBPhotosPageViewObject _object =
-        ModalRoute.of(context).settings.arguments;
+    final Object? _object = ModalRoute.of(context)!.settings.arguments;
     setState(() {
-      photos = _object.photos;
-      selectedIndex = _object.selectedIndex;
+      photos = (_object as FBPhotosPageViewObject).photos;
+      selectedIndex = (_object as FBPhotosPageViewObject).selectedIndex;
     });
-    _pageController = PageController(initialPage: _object.selectedIndex);
+    _pageController = PageController(initialPage: (_object as FBPhotosPageViewObject).selectedIndex);
   }
 
   @override
@@ -102,7 +103,7 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
           padding: EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 48),
           child: SingleChildScrollView(
             child: Text(
-              note,
+              note!,
               style: TextStyle(color: Colors.white),
             ),
           )),
@@ -117,8 +118,7 @@ class _FBPhotosPageViewState extends State<FBPhotosPageView> {
       children: <Widget>[
         TopBaseUserView(
           onEditPress: () {
-            Navigator.of(context)
-                .pushNamed(Routes.edit_photo, arguments: photo);
+            NavigatorUtils.push(context, '${EditPhotoRouter.editPhotoPage}?${ParamsHelper.ID}=${photo.uniqueId}');
           },
           user: photo,
           selectedIndex: selectedIndex,

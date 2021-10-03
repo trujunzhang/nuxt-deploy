@@ -1,51 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/providers/review_state.dart';
 import 'package:provider/provider.dart';
 
 import 'review_page.dart';
 
-class CreateEditReviewScreenObject {
-  final ReviewType reviewType;
-  final String relatedId;
-  final ParseModelReviews reviewModel;
+class CreateEditReviewProviderScreen extends StatelessWidget {
+  CreateEditReviewProviderScreen({Key? key, required this.isNew, this.reviewId, this.reviewType, this.relatedId})
+      : super(key: key);
 
-  CreateEditReviewScreenObject(
-      {@required this.reviewType, @required this.relatedId, this.reviewModel});
-}
-
-class CreateEditReviewProviderScreen extends StatefulWidget {
-  @override
-  _CreateEditReviewProviderScreenState createState() =>
-      _CreateEditReviewProviderScreenState();
-}
-
-class _CreateEditReviewProviderScreenState
-    extends State<CreateEditReviewProviderScreen> {
-  // Model
-  CreateEditReviewScreenObject screenObject;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final CreateEditReviewScreenObject _screenObject =
-        ModalRoute.of(context).settings.arguments;
-    setState(() {
-      screenObject = _screenObject;
-    });
-  }
+  final bool isNew;
+  final String? reviewId;
+  final ReviewType? reviewType;
+  final String? relatedId;
 
   @override
   Widget build(BuildContext context) {
-    ParseModelReviews review = screenObject.reviewModel;
+    ParseModelReviews? review;
+    if (isNew == false) {
+      review = FilterModels.instance.getSingleReview(context, reviewId!);
+    }
     return ChangeNotifierProvider<ReviewState>(
         create: (context) => ReviewState(
             rate: review != null ? review.rate : 0,
             lastRate: review != null ? review.rate : 0,
             body: review != null ? review.body : '',
-            reviewType: screenObject.reviewType,
-            relatedId: screenObject.relatedId),
+            reviewType: review != null ? stringToReviewType(review.reviewType) : reviewType!,
+            relatedId: review != null ? ParseModelReviews.getRelatedId(review) : relatedId!),
         child: ReviewPage(review: review));
   }
 }

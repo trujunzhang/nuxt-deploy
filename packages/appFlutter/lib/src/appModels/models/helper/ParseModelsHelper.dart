@@ -1,10 +1,6 @@
 class ParseModelsHelper {
   static getUniqueId(Map<String, dynamic> json) {
-    String id = json['id'] as String;
     String uniqueId = json['uniqueId'] as String;
-    if (uniqueId != null && uniqueId == '') {
-      uniqueId = id;
-    }
     return uniqueId;
   }
 

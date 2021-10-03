@@ -23,10 +23,6 @@ export class ParseModelPhotos {
       // user(2)
       username: authUserModel.displayName,
       avatarUrl: authUserModel.photoURL,
-      // Location(3)
-      geoHash: '',
-      latitude: 0,
-      longitude: 0,
       // Common
       originalUrl,
       thumbnailUrl: '',

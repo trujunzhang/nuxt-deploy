@@ -9,7 +9,11 @@ class ReviewState with ChangeNotifier {
   String relatedId;
 
   ReviewState(
-      {this.rate, this.lastRate, this.body, this.reviewType, this.relatedId});
+      {required this.rate,
+      required this.lastRate,
+      required this.body,
+      required this.reviewType,
+      required this.relatedId});
 
   double getRate() {
     return rate;

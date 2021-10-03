@@ -4,14 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ieatta/core/database/firebase_helper.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 
-enum Status {
-  Uninitialized,
-  Authenticated,
-  Authenticating,
-  GoogleAuthenticating,
-  Unauthenticated,
-  Registering
-}
+enum Status { Uninitialized, Authenticated, Authenticating, GoogleAuthenticating, Unauthenticated, Registering }
 /*
 The UI will depends on the Status to decide which screen/action to be done.
 
@@ -31,26 +24,25 @@ class AuthProvider extends ChangeNotifier {
   );
 
   //Firebase Auth object
-  FirebaseAuth _auth;
+  FirebaseAuth? _auth;
 
   //Default status
   Status _status = Status.Uninitialized;
 
   Status get status => _status;
 
-  Stream<AuthUserModel> get user =>
-      _auth.authStateChanges().map(_userFromFirebase);
+  Stream<AuthUserModel?> get user => _auth!.authStateChanges().map(_userFromFirebase);
 
   AuthProvider() {
     //initialise object
     _auth = FirebaseAuth.instance;
 
     //listener for authentication changes such as user sign in and sign out
-    _auth.authStateChanges().listen(onAuthStateChanged);
+    _auth!.authStateChanges().listen(onAuthStateChanged);
   }
 
   //Create user object based on the given FirebaseUser
-  AuthUserModel _userFromFirebase(User user) {
+  AuthUserModel? _userFromFirebase(User? user) {
     if (user == null) {
       return null;
     }
@@ -60,19 +52,18 @@ class AuthProvider extends ChangeNotifier {
         email: user.email ?? "",
         username: user.displayName,
         phoneNumber: user.phoneNumber,
-        avatarUrl: user.photoURL
-    );
+        avatarUrl: user.photoURL);
   }
 
-  Future<AuthUserModel> getAuthUserModel() async {
+  Future<AuthUserModel?> getAuthUserModel() async {
     FirebaseAuth _auth = FirebaseAuth.instance;
-    User firebaseUser = await _auth.currentUser;
+    User? firebaseUser = _auth.currentUser;
 
     return _userFromFirebase(firebaseUser);
   }
 
   //Method to detect live auth changes such as user sign in and sign out
-  Future<void> onAuthStateChanged(User firebaseUser) async {
+  Future<void> onAuthStateChanged(User? firebaseUser) async {
     if (firebaseUser == null) {
       _status = Status.Unauthenticated;
     } else {
@@ -83,13 +74,11 @@ class AuthProvider extends ChangeNotifier {
   }
 
   //Method for new user registration using email and password
-  Future<AuthUserModel> registerWithEmailAndPassword(
-      String email, String password) async {
+  Future<AuthUserModel?> registerWithEmailAndPassword(String email, String password) async {
     try {
       _status = Status.Registering;
       notifyListeners();
-      final UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential result = await _auth!.createUserWithEmailAndPassword(email: email, password: password);
 
       return _userFromFirebase(result.user);
     } catch (e) {
@@ -105,7 +94,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       _status = Status.Authenticating;
       notifyListeners();
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth!.signInWithEmailAndPassword(email: email, password: password);
       return true;
     } catch (e) {
       print("Error on the sign in = " + e.toString());
@@ -121,19 +110,19 @@ class AuthProvider extends ChangeNotifier {
       _status = Status.GoogleAuthenticating;
       notifyListeners();
       // Login via google api
-      GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      UserCredential authResult = await _auth.signInWithCredential(credential);
-      final User user = authResult.user;
+      UserCredential authResult = await _auth!.signInWithCredential(credential);
+      final User? user = authResult.user;
       // Update the firebase's user info.
-      final String uid = user.uid;
-      final String email = user.email;
-      final String displayName = user.displayName;
-      final String photoURL = user.photoURL;
+      final String uid = user!.uid;
+      final String? email = user.email;
+      final String? displayName = user.displayName;
+      final String? photoURL = user.photoURL;
       IAuthUser model = IAuthUser(uid, email, displayName, photoURL);
       await FirebaseHelper.onLoginAfterHook(model);
       return true;
@@ -147,12 +136,12 @@ class AuthProvider extends ChangeNotifier {
 
   //Method to handle password reset email
   Future<void> sendPasswordResetEmail(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
+    await _auth!.sendPasswordResetEmail(email: email);
   }
 
   //Method to handle user signing out
   Future signOut() async {
-    _auth.signOut();
+    _auth!.signOut();
     _googleSignIn.disconnect();
     _status = Status.Unauthenticated;
     notifyListeners();

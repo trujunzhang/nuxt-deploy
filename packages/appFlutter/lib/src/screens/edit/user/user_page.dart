@@ -1,23 +1,22 @@
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ieatta/camera/screens/navigate_helper.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/users/image.dart';
-import 'package:ieatta/src/logic/bloc.dart';
 import 'package:ieatta/src/providers/user_state.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
-import 'package:ieatta/camera/screens/types.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class UserPage extends StatefulWidget {
   final ParseModelUsers loggedUser;
 
-  const UserPage({Key key, @required this.loggedUser}) : super(key: key);
+  const UserPage({Key? key, required this.loggedUser}) : super(key: key);
 
   @override
   _UserPageState createState() => _UserPageState();
@@ -37,17 +36,17 @@ class _UserPageState extends State<UserPage> {
           leading: IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("usersCreateEditAppBarTitleEditTxt")),
+          title: Text(S.of(context).usersCreateEditAppBarTitleEditTxt),
           actions: <Widget>[
             TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.saveAndValidate()) {
+
+                        if (_formKey.currentState!.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
@@ -56,39 +55,36 @@ class _UserPageState extends State<UserPage> {
 
                           String displayName = userState.getUsername();
 
-                          ParseModelUsers nextModel =
-                              ParseModelUsers.updateUserProfile(
+                          ParseModelUsers nextModel = ParseModelUsers.updateUserProfile(
                             model: widget.loggedUser,
                             username: displayName,
                           );
 
                           try {
-                            final firestoreDatabase =
-                                Provider.of<FirestoreDatabase>(context,
-                                    listen: false);
-                            await firestoreDatabase
-                                .updateUser(nextModel); // For Restaurant.
+                            final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+                            await firestoreDatabase.updateUser(nextModel); // For Restaurant.
 
                             // Update Firebase's user's name.
-                            User user = await FirebaseAuth.instance.currentUser;
+                            User? user = FirebaseAuth.instance.currentUser;
 
-                            await user.updateProfile(
-                                displayName: displayName,
-                                photoURL: user.photoURL);
+                            // TODO: DJZHANG(firebase)
+                            await user!.updateDisplayName(displayName);
+                            // await user!.updateProfile(
+                            //     displayName: displayName,
+                            //     photoURL: user.photoURL);
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
                             });
                           }
 
-                          ToastUtils.showToast(AppLocalizations.of(context)
-                              .translate("toastForSaveSuccess"));
+                          Toast.show(S.of(context).toastForSaveSuccess);
                           // Navigate
-                          Navigator.of(context).pop();
+                          AppNavigator.goBack(context);
                         }
+
                       },
-                child: Text(AppLocalizations.of(context)
-                    .translate("editModelAppBarRightSaveTitle")))
+                child: Text(S.of(context).editModelAppBarRightSaveTitle))
           ],
         ),
         body: _buildList(context));
@@ -109,16 +105,12 @@ class _UserPageState extends State<UserPage> {
                 style: TextStyle(fontSize: 14),
               ),
               TextButton(
-                  child: const Text('(Add/Edit)',
-                      style: TextStyle(color: Color(0xff0073bb))),
+                  child: const Text('(Add/Edit)', style: TextStyle(color: Color(0xff0073bb))),
                   onPressed: () async {
-                    final result = await Navigator.of(context).pushNamed(
-                        Routes.app_camera,
-                        arguments: CameraScreenObject(
-                            photoType: PhotoType.User,
-                            relatedId: widget.loggedUser.id));
+                    final Object? result = await PhotoNavigatorHelper.pop(context,
+                        photoType: PhotoType.User, relatedId: widget.loggedUser.id);
                     if (result != null) {
-                      userState.setCoverUrl(result);
+                      userState.setCoverUrl(result as String);
                     }
                   })
             ],
@@ -137,7 +129,8 @@ class _UserPageState extends State<UserPage> {
           child: FocusTraversalGroup(
             child: Form(
               onChanged: () {
-                Form.of(primaryFocus.context).save();
+                // TODO:[2021-8-18] djzhang
+                // Form.of(primaryFocus.context).save();
               },
               child: _buildForm(context),
             ),
@@ -164,11 +157,10 @@ class _UserPageState extends State<UserPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'firstName',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("usersCreateEditFirstNameTxt"),
+                    labelText: S.of(context).usersCreateEditFirstNameTxt,
                   ),
-                  onChanged: (String val) {
-                    userState.setFirstName(val);
+                  onChanged: (String? val) {
+                    userState.setFirstName(val!);
                   },
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -180,11 +172,10 @@ class _UserPageState extends State<UserPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'secondName',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("usersCreateEditLastNameTxt"),
+                    labelText: S.of(context).usersCreateEditLastNameTxt,
                   ),
-                  onChanged: (String val) {
-                    userState.setSecondName(val);
+                  onChanged: (String? val) {
+                    userState.setSecondName(val!);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([

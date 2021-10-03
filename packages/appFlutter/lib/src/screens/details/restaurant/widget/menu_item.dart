@@ -7,7 +7,7 @@ class MenuItem extends StatelessWidget {
   final VoidCallback callback;
   final ParseModelRecipes recipeData;
 
-  const MenuItem({Key key, this.callback, this.recipeData}) : super(key: key);
+  const MenuItem({Key? key, required this.callback, required this.recipeData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,7 @@ class MenuItem extends StatelessWidget {
         children: <Widget>[
           Text(
             recipeData.displayName,
-            style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           SizedBox(
             height: 5.0,
@@ -48,7 +45,8 @@ class MenuItem extends StatelessWidget {
           Row(
             children: <Widget>[
               // Rating star view
-              RatingImage(baseReview: recipeData,
+              RatingImage(
+                baseReview: recipeData,
                 imageWidth: 70,
                 imageHeight: 13,
               ),
@@ -100,10 +98,7 @@ class MenuItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '\$' + recipeData.price,
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.orangeAccent),
+                      style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.orangeAccent),
                     ),
                     // Text("Min order", style: TextStyle(color: Colors.grey))
                   ],

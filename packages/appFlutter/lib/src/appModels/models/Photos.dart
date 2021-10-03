@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
-import 'package:ieatta/core/utils/geohash_utils.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
-import 'package:location/location.dart';
 
 import 'Avatar_user.dart';
 import 'Database.dart';
@@ -23,82 +20,79 @@ class ParseModelPhotos extends AvatarUser {
 
   // Common(3)
   String originalUrl;
-  String thumbnailUrl;
-  String url;
+  String? thumbnailUrl;
 
   // point(4)
   final String photoType;
-  final String restaurantId;
-  final String recipeId;
-  final String userId;
+  final String? restaurantId;
+  final String? recipeId;
+  final String? userId;
 
   // Location(3)
-  final String geoHash;
-  final double latitude;
-  final double longitude;
+  final String? geoHash;
+  final double? latitude;
+  final double? longitude;
 
   // offline(1)
-  final String offlinePath;
+  final String? offlinePath;
 
   // extra(1)
-  String extraNote;
+  String? extraNote;
 
   ParseModelPhotos({
     // Base(5)
-    this.uniqueId,
-    this.creatorId,
-    this.createdAt,
-    this.updatedAt,
-    this.flag,
+    required this.uniqueId,
+    required this.creatorId,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.flag,
     // user(2)
-    this.username,
-    this.avatarUrl,
+    required this.username,
+    required this.avatarUrl,
     // Common
-    this.originalUrl,
-    this.thumbnailUrl,
-    this.url,
+    required this.originalUrl,
+    required this.thumbnailUrl,
     // point(4)
-    this.photoType,
-    this.restaurantId,
-    this.recipeId,
-    this.userId,
+    required this.photoType,
+    required this.restaurantId,
+    required this.recipeId,
+    required this.userId,
     // Location(3)
-    this.geoHash,
-    this.latitude,
-    this.longitude,
+    required this.geoHash,
+    required this.latitude,
+    required this.longitude,
     // offline(1)
-    this.offlinePath,
+    required this.offlinePath,
     // extra(1)
-    this.extraNote,
+    required this.extraNote,
   }) : super(creatorId, username, avatarUrl);
 
   factory ParseModelPhotos.fromJson(Map<String, dynamic> json) {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
     // user(2)
-    var username = json['username'] as String;
-    var avatarUrl = json['avatarUrl'] as String;
+    String username = json['username'];
+    String avatarUrl = json['avatarUrl'];
 
     // extra(1)
-    var extraNote = json['extraNote'] as String;
+    String extraNote = json['extraNote'];
     // Common(3)
-    var originalUrl = json['originalUrl'] as String;
-    var thumbnailUrl = json['thumbnailUrl'] as String;
-    var url = json['url'] as String;
+    String originalUrl = json['originalUrl'];
+    String thumbnailUrl = json['thumbnailUrl'];
 
     // point(4)
-    var photoType = json['photoType'] as String;
-    var restaurantId = json['restaurantId'] as String;
-    var recipeId = json['recipeId'] as String;
-    var userId = json['userId'] as String;
+    String photoType = json['photoType'];
+    String? restaurantId = json['restaurantId'];
+    String? recipeId = json['recipeId'];
+    String? userId = json['userId'];
 
     // Location(3)
-    var geoHash = json['geoHash'] as String;
-    var latitude = json['latitude'] as double;
-    var longitude = json['longitude'] as double;
+    String? geoHash = json['geoHash'];
+    double? latitude = json['latitude'];
+    double? longitude = json['longitude'];
 
     // offline(1)
-    var offlinePath = json['offlinePath'] as String;
+    String? offlinePath = json['offlinePath'];
 
     return ParseModelPhotos(
       // Base(5)
@@ -117,7 +111,6 @@ class ParseModelPhotos extends AvatarUser {
       // Common
       originalUrl: originalUrl,
       thumbnailUrl: thumbnailUrl,
-      url: url,
       // point(4)
       photoType: photoType,
       restaurantId: restaurantId,
@@ -144,7 +137,6 @@ class ParseModelPhotos extends AvatarUser {
       // Common(3)
       "thumbnailUrl": thumbnailUrl,
       "originalUrl": originalUrl,
-      "url": url,
       // point(4)
       "photoType": photoType,
       "restaurantId": restaurantId,
@@ -162,21 +154,21 @@ class ParseModelPhotos extends AvatarUser {
   }
 
   static ParseModelPhotos emptyPhoto({
-    @required AuthUserModel authUserModel,
-    @required PhotoType photoType,
-    @required String relatedId,
-    @required String filePath,
+    required AuthUserModel? authUserModel,
+    required PhotoType photoType,
+    required String relatedId,
+    required String filePath,
   }) {
     return ParseModelPhotos(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
-      creatorId: authUserModel.uid,
+      creatorId: authUserModel!.uid,
       createdAt: getDateStringForCreatedOrUpdatedDate(),
       updatedAt: getDateStringForCreatedOrUpdatedDate(),
       flag: '1',
       // user(2)
-      username: authUserModel.username,
-      avatarUrl: authUserModel.avatarUrl,
+      username: authUserModel.username!,
+      avatarUrl: authUserModel.avatarUrl!,
       // Location(3)
       geoHash: '',
       latitude: 0,
@@ -184,13 +176,9 @@ class ParseModelPhotos extends AvatarUser {
       // Common(3)
       originalUrl: '',
       thumbnailUrl: '',
-      url: '',
       // point(4)
       photoType: photoTypeToString(photoType),
-      restaurantId:
-          (photoType == PhotoType.Restaurant || photoType == PhotoType.Waiter)
-              ? relatedId
-              : "",
+      restaurantId: (photoType == PhotoType.Restaurant || photoType == PhotoType.Waiter) ? relatedId : "",
       recipeId: photoType == PhotoType.Recipe ? relatedId : "",
       userId: photoType == PhotoType.User ? relatedId : "",
       // offline(1)
@@ -201,15 +189,14 @@ class ParseModelPhotos extends AvatarUser {
   }
 
   static ParseModelPhotos updateFromCloudinary({
-    @required ParseModelPhotos model,
-    @required String originalUrl,
+    required ParseModelPhotos model,
+    required String originalUrl,
   }) {
     model.originalUrl = originalUrl;
     return model;
   }
 
-  static ParseModelPhotos updatePhoto(
-      {@required ParseModelPhotos model, @required String nextExtraNote}) {
+  static ParseModelPhotos updatePhoto({required ParseModelPhotos model, required String nextExtraNote}) {
     model.extraNote = nextExtraNote;
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 

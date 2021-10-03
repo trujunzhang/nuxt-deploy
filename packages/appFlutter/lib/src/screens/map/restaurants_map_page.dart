@@ -7,7 +7,7 @@ import 'package:ieatta/src/components/navigation/top_back_arrow_view.dart';
 import 'package:ieatta/src/screens/restaurants/body/hotel_list_view.dart';
 
 class RestaurantsMapPage extends StatefulWidget {
-  RestaurantsMapPage({Key key}) : super(key: key);
+  RestaurantsMapPage({Key? key}) : super(key: key);
 
   @override
   _RestaurantsMapPageState createState() => _RestaurantsMapPageState();
@@ -16,13 +16,15 @@ class RestaurantsMapPage extends StatefulWidget {
 class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
   bool showRestaurantThumbnail = false;
   int selectedIndex = 0;
-  PageController _pageController;
+  late PageController _pageController;
   List<ParseModelRestaurants> restaurantList = [];
 
   // Map
   final double mapZoom = 17;
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
-  static CameraPosition kRestaurantCamera;
+
+  // TODO:[2021-8-18] djzhang
+  static CameraPosition kRestaurantCamera = CameraPosition(target: LatLng(0.0, 0.0));
   Completer<GoogleMapController> _controller = Completer();
 
   @override
@@ -32,11 +34,9 @@ class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
     _pageController = PageController(initialPage: selectedIndex);
   }
 
-  Map<MarkerId, Marker> resetMarkers(
-      LatLng center, ParseModelRestaurants restaurant) {
+  Map<MarkerId, Marker> resetMarkers(LatLng center, ParseModelRestaurants restaurant) {
     Map<MarkerId, Marker> _markers = <MarkerId, Marker>{};
-    MarkerId markerId =
-        MarkerId(center.latitude.toString() + center.longitude.toString());
+    MarkerId markerId = MarkerId(center.latitude.toString() + center.longitude.toString());
     final marker = Marker(
       markerId: markerId,
       position: center,
@@ -56,15 +56,13 @@ class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final List<ParseModelRestaurants> _restaurantList =
-        ModalRoute.of(context).settings.arguments;
+    final Object? _restaurantList = ModalRoute.of(context)!.settings.arguments;
 
     assert(_restaurantList != null, 'Empty restaurant list!');
 
-    ParseModelRestaurants first = _restaurantList[0];
+    ParseModelRestaurants first = (_restaurantList as List<ParseModelRestaurants>)[0];
     LatLng latLng = LatLng(first.latitude, first.longitude);
-    CameraPosition _firstPosition =
-        CameraPosition(target: latLng, zoom: mapZoom);
+    CameraPosition _firstPosition = CameraPosition(target: latLng, zoom: mapZoom);
     Map<MarkerId, Marker> _markers = resetMarkers(latLng, first);
     setState(() {
       restaurantList = _restaurantList;
@@ -77,8 +75,7 @@ class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
     final GoogleMapController controller = await _controller.future;
     ParseModelRestaurants first = restaurantList[index];
     LatLng latLng = LatLng(first.latitude, first.longitude);
-    CameraPosition _nextPosition =
-        CameraPosition(target: latLng, zoom: mapZoom);
+    CameraPosition _nextPosition = CameraPosition(target: latLng, zoom: mapZoom);
     controller.animateCamera(CameraUpdate.newCameraPosition(_nextPosition));
     Map<MarkerId, Marker> _markers = resetMarkers(latLng, first);
     setState(() {
@@ -102,8 +99,6 @@ class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: showRestaurantThumbnail ? 96 + height : 96,
-//                height: showRestaurantThumbnail ? 270 : 96,
-//                height: showRestaurantThumbnail ? 290 : 98,
                 child: _buildPhotosPageView(context),
               ),
             ),
@@ -132,8 +127,7 @@ class _RestaurantsMapPageState extends State<RestaurantsMapPage> {
       itemCount: restaurantList.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding:
-              const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
+          padding: const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
           child: HotelListView(
             expandIconCallback: (iconExpand) {
               setState(() {

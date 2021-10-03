@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +13,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -66,17 +65,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _emailController,
                   style: Theme.of(context).textTheme.bodyText2,
-                  validator: (value) => value.isEmpty
-                      ? AppLocalizations.of(context)
-                          .translate("loginTxtErrorEmail")
-                      : null,
+                  validator: (value) => value!.isEmpty ? S.of(context).loginTxtErrorEmail : null,
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.email,
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      labelText: AppLocalizations.of(context)
-                          .translate("loginTxtEmail"),
+                      labelText: S.of(context).loginTxtEmail,
                       border: OutlineInputBorder()),
                 ),
                 Padding(
@@ -86,45 +81,35 @@ class _SignInScreenState extends State<SignInScreen> {
                     maxLength: 12,
                     controller: _passwordController,
                     style: Theme.of(context).textTheme.bodyText2,
-                    validator: (value) => value.length < 6
-                        ? AppLocalizations.of(context)
-                            .translate("loginTxtErrorPassword")
-                        : null,
+                    validator: (value) => value!.length < 6 ? S.of(context).loginTxtErrorPassword : null,
                     decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock,
                           color: Theme.of(context).iconTheme.color,
                         ),
-                        labelText: AppLocalizations.of(context)
-                            .translate("loginTxtPassword"),
+                        labelText: S.of(context).loginTxtPassword,
                         border: OutlineInputBorder()),
                   ),
                 ),
-                (authProvider.status == Status.Authenticating ||
-                        authProvider.status == Status.GoogleAuthenticating)
+                (authProvider.status == Status.Authenticating || authProvider.status == Status.GoogleAuthenticating)
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
                     : RaisedButton(
                         child: Text(
-                          AppLocalizations.of(context)
-                              .translate("loginBtnSignIn"),
+                          S.of(context).loginBtnSignIn,
                           style: Theme.of(context).textTheme.button,
                         ),
                         onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            FocusScope.of(context)
-                                .unfocus(); //to hide the keyboard - if any
+                          if (_formKey.currentState!.validate()) {
+                            FocusScope.of(context).unfocus(); //to hide the keyboard - if any
 
-                            bool status =
-                                await authProvider.signInWithEmailAndPassword(
-                                    _emailController.text,
-                                    _passwordController.text);
+                            bool status = await authProvider.signInWithEmailAndPassword(
+                                _emailController.text, _passwordController.text);
 
                             if (!status) {
-                              _scaffoldKey.currentState.showSnackBar(SnackBar(
-                                content: Text(AppLocalizations.of(context)
-                                    .translate("loginTxtErrorSignIn")),
+                              _scaffoldKey.currentState!.showSnackBar(SnackBar(
+                                content: Text(S.of(context).loginTxtErrorSignIn),
                               ));
                             }
                           }
@@ -133,8 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   isSignIn: true,
                   scaffoldKey: _scaffoldKey,
                 ),
-                (authProvider.status == Status.Authenticating ||
-                        authProvider.status == Status.GoogleAuthenticating)
+                (authProvider.status == Status.Authenticating || authProvider.status == Status.GoogleAuthenticating)
                     ? Center(
                         child: null,
                       )
@@ -142,27 +126,24 @@ class _SignInScreenState extends State<SignInScreen> {
                         padding: const EdgeInsets.only(top: 48),
                         child: Center(
                             child: Text(
-                          AppLocalizations.of(context)
-                              .translate("loginTxtDontHaveAccount"),
+                          S.of(context).loginTxtDontHaveAccount,
                           style: Theme.of(context).textTheme.button,
                         )),
                       ),
-                (authProvider.status == Status.Authenticating ||
-                        authProvider.status == Status.GoogleAuthenticating)
+                (authProvider.status == Status.Authenticating || authProvider.status == Status.GoogleAuthenticating)
                     ? Center(
                         child: null,
                       )
                     : TextButton(
                         child: Text(
-                          AppLocalizations.of(context)
-                              .translate("loginBtnLinkCreateAccount"),
+                          S.of(context).loginBtnLinkCreateAccount,
                           style: TextStyle(
                             color: Theme.of(context).iconTheme.color,
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(Routes.register);
+                          // Navigator.of(context)
+                          //     .pushReplacementNamed(Routes.register);
                         },
                       ),
               ],

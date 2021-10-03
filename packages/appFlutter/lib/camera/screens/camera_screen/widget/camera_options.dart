@@ -1,26 +1,26 @@
+import 'package:camerawesome/models/flashmodes.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/camera/screens/camera_screen/widget/thumbnail_widget.dart';
 import 'package:ieatta/camera/widgets/switch_icon.dart';
-import 'package:camerawesome/models/flashmodes.dart';
 
 import 'camera_button.dart';
 
 class CameraOptions extends StatefulWidget {
   CameraOptions(
-      {Key key,
-      @required this.imagePath,
-      @required this.takePicture,
-      @required this.switchCamera,
-      @required this.afterTakeHook,
-      @required this.onFlashTap,
-      @required this.switchFlash})
+      {Key? key,
+      required this.imagePath,
+      required this.takePicture,
+      required this.switchCamera,
+      required this.afterTakeHook,
+      required this.onFlashTap,
+      required this.switchFlash})
       : super(key: key);
 
   final Function takePicture;
-  final String imagePath;
+  final String? imagePath;
   final Function switchCamera;
   final Function afterTakeHook;
-  final Function onFlashTap;
+  final Function() onFlashTap;
   final ValueNotifier<CameraFlashes> switchFlash;
 
   @override

@@ -1,19 +1,15 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/ui/setting/setting_screen.dart';
-import 'package:ieatta/debug/multiprovider/multi_provider_screen.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
 import 'package:ieatta/src/layout/custom_drawer/drawer_user_controller.dart';
-import 'package:ieatta/src/layout/sidebar/feedback_screen.dart';
-import 'package:ieatta/src/layout/sidebar/help_screen.dart';
-import 'package:ieatta/src/layout/sidebar/invite_friend_screen.dart';
-import 'package:ieatta/src/screens/edit/user/edit_user_screen.dart';
-import 'package:ieatta/src/screens/restaurants/app_home_screen.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
+import 'package:ieatta/src/screens/restaurants/provider_screen.dart';
 import 'package:ieatta/src/screens/user_profile/profile.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import 'custom_drawer/draw_model.dart';
-import 'sidebar/about_screen.dart';
+import 'sidebar_views/help_screen.dart';
+import 'sidebar_views/invite_friend_screen.dart';
+import 'sidebar_views/about_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   @override
@@ -21,8 +17,8 @@ class NavigationHomeScreen extends StatefulWidget {
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
-  Widget screenView;
-  DrawerIndex drawerIndex;
+  late Widget screenView;
+  late DrawerIndex drawerIndex;
 
   @override
   void initState() {
@@ -31,6 +27,10 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
     // screenView = MultiProviderScreen(); // test
     // screenView = Profile(); // test
     // screenView = EditUserScreen(); // test
+    // screenView = HelpScreen(); // test
+    // screenView = SettingScreen(); // test
+    // screenView = InviteFriend(); // test
+    // screenView = AboutScreen(); // test
 
     super.initState();
   }
@@ -46,7 +46,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
           backgroundColor: AppTheme.nearlyWhite,
           body: DrawerUserController(
             screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
+            drawerWidth: ScreenUtil.getInstance().screenWidth * 0.75,
             onDrawerCall: (DrawerIndex drawerIndexData) {
               changeIndex(drawerIndexData);
               //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)

@@ -5,8 +5,10 @@ class AppTheme {
 
   static const Color notWhite = Color(0xFFEDF0F2);
   static const Color nearlyWhite = Color(0xFFFEFEFE);
+
   // static const Color nearlyWhite = Colors.orange;
   static const Color white = Color(0xFFFFFFFF);
+
   // static const Color white = Colors.blue;
   static const Color nearlyBlack = Color(0xFF213333);
   static const Color grey = Color(0xFF3A5160);
@@ -22,12 +24,12 @@ class AppTheme {
   static const String fontName = 'WorkSans';
 
   static const TextTheme textTheme = TextTheme(
-    display1: display1,
-    headline: headline,
-    title: title,
-    subtitle: subtitle,
-    body2: body2,
-    body1: body1,
+    // display1: display1,
+    // headline: headline,
+    // title: title,
+    // subtitle: subtitle,
+    // body2: body2,
+    // body1: body1,
     caption: caption,
   );
 

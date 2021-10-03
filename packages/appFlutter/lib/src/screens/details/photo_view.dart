@@ -6,7 +6,7 @@ class PhotoView extends StatelessWidget {
   final VoidCallback callback;
   final ParseModelPhotos photoData;
 
-  const PhotoView({Key key, this.callback, this.photoData}) : super(key: key);
+  const PhotoView({Key? key, required this.callback, required this.photoData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

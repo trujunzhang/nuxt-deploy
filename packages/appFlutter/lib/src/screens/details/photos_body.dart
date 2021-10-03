@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/camera/screens/navigate_helper.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/fb_photos_pageview.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 import 'photo_view.dart';
 
@@ -12,11 +12,7 @@ class PhotosBody extends StatelessWidget {
   final PhotoType photoType;
   final String relatedId;
 
-  const PhotosBody(
-      {Key key,
-      @required this.photosList,
-      @required this.photoType,
-      @required this.relatedId})
+  const PhotosBody({Key? key, required this.photosList, required this.photoType, required this.relatedId})
       : super(key: key);
 
   @override
@@ -34,9 +30,8 @@ class PhotosBody extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return PhotoView(
           callback: () {
-            Navigator.of(context).pushNamed(Routes.online_photos_pageview,
-                arguments: FBPhotosPageViewObject(
-                    photos: photosList, selectedIndex: index));
+            AppNavigator.popFullScreen(
+                context, FBPhotosPageView(), FBPhotosPageViewObject(photos: photosList, selectedIndex: index));
           },
           photoData: photosList[index],
         );
@@ -49,9 +44,7 @@ class PhotosBody extends StatelessWidget {
         child: Center(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.app_camera,
-              arguments: CameraScreenObject(
-                  photoType: photoType, relatedId: relatedId));
+          PhotoNavigatorHelper.pop(context, photoType: photoType, relatedId: relatedId);
         },
         child: Icon(
           Icons.add_a_photo,

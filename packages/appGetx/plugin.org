@@ -1,0 +1,28 @@
+* intl
+
+  https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
+** intl_utils
+
+  https://pub.dev/packages/intl_utils
+
+* flutter_auth_buttons
+
+  https://github.com/dmjones/flutter_auth_buttons
+
+ 
+* another_flushbar:
+  
+  https://github.com/cmdrootaccess/another-flushbar
+
+
+* simple_connection_checker: ^0.2.1
+  
+  https://pub.dev/packages/simple_connection_checker
+
+* location
+
+  https://pub.dev/packages/location
+
+* contained_tab_bar_view
+  https://pub.dev/packages/contained_tab_bar_view

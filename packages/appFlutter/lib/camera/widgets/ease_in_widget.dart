@@ -4,17 +4,15 @@ class EaseInWidget extends StatefulWidget {
   final Widget child;
   final Function onTap;
 
-  const EaseInWidget({Key key, @required this.child, @required this.onTap})
-      : super(key: key);
+  const EaseInWidget({Key? key, required this.child, required this.onTap}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _EaseInWidgetState();
 }
 
-class _EaseInWidgetState extends State<EaseInWidget>
-    with TickerProviderStateMixin<EaseInWidget> {
-  AnimationController controller;
-  Animation<double> easeInAnimation;
+class _EaseInWidgetState extends State<EaseInWidget> with TickerProviderStateMixin<EaseInWidget> {
+  late AnimationController controller;
+  late Animation<double> easeInAnimation;
 
   @override
   void initState() {

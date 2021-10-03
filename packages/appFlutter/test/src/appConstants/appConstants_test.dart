@@ -1,7 +1,6 @@
 // Import the test package and Counter class
 import 'package:ieatta/src/appConstants/Types.dart';
 import 'package:ieatta/src/appConstants/appConstants.dart';
-import 'package:ieatta/src/vendors/flutterEnumsToString/enum_to_string.dart';
 import 'package:test_api/test_api.dart';
 
 void main() {

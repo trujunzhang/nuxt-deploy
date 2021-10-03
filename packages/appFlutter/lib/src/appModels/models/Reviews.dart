@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
@@ -25,29 +24,29 @@ class ParseModelReviews extends AvatarUser {
 
   // point(4)
   final String reviewType;
-  final String restaurantId;
-  final String eventId;
-  final String recipeId;
+  final String? restaurantId;
+  final String? eventId;
+  final String? recipeId;
 
   ParseModelReviews(
       {
       // Base(5)
-      this.uniqueId,
-      this.creatorId,
-      this.createdAt,
-      this.updatedAt,
-      this.flag,
+      required this.uniqueId,
+      required this.creatorId,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.flag,
       // Common(2)
-      this.rate,
-      this.body,
+      required this.rate,
+      required this.body,
       // user(2)
-      this.username,
-      this.avatarUrl,
+      required this.username,
+      required this.avatarUrl,
       // point(4)
-      this.reviewType,
-      this.restaurantId,
-      this.eventId,
-      this.recipeId})
+      required this.reviewType,
+      required this.restaurantId,
+      required this.eventId,
+      required this.recipeId})
       : super(creatorId, username, avatarUrl);
 
   factory ParseModelReviews.fromJson(Map<String, dynamic> json) {
@@ -64,17 +63,17 @@ class ParseModelReviews extends AvatarUser {
       rate = rate as double;
     }
 
-    var body = json['body'] as String;
+    String body = json['body'];
 
     // user(2)
-    var username = json['username'] as String;
-    var avatarUrl = json['avatarUrl'] as String;
+    String username = json['username'];
+    String avatarUrl = json['avatarUrl'];
 
     // point(4)
-    var reviewType = json['reviewType'] as String;
-    var restaurantId = json['restaurantId'] as String;
-    var eventId = json['eventId'] as String;
-    var recipeId = json['recipeId'] as String;
+    String reviewType = json['reviewType'];
+    String? restaurantId = json['restaurantId'];
+    String? eventId = json['eventId'];
+    String? recipeId = json['recipeId'];
 
     return ParseModelReviews(
       // Base(5)
@@ -98,13 +97,11 @@ class ParseModelReviews extends AvatarUser {
   }
 
   static emptyReview(
-      {@required AuthUserModel authUserModel,
-      @required ReviewType reviewType,
-      @required String relatedId}) {
+      {required AuthUserModel? authUserModel, required ReviewType reviewType, required String relatedId}) {
     return ParseModelReviews(
       // Base(5)
       uniqueId: documentIdFromCurrentDate(),
-      creatorId: authUserModel.uid,
+      creatorId: authUserModel!.uid,
       createdAt: getDateStringForCreatedOrUpdatedDate(),
       updatedAt: getDateStringForCreatedOrUpdatedDate(),
       flag: '1',
@@ -112,8 +109,8 @@ class ParseModelReviews extends AvatarUser {
       rate: 0,
       body: '',
       // user(2)
-      username: authUserModel.username,
-      avatarUrl: authUserModel.avatarUrl,
+      username: authUserModel.username!,
+      avatarUrl: authUserModel.avatarUrl!,
       // point(4)
       reviewType: reviewTypeToString(reviewType),
       restaurantId: reviewType == ReviewType.Restaurant ? relatedId : "",
@@ -122,10 +119,9 @@ class ParseModelReviews extends AvatarUser {
     );
   }
 
-  static ParseModelReviews updateReview(
-      {ParseModelReviews model, double nextRate, String nextExtraNote}) {
-    model.rate = nextRate;
-    model.body = nextExtraNote;
+  static ParseModelReviews updateReview({ParseModelReviews? model, double? nextRate, String? nextExtraNote}) {
+    model!.rate = nextRate!;
+    model.body = nextExtraNote!;
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
 
     return model;
@@ -133,13 +129,13 @@ class ParseModelReviews extends AvatarUser {
 
   static String getRelatedId(ParseModelReviews mode) {
     if (mode.reviewType == reviewTypeToString(ReviewType.Restaurant)) {
-      return mode.restaurantId;
+      return mode.restaurantId!;
     }
     if (mode.reviewType == reviewTypeToString(ReviewType.Event)) {
-      return mode.eventId;
+      return mode.eventId!;
     }
     if (mode.reviewType == reviewTypeToString(ReviewType.Recipe)) {
-      return mode.recipeId;
+      return mode.recipeId!;
     }
     return '';
   }

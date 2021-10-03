@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -11,15 +14,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a8d225e-29a4-4125-b4ff-3de09b03f7c8" name="Default Changelist" comment="xxx">
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/event/select_person/select_person_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/event/select_person/select_person_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/event/select_waiter/select_waiter_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/event/select_waiter/select_waiter_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/select_recipe/select_recipe_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/details/peopleInEvent/select_recipe/select_recipe_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appGetx/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../appGetx/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -30,6 +32,17 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/lib/app/auth_widget_builder.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/camera/screens/camera_screen/widget/camera_uploading_panel.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/app/app_localizations.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/camera/screens/camera_screen/widget/camera_options.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/main.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pubspec.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/core/services/sentry_service.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/third/GeoFlutterFire/lib/src/point.dart" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/third/GeoFlutterFire/lib/src/geoflutterfire.dart" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1hMaoRiXAUybtyjLBKrsv0GrG4Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -45,11 +58,35 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="settings.editor.selected.configurable" value="dart.settings" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Dart" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/util" />
+      <recent name="$PROJECT_DIR$/lib/src/screens/user_profile" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests in list_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testFile" value="$PROJECT_DIR$/test/flutter/list_test.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter Test.tests in list_test.dart" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -410,6 +447,35 @@
       <workItem from="1618228635306" duration="294000" />
       <workItem from="1618230190645" duration="182000" />
       <workItem from="1618231104918" duration="51000" />
+      <workItem from="1626243725339" duration="297000" />
+      <workItem from="1626245685607" duration="274000" />
+      <workItem from="1626245988373" duration="326000" />
+      <workItem from="1626259016290" duration="42000" />
+      <workItem from="1626259162039" duration="52000" />
+      <workItem from="1628142045704" duration="949000" />
+      <workItem from="1628145439655" duration="497000" />
+      <workItem from="1628157932345" duration="147000" />
+      <workItem from="1628591661053" duration="1459000" />
+      <workItem from="1629198623743" duration="147000" />
+      <workItem from="1629247458654" duration="252000" />
+      <workItem from="1629274289062" duration="338000" />
+      <workItem from="1629275046015" duration="2306000" />
+      <workItem from="1629278074693" duration="2286000" />
+      <workItem from="1629282291256" duration="2129000" />
+      <workItem from="1629285117633" duration="669000" />
+      <workItem from="1629286345991" duration="1434000" />
+      <workItem from="1629287852104" duration="120000" />
+      <workItem from="1629288051788" duration="637000" />
+      <workItem from="1629289995316" duration="11000" />
+      <workItem from="1629290104684" duration="473000" />
+      <workItem from="1629290621846" duration="260000" />
+      <workItem from="1629290922845" duration="333000" />
+      <workItem from="1629340934038" duration="72000" />
+      <workItem from="1629341170773" duration="719000" />
+      <workItem from="1629347033804" duration="359000" />
+      <workItem from="1629354673787" duration="96000" />
+      <workItem from="1629354815728" duration="767000" />
+      <workItem from="1629355630699" duration="243000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1599895311258</created>
@@ -530,13 +596,84 @@
       <option name="project" value="LOCAL" />
       <updated>1603086638479</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="xxx">
+      <created>1629374830809</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1629374830809</updated>
+    </task>
+    <task id="LOCAL-00019" summary="xxx">
+      <created>1629374881913</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1629374881913</updated>
+    </task>
+    <task id="LOCAL-00020" summary="xxx">
+      <created>1629378227624</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1629378227624</updated>
+    </task>
+    <task id="LOCAL-00021" summary="xxx">
+      <created>1629378787436</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1629378787436</updated>
+    </task>
+    <task id="LOCAL-00022" summary="xxx">
+      <created>1629378983035</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1629378983035</updated>
+    </task>
+    <task id="LOCAL-00023" summary="xxx">
+      <created>1629378987297</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1629378987297</updated>
+    </task>
+    <task id="LOCAL-00024" summary="xxx">
+      <created>1629379409290</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1629379409290</updated>
+    </task>
+    <task id="LOCAL-00025" summary="xxx">
+      <created>1629379859129</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1629379859130</updated>
+    </task>
+    <task id="LOCAL-00026" summary="xxx">
+      <created>1629423855823</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1629423855823</updated>
+    </task>
+    <task id="LOCAL-00027" summary="xxx">
+      <created>1629425771798</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1629425771798</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.org" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.gradle" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -557,17 +694,6 @@
     </ignored-roots>
     <MESSAGE value="xxx" />
     <option name="LAST_COMMIT_MESSAGE" value="xxx" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/src/appModels/models/Events.dart</url>
-          <line>167</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

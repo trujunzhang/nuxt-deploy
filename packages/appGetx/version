@@ -1,0 +1,4 @@
+[remote "origin"]
+	url = https://github.com/Addimohammedsaid/flutterGetFire
+	fetch = +refs/heads/*:refs/remotes/origin/*
+

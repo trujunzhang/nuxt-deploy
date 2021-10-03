@@ -4,20 +4,17 @@ import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 import 'package:ieatta/src/components/avatar_widget.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
+import 'package:ieatta/util/app_navigator.dart';
 import 'package:provider/provider.dart';
 
 class TopBaseUserView extends StatelessWidget {
   const TopBaseUserView(
-      {Key key,
-      @required this.user,
-      @required this.selectedIndex,
-      @required this.totalCount,
-      this.onEditPress})
+      {Key? key, required this.user, required this.selectedIndex, required this.totalCount, this.onEditPress})
       : super(key: key);
   final AvatarUser user;
   final int selectedIndex;
   final int totalCount;
-  final Function onEditPress;
+  final Function? onEditPress;
 
   Widget _buildTitle(BuildContext context) {
     return Row(
@@ -26,14 +23,14 @@ class TopBaseUserView extends StatelessWidget {
             icon: Icon(getArrowBackIcon()),
             color: Colors.white,
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             }),
         AvatarWidget(
           user: user,
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
         ),
         Text(
-          user.username,
+          user.username!,
           style: TextStyle(color: Colors.white),
         )
       ],
@@ -59,10 +56,10 @@ class TopBaseUserView extends StatelessWidget {
   Widget _buildRightEditBtn(BuildContext context) {
     final authService = Provider.of<AuthProvider>(context, listen: false);
 
-    return StreamBuilder<AuthUserModel>(
+    return StreamBuilder<AuthUserModel?>(
         stream: authService.user,
-        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
-          final AuthUserModel loggedUser = snapshot.data;
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel?> snapshot) {
+          final AuthUserModel? loggedUser = snapshot.data;
 
           if (loggedUser == null) {
             return Container();
@@ -79,11 +76,13 @@ class TopBaseUserView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                    onTap: onEditPress,
+                    onTap: () {
+                      // TODO:[2021-8-18] djzhang
+                      onEditPress!();
+                    },
                     child: Text(
                       "edit",
-                      style:
-                          TextStyle(color: Colors.orangeAccent, fontSize: 18),
+                      style: TextStyle(color: Colors.orangeAccent, fontSize: 18),
                     ),
                   )
                 ],
@@ -101,11 +100,7 @@ class TopBaseUserView extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.only(top: 40.0),
             child: Stack(
-              children: [
-                _buildTitle(context),
-                _buildPageIndex(),
-                if (onEditPress != null) _buildRightEditBtn(context)
-              ],
+              children: [_buildTitle(context), _buildPageIndex(), if (onEditPress != null) _buildRightEditBtn(context)],
             )));
   }
 }

@@ -6,7 +6,7 @@ class RecipeState with ChangeNotifier {
   String coverUrl;
   final String restaurantId;
 
-  RecipeState({this.restaurantId, this.displayName, this.price, this.coverUrl});
+  RecipeState({required this.restaurantId, required this.displayName, required this.price, this.coverUrl = ''});
 
   String getDisplayName() {
     return displayName;

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_screen.dart';
+import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_provider.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 import 'waiter_item.dart';
 
@@ -10,11 +13,7 @@ class WaiterBody extends StatelessWidget {
   final List<ParseModelPhotos> waitersInEventList;
   final ParseModelEvents event;
 
-  const WaiterBody(
-      {Key key,
-      @required this.waitersDict,
-      @required this.event,
-      @required this.waitersInEventList})
+  const WaiterBody({Key? key, required this.waitersDict, required this.event, required this.waitersInEventList})
       : super(key: key);
 
   @override
@@ -34,7 +33,7 @@ class WaiterBody extends StatelessWidget {
         return WaiterItem(
           waiterIndex: index,
           waitersInEventList: waitersInEventList,
-          waiterData: waitersDict[waiterId],
+          waiterData: waitersDict[waiterId]!,
           event: event,
         );
       },
@@ -42,20 +41,17 @@ class WaiterBody extends StatelessWidget {
   }
 
   Widget buildEmptyWaiters(BuildContext context) {
+    Map<String, ParseModelPhotos> waitersDict = FilterModels.instance.getWaitersDict(context, event.restaurantId);
     return Card(
         child: Center(
       child: InkWell(
         onTap: () {
-          Navigator.push<dynamic>(
+          List<String> unselectedWaiterIds =
+              FilterUtils.instance.getUnselectedWaiterIds(List.from(waitersDict.keys), event);
+          AppNavigator.popFullScreen(
             context,
-            MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) => SelectWaiterScreen(),
-                settings: RouteSettings(
-                  arguments: SelectWaiterScreenObject(
-                    event: event,
-                  ),
-                ),
-                fullscreenDialog: true),
+            SelectWaiterProvider(),
+            SelectWaiterScreenObject(event: event, unselectedWaiterIds: unselectedWaiterIds),
           );
         },
         child: Icon(

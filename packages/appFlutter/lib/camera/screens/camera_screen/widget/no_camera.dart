@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NoCamera extends StatefulWidget {
-  NoCamera({Key key}) : super(key: key);
+  NoCamera({Key? key}) : super(key: key);
 
   @override
   _NoCameraState createState() => _NoCameraState();

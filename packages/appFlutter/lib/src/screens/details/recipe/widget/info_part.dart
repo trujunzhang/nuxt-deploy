@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/widgets/rating_image.dart';
-import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
-import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
-import 'package:ieatta/src/screens/reviews/list/reviews_list_screen.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelRecipes recipe;
 
-  const InfoPart({Key key, @required this.recipe}) : super(key: key);
+  const InfoPart({Key? key, required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,8 @@ class InfoPart extends StatelessWidget {
         SizedBox(height: 4),
         TextButton.icon(
           onPressed: () {
-            Navigator.of(context).pushNamed(Routes.create_edit_recipe,
-                arguments: CreateEditRecipeScreenObject(
-                    restaurantId: recipe.restaurantId, recipeModel: recipe));
+            NavigatorUtils.push(context,
+                '${EditRouter.editRecipePage}?${ParamsHelper.ID}=${recipe.uniqueId}&${ParamsHelper.RESTAURANT_ID}=${recipe.restaurantId}');
           },
           icon: Icon(Icons.edit),
           label: Text(
@@ -59,10 +57,7 @@ class InfoPart extends StatelessWidget {
         Center(
           child: Text(
             '\$' + recipe.price,
-            style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.6)),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.6)),
           ),
         ),
         SizedBox(height: 4),
@@ -84,10 +79,8 @@ class InfoPart extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(Routes.create_edit_review,
-                  arguments: CreateEditReviewScreenObject(
-                      reviewType: ReviewType.Recipe,
-                      relatedId: recipe.uniqueId));
+              NavigatorUtils.push(
+                  context, ParamsHelper.getNewReviewPath(reviewType: ReviewType.Recipe, relatedId: recipe.uniqueId));
             },
             icon: const Icon(
               Icons.create,
@@ -101,10 +94,8 @@ class InfoPart extends StatelessWidget {
           const VerticalDivider(width: 8.0),
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(Routes.reviews_list,
-                  arguments: ReviewsListObject(
-                      reviewType: ReviewType.Recipe,
-                      relatedId: recipe.uniqueId));
+              NavigatorUtils.push(
+                  context, ParamsHelper.getReviewListPath(reviewType: ReviewType.Recipe, relatedId: recipe.uniqueId));
             },
             icon: const Icon(
               Icons.card_membership,

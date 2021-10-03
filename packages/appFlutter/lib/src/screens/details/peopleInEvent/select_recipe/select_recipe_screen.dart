@@ -1,64 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
-import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/reccipes/image.dart';
-import 'package:ieatta/src/screens/edit/recipe/recipe_provider_screen.dart';
+import 'package:ieatta/src/providers/select_state.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
+import 'package:ieatta/util/flushbar_utils.dart';
 import 'package:provider/provider.dart';
-import 'package:another_flushbar/flushbar.dart';
 
 import 'no_result.dart';
+import 'select_recipe_provider.dart';
 
-class SelectRecipeScreenObject {
-  final ParseModelPeopleInEvent peopleInEvent;
+class SelectRecipeScreen extends StatelessWidget {
+  SelectRecipeScreen({Key? key, required this.screenObject}) : super(key: key);
 
-  SelectRecipeScreenObject({
-    @required this.peopleInEvent,
-  });
-}
-
-class SelectRecipeScreen extends StatefulWidget {
-  SelectRecipeScreen({Key key}) : super(key: key);
-
-  @override
-  _SelectRecipeScreenState createState() => _SelectRecipeScreenState();
-}
-
-class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
-  // Model
-  SelectRecipeScreenObject screenObject;
-  bool isSaving = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final SelectRecipeScreenObject _screenObject =
-        ModalRoute.of(context).settings.arguments;
-    setState(() {
-      screenObject = _screenObject;
-    });
-  }
+  final SelectRecipeScreenObject screenObject;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)
-              .translate("peopleInEventSelectRecipeTitleTxt")),
+          title: Text(S.of(context).peopleInEventSelectRecipeTitleTxt),
           actions: [
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                     onTap: () {
-                      String restaurantId =
-                          screenObject.peopleInEvent.restaurantId;
-                      Navigator.of(context).pushNamed(Routes.create_edit_recipe,
-                          arguments: CreateEditRecipeScreenObject(
-                              restaurantId: restaurantId));
+                      String restaurantId = screenObject.peopleInEvent.restaurantId;
+                      NavigatorUtils.push(
+                          context, '${EditRouter.newRecipePage}?${ParamsHelper.RESTAURANT_ID}=$restaurantId');
                     },
                     child: Icon(
                       Icons.add,
@@ -70,13 +44,10 @@ class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
   }
 
   Widget _buildBody(BuildContext context) {
-    Map<String, ParseModelRecipes> recipesDict = FilterModels.instance
-        .getRecipesDict(context, screenObject.peopleInEvent.restaurantId);
+    Map<String, ParseModelRecipes> recipesDict =
+        FilterModels.instance.getRecipesDict(context, screenObject.peopleInEvent.restaurantId);
 
-    List<String> unorderedRecipeIds = FilterUtils.instance
-        .getUnorderedRecipeIds(List.from(recipesDict.keys), screenObject.peopleInEvent);
-
-    if (unorderedRecipeIds.length == 0) {
+    if (screenObject.unorderedRecipeIds.length == 0) {
       return RecipesEmpty(
         restaurantId: screenObject.peopleInEvent.restaurantId,
       );
@@ -85,67 +56,43 @@ class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
     return Container(
         padding: EdgeInsets.only(top: 16),
         child: ListView.separated(
-          itemCount: unorderedRecipeIds.length,
+          itemCount: screenObject.unorderedRecipeIds.length,
           separatorBuilder: (BuildContext context, int index) => Divider(),
           itemBuilder: (BuildContext context, int index) {
-            return _buildUserItem(context, recipesDict[unorderedRecipeIds[index]]);
+            var unorderedRecipeId = screenObject.unorderedRecipeIds[index];
+            return _buildUserItem(context, recipesDict[unorderedRecipeId]);
           },
         ));
   }
 
-  Widget _buildUserItem(BuildContext context, ParseModelRecipes recipe) {
+  Widget _buildUserItem(BuildContext context, ParseModelRecipes? recipe) {
+    SelectState selectState = Provider.of<SelectState>(context, listen: true);
+    bool isSelected = selectState.contains(recipe!.uniqueId);
     return ListTile(
-      onTap: () async {
-        if (isSaving == true) {
-          return;
-        }
-        setState(() {
-          isSaving = true;
-        });
+      onTap: isSelected
+          ? null
+          : () async {
+              if (selectState.getSaving() == true) {
+                return;
+              }
 
-        var _flushBar = Flushbar(
-          flushbarPosition: FlushbarPosition.TOP,
-          flushbarStyle: FlushbarStyle.GROUNDED,
-          backgroundColor: Colors.red,
-          boxShadows: [
-            BoxShadow(
-              color: Colors.red[800],
-              offset: Offset(0.0, 2.0),
-              blurRadius: 3.0,
-            )
-          ],
-          isDismissible: false,
-          duration: Duration(seconds: 4),
-          // now we want to swipe to the sides
-          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-          // The default curve is Curves.easeOut
-          forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
-          title: 'Saving...',
-          message: recipe.displayName,
-          icon: Icon(
-            Icons.save_rounded,
-            color: Colors.blue,
-          ),
-        );
+              selectState.setSaving(true);
 
-        _flushBar.show(context);
+              FlushBarUtils.show(context, title: 'Saving...', message: recipe.displayName);
 
-        try {
-          ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.addRecipe(
-            model: screenObject.peopleInEvent,
-            recipeId: recipe.uniqueId,
-          );
+              try {
+                ParseModelPeopleInEvent nextModel = ParseModelPeopleInEvent.addRecipe(
+                  model: screenObject.peopleInEvent,
+                  recipeId: recipe.uniqueId,
+                );
 
-          final firestoreDatabase =
-              Provider.of<FirestoreDatabase>(context, listen: false);
-          await firestoreDatabase.setPeopleInEvent(
-              model: nextModel); // For Restaurant.
-        } catch (e) {}
+                final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+                await firestoreDatabase.setPeopleInEvent(model: nextModel); // For Restaurant.
+              } catch (e) {}
 
-        setState(() {
-          isSaving = false;
-        });
-      },
+              selectState.pushId(recipe.uniqueId);
+              selectState.setSaving(false);
+            },
       leading: CircleAvatar(
           radius: 25.0,
           child: ClipRRect(
@@ -153,6 +100,16 @@ class _SelectRecipeScreenState extends State<SelectRecipeScreen> {
             child: buildRecipeImage(recipe),
           )),
       title: Text(recipe.displayName),
+      trailing: isSelected
+          ? const Icon(
+              Icons.check,
+              semanticLabel: 'ADDED',
+              color: Colors.blue,
+            )
+          : const Text(
+              'ADD',
+              style: TextStyle(color: Colors.blue),
+            ),
     );
   }
 }

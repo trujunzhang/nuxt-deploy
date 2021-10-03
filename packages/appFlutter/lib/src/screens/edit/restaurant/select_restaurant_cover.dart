@@ -12,8 +12,8 @@ class SelectRestaurantCover extends StatefulWidget {
   final ParseModelRestaurants restaurant;
 
   SelectRestaurantCover({
-    Key key,
-    @required this.restaurant,
+    Key? key,
+    required this.restaurant,
   }) : super(key: key);
 
   @override
@@ -21,20 +21,18 @@ class SelectRestaurantCover extends StatefulWidget {
 }
 
 class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
-  onSelectCoverClick(
-      RestaurantState restaurantState, ParseModelPhotos item) async {
+  onSelectCoverClick(RestaurantState restaurantState, ParseModelPhotos item) async {
     restaurantState.setCoverUrl(item.originalUrl);
-    ParseModelRestaurants nextRestaurant = ParseModelRestaurants.updateCover(
-        model: widget.restaurant, originalUrl: item.originalUrl);
+    ParseModelRestaurants nextRestaurant =
+        ParseModelRestaurants.updateCover(model: widget.restaurant, originalUrl: item.originalUrl);
     await FirestoreDatabase().setRestaurant(model: nextRestaurant);
   }
 
   @override
   Widget build(BuildContext context) {
-    RestaurantState restaurantState =
-        Provider.of<RestaurantState>(context, listen: true);
-    List<ParseModelPhotos> photosList = FilterModels.instance
-        .getPhotosInRestaurantList(context, widget.restaurant.uniqueId);
+    RestaurantState restaurantState = Provider.of<RestaurantState>(context, listen: true);
+    List<ParseModelPhotos> photosList =
+        FilterModels.instance.getPhotosInRestaurantList(context, widget.restaurant.uniqueId);
     if (photosList.length == 0) {
       return Center(
         child: Text('No Data'),
@@ -65,8 +63,7 @@ class _SelectRestaurantCoverState extends State<SelectRestaurantCover> {
     return item.originalUrl == restaurantState.coverUrl;
   }
 
-  Widget buildGridItem(BuildContext context, RestaurantState restaurantState,
-      ParseModelPhotos photo) {
+  Widget buildGridItem(BuildContext context, RestaurantState restaurantState, ParseModelPhotos photo) {
     var body = InkWell(
       onTap: () {
         onSelectCoverClick(restaurantState, photo);

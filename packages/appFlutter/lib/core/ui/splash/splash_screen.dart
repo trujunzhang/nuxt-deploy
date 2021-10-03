@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/src/layout/layout_router.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -47,6 +48,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   redirect() async {
-    Navigator.of(context).pushReplacementNamed(Routes.home);
+    NavigatorUtils.push(context, LayoutRouter.homePage);
   }
 }

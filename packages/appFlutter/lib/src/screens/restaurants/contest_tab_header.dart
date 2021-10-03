@@ -8,8 +8,7 @@ class ContestTabHeader extends SliverPersistentHeaderDelegate {
   final Widget searchUI;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return searchUI;
   }
 

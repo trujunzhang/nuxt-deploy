@@ -10,18 +10,16 @@ import 'camera_uploading_panel.dart';
 class CameraUploadingUser extends StatelessWidget {
   final String imagePath;
 
-  const CameraUploadingUser({Key key, @required this.imagePath})
-      : super(key: key);
+  const CameraUploadingUser({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthProvider>(context, listen: false);
-    final firestoreDatabase =
-        Provider.of<FirestoreDatabase>(context, listen: false);
-    return StreamBuilder<AuthUserModel>(
+    final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+    return StreamBuilder<AuthUserModel?>(
         stream: authService.user,
-        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
-          final AuthUserModel user = snapshot.data;
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel?> snapshot) {
+          final AuthUserModel? user = snapshot.data;
           if (user == null) {
             return Container();
           }
@@ -30,7 +28,7 @@ class CameraUploadingUser extends StatelessWidget {
               builder: (context, AsyncSnapshot<ParseModelUsers> snapshot) {
                 if (snapshot.hasData) {
                   return CameraUploadingPanel(
-                      loggedUser: snapshot.data, // User model.
+                      loggedUser: snapshot.data!, // User model.
                       imagePath: imagePath);
                 } else {
                   return Container();

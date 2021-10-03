@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/camera/screens/navigate_helper.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/src/screens/restaurants/hotel_app_theme.dart';
 
 class WaitersEmpty extends StatefulWidget {
   final String restaurantId;
 
-  WaitersEmpty({Key key, @required this.restaurantId}) : super(key: key);
+  WaitersEmpty({Key? key, required this.restaurantId}) : super(key: key);
 
   @override
   _WaitersEmptyState createState() => _WaitersEmptyState();
@@ -22,10 +21,7 @@ class _WaitersEmptyState extends State<WaitersEmpty> {
           Radius.circular(38.0),
         ),
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              offset: const Offset(0, 2),
-              blurRadius: 8.0),
+          BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),
         ],
       ),
       child: Material(
@@ -35,16 +31,11 @@ class _WaitersEmptyState extends State<WaitersEmpty> {
             Radius.circular(32.0),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.app_camera,
-                arguments: CameraScreenObject(
-                    photoType: PhotoType.Waiter,
-                    relatedId: widget.restaurantId));
+            PhotoNavigatorHelper.pop(context, photoType: PhotoType.Waiter, relatedId: widget.restaurantId);
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Icon(Icons.add,
-                size: 20,
-                color: HotelAppTheme.buildLightTheme().backgroundColor),
+            child: Icon(Icons.add, size: 20, color: HotelAppTheme.buildLightTheme().backgroundColor),
           ),
         ),
       ),

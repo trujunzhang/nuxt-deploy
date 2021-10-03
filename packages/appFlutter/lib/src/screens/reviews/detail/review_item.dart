@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/database/review_helper.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/profile_avatar.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/src/screens/user_profile/user_profile_router.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 class ReviewItem extends StatelessWidget {
   final ParseModelReviews reviewData;
 
   const ReviewItem({
-    Key key,
-    @required this.reviewData,
+    Key? key,
+    required this.reviewData,
   }) : super(key: key);
 
   Widget _buildInfo(BuildContext context) {
     return ListTile(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.detail_common_user,
-              arguments: reviewData.creatorId);
+          NavigatorUtils.push(
+              context, '${UserProfileRouter.commonUserPage}?${ParamsHelper.ID}=${reviewData.creatorId}');
         },
         leading: ProfileAvatar(avatarUrl: reviewData.avatarUrl),
         title: Text(reviewData.username),
@@ -51,19 +53,16 @@ class ReviewItem extends StatelessWidget {
           icon: Icons.delete,
           onTap: () async {
             try {
-              final firestoreDatabase =
-                  Provider.of<FirestoreDatabase>(context, listen: false);
-              await firestoreDatabase
-                  .deleteReview(reviewData); // For Restaurant.
+              final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+              await firestoreDatabase.deleteReview(reviewData); // For Restaurant.
               await ReviewHelper(
                 lastReviewRate: reviewData.rate,
               ).onSaveOrRemoveReviewAfterHook(
-                  reviewHookType: ReviewHookType.Add,
+                  reviewHookType: ReviewHookType.Remove,
                   reviewType: stringToReviewType(reviewData.reviewType),
                   relatedId: ParseModelReviews.getRelatedId(reviewData));
             } catch (e) {}
-            ToastUtils.showToast(AppLocalizations.of(context)
-                .translate("ModelItemsDeleteSuccess"));
+            Toast.show(S.of(context).ModelItemsDeleteSuccess);
           },
         ),
       ],
@@ -84,9 +83,7 @@ class ReviewItem extends StatelessWidget {
                     // color: Colors.blue,
                     width: 120,
                     height: 18,
-                    child: Image(
-                        image: AssetImage('assets/stars/small/$rating.png'),
-                        fit: BoxFit.cover)),
+                    child: Image(image: AssetImage('assets/stars/small/$rating.png'), fit: BoxFit.cover)),
               ],
             ),
             subtitle: Container(

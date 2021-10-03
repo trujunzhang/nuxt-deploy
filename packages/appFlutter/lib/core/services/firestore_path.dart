@@ -9,10 +9,10 @@ class FirestorePath {
 
   // Users
   static String singleUser(String userId) => 'users/$userId';
+  static String user(String id) => 'users/$id';
 
   // Restaurants
-  static String singleRestaurant(String restaurantId) =>
-      'restaurants/$restaurantId';
+  static String singleRestaurant(String restaurantId) => 'restaurants/$restaurantId';
 
   // Recipes
   static String recipes() => 'recipes';
@@ -20,25 +20,21 @@ class FirestorePath {
   static String singleRecipe(String recipeId) => 'recipes/$recipeId';
 
   // Events
-  static String events(String restaurantId) =>
-      'restaurants/$restaurantId/events';
+  static String events(String restaurantId) => 'restaurants/$restaurantId/events';
 
   static String singleEvent(String eventId) => 'events/$eventId';
 
   // Waiters
-  static String waiters(String restaurantId) =>
-      'restaurants/$restaurantId/waiters';
+  static String waiters(String restaurantId) => 'restaurants/$restaurantId/waiters';
 
   // PeopleInEvents
   static String peopleInEvents(String restaurantId, String eventId) =>
       'restaurants/$restaurantId/events/$eventId/peopleinevents';
 
-  static String singlePeopleInEvent(String peopleInEventId) =>
-      'peopleinevents/$peopleInEventId';
+  static String singlePeopleInEvent(String peopleInEventId) => 'peopleinevents/$peopleInEventId';
 
   // Photos
-  static String photosInRestaurant(String restaurantId) =>
-      'restaurants/$restaurantId/photos';
+  static String photosInRestaurant(String restaurantId) => 'restaurants/$restaurantId/photos';
 
   static String photosInRecipe(String restaurantId, String recipeId) =>
       'restaurants/$restaurantId/recipes/$recipeId/photos';
@@ -48,9 +44,8 @@ class FirestorePath {
 
   static String review(String uniqueId) => 'reviews/$uniqueId';
 
-  static String photo(String uniqueId) => 'photos/$uniqueId';
+  static String singlePhoto(String uniqueId) => 'photos/$uniqueId';
 
-  static String user(String id) => 'users/$id';
 
   static String todos(String uid) => 'users/$uid/todos';
 }

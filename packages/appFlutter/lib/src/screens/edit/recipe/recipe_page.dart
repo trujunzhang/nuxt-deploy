@@ -1,22 +1,23 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/components/edit_restaurant/common.dart';
 import 'package:ieatta/src/providers/recipe_state.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 import 'select_recipe_cover.dart';
 
 class RecipePage extends StatefulWidget {
-  final ParseModelRecipes recipe;
+  final ParseModelRecipes? recipe;
 
-  const RecipePage({Key key, this.recipe}) : super(key: key);
+  const RecipePage({Key? key, this.recipe}) : super(key: key);
 
   @override
   _RecipePageState createState() => _RecipePageState();
@@ -37,62 +38,54 @@ class _RecipePageState extends State<RecipePage> {
           leading: IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
           title: Text(widget.recipe != null
-              ? AppLocalizations.of(context)
-                  .translate("recipesCreateEditAppBarTitleEditTxt")
-              : AppLocalizations.of(context)
-                  .translate("recipesCreateEditAppBarTitleNewTxt")),
+              ? S.of(context).recipesCreateEditAppBarTitleEditTxt
+              : S.of(context).recipesCreateEditAppBarTitleNewTxt),
           actions: <Widget>[
             TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.saveAndValidate()) {
+
+                        if (_formKey.currentState!.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
                             _isButtonDisabled = true;
                           });
 
-                          AuthUserModel authUserModel =
-                              await authProvider.getAuthUserModel();
+                          AuthUserModel? authUserModel = await authProvider.getAuthUserModel();
 
                           ParseModelRecipes lastModel = widget.recipe != null
                               ? widget.recipe
                               : ParseModelRecipes.emptyRecipe(
-                                  authUserModel: authUserModel,
-                                  restaurantId: recipeState.restaurantId);
+                                  authUserModel: authUserModel, restaurantId: recipeState.restaurantId);
 
-                          ParseModelRecipes nextModel =
-                              ParseModelRecipes.updateRecipe(
+                          ParseModelRecipes nextModel = ParseModelRecipes.updateRecipe(
                             model: lastModel,
                             nextDisplayName: recipeState.getDisplayName(),
                             nextPrice: recipeState.getPrice(),
                           );
 
                           try {
-                            final firestoreDatabase =
-                                Provider.of<FirestoreDatabase>(context,
-                                    listen: false);
-                            await firestoreDatabase.setRecipe(
-                                model: nextModel); // For Restaurant.
+                            final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+                            await firestoreDatabase.setRecipe(model: nextModel); // For Restaurant.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
                             });
                           }
 
-                          ToastUtils.showToast(AppLocalizations.of(context)
-                              .translate("toastForSaveSuccess"));
+                          Toast.show(S.of(context).toastForSaveSuccess);
                           // Navigate
-                          Navigator.of(context).pop();
+                          AppNavigator.goBack(context);
                         }
+
                       },
-                child: Text(AppLocalizations.of(context)
-                    .translate("editModelAppBarRightSaveTitle")))
+                child: Text(S.of(context).editModelAppBarRightSaveTitle))
           ],
         ),
         body: _buildBody(context));
@@ -105,7 +98,7 @@ class _RecipePageState extends State<RecipePage> {
       // list.add(buildCoverImage(_restaurantCoverUrl));
       list.add(buildCoverSectionTitle());
       list.add(SelectRecipeCover(
-        recipe: widget.recipe,
+        recipe: widget.recipe!,
       ));
       list.add(SizedBox(
         height: 20,
@@ -114,10 +107,10 @@ class _RecipePageState extends State<RecipePage> {
 
     return SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: list,
-        ));
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: list,
+    ));
   }
 
   Widget _buildShortcuts() {
@@ -129,7 +122,8 @@ class _RecipePageState extends State<RecipePage> {
       child: FocusTraversalGroup(
         child: Form(
           onChanged: () {
-            Form.of(primaryFocus.context).save();
+            // TODO:[2021-8-18] djzhang
+            // Form.of(primaryFocus.context).save();
           },
           child: _buildForm(context),
         ),
@@ -154,11 +148,10 @@ class _RecipePageState extends State<RecipePage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("recipesCreateEditDisplayNameTxt"),
+                    labelText: S.of(context).recipesCreateEditDisplayNameTxt,
                   ),
-                  onChanged: (String val) {
-                    recipeState.setDisplayName(val);
+                  onChanged: (String? val) {
+                    recipeState.setDisplayName(val!);
                   },
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -170,11 +163,10 @@ class _RecipePageState extends State<RecipePage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'price',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("recipesCreateEditPriceTxt"),
+                    labelText: S.of(context).recipesCreateEditPriceTxt,
                   ),
-                  onChanged: (String val) {
-                    recipeState.setPrice(val);
+                  onChanged: (String? val) {
+                    recipeState.setPrice(val!);
                   },
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -185,5 +177,4 @@ class _RecipePageState extends State<RecipePage> {
               ],
             )));
   }
-
 }

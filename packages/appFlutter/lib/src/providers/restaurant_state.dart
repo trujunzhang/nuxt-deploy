@@ -5,7 +5,7 @@ class RestaurantState with ChangeNotifier {
   String extraNote;
   String coverUrl;
 
-  RestaurantState({this.displayName, this.extraNote, this.coverUrl});
+  RestaurantState({required this.displayName, required this.extraNote, required this.coverUrl});
 
   String getDisplayName() {
     return displayName;

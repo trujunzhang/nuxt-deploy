@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/camera/providers/photo_state.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/components/photos/image.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 class CreatePhotoPage extends StatefulWidget {
@@ -36,68 +37,56 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
           leading: IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("photosCreateEditAppBarTitleNewTxt")),
+          title: Text(S.of(context).photosCreateEditAppBarTitleNewTxt),
           actions: <Widget>[
             TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.saveAndValidate()) {
+
+                        if (_formKey.currentState!.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
                             _isButtonDisabled = true;
                           });
-                          AuthUserModel authUserModel =
-                              await authProvider.getAuthUserModel();
+                          AuthUserModel? authUserModel = await authProvider.getAuthUserModel();
 
-                          ParseModelPhotos lastModel =
-                              ParseModelPhotos.emptyPhoto(
-                                  authUserModel: authUserModel,
-                                  filePath: photoState.getImgPath(),
-                                  photoType: photoState.getPhotoType(),
-                                  relatedId: photoState.getRelatedId());
+                          ParseModelPhotos lastModel = ParseModelPhotos.emptyPhoto(
+                              authUserModel: authUserModel,
+                              filePath: photoState.getImgPath(),
+                              photoType: photoState.getPhotoType(),
+                              relatedId: photoState.getRelatedId());
                           ParseModelPhotos nextModel =
-                              ParseModelPhotos.updatePhoto(
-                                  model: lastModel,
-                                  nextExtraNote: photoState.getExtraNote());
+                              ParseModelPhotos.updatePhoto(model: lastModel, nextExtraNote: photoState.getExtraNote());
 
                           try {
-                            final firestoreDatabase =
-                                Provider.of<FirestoreDatabase>(context,
-                                    listen: false);
+                            final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
                             await firestoreDatabase.setNewPhoto(
-                                imagePath: photoState.getImgPath(),
-                                model: nextModel); // For photo.
+                                imagePath: photoState.getImgPath(), model: nextModel); // For photo.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
                             });
                           }
 
-                          ToastUtils.showToast(AppLocalizations.of(context)
-                              .translate("toastForSaveSuccess"));
+                          Toast.show(S.of(context).toastForSaveSuccess);
                           // Navigate
-                          Navigator.of(context).pop();
+                          AppNavigator.goBack(context);
                         }
+
                       },
-                child: Text(AppLocalizations.of(context)
-                    .translate("editModelAppBarRightSaveTitle")))
+                child: Text(S.of(context).editModelAppBarRightSaveTitle))
           ],
         ),
         body: SingleChildScrollView(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 0),
-            _buildImagePanel(context),
-            _buildShortcuts()
-          ],
+          children: [SizedBox(height: 0), _buildImagePanel(context), _buildShortcuts()],
         )));
   }
 
@@ -119,7 +108,8 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
       child: FocusTraversalGroup(
         child: Form(
           onChanged: () {
-            Form.of(primaryFocus.context).save();
+            // TODO:[2021-8-18] djzhang
+            // Form.of(primaryFocus.context).save();
           },
           child: _buildForm(context),
         ),
@@ -143,11 +133,10 @@ class _CreatePhotoPageState extends State<CreatePhotoPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'extraNote',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("modelCreateEditNotesTxt"),
+                    labelText: S.of(context).modelCreateEditNotesTxt,
                   ),
-                  onChanged: (String val) {
-                    photoState.setExtraNote(val);
+                  onChanged: (String? val) {
+                    photoState.setExtraNote(val!);
                   },
                   maxLines: 15,
                   textInputAction: TextInputAction.next,

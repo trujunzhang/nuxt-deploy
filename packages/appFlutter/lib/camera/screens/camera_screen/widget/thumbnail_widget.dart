@@ -5,13 +5,13 @@ import 'package:image_picker/image_picker.dart';
 
 class ThumbnailWidget extends StatefulWidget {
   final double size;
-  final String imagePath;
+  final String? imagePath;
   final Function afterTakeHook;
 
   const ThumbnailWidget({
-    Key key,
-    @required this.imagePath,
-    @required this.afterTakeHook,
+    Key? key,
+    required this.imagePath,
+    required this.afterTakeHook,
     this.size = 32.0,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class ThumbnailWidget extends StatefulWidget {
 }
 
 class _ThumbnailWidgetState extends State<ThumbnailWidget> {
-  String thumb;
+  late String? thumb;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
   }
 
   Future getImage() async {
-    PickedFile image = await ImagePicker().getImage(source: ImageSource.gallery);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image == null) {
       return;
     }
@@ -51,7 +51,7 @@ class _ThumbnailWidgetState extends State<ThumbnailWidget> {
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.file(
-                    File(thumb),
+                    File(thumb!),
                     fit: BoxFit.cover,
                     width: 75.0,
                     height: 75.0,

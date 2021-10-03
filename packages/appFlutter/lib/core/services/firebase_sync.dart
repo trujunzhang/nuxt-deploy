@@ -1,5 +1,5 @@
-import 'package:ieatta/core/utils/network_utils.dart';
 import 'package:ieatta/src/appModels/models/photos_sql.dart';
+import 'package:ieatta/util/network_utils.dart';
 
 import 'firestore_photo.dart';
 
@@ -13,8 +13,7 @@ class FirebaseSync {
         bool hasException = false;
         // First of all, upload image to cloudinary.
         try {
-          await FirestorePhoto.savePhotoWithCloudinary(
-              imagePath: photo.offlinePath, uniqueId: photo.uniqueId);
+          await FirestorePhoto.savePhotoWithCloudinary(imagePath: photo.offlinePath, uniqueId: photo.uniqueId);
         } catch (e) {
           hasException = true;
           // Exception throw from uploading image to cloudinary

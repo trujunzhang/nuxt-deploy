@@ -9,8 +9,8 @@ class ProfileAvatar extends StatelessWidget {
   final bool hasBorder;
 
   const ProfileAvatar({
-    Key key,
-    @required this.avatarUrl,
+    Key? key,
+    required this.avatarUrl,
     this.isActive = false,
     this.hasBorder = false,
   }) : super(key: key);

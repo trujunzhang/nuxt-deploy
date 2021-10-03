@@ -2,13 +2,13 @@ import 'package:ieatta/src/appModels/models/Avatar_user.dart';
 
 class AuthUserModel extends AvatarUser {
   String uid;
-  String email;
-  String username = '';
-  String phoneNumber;
-  String avatarUrl;
+  String? email;
+  String? username = '';
+  String? phoneNumber;
+  String? avatarUrl;
 
   AuthUserModel({
-    this.uid,
+    required this.uid,
     this.email,
     this.phoneNumber,
     this.username,
@@ -20,9 +20,6 @@ class AuthUserModel extends AvatarUser {
   }
 
   static AuthUserModel mockedUser() {
-    return AuthUserModel(
-        uid: 'mockedUID',
-        username: 'mockedDisplayName',
-        avatarUrl: 'mockedPhotoUrl');
+    return AuthUserModel(uid: 'mockedUID', username: 'mockedDisplayName', avatarUrl: 'mockedPhotoUrl');
   }
 }

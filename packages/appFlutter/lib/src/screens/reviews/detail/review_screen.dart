@@ -1,91 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
-import 'package:ieatta/src/screens/edit/review/review_provider_screen.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
+import 'package:ieatta/util/app_navigator.dart';
 import 'package:provider/provider.dart';
 
 import 'review_item.dart';
 
-class ReviewScreen extends StatefulWidget {
-  ReviewScreen({Key key}) : super(key: key);
+class ReviewScreen extends StatelessWidget {
+  ReviewScreen({Key? key, required this.reviewId}) : super(key: key);
 
-  @override
-  _ReviewScreenState createState() => _ReviewScreenState();
-}
-
-class _ReviewScreenState extends State<ReviewScreen> {
-  ParseModelReviews reviewData;
-  String reviewId;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final ParseModelReviews _reviewModel =
-        ModalRoute.of(context).settings.arguments;
-    assert(_reviewModel != null, 'Review page');
-
-    setState(() {
-      reviewData = _reviewModel;
-      reviewId = _reviewModel.uniqueId;
-    });
-  }
+  final String reviewId;
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthProvider>(context, listen: false);
-    return StreamBuilder<AuthUserModel>(
+    return StreamBuilder<AuthUserModel?>(
         stream: authService.user,
-        builder: (BuildContext context, AsyncSnapshot<AuthUserModel> snapshot) {
-          final AuthUserModel user = snapshot.data;
+        builder: (BuildContext context, AsyncSnapshot<AuthUserModel?> snapshot) {
+          final AuthUserModel? user = snapshot.data;
 
-          var showEditBtn = (user != null && user.uid == reviewData.creatorId);
-          return _buildBody(context, showEditBtn);
+          return _buildBody(context, user);
         });
   }
 
-  Widget _buildBody(BuildContext context, bool showEditBtn) {
+  Widget _buildBody(BuildContext context, AuthUserModel? user) {
+    ParseModelReviews? review = FilterModels.instance.getSingleReview(context, reviewId);
+
+    var showEditBtn = (user != null && user.uid == review!.creatorId);
+
     var flatButton = TextButton(
         onPressed: () async {
-          Navigator.of(context).pushNamed(Routes.create_edit_review,
-              arguments: CreateEditReviewScreenObject(
-                reviewType: stringToReviewType(reviewData.reviewType),
-                relatedId: ParseModelReviews.getRelatedId(reviewData),
-                reviewModel: reviewData,
-              ));
+          NavigatorUtils.push(context, '${EditRouter.editReviewPage}?${ParamsHelper.ID}=${review!.uniqueId}');
         },
-        child: Text(AppLocalizations.of(context)
-            .translate("reviewPageAppBarRightEditBtnTitle")));
+        child: Text(S.of(context).reviewPageAppBarRightEditBtnTitle));
     var actionsWidget = showEditBtn ? <Widget>[flatButton] : <Widget>[];
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(getArrowBackIcon()),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("reviewsDetailPageAppBarTitleTxt")),
+          title: Text(S.of(context).reviewsDetailPageAppBarTitleTxt),
           actions: actionsWidget,
         ),
-        body: _buildSingleReview(context));
+        body: _buildSingleReview(context, review));
   }
 
-  Widget _buildSingleReview(BuildContext context) {
-    ParseModelReviews review =
-        FilterModels.instance.getSingleReview(context, reviewId);
+  Widget _buildSingleReview(BuildContext context, ParseModelReviews? review) {
     return SingleChildScrollView(
         padding: EdgeInsets.only(top: 8.0),
         child: Container(
           decoration: new BoxDecoration(color: Colors.white),
           child: ReviewItem(
-            reviewData: review,
+            reviewData: review!,
           ),
         ));
   }

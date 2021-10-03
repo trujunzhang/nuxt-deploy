@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/src/appModels/models/photos_sql.dart';
 import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/screens/photos_grid/sql/sql_photos_pageview.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 class SqlPhotosGridView extends StatefulWidget {
-  SqlPhotosGridView({Key key}) : super(key: key);
+  SqlPhotosGridView({Key? key}) : super(key: key);
 
   @override
   _SqlPhotosGridViewState createState() => _SqlPhotosGridViewState();
@@ -37,11 +37,10 @@ class _SqlPhotosGridViewState extends State<SqlPhotosGridView> {
         leading: IconButton(
           icon: Icon(Icons.cancel),
           onPressed: () {
-            Navigator.of(context).pop();
+            AppNavigator.goBack(context);
           },
         ),
-        title: Text(AppLocalizations.of(context)
-            .translate("photosLocalAppBarTitleTxt")),
+        title: Text(S.of(context).photosLocalAppBarTitleTxt),
         actions: <Widget>[],
       ),
       body: buildPhotos(context),
@@ -77,9 +76,8 @@ class _SqlPhotosGridViewState extends State<SqlPhotosGridView> {
     SqlPhotos photo = photos[index];
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.local_photos_pageview,
-            arguments:
-                SqlPhotosPageViewObject(photos: photos, selectedIndex: index));
+        AppNavigator.popFullScreen(
+            context, SqlPhotosPageView(), SqlPhotosPageViewObject(photos: photos, selectedIndex: index));
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),

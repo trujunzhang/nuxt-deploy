@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
+import 'package:ieatta/components/components.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
+import 'package:ieatta/util/app_navigator.dart';
 import 'package:provider/provider.dart';
 
 import 'setting_language_actions.dart';
 
 class SettingScreen extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(AppLocalizations.of(context).translate("settingAppTitle")),
-      ),
-      body: _buildLayoutSection(context),
-    );
+    return BaseScaffold(
+        appBar: MyAppBar(
+          centerTitle: true,
+          title: MyTitle(S.of(context).drawerMenuItemSettings),
+          leadingType: AppBarBackType.None,
+        ),
+        body: _buildLayoutSection(context));
   }
 
   Widget _buildLayoutSection(BuildContext context) {
-    final authProvider =
-    Provider.of<AuthProvider>(context, listen: false);
-    return ListView(
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    return Column(
       children: <Widget>[
-        // SettingBarUI(),
         // ListTile(
         //   title: Text(
-        //       AppLocalizations.of(context).translate("settingThemeListTitle")),
-        //   subtitle: Text(AppLocalizations.of(context)
+        //       S.of(context).settingThemeListTitle")),
+        //   subtitle: Text(AppLocalizations.of(context)!
         //       .translate("settingThemeListSubTitle")),
         //   trailing: Switch(
         //     activeColor: Theme.of(context).appBarTheme.color,
@@ -40,23 +39,18 @@ class SettingScreen extends StatelessWidget {
         //   ),
         // ),
         ListTile(
-          title: Text(AppLocalizations.of(context)
-              .translate("settingLanguageListTitle")),
-          subtitle: Text(AppLocalizations.of(context)
-              .translate("settingLanguageListSubTitle")),
+          title: Text(S.of(context).settingLanguageListTitle),
+          subtitle: Text(S.of(context).settingLanguageListSubTitle),
           trailing: SettingLanguageActions(),
         ),
         ListTile(
-          title: Text(
-              AppLocalizations.of(context).translate("settingLogoutListTitle")),
-          subtitle: Text(AppLocalizations.of(context)
-              .translate("settingLogoutListSubTitle")),
+          title: Text(S.of(context).settingLogoutListTitle),
+          subtitle: Text(S.of(context).settingLogoutListSubTitle),
           trailing: RaisedButton(
               onPressed: () {
                 showAlertDialog(context, authProvider);
               },
-              child: Text(AppLocalizations.of(context)
-                  .translate("settingLogoutButton"))),
+              child: Text(S.of(context).settingLogoutButton)),
         )
       ],
     );
@@ -65,24 +59,21 @@ class SettingScreen extends StatelessWidget {
   showAlertDialog(BuildContext context, AuthProvider authProvider) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text(AppLocalizations.of(context)
-          .translate("alertDialogCancelBtn")),
+      child: Text(S.of(context).alertDialogCancelBtn),
       onPressed: () {
-        Navigator.of(context).pop();
+        AppNavigator.goBack(context);
       },
     );
     Widget continueButton = TextButton(
-      child: Text(AppLocalizations.of(context)
-          .translate("alertDialogYesBtn")),
+      child: Text(S.of(context).alertDialogYesBtn),
       onPressed: () async {
         await authProvider.signOut();
       },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(AppLocalizations.of(context).translate("alertDialogTitle")),
-      content: Text(
-          AppLocalizations.of(context).translate("alertDialogMessage")),
+      title: Text(S.of(context).alertDialogTitle),
+      content: Text(S.of(context).alertDialogMessage),
       actions: [
         cancelButton,
         continueButton,
@@ -96,5 +87,4 @@ class SettingScreen extends StatelessWidget {
       },
     );
   }
-
 }

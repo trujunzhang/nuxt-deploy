@@ -8,17 +8,15 @@ class RecipeBody extends StatelessWidget {
   final Map<String, ParseModelRecipes> recipesDict;
   final ParseModelPeopleInEvent peopleInEvent;
 
-  const RecipeBody(
-      {Key key, @required this.recipesDict, @required this.peopleInEvent})
-      : super(key: key);
+  const RecipeBody({Key? key, required this.recipesDict, required this.peopleInEvent}) : super(key: key);
 
   Widget buildRecipesListView() {
     List<Widget> list = [];
     for (var i = 0; i < peopleInEvent.recipes.length; i++) {
-      ParseModelRecipes recipe = recipesDict[peopleInEvent.recipes[i]];
+      ParseModelRecipes? recipe = recipesDict[peopleInEvent.recipes[i]];
       list.add(RecipeItem(
         peopleInEvent: peopleInEvent,
-        recipeData: recipe,
+        recipeData: recipe!,
       ));
       // if (i < peopleInEvent.recipes.length - 1) {
       //   list.add(Divider(

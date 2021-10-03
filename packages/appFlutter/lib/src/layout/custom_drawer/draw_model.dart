@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 
 enum DrawerIndex {
   HOME,
@@ -23,36 +23,36 @@ class DrawerList {
   });
 
   String labelName;
-  Icon icon;
+  Icon? icon;
   bool isAssetsImage;
   String imageName;
-  DrawerIndex index;
+  DrawerIndex? index;
 
   static List<DrawerList> getDrawerListArray(BuildContext context) {
     return [
       DrawerList(
         index: DrawerIndex.HOME,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemHome"),
+        labelName: S.of(context).drawerMenuItemHome,
         icon: Icon(Icons.home),
       ),
       DrawerList(
         index: DrawerIndex.Profile,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemProfile"),
+        labelName: S.of(context).drawerMenuItemProfile,
         icon: Icon(Icons.verified_user),
       ),
       DrawerList(
         index: DrawerIndex.Settings,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemSettings"),
+        labelName: S.of(context).drawerMenuItemSettings,
         icon: Icon(Icons.settings),
       ),
       DrawerList(
         index: DrawerIndex.Invite,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemInvite"),
+        labelName: S.of(context).drawerMenuItemInvite,
         icon: Icon(Icons.group),
       ),
       DrawerList(
         index: DrawerIndex.Help,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemHelp"),
+        labelName: S.of(context).drawerMenuItemHelp,
         icon: Icon(Icons.help),
       ),
       // DrawerList(
@@ -62,7 +62,7 @@ class DrawerList {
       // ),
       DrawerList(
         index: DrawerIndex.About,
-        labelName: AppLocalizations.of(context).translate("drawerMenuItemAbout"),
+        labelName: S.of(context).drawerMenuItemAbout,
         icon: Icon(Icons.info),
       ),
     ];

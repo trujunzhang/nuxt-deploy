@@ -5,7 +5,7 @@ import 'package:ieatta/src/logic/bloc.dart';
 List<ParseModelRestaurants> parseRestaurants(List<DocumentSnapshot> datas) {
   List<ParseModelRestaurants> result = datas
       .map((DocumentSnapshot snapshot) {
-        return ParseModelRestaurants.fromJson(snapshot.data());
+        return ParseModelRestaurants.fromJson(snapshot.data() as Map<String, dynamic>);
       })
       .where((value) => value != null)
       .toList();

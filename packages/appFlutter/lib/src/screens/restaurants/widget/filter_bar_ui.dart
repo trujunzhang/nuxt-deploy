@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/src/logic/bloc.dart';
 import 'package:ieatta/src/providers/home_state.dart';
@@ -6,18 +7,25 @@ import 'package:provider/provider.dart';
 import '../hotel_app_theme.dart';
 
 String getRestaurantsCountInfo({
-  @required bool gpsTrackVal,
-  @required int restaurantsCountVal,
+  required bool gpsTrackVal,
+  required int restaurantsCountVal,
 }) {
+  var screenWidth = ScreenUtil.getInstance().screenWidth;
   if (gpsTrackVal) {
+    if (screenWidth <= 320) {
+      return 'Auto tracking';
+    }
     return 'Auto location tracking';
   }
 
+  if (screenWidth <= 320) {
+    return '$restaurantsCountVal restaurants';
+  }
   return '$restaurantsCountVal restaurants found';
 }
 
 class FilterBarUI extends StatefulWidget {
-  FilterBarUI({Key key, @required this.mapClick}) : super(key: key);
+  FilterBarUI({Key? key, required this.mapClick}) : super(key: key);
 
   final VoidCallback mapClick;
 
@@ -31,25 +39,20 @@ class _FilterBarUIState extends State<FilterBarUI> {
     HomeState homeState = Provider.of<HomeState>(context, listen: true);
     bool gpsTrackVal = homeState.getGpsTrack();
     return StreamBuilder(
-        //This StreamBuilder is to fetch restaurants count.
         initialData: 0,
         stream: bloc.restaurantCountValStream,
-        builder:
-            (BuildContext context, AsyncSnapshot restaurantsCountSnapshot) {
+        builder: (BuildContext context, AsyncSnapshot restaurantsCountSnapshot) {
           int restaurantsCountVal = restaurantsCountSnapshot.data;
           return _buildBody(context, gpsTrackVal, restaurantsCountVal);
         });
   }
 
-  Widget _buildLeft(
-      BuildContext context, bool gpsTrackVal, int restaurantsCountVal) {
+  Widget _buildLeft(BuildContext context, bool gpsTrackVal, int restaurantsCountVal) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          getRestaurantsCountInfo(
-              gpsTrackVal: gpsTrackVal,
-              restaurantsCountVal: restaurantsCountVal),
+          getRestaurantsCountInfo(gpsTrackVal: gpsTrackVal, restaurantsCountVal: restaurantsCountVal),
           style: TextStyle(
             fontWeight: FontWeight.w100,
             fontSize: 16,
@@ -66,8 +69,7 @@ class _FilterBarUIState extends State<FilterBarUI> {
     );
     var iconColor = HotelAppTheme.buildLightTheme().primaryColor;
     if (restaurantsCountVal == 0) {
-      textStyle = TextStyle(
-          fontWeight: FontWeight.w100, fontSize: 16, color: Colors.grey);
+      textStyle = TextStyle(fontWeight: FontWeight.w100, fontSize: 16, color: Colors.grey);
       iconColor = Colors.grey;
     }
     var padding2 = Padding(
@@ -106,8 +108,7 @@ class _FilterBarUIState extends State<FilterBarUI> {
     );
   }
 
-  Widget _buildBody(
-      BuildContext context, bool gpsTrackVal, int restaurantsCountVal) {
+  Widget _buildBody(BuildContext context, bool gpsTrackVal, int restaurantsCountVal) {
     return Container(
         child: Stack(
       children: <Widget>[
@@ -120,10 +121,7 @@ class _FilterBarUIState extends State<FilterBarUI> {
             decoration: BoxDecoration(
               color: HotelAppTheme.buildLightTheme().backgroundColor,
               boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 8.0),
+                BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, -2), blurRadius: 8.0),
               ],
             ),
           ),
@@ -131,14 +129,11 @@ class _FilterBarUIState extends State<FilterBarUI> {
         Container(
           color: HotelAppTheme.buildLightTheme().backgroundColor,
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
             child: Row(
               children: <Widget>[
                 _buildLeft(context, gpsTrackVal, restaurantsCountVal),
-                Material(
-                    color: Colors.transparent,
-                    child: _buildRight(context, restaurantsCountVal)),
+                Material(color: Colors.transparent, child: _buildRight(context, restaurantsCountVal)),
               ],
             ),
           ),

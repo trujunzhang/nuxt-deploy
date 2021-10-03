@@ -1,5 +1,5 @@
-import 'package:geohash/geohash.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
+import 'package:ieatta/third/dart-geohash/lib/geohash.dart';
 
 /// numberOfChars of GeoHash for restaurant.
 /// @type {number}
@@ -10,11 +10,9 @@ const int numberOfCharsForRestaurant = 6;
 const int numberOfCharsForPhoto = 6;
 
 String convertToGeoHash(final double latitude, final double longitude) {
-  return Geohash.encode(latitude, longitude,
-      codeLength: numberOfCharsForPhoto );
+  return Geohash.encode(latitude, longitude, codeLength: numberOfCharsForPhoto);
 }
 
 String getGeoHashForRestaurant(final ParseModelRestaurants restaurant) {
-  return Geohash.encode(restaurant.latitude, restaurant.longitude,
-      codeLength: numberOfCharsForRestaurant );
+  return Geohash.encode(restaurant.latitude, restaurant.longitude, codeLength: numberOfCharsForRestaurant);
 }

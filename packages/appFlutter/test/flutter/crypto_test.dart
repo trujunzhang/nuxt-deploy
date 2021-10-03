@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'dart:convert';
-import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
 import 'package:ieatta/src/utils/tools.dart';
 

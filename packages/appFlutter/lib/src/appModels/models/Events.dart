@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/utils/md5_utils.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
@@ -36,23 +35,23 @@ class ParseModelEvents extends BaseReview {
   ParseModelEvents(
       {
       // Base(5)
-      this.uniqueId,
-      this.creatorId,
-      this.createdAt,
-      this.updatedAt,
-      this.flag,
+      required this.uniqueId,
+      required this.creatorId,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.flag,
       // Common(5+1)
-      this.displayName,
-      this.slug,
-      this.want,
-      this.start,
-      this.end,
-      this.waiters,
+      required this.displayName,
+      required this.slug,
+      required this.want,
+      required this.start,
+      required this.end,
+      required this.waiters,
       // for review(2)
-      this.rate,
-      this.reviewCount,
+      required this.rate,
+      required this.reviewCount,
       // point(1)
-      this.restaurantId})
+      required this.restaurantId})
       : super(rate, reviewCount);
 
   factory ParseModelEvents.fromJson(Map<String, dynamic> json) {
@@ -60,12 +59,12 @@ class ParseModelEvents extends BaseReview {
     DatabaseBaseModel databaseBaseModel = DatabaseBaseModel.fromJson(json);
 
     // Common(5+1)
-    var displayName = json['displayName'] as String;
-    var slug = json['slug'] as String;
-    var want = json['want'] as String;
-    var start = json['start'] as String;
-    var end = json['end'] as String;
-    var waiters = json['waiters'].cast<String>();
+    String displayName = json['displayName'];
+    String slug = json['slug'];
+    String want = json['want'];
+    String start = json['start'];
+    String end = json['end'];
+    List<String> waiters = json['waiters'].cast<String>();
 
     // for review(2)
     var rate = json['rate'];
@@ -77,9 +76,9 @@ class ParseModelEvents extends BaseReview {
       rate = rate.round();
     }
 
-    var reviewCount = json['reviewCount'] as int;
+    int reviewCount = json['reviewCount'];
     // point(1)
-    var restaurantId = json['restaurantId'] as String;
+    String restaurantId = json['restaurantId'];
 
     return ParseModelEvents(
         // Base(5)
@@ -125,12 +124,11 @@ class ParseModelEvents extends BaseReview {
     };
   }
 
-  static emptyEvent(
-      {@required AuthUserModel authUserModel, @required String restaurantId}) {
+  static emptyEvent({required AuthUserModel? authUserModel, required String restaurantId}) {
     return ParseModelEvents(
         // Base(5)
         uniqueId: documentIdFromCurrentDate(),
-        creatorId: authUserModel.uid,
+        creatorId: authUserModel!.uid,
         createdAt: getDateStringForCreatedOrUpdatedDate(),
         updatedAt: getDateStringForCreatedOrUpdatedDate(),
         flag: '1',
@@ -149,11 +147,11 @@ class ParseModelEvents extends BaseReview {
   }
 
   static ParseModelEvents updateEvent({
-    @required ParseModelEvents model,
-    @required String nextDisplayName,
-    @required String nextWant,
-    @required String nextStartDate,
-    @required String nextEndDate,
+    required ParseModelEvents model,
+    required String nextDisplayName,
+    required String nextWant,
+    required String nextStartDate,
+    required String nextEndDate,
   }) {
     // DisplayName
     model.displayName = nextDisplayName;
@@ -166,8 +164,7 @@ class ParseModelEvents extends BaseReview {
     return model;
   }
 
-  static ParseModelEvents addWaiter(
-      {@required ParseModelEvents model, @required String waiterId}) {
+  static ParseModelEvents addWaiter({required ParseModelEvents model, required String waiterId}) {
     List<String> nextWaiters = model.waiters;
     nextWaiters.add(waiterId);
     // Delete duplicates from a list
@@ -176,8 +173,7 @@ class ParseModelEvents extends BaseReview {
     return model;
   }
 
-  static ParseModelEvents removeWaiter(
-      {@required ParseModelEvents model, @required String waiterId}) {
+  static ParseModelEvents removeWaiter({required ParseModelEvents model, required String waiterId}) {
     List<String> nextWaiters = model.waiters;
     nextWaiters.remove(waiterId);
     model.waiters = nextWaiters;

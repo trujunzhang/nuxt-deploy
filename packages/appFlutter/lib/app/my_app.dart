@@ -1,8 +1,8 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:ieatta/app/app_localizations.dart';
 import 'package:ieatta/app/auth_widget_builder.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/constants/dark_theme.dart';
 import 'package:ieatta/core/constants/light_theme.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
@@ -13,21 +13,16 @@ import 'package:ieatta/core/services/firebase_sync.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/ui/auth/social_login.dart';
 import 'package:ieatta/core/ui/home/home.dart';
-import 'package:ieatta/debug/sql_photos_helper.dart';
 import 'package:ieatta/flavor.dart';
-import 'package:ieatta/src/layout/navigation_home_screen.dart';
-import 'package:ieatta/src/screens/restaurants/hotel_home_screen.dart';
+import 'package:ieatta/routers/routers.dart';
 import 'package:provider/provider.dart';
-import 'package:ieatta/core/database/localDatabase.dart' as database;
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MyApp extends StatefulWidget {
-  MyApp({Key key, @required this.databaseBuilder}) : super(key: key);
+  MyApp({Key? key, required this.databaseBuilder}) : super(key: key);
 
   // Expose builders for 3rd party services at the root of the widget tree
   // This is useful when mocking services while testing
-  final FirestoreDatabase Function(BuildContext context, String uid)
-      databaseBuilder;
+  final FirestoreDatabase Function(BuildContext context, String uid) databaseBuilder;
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -37,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    Routes.initRoutes();
     _syncLocalDb();
   }
 
@@ -63,31 +59,25 @@ class _MyAppState extends State<MyApp> {
           builder: (_, languageProviderRef, __) {
             return AuthWidgetBuilder(
               databaseBuilder: widget.databaseBuilder,
-              builder: (BuildContext context,
-                  AsyncSnapshot<AuthUserModel> userSnapshot) {
+              builder: (BuildContext context, AsyncSnapshot<AuthUserModel?> userSnapshot) {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
                   locale: languageProviderRef.appLocale,
                   //List of all supported locales
-                  supportedLocales: [
-                    Locale('en', 'US'),
-                    Locale('zh', 'CN'),
-                  ],
+                  supportedLocales: S.delegate.supportedLocales,
                   //These delegates make sure that the localization data for the proper language is loaded
                   localizationsDelegates: [
-                    //A class which loads the translations from JSON files
-                    AppLocalizations.delegate,
                     //Built-in localization of basic text for Material widgets (means those default Material widget such as alert dialog icon text)
                     GlobalMaterialLocalizations.delegate,
                     //Built-in localization for text direction LTR/RTL
                     GlobalWidgetsLocalizations.delegate,
+                    S.delegate,
                   ],
                   //return a locale which will be used by the app
                   localeResolutionCallback: (locale, supportedLocales) {
                     //check if the current device locale is supported or not
                     for (var supportedLocale in supportedLocales) {
-                      if (supportedLocale.languageCode ==
-                              locale?.languageCode ||
+                      if (supportedLocale.languageCode == locale?.languageCode ||
                           supportedLocale.countryCode == locale?.countryCode) {
                         return supportedLocale;
                       }
@@ -97,16 +87,14 @@ class _MyAppState extends State<MyApp> {
                     return supportedLocales.first;
                   },
                   title: Provider.of<Flavor>(context).toString(),
-                  routes: Routes.routes,
+                  onGenerateRoute: Routes.router.generator,
+                  // routes: Routes.routes,
                   theme: AppLightTheme.lightTheme,
                   darkTheme: AppDarkTheme.darkTheme,
-                  themeMode: themeProviderRef.isDarkModeOn
-                      ? ThemeMode.dark
-                      : ThemeMode.light,
+                  themeMode: themeProviderRef.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
                   home: Consumer<AuthProvider>(
                     builder: (_, authProviderRef, __) {
-                      if (userSnapshot.connectionState ==
-                          ConnectionState.active) {
+                      if (userSnapshot.connectionState == ConnectionState.active) {
                         return userSnapshot.hasData
                             ? // logged
                             HomeScreen()

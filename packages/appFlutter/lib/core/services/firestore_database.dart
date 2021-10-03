@@ -12,7 +12,6 @@ import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Reviews.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
-import 'package:meta/meta.dart';
 
 import 'firestore_photo.dart';
 
@@ -37,20 +36,17 @@ class FirestoreDatabase {
   // ===========================================================
   //Method to delete peopleInEventModel entry
   Future<void> deletePeopleInEvent(ParseModelPeopleInEvent model) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.singlePeopleInEvent(model.uniqueId));
+    await _firestoreService.deleteData(path: FirestorePath.singlePeopleInEvent(model.uniqueId));
   }
 
   //Method to delete eventModel entry
   Future<void> deleteEvent(ParseModelEvents model) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.singleEvent(model.uniqueId));
+    await _firestoreService.deleteData(path: FirestorePath.singleEvent(model.uniqueId));
   }
 
   //Method to delete reviewModel entry
   Future<void> deleteReview(ParseModelReviews model) async {
-    await _firestoreService.deleteData(
-        path: FirestorePath.singleReview(model.uniqueId));
+    await _firestoreService.deleteData(path: FirestorePath.singleReview(model.uniqueId));
   }
 
   // ===========================================================
@@ -58,7 +54,7 @@ class FirestoreDatabase {
   // ===========================================================
 
   //Method to create/update restaurantModel
-  Future<void> setRestaurant({@required ParseModelRestaurants model}) async {
+  Future<void> setRestaurant({required ParseModelRestaurants model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singleRestaurant(model.uniqueId),
       data: model.toMap(),
@@ -66,7 +62,7 @@ class FirestoreDatabase {
   }
 
   //Method to create/update eventModel
-  Future<void> setEvent({@required ParseModelEvents model}) async {
+  Future<void> setEvent({required ParseModelEvents model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singleEvent(model.uniqueId),
       data: model.toMap(),
@@ -74,7 +70,7 @@ class FirestoreDatabase {
   }
 
   //Method to create/update recipeModel
-  Future<void> setRecipe({@required ParseModelRecipes model}) async {
+  Future<void> setRecipe({required ParseModelRecipes model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singleRecipe(model.uniqueId),
       data: model.toMap(),
@@ -82,8 +78,7 @@ class FirestoreDatabase {
   }
 
   //Method to create/update peopleInEventModel
-  Future<void> setPeopleInEvent(
-      {@required ParseModelPeopleInEvent model}) async {
+  Future<void> setPeopleInEvent({required ParseModelPeopleInEvent model}) async {
     await _firestoreService.setData(
       path: FirestorePath.singlePeopleInEvent(model.uniqueId),
       data: model.toMap(),
@@ -91,19 +86,18 @@ class FirestoreDatabase {
   }
 
   //Method to create/update restaurantModel
-  Future<void> setReview({@required ParseModelReviews model}) async {
+  Future<void> setReview({required ParseModelReviews model}) async {
     await _firestoreService.setData(
-      path: FirestorePath.review(model.uniqueId),
+      path: FirestorePath.singleReview(model.uniqueId),
       data: model.toMap(),
     );
   }
 
   //Method to create/update photoModel
-  Future<void> setNewPhoto(
-      {@required String imagePath, @required ParseModelPhotos model}) async {
+  Future<void> setNewPhoto({required String imagePath, required ParseModelPhotos model}) async {
     // Step1: Save photo to Firebase collection.
     await _firestoreService.setData(
-      path: FirestorePath.photo(model.uniqueId),
+      path: FirestorePath.singlePhoto(model.uniqueId),
       data: model.toMap(),
     );
     // Step2: Save photo's file to Cloudinary.
@@ -113,7 +107,7 @@ class FirestoreDatabase {
   //Method to create/update photoModel
   Future<void> setPhoto(ParseModelPhotos model) async {
     await _firestoreService.setData(
-      path: FirestorePath.photo(model.uniqueId),
+      path: FirestorePath.singlePhoto(model.uniqueId),
       data: model.toMap(),
     );
   }
@@ -121,21 +115,19 @@ class FirestoreDatabase {
   //Method to create/update photoModel
   Future<void> updateUser(ParseModelUsers model) async {
     await _firestoreService.setData(
-      path: FirestorePath.user(model.id),
+      path: FirestorePath.singleUser(model.id),
       data: model.toMap(),
     );
   }
 
   //Method to retrieve photoModel object based on the given uniqueId
-  Future<ParseModelPhotos> getPhoto({@required String uniqueId}) =>
-      _firestoreService.getData(
-        path: FirestorePath.photo(uniqueId),
+  Future<ParseModelPhotos> getPhoto({required String uniqueId}) => _firestoreService.getData(
+        path: FirestorePath.singlePhoto(uniqueId),
         builder: (data, documentId) => ParseModelPhotos.fromJson(data),
       );
 
   //Method to retrieve userModel object based on the given userId
-  Future<ParseModelUsers> getUser({@required String userId}) =>
-      _firestoreService.getData(
+  Future<ParseModelUsers> getUser({required String userId}) => _firestoreService.getData(
         path: FirestorePath.user(userId),
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
       );
@@ -152,33 +144,27 @@ class FirestoreDatabase {
       });
 
   //Method to retrieve todoModel object based on the given todoId
-  Stream<QuerySnapshot> photoStream(
-          {@required ParseModelRestaurants restaurant}) =>
-      _firestoreService.snapshotStream(
-          path: FBCollections.Photos,
-          queryBuilder: (Query query) {
-            return query
-                .where("geoHash",
-                    isEqualTo: getGeoHashForRestaurant(restaurant))
-                // isGreaterThan: getGeoHashForRestaurant(restaurant))
-                // .orderBy('geoHash')
-                .orderBy('updatedAt', descending: true);
-          });
+  Stream<QuerySnapshot> photoStream({required ParseModelRestaurants restaurant}) => _firestoreService.snapshotStream(
+      path: FBCollections.Photos,
+      queryBuilder: (Query query) {
+        return query
+            .where("geoHash", isEqualTo: getGeoHashForRestaurant(restaurant))
+            // isGreaterThan: getGeoHashForRestaurant(restaurant))
+            // .orderBy('geoHash')
+            .orderBy('updatedAt', descending: true);
+      });
 
   //Method to retrieve todoModel object based on the given todoId
-  Stream<QuerySnapshot> reviewStream({@required String restaurantId}) =>
-      _firestoreService.snapshotStream(
-          path: FBCollections.Reviews,
-          queryBuilder: (Query query) {
-            return query
-                .where("restaurantId", isEqualTo: restaurantId)
-                .orderBy('updatedAt');
-          });
+  Stream<QuerySnapshot> reviewStream({required String restaurantId}) => _firestoreService.snapshotStream(
+      path: FBCollections.Reviews,
+      queryBuilder: (Query query) {
+        return query.where("restaurantId", isEqualTo: restaurantId).orderBy('updatedAt');
+      });
 
   //Method to retrieve todoModel object based on the given todoId
   Stream<QuerySnapshot> userMenuStream({
-    @required String userId,
-    @required FBCollections path,
+    required String userId,
+    required FBCollections path,
   }) =>
       _firestoreService.snapshotStream(
           path: path,

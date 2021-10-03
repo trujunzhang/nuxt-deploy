@@ -1,42 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
 import 'package:ieatta/src/screens/photos_grid/fb/photos_body.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
-class FBPhotosGridViewObject {
+class FBPhotosGridView extends StatelessWidget {
+  FBPhotosGridView({Key? key, required this.photoType, required this.relatedId}) : super(key: key);
+
   final String relatedId;
   final PhotoType photoType;
-
-  FBPhotosGridViewObject({@required this.relatedId, @required this.photoType});
-}
-
-class FBPhotosGridView extends StatefulWidget {
-  FBPhotosGridView({Key key}) : super(key: key);
-
-  @override
-  _FBPhotosGridViewState createState() => _FBPhotosGridViewState();
-}
-
-class _FBPhotosGridViewState extends State<FBPhotosGridView> {
-  FBPhotosGridViewObject gridViewObject;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final FBPhotosGridViewObject _gridViewObject =
-        ModalRoute.of(context).settings.arguments;
-    setState(() {
-      gridViewObject = _gridViewObject;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +19,10 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
         leading: IconButton(
           icon: Icon(Icons.cancel),
           onPressed: () {
-            Navigator.of(context).pop();
+            AppNavigator.goBack(context);
           },
         ),
-        title: Text(AppLocalizations.of(context)
-            .translate("photosBusinessPhotoAppBarTitleTxt")),
+        title: Text(S.of(context).photosBusinessPhotoAppBarTitleTxt),
         actions: <Widget>[],
       ),
       body: buildPhotos(context),
@@ -57,8 +30,7 @@ class _FBPhotosGridViewState extends State<FBPhotosGridView> {
   }
 
   Widget buildPhotos(BuildContext context) {
-    List<ParseModelPhotos> photosList = FilterModels.instance.getPhotosList(
-        context, gridViewObject.relatedId, gridViewObject.photoType);
+    List<ParseModelPhotos> photosList = FilterModels.instance.getPhotosList(context, relatedId, photoType);
 
     if (photosList.length == 0) {
       return Center(

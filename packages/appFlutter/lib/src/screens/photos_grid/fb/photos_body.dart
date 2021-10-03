@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
-import 'package:ieatta/src/components/photos/image.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 import 'fb_photos_pageview.dart';
 
 class PhotosBody extends StatefulWidget {
   final List<ParseModelPhotos> photoList;
 
-  PhotosBody({Key key, @required this.photoList}) : super(key: key);
+  PhotosBody({Key? key, required this.photoList}) : super(key: key);
 
   @override
   _PhotosBodyState createState() => _PhotosBodyState();
@@ -20,9 +19,8 @@ class _PhotosBodyState extends State<PhotosBody> {
     ParseModelPhotos photo = photos[index];
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.online_photos_pageview,
-            arguments:
-                FBPhotosPageViewObject(photos: photos, selectedIndex: index));
+        AppNavigator.popFullScreen(
+            context, FBPhotosPageView(), FBPhotosPageViewObject(photos: photos, selectedIndex: index));
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),

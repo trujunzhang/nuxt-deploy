@@ -18,8 +18,7 @@ Widget buildSelectedIcon() {
 }
 
 Widget buildCoverImage(String restaurantCoverUrl) {
-  Widget img =
-      buildParseModelRestaurantsImageWithOriginalUrl(restaurantCoverUrl);
+  Widget img = buildParseModelRestaurantsImageWithOriginalUrl(restaurantCoverUrl);
   Widget container = Container(
     width: 200,
     height: 200,
@@ -33,8 +32,7 @@ Widget buildCoverImage(String restaurantCoverUrl) {
 
 Widget buildCoverSectionTitle() {
   return Padding(
-    padding:
-        const EdgeInsets.only(left: 8.0, right: 8.0, top: 24, bottom: 10.0),
+    padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 24, bottom: 10.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[

@@ -1,65 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/types.dart';
+import 'package:ieatta/camera/screens/navigate_helper.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
-import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/Photos.dart';
+import 'package:ieatta/src/components/edit_restaurant/common.dart';
 import 'package:ieatta/src/components/photos/photo_base_view.dart';
+import 'package:ieatta/src/providers/select_state.dart';
+import 'package:ieatta/src/screens/details/event/select_waiter/select_waiter_provider.dart';
+import 'package:ieatta/util/flushbar_utils.dart';
 import 'package:provider/provider.dart';
-import 'package:another_flushbar/flushbar.dart';
 
 import 'no_result.dart';
 
-class SelectWaiterScreenObject {
-  final ParseModelEvents event;
+class SelectWaiterScreen extends StatelessWidget {
+  SelectWaiterScreen({Key? key, required this.screenObject}) : super(key: key);
 
-  SelectWaiterScreenObject({
-    @required this.event,
-  });
-}
-
-class SelectWaiterScreen extends StatefulWidget {
-  SelectWaiterScreen({Key key}) : super(key: key);
-
-  @override
-  _SelectWaiterScreenState createState() => _SelectWaiterScreenState();
-}
-
-class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
-  // Model
-  SelectWaiterScreenObject screenObject;
+  final SelectWaiterScreenObject screenObject;
   bool isSaving = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final SelectWaiterScreenObject _screenObject =
-        ModalRoute.of(context).settings.arguments;
-    setState(() {
-      screenObject = _screenObject;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)
-              .translate("eventsSelectWaiterTitleTxt")),
+          title: Text(S.of(context).eventsSelectWaiterTitleTxt),
           actions: [
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                     onTap: () {
-                      String restaurantId = screenObject.event.restaurantId;
-                      Navigator.of(context).pushNamed(Routes.app_camera,
-                          arguments: CameraScreenObject(
-                              photoType: PhotoType.Waiter,
-                              relatedId: restaurantId));
+                      PhotoNavigatorHelper.pop(context,
+                          photoType: PhotoType.Waiter, relatedId: screenObject.event.restaurantId);
                     },
                     child: Icon(
                       Icons.add,
@@ -72,12 +45,9 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
 
   Widget _buildBody(BuildContext context) {
     String restaurantId = screenObject.event.restaurantId;
-    Map<String, ParseModelPhotos> waitersDict =
-        FilterModels.instance.getWaitersDict(context, restaurantId);
+    Map<String, ParseModelPhotos> waitersDict = FilterModels.instance.getWaitersDict(context, restaurantId);
 
-    List<String> unselectedWaiterIds = FilterUtils.instance
-        .getUnselectedWaiterIds(
-            List.from(waitersDict.keys), screenObject.event);
+    List<String> unselectedWaiterIds = screenObject.unselectedWaiterIds;
 
     if (unselectedWaiterIds.length == 0) {
       return WaitersEmpty(
@@ -100,42 +70,22 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
     );
   }
 
-  Widget _buildGridItem(BuildContext context, ParseModelPhotos waiter) {
+  Widget _buildGridItem(BuildContext context, ParseModelPhotos? waiter) {
+    SelectState selectState = Provider.of<SelectState>(context, listen: true);
+    bool isSelected = selectState.contains(waiter!.uniqueId);
     return InkWell(
       onTap: () async {
-        if (isSaving == true) {
+        if (selectState.getSaving() == true) {
           return;
         }
-        setState(() {
-          isSaving = true;
-        });
 
-        var _flushBar = Flushbar(
-          flushbarPosition: FlushbarPosition.TOP,
-          flushbarStyle: FlushbarStyle.GROUNDED,
-          backgroundColor: Colors.red,
-          boxShadows: [
-            BoxShadow(
-              color: Colors.red[800],
-              offset: Offset(0.0, 2.0),
-              blurRadius: 3.0,
-            )
-          ],
-          isDismissible: false,
-          duration: Duration(seconds: 4),
-          // now we want to swipe to the sides
-          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-          // The default curve is Curves.easeOut
-          forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
+        selectState.setSaving(true);
+
+        FlushBarUtils.show(
+          context,
           title: 'Saving...',
           message: "Select a waiter photo",
-          icon: Icon(
-            Icons.save_rounded,
-            color: Colors.blue,
-          ),
         );
-
-        _flushBar.show(context);
 
         try {
           ParseModelEvents nextModel = ParseModelEvents.addWaiter(
@@ -143,19 +93,26 @@ class _SelectWaiterScreenState extends State<SelectWaiterScreen> {
             waiterId: waiter.uniqueId,
           );
 
-          final firestoreDatabase =
-              Provider.of<FirestoreDatabase>(context, listen: false);
+          final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
           await firestoreDatabase.setEvent(model: nextModel); // For event.
         } catch (e) {}
 
-        setState(() {
-          isSaving = false;
-        });
+        selectState.pushId(waiter.uniqueId);
+        selectState.setSaving(false);
       },
       child: Padding(
-        padding: EdgeInsets.all(5.0),
-        child: PhotoBaseView(photoData: waiter),
-      ),
+          padding: EdgeInsets.all(5.0),
+          child: Stack(
+            children: [
+              PhotoBaseView(photoData: waiter),
+              isSelected
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [buildSelectedIcon()],
+                    )
+                  : SizedBox()
+            ],
+          )),
     );
   }
 }

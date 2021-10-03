@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
 import 'package:ieatta/src/components/app/app_header.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
+import 'package:ieatta/src/screens/photos_grid/photo_router.dart';
 
 class AppBarUI extends StatefulWidget {
-  AppBarUI({Key key}) : super(key: key);
+  AppBarUI({Key? key}) : super(key: key);
 
   @override
   _AppBarUIState createState() => _AppBarUIState();
@@ -18,18 +20,11 @@ class _AppBarUIState extends State<AppBarUI> {
         color: Color(0xff83CBEC),
         // color: Colors.red,
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              offset: const Offset(0, 2),
-              blurRadius: 8.0),
+          BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0),
         ],
       ),
       child: Padding(
-          padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 10,
-              bottom: 4,
-              left: 8,
-              right: 8),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10, bottom: 4, left: 8, right: 8),
           child: buildHeader()),
     ));
   }
@@ -53,7 +48,7 @@ class _AppBarUIState extends State<AppBarUI> {
                 Radius.circular(32.0),
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.create_edit_restaurant);
+                NavigatorUtils.push(context, EditRouter.newRestaurantPage);
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -71,7 +66,7 @@ class _AppBarUIState extends State<AppBarUI> {
                 Radius.circular(32.0),
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.local_photos_gridview);
+                NavigatorUtils.push(context, PhotoListRouter.localPhotoGridPage);
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

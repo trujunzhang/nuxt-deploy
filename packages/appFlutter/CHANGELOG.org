@@ -1,0 +1,27 @@
+appFlutter
+
+12.1.4
+   .1 removed 'lib/app/app_localizations.dart'
+   .2 add 'intl_utils'
+   .3 add custom_appbar/custom_scaffold.
+   
+12.1.3   
+   .1 add 'ADD' button in the select(Person/Recipe/Waiter)Screen.
+   
+12.1.2   
+   .1 replace connectivity: ^3.0.6 to simple_connection_checker: ^0.2.1
+   .2 replace oktoast: ^3.1.1 to fluttertoast: ^8.0.8
+
+12.1.1
+   .1 using fluro: ^2.0.3
+   .2 change the sdk version from ">=2.7.0 <3.0.0" to sdk: ">=2.12.0 <3.0.0"
+   .3 deleted lib/src/db
+   .4 deleted lib/core/logger
+   .5 deleted lib/src/vendors/flutterEnumsToString
+   .6 removed geohash: ^0.2.1
+   .7 removed flutter_auth_buttons: ^0.10.0
+   .8 removed geoflutterfire: ^2.2.2
+
+11.1.4
+   .1 add sentry as open-source error tracking
+

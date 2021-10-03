@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/src/screens/edit/edit_router.dart';
 
 import '../hotel_app_theme.dart';
 
 class TrackEmpty extends StatefulWidget {
-  TrackEmpty({Key key}) : super(key: key);
+  TrackEmpty({Key? key}) : super(key: key);
 
   @override
   _TrackEmptyState createState() => _TrackEmptyState();
@@ -19,10 +20,7 @@ class _TrackEmptyState extends State<TrackEmpty> {
           Radius.circular(38.0),
         ),
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              offset: const Offset(0, 2),
-              blurRadius: 8.0),
+          BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),
         ],
       ),
       child: Material(
@@ -32,13 +30,11 @@ class _TrackEmptyState extends State<TrackEmpty> {
             Radius.circular(32.0),
           ),
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.create_edit_restaurant);
+            NavigatorUtils.push(context, EditRouter.newRestaurantPage);
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Icon(Icons.add,
-                size: 20,
-                color: HotelAppTheme.buildLightTheme().backgroundColor),
+            child: Icon(Icons.add, size: 20, color: HotelAppTheme.buildLightTheme().backgroundColor),
           ),
         ),
       ),

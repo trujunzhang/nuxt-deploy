@@ -4,7 +4,7 @@ class HomeState with ChangeNotifier {
   bool gpsTrack;
   String search = '';
 
-  HomeState({this.gpsTrack});
+  HomeState({required this.gpsTrack});
 
   bool getGpsTrack() {
     return gpsTrack;

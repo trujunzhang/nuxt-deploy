@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseReferences {
-  CollectionReference restaurants, // Restaurants
+  CollectionReference? restaurants, // Restaurants
       photos, // Photos
       users;
 
-  FirebaseFirestore firestore;
+  FirebaseFirestore? firestore;
 
   DatabaseReferences() {
     firestore = FirebaseFirestore.instance;
-    restaurants = firestore.collection('restaurants');
-    photos = firestore.collection('photos');
-    users = firestore.collection('users');
+    restaurants = firestore!.collection('restaurants');
+    photos = firestore!.collection('photos');
+    users = firestore!.collection('users');
   }
 }

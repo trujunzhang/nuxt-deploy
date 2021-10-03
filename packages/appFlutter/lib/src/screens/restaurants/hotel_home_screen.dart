@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/routes.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/providers/home_state.dart';
+import 'package:ieatta/src/screens/map/restaurants_map_page.dart';
+import 'package:ieatta/util/app_navigator.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +21,13 @@ class HotelHomeScreen extends StatefulWidget {
   _HotelHomeScreenState createState() => _HotelHomeScreenState();
 }
 
-class _HotelHomeScreenState extends State<HotelHomeScreen>
-    with TickerProviderStateMixin {
+class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
   List<ParseModelRestaurants> restaurantList = [];
 
   Widget buildBody(BuildContext context) {
-    LocationData locationVal = Provider.of<LocationData>(context);
+    LocationData? locationVal = Provider.of<LocationData?>(context);
     HomeState homeState = Provider.of<HomeState>(context, listen: true);
     bool gpsTrackVal = homeState.getGpsTrack();
     String searchVal = homeState.getSearch();
@@ -39,20 +39,14 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
     if (gpsTrackVal && locationVal != null) {
       // enable gps track.
-      restaurantList =
-          FilterModels.instance.getTrackingExploreList(context, locationVal);
+      restaurantList = FilterModels.instance.getTrackingExploreList(context, locationVal);
 
-      return (restaurantList.length != 0)
-          ? PageBody(restaurantList: restaurantList)
-          : TrackEmpty();
+      return (restaurantList.length != 0) ? PageBody(restaurantList: restaurantList) : TrackEmpty();
     }
     if (searchVal != '') {
       // Search model.
-      restaurantList =
-          FilterModels.instance.getSearchedExploreList(context, searchVal);
-      return (restaurantList.length != 0)
-          ? PageBody(restaurantList: restaurantList)
-          : SearchEmpty();
+      restaurantList = FilterModels.instance.getSearchedExploreList(context, searchVal);
+      return (restaurantList.length != 0) ? PageBody(restaurantList: restaurantList) : SearchEmpty();
     }
     // all
     restaurantList = FilterModels.instance.getAllRestaurantsList(context);
@@ -60,16 +54,15 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   }
 
   @override
+
   Widget build(BuildContext context) {
     var body = Expanded(
         child: NestedScrollView(
             controller: _scrollController,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
+                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                     return Column(
                       children: <Widget>[
                         SearchBarUI(),
@@ -83,8 +76,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   delegate: ContestTabHeader(
                     FilterBarUI(
                       mapClick: () {
-                        Navigator.of(context).pushNamed(Routes.map_restaurant,
-                            arguments: restaurantList);
+                        AppNavigator.popFullScreen(
+                          context,
+                          RestaurantsMapPage(),
+                          restaurantList,
+                        );
                       },
                     ),
                   ),
@@ -119,4 +115,5 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
       ),
     );
   }
+
 }

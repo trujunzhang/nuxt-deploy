@@ -34,8 +34,7 @@ class FirestoreList {
   // ===========================================================
 
   //Method to retrieve all restaurants stream
-  Stream<List<ParseModelRestaurants>> allRestaurantsStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelRestaurants>> allRestaurantsStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Restaurants),
         builder: (data, documentId) => ParseModelRestaurants.fromJson(data),
         queryBuilder: (Query query) {
@@ -44,8 +43,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all events stream
-  Stream<List<ParseModelEvents>> allEventsStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelEvents>> allEventsStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Events),
         builder: (data, documentId) => ParseModelEvents.fromJson(data),
         queryBuilder: (Query query) {
@@ -54,8 +52,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all peopleInEvents stream
-  Stream<List<ParseModelPeopleInEvent>> allPeopleInEventsStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelPeopleInEvent>> allPeopleInEventsStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.PeopleInEvent),
         builder: (data, documentId) => ParseModelPeopleInEvent.fromJson(data),
         queryBuilder: (Query query) {
@@ -64,8 +61,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all photos stream
-  Stream<List<ParseModelPhotos>> allPhotosStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelPhotos>> allPhotosStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Photos),
         builder: (data, documentId) => ParseModelPhotos.fromJson(data),
         queryBuilder: (Query query) {
@@ -74,8 +70,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all recipes stream
-  Stream<List<ParseModelRecipes>> allRecipesStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelRecipes>> allRecipesStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Recipes),
         builder: (data, documentId) => ParseModelRecipes.fromJson(data),
         queryBuilder: (Query query) {
@@ -84,8 +79,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all users stream
-  Stream<List<ParseModelUsers>> allUsersStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelUsers>> allUsersStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Users),
         builder: (data, documentId) => ParseModelUsers.fromJson(data),
         queryBuilder: (Query query) {
@@ -94,8 +88,7 @@ class FirestoreList {
       );
 
   //Method to retrieve all reviews stream
-  Stream<List<ParseModelReviews>> allReviewsStream() =>
-      _firestoreService.collectionStream(
+  Stream<List<ParseModelReviews>> allReviewsStream() => _firestoreService.collectionStream(
         path: fbCollectionToString(FBCollections.Reviews),
         builder: (data, documentId) => ParseModelReviews.fromJson(data),
         queryBuilder: (Query query) {

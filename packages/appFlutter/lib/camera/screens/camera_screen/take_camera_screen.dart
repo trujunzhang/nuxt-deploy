@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ieatta/app/routes.dart';
-import 'package:ieatta/camera/screens/edit/create_photo_provider_screen.dart';
-import 'package:ieatta/camera/screens/types.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
+import 'package:ieatta/routers/fluro_navigator.dart';
+import 'package:ieatta/routers/params_helper.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:camerawesome/camerawesome_plugin.dart';
+
+import '../Camera_object.dart';
 import 'widget/camera_options.dart';
 import 'widget/camera_uploading_user.dart';
 
@@ -19,12 +20,12 @@ class TakeCameraScreen extends StatefulWidget {
 
 class _TakeCameraScreenState extends State<TakeCameraScreen>
     with WidgetsBindingObserver, TickerProviderStateMixin<TakeCameraScreen> {
-  CameraScreenObject screenObject;
+  late CameraScreenObject screenObject;
 
   /// imagePath:
   ///    example:
   ///     (android)"/data/user/0/com.example.ieatta/cache/image_picker2451588894555255495.jpg"
-  String imagePath;
+  String? imagePath;
 
   CAMERA_PANEL camera_panel = CAMERA_PANEL.PANEL_NORMAL;
 
@@ -35,26 +36,27 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
 
   ValueNotifier<CameraFlashes> _switchFlash = ValueNotifier(CameraFlashes.AUTO);
   ValueNotifier<Sensors> _sensor = ValueNotifier(Sensors.BACK);
-  ValueNotifier<Size> _photoSize = ValueNotifier(null);
+
+  // TODO:[2021-8-18] djzhang(camera)
+  ValueNotifier<Size> _photoSize = ValueNotifier(Size.zero);
   ValueNotifier<CaptureModes> _captureMode = ValueNotifier(CaptureModes.PHOTO);
 
   /// list of available sizes
-  List<Size> _availableSizes;
+  late List<Size> _availableSizes;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final CameraScreenObject _screenObject =
-        ModalRoute.of(context).settings.arguments;
+    final Object? _screenObject = ModalRoute.of(context)!.settings.arguments;
     setState(() {
-      screenObject = _screenObject;
+      screenObject = _screenObject as CameraScreenObject;
     });
   }
 
@@ -62,9 +64,8 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
   void dispose() {
     _photoSize.dispose();
     _captureMode.dispose();
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    WidgetsBinding.instance.removeObserver(this);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -93,13 +94,23 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
         camera_panel = CAMERA_PANEL.PANEL_UPLOADING;
       });
     } else {
-      Navigator.of(context)
-          .pushNamed(Routes.create_photo,
-              arguments: NewPhotoScreenObject(
-                  imgPath: filePath,
-                  photoType: screenObject.photoType,
-                  relatedId: screenObject.relatedId))
-          .then(cb);
+      NavigatorUtils.push(
+              context,
+              ParamsHelper.getNewPhotoPath(
+                  photoType: screenObject.photoType, relatedId: screenObject.relatedId, imgPath: filePath))
+          .then((value) {
+        // TODO:[2021-8-18] djzhang(camera)
+        cb();
+      });
+      // Navigator.of(context)
+      //     .pushNamed(Routes.create_photo,
+      //         arguments: NewPhotoScreenObject(
+      //             imgPath: filePath,
+      //             photoType: screenObject.photoType,
+      //             relatedId: screenObject.relatedId))
+      //     .then((obj) {
+      //   cb();
+      // });
     }
   }
 
@@ -165,8 +176,7 @@ class _TakeCameraScreenState extends State<TakeCameraScreen>
           onFlashTap: onFlashTap,
           switchFlash: _switchFlash,
         ),
-        if (camera_panel == CAMERA_PANEL.PANEL_UPLOADING)
-          CameraUploadingUser(imagePath: imagePath) // option
+        if (camera_panel == CAMERA_PANEL.PANEL_UPLOADING) CameraUploadingUser(imagePath: imagePath!) // option
       ],
     );
   }

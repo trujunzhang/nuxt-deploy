@@ -32,13 +32,12 @@ Widget buildOnlineImageView(String imagePath, BoxFit fit) {
   );
 }
 
-Widget buildPhotoImageWithLocalImage(
-    ParseModelPhotos modelData, bool localFileExist, BoxFit fit) {
+Widget buildPhotoImageWithLocalImage(ParseModelPhotos modelData, bool localFileExist, BoxFit fit) {
   if (modelData.originalUrl == null || modelData.originalUrl == '') {
     if (modelData.offlinePath != null && modelData.offlinePath != '') {
       if (localFileExist) {
         // Exist
-        return _buildFileImageView(modelData.offlinePath);
+        return _buildFileImageView(modelData.offlinePath!);
       } else {
         // Place holder
         return _buildPlaceholderForOfflinePhoto();

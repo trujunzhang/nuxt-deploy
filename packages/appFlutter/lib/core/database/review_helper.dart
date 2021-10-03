@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ieatta/core/enums/fb_collections.dart';
 import 'package:ieatta/core/services/firestore_path.dart';
 import 'package:ieatta/core/services/firestore_service.dart';
@@ -14,7 +13,7 @@ class ReviewHelper {
   final double selectedStar;
   final bool isNew;
 
-  ReviewHelper({@required this.lastReviewRate, this.selectedStar, this.isNew});
+  ReviewHelper({required this.lastReviewRate, this.selectedStar = 0.0, this.isNew = false});
 
   updateSavedReview(BaseReview baseReview) {
     baseReview.rate = baseReview.rate - lastReviewRate.round() + selectedStar.round();
@@ -27,9 +26,9 @@ class ReviewHelper {
   }
 
   onSaveOrRemoveReviewAfterHook({
-    @required ReviewHookType reviewHookType,
-    @required ReviewType reviewType,
-    @required String relatedId,
+    required ReviewHookType reviewHookType,
+    required ReviewType reviewType,
+    required String relatedId,
   }) async {
     // Get the related models.
     var relatedModel;
@@ -66,17 +65,12 @@ class ReviewHelper {
 
     // Save the related models.
     if (reviewType == ReviewType.Restaurant) {
-      await FirestoreService.instance.setData(
-          path: FirestorePath.singleRestaurant(relatedId),
-          data: relatedModel.toMap());
+      await FirestoreService.instance
+          .setData(path: FirestorePath.singleRestaurant(relatedId), data: relatedModel.toMap());
     } else if (reviewType == ReviewType.Event) {
-      await FirestoreService.instance.setData(
-          path: FirestorePath.singleEvent(relatedId),
-          data: relatedModel.toMap());
+      await FirestoreService.instance.setData(path: FirestorePath.singleEvent(relatedId), data: relatedModel.toMap());
     } else if (reviewType == ReviewType.Recipe) {
-      await FirestoreService.instance.setData(
-          path: FirestorePath.singleRecipe(relatedId),
-          data: relatedModel.toMap());
+      await FirestoreService.instance.setData(path: FirestorePath.singleRecipe(relatedId), data: relatedModel.toMap());
     }
   }
 }

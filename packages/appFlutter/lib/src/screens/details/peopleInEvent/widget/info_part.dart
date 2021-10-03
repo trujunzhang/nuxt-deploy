@@ -1,50 +1,47 @@
 import 'dart:ui';
 
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
+import 'package:ieatta/core/filter/filter_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/appModels/models/PeopleInEvent.dart';
+import 'package:ieatta/src/appModels/models/Recipes.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/appModels/models/Users.dart';
 import 'package:ieatta/src/components/restaurants/image.dart';
 import 'package:ieatta/src/components/users/image.dart';
-import 'package:ieatta/src/screens/details/peopleInEvent/select_recipe/select_recipe_screen.dart';
+import 'package:ieatta/src/screens/details/peopleInEvent/select_recipe/select_recipe_provider.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
 class InfoPart extends StatelessWidget {
   final ParseModelPeopleInEvent peopleInEvent;
   final List<String> unorderedRecipeIds;
 
-  const InfoPart(
-      {Key key,
-      @required this.peopleInEvent,
-      @required this.unorderedRecipeIds})
-      : super(key: key);
+  const InfoPart({Key? key, required this.peopleInEvent, required this.unorderedRecipeIds}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ParseModelRestaurants restaurant = FilterModels.instance
-        .getSingleRestaurant(context, peopleInEvent.restaurantId);
+    ParseModelRestaurants? restaurant = FilterModels.instance.getSingleRestaurant(context, peopleInEvent.restaurantId);
 
-    ParseModelEvents event =
-        FilterModels.instance.getSingleEvent(context, peopleInEvent.eventId);
+    ParseModelEvents? event = FilterModels.instance.getSingleEvent(context, peopleInEvent.eventId);
 
-    ParseModelUsers user =
-        FilterModels.instance.getSingleUser(context, peopleInEvent.userId);
+    ParseModelUsers? user = FilterModels.instance.getSingleUser(context, peopleInEvent.userId);
 
     return Card(
         margin: EdgeInsets.symmetric(horizontal: 0.0),
         // elevation: 0.0,
         child: Container(
-          height: MediaQuery.of(context).size.width / 2 + 80,
+          height: ScreenUtil.getInstance().screenWidth / 2 + 80,
           color: Colors.white,
           child: _buildBody(context, user, restaurant, event),
         ));
   }
 
-  Widget buildBlurredImage(ParseModelRestaurants restaurant) {
+  Widget buildBlurredImage(ParseModelRestaurants? restaurant) {
     return Stack(
       children: [
-        buildRestaurantImage(restaurant),
+        buildRestaurantImage(restaurant!),
         ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
@@ -57,8 +54,8 @@ class InfoPart extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, ParseModelUsers user,
-      ParseModelRestaurants restaurant, ParseModelEvents event) {
+  Widget _buildBody(
+      BuildContext context, ParseModelUsers? user, ParseModelRestaurants? restaurant, ParseModelEvents? event) {
     return Stack(
       children: [
         AspectRatio(
@@ -82,6 +79,11 @@ class InfoPart extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context) {
+    Map<String, ParseModelRecipes> recipesDict =
+        FilterModels.instance.getRecipesDict(context, peopleInEvent.restaurantId);
+
+    List<String> unorderedRecipeIds =
+        FilterUtils.instance.getUnorderedRecipeIds(List.from(recipesDict.keys), peopleInEvent);
     return Container(
         padding: EdgeInsets.only(right: 14, bottom: 12),
         // color: Colors.red,
@@ -97,16 +99,10 @@ class InfoPart extends StatelessWidget {
                 onSurface: Colors.grey,
               ),
               onPressed: () {
-                Navigator.push<dynamic>(
+                AppNavigator.popFullScreen(
                   context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => SelectRecipeScreen(),
-                      settings: RouteSettings(
-                        arguments: SelectRecipeScreenObject(
-                            peopleInEvent: peopleInEvent,
-                        ),
-                      ),
-                      fullscreenDialog: true),
+                  SelectRecipeProvider(),
+                  SelectRecipeScreenObject(peopleInEvent: peopleInEvent, unorderedRecipeIds: unorderedRecipeIds),
                 );
               },
             )
@@ -114,37 +110,35 @@ class InfoPart extends StatelessWidget {
         ));
   }
 
-  Widget buildInfo(ParseModelRestaurants restaurant, ParseModelEvents event) {
+  Widget buildInfo(ParseModelRestaurants? restaurant, ParseModelEvents? event) {
     return Padding(
-        padding: EdgeInsets.only(left: 100, right: 40, bottom: 45),
+        padding: EdgeInsets.only(left: 100, right: 40, bottom: 25),
         child: Container(
           // color: Colors.red,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              SizedBox(height: 4),
               Text(
-                restaurant.displayName,
+                restaurant!.displayName,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 30,
-                    color: Colors.white),
+                maxLines: 2,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28, color: Colors.white),
               ),
               SizedBox(height: 4),
               Text(
-                event.displayName,
+                event!.displayName,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w200,
-                    fontSize: 16,
-                    color: Colors.white),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontWeight: FontWeight.w200, fontSize: 16, color: Colors.white),
               ),
             ],
           ),
         ));
   }
 
-  Widget _buildUserInfo(BuildContext context, ParseModelUsers user) {
+  Widget _buildUserInfo(BuildContext context, ParseModelUsers? user) {
     return Container(
       padding: EdgeInsets.only(left: 24),
       height: 115,
@@ -157,18 +151,14 @@ class InfoPart extends StatelessWidget {
             height: 60,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: buildParseModelUsersImage(user),
+              child: buildParseModelUsersImage(user!),
             ),
           ),
           SizedBox(height: 4),
-          Text(user.username,
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
+          Text(user.username, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
           // SizedBox(height: 4),
           Text(peopleInEvent.recipes.length.toString() + ' Recipes Ordered',
-              style: TextStyle(
-                  fontWeight: FontWeight.w200,
-                  color: Colors.grey,
-                  fontSize: 14)),
+              style: TextStyle(fontWeight: FontWeight.w200, color: Colors.grey, fontSize: 14)),
           SizedBox(height: 4),
         ],
       ),

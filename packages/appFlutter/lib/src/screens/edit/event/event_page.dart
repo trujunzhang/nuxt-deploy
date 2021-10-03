@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/models/auth_user_model.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/core/services/firestore_database.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
 import 'package:ieatta/src/appModels/models/Events.dart';
 import 'package:ieatta/src/providers/event_state.dart';
-import 'package:ieatta/src/utils/toast.dart';
+import 'package:ieatta/util/app_navigator.dart';
+import 'package:ieatta/util/toast_utils.dart';
 import 'package:provider/provider.dart';
 
 class EventPage extends StatefulWidget {
-  final ParseModelEvents event;
+  final ParseModelEvents? event;
 
-  const EventPage({Key key, this.event}) : super(key: key);
+  const EventPage({Key? key, this.event}) : super(key: key);
 
   @override
   _EventPageState createState() => _EventPageState();
@@ -37,63 +38,55 @@ class _EventPageState extends State<EventPage> {
           leading: IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
           title: Text(widget.event != null
-              ? AppLocalizations.of(context)
-                  .translate("eventsCreateEditAppBarTitleEditTxt")
-              : AppLocalizations.of(context)
-                  .translate("eventsCreateEditAppBarTitleNewTxt")),
+              ? S.of(context).eventsCreateEditAppBarTitleEditTxt
+              : S.of(context).eventsCreateEditAppBarTitleNewTxt),
           actions: <Widget>[
             TextButton(
                 onPressed: _isButtonDisabled
                     ? null
                     : () async {
-                        if (_formKey.currentState.saveAndValidate()) {
+
+                        if (_formKey.currentState!.saveAndValidate()) {
                           FocusScope.of(context).unfocus();
 
                           setState(() {
                             _isButtonDisabled = true;
                           });
 
-                          AuthUserModel authUserModel =
-                              await authProvider.getAuthUserModel();
+                          AuthUserModel? authUserModel = await authProvider.getAuthUserModel();
 
                           ParseModelEvents lastModel = widget.event != null
                               ? widget.event
                               : ParseModelEvents.emptyEvent(
-                                  authUserModel: authUserModel,
-                                  restaurantId: eventState.restaurantId);
+                                  authUserModel: authUserModel, restaurantId: eventState.restaurantId);
 
-                          ParseModelEvents nextModel =
-                              ParseModelEvents.updateEvent(
-                                  model: lastModel,
-                                  nextDisplayName: eventState.getDisplayName(),
-                                  nextWant: eventState.getWant(),
-                                  nextStartDate: eventState.getStartDate(),
-                                  nextEndDate: eventState.getEndDate());
+                          ParseModelEvents nextModel = ParseModelEvents.updateEvent(
+                              model: lastModel,
+                              nextDisplayName: eventState.getDisplayName(),
+                              nextWant: eventState.getWant(),
+                              nextStartDate: eventState.getStartDate(),
+                              nextEndDate: eventState.getEndDate());
 
                           try {
-                            final firestoreDatabase =
-                                Provider.of<FirestoreDatabase>(context,
-                                    listen: false);
-                            await firestoreDatabase.setEvent(
-                                model: nextModel); // For Restaurant.
+                            final firestoreDatabase = Provider.of<FirestoreDatabase>(context, listen: false);
+                            await firestoreDatabase.setEvent(model: nextModel); // For Restaurant.
                           } catch (e) {
                             setState(() {
                               _isButtonDisabled = false;
                             });
                           }
 
-                          ToastUtils.showToast(AppLocalizations.of(context)
-                              .translate("toastForSaveSuccess"));
+                          Toast.show(S.of(context).toastForSaveSuccess);
                           // Navigate
-                          Navigator.of(context).pop();
+                          AppNavigator.goBack(context);
                         }
+
                       },
-                child: Text(AppLocalizations.of(context)
-                    .translate("editModelAppBarRightSaveTitle")))
+                child: Text(S.of(context).editModelAppBarRightSaveTitle))
           ],
         ),
         body: SingleChildScrollView(
@@ -113,7 +106,8 @@ class _EventPageState extends State<EventPage> {
       child: FocusTraversalGroup(
         child: Form(
           onChanged: () {
-            Form.of(primaryFocus.context).save();
+            // TODO:[2021-8-18] djzhang
+            // Form.of(primaryFocus.context).save();
           },
           child: _buildForm(context),
         ),
@@ -140,11 +134,10 @@ class _EventPageState extends State<EventPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditDisplayNameTxt"),
+                    labelText: S.of(context).eventsCreateEditDisplayNameTxt,
                   ),
-                  onChanged: (String val) {
-                    eventState.setDisplayName(val);
+                  onChanged: (String? val) {
+                    eventState.setDisplayName(val!);
                   },
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -156,11 +149,10 @@ class _EventPageState extends State<EventPage> {
                   autovalidateMode: AutovalidateMode.always,
                   name: 'want',
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditWantTxt"),
+                    labelText: S.of(context).eventsCreateEditWantTxt,
                   ),
-                  onChanged: (String val) {
-                    eventState.setWant(val);
+                  onChanged: (String? val) {
+                    eventState.setWant(val!);
                   },
                   // valueTransformer: (text) => num.tryParse(text),
                   validator: FormBuilderValidators.compose([
@@ -174,15 +166,14 @@ class _EventPageState extends State<EventPage> {
                   // initialValue: DateTime.now(),
                   inputType: InputType.both,
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditStartDateTxt"),
+                    labelText: S.of(context).eventsCreateEditStartDateTxt,
                   ),
                   initialTime: TimeOfDay(hour: 8, minute: 0),
-                  onChanged: (DateTime dt) {
-                    var val = getDateIso8610String(dt);
+                  onChanged: (DateTime? dt) {
+                    var val = getDateIso8610String(dt!);
                     eventState.setStartDate(val);
                   },
-                  pickerType: PickerType.cupertino,
+                  // pickerType: PickerType.cupertino,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),
@@ -192,15 +183,14 @@ class _EventPageState extends State<EventPage> {
                   // initialValue: DateTime.now(),
                   inputType: InputType.both,
                   decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)
-                        .translate("eventsCreateEditEndDateTxt"),
+                    labelText: S.of(context).eventsCreateEditEndDateTxt,
                   ),
                   initialTime: TimeOfDay(hour: 8, minute: 0),
-                  onChanged: (DateTime dt) {
-                    var val = getDateIso8610String(dt);
+                  onChanged: (DateTime? dt) {
+                    var val = getDateIso8610String(dt!);
                     eventState.setEndDate(val);
                   },
-                  pickerType: PickerType.cupertino,
+                  // pickerType: PickerType.cupertino,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),

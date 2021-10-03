@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NoPermissionView extends StatefulWidget {
-  NoPermissionView({Key key, this.requestAppPermission}) : super(key: key);
+  NoPermissionView({Key? key, required this.requestAppPermission}) : super(key: key);
   final Function requestAppPermission;
 
   @override

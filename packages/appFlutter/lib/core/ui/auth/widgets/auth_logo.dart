@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
 
 class AuthLogo extends StatelessWidget {
-  const AuthLogo({Key key}) : super(key: key);
+  const AuthLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +12,14 @@ class AuthLogo extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: AppTheme.grey.withOpacity(0.6),
-              offset: const Offset(2.0, 4.0),
-              blurRadius: 8),
+          BoxShadow(color: AppTheme.grey.withOpacity(0.6), offset: const Offset(2.0, 4.0), blurRadius: 8),
         ],
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(60.0)),
         child: Image.asset(
           // 'assets/placeholder/user_60_square.png',
-            'assets/logo.png',
+          'assets/logo.png',
         ),
       ),
     );

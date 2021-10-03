@@ -13,22 +13,20 @@ class AppLightTheme {
   static const Color _lightOnPrimaryColor = Colors.black;
   static const Color _lightButtonPrimaryColor = Colors.orangeAccent;
   static const Color _lightAppBarColor = Color(0xff83CBEC);
+
   // static const Color _lightAppBarColor = Colors.white;
   // static Color _lightIconColor = Colors.orangeAccent;
   static Color _lightIconColor = Colors.white;
   static Color _lightSnackBarBackgroundErrorColor = Colors.redAccent;
 
   //text theme for light theme
-  static final TextStyle _lightScreenHeadingTextStyle =
-      TextStyle(fontSize: 20.0, color: _lightOnPrimaryColor);
-  static final TextStyle _lightScreenTaskNameTextStyle =
-      TextStyle(fontSize: 16.0, color: _lightOnPrimaryColor);
-  static final TextStyle _lightScreenTaskDurationTextStyle =
-      TextStyle(fontSize: 14.0, color: Colors.grey);
-  static final TextStyle _lightScreenButtonTextStyle = TextStyle(
-      fontSize: 14.0, color: _lightOnPrimaryColor, fontWeight: FontWeight.w500);
-  static final TextStyle _lightScreenCaptionTextStyle = TextStyle(
-      fontSize: 12.0, color: _lightAppBarColor, fontWeight: FontWeight.w100);
+  static final TextStyle _lightScreenHeadingTextStyle = TextStyle(fontSize: 20.0, color: _lightOnPrimaryColor);
+  static final TextStyle _lightScreenTaskNameTextStyle = TextStyle(fontSize: 16.0, color: _lightOnPrimaryColor);
+  static final TextStyle _lightScreenTaskDurationTextStyle = TextStyle(fontSize: 14.0, color: Colors.grey);
+  static final TextStyle _lightScreenButtonTextStyle =
+      TextStyle(fontSize: 14.0, color: _lightOnPrimaryColor, fontWeight: FontWeight.w500);
+  static final TextStyle _lightScreenCaptionTextStyle =
+      TextStyle(fontSize: 12.0, color: _lightAppBarColor, fontWeight: FontWeight.w100);
 
   static final TextTheme _lightTextTheme = TextTheme(
     headline5: _lightScreenHeadingTextStyle,
@@ -59,16 +57,13 @@ class AppLightTheme {
       secondary: _lightSecondaryColor,
       onPrimary: _lightOnPrimaryColor,
     ),
-    snackBarTheme:
-        SnackBarThemeData(backgroundColor: _lightSnackBarBackgroundErrorColor),
+    snackBarTheme: SnackBarThemeData(backgroundColor: _lightSnackBarBackgroundErrorColor),
     iconTheme: IconThemeData(
       color: _lightIconColor,
     ),
     popupMenuTheme: PopupMenuThemeData(color: _lightAppBarColor),
     textTheme: _lightTextTheme,
-    buttonTheme: ButtonThemeData(
-        buttonColor: _lightButtonPrimaryColor,
-        textTheme: ButtonTextTheme.primary),
+    buttonTheme: ButtonThemeData(buttonColor: _lightButtonPrimaryColor, textTheme: ButtonTextTheme.primary),
     unselectedWidgetColor: _lightPrimaryColor,
     inputDecorationTheme: InputDecorationTheme(
         fillColor: _lightPrimaryColor,

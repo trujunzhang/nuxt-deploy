@@ -1,7 +1,9 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/providers/auth_provider.dart';
 import 'package:ieatta/src/layout/app_theme.dart';
+import 'package:ieatta/util/app_navigator.dart';
 import 'package:provider/provider.dart';
 
 import 'draw_model.dart';
@@ -9,10 +11,7 @@ import 'login/logged_user.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
-      {Key key,
-      this.screenIndex,
-      this.iconAnimationController,
-      this.callBackIndex})
+      {Key? key, required this.screenIndex, required this.iconAnimationController, required this.callBackIndex})
       : super(key: key);
 
   final AnimationController iconAnimationController;
@@ -24,7 +23,6 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-
   @override
   void initState() {
     super.initState();
@@ -38,8 +36,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         width: double.infinity,
         height: 230,
         padding: const EdgeInsets.only(top: 40.0),
-        child: LoggedUser(
-            iconAnimationController: widget.iconAnimationController));
+        child: LoggedUser(iconAnimationController: widget.iconAnimationController));
     return Scaffold(
       backgroundColor: AppTheme.notWhite.withOpacity(0.5),
       body: Column(
@@ -102,24 +99,21 @@ class _HomeDrawerState extends State<HomeDrawer> {
   showAlertDialog(BuildContext context, AuthProvider authProvider) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text(AppLocalizations.of(context)
-          .translate("alertDialogCancelBtn")),
+      child: Text(S.of(context).alertDialogCancelBtn),
       onPressed: () {
-        Navigator.of(context).pop();
+        AppNavigator.goBack(context);
       },
     );
     Widget continueButton = TextButton(
-      child: Text(AppLocalizations.of(context)
-          .translate("alertDialogYesBtn")),
+      child: Text(S.of(context).alertDialogYesBtn),
       onPressed: () async {
         await authProvider.signOut();
       },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(AppLocalizations.of(context).translate("alertDialogTitle")),
-      content: Text(
-          AppLocalizations.of(context).translate("alertDialogMessage")),
+      title: Text(S.of(context).alertDialogTitle),
+      content: Text(S.of(context).alertDialogMessage),
       actions: [
         cancelButton,
         continueButton,
@@ -141,7 +135,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         splashColor: Colors.grey.withOpacity(0.1),
         highlightColor: Colors.transparent,
         onTap: () {
-          navigationtoScreen(listData.index);
+          navigationtoScreen(listData.index!);
         },
         child: Stack(
           children: <Widget>[
@@ -161,14 +155,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           width: 24,
                           height: 24,
                           child: Image.asset(listData.imageName,
-                              color: widget.screenIndex == listData.index
-                                  ? Colors.blue
-                                  : AppTheme.nearlyBlack),
+                              color: widget.screenIndex == listData.index ? Colors.blue : AppTheme.nearlyBlack),
                         )
-                      : Icon(listData.icon.icon,
-                          color: widget.screenIndex == listData.index
-                              ? Colors.blue
-                              : AppTheme.nearlyBlack),
+                      : Icon(listData.icon!.icon,
+                          color: widget.screenIndex == listData.index ? Colors.blue : AppTheme.nearlyBlack),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
@@ -177,9 +167,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
-                      color: widget.screenIndex == listData.index
-                          ? Colors.blue
-                          : AppTheme.nearlyBlack,
+                      color: widget.screenIndex == listData.index ? Colors.blue : AppTheme.nearlyBlack,
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -189,20 +177,17 @@ class _HomeDrawerState extends State<HomeDrawer> {
             widget.screenIndex == listData.index
                 ? AnimatedBuilder(
                     animation: widget.iconAnimationController,
-                    builder: (BuildContext context, Widget child) {
+                    builder: (BuildContext context, Widget? child) {
                       return Transform(
                         transform: Matrix4.translationValues(
-                            (MediaQuery.of(context).size.width * 0.75 - 64) *
-                                (1.0 -
-                                    widget.iconAnimationController.value -
-                                    1.0),
+                            (ScreenUtil.getInstance().screenWidth * 0.75 - 64) *
+                                (1.0 - widget.iconAnimationController.value - 1.0),
                             0.0,
                             0.0),
                         child: Padding(
                           padding: EdgeInsets.only(top: 8, bottom: 8),
                           child: Container(
-                            width:
-                                MediaQuery.of(context).size.width * 0.75 - 64,
+                            width: ScreenUtil.getInstance().screenWidth * 0.75 - 64,
                             height: 46,
                             decoration: BoxDecoration(
                               color: Colors.blue.withOpacity(0.2),

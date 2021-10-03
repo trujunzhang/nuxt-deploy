@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class UserState with ChangeNotifier {
-  String _firstName;
-  String _secondName;
-  String _coverUrl;
+  String _firstName = "";
+  String _secondName = "";
+  String _coverUrl = "";
 
-  UserState({@required String username, @required String originalUrl}) {
+  UserState({required String username, required String originalUrl}) {
     var s = username.split(' ');
     _firstName = s[0];
     _secondName = s.length == 2 ? s[1] : '';

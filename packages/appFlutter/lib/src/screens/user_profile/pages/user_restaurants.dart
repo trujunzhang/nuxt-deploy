@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/app_localizations.dart';
+import 'package:ieatta/common/langs/l10n.dart';
 import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/components/navigation/arrow_helper.dart';
 import 'package:ieatta/src/screens/restaurants/body/page_body.dart';
+import 'package:ieatta/util/app_navigator.dart';
 
-class UserRestaurants extends StatefulWidget {
-  UserRestaurants({Key key}) : super(key: key);
+class UserRestaurants extends StatelessWidget {
+  UserRestaurants({Key? key, required this.userId}) : super(key: key);
 
-  @override
-  _UserRestaurantsState createState() => _UserRestaurantsState();
-}
-
-class _UserRestaurantsState extends State<UserRestaurants> {
-  String _userId;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final String _userIdArg = ModalRoute.of(context).settings.arguments;
-    if (_userIdArg != null) {
-      _userId = _userIdArg;
-    }
-  }
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +18,16 @@ class _UserRestaurantsState extends State<UserRestaurants> {
           leading: IconButton(
             icon: Icon(getArrowBackIcon()),
             onPressed: () {
-              Navigator.of(context).pop();
+              AppNavigator.goBack(context);
             },
           ),
-          title: Text(AppLocalizations.of(context)
-              .translate("userMenuRestaurantsAppBarTitle")),
+          title: Text(S.of(context).userMenuRestaurantsAppBarTitle),
         ),
         body: _buildBody(context));
   }
 
   Widget _buildBody(BuildContext context) {
-    List<ParseModelRestaurants> restaurantsList =
-        FilterModels.instance.getRestaurantsListByUser(context, _userId);
+    List<ParseModelRestaurants> restaurantsList = FilterModels.instance.getRestaurantsListByUser(context, userId);
     if (restaurantsList.length == 0) {
       return Center(
         child: Text('No Data'),

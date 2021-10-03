@@ -8,8 +8,8 @@ import '../hotel_app_theme.dart';
 
 class HotelListView extends StatefulWidget {
   HotelListView({
-    Key key,
-    @required this.restaurantData,
+    Key? key,
+    required this.restaurantData,
     this.callback,
     this.expandIconCallback,
     this.showThumbnail = true,
@@ -18,8 +18,8 @@ class HotelListView extends StatefulWidget {
 
   final bool showThumbnail;
   final bool showExpandIcon;
-  final VoidCallback callback;
-  final Function expandIconCallback;
+  final VoidCallback? callback;
+  final Function? expandIconCallback;
   final ParseModelRestaurants restaurantData;
 
   @override
@@ -48,7 +48,7 @@ class _HotelListViewState extends State<HotelListView> {
           InkWell(
             onTap: () {
               if (widget.expandIconCallback != null) {
-                widget.expandIconCallback(!iconExpand);
+                widget.expandIconCallback!(!iconExpand);
               }
               setState(() {
                 iconExpand = !iconExpand;
@@ -70,7 +70,7 @@ class _HotelListViewState extends State<HotelListView> {
       splashColor: Colors.transparent,
       onTap: () {
         if (widget.callback != null) {
-          widget.callback();
+          widget.callback!();
         }
       },
       child: Container(
@@ -102,8 +102,7 @@ class _HotelListViewState extends State<HotelListView> {
                     Expanded(
                       child: Container(
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16, top: 8, bottom: 8),
+                          padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,20 +110,15 @@ class _HotelListViewState extends State<HotelListView> {
                               Text(
                                 widget.restaurantData.displayName,
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 22,
-                                    color: Colors.black),
+                                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.black),
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    widget.restaurantData.locality,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey.withOpacity(0.8)),
+                                    widget.restaurantData.locality!,
+                                    style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
                                   ),
                                   const SizedBox(
                                     width: 4,
@@ -132,16 +126,13 @@ class _HotelListViewState extends State<HotelListView> {
                                   Icon(
                                     FontAwesomeIcons.mapMarkerAlt,
                                     size: 12,
-                                    color: HotelAppTheme.buildLightTheme()
-                                        .primaryColor,
+                                    color: HotelAppTheme.buildLightTheme().primaryColor,
                                   ),
                                   Expanded(
                                     child: Text(
-                                      widget.restaurantData.route,
+                                      widget.restaurantData.route!,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.grey.withOpacity(0.8)),
+                                      style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
                                     ),
                                   ),
                                 ],
@@ -150,13 +141,10 @@ class _HotelListViewState extends State<HotelListView> {
                                 padding: const EdgeInsets.only(top: 4),
                                 child: Row(
                                   children: <Widget>[
-                                    RatingImage(
-                                        baseReview: widget.restaurantData),
+                                    RatingImage(baseReview: widget.restaurantData),
                                     Text(
                                       ' ${widget.restaurantData.reviewCount} Reviews',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.grey.withOpacity(0.8)),
+                                      style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
                                     ),
                                   ],
                                 ),

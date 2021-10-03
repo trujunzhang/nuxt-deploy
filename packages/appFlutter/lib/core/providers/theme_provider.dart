@@ -3,7 +3,7 @@ import 'package:ieatta/core/caches/sharedpref/shared_preference_helper.dart';
 
 class ThemeProvider extends ChangeNotifier {
   // shared pref object
-  SharedPreferenceHelper _sharedPrefsHelper;
+  SharedPreferenceHelper? _sharedPrefsHelper;
 
   bool _isDarkModeOn = false;
 
@@ -12,7 +12,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   bool get isDarkModeOn {
-    _sharedPrefsHelper.isDarkMode.then((statusValue) {
+    _sharedPrefsHelper!.isDarkMode.then((statusValue) {
       _isDarkModeOn = statusValue;
     });
 
@@ -20,8 +20,8 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void updateTheme(bool isDarkModeOn) {
-    _sharedPrefsHelper.changeTheme(isDarkModeOn);
-    _sharedPrefsHelper.isDarkMode.then((darkModeStatus) {
+    _sharedPrefsHelper!.changeTheme(isDarkModeOn);
+    _sharedPrefsHelper!.isDarkMode.then((darkModeStatus) {
       _isDarkModeOn = darkModeStatus;
     });
 

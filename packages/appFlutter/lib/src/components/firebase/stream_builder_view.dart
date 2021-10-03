@@ -13,11 +13,9 @@ Widget defaultPlaceHolder() {
 class StreamBuilderView<T> extends StatelessWidget {
   final Stream<T> stream;
   final Function render;
-  final Widget placeHolder;
+  final Widget? placeHolder;
 
-  const StreamBuilderView(
-      {Key key, @required this.stream, @required this.render, this.placeHolder})
-      : super(key: key);
+  const StreamBuilderView({Key? key, required this.stream, required this.render, this.placeHolder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:ieatta/core/filter/filter_models.dart';
 import 'package:ieatta/src/appModels/models/Restaurants.dart';
 import 'package:ieatta/src/providers/restaurant_state.dart';
 import 'package:provider/provider.dart';
 
 import 'restaurant_page.dart';
 
-class CreateEditRestaurantProviderScreen extends StatefulWidget {
-  @override
-  _CreateEditRestaurantProviderScreenState createState() =>
-      _CreateEditRestaurantProviderScreenState();
-}
+class CreateEditRestaurantProviderScreen extends StatelessWidget {
+  CreateEditRestaurantProviderScreen({Key? key, this.restaurantId, required this.isNew}) : super(key: key);
 
-class _CreateEditRestaurantProviderScreenState
-    extends State<CreateEditRestaurantProviderScreen> {
-  // Model
-  ParseModelRestaurants _restaurant;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final ParseModelRestaurants _restaurantModel =
-        ModalRoute.of(context).settings.arguments;
-    setState(() {
-      _restaurant = _restaurantModel;
-    });
-  }
+  final bool isNew;
+  final String? restaurantId;
 
   @override
   Widget build(BuildContext context) {
+    ParseModelRestaurants? restaurant;
+    if (isNew == false) {
+      restaurant = FilterModels.instance.getSingleRestaurant(context, restaurantId!);
+    }
     return ChangeNotifierProvider<RestaurantState>(
         create: (context) => RestaurantState(
-              displayName: _restaurant != null ? _restaurant.displayName : "",
-              extraNote: _restaurant != null ? _restaurant.extraNote : "",
-              coverUrl: _restaurant != null ? _restaurant.originalUrl : "",
+              displayName: restaurant != null ? restaurant.displayName : "",
+              extraNote: restaurant != null ? restaurant.extraNote : "",
+              coverUrl: restaurant != null ? restaurant.originalUrl : "",
             ),
-        child: RestaurantPage(restaurant: _restaurant));
+        child: RestaurantPage(restaurant: restaurant));
   }
 }

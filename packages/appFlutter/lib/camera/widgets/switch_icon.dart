@@ -6,22 +6,19 @@ class SwitchIcon extends StatefulWidget {
   final double size;
   final Function onTap;
 
-  const SwitchIcon({Key key, this.size = 28.0, @required this.onTap})
-      : super(key: key);
+  const SwitchIcon({Key? key, this.size = 28.0, required this.onTap}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SwitchIconState();
 }
 
-class _SwitchIconState extends State<SwitchIcon>
-    with TickerProviderStateMixin<SwitchIcon> {
-  AnimationController controller;
+class _SwitchIconState extends State<SwitchIcon> with TickerProviderStateMixin<SwitchIcon> {
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
   }
 
   @override

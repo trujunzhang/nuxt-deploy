@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ieatta/core/database/firebase_helper.dart';
 import 'package:ieatta/core/utils/slug_helper.dart';
 import 'package:ieatta/core/utils/timeago_utils.dart';
@@ -18,8 +17,8 @@ class ParseModelUsers extends AvatarUser {
 
   // Property(3)
   final String loginType;
-  String originalUrl;
-  final String thumbnailUrl;
+  String? originalUrl;
+  final String? thumbnailUrl;
 
   ParseModelUsers(
       // Base(3)
@@ -38,19 +37,19 @@ class ParseModelUsers extends AvatarUser {
 
   factory ParseModelUsers.fromJson(Map<String, dynamic> json) {
     // Base(3)
-    String id = json['id'] as String;
-    var createdAt = json['createdAt'] as String;
-    var updatedAt = json['updatedAt'] as String;
+    String id = json['id'];
+    String createdAt = json['createdAt'];
+    String updatedAt = json['updatedAt'];
 
     // Common(3)
-    var username = json['username'] as String;
-    var slug = json['slug'] as String;
-    var email = json['email'] as String;
+    String username = json['username'];
+    String slug = json['slug'];
+    String email = json['email'];
 
     // Property(3)
-    var loginType = json['loginType'] as String;
-    var originalUrl = json['originalUrl'] as String;
-    var thumbnailUrl = json['thumbnailUrl'] as String;
+    String loginType = json['loginType'];
+    String? originalUrl = json['originalUrl'];
+    String? thumbnailUrl = json['thumbnailUrl'];
 
     return ParseModelUsers(
         // Base(3)
@@ -72,12 +71,12 @@ class ParseModelUsers extends AvatarUser {
     String createdAt = getDateStringForCreatedOrUpdatedDate();
     String updatedAt = getDateStringForCreatedOrUpdatedDate();
     // Common(3)
-    String username = model.displayName;
-    String slug = slugifyToLower(model.displayName);
-    String email = model.email;
+    String username = model.displayName!;
+    String slug = slugifyToLower(model.displayName!);
+    String email = model.email!;
     // Property(4)
     String loginType = 'google';
-    String originalUrl = model.photoURL;
+    String originalUrl = model.photoURL!;
     String thumbnailUrl = "";
 
     return ParseModelUsers(
@@ -96,8 +95,8 @@ class ParseModelUsers extends AvatarUser {
   }
 
   static ParseModelUsers updateUserPhoto({
-    @required ParseModelUsers model,
-    @required String originalUrl,
+    required ParseModelUsers model,
+    required String originalUrl,
   }) {
     model.originalUrl = originalUrl;
     model.updatedAt = getDateStringForCreatedOrUpdatedDate();
@@ -106,8 +105,8 @@ class ParseModelUsers extends AvatarUser {
   }
 
   static ParseModelUsers updateUserProfile({
-    @required ParseModelUsers model,
-    @required String username,
+    required ParseModelUsers model,
+    required String username,
   }) {
     model.username = username;
     model.slug = slugifyToLower(username);
