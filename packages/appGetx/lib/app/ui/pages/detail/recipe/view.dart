@@ -1,6 +1,7 @@
+import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/pages/reviews/body/reviews_body.dart';
 import 'package:ieatta/app/ui/widgets/app_header.dart';
 import 'package:ieatta/app/ui/widgets/page_section_photo_title.dart';
@@ -12,7 +13,31 @@ import '../photos_list_body.dart';
 import 'index.dart';
 import 'widget/info_part.dart';
 
-class DetailRecipePage extends GetWidget<DetailRecipeController> {
+class DetailRecipePage extends StatefulWidget {
+  const DetailRecipePage({Key? key}) : super(key: key);
+
+  @override
+  _DetailRecipePageState createState() => _DetailRecipePageState();
+}
+
+class _DetailRecipePageState extends State<DetailRecipePage> {
+  late DetailRecipeController controller;
+  String tag = documentIdFromCurrentDate();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller =
+        Get.put<DetailRecipeController>(DetailRecipeController(), tag: tag);
+  }
+
+  @override
+  void dispose() {
+    Get.delete<DetailRecipeController>(tag: tag);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -31,10 +56,10 @@ class DetailRecipePage extends GetWidget<DetailRecipeController> {
 
     return Column(
       children: [
-        InfoPart(),
+        InfoPart(tag: tag),
         // Line 1: Photos
         buildPhotosSectionTitle(controller.photoType, relatedId!),
-        Container(
+        SizedBox(
           height: 160,
           child: PhotosListBody(
             photosList: photosList,
@@ -46,12 +71,14 @@ class DetailRecipePage extends GetWidget<DetailRecipeController> {
         // Line 3: Reviews
         buildTextSectionTitle("Review Highlights"),
         Padding(
-          padding: EdgeInsets.only(bottom: reviewsList.length == 0 ? 16 : 0),
+          padding: EdgeInsets.only(bottom: reviewsList.isEmpty ? 16 : 0),
           child: Container(
-              decoration: new BoxDecoration(
+              decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primaryVariant,
               ),
-              child: ReviewsBody(reviewsList: reviewsList)),
+              child: ReviewsBody(
+                  reviewsList:
+                      reviewsList.take(AppConfigs.pageReviewSize).toList())),
         ),
         seeAllList(reviewsList.length, controller.onSeeAllReviewsButtonPress),
       ],

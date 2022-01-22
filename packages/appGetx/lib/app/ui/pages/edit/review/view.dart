@@ -1,13 +1,15 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class EditReviewPage extends GetWidget<EditReviewController> {
+  const EditReviewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -20,7 +22,7 @@ class EditReviewPage extends GetWidget<EditReviewController> {
             actions: [
               // Action1: save review icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -29,7 +31,7 @@ class EditReviewPage extends GetWidget<EditReviewController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -45,28 +47,15 @@ class EditReviewPage extends GetWidget<EditReviewController> {
     return Column(
       children: [
         // Section1: Five stars
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         Container(
-          padding: EdgeInsets.only(left: 12),
+          padding: const EdgeInsets.only(left: 12),
           width: 300,
           height: 50,
           child: _buildRatePanel(context),
         ),
         // Section2: Form
-        Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              onChanged: () {
-                Form.of(primaryFocus!.context!)!.save();
-              },
-              child: _buildForm(context),
-            ),
-          ),
-        ),
+        _buildForm(context),
       ],
     );
   }
@@ -83,7 +72,6 @@ class EditReviewPage extends GetWidget<EditReviewController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'body',
                   decoration: InputDecoration(
                     labelText: S.of(context).modelCreateEditNotesTxt,
@@ -105,7 +93,7 @@ class EditReviewPage extends GetWidget<EditReviewController> {
     double rating = controller.state.rate.value;
     return Stack(
       children: [
-        Container(
+        SizedBox(
             width: 300,
             height: 50,
             child: Image(
@@ -116,7 +104,7 @@ class EditReviewPage extends GetWidget<EditReviewController> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 10),
                 width: 60,
                 height: 50,
                 child: InkWell(

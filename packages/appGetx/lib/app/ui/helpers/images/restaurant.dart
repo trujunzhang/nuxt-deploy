@@ -1,15 +1,16 @@
+import 'package:app_config/app_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/model/Restaurants.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 Widget _buildPlaceholderForRestaurant() {
   return Image.asset(
-    'assets/placeholder/business_large_square.png',
+    R.ASSETS_PLACEHOLDER_BUSINESS_LARGE_SQUARE_PNG,
     fit: BoxFit.cover,
   );
 }
 
-Widget buildParseModelRestaurantsImageWithOriginalUrl(String originalUrl) {
+Widget buildParseModelRestaurantsImageWithOriginalUrl(String? originalUrl) {
   if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForRestaurant();
   }

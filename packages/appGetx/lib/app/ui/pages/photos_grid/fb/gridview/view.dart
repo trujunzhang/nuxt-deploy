@@ -1,13 +1,15 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/widgets/photos_grid_body.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class FBPhotosGridViewPage extends GetWidget<FBPhotosGridViewController> {
+  const FBPhotosGridViewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
@@ -20,10 +22,10 @@ class FBPhotosGridViewPage extends GetWidget<FBPhotosGridViewController> {
   }
 
   Widget buildPhotos(BuildContext context) {
-    List<ParseModelPhotos> photosList = controller.state.photosList.value;
+    List<ParseModelPhotos> photosList = controller.state.photosList;
 
-    if (photosList.length == 0) {
-      return Center(
+    if (photosList.isEmpty) {
+      return const Center(
         child: Text('No Data'),
       );
     }

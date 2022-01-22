@@ -5,15 +5,15 @@ Widget seeAllList(int len, GestureTapCallback onTap) {
     return Container();
   }
   return Container(
-    margin: EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 6),
+    margin: const EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 6),
     height: 60,
     child: Card(
         child: ListTile(
       onTap: onTap,
       title: Text(
-        'See all ' + (len.toString()),
+        'See all $len',
       ),
-      trailing: Icon(Icons.keyboard_arrow_right),
+      trailing: const Icon(Icons.keyboard_arrow_right),
     )),
   );
 }

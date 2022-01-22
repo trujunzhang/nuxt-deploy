@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 import 'package:ieatta/app/ui/helpers/profile_avatar.dart';
-import 'package:ieatta/app/utils/timeago_utils.dart';
+import 'package:ieatta/app/ui/helpers/slidable_row.dart';
 
 import 'review.body.controller.dart';
 
@@ -13,10 +12,12 @@ class ReviewItem extends StatelessWidget {
   ReviewBodyController controller = Get.find<ReviewBodyController>();
   final ParseModelReviews reviewData;
   final bool canDelete;
+  final bool showPreview;
 
   ReviewItem({
     Key? key,
     this.canDelete = false,
+    this.showPreview = false,
     required this.reviewData,
   }) : super(key: key);
 
@@ -25,21 +26,12 @@ class ReviewItem extends StatelessWidget {
     if (canDelete == false) {
       return _buildBody(context);
     }
-    return Slidable(
-      key: Key(reviewData.uniqueId),
-      direction: Axis.horizontal,
-      actionPane: SlidableBehindActionPane(),
-      actionExtentRatio: 0.25,
-      child: _buildBody(context),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-            caption: 'Delete',
-            color: Colors.red,
-            icon: Icons.delete,
-            onTap: () async {
-              await controller.onDeleteReviewIconPress(context, reviewData);
-            }),
-      ],
+    return SlidableRow(
+      rowKey: reviewData.uniqueId,
+      row: _buildBody(context),
+      onPress: (BuildContext context) async {
+        await controller.onDeleteReviewIconPress(context, reviewData);
+      },
     );
   }
 
@@ -53,7 +45,7 @@ class ReviewItem extends StatelessWidget {
         title: Text(reviewData.username),
         trailing: Text(
           formatByTimeAgo(reviewData.updatedAt),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.grey,
             // fontSize: 15
           ),
@@ -61,32 +53,37 @@ class ReviewItem extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildInfo(context),
-          ListTile(
-            title: Row(
-              children: [
-                Container(
-                    width: 120,
-                    height: 18,
-                    child: Image(
-                        image: AssetImage(
-                            'assets/stars/small/${reviewData.rate}.png'),
-                        fit: BoxFit.cover)),
-              ],
-            ),
-            subtitle: Container(
-                padding: EdgeInsets.only(top: 12, bottom: 12),
-                child: Text(
-                  reviewData.body,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildInfo(context),
+        ListTile(
+          title: Row(
+            children: [
+              SizedBox(
+                  width: 120,
+                  height: 18,
+                  child: Image(
+                      image: AssetImage(
+                          'assets/stars/small/${reviewData.rate}.png'),
+                      fit: BoxFit.cover)),
+            ],
           ),
-        ],
-      ),
+          subtitle: Container(
+              padding: const EdgeInsets.only(top: 12, bottom: 12),
+              child: showPreview
+                  ? Text(
+                      reviewData.body,
+                      style: Theme.of(context).textTheme.bodyText2,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    )
+                  : Text(
+                      reviewData.body,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    )),
+        ),
+      ],
     );
   }
 }

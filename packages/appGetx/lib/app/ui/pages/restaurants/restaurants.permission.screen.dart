@@ -4,10 +4,11 @@ import 'package:ieatta/app/data/enum/permission_status.dart';
 import 'package:ieatta/app/ui/pages/splash/splash_screen.dart';
 
 import 'empty/no_permission_view.dart';
-import 'restaurants.controller.dart';
-import 'restaurants.screen.dart';
+import 'index.dart';
 
 class AppHomeScreen extends StatefulWidget {
+  const AppHomeScreen({Key? key}) : super(key: key);
+
   @override
   _AppHomeScreenState createState() => _AppHomeScreenState();
 }
@@ -33,7 +34,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
   }
 
   Widget _buildBody(BuildContext context) {
-    switch (controller.permissionStatus.value) {
+    switch (controller.state.permissionStatus.value) {
       case AppPermissionStatus.Undetermined:
         {
           return SplashScreen();

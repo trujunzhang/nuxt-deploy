@@ -1,9 +1,12 @@
+import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../index.dart';
+class WaitersSectionTitle extends StatelessWidget {
+  final Function() onAddWaiterIconPress;
 
-class WaitersSectionTitle extends GetWidget<DetailEventController> {
+  const WaitersSectionTitle({Key? key, required this.onAddWaiterIconPress})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,21 +15,16 @@ class WaitersSectionTitle extends GetWidget<DetailEventController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
+          const Text(
             "Waiters",
-            style: TextStyle(
-              fontSize: 17.0,
-              fontWeight: FontWeight.w400,
-            ),
+            style: AppTextStyle.sectionTitle,
           ),
-          Container(
+          SizedBox(
               width: 40,
               height: 40,
               child: InkWell(
-                onTap: () {
-                  controller.onAddWaiterIconPress(context);
-                },
-                child: Icon(
+                onTap: onAddWaiterIconPress,
+                child: const Icon(
                   Icons.add,
                   color: Colors.grey,
                 ),

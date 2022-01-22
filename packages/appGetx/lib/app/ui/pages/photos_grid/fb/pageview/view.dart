@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/routes/app_pages.dart';
-import 'package:ieatta/app/routes/params_helper.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/pages/photos_grid/fb/widget/top_base_user_view.dart';
 import 'package:ieatta/app/ui/widgets/photo_base_view.dart';
 import 'package:my_plugin/my_plugin.dart';
@@ -10,16 +8,18 @@ import 'package:my_plugin/my_plugin.dart';
 import 'index.dart';
 
 class FBPhotosPageView extends GetWidget<FBPhotosPageViewController> {
+  const FBPhotosPageView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(body: Container(child: Obx(() => _buildBody(context))));
+    return BaseScaffold(body: Obx(() => _buildBody(context)));
   }
 
   Widget _buildBody(BuildContext context) {
     return Stack(
       children: [
         buildPhotosPageView(context),
-        if (controller.state.showInfoPanel.value) _buildFg()
+        if (controller.state.showInfoPanel.value) _buildFg(context)
       ],
     );
   }
@@ -42,6 +42,16 @@ class FBPhotosPageView extends GetWidget<FBPhotosPageViewController> {
     );
   }
 
+  Widget _buildCustomPlaceHolder() {
+    return Center(
+      child: Container(
+        width: Get.width,
+        height: 300,
+        color: const Color(0xFF584b59),
+      ),
+    );
+  }
+
   Widget _buildCurrentImage(int index) {
     String photoId = List.from(controller.state.photosDict.keys)[index];
     ParseModelPhotos? photo = controller.state.photosDict[photoId];
@@ -49,7 +59,11 @@ class FBPhotosPageView extends GetWidget<FBPhotosPageViewController> {
       color: Colors.black,
       width: Get.width,
       height: Get.height,
-      child: PhotoBaseView(photoData: photo!, fit: BoxFit.fitWidth),
+      child: PhotoBaseView(
+        photoData: photo!,
+        fit: BoxFit.fitWidth,
+        customPlaceHolder: _buildCustomPlaceHolder(),
+      ),
     );
   }
 
@@ -73,17 +87,18 @@ class FBPhotosPageView extends GetWidget<FBPhotosPageViewController> {
       width: Get.width,
       color: Colors.black,
       child: Padding(
-          padding: EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 48),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 48),
           child: SingleChildScrollView(
             child: Text(
               note!,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           )),
     );
   }
 
-  Widget _buildFg() {
+  Widget _buildFg(BuildContext context) {
     ParseModelPhotos? photo = controller.state.selectedPhoto();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,9 +106,9 @@ class FBPhotosPageView extends GetWidget<FBPhotosPageViewController> {
       children: <Widget>[
         TopBaseUserView(
           showEditBtn: controller.showEditPhotoBtn(),
-          onEditPress: () {
-            Get.toNamed(
-                '${Routes.EDIT_PHOTO}?${ParamsHelper.ID}=${photo!.uniqueId}');
+          onEditPress: controller.onEditPress,
+          onDeletePress: () {
+            controller.onDeletePress(context);
           },
           user: photo!,
           selectedIndex: controller.state.selectedIndex.value,

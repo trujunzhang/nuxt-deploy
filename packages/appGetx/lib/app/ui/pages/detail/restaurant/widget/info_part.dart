@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/widgets/rating_image.dart';
+import 'package:my_plugin/my_plugin.dart';
 
 import '../index.dart';
 
-class InfoPart extends GetWidget<DetailRestaurantController> {
+class InfoPart extends StatefulWidget {
+  final String tag;
+
+  const InfoPart({Key? key, required this.tag}) : super(key: key);
+
+  @override
+  _InfoPartState createState() => _InfoPartState();
+}
+
+class _InfoPartState extends State<InfoPart> {
+  late DetailRestaurantController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.symmetric(horizontal: 0.0),
+        margin: const EdgeInsets.symmetric(horizontal: 0.0),
         child: Padding(
-            padding: EdgeInsets.only(),
-            child: Container(
-                // color: Colors.white,
-                child: Obx(() => _buildBody()))));
+            padding: const EdgeInsets.only(), child: Obx(() => _buildBody())));
   }
 
   Widget _buildBody() {
@@ -22,35 +37,35 @@ class InfoPart extends GetWidget<DetailRestaurantController> {
     return Column(
       children: [
         // Line 1
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         TextButton.icon(
           onPressed: controller.onEditRestaurantIconPress,
-          icon: Icon(Icons.edit),
-          label: Text(
+          icon: const Icon(Icons.edit),
+          label: const Text(
             'Edit Restaurant',
             style: TextStyle(color: Color(0xff479EFF)),
           ),
         ),
         // Line 2
         Padding(
-          padding: EdgeInsets.only(left: 24, right: 24),
+          padding: const EdgeInsets.only(left: 24, right: 24),
           child: Text(
             restaurant!.displayName,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 22,
             ),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         // Line 3
         RatingImage(baseReview: restaurant),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         // Line 4
         _buildNote(),
         // Line 5
-        Divider(height: 10.0, thickness: 0.5),
+        const Divider(height: 10.0, thickness: 0.5),
         _buildActionBar(),
       ],
     );
@@ -59,28 +74,28 @@ class InfoPart extends GetWidget<DetailRestaurantController> {
   Widget _buildNote() {
     ParseModelRestaurants? restaurant = controller.state.detailModel;
     if (restaurant!.extraNote == '') {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
     return Column(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 32, right: 32),
           child: Divider(height: 10.0, thickness: 0.5),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 32, right: 32, top: 8),
+          padding: const EdgeInsets.only(left: 32, right: 32, top: 8),
           child: Text(
-            restaurant.extraNote,
-            style: TextStyle(fontSize: 14),
+            restaurant.extraNote.inCaps,
+            style: const TextStyle(fontSize: 14),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
       ],
     );
   }
 
   Widget _buildActionBar() {
-    return Container(
+    return SizedBox(
       height: 40.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,7 +106,7 @@ class InfoPart extends GetWidget<DetailRestaurantController> {
               Icons.add,
               color: Colors.red,
             ),
-            label: Text(
+            label: const Text(
               'Event',
               style: TextStyle(color: Color(0xff479EFF)),
             ),
@@ -103,7 +118,7 @@ class InfoPart extends GetWidget<DetailRestaurantController> {
               Icons.create,
               color: Colors.green,
             ),
-            label: Text(
+            label: const Text(
               'Review',
               style: TextStyle(color: Color(0xff479EFF)),
             ),
@@ -115,7 +130,7 @@ class InfoPart extends GetWidget<DetailRestaurantController> {
               Icons.card_membership,
               color: Colors.purpleAccent,
             ),
-            label: Text(
+            label: const Text(
               'Reviews',
               style: TextStyle(color: Color(0xff479EFF)),
             ),

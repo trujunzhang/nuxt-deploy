@@ -1,19 +1,20 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class DetailPeopleInEventState {
   FirebaseController firebaseController = Get.find();
 
-  Rx<ParseModelPeopleInEvent?> _peopleInEvent =
+  final Rx<ParseModelPeopleInEvent?> _peopleInEvent =
       Rx<ParseModelPeopleInEvent?>(null);
 
-  Rx<ParseModelRestaurants?> _restaurant = Rx<ParseModelRestaurants?>(null);
-  Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
-  Rx<ParseModelUsers?> _user = Rx<ParseModelUsers?>(null);
-  Rx<Map<String, ParseModelRecipes>> recipesDict =
+  final Rx<ParseModelRestaurants?> _restaurant =
+      Rx<ParseModelRestaurants?>(null);
+  final Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
+  final Rx<ParseModelUsers?> _user = Rx<ParseModelUsers?>(null);
+  final Rx<Map<String, ParseModelRecipes>> _recipesDict =
       Rx<Map<String, ParseModelRecipes>>({});
+  RxList<ParseModelRecipes> recipesInEvent = RxList<ParseModelRecipes>([]);
 
   ParseModelPeopleInEvent? get detailModel => _peopleInEvent.value;
 
@@ -27,10 +28,14 @@ class DetailPeopleInEventState {
     firebaseController.onPeopleInEventsChanged((value) {
       _peopleInEvent.value = FilterModels.instance.getSinglePeopleInEvent(
           firebaseController.peopleInEventsList, peopleInEventId);
+      recipesInEvent.value = FilterModels.instance
+          .getRecipesListForEvent(_recipesDict.value, detailModel!.recipes);
     });
     firebaseController.onRecipesChanged((value) {
-      recipesDict.value = FilterModels.instance.getRecipesDict(
+      _recipesDict.value = FilterModels.instance.getRecipesDict(
           firebaseController.recipesList, detailModel!.restaurantId);
+      recipesInEvent.value = FilterModels.instance
+          .getRecipesListForEvent(_recipesDict.value, detailModel!.recipes);
     });
   }
 
@@ -45,7 +50,9 @@ class DetailPeopleInEventState {
     _user.value = FilterModels.instance
         .getSingleUser(firebaseController.usersList, detailModel!.userId);
     // Direct
-    recipesDict.value = FilterModels.instance.getRecipesDict(
+    _recipesDict.value = FilterModels.instance.getRecipesDict(
         firebaseController.recipesList, detailModel!.restaurantId);
+    recipesInEvent.value = FilterModels.instance
+        .getRecipesListForEvent(_recipesDict.value, detailModel!.recipes);
   }
 }

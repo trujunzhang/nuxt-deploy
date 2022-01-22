@@ -1,16 +1,16 @@
+import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/common/colors/colors.dart';
 
 import 'images/user.dart';
 
 class ProfileAvatar extends StatelessWidget {
-  final String avatarUrl;
+  final String? avatarUrl;
   final bool isActive;
   final bool hasBorder;
 
   const ProfileAvatar({
     Key? key,
-    required this.avatarUrl,
+    this.avatarUrl,
     this.isActive = false,
     this.hasBorder = false,
   }) : super(key: key);

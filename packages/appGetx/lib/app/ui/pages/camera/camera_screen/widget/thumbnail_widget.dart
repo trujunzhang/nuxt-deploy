@@ -9,6 +9,8 @@ import '../index.dart';
 class ThumbnailWidget extends GetWidget<TakeCameraController> {
   final double thumbnailSize = 36.0;
 
+  const ThumbnailWidget({Key? key}) : super(key: key);
+
   Future getImage() async {
     XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image == null) {

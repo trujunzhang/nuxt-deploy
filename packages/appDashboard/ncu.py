@@ -24,7 +24,6 @@ yarn add --dev @nuxt/typescript-build @nuxt/types
     # nodemon
     # prettier
     # typescript
-    # vue-chartist
     # vue-jest
     # vuex-class
     # vuex-module-decorators

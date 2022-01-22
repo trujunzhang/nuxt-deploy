@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class EditUserState {
@@ -10,9 +9,9 @@ class EditUserState {
   Rx<String> coverUrl = Rx<String>('');
   Rx<bool> isButtonDisabled = Rx<bool>(false);
 
-  Rx<ParseModelUsers?> _User = Rx<ParseModelUsers?>(null);
+  final Rx<ParseModelUsers?> _user = Rx<ParseModelUsers?>(null);
 
-  ParseModelUsers? get editModel => _User.value;
+  ParseModelUsers? get editModel => _user.value;
 
   String getUsername() {
     return [firstName.value, secondName.value].join(' ');
@@ -20,7 +19,7 @@ class EditUserState {
 
   listenChanged(String userId) {
     firebaseController.onUsersChanged((value) {
-      _User.value = FilterModels.instance
+      _user.value = FilterModels.instance
           .getSingleUser(firebaseController.usersList, userId);
       coverUrl.value = editModel!.originalUrl!;
     });
@@ -28,7 +27,7 @@ class EditUserState {
 
   initEditModel(String userId) {
     // Model
-    _User.value = FilterModels.instance
+    _user.value = FilterModels.instance
         .getSingleUser(firebaseController.usersList, userId);
     // Variables
     var s = editModel!.username.split(' ');

@@ -1,6 +1,7 @@
+import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/pages/reviews/body/reviews_body.dart';
 import 'package:ieatta/app/ui/widgets/app_header.dart';
 import 'package:ieatta/app/ui/widgets/page_section_photo_title.dart';
@@ -15,7 +16,32 @@ import 'widget/info_part.dart';
 import 'widget/menus_body.dart';
 import 'widget/section_menu_title.dart';
 
-class DetailRestaurantPage extends GetWidget<DetailRestaurantController> {
+class DetailRestaurantPage extends StatefulWidget {
+  const DetailRestaurantPage({Key? key}) : super(key: key);
+
+  @override
+  _DetailRestaurantPageState createState() => _DetailRestaurantPageState();
+}
+
+class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
+  late DetailRestaurantController controller;
+  String tag = documentIdFromCurrentDate();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = Get.put<DetailRestaurantController>(
+        DetailRestaurantController(),
+        tag: tag);
+  }
+
+  @override
+  void dispose() {
+    Get.delete<DetailRestaurantController>(tag: tag);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -35,13 +61,13 @@ class DetailRestaurantPage extends GetWidget<DetailRestaurantController> {
     String? address = restaurant!.address;
     return Column(
       children: [
-        InfoPart(),
+        InfoPart(tag: tag),
         // Line 1: Address
         address == '' ? Container() : buildTextSectionTitle("Current Address"),
         address == ''
-            ? SizedBox.shrink()
+            ? const SizedBox.shrink()
             : Container(
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primaryVariant,
                 ),
                 child: ListTile(
@@ -49,13 +75,15 @@ class DetailRestaurantPage extends GetWidget<DetailRestaurantController> {
                 )),
         // Line 2: Events
         buildTextSectionTitle("Events Recorded"),
-        EventsBody(),
+        EventsBody(tag: tag),
         // Line 3: Menus
-        MenusSectionTitle(),
-        Container(height: 160, child: MenusBody()),
+        MenusSectionTitle(
+          onNewMenuIconPress: controller.onNewMenuIconPress,
+        ),
+        SizedBox(height: 160, child: MenusBody(tag: tag)),
         // Line 4: Photos
         buildPhotosSectionTitle(controller.photoType, relatedId),
-        Container(
+        SizedBox(
           height: 160,
           child: PhotosListBody(
             photosList: photosList,
@@ -67,12 +95,14 @@ class DetailRestaurantPage extends GetWidget<DetailRestaurantController> {
         // Line 5: Reviews
         buildTextSectionTitle("Review Highlights"),
         Padding(
-          padding: EdgeInsets.only(bottom: reviewsList.length == 0 ? 16 : 0),
+          padding: EdgeInsets.only(bottom: reviewsList.isEmpty ? 16 : 0),
           child: Container(
-              decoration: new BoxDecoration(
+              decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primaryVariant,
               ),
-              child: ReviewsBody(reviewsList: reviewsList)),
+              child: ReviewsBody(
+                  reviewsList:
+                      reviewsList.take(AppConfigs.pageReviewSize).toList())),
         ),
         seeAllList(reviewsList.length, controller.onSeeAllReviewsButtonPress),
       ],

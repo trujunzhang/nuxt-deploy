@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 import 'package:ieatta/app/filter/filter_photo.dart';
 
@@ -11,7 +9,7 @@ class FBPhotosPageViewState {
   Rx<bool> showInfoPanel = Rx<bool>(false);
   Rx<int> selectedIndex = Rx<int>(0);
 
-  RxList<ParseModelPhotos> _photos = RxList<ParseModelPhotos>([]);
+  final RxList<ParseModelPhotos> _photos = RxList<ParseModelPhotos>([]);
 
   RxMap<String, ParseModelPhotos> photosDict =
       RxMap<String, ParseModelPhotos>({});
@@ -19,7 +17,7 @@ class FBPhotosPageViewState {
   int get photosCount => photosDict.keys.length;
 
   toggleFg() {
-    showInfoPanel.value = !showInfoPanel.value;
+    showInfoPanel.toggle();
   }
 
   ParseModelPhotos? selectedPhoto() {

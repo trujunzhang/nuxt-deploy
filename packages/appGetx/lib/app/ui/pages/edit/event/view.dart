@@ -1,14 +1,17 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/utils/timeago_utils.dart';
-import 'package:ieatta/common/langs/l10n.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class EditEventPage extends GetWidget<EditEventController> {
+  const EditEventPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -21,7 +24,7 @@ class EditEventPage extends GetWidget<EditEventController> {
             actions: [
               // Action1: save Restaurant icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -30,7 +33,7 @@ class EditEventPage extends GetWidget<EditEventController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -39,28 +42,7 @@ class EditEventPage extends GetWidget<EditEventController> {
                                   .of(context)
                                   .editModelAppBarRightSaveTitle)))),
             ]),
-        body: Obx(() => _buildBody(context)));
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return Column(
-      children: [
-        Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              onChanged: () {
-                Form.of(primaryFocus!.context!)!.save();
-              },
-              child: _buildForm(context),
-            ),
-          ),
-        ),
-      ],
-    );
+        body: Obx(() => _buildForm(context)));
   }
 
   Widget _buildForm(BuildContext context) {
@@ -79,7 +61,6 @@ class EditEventPage extends GetWidget<EditEventController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
                     labelText: S.of(context).eventsCreateEditDisplayNameTxt,
@@ -94,7 +75,6 @@ class EditEventPage extends GetWidget<EditEventController> {
                   textInputAction: TextInputAction.next,
                 ),
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'want',
                   decoration: InputDecoration(
                     labelText: S.of(context).eventsCreateEditWantTxt,
@@ -110,34 +90,30 @@ class EditEventPage extends GetWidget<EditEventController> {
                 ),
                 FormBuilderDateTimePicker(
                   name: 'startDate',
-                  // initialValue: DateTime.now(),
                   inputType: InputType.both,
                   decoration: InputDecoration(
                     labelText: S.of(context).eventsCreateEditStartDateTxt,
                   ),
-                  initialTime: TimeOfDay(hour: 8, minute: 0),
+                  initialTime: const TimeOfDay(hour: 8, minute: 0),
                   onChanged: (DateTime? dt) {
                     var val = getDateIso8610String(dt!);
                     controller.state.startDate.value = val;
                   },
-                  // pickerType: PickerType.cupertino,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),
                 ),
                 FormBuilderDateTimePicker(
                   name: 'endDate',
-                  // initialValue: DateTime.now(),
                   inputType: InputType.both,
                   decoration: InputDecoration(
                     labelText: S.of(context).eventsCreateEditEndDateTxt,
                   ),
-                  initialTime: TimeOfDay(hour: 8, minute: 0),
+                  initialTime: const TimeOfDay(hour: 8, minute: 0),
                   onChanged: (DateTime? dt) {
                     var val = getDateIso8610String(dt!);
                     controller.state.endDate.value = val;
                   },
-                  // pickerType: PickerType.cupertino,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),

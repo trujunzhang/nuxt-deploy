@@ -1,13 +1,15 @@
+import 'package:app_language/langs/l10n.dart';
+import 'package:app_sql/app_sql.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
 import 'package:ieatta/app/ui/helpers/images/photo.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class SqlPhotosGridViewPage extends GetWidget<SqlPhotosGridViewController> {
+  const SqlPhotosGridViewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
@@ -21,22 +23,22 @@ class SqlPhotosGridViewPage extends GetWidget<SqlPhotosGridViewController> {
 
   Widget buildPhotos(BuildContext context) {
     bool isLoading = controller.state.isLoading.value;
-    List<SqlPhotos> photosList = controller.state.photosList.value;
+    List<SqlPhotos> photosList = controller.state.photosList;
     if (isLoading) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     }
-    if (photosList.length == 0) {
-      return Center(
+    if (photosList.isEmpty) {
+      return const Center(
         child: Text('No Data'),
       );
     }
     return GridView.builder(
       shrinkWrap: true,
-      physics: ScrollPhysics(),
+      physics: const ScrollPhysics(),
       primary: false,
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       itemCount: photosList.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 200 / 200,
       ),
@@ -52,7 +54,7 @@ class SqlPhotosGridViewPage extends GetWidget<SqlPhotosGridViewController> {
         controller.onPhotoPressed(context, index);
       },
       child: Padding(
-        padding: EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(5.0),
         child: buildLocalImageView(photo.offlinePath),
       ),
     );

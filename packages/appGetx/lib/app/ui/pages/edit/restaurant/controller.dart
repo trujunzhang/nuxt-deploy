@@ -1,15 +1,10 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/controller/location.controller.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/data/repository/index.dart';
-import 'package:ieatta/app/helpers/firestore_path.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:location/location.dart';
 import 'package:my_plugin/my_plugin.dart';
 
@@ -55,17 +50,17 @@ class EditRestaurantController extends GetxController {
       Get.snackbar(
         "Info",
         "Offline mode",
-        icon: Icon(Icons.message, color: Colors.white),
+        icon: const Icon(Icons.message, color: Colors.white),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
       );
       return;
     }
     // Update cover variable.
-    state.selectedCover.value = item.originalUrl;
+    state.selectedCover.value = item.originalUrl!;
     // Update restaurant model.
     ParseModelRestaurants nextRestaurant = ParseModelRestaurants.updateCover(
-        model: state.editModel!, originalUrl: item.originalUrl);
+        model: state.editModel!, originalUrl: item.originalUrl!);
     // Update the database.
     await restaurantRepository.setData(
       path: FirestorePath.singleRestaurant(nextRestaurant.uniqueId),
@@ -93,7 +88,17 @@ class EditRestaurantController extends GetxController {
       // New restaurant.
       if (isNew == true) {
         AuthUserModel? authUserModel = authController.getAuthUserModel();
-        LocationData locationData = await locationController.getLocation();
+        LocationData? locationData = locationController.currentLocation;
+        if (locationData == null) {
+          Get.snackbar(
+            "Error",
+            "No GPS!",
+            icon: const Icon(Icons.message, color: Colors.white),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+          return;
+        }
 
         lastModel = ParseModelRestaurants.emptyRestaurant(
           authUserModel: authUserModel,

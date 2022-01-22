@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/Restaurants.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 
 import 'hotel_list_view.dart';
 
 class RestaurantsBody extends StatelessWidget {
-  RestaurantsBody({Key? key, required this.restaurantList}) : super(key: key);
+  const RestaurantsBody({Key? key, required this.restaurantList})
+      : super(key: key);
 
   final List<ParseModelRestaurants> restaurantList;
 

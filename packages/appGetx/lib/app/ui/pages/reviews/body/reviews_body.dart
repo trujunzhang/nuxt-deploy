@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 
@@ -9,12 +9,12 @@ import 'review_item.dart';
 class ReviewsBody extends StatelessWidget {
   final List<ParseModelReviews> reviewsList;
 
-  ReviewsBody({Key? key, required this.reviewsList}) : super(key: key);
+  const ReviewsBody({Key? key, required this.reviewsList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (reviewsList.length == 0) {
-      return Container(
+    if (reviewsList.isEmpty) {
+      return const SizedBox(
         height: 60,
         child: Center(
           child: Text('no comments'),
@@ -33,11 +33,12 @@ class ReviewsBody extends StatelessWidget {
         child: ReviewItem(
           reviewData: review,
           canDelete: true,
+          showPreview: true,
         ),
       );
       list.add(child);
       if (i < reviewsList.length - 1) {
-        list.add(Divider(
+        list.add(const Divider(
           height: 1,
         ));
       }

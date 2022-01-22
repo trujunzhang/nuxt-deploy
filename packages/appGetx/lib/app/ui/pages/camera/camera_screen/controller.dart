@@ -1,20 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:app_language/langs/l10n.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/data/repository/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
-import 'package:ieatta/app/helpers/firestore_path.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
-import 'package:ieatta/app/utils/cloudinary_utils.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,7 +24,7 @@ class TakeCameraController extends GetxController {
   // UI variables
 
   /// use this to call a take picture
-  PictureController _pictureController = new PictureController();
+  final PictureController _pictureController = PictureController();
 
   ValueNotifier<Sensors> sensor = ValueNotifier(Sensors.BACK);
 

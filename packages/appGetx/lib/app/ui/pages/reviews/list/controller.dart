@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 
 import 'index.dart';

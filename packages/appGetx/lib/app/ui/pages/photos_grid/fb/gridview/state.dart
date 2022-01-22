@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class FBPhotosGridViewState {
@@ -13,5 +11,12 @@ class FBPhotosGridViewState {
     // List
     photosList.value = FilterModels.instance
         .getPhotosList(firebaseController.photosList, relatedId, photoType);
+  }
+
+  listenChanged(PhotoType photoType, String relatedId) {
+    firebaseController.onPhotosChanged((value) {
+      photosList.value = FilterModels.instance
+          .getPhotosList(firebaseController.photosList, relatedId, photoType);
+    });
   }
 }

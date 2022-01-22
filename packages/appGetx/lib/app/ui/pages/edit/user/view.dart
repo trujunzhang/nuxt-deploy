@@ -1,14 +1,17 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:ieatta/app/ui/helpers/images/user.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class EditUserPage extends GetWidget<EditUserController> {
+  const EditUserPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -19,7 +22,7 @@ class EditUserPage extends GetWidget<EditUserController> {
             actions: [
               // Action1: save user icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -28,7 +31,7 @@ class EditUserPage extends GetWidget<EditUserController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -45,42 +48,29 @@ class EditUserPage extends GetWidget<EditUserController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.only(left: 8),
           child: Row(
             children: [
-              Text(
+              const Text(
                 'Your Profile Photo',
                 style: TextStyle(fontSize: 14),
               ),
               TextButton(
-                  child: const Text('(Add/Edit)',
-                      style: TextStyle(color: Color(0xff0073bb))),
-                  onPressed: () async {
-                    controller.onAddPhotoIconPress();
-                  })
+                child: const Text('(Add/Edit)',
+                    style: TextStyle(color: Color(0xff0073bb))),
+                onPressed: controller.onAddPhotoIconPress,
+              )
             ],
           ),
         ),
         Container(
           height: 120,
           width: 120,
-          padding: EdgeInsets.only(left: 16),
+          padding: const EdgeInsets.only(left: 16),
           child: buildParseModelUsersImageWithOriginalUrl(
               controller.state.coverUrl.value),
         ),
-        Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              onChanged: () {
-                Form.of(primaryFocus!.context!)!.save();
-              },
-              child: _buildForm(context),
-            ),
-          ),
-        ),
+        _buildForm(context),
       ],
     );
   }
@@ -98,7 +88,6 @@ class EditUserPage extends GetWidget<EditUserController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'firstName',
                   decoration: InputDecoration(
                     labelText: S.of(context).usersCreateEditFirstNameTxt,
@@ -113,7 +102,6 @@ class EditUserPage extends GetWidget<EditUserController> {
                   textInputAction: TextInputAction.next,
                 ),
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'secondName',
                   decoration: InputDecoration(
                     labelText: S.of(context).usersCreateEditLastNameTxt,

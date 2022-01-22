@@ -1,41 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 import 'package:ieatta/app/ui/helpers/profile_avatar.dart';
+import 'package:ieatta/app/ui/helpers/slidable_row.dart';
 
 import '../index.dart';
 
-class PeopleInEventItem extends StatelessWidget {
-  DetailEventController controller = Get.find<DetailEventController>();
+class PeopleInEventItem extends StatefulWidget {
+  final String tag;
+
   final ParseModelPeopleInEvent peopleInEventData;
   final ParseModelUsers? user;
 
-  PeopleInEventItem(
-      {Key? key, required this.peopleInEventData, required this.user})
+  const PeopleInEventItem(
+      {Key? key,
+      required this.tag,
+      required this.peopleInEventData,
+      required this.user})
       : super(key: key);
 
   @override
+  _PeopleInEventItemState createState() => _PeopleInEventItemState();
+}
+
+class _PeopleInEventItemState extends State<PeopleInEventItem> {
+  late DetailEventController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(peopleInEventData.uniqueId),
-      direction: Axis.horizontal,
-      actionPane: SlidableBehindActionPane(),
-      actionExtentRatio: 0.25,
-      child: _buildBody(context),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Delete',
-          color: Colors.red,
-          icon: Icons.delete,
-          onTap: () async {
-            await controller.onDeletePeopleInEventIconPress(
-                context, peopleInEventData);
-          },
-        ),
-      ],
+    return SlidableRow(
+      rowKey: widget.peopleInEventData.uniqueId,
+      row: _buildBody(context),
+      onPress: (BuildContext context) async {
+        await controller.onDeletePeopleInEventIconPress(
+            context, widget.peopleInEventData);
+      },
     );
   }
 
@@ -46,15 +53,16 @@ class PeopleInEventItem extends StatelessWidget {
         ),
         child: ListTile(
           onTap: () {
-            Get.toNamed(Routes.DETAIL_PEOPLE_IN_EVENT,
-                arguments: {ParamsHelper.ID: peopleInEventData.uniqueId});
+            Get.toNamed(Routes.DETAIL_PEOPLE_IN_EVENT, arguments: {
+              ParamsHelper.ID: widget.peopleInEventData.uniqueId
+            });
           },
-          leading: ProfileAvatar(avatarUrl: user!.originalUrl!),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          title: Text(user!.username),
+          leading: ProfileAvatar(avatarUrl: widget.user!.originalUrl),
+          trailing: const Icon(Icons.keyboard_arrow_right),
+          title: Text(widget.user!.username),
           subtitle: Text(
-            peopleInEventData.recipes.length.toString() + ' Recipes Ordered',
-            style: TextStyle(color: Colors.grey),
+            '${widget.peopleInEventData.recipes.length} Recipes Ordered',
+            style: const TextStyle(color: Colors.grey),
           ),
         ));
   }

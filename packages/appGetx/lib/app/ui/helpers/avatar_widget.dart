@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/common/colors/colors.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 import 'images/user.dart';
 
@@ -68,7 +67,7 @@ class AvatarWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: <BoxShadow>[
                         BoxShadow(
-                            color: AppColors.grey.withOpacity(0.6),
+                            color: Colors.grey.withOpacity(0.6),
                             offset: const Offset(2.0, 4.0),
                             blurRadius: 8),
                       ],
@@ -95,7 +94,7 @@ class AvatarWidget extends StatelessWidget {
     );
 
     return Padding(
-      padding: this.padding,
+      padding: padding,
       child: GestureDetector(child: avatar, onTap: onTap),
     );
   }

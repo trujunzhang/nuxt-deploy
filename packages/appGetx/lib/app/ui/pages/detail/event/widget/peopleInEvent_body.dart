@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 import '../index.dart';
 import 'peopleInEvent_item.dart';
 
-class PeopleInEventBody extends GetWidget<DetailEventController> {
+class PeopleInEventBody extends StatefulWidget {
+  final String tag;
+
+  const PeopleInEventBody({Key? key, required this.tag}) : super(key: key);
+
+  @override
+  _PeopleInEventBodyState createState() => _PeopleInEventBodyState();
+}
+
+class _PeopleInEventBodyState extends State<PeopleInEventBody> {
+  late DetailEventController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => _buildBody(context));
@@ -14,13 +31,13 @@ class PeopleInEventBody extends GetWidget<DetailEventController> {
   Widget _buildBody(BuildContext context) {
     List<ParseModelPeopleInEvent> peopleInEventsList =
         controller.state.peopleInEventsList;
-    if (peopleInEventsList.length == 0) {
+    if (peopleInEventsList.isEmpty) {
       return Container(
         height: 60,
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primaryVariant,
         ),
-        child: Center(
+        child: const Center(
           child: Text('no ordered people'),
         ),
       );
@@ -37,11 +54,12 @@ class PeopleInEventBody extends GetWidget<DetailEventController> {
       ParseModelPeopleInEvent peopleInEvent = peopleInEventsList[i];
       ParseModelUsers? user = usersDict[peopleInEvent.userId];
       list.add(PeopleInEventItem(
+        tag: widget.tag,
         peopleInEventData: peopleInEvent,
         user: user,
       ));
       if (i < peopleInEventsList.length - 1) {
-        list.add(Divider(
+        list.add(const Divider(
           height: 1,
         ));
       }

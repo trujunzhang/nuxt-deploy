@@ -47,8 +47,7 @@ const config: NuxtConfiguration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '@/plugins/base.js',
-    '@/plugins/chartist.js'
+    '@/plugins/base.js'
   ],
   /*
    ** Nuxt.js dev-modules

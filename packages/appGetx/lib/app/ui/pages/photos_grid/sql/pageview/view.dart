@@ -1,6 +1,6 @@
+import 'package:app_sql/app_sql.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
 import 'package:ieatta/app/ui/helpers/images/photo.dart';
 import 'package:ieatta/app/ui/pages/photos_grid/sql/widget/top_user_view.dart';
 import 'package:my_plugin/my_plugin.dart';
@@ -14,7 +14,7 @@ class SqlPhotosPageViewObject {
 }
 
 class SqlPhotosPageView extends StatefulWidget {
-  SqlPhotosPageView({Key? key}) : super(key: key);
+  const SqlPhotosPageView({Key? key}) : super(key: key);
 
   @override
   _SqlPhotosPageViewState createState() => _SqlPhotosPageViewState();

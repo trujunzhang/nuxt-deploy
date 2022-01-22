@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/ui/pages/restaurants/restaurants.controller.dart';
+import 'package:ieatta/app/ui/pages/restaurants/controller.dart';
 
 import 'index.dart';
 
@@ -24,7 +24,7 @@ class RestaurantsMapController extends GetxController {
   void onInit() {
     pageController = PageController(initialPage: state.selectedIndex.value);
 
-    restaurantList = restaurantsController.currentRestaurants;
+    restaurantList = restaurantsController.state.currentRestaurants;
 
     initMap();
 

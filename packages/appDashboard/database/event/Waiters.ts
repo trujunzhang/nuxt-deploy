@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBPhoto } from 'ieattatypes/types/index'
 import { loadWaiters } from '~/database/data/Waiters'
 import { FBCollections } from '~/database/constant'

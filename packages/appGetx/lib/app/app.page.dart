@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/app.controller.dart';
-import 'package:ieatta/app/ui/pages/home/navigation.home.screen.dart';
+import 'package:ieatta/app/ui/layout/navigation.home.screen.dart';
 
-import 'controller/auth.controller.dart';
-import 'helpers/authentication_state.dart';
 import 'ui/helpers/loading.page.dart';
 import 'ui/pages/authentification/social_login.dart';
 import 'ui/pages/splash/splash_screen.dart';
 
 class AppPage extends GetWidget<AppController> {
+  const AppPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetX<AuthController>(builder: (AuthController authController) {
@@ -18,7 +19,7 @@ class AppPage extends GetWidget<AppController> {
       }
 
       if (controller.isLoadWelcomePage.isTrue) {
-        return SplashScreen();
+        return const SplashScreen();
       }
 
       if (authController.state is Authenticated) {

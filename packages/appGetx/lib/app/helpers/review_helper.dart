@@ -1,8 +1,4 @@
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/data/repository/index.dart';
-
-import 'firestore_path.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 enum ReviewHookType { Add, Remove }
 

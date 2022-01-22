@@ -2,43 +2,47 @@ import 'dart:io' as io;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:app_config/app_config.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 Widget _buildPlaceholderForPhoto() {
   return Image.asset(
-    'assets/placeholder/business_large_square.png',
+    R.ASSETS_PLACEHOLDER_BUSINESS_LARGE_SQUARE_PNG,
     fit: BoxFit.cover,
   );
 }
 
 Widget _buildPlaceholderForOfflinePhoto() {
   return Image.asset(
-    'assets/placeholder/offline-sign-circular-band-label-sticker.png',
+    R.ASSETS_PLACEHOLDER_OFFLINE_SIGN_CIRCULAR_BAND_LABEL_STICKER_PNG,
     fit: BoxFit.contain,
   );
 }
 
-Widget buildOnlineImageView(String imagePath, BoxFit fit) {
+Widget buildOnlineImageView(String? imagePath, BoxFit fit,
+    {Widget? customPlaceHolder}) {
+  Widget placeHolder = customPlaceHolder ?? _buildPlaceholderForPhoto();
   if (imagePath == null || imagePath == '') {
-    return _buildPlaceholderForPhoto();
+    return placeHolder;
   }
   return CachedNetworkImage(
     width: double.infinity,
     height: double.infinity,
     imageUrl: imagePath,
     fit: fit,
-    placeholder: (context, url) => _buildPlaceholderForPhoto(),
-    errorWidget: (context, url, error) => _buildPlaceholderForPhoto(),
+    placeholder: (context, url) => placeHolder,
+    errorWidget: (context, url, error) => placeHolder,
   );
 }
 
 Widget buildPhotoImageWithLocalImage(
-    ParseModelPhotos modelData, bool localFileExist, BoxFit fit) {
+    ParseModelPhotos modelData, bool localFileExist, BoxFit fit,
+    {Widget? customPlaceHolder}) {
   if (modelData.originalUrl == null || modelData.originalUrl == '') {
     if (modelData.offlinePath != null && modelData.offlinePath != '') {
       if (localFileExist) {
         // Exist
-        return _buildFileImageView(modelData.offlinePath!);
+        return _buildFileImageView(modelData.offlinePath!, fit: fit);
       } else {
         // Place holder
         return _buildPlaceholderForOfflinePhoto();
@@ -47,19 +51,18 @@ Widget buildPhotoImageWithLocalImage(
       return _buildPlaceholderForOfflinePhoto();
     }
   }
-  return buildOnlineImageView(modelData.originalUrl, fit);
+  return buildOnlineImageView(modelData.originalUrl, fit,
+      customPlaceHolder: customPlaceHolder);
 }
 
 Widget buildPhotoImage(ParseModelPhotos modelData) {
   return buildOnlineImageView(modelData.originalUrl, BoxFit.cover);
 }
 
-Widget _buildFileImageView(String imagePath) {
+Widget _buildFileImageView(String imagePath, {BoxFit fit = BoxFit.fitWidth}) {
   return Image.file(
-    io.File(
-      imagePath,
-    ),
-    fit: BoxFit.fitWidth,
+    io.File(imagePath),
+    fit: fit,
   );
 }
 

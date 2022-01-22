@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/recipe.dart';
 import 'package:ieatta/app/ui/widgets/rating_image.dart';
 
@@ -14,7 +14,7 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 4.0),
       child: Container(
           width: 135.0,
           height: 180.0,
@@ -39,12 +39,14 @@ class MenuItem extends StatelessWidget {
         children: <Widget>[
           Text(
             recipeData.displayName,
-            style: TextStyle(
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5.0,
           ),
           Row(
@@ -64,12 +66,12 @@ class MenuItem extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(10.0),
       ),
       child: Stack(
         children: <Widget>[
-          Container(
+          SizedBox(
             height: 230.0,
             width: Get.width,
             child: buildRecipeImage(recipeData),
@@ -80,7 +82,7 @@ class MenuItem extends StatelessWidget {
             width: Get.width,
             height: 60.0,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -103,7 +105,7 @@ class MenuItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '\$' + recipeData.price,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.orangeAccent),

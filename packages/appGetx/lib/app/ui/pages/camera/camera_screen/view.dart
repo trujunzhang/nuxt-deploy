@@ -8,8 +8,14 @@ import 'widget/camera_options.dart';
 import 'widget/camera_uploading_panel.dart';
 
 class TakeCameraPage extends GetWidget<TakeCameraController> {
+  const TakeCameraPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    return Obx(() => _buildBody(context));
+  }
+
+  Widget _buildBody(BuildContext context) {
     return Stack(
       children: <Widget>[
         Positioned(
@@ -19,16 +25,9 @@ class TakeCameraPage extends GetWidget<TakeCameraController> {
           right: 0,
           child: Center(
             child: CameraAwesome(
-              // selectDefaultSize: (availableSizes) {
-              //   this._availableSizes = availableSizes;
-              //   return availableSizes[0];
-              // },
-              // selectDefaultSize: (List<Size> availableSizes) => Size(
-              //     Get.width,
-              //     MediaQuery.of(context).size.height),
               selectDefaultSize: (List<Size> availableSizes) =>
                   // Size(1920, 1080),
-                  Size(1024, 768),
+                  const Size(1024, 768),
               captureMode: controller.captureMode,
               photoSize: controller.photoSize,
               sensor: controller.sensor,
@@ -36,10 +35,10 @@ class TakeCameraPage extends GetWidget<TakeCameraController> {
             ),
           ),
         ),
-        CameraOptions(),
+        const CameraOptions(),
         (controller.state.cameraPanelType == CAMERA_PANEL.PANEL_UPLOADING)
-            ? CameraUploadingPanel()
-            : SizedBox.shrink() // option
+            ? const CameraUploadingPanel()
+            : const SizedBox.shrink() // option
       ],
     );
   }

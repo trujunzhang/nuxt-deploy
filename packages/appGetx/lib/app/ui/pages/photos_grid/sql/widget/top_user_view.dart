@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/pages/photos_grid/fb/widget/top_base_user_view.dart';
 
 class TopUserView extends GetWidget<AuthController> {

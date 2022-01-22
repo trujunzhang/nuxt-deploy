@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
+import 'package:getx_firebase/getx_firebase.dart';
+import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
+import 'package:ieatta/app/ui/widgets/dialog/delete_confirm_dialog.dart';
 
 import 'index.dart';
 
 class FBPhotosPageViewController extends GetxController {
   AuthController authController = Get.find();
   FirebaseController firebaseController = Get.find();
+
+  final PhotoRepository photoRepository = PhotoRepository.getInstance();
 
   final state = FBPhotosPageViewState();
   final pageIndexNotifier = ValueNotifier<int>(0);
@@ -45,9 +46,25 @@ class FBPhotosPageViewController extends GetxController {
   void onReady() {}
 
   showEditPhotoBtn() {
+    ParseModelPhotos? photo = state.selectedPhoto();
     AuthUserModel? loggedUser = authController.getAuthUserModel();
-    // TODO: DJZHANG(TEST)
-    // return loggedUser != null && loggedUser.uid == selectedPhoto.creatorId;
-    return true;
+    return loggedUser != null &&
+        photo != null &&
+        loggedUser.uid == photo.creatorId;
+  }
+
+//==========================================================
+// UI Events
+//==========================================================
+  onEditPress() {
+    ParseModelPhotos? photo = state.selectedPhoto();
+    Get.toNamed('${Routes.EDIT_PHOTO}?${ParamsHelper.ID}=${photo!.uniqueId}');
+  }
+
+  onDeletePress(BuildContext context) {
+    ParseModelPhotos? photo = state.selectedPhoto();
+    showDeleteConfirmDialog(context, () async {
+      await photoRepository.delete(photo!.uniqueId);
+    });
   }
 }

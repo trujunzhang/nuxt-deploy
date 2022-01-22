@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 import '../index.dart';
 import 'menu_item.dart';
 
-class MenusBody extends GetWidget<DetailRestaurantController> {
+class MenusBody extends StatefulWidget {
+  final String tag;
+
+  const MenusBody({Key? key, required this.tag}) : super(key: key);
+
+  @override
+  _MenusBodyState createState() => _MenusBodyState();
+}
+
+class _MenusBodyState extends State<MenusBody> {
+  late DetailRestaurantController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => _buildBody());
@@ -13,7 +30,7 @@ class MenusBody extends GetWidget<DetailRestaurantController> {
 
   Widget _buildBody() {
     List<ParseModelRecipes> recipesList = controller.state.recipesList;
-    if (recipesList.length == 0) {
+    if (recipesList.isEmpty) {
       return buildEmptyRecipes();
     }
     return buildRecipesListView();
@@ -37,12 +54,11 @@ class MenusBody extends GetWidget<DetailRestaurantController> {
   }
 
   Widget buildEmptyRecipes() {
-    String restaurantId;
     return Card(
         child: Center(
       child: InkWell(
         onTap: controller.onCreateMenuPress,
-        child: Icon(
+        child: const Icon(
           Icons.add_box,
           color: Colors.deepOrangeAccent,
           size: 50,

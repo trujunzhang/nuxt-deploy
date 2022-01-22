@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 import 'package:my_plugin/my_plugin.dart';
 
@@ -13,10 +11,11 @@ class UserProfileController extends GetxController {
   FirebaseController firebaseController = Get.find();
 
   final state = UserProfileState();
-  static const double INFO_PANEL_HEIGHT = 220;
+  static const double INFO_PANEL_HEIGHT = 306;
+  static const double TAB_TOP_HEIGHT = 220;
 
   double getTabBarViewHeight(BuildContext context) {
-    return Screen.safeAreaScreenHeight(context) - INFO_PANEL_HEIGHT;
+    return Get.height - TAB_TOP_HEIGHT;
   }
 
   AppBarBackType leadingType = AppBarBackType.Back;

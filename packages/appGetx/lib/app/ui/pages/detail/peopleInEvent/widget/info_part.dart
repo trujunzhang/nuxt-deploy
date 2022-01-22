@@ -2,18 +2,36 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/restaurant.dart';
 import 'package:ieatta/app/ui/helpers/images/user.dart';
+import 'package:my_plugin/my_plugin.dart';
 
 import '../index.dart';
 
-class InfoPart extends GetWidget<DetailPeopleInEventController> {
+class InfoPart extends StatefulWidget {
+  final String tag;
+
+  const InfoPart({Key? key, required this.tag}) : super(key: key);
+
+  @override
+  _InfoPartState createState() => _InfoPartState();
+}
+
+class _InfoPartState extends State<InfoPart> {
+  late DetailPeopleInEventController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.symmetric(horizontal: 0.0),
-        child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 0.0),
+        child: SizedBox(
           height: Get.width / 2 + 80,
           // color: Colors.white,
           child: _buildBody(context),
@@ -24,14 +42,9 @@ class InfoPart extends GetWidget<DetailPeopleInEventController> {
     return Stack(
       children: [
         buildRestaurantImage(restaurant!),
-        ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-            child: Container(
-              color: Colors.black.withOpacity(0.2),
-            ),
-          ),
-        )
+        Container(
+            decoration: BoxDecoration(
+                gradient: AppGradient.linearGradient(const Color(0xFF151C26))))
       ],
     );
   }
@@ -64,22 +77,20 @@ class InfoPart extends GetWidget<DetailPeopleInEventController> {
 
   Widget _buildButton(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(right: 14, bottom: 12),
+        padding: const EdgeInsets.only(right: 14, bottom: 12),
         // color: Colors.red,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             OutlinedButton.icon(
-              label: Text('Add People Ordered'),
-              icon: Icon(Icons.add, color: Colors.red),
-              style: OutlinedButton.styleFrom(
-                primary: Colors.black,
-                backgroundColor: Colors.white,
-                onSurface: Colors.grey,
-              ),
-              onPressed: () {
-                controller.onSelectRecipesIconPress(context);
-              },
+              label: const Text('Add Recipes'),
+              icon: const Icon(Icons.add, color: Colors.red),
+              // style: OutlinedButton.styleFrom(
+              //   primary: Colors.black,
+              //   backgroundColor: Colors.white,
+              //   onSurface: Colors.grey,
+              // ),
+              onPressed: controller.onSelectRecipesIconPress,
             )
           ],
         ));
@@ -87,30 +98,30 @@ class InfoPart extends GetWidget<DetailPeopleInEventController> {
 
   Widget buildInfo(ParseModelRestaurants? restaurant, ParseModelEvents? event) {
     return Padding(
-        padding: EdgeInsets.only(left: 100, right: 40, bottom: 25),
+        padding: const EdgeInsets.only(left: 100, right: 40, bottom: 30),
         child: Container(
           // color: Colors.red,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 restaurant!.displayName,
                 textAlign: TextAlign.center,
                 maxLines: 2,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 28,
                     color: Colors.white),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 event!.displayName,
                 textAlign: TextAlign.center,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontWeight: FontWeight.w200,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                     color: Colors.white),
               ),
@@ -122,13 +133,13 @@ class InfoPart extends GetWidget<DetailPeopleInEventController> {
   Widget _buildUserInfo(BuildContext context, ParseModelUsers? user) {
     ParseModelPeopleInEvent? peopleInEvent = controller.state.detailModel;
     return Container(
-      padding: EdgeInsets.only(left: 24),
+      padding: const EdgeInsets.only(left: 24),
       height: 115,
       // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: 60,
             height: 60,
             child: ClipRRect(
@@ -136,16 +147,17 @@ class InfoPart extends GetWidget<DetailPeopleInEventController> {
               child: buildParseModelUsersImage(user!),
             ),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(user.username,
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
           // SizedBox(height: 4),
           Text(peopleInEvent!.recipes.length.toString() + ' Recipes Ordered',
-              style: TextStyle(
-                  fontWeight: FontWeight.w200,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w400,
                   color: Colors.grey,
-                  fontSize: 14)),
-          SizedBox(height: 4),
+                  fontSize: 12)),
+          const SizedBox(height: 4),
         ],
       ),
     );

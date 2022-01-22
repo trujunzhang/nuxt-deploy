@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBRecipe } from 'ieattatypes/types/index'
 import { loadRecipes } from '~/database/data/Recipes'
 import { FBCollections } from '~/database/constant'

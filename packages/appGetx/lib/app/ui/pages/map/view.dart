@@ -7,6 +7,8 @@ import 'package:my_plugin/my_plugin.dart';
 import 'index.dart';
 
 class RestaurantsMapPage extends GetWidget<RestaurantsMapController> {
+  const RestaurantsMapPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => _buildBody(context));

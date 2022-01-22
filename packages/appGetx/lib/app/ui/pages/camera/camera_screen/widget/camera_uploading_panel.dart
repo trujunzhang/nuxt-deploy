@@ -1,10 +1,12 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 
 import '../index.dart';
 
 class CameraUploadingPanel extends StatefulWidget {
+  const CameraUploadingPanel({Key? key}) : super(key: key);
+
   @override
   _CameraUploadingPanelState createState() => _CameraUploadingPanelState();
 }
@@ -24,7 +26,7 @@ class _CameraUploadingPanelState extends State<CameraUploadingPanel> {
     var flatButton = TextButton(
         child: Text(
           S.of(context).photosUploading,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xff0073bb),
           ),
         ),

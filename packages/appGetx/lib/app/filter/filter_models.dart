@@ -1,7 +1,6 @@
 // https://csdcorp.com/blog/coding/null-safety-firstwhere/
 import 'package:collection/collection.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:location_platform_interface/location_platform_interface.dart';
 
 import 'filter_utils.dart';
@@ -32,7 +31,7 @@ class FilterModels {
   }
 
   Map<String, ParseModelUsers> getUsersDict(List<ParseModelUsers> list) {
-    Map<String, ParseModelUsers> hashMap = new Map<String, ParseModelUsers>();
+    Map<String, ParseModelUsers> hashMap = {};
     objectToMap(ParseModelUsers user) {
       hashMap[user.id] = user;
     }
@@ -108,14 +107,25 @@ class FilterModels {
 
   Map<String, ParseModelRecipes> getRecipesDict(
       List<ParseModelRecipes> list, String restaurantId) {
-    Map<String, ParseModelRecipes> hashMap =
-        new Map<String, ParseModelRecipes>();
+    Map<String, ParseModelRecipes> hashMap = {};
     objectToMap(ParseModelRecipes recipe) {
       hashMap[recipe.uniqueId] = recipe;
     }
 
     getRecipesList(list, restaurantId).forEach(objectToMap);
     return hashMap;
+  }
+
+  List<ParseModelRecipes> getRecipesListForEvent(
+      Map<String, ParseModelRecipes> recipesDict, List<String> recipes) {
+    List<ParseModelRecipes> list = [];
+    for (var recipeId in recipes) {
+      ParseModelRecipes? recipe = recipesDict[recipeId];
+      if (recipe != null) {
+        list.add(recipe);
+      }
+    }
+    return list;
   }
 
 // ===========================================================
@@ -236,11 +246,14 @@ class FilterModels {
   }
 
   List<ParseModelPhotos> getWaitersListForEvent(
-      Map<String, ParseModelPhotos> waitersDict, ParseModelEvents event) {
+      Map<String, ParseModelPhotos> waitersDict, List<String> waiters) {
     List<ParseModelPhotos> list = [];
-    event.waiters.forEach((waiterId) {
-      list.add(waitersDict[waiterId]!);
-    });
+    for (var waiterId in waiters) {
+      ParseModelPhotos? photo = waitersDict[waiterId];
+      if (photo != null) {
+        list.add(photo);
+      }
+    }
     return list;
   }
 

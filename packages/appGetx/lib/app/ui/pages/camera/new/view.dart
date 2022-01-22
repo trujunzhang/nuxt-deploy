@@ -1,14 +1,16 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:ieatta/app/ui/helpers/images/photo.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class CreatePhotoPage extends GetWidget<CreatePhotoController> {
+  const CreatePhotoPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -19,7 +21,7 @@ class CreatePhotoPage extends GetWidget<CreatePhotoController> {
             actions: [
               // Action1: save photo icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -28,7 +30,7 @@ class CreatePhotoPage extends GetWidget<CreatePhotoController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -45,35 +47,18 @@ class CreatePhotoPage extends GetWidget<CreatePhotoController> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 0),
+        const SizedBox(height: 0),
         _buildImagePanel(context),
-        _buildShortcuts(context)
+        _buildForm(context)
       ],
     );
   }
 
   Widget _buildImagePanel(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: Get.width,
       // height: MediaQuery.of(context).size.height,
       child: buildLocalImageView(controller.imgPath!),
-    );
-  }
-
-  Widget _buildShortcuts(BuildContext context) {
-    return Shortcuts(
-      shortcuts: <LogicalKeySet, Intent>{
-        // Pressing enter on the field will now move to the next field.
-        LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-      },
-      child: FocusTraversalGroup(
-        child: Form(
-          onChanged: () {
-            Form.of(primaryFocus!.context!)!.save();
-          },
-          child: _buildForm(context),
-        ),
-      ),
     );
   }
 
@@ -89,7 +74,6 @@ class CreatePhotoPage extends GetWidget<CreatePhotoController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'extraNote',
                   decoration: InputDecoration(
                     labelText: S.of(context).modelCreateEditNotesTxt,

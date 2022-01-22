@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class EditPhotoState {
@@ -9,7 +8,7 @@ class EditPhotoState {
   Rx<String> extraNote = Rx<String>('');
   Rx<bool> isButtonDisabled = Rx<bool>(false);
 
-  Rx<ParseModelPhotos?> _photo = Rx<ParseModelPhotos?>(null);
+  final Rx<ParseModelPhotos?> _photo = Rx<ParseModelPhotos?>(null);
 
   ParseModelPhotos? get editModel => _photo.value;
 

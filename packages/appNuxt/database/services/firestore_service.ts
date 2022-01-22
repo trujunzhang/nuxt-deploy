@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { DocumentSnapshot, QuerySnapshot, CollectionReference, DocumentData } from 'firebase/firebase-storage'
 import { IFBPhoto, IFBRestaurant, IFBReview, IFBUser } from 'ieattatypes/types/index'
 import { FBCollections } from '~/database/constant'
@@ -12,7 +12,7 @@ export type DocumentSnapshotsEvent = (documentSnapshots: QuerySnapshot) => void
 export class FirestoreService {
   static instance = new FirestoreService()
 
-  queryByCreatorId (params: {
+  queryByCreatorId(params: {
     query: any,
     userId: string
   }) {
@@ -24,7 +24,7 @@ export class FirestoreService {
       .orderBy('updatedAt', 'desc')
   }
 
-  queryPhotoByGeoHashFromRestaurant (
+  queryPhotoByGeoHashFromRestaurant(
     params: {
       query: any,
       restaurant: IFBRestaurant
@@ -41,7 +41,7 @@ export class FirestoreService {
       .orderBy('updatedAt', 'desc')
   }
 
-  async updateUser (
+  async updateUser(
     $fireStore: firebase.firestore.Firestore,
     model: IFBUser
   ) {
@@ -49,7 +49,7 @@ export class FirestoreService {
     await messageRef.set(model)
   }
 
-  async setData (
+  async setData(
     $fireStore: firebase.firestore.Firestore,
     path: string,
     model: IFBRestaurant | IFBPhoto | IFBReview | IFBRecipe | IFBEvent
@@ -58,7 +58,7 @@ export class FirestoreService {
     await messageRef.set(model)
   }
 
-  async getData (
+  async getData(
     params: {
       $fireStore: firebase.firestore.Firestore,
       path: string,
@@ -80,7 +80,7 @@ export class FirestoreService {
     return data
   }
 
-  async snapshotList (
+  async snapshotList(
     params: {
       $fireStore: firebase.firestore.Firestore,
       path: string,
@@ -115,7 +115,7 @@ export class FirestoreService {
     })
   }
 
-  async collectionStream (
+  async collectionStream(
     params: {
       query: CollectionReference<DocumentData>,
       queryBuilder: QueryBuilder,

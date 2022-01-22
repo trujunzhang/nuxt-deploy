@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
-import 'package:ieatta/app/data/repository/index.dart';
-import 'package:ieatta/app/helpers/firestore_path.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 import 'package:ieatta/app/ui/helpers/flushbar_utils.dart';
@@ -66,6 +62,6 @@ class SelectRecipeController extends GetxController {
 //==========================================================
   onNewRecipeButtonPress() {
     Get.toNamed(
-        '${Routes.EDIT_RECIPE}?${ParamsHelper.RESTAURANT_ID}=$state. restaurantId');
+        '${Routes.EDIT_RECIPE}?${ParamsHelper.RESTAURANT_ID}=${state.restaurantId}');
   }
 }

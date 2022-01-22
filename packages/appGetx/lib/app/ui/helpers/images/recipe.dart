@@ -1,16 +1,16 @@
+import 'package:app_config/app_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 Widget _buildPlaceholderForRecipe() {
   return Image.asset(
-    // 'assets/placeholder/menu_medium_square.png',
-    'assets/placeholder/business_large_square.png',
+    R.ASSETS_PLACEHOLDER_BUSINESS_LARGE_SQUARE_PNG,
     fit: BoxFit.cover,
   );
 }
 
-Widget buildParseModelRecipesImageWithOriginalUrl(String originalUrl) {
+Widget buildParseModelRecipesImageWithOriginalUrl(String? originalUrl) {
   if (originalUrl == null || originalUrl == '') {
     return _buildPlaceholderForRecipe();
   }

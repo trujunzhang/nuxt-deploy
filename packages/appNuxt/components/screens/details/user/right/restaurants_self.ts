@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import { namespace } from 'vuex-class'
 import { FBCollections } from '~/database/constant'
 import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'

@@ -1,6 +1,6 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { IFBEvent, IFBRecipe, IFBRestaurant, IFBReview } from 'ieattatypes/types'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import { ReviewType } from '~/database/constant'
 import ReviewItem from '~/components/screens/details/reviews/reviewItem/review_item.vue'
 import ReviewSearch from '~/components/screens/details/reviews/reviewList/review_search.vue'

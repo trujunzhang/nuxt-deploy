@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBPeopleInEvent } from 'ieattatypes/types/index'
 import { FBCollections } from '~/database/constant'
 import { fixCreatorId, getCreatorIdDict } from '~/database/event/userUid'

@@ -1,17 +1,16 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class DetailEventState {
   FirebaseController firebaseController = Get.find();
-  Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
-  Rx<ParseModelRestaurants?> _restaurant = Rx<ParseModelRestaurants?>(null);
+  final Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
+  final Rx<ParseModelRestaurants?> _restaurant =
+      Rx<ParseModelRestaurants?>(null);
 
-  RxMap<String, ParseModelPhotos> waitersDict =
+  final RxMap<String, ParseModelPhotos> _waitersDict =
       RxMap<String, ParseModelPhotos>({});
-  RxList<ParseModelPhotos> waitersInEventList = RxList<ParseModelPhotos>([]);
+  RxList<ParseModelPhotos> waitersInEvent = RxList<ParseModelPhotos>([]);
 
   RxList<ParseModelPeopleInEvent> peopleInEventsList =
       RxList<ParseModelPeopleInEvent>([]);
@@ -19,14 +18,14 @@ class DetailEventState {
 
   ParseModelEvents? get detailModel => _event.value;
 
-  List<String> get waiters => detailModel!.waiters;
-
   ParseModelRestaurants? get restaurant => _restaurant.value;
 
   listenChanged(String eventId, ReviewType reviewType) {
     firebaseController.onEventsChanged((value) {
       _event.value = FilterModels.instance
           .getSingleEvent(firebaseController.eventsList, eventId);
+      waitersInEvent.value = FilterModels.instance
+          .getWaitersListForEvent(_waitersDict, detailModel!.waiters);
     });
     firebaseController.onPeopleInEventsChanged((value) {
       peopleInEventsList.value = FilterModels.instance.getPeopleInEventsList(
@@ -39,10 +38,10 @@ class DetailEventState {
           .getReviewsList(firebaseController.reviewsList, eventId, reviewType);
     });
     firebaseController.onPhotosChanged((value) {
-      waitersDict.value = FilterModels.instance
+      _waitersDict.value = FilterModels.instance
           .getWaitersDict(firebaseController.photosList, restaurant!.uniqueId);
-      waitersInEventList.value = FilterModels.instance
-          .getWaitersListForEvent(waitersDict, detailModel!);
+      waitersInEvent.value = FilterModels.instance
+          .getWaitersListForEvent(_waitersDict, detailModel!.waiters);
     });
   }
 
@@ -59,11 +58,11 @@ class DetailEventState {
         eventId: detailModel!.uniqueId);
     reviewsList.value = FilterModels.instance
         .getReviewsList(firebaseController.reviewsList, eventId, reviewType);
-    // Other
 
-    waitersDict.value = FilterModels.instance.getWaitersDict(
+    // Other
+    _waitersDict.value = FilterModels.instance.getWaitersDict(
         firebaseController.photosList, detailModel!.restaurantId);
-    waitersInEventList.value =
-        FilterModels.instance.getWaitersListForEvent(waitersDict, detailModel!);
+    waitersInEvent.value = FilterModels.instance
+        .getWaitersListForEvent(_waitersDict, detailModel!.waiters);
   }
 }

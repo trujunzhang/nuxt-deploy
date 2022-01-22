@@ -28,11 +28,6 @@ class ParseModelPhotos extends AvatarUser {
   final String? recipeId;
   final String? userId;
 
-  // Location(3)
-  final String? geoHash;
-  final double? latitude;
-  final double? longitude;
-
   // offline(1)
   final String? offlinePath;
 
@@ -57,10 +52,6 @@ class ParseModelPhotos extends AvatarUser {
     required this.restaurantId,
     required this.recipeId,
     required this.userId,
-    // Location(3)
-    required this.geoHash,
-    required this.latitude,
-    required this.longitude,
     // offline(1)
     required this.offlinePath,
     // extra(1)
@@ -86,11 +77,6 @@ class ParseModelPhotos extends AvatarUser {
     String? recipeId = json['recipeId'];
     String? userId = json['userId'];
 
-    // Location(3)
-    String? geoHash = json['geoHash'];
-    double? latitude = json['latitude'];
-    double? longitude = json['longitude'];
-
     // offline(1)
     String? offlinePath = json['offlinePath'];
 
@@ -104,10 +90,6 @@ class ParseModelPhotos extends AvatarUser {
       // user(2)
       username: username,
       avatarUrl: avatarUrl,
-      // Location(3)
-      geoHash: geoHash,
-      latitude: latitude,
-      longitude: longitude,
       // Common
       originalUrl: originalUrl,
       thumbnailUrl: thumbnailUrl,
@@ -142,10 +124,6 @@ class ParseModelPhotos extends AvatarUser {
       "restaurantId": restaurantId,
       "recipeId": recipeId,
       "userId": userId,
-      // Location(3)
-      "geoHash": geoHash,
-      "latitude": latitude,
-      "longitude": longitude,
       // offline(1)
       "offlinePath": offlinePath,
       // extra(1)
@@ -169,10 +147,6 @@ class ParseModelPhotos extends AvatarUser {
       // user(2)
       username: authUserModel.username!,
       avatarUrl: authUserModel.avatarUrl!,
-      // Location(3)
-      geoHash: '',
-      latitude: 0,
-      longitude: 0,
       // Common(3)
       originalUrl: '',
       thumbnailUrl: '',

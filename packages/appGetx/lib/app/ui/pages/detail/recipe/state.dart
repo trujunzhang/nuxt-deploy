@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class DetailRecipeState {
   FirebaseController firebaseController = Get.find();
-  Rx<ParseModelRecipes?> _recipe = Rx<ParseModelRecipes?>(null);
-  Rx<ParseModelRestaurants?> _restaurant = Rx<ParseModelRestaurants?>(null);
+  final Rx<ParseModelRecipes?> _recipe = Rx<ParseModelRecipes?>(null);
+  final Rx<ParseModelRestaurants?> _restaurant =
+      Rx<ParseModelRestaurants?>(null);
 
   RxList<ParseModelPhotos> photosList = RxList<ParseModelPhotos>([]);
   RxList<ParseModelReviews> reviewsList = RxList<ParseModelReviews>([]);

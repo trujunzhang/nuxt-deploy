@@ -23,7 +23,7 @@ class _CameraButtonState extends State<CameraButton>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 6));
+        AnimationController(vsync: this, duration: const Duration(seconds: 6));
     super.initState();
   }
 
@@ -35,8 +35,8 @@ class _CameraButtonState extends State<CameraButton>
         takePicture();
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8.0),
-        padding: EdgeInsets.all(4.0),
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
             color: Colors.transparent,
             shape: BoxShape.circle,
@@ -45,8 +45,8 @@ class _CameraButtonState extends State<CameraButton>
         child: Container(
           width: size,
           height: size,
-          decoration:
-              BoxDecoration(color: Colors.white70, shape: BoxShape.circle),
+          decoration: const BoxDecoration(
+              color: Colors.white70, shape: BoxShape.circle),
         ),
       ),
     );

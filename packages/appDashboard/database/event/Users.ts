@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBUser } from 'ieattatypes/types/index'
 import { loadUsers, password } from '~/database/data/Users'
 import { FBCollections } from '~/database/constant'

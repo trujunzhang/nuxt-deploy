@@ -1,6 +1,6 @@
+import 'package:app_sql/app_sql.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
 import 'package:ieatta/app/ui/pages/photos_grid/sql/pageview/view.dart';
 import 'package:my_plugin/my_plugin.dart';
 

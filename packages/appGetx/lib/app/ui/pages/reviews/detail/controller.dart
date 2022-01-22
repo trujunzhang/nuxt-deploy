@@ -1,18 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/auth.controller.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/controller/location.controller.dart';
-import 'package:ieatta/app/data/model/auth_user_model.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 
 import 'index.dart';
 
 class DetailReviewController extends GetxController {
-  final formKey = GlobalKey<FormBuilderState>();
-
   final state = DetailReviewState();
   AuthController authController = Get.find();
   LocationController locationController = Get.find();
@@ -35,10 +29,8 @@ class DetailReviewController extends GetxController {
 
   bool shouldShowEditReviewBtn() {
     AuthUserModel? authUserModel = authController.getAuthUserModel();
-    // return (authUserModel != null &&
-    //     authUserModel.uid == detailModel!.creatorId);
-    // TODO: DJZHANG(TEST)
-    return true;
+    return (authUserModel != null &&
+        authUserModel.uid == state.detailModel!.creatorId);
   }
 
 //==========================================================

@@ -21,7 +21,7 @@ class _EaseInWidgetState extends State<EaseInWidget>
     super.initState();
     controller = AnimationController(
         vsync: this,
-        duration: Duration(
+        duration: const Duration(
           milliseconds: 200,
         ),
         value: 1.0);

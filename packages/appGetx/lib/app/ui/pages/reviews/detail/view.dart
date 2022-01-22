@@ -1,12 +1,14 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ieatta/app/ui/pages/reviews/body/review_item.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class DetailReviewPage extends GetWidget<DetailReviewController> {
+  const DetailReviewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var flatButton = TextButton(
@@ -32,9 +34,9 @@ class DetailReviewPage extends GetWidget<DetailReviewController> {
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
-        padding: EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 8.0),
         child: Container(
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryVariant,
           ),
           child: ReviewItem(

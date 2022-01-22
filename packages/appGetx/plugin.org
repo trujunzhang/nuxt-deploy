@@ -24,5 +24,3 @@
 
   https://pub.dev/packages/location
 
-* contained_tab_bar_view
-  https://pub.dev/packages/contained_tab_bar_view

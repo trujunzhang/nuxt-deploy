@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/common/colors/colors.dart';
 
-import '../restaurants.controller.dart';
+import '../index.dart';
 
 class TrackEmpty extends GetWidget<RestaurantsController> {
+  const TrackEmpty({Key? key}) : super(key: key);
+
   Widget buildBtn(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -26,10 +27,9 @@ class TrackEmpty extends GetWidget<RestaurantsController> {
             Radius.circular(32.0),
           ),
           onTap: controller.onNewRestaurantIconPress,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Icon(Icons.add,
-                size: 20, color: AppColors.backgroundLightColor),
+          child: const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Icon(Icons.add, size: 20, color: Colors.white),
           ),
         ),
       ),
@@ -41,12 +41,12 @@ class TrackEmpty extends GetWidget<RestaurantsController> {
     return Center(
         child: Column(
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         Container(
           margin: const EdgeInsets.only(bottom: 12),
-          child: Text('No Restaurants Nearby'),
+          child: const Text('No Restaurants Nearby'),
         ),
         buildBtn(context)
       ],

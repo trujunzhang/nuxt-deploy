@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_dict.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 import 'package:ieatta/app/filter/filter_utils.dart';
@@ -10,7 +9,7 @@ class SelectWaiterState {
 
   String get restaurantId => _event.value!.restaurantId;
 
-  Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
+  final Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
   RxList<String> unselectedWaiterIds = RxList<String>([]);
 
   RxList<String> selected = RxList<String>([]);

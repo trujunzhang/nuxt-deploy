@@ -1,10 +1,10 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { IFBEvent, IFBRecipe } from 'ieattatypes/types'
 import { FBCollections, getReviewRelatedPath } from '~/database/constant'
 
 export class ReviewHelper {
-  static async onSaveReviewAfterHook (
+  static async onSaveReviewAfterHook(
     $fireStore: firebase.firestore.Firestore,
     relatedtId: string,
     reviewType: string,

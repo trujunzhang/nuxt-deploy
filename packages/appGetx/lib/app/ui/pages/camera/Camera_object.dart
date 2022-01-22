@@ -4,7 +4,7 @@
 //   USER
 // }
 
-import 'package:ieatta/app/data/enum/fb_collections.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 enum CAMERA_PANEL { PANEL_NORMAL, PANEL_UPLOADING }
 

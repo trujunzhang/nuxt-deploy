@@ -8,6 +8,8 @@ import 'camera_button.dart';
 import 'thumbnail_widget.dart';
 
 class CameraOptions extends GetWidget<TakeCameraController> {
+  const CameraOptions({Key? key}) : super(key: key);
+
   IconData _getFlashIcon() {
     switch (controller.state.switchFlash.value.value) {
       case CameraFlashes.NONE:
@@ -35,12 +37,12 @@ class CameraOptions extends GetWidget<TakeCameraController> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.white),
-        actionsIconTheme: IconThemeData(color: Colors.white),
-        leading: CloseButton(),
+        iconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        leading: const CloseButton(),
         actions: [
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: const EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                   onTap: controller.state.onFlashTap,
                   child: Icon(
@@ -65,7 +67,7 @@ class CameraOptions extends GetWidget<TakeCameraController> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              ThumbnailWidget(),
+              const ThumbnailWidget(),
               Expanded(
                 child: Container(
                   height: 50.0,

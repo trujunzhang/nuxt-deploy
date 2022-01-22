@@ -1,6 +1,6 @@
+import 'package:app_language/langs/l10n.dart';
+import 'package:app_language/services/localization_service.dart';
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/services/localization_service.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 
 enum LanguagesActions { english, chinese }
 

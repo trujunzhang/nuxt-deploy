@@ -1,5 +1,5 @@
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+
+import 'package:getx_firebase/getx_firebase.dart';
 
 import 'filter_models.dart';
 
@@ -21,7 +21,7 @@ class FilterPhoto {
       case PhotoType.Waiter:
         {
           return FilterModels.instance
-              .getWaitersListForEvent(waitersDict!, event!);
+              .getWaitersListForEvent(waitersDict!, event!.waiters);
         }
       case PhotoType.User:
         {
@@ -33,7 +33,7 @@ class FilterPhoto {
 
   static Map<String, ParseModelPhotos> getPhotosDict(
       List<ParseModelPhotos> list) {
-    Map<String, ParseModelPhotos> hashMap = new Map<String, ParseModelPhotos>();
+    Map<String, ParseModelPhotos> hashMap = {};
     objectToMap(ParseModelPhotos waiter) {
       hashMap[waiter.uniqueId] = waiter;
     }
@@ -45,6 +45,10 @@ class FilterPhoto {
   static Map<String, ParseModelPhotos> refreshPhotosDict(
       Map<String, ParseModelPhotos> photosDict,
       List<ParseModelPhotos> nextPhotos) {
+    // When a photo has been deleted, only get the dict.
+    if (photosDict.keys.length != nextPhotos.length) {
+      return getPhotosDict(nextPhotos);
+    }
     Map<String, ParseModelPhotos> nextDict = {...photosDict};
     objectToMap(ParseModelPhotos photo) {
       nextDict[photo.uniqueId] = photo;

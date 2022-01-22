@@ -1,4 +1,5 @@
-import 'package:ieatta/app/data/enum/fb_collections.dart';
+
+import 'package:getx_firebase/getx_firebase.dart';
 
 import 'app_pages.dart';
 
@@ -12,8 +13,8 @@ class ParamsHelper {
   static const String RELATED_ID = 'relatedId';
 
   // For Drawer's menu
-  static const String  MENU_ARROW = 'menuarrow';
-  static const String  MENU_ARROW_TAG = 'drawer';
+  static const String MENU_ARROW = 'menuarrow';
+  static const String MENU_ARROW_TAG = 'drawer';
 
   // For photo pageview
   static const String SELECTED_INDEX = 'selected_index';

@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/app_pages.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
+import 'package:ieatta/app/ui/helpers/slidable_row.dart';
 
 import '../index.dart';
 
-class EventItem extends StatelessWidget {
-  DetailRestaurantController controller =
-      Get.find<DetailRestaurantController>();
+class EventItem extends StatefulWidget {
+  final String tag;
   final ParseModelEvents eventData;
 
-  EventItem({Key? key, required this.eventData}) : super(key: key);
+  const EventItem({Key? key, required this.tag, required this.eventData})
+      : super(key: key);
+
+  @override
+  _EventItemState createState() => _EventItemState();
+}
+
+class _EventItemState extends State<EventItem> {
+  late DetailRestaurantController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.find(tag: widget.tag);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(eventData.uniqueId),
-      direction: Axis.horizontal,
-      actionPane: SlidableBehindActionPane(),
-      actionExtentRatio: 0.25,
-      child: _buildItem(context),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Delete',
-          color: Colors.red,
-          icon: Icons.delete,
-          onTap: () async {
-            await controller.onDeleteEventIconPress(context, eventData);
-          },
-        ),
-      ],
+    return SlidableRow(
+      rowKey: widget.eventData.uniqueId,
+      row: _buildItem(context),
+      onPress: (BuildContext context) async {
+        await controller.onDeleteEventIconPress(context, widget.eventData);
+      },
     );
   }
 
@@ -43,18 +46,18 @@ class EventItem extends StatelessWidget {
         child: ListTile(
           onTap: () {
             Get.toNamed(Routes.DETAIL_EVENT,
-                arguments: {ParamsHelper.ID: eventData.uniqueId});
+                arguments: {ParamsHelper.ID: widget.eventData.uniqueId});
           },
           leading: Icon(Icons.event,
               color: Get.isDarkMode ? Colors.white : Colors.grey),
           trailing: Icon(Icons.keyboard_arrow_right,
               color: Get.isDarkMode ? Colors.white : Colors.grey),
-          title: Text(eventData.displayName),
+          title: Text(widget.eventData.displayName),
           subtitle: Text(
-            eventData.want,
+            widget.eventData.want,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
         ));
   }

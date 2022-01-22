@@ -1,13 +1,15 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class EditPhotoPage extends GetWidget<EditPhotoController> {
+  const EditPhotoPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -18,7 +20,7 @@ class EditPhotoPage extends GetWidget<EditPhotoController> {
             actions: [
               // Action1: save photo icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -27,7 +29,7 @@ class EditPhotoPage extends GetWidget<EditPhotoController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -36,24 +38,7 @@ class EditPhotoPage extends GetWidget<EditPhotoController> {
                                   .of(context)
                                   .editModelAppBarRightSaveTitle)))),
             ]),
-        body: Obx(() => _buildBody(context)));
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return Shortcuts(
-      shortcuts: <LogicalKeySet, Intent>{
-        // Pressing enter on the field will now move to the next field.
-        LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-      },
-      child: FocusTraversalGroup(
-        child: Form(
-          onChanged: () {
-            Form.of(primaryFocus!.context!)!.save();
-          },
-          child: _buildForm(context),
-        ),
-      ),
-    );
+        body: Obx(() => _buildForm(context)));
   }
 
   Widget _buildForm(BuildContext context) {
@@ -68,7 +53,6 @@ class EditPhotoPage extends GetWidget<EditPhotoController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'extraNote',
                   decoration: InputDecoration(
                     labelText: S.of(context).modelCreateEditNotesTxt,

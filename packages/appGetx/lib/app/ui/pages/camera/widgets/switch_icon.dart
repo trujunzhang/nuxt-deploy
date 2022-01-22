@@ -21,7 +21,7 @@ class _SwitchIconState extends State<SwitchIcon>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
   }
 
   @override
@@ -37,8 +37,8 @@ class _SwitchIconState extends State<SwitchIcon>
               controller.reverse();
             }
           },
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
+          child: const Padding(
+            padding: EdgeInsets.all(4.0),
             child: Icon(
               Icons.switch_camera,
               color: Colors.white,

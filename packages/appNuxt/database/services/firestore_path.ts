@@ -4,8 +4,8 @@ In future, any new path can be added here.
 This class work together with FirestoreService and FirestoreDatabase.
  */
 
-import { CollectionReference, DocumentData } from 'firebase/firebase-storage'
-import firebase from 'firebase'
+import { CollectionReference, DocumentData } from 'firebase/firebase-storage-compat'
+import firebase from 'firebase/compat'
 import { FBCollections, PhotoType, ReviewType } from '~/database/constant'
 
 export class FirestorePath {

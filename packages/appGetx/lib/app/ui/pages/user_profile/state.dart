@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
-import 'User_menu_model.dart';
+import 'models/User_menu_model.dart';
 
 class UserProfileState {
   FirebaseController firebaseController = Get.find();
 
   List<UserMenu> userMenus = [];
 
-  Rx<ParseModelUsers?> _user = Rx<ParseModelUsers?>(null);
+  final Rx<ParseModelUsers?> _user = Rx<ParseModelUsers?>(null);
 
   ParseModelUsers? get detailModel => _user.value;
 
@@ -26,17 +25,24 @@ class UserProfileState {
   }
 
   listenChanged(String userId) {
+    firebaseController.onUsersChanged((value) {
+      _user.value = FilterModels.instance
+          .getSingleUser(firebaseController.usersList, userId);
+    });
     firebaseController.onRestaurantsChanged((value) {
       restaurantsList.value = FilterModels.instance
           .getRestaurantsListByUser(firebaseController.restaurantsList, userId);
+      userMenus = generateUserMenus();
     });
     firebaseController.onPhotosChanged((value) {
       photosList.value = FilterModels.instance
           .getPhotosListByUser(firebaseController.photosList, userId);
+      userMenus = generateUserMenus();
     });
     firebaseController.onReviewsChanged((value) {
       reviewsList.value = FilterModels.instance
           .getReviewsListByUser(firebaseController.reviewsList, userId);
+      userMenus = generateUserMenus();
     });
   }
 
@@ -53,11 +59,11 @@ class UserProfileState {
 
   List<UserMenu> generateUserMenus() {
     UserMenu restaurantsMenu =
-        UserMenu("Restaurant", restaurantsList.length, Icons.food_bank);
+        UserMenu("Restaurants", restaurantsList.length, Icons.food_bank);
     UserMenu photosMenu =
-        UserMenu('Photo', photosList.length, Icons.photo_sharp);
+        UserMenu('Photos', photosList.length, Icons.photo_sharp);
     UserMenu reviewsMenu =
-        UserMenu('Review', reviewsList.length, Icons.rate_review);
+        UserMenu('Reviews', reviewsList.length, Icons.rate_review);
     return [restaurantsMenu, photosMenu, reviewsMenu];
   }
 }

@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBEvent } from 'ieattatypes/types/index'
 import { loadEvents } from '~/database/data/Events'
 import { FBCollections } from '~/database/constant'

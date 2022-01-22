@@ -1,13 +1,15 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/user.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
 
 class SelectPersonPage extends GetWidget<SelectPersonController> {
+  const SelectPersonPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
@@ -24,9 +26,9 @@ class SelectPersonPage extends GetWidget<SelectPersonController> {
     List<String> disorderedUserIds = controller.state.disorderedUserIds;
 
     return ListView.separated(
-      padding: EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.only(top: 16),
       itemCount: disorderedUserIds.length,
-      separatorBuilder: (BuildContext context, int index) => Divider(),
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
       itemBuilder: (BuildContext context, int index) {
         var userId = disorderedUserIds[index];
         return Obx(() {

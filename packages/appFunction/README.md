@@ -1,0 +1,14 @@
+# Run
+   $ firebase emulators:start
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

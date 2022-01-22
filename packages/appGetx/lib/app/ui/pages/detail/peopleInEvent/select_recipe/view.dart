@@ -1,15 +1,17 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/recipe.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
-import 'no_result.dart';
+import 'widget/no_result.dart';
 
 class SelectRecipePage extends StatelessWidget {
   SelectRecipeController controller = Get.find<SelectRecipeController>();
+
+  SelectRecipePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class SelectRecipePage extends StatelessWidget {
           leadingType: AppBarBackType.Close,
           actions: [
             Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                     onTap: () {
                       controller.onNewRecipeButtonPress();
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.add,
                       color: Colors.white,
                     ))),
@@ -38,12 +40,12 @@ class SelectRecipePage extends StatelessWidget {
     Map<String, ParseModelRecipes> recipesDict = controller.state.recipesDict;
     List<String> unorderedRecipeIds = controller.state.unorderedRecipeIds;
 
-    if (unorderedRecipeIds.length == 0) {
-      return RecipesEmpty();
+    if (unorderedRecipeIds.isEmpty) {
+      return const RecipesEmpty();
     }
 
     return Container(
-        padding: EdgeInsets.only(top: 16),
+        padding: const EdgeInsets.only(top: 16),
         child: ListView.separated(
           itemCount: unorderedRecipeIds.length,
           separatorBuilder: (BuildContext context, int index) => Divider(),

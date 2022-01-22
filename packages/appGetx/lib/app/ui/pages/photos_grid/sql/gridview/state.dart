@@ -1,5 +1,5 @@
+import 'package:app_sql/app_sql.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
 
 class SqlPhotosGridViewState {
   Rx<bool> isLoading = Rx<bool>(true);

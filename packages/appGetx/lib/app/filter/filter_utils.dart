@@ -1,5 +1,5 @@
 import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:location/location.dart';
 
 /*

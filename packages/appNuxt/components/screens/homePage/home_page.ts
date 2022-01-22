@@ -1,6 +1,6 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { IFBRestaurant } from 'ieattatypes'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import { FacebookLoader } from 'vue-content-loader'
 import { FBCollections } from '~/database/constant'
 import RestaurantItem from '~/components/screens/homePage/restaurantItem/restaurantItem.vue'

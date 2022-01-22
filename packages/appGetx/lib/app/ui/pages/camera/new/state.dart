@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 class CreatePhotoState {
   FirebaseController firebaseController = Get.find();

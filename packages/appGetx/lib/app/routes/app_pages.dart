@@ -31,121 +31,116 @@ class AppPages {
   static final pages = [
     GetPage(
       name: Routes.INITIAL,
-      page: () => AppPage(),
+      page: () => const AppPage(),
       binding: AppBinding(),
     ),
     // Restaurant
     GetPage(
       name: Routes.DETAIL_RESTAURANT,
-      page: () => DetailRestaurantPage(),
-      binding: DetailRestaurantBinding(),
+      page: () => const DetailRestaurantPage(),
     ),
     GetPage(
       name: Routes.EDIT_RESTAURANT,
-      page: () => EditRestaurantPage(),
+      page: () => const EditRestaurantPage(),
       binding: EditRestaurantBinding(),
     ),
     GetPage(
       name: Routes.RESTAURANT_MAP,
-      page: () => RestaurantsMapPage(),
+      page: () => const RestaurantsMapPage(),
       binding: RestaurantsMapBinding(),
     ),
     // Event
     GetPage(
       name: Routes.DETAIL_EVENT,
-      page: () => DetailEventPage(),
-      binding: DetailEventBinding(),
+      page: () => const DetailEventPage(),
     ),
     GetPage(
       name: Routes.EDIT_EVENT,
-      page: () => EditEventPage(),
+      page: () => const EditEventPage(),
       binding: EditEventBinding(),
     ),
     // PeopleInEvent
     GetPage(
       name: Routes.DETAIL_PEOPLE_IN_EVENT,
-      page: () => DetailPeopleInEventPage(),
-      binding: DetailPeopleInEventBinding(),
+      page: () => const DetailPeopleInEventPage(),
     ),
     // Recipe
     GetPage(
       name: Routes.DETAIL_RECIPE,
-      page: () => DetailRecipePage(),
-      binding: DetailRecipeBinding(),
+      page: () => const DetailRecipePage(),
     ),
     GetPage(
       name: Routes.EDIT_RECIPE,
-      page: () => EditRecipePage(),
+      page: () => const EditRecipePage(),
       binding: EditRecipeBinding(),
     ),
     // Photo list
     GetPage(
       name: Routes.LOCAL_PHOTO_GRID,
-      page: () => SqlPhotosGridViewPage(),
+      page: () => const SqlPhotosGridViewPage(),
       binding: SqlPhotosGridViewBinding(),
     ),
     GetPage(
       name: Routes.ONLINE_PHOTO_GRID,
-      page: () => FBPhotosGridViewPage(),
+      page: () => const FBPhotosGridViewPage(),
       binding: FBPhotosGridViewBinding(),
     ),
     GetPage(
       name: Routes.ONLINE_PHOTO_PAGE,
-      page: () => FBPhotosPageView(),
+      page: () => const FBPhotosPageView(),
       binding: FBPhotosPageViewBinding(),
     ),
     // Reviews
     GetPage(
       name: Routes.REVIEWS_LIST,
-      page: () => ReviewListPage(),
-      binding: ReviewListBinding(),
+      page: () => const ReviewListPage(),
     ),
     GetPage(
       name: Routes.DETAIL_REVIEW,
-      page: () => DetailReviewPage(),
+      page: () => const DetailReviewPage(),
       binding: DetailReviewBinding(),
     ),
     GetPage(
       name: Routes.EDIT_REVIEW,
-      page: () => EditReviewPage(),
+      page: () => const EditReviewPage(),
       binding: EditReviewBinding(),
     ),
     // User Profile
     GetPage(
       name: Routes.USER_PROFILE,
-      page: () => UserProfilePage(),
+      page: () => const UserProfilePage(),
     ),
     GetPage(
       name: Routes.EDIT_USER,
-      page: () => EditUserPage(),
+      page: () => const EditUserPage(),
       binding: EditUserBinding(),
     ),
     // Take camera
     GetPage(
       name: Routes.TAKE_CAMERA,
-      page: () => TakeCameraPage(),
+      page: () => const TakeCameraPage(),
       binding: TakeCameraBinding(),
     ),
     // Photo
     GetPage(
       name: Routes.NEW_PHOTO,
-      page: () => CreatePhotoPage(),
+      page: () => const CreatePhotoPage(),
       binding: CreatePhotoBinding(),
     ),
     GetPage(
       name: Routes.EDIT_PHOTO,
-      page: () => EditPhotoPage(),
+      page: () => const EditPhotoPage(),
       binding: EditPhotoBinding(),
     ),
     // Select
     GetPage(
-      name: Routes.SELECT_PERSON,
-      page: () => SelectPersonPage(),
-      binding: SelectPersonBinding(),
-    ),
+        name: Routes.SELECT_PERSON,
+        page: () => const SelectPersonPage(),
+        binding: SelectPersonBinding(),
+        transition: Transition.downToUp),
     GetPage(
       name: Routes.SELECT_WAITER,
-      page: () => SelectWaiterPage(),
+      page: () => const SelectWaiterPage(),
       binding: SelectWaiterBinding(),
     ),
     GetPage(

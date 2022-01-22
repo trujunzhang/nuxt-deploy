@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { IFBPhoto } from 'ieattatypes/types/index'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import { namespace } from 'vuex-class'
 import { FBCollections } from '~/database/constant'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'

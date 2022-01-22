@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieatta/app/data/model/Base_Review.dart';
-import 'package:ieatta/app/utils/rate_utils.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 
 class RatingImage extends StatelessWidget {
   final BaseReview? baseReview;
@@ -21,6 +20,6 @@ class RatingImage extends StatelessWidget {
     //<- Creates an object that fetches an image.
     var assetsImage = AssetImage('assets/stars/small/$initialRating.png');
     var image = Image(image: assetsImage, fit: BoxFit.cover);
-    return Container(width: imageWidth, height: imageHeight, child: image);
+    return SizedBox(width: imageWidth, height: imageHeight, child: image);
   }
 }

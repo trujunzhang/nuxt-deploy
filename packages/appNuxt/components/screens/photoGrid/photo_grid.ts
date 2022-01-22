@@ -1,6 +1,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IFBPhoto, IFBRecipe, IFBRestaurant } from 'ieattatypes/types/index'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import TopTitle from '~/components/screens/photoGrid/topTitle/top_title.vue'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'
 import { FirestorePath } from '~/database/services/firestore_path'

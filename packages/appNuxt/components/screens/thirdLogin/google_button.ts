@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat'
 import { namespace } from 'vuex-class'
 import Cookies from 'universal-cookie'
 import { FirebaseHelper } from '~/database/firebase_helper'

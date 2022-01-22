@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { QuerySnapshot } from 'firebase/firebase-storage'
+import { QuerySnapshot } from 'firebase/firebase-storage-compat'
 import { namespace } from 'vuex-class'
 import { IFBRestaurant, IFBReview } from 'ieattatypes/types/index'
 import { FirestoreService, QueryBuilder } from '~/database/services/firestore_service'

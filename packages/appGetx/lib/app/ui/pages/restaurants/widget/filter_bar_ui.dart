@@ -1,38 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/common/colors/colors.dart';
 
-import '../restaurants.controller.dart';
+import '../index.dart';
 
 class FilterBarUI extends GetWidget<RestaurantsController> {
+  const FilterBarUI({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => _buildBody(context));
   }
 
   Widget _buildBody(BuildContext context) {
-    return Container(
-        child: Stack(
+    return Stack(
       children: <Widget>[
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 24,
-            // decoration: BoxDecoration(
-            // color: AppColors.backgroundLightColor,
-            //   boxShadow: <BoxShadow>[
-            //     BoxShadow(
-            //         color: Colors.grey.withOpacity(0.2),
-            //         offset: const Offset(0, -2),
-            //         blurRadius: 8.0),
-            //   ],
-            // ),
-          ),
-        ),
         Container(
-          // color: AppColors.backgroundLightColor,
           color: Theme.of(context).colorScheme.primaryVariant,
           child: Padding(
             padding:
@@ -55,7 +37,7 @@ class FilterBarUI extends GetWidget<RestaurantsController> {
           ),
         )
       ],
-    ));
+    );
   }
 
   Widget _buildLeft() {
@@ -64,8 +46,8 @@ class FilterBarUI extends GetWidget<RestaurantsController> {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           controller.getRestaurantsCountInfo(),
-          style: TextStyle(
-            fontWeight: FontWeight.w100,
+          style: const TextStyle(
+            fontWeight: FontWeight.w400,
             fontSize: 16,
           ),
         ),
@@ -74,15 +56,15 @@ class FilterBarUI extends GetWidget<RestaurantsController> {
   }
 
   Widget _buildRight(BuildContext context) {
-    int restaurantsCount = controller.restaurantsCount.value;
-    var textStyle = TextStyle(
-      fontWeight: FontWeight.w100,
+    int restaurantsCount = controller.state.restaurantsCount.value;
+    var textStyle = const TextStyle(
+      fontWeight: FontWeight.w400,
       fontSize: 16,
     );
-    Color? iconColor = AppColors.primaryLightColor;
+    Color iconColor = Theme.of(context).primaryColor;
     if (restaurantsCount == 0) {
-      textStyle = TextStyle(
-          fontWeight: FontWeight.w100, fontSize: 16, color: Colors.grey);
+      textStyle = const TextStyle(
+          fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey);
       iconColor = Colors.grey;
     }
     var padding2 = Padding(

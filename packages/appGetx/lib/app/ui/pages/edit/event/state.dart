@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
-import 'package:ieatta/app/utils/timeago_utils.dart';
 
 class EditEventState {
   FirebaseController firebaseController = Get.find();
@@ -13,7 +11,7 @@ class EditEventState {
   Rx<String> endDate = Rx<String>(getNowFormat());
   Rx<bool> isButtonDisabled = Rx<bool>(false);
 
-  Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
+  final Rx<ParseModelEvents?> _event = Rx<ParseModelEvents?>(null);
 
   ParseModelEvents? get editModel => _event.value;
 

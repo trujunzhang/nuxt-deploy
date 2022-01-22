@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
 
 class EditReviewState {
@@ -11,7 +10,7 @@ class EditReviewState {
   Rx<String> body = Rx<String>('');
   Rx<bool> isButtonDisabled = Rx<bool>(false);
 
-  Rx<ParseModelReviews?> _review = Rx<ParseModelReviews?>(null);
+  final Rx<ParseModelReviews?> _review = Rx<ParseModelReviews?>(null);
 
   ParseModelReviews? get editModel => _review.value;
 

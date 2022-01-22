@@ -24,10 +24,6 @@ void main() {
     "restaurantId": "f1c0aff9-728b-4041-9560-c09578ce7b01",
     "recipeId": "",
     "userId": "",
-    // Location(3)
-    "geoHash": "uxzpcrfzypbp",
-    "latitude": 120.550209,
-    "longitude": 32.402716,
     // offline(1)
     "offlinePath": "",
     // extra(1)
@@ -57,10 +53,6 @@ void main() {
     expect(map["restaurantId"], "f1c0aff9-728b-4041-9560-c09578ce7b01");
     expect(map["recipeId"], "");
     expect(map["userId"], "");
-    // Location(3)
-    expect(map["geoHash"], "uxzpcrfzypbp");
-    expect(map["latitude"], 120.550209);
-    expect(map["longitude"], 32.402716);
     // offline(1)
     expect(map["offlinePath"], "");
     // extra(1)
@@ -90,10 +82,6 @@ void main() {
     expect(model.restaurantId, "f1c0aff9-728b-4041-9560-c09578ce7b01");
     expect(model.recipeId, "");
     expect(model.userId, "");
-    // Location(3)
-    expect(model.geoHash, "uxzpcrfzypbp");
-    expect(model.latitude, 120.550209);
-    expect(model.longitude, 32.402716);
     // offline(1)
     expect(model.offlinePath, "");
     // extra(1)
@@ -124,10 +112,6 @@ void main() {
     expect(model.restaurantId, "f1c0aff9-728b-4041-9560-c09578ce7b01");
     expect(model.recipeId, "");
     expect(model.userId, "");
-    // Location(3)
-    expect(model.geoHash, "uxzpcrfzypbp");
-    expect(model.latitude, 120.550209);
-    expect(model.longitude, 32.402716);
     // offline(1)
     expect(model.offlinePath, "");
     // extra(1)
@@ -161,10 +145,6 @@ void main() {
     expect(model.restaurantId, "f1c0aff9-728b-4041-9560-c09578ce7b01");
     expect(model.recipeId, "");
     expect(model.userId, "");
-    // Location(3)
-    expect(model.geoHash, "uxzpcrfzypbp");
-    expect(model.latitude, 120.550209);
-    expect(model.longitude, 32.402716);
     // offline(1)
     expect(model.offlinePath, "");
     // extra(1)
@@ -259,10 +239,6 @@ void main() {
     expect(model.restaurantId, "restaurantId");
     expect(model.recipeId, "");
     expect(model.userId, "");
-    // Location(3)
-    expect(model.geoHash, '');
-    expect(model.latitude, 0);
-    expect(model.longitude, 0);
     // offline(1)
     expect(model.offlinePath, filePath); // updated
     // extra(1)

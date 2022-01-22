@@ -1,16 +1,18 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/widgets/page_section_title.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
-import 'select_recipe_cover.dart';
+import 'widget/select_recipe_cover.dart';
 
 class EditRecipePage extends GetWidget<EditRecipeController> {
+  const EditRecipePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -23,16 +25,16 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
             actions: [
               // Action1: save recipe icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
                           : () async {
-                              controller.onSavePressed(context);
+                              await controller.onSavePressed(context);
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -49,29 +51,16 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
     return Column(
       children: [
         // Section1: Form
-        Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              onChanged: () {
-                Form.of(primaryFocus!.context!)!.save();
-              },
-              child: _buildForm(context),
-            ),
-          ),
-        ),
+        _buildForm(context),
         // Section2: Cover Title
-        recipe != null ? buildCoverSectionTitle() : SizedBox.shrink(),
+        recipe != null ? buildCoverSectionTitle() : const SizedBox.shrink(),
         // Section2: Photos
-        recipe != null ? SelectRecipeCover() : SizedBox.shrink(),
+        recipe != null ? SelectRecipeCover() : const SizedBox.shrink(),
         recipe != null
-            ? SizedBox(
+            ? const SizedBox(
                 height: 20,
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
       ],
     );
   }
@@ -89,7 +78,6 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
                     labelText: S.of(context).recipesCreateEditDisplayNameTxt,
@@ -104,7 +92,6 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
                   textInputAction: TextInputAction.next,
                 ),
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'price',
                   decoration: InputDecoration(
                     labelText: S.of(context).recipesCreateEditPriceTxt,

@@ -1,15 +1,18 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:ieatta/app/ui/widgets/page_section_title.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
-import 'select_restaurant_cover.dart';
+import 'widget/select_restaurant_cover.dart';
 
 class EditRestaurantPage extends GetWidget<EditRestaurantController> {
+  const EditRestaurantPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseSingleViewPage(
@@ -22,7 +25,7 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
             actions: [
               // Action1: save Restaurant icon.
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: controller.state.isButtonDisabled.value
                           ? null
@@ -31,7 +34,7 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
                             },
                       child: Center(
                           child: controller.state.isButtonDisabled.value
-                              ? Container(
+                              ? const SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -47,33 +50,20 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
     return Column(
       children: [
         // Section1: Form
-        Shortcuts(
-          shortcuts: <LogicalKeySet, Intent>{
-            // Pressing enter on the field will now move to the next field.
-            LogicalKeySet(LogicalKeyboardKey.enter): NextFocusIntent(),
-          },
-          child: FocusTraversalGroup(
-            child: Form(
-              onChanged: () {
-                Form.of(primaryFocus!.context!)!.save();
-              },
-              child: _buildForm(context),
-            ),
-          ),
-        ),
+        _buildForm(context),
         // Section2: Cover Title
         (controller.isNew == false)
             ? buildCoverSectionTitle()
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
         // Section2: Photos
         (controller.isNew == false)
-            ? SelectRestaurantCover()
-            : SizedBox.shrink(),
+            ? const SelectRestaurantCover()
+            : const SizedBox.shrink(),
         (controller.isNew == false)
-            ? SizedBox(
+            ? const SizedBox(
                 height: 20,
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
       ],
     );
   }
@@ -91,7 +81,6 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'displayName',
                   decoration: InputDecoration(
                     labelText:
@@ -107,7 +96,6 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
                   textInputAction: TextInputAction.next,
                 ),
                 FormBuilderTextField(
-                  autovalidateMode: AutovalidateMode.always,
                   name: 'note',
                   decoration: InputDecoration(
                     labelText: S.of(context).modelCreateEditNotesTxt,

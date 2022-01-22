@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:ieatta/app/controller/firebase.controller.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/filter/filter_models.dart';
-import 'package:my_plugin/my_plugin.dart';
 
 class EditRestaurantState {
   FirebaseController firebaseController = Get.find();
@@ -12,7 +10,7 @@ class EditRestaurantState {
   Rx<bool> isButtonDisabled = Rx<bool>(false);
 
   Rx<String> selectedCover = Rx<String>('');
-  Rx<ParseModelRestaurants?> _restaurant = Rx<ParseModelRestaurants?>(null);
+  final Rx<ParseModelRestaurants?> _restaurant = Rx<ParseModelRestaurants?>(null);
 
   RxList<ParseModelPhotos> photosList = RxList<ParseModelPhotos>([]);
 
@@ -20,7 +18,7 @@ class EditRestaurantState {
 
   listenChanged() {
     ever(selectedCover, (value) {
-      Log.d('selectedCover new value: $value');
+      // Log.d('selectedCover new value: $value');
     });
   }
 

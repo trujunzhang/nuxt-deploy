@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/Restaurants.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/restaurant.dart';
 import 'package:ieatta/app/ui/widgets/rating_image.dart';
 
 class HotelListView extends StatefulWidget {
-  HotelListView({
+  const HotelListView({
     Key? key,
     required this.restaurantData,
     this.callback,

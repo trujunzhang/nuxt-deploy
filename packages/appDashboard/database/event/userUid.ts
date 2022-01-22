@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat'
 import { IFBPhoto, IFBRestaurant, IFBRecipe, IFBReview, IFBEvent, IFBPeopleInEvent } from 'ieattatypes/types/index'
 import { password, loadUsers } from '~/database/data/Users'
 

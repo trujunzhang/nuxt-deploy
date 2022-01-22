@@ -1,15 +1,17 @@
+import 'package:app_language/langs/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/widgets/photo_base_view.dart';
 import 'package:ieatta/app/ui/widgets/selected_icon.dart';
-import 'package:ieatta/common/langs/l10n.dart';
 import 'package:my_plugin/my_plugin.dart';
 
 import 'index.dart';
-import 'no_result.dart';
+import 'widget/no_result.dart';
 
 class SelectWaiterPage extends GetWidget<SelectWaiterController> {
+  const SelectWaiterPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
@@ -19,12 +21,10 @@ class SelectWaiterPage extends GetWidget<SelectWaiterController> {
           leadingType: AppBarBackType.Close,
           actions: [
             Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
-                    onTap: () {
-                      controller.onNewWaiterButtonPress(context);
-                    },
-                    child: Icon(
+                    onTap: controller.onNewWaiterButtonPress,
+                    child: const Icon(
                       Icons.add,
                       color: Colors.white,
                     ))),
@@ -37,22 +37,25 @@ class SelectWaiterPage extends GetWidget<SelectWaiterController> {
     Map<String, ParseModelPhotos> waitersDict = controller.state.waitersDict;
     List<String> unselectedWaiterIds = controller.state.unselectedWaiterIds;
 
-    if (unselectedWaiterIds.length == 0) {
-      return WaitersEmpty();
+    if (unselectedWaiterIds.isEmpty) {
+      return const WaitersEmpty();
     }
     return GridView.builder(
       shrinkWrap: true,
-      physics: ScrollPhysics(),
+      physics: const ScrollPhysics(),
       primary: false,
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       itemCount: unselectedWaiterIds.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 200 / 200,
       ),
       itemBuilder: (BuildContext context, int index) {
         var waiterId = unselectedWaiterIds[index];
-        return Obx(() => _buildGridItem(context, waitersDict[waiterId]));
+        ParseModelPhotos? waiter = waitersDict[waiterId];
+        return Obx(() {
+          return _buildGridItem(context, waiter);
+        });
       },
     );
   }
@@ -63,19 +66,31 @@ class SelectWaiterPage extends GetWidget<SelectWaiterController> {
       onTap: () async {
         await controller.onAddIconPress(context, waiter);
       },
-      child: Padding(
-          padding: EdgeInsets.all(5.0),
-          child: Stack(
-            children: [
-              PhotoBaseView(photoData: waiter),
-              isSelected
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [SelectedIcon()],
-                    )
-                  : SizedBox()
-            ],
-          )),
+      child: Stack(
+        children: [
+          _buildItem(context, waiter),
+          isSelected
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [SelectedIcon()],
+                )
+              : const SizedBox.shrink()
+        ],
+      ),
+    );
+  }
+
+  Widget _buildItem(BuildContext context, ParseModelPhotos? waiter) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+          width: 135.0,
+          height: 180.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.white,
+          ),
+          child: PhotoBaseView(photoData: waiter!)),
     );
   }
 }

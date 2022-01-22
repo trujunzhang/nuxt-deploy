@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/enum/fb_collections.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/routes/params_helper.dart';
 
 import 'photo_view.dart';
@@ -20,7 +19,7 @@ class PhotosListBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (photosList.length == 0) {
+    if (photosList.isEmpty) {
       return buildEmptyPhotos(context);
     }
     return buildPhotosListView();
@@ -35,10 +34,6 @@ class PhotosListBody extends StatelessWidget {
           callback: () {
             Get.toNamed(ParamsHelper.getOnlinePageViewPath(index,
                 photoType: photoType, relatedId: relatedId));
-            // Get.toNamed(Routes.ONLINE_PHOTO_PAGE, arguments: {
-            //   ParamsHelper.SELECTED_INDEX: index,
-            //   ParamsHelper.PHOTOS_LIST: photosList
-            // });
           },
           photoData: photosList[index],
         );
@@ -56,7 +51,7 @@ class PhotosListBody extends StatelessWidget {
             relatedId: relatedId,
           ));
         },
-        child: Icon(
+        child: const Icon(
           Icons.add_a_photo,
           color: Colors.blueGrey,
           size: 50,

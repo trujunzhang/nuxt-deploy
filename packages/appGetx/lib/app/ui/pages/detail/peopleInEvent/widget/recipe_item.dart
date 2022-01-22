@@ -1,52 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:ieatta/app/data/model/index.dart';
+import 'package:getx_firebase/getx_firebase.dart';
 import 'package:ieatta/app/ui/helpers/images/recipe.dart';
+import 'package:ieatta/app/ui/helpers/slidable_row.dart';
 import 'package:ieatta/app/ui/widgets/rating_image.dart';
 
-import '../index.dart';
-
-var cardText = TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
+var cardText = const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold);
 
 class RecipeItem extends StatelessWidget {
-  DetailPeopleInEventController controller =
-      Get.find<DetailPeopleInEventController>();
   final ParseModelRecipes recipeData;
+  final Function(BuildContext context) onDeleteRecipeIconPress;
+  final Function() onRecipeItemClick;
 
-  RecipeItem({
+  const RecipeItem({
     Key? key,
     required this.recipeData,
+    required this.onDeleteRecipeIconPress,
+    required this.onRecipeItemClick,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(recipeData.uniqueId),
-      direction: Axis.horizontal,
-      actionPane: SlidableBehindActionPane(),
-      actionExtentRatio: 0.25,
-      child: _buildBody(context),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Delete',
-          color: Colors.red,
-          icon: Icons.delete,
-          onTap: () async {
-            await controller.onDeleteRecipeIconPress(context, recipeData);
-          },
-        ),
-      ],
+    return SlidableRow(
+      rowKey: recipeData.uniqueId,
+      row: _buildBody(context),
+      onPress: onDeleteRecipeIconPress,
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return InkWell(
-      onTap: () {
-        controller.onRecipeItemClick(recipeData);
-      },
+      onTap: onRecipeItemClick,
       child: Container(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 12, bottom: 12),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 12, bottom: 12),
         child: _buildCard(context),
       ),
     );
@@ -62,7 +49,7 @@ class RecipeItem extends StatelessWidget {
         children: <Widget>[
           Text(
             recipeData.displayName,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
@@ -71,12 +58,12 @@ class RecipeItem extends StatelessWidget {
             children: <Widget>[
               // Rating star view
               RatingImage(baseReview: recipeData),
-              SizedBox(
+              const SizedBox(
                 width: 10.0,
               ),
               Text(
-                "(" + recipeData.reviewCount.toString() + " Reviews)",
-                style: TextStyle(color: Colors.grey),
+                "( ${recipeData.reviewCount} Reviews)",
+                style: const TextStyle(color: Colors.grey),
               ),
             ],
           ),
@@ -87,7 +74,7 @@ class RecipeItem extends StatelessWidget {
 
   Widget _buildCard(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(10.0),
       ),
       child: Stack(
@@ -103,7 +90,7 @@ class RecipeItem extends StatelessWidget {
             width: Get.width,
             height: 60.0,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -126,7 +113,7 @@ class RecipeItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '\$' + recipeData.price,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.orangeAccent),
