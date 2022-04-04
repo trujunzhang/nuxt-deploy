@@ -1,7 +1,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IFBUser } from 'ieattatypes/types/index'
+import { IFBUser, IFBUserStatistics } from 'ieattatypes/types/index'
 import { namespace } from 'vuex-class'
 import { IAuthUser } from '~/database/models/auth_user_model'
+import { FirestoreService } from '~/database/services/firestore_service'
+import { UserHelper } from '~/database/user_helper'
+import { FirestoreParams } from '~/database/services/firestore_params'
 
 const auth = namespace('auth')
 
@@ -13,6 +16,8 @@ export default class UserTop extends Vue {
 
   @auth.State
   public user!: IAuthUser | null
+
+  public userStatistics: IFBUserStatistics = UserHelper.defaultUserStatistics
 
   getPhotoUrl () {
     if (this.detailUser.originalUrl === '') {
@@ -41,6 +46,30 @@ export default class UserTop extends Vue {
     return `/profile?return_url=${fullPath}`
   }
 
-  mounted () {
+  getRestaurantsCount () {
+    return this.userStatistics[FirestoreParams.KEY_RESTAURANTS]
+  }
+
+  getPhotosCount () {
+    return this.userStatistics[FirestoreParams.KEY_PHOTOS]
+  }
+
+  getReviewsCount () {
+    return this.userStatistics[FirestoreParams.KEY_REVIEWS]
+  }
+
+  async _fetchUserStatistics () {
+    const _userStatistics: IFBUserStatistics | undefined =
+      await FirestoreService.instance.queryUserStatisticsByCreatorId(
+        this.$fire.functions,
+        this.detailUser.id
+      )
+    if (_userStatistics !== undefined && _userStatistics !== null) {
+      this.userStatistics = _userStatistics
+    }
+  }
+
+  async mounted () {
+    await this._fetchUserStatistics()
   }
 }

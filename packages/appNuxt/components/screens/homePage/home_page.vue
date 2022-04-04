@@ -58,14 +58,14 @@
                 <div class=" border-color--default__09f24__R1nRO">
                   <p class=" text__09f24__2tZKC text-color--black-extra-light__09f24__38DtK text-align--left__09f24__3Drs0 text-size--small__09f24__1Z_UI">
                     Copyright © 2004–2021 Yelp Inc. Yelp,<!-- --> <img
-                    class=" align-bottom__09f24__2_PYL"
-                    src="https://s3-media0.fl.yelpcdn.com/assets/public/logo_desktop_xsmall_outline.yji-17089be275f0e32eb065304790b0c35e.png"
-                    alt="Yelp logo"
-                  >, <!-- --> <img
-                    class=" align-bottom__09f24__2_PYL"
-                    src="https://s3-media0.fl.yelpcdn.com/assets/public/burst_desktop_xsmall_outline.yji-58cfc999e1f5da75e75ddf71c868c656.png"
-                    alt="Yelp burst"
-                  > <!-- -->and related marks are registered trademarks of Yelp.
+                      class=" align-bottom__09f24__2_PYL"
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/logo_desktop_xsmall_outline.yji-17089be275f0e32eb065304790b0c35e.png"
+                      alt="Yelp logo"
+                    >, <!-- --> <img
+                      class=" align-bottom__09f24__2_PYL"
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/burst_desktop_xsmall_outline.yji-58cfc999e1f5da75e75ddf71c868c656.png"
+                      alt="Yelp burst"
+                    > <!-- -->and related marks are registered trademarks of Yelp.
                   </p>
                 </div>
               </div>

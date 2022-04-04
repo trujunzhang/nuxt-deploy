@@ -1,0 +1,15 @@
+* 09/18
+  .1(DONE) No update in the lib/app/ui/pages/reviews/list/review.list.page.dart.
+  .2(DONE) No update in the cover of the restaurant/recipe.
+  .3(DONE) Change language.
+  .4(DONE) Change theme.
+
+* 01/23
+  .1(DONE) Use floor library to provide a neat SQLite abstraction
+  .2(DONE) Add 'app_widgets' library.
+  .3(DONE) Use 'doc_widget' library to document app's widgets
+
+
+
+
+

@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "client: chrome",
+      "url": "http://localhost:3000",
+      "cwd": "${workspaceFolder}/appDashboard",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/appDashboard",
+      "name": "appDashboard:dev",
+      "args": [
+        "dev"
+      ],
+      "osx": {
+        "program": "${workspaceFolder}/appDashboard/node_modules/.bin/nuxt"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "fullstack: nuxt",
+      "configurations": [
+        "appDashboard:dev",
+        "client: chrome"
+      ]
+    }
+  ]
+}

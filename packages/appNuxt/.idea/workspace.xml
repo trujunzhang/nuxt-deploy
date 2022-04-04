@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/services/firestore_service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/services/firestore_service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,16 +49,18 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.detail">
+  <component name="RunManager" selected="JavaScript Debug.user_detail (local)">
     <configuration name="RouteHelper.getReviewSearchLocation with empty query" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -152,6 +155,9 @@
     <configuration name="uploadImage" type="JavascriptDebugType" uri="http://localhost:3000/biz_user_photos/upload/3e8d6a9635a72cb18078aeef13bd5b8a">
       <method v="2" />
     </configuration>
+    <configuration name="user_detail (local)" type="JavascriptDebugType" uri="http://localhost:3000/user_details?userid=nQwgDjw8Lh2sVxHj2YsRGK6Z6hU9">
+      <method v="2" />
+    </configuration>
     <configuration name="user_detail" type="JavascriptDebugType" uri="http://localhost:3000/user_details?userid=onXIPCE8oMYaN2SmJglSWVOeMgF2">
       <method v="2" />
     </configuration>
@@ -165,6 +171,7 @@
       <item itemvalue="JavaScript Debug.photo(single)" />
       <item itemvalue="JavaScript Debug.uploadImage" />
       <item itemvalue="JavaScript Debug.user_detail" />
+      <item itemvalue="JavaScript Debug.user_detail (local)" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with sort date_desc" />
       <item itemvalue="Jest.RouteHelper.getReviewSortLocation with default query" />
       <item itemvalue="Jest.RouteHelper.getReviewSearchLocation with empty query" />
@@ -414,6 +421,11 @@
       <workItem from="1618474938525" duration="2023000" />
       <workItem from="1618482092263" duration="146000" />
       <workItem from="1618484357223" duration="2575000" />
+      <workItem from="1649037023086" duration="49000" />
+      <workItem from="1649037103947" duration="177000" />
+      <workItem from="1649037611158" duration="803000" />
+      <workItem from="1649038488189" duration="360000" />
+      <workItem from="1649039051418" duration="564000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
@@ -787,6 +799,12 @@
           <url>file://$PROJECT_DIR$/server/index.js</url>
           <line>11</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/screens/details/user/user_top.ts</url>
+          <line>49</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

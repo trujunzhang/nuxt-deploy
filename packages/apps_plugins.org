@@ -1,0 +1,53 @@
+You must enable Billing on the Google Cloud Project
+
+* appFunction
+** Good map
+   appFunction/functions/src/utils/google_geocoding.ts
+   $ GOOGLE_API_KEY
+
+* appNuxt
+
+** Firebase
+** Cloudary
+   database/photo_helper.ts
+   $ cloudName
+ 
+** Good map
+   plugins/google-maps.js
+   $ apiKey
+*** vue2-google-maps
+   https://www.npmjs.com/package/vue2-google-maps
+*** get google web apiKey
+   https://developers.google.com/maps/documentation/javascript/get-api-key
+
+** TODO:
+   .1 Toggle google map when hoving the restaurant item in the homepage.
+   .2 Fetch statistic of firebase function in the detailed userpage.
+   .3 Find friends page.
+
+* appGet
+** Firebase
+** sentry
+  packages/app_config/lib/src/app_configs.dart
+  $ SentryConfig
+
+** Cloudary
+  packages/app_config/lib/src/app_configs.dart
+  $ CloudinaryConfig
+
+** Good map
+*** google_maps_flutter
+  https://pub.dev/packages/google_maps_flutter
+  
+*** blogs
+  https://blog.logrocket.com/adding-google-maps-to-a-flutter-app/
+
+  https://medium.com/flutter/google-maps-and-flutter-cfb330f9a245
+  
+*** ios
+  app/ios/Runner/AppDelegate.swift
+  $ provideAPIKey
+*** android  
+  app/android/app/src/main/AndroidManifest.xml
+  $ com.google.android.geo.API_KEY
+

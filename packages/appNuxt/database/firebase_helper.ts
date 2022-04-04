@@ -5,7 +5,7 @@ import { FBCollections } from '~/database/constant'
 import { ParseModelUsers } from '~/database/appModel/users'
 
 export class FirebaseHelper {
-  static async createUser($fireStore: firebase.firestore.Firestore, model: IFBUser) {
+  static async createUser ($fireStore: firebase.firestore.Firestore, model: IFBUser) {
     const messageRef = $fireStore.collection(FBCollections.Users).doc(model.id)
     try {
       const doc = await messageRef.get()
@@ -17,7 +17,7 @@ export class FirebaseHelper {
     }
   }
 
-  public static async onLoginAfterHook($fireStore: firebase.firestore.Firestore, model: IAuthUser) {
+  public static async onLoginAfterHook ($fireStore: firebase.firestore.Firestore, model: IAuthUser) {
     const user = ParseModelUsers.getUserModel(model)
     await FirebaseHelper.createUser($fireStore, user)
   }

@@ -6,7 +6,7 @@
  * ieatta-sec:
  * https://console.firebase.google.com/project/ieatta-sec/overview
  */
-import { AuthServiceConfig, FirebaseModuleConfiguration, FirestoreServiceConfig } from '@nuxtjs/firebase'
+import { AuthServiceConfig, FirebaseModuleConfiguration, FirestoreServiceConfig, FunctionsServiceConfig } from '@nuxtjs/firebase'
 
 const auth: AuthServiceConfig = {
   // emulatorPort: 9099,
@@ -16,6 +16,12 @@ const auth: AuthServiceConfig = {
 const firestore: FirestoreServiceConfig = {
   // emulatorPort: 8080,
   // emulatorHost: 'localhost'
+}
+
+const functions: FunctionsServiceConfig = {
+  // location: 'us-central1',
+  // emulatorPort: 5001,
+  // emulatorHost: 'http://localhost'
 }
 
 export const firebase: FirebaseModuleConfiguration = {
@@ -32,6 +38,7 @@ export const firebase: FirebaseModuleConfiguration = {
   services: {
     auth,
     firestore,
+    functions,
     storage: true
   }
 }

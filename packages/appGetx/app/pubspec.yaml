@@ -1,0 +1,173 @@
+name: ieatta
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.4.1+1
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Local plugins  
+  app_config:
+      path: ../packages/app_config
+  app_language:
+      path: ../packages/app_language
+  app_theme:
+      path: ../packages/app_theme
+  app_sql:
+      path: ../packages/app_sql
+  app_models:
+      path: ../packages/app_models
+  app_widgets:
+      path: ../packages/app_widgets
+  getx_firebase:
+      path: ../packages/getx_firebase
+  flutter_auth_buttons:
+      path: ../packages/flutter_auth_buttons
+  geoflutterfire:
+      path: ../packages/GeoFlutterFire
+  geohash:
+      path: ../packages/dart-geohash
+  my_plugin:
+      git: https://trujunzhang@bitbucket.org/trujunzhang/my_plugin.git
+
+  cupertino_icons: ^1.0.4
+
+  # design systems
+  mix: 0.0.5
+
+  #UI
+  another_flushbar: 1.10.28
+  font_awesome_flutter: ^10.1.0
+  flutter_form_builder: ^7.1.0
+  form_builder_validators: ^7.4.0
+  flutter_slidable: 1.2.0
+
+  # Logic
+  get: 4.6.1
+  get_storage: 2.0.3
+
+  # map
+  google_maps_flutter: ^2.1.2
+
+  # Exceptions
+  # https://sentry.io/
+  sentry_flutter: ^6.3.0
+
+  # camera
+  cached_network_image: 3.2.0
+  camerawesome: 0.3.0+1
+  image_picker: ^0.8.4+6
+
+  # GPX
+  location: 4.3.0
+
+  # common
+  package_info: 2.0.2
+
+  # Toast
+  oktoast: 3.1.5
+
+  # permission
+  permission_handler: ^9.0.1
+
+  # effect
+  shimmer: 2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.1.7
+  test: ^1.16.8
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^1.0.4
+  flutter_launcher_icons_maker: "^0.10.1"
+
+flutter_icons:
+  android: true
+  ios: true
+  macos: true
+  windows: true
+  web: true
+  image_path: "assets/icon/icon.png"
+
+# The following section is specific to Flutter.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/images/
+    - assets/placeholder/
+    - assets/stars/small/
+    - assets/stars/large/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Poppins/Poppins-BlackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins/Poppins-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins/Poppins-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins/Poppins-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Poppins/Poppins-ThinItalic.ttf
+          weight: 100
+          style: italic
+
+
+
+
+

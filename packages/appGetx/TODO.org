@@ -1,5 +1,0 @@
-* 09/18
-  .1(DONE) No update in the lib/app/ui/pages/reviews/list/review.list.page.dart.
-  .2(DONE) No update in the cover of the restaurant/recipe.
-  .3(DONE) Change language.
-  .4 Change theme.

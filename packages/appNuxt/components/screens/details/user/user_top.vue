@@ -38,7 +38,7 @@
                       </use>
                     </svg>
                   </span>
-                  <strong>0</strong> Friends
+                  <strong>{{ getRestaurantsCount() }}</strong> Restaurants
                 </li>
                 <li class="review-count">
                   <span aria-hidden="true" style="fill: #f15c00; width: 24px; height: 24px;" class="icon icon--24-review icon--size-24">
@@ -50,7 +50,7 @@
                       </use>
                     </svg>
                   </span>
-                  <strong>0</strong> Reviews
+                  <strong>{{ getReviewsCount() }}</strong> Reviews
                 </li>
                 <li class="photo-count">
                   <span aria-hidden="true" style="fill: #f15c00; width: 24px; height: 24px;" class="icon icon--24-camera icon--size-24">
@@ -62,7 +62,7 @@
                       </use>
                     </svg>
                   </span>
-                  <strong>0</strong> Photos
+                  <strong>{{ getPhotosCount() }}</strong> Photos
                 </li>
               </ul>
             </div>

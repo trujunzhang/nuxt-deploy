@@ -1,6 +1,10 @@
 #!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# echo "dir:  >>> $DIR"
 
-CURRENT=`pwd`
+# CURRENT=`pwd`
+CURRENT="$(dirname "$DIR")"
+
 
 projectPath="${CURRENT}"
 
@@ -27,9 +31,14 @@ function project_update {
     # flutter packages get
 }
 
-project_update  "${projectPath}/plugin/app_config"
-project_update  "${projectPath}/plugin/app_language"
-project_update  "${projectPath}/plugin/app_sql"
-project_update  "${projectPath}/plugin/app_theme"
-project_update  "${projectPath}/plugin/GeoFlutterFire"
-project_update  "${projectPath}/plugin/getx_firebase"
+project_update  "${projectPath}/app"
+project_update  "${projectPath}/doc_widget_app"
+
+project_update  "${projectPath}/packages/app_config"
+project_update  "${projectPath}/packages/app_language"
+project_update  "${projectPath}/packages/app_sql"
+project_update  "${projectPath}/packages/app_widgets"
+project_update  "${projectPath}/packages/app_models"
+project_update  "${projectPath}/packages/app_theme"
+project_update  "${projectPath}/packages/GeoFlutterFire"
+project_update  "${projectPath}/packages/getx_firebase"
