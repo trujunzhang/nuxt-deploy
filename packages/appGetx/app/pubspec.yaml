@@ -47,11 +47,11 @@ dependencies:
   another_flushbar: 1.10.28
   font_awesome_flutter: ^10.1.0
   flutter_form_builder: ^7.1.0
-  form_builder_validators: ^7.4.0
+  form_builder_validators: ^8.1.1
   flutter_slidable: 1.2.0
 
   # Logic
-  get: 4.6.1
+  get: ^4.6.3
   get_storage: 2.0.3
 
   # map
@@ -67,13 +67,13 @@ dependencies:
   image_picker: ^0.8.4+6
 
   # GPX
-  location: 4.3.0
+  location: ^4.4.0
 
   # common
   package_info: 2.0.2
 
   # Toast
-  oktoast: 3.1.5
+  oktoast: ^3.2.0
 
   # permission
   permission_handler: ^9.0.1
@@ -92,7 +92,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
   flutter_launcher_icons_maker: "^0.10.1"
 
 flutter_icons:

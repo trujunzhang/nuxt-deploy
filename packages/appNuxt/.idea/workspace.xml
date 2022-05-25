@@ -11,8 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec800d76-e09d-4f1b-9f69-e49a9cd17fb7" name="Default Changelist" comment="xxx">
+      <change beforePath="$PROJECT_DIR$/../appGetx/app/pubspec.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/services/firestore_service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/services/firestore_service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -426,6 +426,10 @@
       <workItem from="1649037611158" duration="803000" />
       <workItem from="1649038488189" duration="360000" />
       <workItem from="1649039051418" duration="564000" />
+      <workItem from="1649842307599" duration="138000" />
+      <workItem from="1650008486987" duration="225000" />
+      <workItem from="1652492668713" duration="30000" />
+      <workItem from="1652492745649" duration="45000" />
     </task>
     <task id="LOCAL-00002" summary="xxx">
       <created>1599531120391</created>
@@ -799,12 +803,6 @@
           <url>file://$PROJECT_DIR$/server/index.js</url>
           <line>11</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/components/screens/details/user/user_top.ts</url>
-          <line>49</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

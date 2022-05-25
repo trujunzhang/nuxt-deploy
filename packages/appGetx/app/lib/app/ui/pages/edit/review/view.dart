@@ -80,7 +80,7 @@ class EditReviewPage extends GetWidget<EditReviewController> {
                     controller.state.body.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                   maxLines: 15,
                   textInputAction: TextInputAction.next,

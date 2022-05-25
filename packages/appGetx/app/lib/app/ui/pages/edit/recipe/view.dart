@@ -83,8 +83,8 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
                     controller.state.displayName.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.max(context, 70),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.max(70),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),
@@ -97,8 +97,8 @@ class EditRecipePage extends GetWidget<EditRecipeController> {
                     controller.state.price.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.numeric(context),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),

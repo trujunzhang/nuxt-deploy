@@ -10,7 +10,6 @@
               <div class=" border-color--default__09f24__R1nRO">
                 <div
                   class=" container__09f24__2BlDc dontTriggerCardClick__09f24__2GWZF container--responsive__09f24__1BXoY container__09f24__1SkkV border-color--default__09f24__R1nRO"
-                  data-slidenum="0"
                 >
                   <div class=" container__09f24__15LDH border-color--default__09f24__R1nRO" aria-label="Slideshow">
                     <div class=" child__09f24__27sCM border-color--default__09f24__R1nRO" style="transition:transform 150ms ease-in-out">
@@ -21,7 +20,7 @@
                         ><img
                           v-lazy="`${getRestaurantPhotoUrl()}`"
                           class=" photo-box-img__09f24__3F3c5"
-                          height="100%"
+                          height="200px"
                           width="100%"
                           draggable="true"
                         ></a>

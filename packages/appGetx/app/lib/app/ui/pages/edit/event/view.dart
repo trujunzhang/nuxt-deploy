@@ -69,8 +69,8 @@ class EditEventPage extends GetWidget<EditEventController> {
                     controller.state.displayName.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.max(context, 70),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.max(70),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),
@@ -83,7 +83,7 @@ class EditEventPage extends GetWidget<EditEventController> {
                     controller.state.want.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                   maxLines: 15,
                   textInputAction: TextInputAction.next,
@@ -100,7 +100,7 @@ class EditEventPage extends GetWidget<EditEventController> {
                     controller.state.startDate.value = val;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                 ),
                 FormBuilderDateTimePicker(
@@ -115,7 +115,7 @@ class EditEventPage extends GetWidget<EditEventController> {
                     controller.state.endDate.value = val;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                 ),
               ],

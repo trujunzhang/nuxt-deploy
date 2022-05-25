@@ -7,9 +7,9 @@
 
 import 'package:doc_widget/doc_widget.dart';
 
-class MenuItemDocWidget implements Documentation {
+class OnMenuItemDocWidget implements Documentation {
   @override
-  String get name => 'MenuItem';
+  String get name => 'OnMenuItem';
   @override
   bool get hasState => false;
   @override

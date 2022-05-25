@@ -103,11 +103,11 @@ class DocWidgetHelper {
 
   // Menu item
   ElementPreview get menuItem => ElementPreview(
-        document: MenuItemDocWidget(), // From generated file
+        document: OnMenuItemDocWidget(), // From generated file
         previews: [
           WidgetPreview(
             // This will show your widget and a description about.
-            widget: MenuItem(
+            widget: OnMenuItem(
               recipe: recipe,
               onTapItem: () => debugPrint('Hello'),
             ),

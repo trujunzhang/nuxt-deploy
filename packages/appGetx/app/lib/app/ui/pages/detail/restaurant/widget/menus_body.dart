@@ -43,7 +43,7 @@ class _MenusBodyState extends State<MenusBody> {
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int index) {
         ParseModelRecipes recipe = recipesList[index];
-        return MenuItem(
+        return OnMenuItem(
           onTapItem: () {
             controller.onMenuItemPress(recipe);
           },

@@ -96,8 +96,8 @@ class EditUserPage extends GetWidget<EditUserController> {
                     controller.state.firstName.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.max(context, 15),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.max(15),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),
@@ -110,8 +110,8 @@ class EditUserPage extends GetWidget<EditUserController> {
                     controller.state.secondName.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.max(context, 15),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.max(15),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),

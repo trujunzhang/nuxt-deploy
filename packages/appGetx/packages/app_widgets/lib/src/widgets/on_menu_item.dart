@@ -6,11 +6,11 @@ import 'package:doc_widget/doc_widget.dart';
 import 'package:app_config/app_config.dart';
 
 @docWidget
-class MenuItem extends StatelessWidget {
+class OnMenuItem extends StatelessWidget {
   final VoidCallback onTapItem;
   final ParseModelRecipes recipe;
 
-  const MenuItem({
+  const OnMenuItem({
     Key? key,
     required this.onTapItem,
     required this.recipe,

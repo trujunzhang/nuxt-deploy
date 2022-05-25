@@ -82,8 +82,8 @@ class EditRestaurantPage extends GetWidget<EditRestaurantController> {
                     controller.state.displayName.value = val!;
                   },
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.max(context, 70),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.max(70),
                   ]),
                   textInputAction: TextInputAction.next,
                 ),
